@@ -26,4 +26,8 @@ touch $PREFIX/etc/ld.so.conf
 make install
 ln -sf $PREFIX/bin/* /prog
 ln -sf $PREFIX/sbin/* /prog
+ln -s /usr/include/asm-generic /packages/eglibc-2.15.90/include/asm-generic
+ln -s /usr/include/linux /packages/eglibc-2.15.90/include/linux
+ln -s /usr/include/mtd /packages/eglibc-2.15.90/include/mtd
+ln -s /usr/include/asm /packages/eglibc-2.15.90/include/asm
 
