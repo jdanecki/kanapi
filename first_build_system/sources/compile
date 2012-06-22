@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+BUILD_SRC_DIR=../builds/kanapi_build/src
+BUILD_OUT_DIR=../builds/kanapi_build/out
+
+prepare() {
+	echo "prepare: $1"
+	rm -rf $BUILD_SRC_DIR/$1
+	rm -rf $BUILD_OUT_DIR/$1
+	cp -ar $1 $BUILD_SRC_DIR
+	mkdir $BUILD_OUT_DIR/$1
+	cp $1.compile $BUILD_OUT_DIR/$1
+}
+# src -> BUILD_SRC_DIR
+# BUILD_SRC_DIR -> BUILD_OUT_DIR
+# BUILD_OUT_DIR -> packages
+# packages -> kanapi_build
+
+# http://www.eglibc.org/svn/trunk 
+prepare eglibc
+
+# http://gmplib.org:8000/gmp
+prepare gmp
+
+# https://github.com/gooselinux/mpfr
+prepare mpfr
+
+#  https://github.com/jeeb/mpc-hc
+prepare mpc
+
+# https://github.com/bneumeier/binutils
+prepare binutils
+
+# https://github.com/mirrors/gcc
+# svn://gcc.gnu.org/svn/gcc/trunk
+prepare gcc
+
+# git://busybox.net/busybox.git
+prepare busybox
+
+# git://git.sv.gnu.org/bash.git
+prepare bash
+
