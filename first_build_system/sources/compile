@@ -33,28 +33,35 @@ prepare() {
 # BUILD_OUT_DIR -> packages
 # packages -> kanapi_build
 
-# http://www.eglibc.org/svn/trunk 
+# http://www.eglibc.org/svn/trunk
+# 16569
 prepare eglibc
 
 # http://gmplib.org:8000/gmp
+# parent: 14575:36b73cd0ea0c tip
 prepare gmp
 
-# https://github.com/gooselinux/mpfr
+# svn://scm.gforge.inria.fr/svn/mpfr/trunk
+# 8010
 prepare mpfr
 
-#  https://github.com/jeeb/mpc-hc
+# svn://scm.gforge.inria.fr/svn/mpc
+# 1118
 prepare mpc
 
-# https://github.com/bneumeier/binutils
+# :pserver:anoncvs@sourceware.org:/cvs/src
+# 2011-12-18
 prepare binutils
 
-# https://github.com/mirrors/gcc
 # svn://gcc.gnu.org/svn/gcc/trunk
+# 183464
 prepare gcc
 
 # git://busybox.net/busybox.git
+# 0b2b0f3
 prepare busybox
 
 # git://git.sv.gnu.org/bash.git
+# 42a5896
 prepare bash
 
