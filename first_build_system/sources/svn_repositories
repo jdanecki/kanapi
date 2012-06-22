@@ -1,0 +1,9 @@
+#svn
+svn checkout svn://gcc.gnu.org/svn/gcc/trunk gcc
+svn checkout http://www.eglibc.org/svn/trunk eglibc
+svn checkout http://libarchive.googlecode.com/svn/trunk libarchive
+svn checkout svn://vcs.exim.org/pcre/code/trunk pcre
+svn checkout svn://anonsvn.mit.edu/krb5/trunk krb5
+svn checkout svn://scm.gforge.inria.fr/svn/mpc 
+svn checkout svn://scm.gforge.inria.fr/svn/mpfr/trunk mpfr
+

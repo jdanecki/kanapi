@@ -1,0 +1,3 @@
+#mercurial
+hg clone http://hg.python.org/cpython
+hg clone http://gmplib.org:8000/gmp 
