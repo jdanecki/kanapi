@@ -17,51 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-BUILD_SRC_DIR=../builds/kanapi_build/src
-BUILD_OUT_DIR=../builds/kanapi_build/out
-
-prepare() {
-	echo "prepare: $1"
-	rm -rf $BUILD_SRC_DIR/$1
-	rm -rf $BUILD_OUT_DIR/$1
-	cp -ar $1 $BUILD_SRC_DIR
-	mkdir $BUILD_OUT_DIR/$1
-	cp $1.compile $BUILD_OUT_DIR/$1
-}
-# src -> BUILD_SRC_DIR
-# BUILD_SRC_DIR -> BUILD_OUT_DIR
-# BUILD_OUT_DIR -> packages
-# packages -> kanapi_build
-
-# http://www.eglibc.org/svn/trunk
-# 16569
-prepare eglibc
-
-# http://gmplib.org:8000/gmp
-# parent: 14575:36b73cd0ea0c tip
-prepare gmp
+. ../functions
 
 # svn://scm.gforge.inria.fr/svn/mpfr/trunk
 # 8010
 prepare mpfr
-
-# svn://scm.gforge.inria.fr/svn/mpc
-# 1118
-prepare mpc
-
-# :pserver:anoncvs@sourceware.org:/cvs/src
-# 2011-12-18
-prepare binutils
-
-# svn://gcc.gnu.org/svn/gcc/trunk
-# 183464
-prepare gcc
-
-# git://busybox.net/busybox.git
-# 0b2b0f3
-prepare busybox
-
-# git://git.sv.gnu.org/bash.git
-# 42a5896
-prepare bash
 
