@@ -24,7 +24,7 @@ prepare() {
 	echo "prepare: $1"
 	rm -rf $BUILD_SRC_DIR/$1
 	rm -rf $BUILD_OUT_DIR/$1
-	cp -ar ../../../$1 $BUILD_SRC_DIR
+	cp -ar ../../../sources/$1 $BUILD_SRC_DIR
 	mkdir $BUILD_OUT_DIR/$1
 	cp $1.compile $BUILD_OUT_DIR/$1
 }
