@@ -1,6 +1,6 @@
 component	FBS			package
 
-autoconf 				autoconf_2.68-1ubuntu1_all.deb
+autoconf 	2.68.131-b035		autoconf_2.68-1ubuntu1_all.deb
 automake 				automake_1.11.1-1ubuntu1_all.deb
 autopoint				autopoint_0.18.1.1-3ubuntu1_all.deb
 bash		4.2.20			bash_4.2-0ubuntu4_i386.deb

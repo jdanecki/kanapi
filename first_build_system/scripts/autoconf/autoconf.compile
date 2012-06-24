@@ -17,10 +17,22 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-for package in eglibc gmp mpfr mpc binutils gcc busybox bash make autoconf
-do
-	cd $package
-	./prepare
-	cd ..
-done
+PREFIX=/packages/autoconf-2.68.131-b035
+LIBC_PREFIX=/packages/eglibc-2.15.90
+
+export CFLAGS="-mtune=native"
+export PATH="/prog:$PATH"
+MPC_PREFIX=/packages/mpc-1.0
+GMP_PREFIX=/packages/gmp-10.0.1
+MPFR_PREFIX=/packages/mpfr-4.1.0
+export LD_LIBRARY_PATH=$MPFR_PREFIX/lib/:$GMP_PREFIX/lib:$MPC_PREFIX/lib:$LIBC_PREFIX/lib
+
+cp -ar ../../src/autoconf build
+cd build
+autoreconf -i
+./configure --prefix=$PREFIX --host=i686-kanapi-linux
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+ln -sf $PREFIX/bin/* /prog
+
 
