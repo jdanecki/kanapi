@@ -85,3 +85,5 @@ mount
 libblkid1
 tar
 find
+git
+wget

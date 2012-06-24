@@ -21,6 +21,7 @@ gcc_4.6.1-2ubuntu5_i386.deb
 gcc-4.6_4.6.1-9ubuntu3_i386.deb
 gcc-4.6-base_4.6.1-9ubuntu3_i386.deb
 gettext_0.18.1.1-3ubuntu1_i386.deb
+git_1.7.9.5-1_i386.deb
 grep_2.9-1_i386.deb
 gzip_1.3.12-9ubuntu1.1_i386.deb
 libacl1_2.2.51-3_i386.deb
@@ -88,4 +89,5 @@ readline-common_6.2-2ubuntu1_all.deb
 sed_4.2.1-9_i386.deb
 strace_4.5.20-2.3ubuntu1_i386.deb
 tar_1.25-3_i386.deb
+wget_1.13.4-2ubuntu1_i386.deb
 zlib1g_1.2.3.4.dfsg-3ubuntu3_i386.deb
