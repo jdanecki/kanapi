@@ -5,7 +5,7 @@ automake 	1.11a			automake_1.11.1-1ubuntu1_all.deb
 autopoint				autopoint_0.18.1.1-3ubuntu1_all.deb
 bash		4.2.20			bash_4.2-0ubuntu4_i386.deb
 binutils	2.22.51.20120122	binutils_2.21.53.20110810-0ubuntu5.1_i386.de
-bison					bison_2.4.1.dfsg-3_i386.deb
+bison		2.5.1.789-6a06-dirty	bison_2.4.1.dfsg-3_i386.deb
 cmake					cmake_2.8.5-1ubuntu1_i386.deb
 cmake-data				cmake-data_2.8.5-1ubuntu1_all.deb
 coreutils				coreutils_8.5-1ubuntu6_i386.deb
