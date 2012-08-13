@@ -17,17 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PREFIX=/packages/eglibc-2.15.90
+PREFIX=/kanapi-packages/eglibc-20133
 
 ../../src/eglibc/libc/configure --disable-sanity-checks --prefix=$PREFIX
 make -j 2 CC="gcc-4.6 -mtune=native -fno-stack-protector -U_FORTIFY_SOURCE -O2"
 mkdir -p $PREFIX/etc/
 touch $PREFIX/etc/ld.so.conf
 make install
-ln -sf $PREFIX/bin/* /prog
-ln -sf $PREFIX/sbin/* /prog
-ln -s /usr/include/asm-generic /packages/eglibc-2.15.90/include/asm-generic
-ln -s /usr/include/linux /packages/eglibc-2.15.90/include/linux
-ln -s /usr/include/mtd /packages/eglibc-2.15.90/include/mtd
-ln -s /usr/include/asm /packages/eglibc-2.15.90/include/asm
+ln -sf $PREFIX/bin/* /kanapi_prog
+ln -sf $PREFIX/sbin/* /kanapi_prog
+ln -s /usr/include/asm-generic $PREFIX/include/asm-generic
+ln -s /usr/include/linux $PREFIX/include/linux
+ln -s /usr/include/mtd $PREFIX/include/mtd
+ln -s /usr/include/asm $PREFIX/include/asm
 

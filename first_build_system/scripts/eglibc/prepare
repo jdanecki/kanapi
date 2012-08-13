@@ -20,6 +20,8 @@
 . ../functions
 
 # http://www.eglibc.org/svn/trunk
-# 16569
+# 16569 - compiled
+# 20133 - compiled
+# gperf needed for install
 prepare eglibc
 
