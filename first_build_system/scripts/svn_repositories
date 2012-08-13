@@ -1,4 +1,5 @@
 #svn
+# svn tools: rapidsvn, git-svn, svn-workbench, kdesvn, esvn, python-svn
 svn checkout svn://gcc.gnu.org/svn/gcc/trunk gcc
 svn checkout http://www.eglibc.org/svn/trunk eglibc
 svn checkout http://libarchive.googlecode.com/svn/trunk libarchive

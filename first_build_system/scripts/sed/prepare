@@ -17,10 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-for package in eglibc gmp mpfr mpc binutils gcc busybox bash make autoconf automake bison sed
-do
-	cd $package
-	./prepare
-	cd ..
-done
+. ../functions
+
+# git://git.sv.gnu.org/sed.git
+# fc99910
+prepare sed
 
