@@ -89,3 +89,5 @@ tar					tar_1.25-3_i386.deb
 find					findutils_4.4.2-1ubuntu3_i386.deb
 git					git_1.7.9.5-1_i386.deb
 wget					wget_1.13.4-2ubuntu1_i386.deb
+patch 					patch_2.6.1-3_i386.deb
+gperf					gperf_3.0.3-1ubuntu1_i386.deb

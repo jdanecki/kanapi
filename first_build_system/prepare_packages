@@ -30,7 +30,8 @@ echo "root:x:0:" > builds/etc/group
 sudo cp -ar /dev builds/dev
 cp /etc/resolv.conf builds/etc
 mkdir builds/tmp
-mkdir builds/prog
+mkdir builds/kanapi_prog
+mkdir builds/kanapi_packages
 mkdir -p builds builds/kanapi_build/src
 mkdir -p builds builds/kanapi_build/out
 

@@ -6,8 +6,8 @@ drwxr-xr-x 13 root root 4096 Aug 13 00:21 etc
 drwxr-xr-x  4 root root 4096 Aug 13 00:21 lib
 drwxr-xr-x  2 root root 4096 Jun 24  2011 sbin
 drwxr-xr-x  2 root root 4096 Jun 21  2011 selinux
-drwxr-xr-x  2 root root 4096 Aug 13 00:22 tmp
-drwxr-xr-x  7 root root 4096 Mar 21  2011 usr
+drwxr-xr-x  2 root root 4096 Aug 14 00:13 tmp
+drwxr-xr-x  7 root root 4096 Apr  9 04:33 usr
 drwxr-xr-x  3 root root 4096 Apr 11 06:29 var
 
 builds/bin:
@@ -941,14 +941,14 @@ razem 0
 
 builds/usr:
 razem 28
-drwxr-xr-x  2 root root 12288 Aug 13 00:21 bin
+drwxr-xr-x  2 root root 12288 Apr  9 04:33 bin
 drwxr-xr-x 30 root root  4096 Aug 13 00:21 include
 drwxr-xr-x 20 root root  4096 Dec  7  2010 lib
 drwxr-xr-x  2 root root  4096 Dec  7  2010 sbin
-drwxr-xr-x 35 root root  4096 Mar 21  2011 share
+drwxr-xr-x 35 root root  4096 Apr  9 04:33 share
 
 builds/usr/bin:
-razem 31480
+razem 31568
 -rwxr-xr-x 1 root root   30244 Feb 23  2011 [
 lrwxrwxrwx 1 root root       8 Oct  8  2011 2to3 -> 2to3-2.7
 -rwxr-xr-x 1 root root      96 Oct  4  2011 2to3-2.7
@@ -1037,6 +1037,7 @@ lrwxrwxrwx 1 root root       3 Apr 11 06:29 git-receive-pack -> git
 lrwxrwxrwx 1 root root       3 Apr 11 06:29 git-upload-archive -> git
 -rwxr-xr-x 1 root root  582064 Apr 11 06:29 git-upload-pack
 lrwxrwxrwx 1 root root       7 Dec 23  2011 gold -> ld.gold
+-rwxr-xr-x 1 root root   87676 Apr  9 04:33 gperf
 -rwxr-xr-x 1 root root   96800 Dec 23  2011 gprof
 -rwxr-xr-x 1 root root   22000 Feb 23  2011 groups
 -rwxr-xr-x 1 root root   28302 Sep  6  2011 h2ph
@@ -6107,19 +6108,19 @@ drwxr-xr-x  4 root root 4096 Nov  4  2009 bison
 drwxr-xr-x  6 root root 4096 Jun 24  2011 bug
 drwxr-xr-x  5 root root 4096 Jul 11  2011 cmake-2.8
 drwxr-xr-x  3 root root 4096 Oct  8  2011 debhelper
-drwxr-xr-x 86 root root 4096 Mar 21  2011 doc
-drwxr-xr-x  2 root root 4096 Oct  8  2011 doc-base
+drwxr-xr-x 87 root root 4096 Apr  9 04:33 doc
+drwxr-xr-x  2 root root 4096 Apr  9 04:33 doc-base
 drwxr-xr-x  3 root root 4096 Jul 11  2011 emacs
 drwxr-xr-x  3 root root 4096 Aug  8  2011 file
 drwxr-xr-x  6 root root 4096 Nov 25  2010 gettext
 drwxr-xr-x  4 root root 4096 Apr 11 06:30 git-core
 drwxr-xr-x  3 root root 4096 Aug 13 00:21 gitweb
 drwxr-xr-x  3 root root 4096 Oct  6  2011 glib-2.0
-drwxr-xr-x  2 root root 4096 Feb 11  2012 info
+drwxr-xr-x  2 root root 4096 Apr  9 04:33 info
 drwxr-xr-x  2 root root 4096 Nov 25  2010 java
 drwxr-xr-x  3 root root 4096 May  1  2011 libtool
 drwxrwxr-x  3 root root 4096 Sep  1  2011 lintian
-drwxr-xr-x  8 root root 4096 Feb 11  2012 man
+drwxr-xr-x  8 root root 4096 Apr  9 04:33 man
 drwxr-xr-x  2 root root 4096 Oct  4  2011 menu
 drwxr-xr-x  2 root root 4096 Aug 13 00:21 misc
 drwxr-xr-x  3 root root 4096 Sep  6  2011 perl
@@ -7068,7 +7069,7 @@ razem 12
 -rw-r--r-- 1 root root 171 Oct  8  2011 prerm-pyclean
 
 builds/usr/share/doc:
-razem 336
+razem 340
 drwxr-xr-x 2 root root 4096 May  1  2011 autoconf
 drwxr-xr-x 2 root root 4096 Dec  9  2010 automake
 drwxr-xr-x 2 root root 4096 Nov 25  2010 autopoint
@@ -7093,6 +7094,7 @@ lrwxrwxrwx 1 root root   12 Sep 16  2011 gcc-4.6 -> gcc-4.6-base
 drwxr-xr-x 7 root root 4096 Apr 16 01:44 gcc-4.6-base
 drwxr-xr-x 2 root root 4096 Aug 13 00:21 gettext
 drwxr-xr-x 4 root root 4096 Apr 11 06:30 git
+drwxr-xr-x 3 root root 4096 Apr  9 04:33 gperf
 drwxr-xr-x 2 root root 4096 Jul 27  2011 grep
 drwxr-xr-x 2 root root 4096 Aug 17  2010 gzip
 drwxr-xr-x 2 root root 4096 Jul 27  2011 libacl1
@@ -7332,10 +7334,11 @@ drwxr-xr-x 6 root root  4096 Aug  9  2011 examples
 -rw-r--r-- 1 root root  3742 Apr 20  2010 README
 
 builds/usr/share/doc/gawk/examples:
-razem 12
+razem 16
 drwxr-xr-x 2 root root 4096 May  6  2010 data
 drwxr-xr-x 2 root root 4096 May  6  2010 misc
 drwxr-xr-x 2 root root 4096 Aug  9  2011 network
+drwxr-xr-x 2 root root 4096 May  6  2010 prog
 
 builds/usr/share/doc/gawk/examples/data:
 razem 16
@@ -7372,6 +7375,27 @@ razem 76
 -rw-r--r-- 1 root root  334 Apr 20  2010 testserv.awk
 -rw-r--r-- 1 root root 1053 Apr 20  2010 urlchk.awk
 -rw-r--r-- 1 root root  185 Apr 20  2010 webgrab.awk
+
+builds/usr/share/doc/gawk/examples/prog:
+razem 72
+-rw-r--r-- 1 root root 2321 Apr 20  2010 alarm.awk
+-rw-r--r-- 1 root root  515 Apr 20  2010 awksed.awk
+-rw-r--r-- 1 root root 3672 Apr 20  2010 cut.awk
+-rw-r--r-- 1 root root  507 Apr 20  2010 dupword.awk
+-rw-r--r-- 1 root root 1972 Apr 20  2010 egrep.awk
+-rw-r--r-- 1 root root 1748 Apr 20  2010 extract.awk
+-rw-r--r-- 1 root root  165 Apr 20  2010 guide.awk
+-rw-r--r-- 1 root root  283 Apr 20  2010 histsort.awk
+-rw-r--r-- 1 root root 1415 Apr 20  2010 id.awk
+-rw-r--r-- 1 root root 3091 Apr 20  2010 igawk.sh
+-rw-r--r-- 1 root root 1015 Apr 20  2010 labels.awk
+-rw-r--r-- 1 root root 1159 Apr 20  2010 split.awk
+-rw-r--r-- 1 root root  686 Apr 20  2010 tee.awk
+-rw-r--r-- 1 root root  729 Apr 20  2010 testbits.awk
+-rw-r--r-- 1 root root 1183 Apr 20  2010 translate.awk
+-rw-r--r-- 1 root root 2679 Apr 20  2010 uniq.awk
+-rw-r--r-- 1 root root 1476 Apr 20  2010 wc.awk
+-rw-r--r-- 1 root root  422 Apr 20  2010 wordfreq.awk
 
 builds/usr/share/doc/gcc-4.6-base:
 razem 292
@@ -7781,6 +7805,21 @@ razem 776
 -rw-r--r-- 1 root root   887 Apr 11 06:30 1.7.9.4.txt
 -rw-r--r-- 1 root root   731 Apr 11 06:30 1.7.9.5.txt
 -rw-r--r-- 1 root root  4373 Apr 11 06:30 1.7.9.txt
+
+builds/usr/share/doc/gperf:
+razem 100
+-rw-r--r-- 1 root root  1035 Apr  9 04:33 changelog.Debian.gz
+-rw-r--r-- 1 root root   469 Apr  9 04:33 copyright
+drwxr-xr-x 2 root root  4096 Apr  9 04:33 examples
+-rw-r--r-- 1 root root 78660 Mar 31  2007 gperf.html
+-rw-r--r-- 1 root root  1465 Mar 31  2007 NEWS.gz
+-rw-r--r-- 1 root root  1227 Aug  2  2001 README
+
+builds/usr/share/doc/gperf/examples:
+razem 12
+-rw-r--r-- 1 root root  198 Aug 19  2000 c.gperf
+-rw-r--r-- 1 root root  304 Aug 19  2000 c++.gperf
+-rw-r--r-- 1 root root 2390 Apr 15  2003 c-parse.gperf
 
 builds/usr/share/doc/grep:
 razem 36
@@ -8393,9 +8432,10 @@ razem 8
 -rw-r--r-- 1 root root 1606 Mar 16  2011 copyright
 
 builds/usr/share/doc-base:
-razem 12
+razem 16
 -rw-r--r-- 1 root root 649 Jan 18  2010 automake-1.11
 -rw-r--r-- 1 root root 323 Feb 10  2011 findutils
+-rw-r--r-- 1 root root 246 Apr  9 04:33 gperf
 -rw-r--r-- 1 root root 630 Sep 28  2011 python-policy
 
 builds/usr/share/emacs:
@@ -8613,7 +8653,7 @@ builds/usr/share/glib-2.0/schemas:
 razem 0
 
 builds/usr/share/info:
-razem 1008
+razem 1032
 -rw-r--r-- 1 root root  88532 Dec  9  2010 automake-1.11.info-1.gz
 -rw-r--r-- 1 root root  73336 Dec  9  2010 automake-1.11.info-2.gz
 -rw-r--r-- 1 root root   2853 Dec  9  2010 automake-1.11.info.gz
@@ -8624,6 +8664,7 @@ razem 1008
 -rw-r--r-- 1 root root   7693 Jan 27  2011 flex.info-2.gz
 -rw-r--r-- 1 root root   4414 Jan 27  2011 flex.info.gz
 -rw-r--r-- 1 root root 189219 Nov 25  2010 gettext.info.gz
+-rw-r--r-- 1 root root  22734 Mar 31  2007 gperf.info.gz
 -rw-r--r-- 1 root root  26232 Jul 27  2011 grep.info.gz
 -rw-r--r-- 1 root root  13774 Aug 17  2010 gzip.info.gz
 -rw-r--r-- 1 root root  87893 Apr 30  2011 m4.info-1.gz
@@ -8687,7 +8728,7 @@ razem 108
 builds/usr/share/man:
 razem 32
 drwxr-xr-x 3 root root  4096 Jun 24  2011 de
-drwxr-xr-x 2 root root 12288 Feb 11  2012 man1
+drwxr-xr-x 2 root root 12288 Apr  9 04:33 man1
 drwxrwxr-x 2 root root  4096 Sep  1  2011 man3
 drwxr-xr-x 2 root root  4096 Jun 24  2011 man5
 drwxr-xr-x 2 root root  4096 Aug 14  2011 man7
@@ -8702,7 +8743,7 @@ razem 4
 -rw-r--r-- 1 root root 1204 Jun 24  2011 w.1.gz
 
 builds/usr/share/man/man1:
-razem 1956
+razem 1960
 lrwxrwxrwx 1 root root      9 Feb 23  2011 [.1.gz -> test.1.gz
 lrwxrwxrwx 1 root root     13 Oct  8  2011 2to3.1.gz -> 2to3-2.7.1.gz
 -rw-r--r-- 1 root root    553 Oct  4  2011 2to3-2.7.1.gz
@@ -8804,6 +8845,7 @@ lrwxrwxrwx 1 root root     13 Aug 14  2011 gcov.1.gz -> gcov-4.6.1.gz
 -rw-r--r-- 1 root root   2341 Oct  5  2011 getent.1.gz
 -rw-r--r-- 1 root root    908 Nov 25  2010 gettextize.1.gz
 lrwxrwxrwx 1 root root     12 Dec 23  2011 gold.1.gz -> ld.gold.1.gz
+-rw-r--r-- 1 root root   3105 May  2  2007 gperf.1.gz
 -rw-r--r-- 1 root root   8797 Dec 23  2011 gprof.1.gz
 -rw-r--r-- 1 root root   9986 Jul 27  2011 grep.1.gz
 -rw-r--r-- 1 root root    844 Feb 23  2011 groups.1.gz

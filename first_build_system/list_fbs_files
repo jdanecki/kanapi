@@ -18,4 +18,4 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 export LANG=
-ls -lR builds -I kanapi_build -I prog
+ls -lR builds -I kanapi_build -I kanapi_prog -I kanapi_packages
