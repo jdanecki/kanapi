@@ -1,0 +1,12 @@
+FBS: first build system
+
+eglibc-2.15.90
+gmp-10.0.1
+mpfr-4.1.0
+mpc-1.0
+binutils-2.22.51.20120122
+gcc-4.8.0
+
+======================
+SBS: second build system
+bash-4.2.20
