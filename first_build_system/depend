@@ -1,0 +1,13 @@
+http://gcc.gnu.org/install/configure.html
+
+mount -t tmpfs tmpfs dir
+
+eglibc: gcc-4.6
+
+binutils: [eglibc]-linker, gcc-4.6
+gmp: [eglibc]-linker, gcc-4.6
+mpfr: [eglibc]-linker, gcc-4.6, gmp
+mpc: [eglibc]-linker, gcc-4.6, gmp, mpfr
+gcc: eglibc, binutils, gmp, mpfr, mpc
+
+

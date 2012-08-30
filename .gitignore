@@ -2,4 +2,8 @@ first_build_system/builds
 first_build_system/packages
 sources
 kanapi_build
+cross_build_system/builds
+cross_build_system/packages
+second_build_system/builds
+second_build_system/packages
 

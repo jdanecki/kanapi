@@ -1,13 +1,13 @@
 builds:
 razem 36
 drwxr-xr-x  2 root root 4096 Dec  7  2010 bin
-drwxr-xr-x 17 root root 4096 Aug 12 16:55 dev
-drwxr-xr-x 13 root root 4096 Aug 13 00:21 etc
-drwxr-xr-x  4 root root 4096 Aug 13 00:21 lib
+drwxr-xr-x 17 root root 4096 Aug 30 11:43 dev
+drwxr-xr-x 13 root root 4096 Aug 30 18:16 etc
+drwxr-xr-x  4 root root 4096 Aug 30 18:16 lib
 drwxr-xr-x  2 root root 4096 Jun 24  2011 sbin
 drwxr-xr-x  2 root root 4096 Jun 21  2011 selinux
-drwxr-xr-x  2 root root 4096 Aug 14 00:13 tmp
-drwxr-xr-x  7 root root 4096 Apr  9 04:33 usr
+drwxr-xr-x  2 root root 4096 Aug 31 00:04 tmp
+drwxr-xr-x  7 root root 4096 Mar 21  2011 usr
 drwxr-xr-x  3 root root 4096 Apr 11 06:29 var
 
 builds/bin:
@@ -70,670 +70,659 @@ lrwxrwxrwx 1 root root      4 May 18  2011 sh -> bash
 
 builds/dev:
 razem 56
-crw-rw---T  1 root     video      10, 175 Jul 31 22:07 agpgart
-crw------T  1 root     root       10, 235 Jul 31 22:07 autofs
-drwxr-xr-x  2 root     root          4096 Aug 11 22:05 block
-drwxr-xr-x  2 root     root          4096 Aug 11 22:05 bsg
-crw------T  1 root     root       10, 234 Jul 31 22:07 btrfs-control
-drwxr-xr-x  3 root     root          4096 Jul 31 22:07 bus
-lrwxrwxrwx  1 root     root             3 Aug 11 18:17 cdrom -> sr0
-lrwxrwxrwx  1 root     root             3 Aug 11 18:17 cdrw -> sr0
-drwxr-xr-x  2 root     root          4096 Aug 12 16:55 char
-crw-------  1 root     root        5,   1 Jul 31 22:07 console
-lrwxrwxrwx  1 root     root            11 Jul 31 22:07 core -> /proc/kcore
-drwxr-xr-x  2 root     root          4096 Jul 31 22:07 cpu
-crw-------  1 root     root       10,  60 Jul 31 22:07 cpu_dma_latency
-drwxr-xr-x  5 root     root          4096 Aug  8 21:48 disk
-drwxr-xr-x  2 root     root          4096 Jul 31 22:07 dri
-lrwxrwxrwx  1 root     root             3 Aug 11 18:17 dvd -> sr0
-lrwxrwxrwx  1 root     root             3 Aug 11 18:17 dvdrw -> sr0
-crw-------  1 root     root       10,  61 Jul 31 22:07 ecryptfs
-crw-rw---T  1 root     video      29,   0 Jul 31 22:07 fb0
-lrwxrwxrwx  1 root     root            13 Jul 31 22:07 fd -> /proc/self/fd
-crw-rw-rw-  1 root     root        1,   7 Jul 31 22:07 full
-crw-rw---T  1 root     fuse       10, 229 Jul 31 22:07 fuse
-crw-------  1 root     root      251,   0 Jul 31 22:07 fw0
-crw-------  1 root     root      250,   0 Aug 12 16:55 hidraw0
-crw-------  1 root     root       10, 228 Jul 31 22:07 hpet
-drwxr-xr-x  4 root     root          4096 Aug 12 16:55 input
-crw-------  1 root     root        1,  11 Jul 31 22:07 kmsg
-crw-rw---T+ 1 root     kvm        10, 232 Jul 31 22:07 kvm
-srw-rw-rw-  1 root     root             0 Jul 31 22:07 log
-brw-rw---T  1 root     disk        7,   0 Jul 31 22:07 loop0
-brw-rw---T  1 root     disk        7,   1 Jul 31 22:07 loop1
-brw-rw---T  1 root     disk        7,   2 Jul 31 22:07 loop2
-brw-rw---T  1 root     disk        7,   3 Jul 31 22:07 loop3
-brw-rw---T  1 root     disk        7,   4 Jul 31 22:07 loop4
-brw-rw---T  1 root     disk        7,   5 Jul 31 22:07 loop5
-brw-rw---T  1 root     disk        7,   6 Jul 31 22:07 loop6
-brw-rw---T  1 root     disk        7,   7 Jul 31 22:07 loop7
-crw-------  1 root     root       10, 237 Jul 31 22:07 loop-control
-drwxr-xr-x  2 root     root          4096 Jul 31 22:07 mapper
-crw-------  1 root     root       10, 227 Jul 31 22:07 mcelog
-crw-r----T  1 root     kmem        1,   1 Jul 31 22:07 mem
-drwxr-xr-x  2 root     root          4096 Jul 31 22:07 net
-crw-------  1 root     root       10,  59 Jul 31 22:07 network_latency
-crw-------  1 root     root       10,  58 Jul 31 22:07 network_throughput
-crw-rw-rw-  1 root     root        1,   3 Jul 31 22:07 null
-crw-r----T  1 root     kmem       10, 144 Jul 31 22:07 nvram
-crw-------  1 root     root        1,  12 Jul 31 22:07 oldmem
-crw-r----T  1 root     kmem        1,   4 Jul 31 22:07 port
-crw-------  1 root     root      108,   0 Jul 31 22:07 ppp
-crw-------  1 root     root       10,   1 Jul 31 22:07 psaux
-crw-rw-rw-  1 root     root        5,   2 Aug 13 00:21 ptmx
-drwxr-xr-x  2 root     root          4096 Jul 31 22:07 pts
-brw-rw---T  1 root     disk        1,   0 Jul 31 22:07 ram0
-brw-rw---T  1 root     disk        1,   1 Jul 31 22:07 ram1
-brw-rw---T  1 root     disk        1,  10 Jul 31 22:07 ram10
-brw-rw---T  1 root     disk        1,  11 Jul 31 22:07 ram11
-brw-rw---T  1 root     disk        1,  12 Jul 31 22:07 ram12
-brw-rw---T  1 root     disk        1,  13 Jul 31 22:07 ram13
-brw-rw---T  1 root     disk        1,  14 Jul 31 22:07 ram14
-brw-rw---T  1 root     disk        1,  15 Jul 31 22:07 ram15
-brw-rw---T  1 root     disk        1,   2 Jul 31 22:07 ram2
-brw-rw---T  1 root     disk        1,   3 Jul 31 22:07 ram3
-brw-rw---T  1 root     disk        1,   4 Jul 31 22:07 ram4
-brw-rw---T  1 root     disk        1,   5 Jul 31 22:07 ram5
-brw-rw---T  1 root     disk        1,   6 Jul 31 22:07 ram6
-brw-rw---T  1 root     disk        1,   7 Jul 31 22:07 ram7
-brw-rw---T  1 root     disk        1,   8 Jul 31 22:07 ram8
-brw-rw---T  1 root     disk        1,   9 Jul 31 22:07 ram9
-crw-rw-rw-  1 root     root        1,   8 Jul 31 22:07 random
-crw-r--r-T+ 1 root     root       10,  62 Jul 31 22:07 rfkill
-lrwxrwxrwx  1 root     root             4 Jul 31 22:07 rtc -> rtc0
-crw-------  1 root     root      254,   0 Jul 31 22:07 rtc0
-brw-rw---T  1 root     disk        8,   0 Jul 31 22:07 sda
-brw-rw---T  1 root     disk        8,   1 Jul 31 22:07 sda1
-brw-rw---T  1 root     disk        8,   2 Jul 31 22:07 sda2
-crw-------  1 root     root       21,   0 Jul 31 22:07 sg0
-crw-rw---T+ 1 root     cdrom      21,   1 Jul 31 22:07 sg1
-lrwxrwxrwx  1 root     root             8 Jul 31 22:07 shm -> /run/shm
-crw-------  1 root     root       10, 231 Jul 31 22:07 snapshot
-drwxr-xr-x  3 root     root          4096 Jul 31 22:07 snd
-lrwxrwxrwx  1 root     root            24 Jul 31 22:07 sndstat -> /proc/asound/oss/sndstat
-brw-rw---T+ 1 root     cdrom      11,   0 Aug 11 18:17 sr0
-lrwxrwxrwx  1 root     root            15 Jul 31 22:07 stderr -> /proc/self/fd/2
-lrwxrwxrwx  1 root     root            15 Jul 31 22:07 stdin -> /proc/self/fd/0
-lrwxrwxrwx  1 root     root            15 Jul 31 22:07 stdout -> /proc/self/fd/1
-crw-rw-rw-  1 root     root        5,   0 Aug 11 22:31 tty
-crw-------  1 root     root        4,   0 Jul 31 22:07 tty0
-crw-------  1 jdanecki tty         4,   1 Jul 31 22:26 tty1
-crw-r-----  1 root     adm         4,  10 Aug 12 23:23 tty10
-crw-------  1 root     root        4,  11 Jul 31 22:07 tty11
-crw-------  1 root     root        4,  12 Jul 31 22:07 tty12
-crw-------  1 root     root        4,  13 Jul 31 22:07 tty13
-crw-------  1 root     root        4,  14 Jul 31 22:07 tty14
-crw-------  1 root     root        4,  15 Jul 31 22:07 tty15
-crw-------  1 root     root        4,  16 Jul 31 22:07 tty16
-crw-------  1 root     root        4,  17 Jul 31 22:07 tty17
-crw-------  1 root     root        4,  18 Jul 31 22:07 tty18
-crw-------  1 root     root        4,  19 Jul 31 22:07 tty19
-crw-rw----  1 root     tty         4,   2 Jul 31 22:07 tty2
-crw-------  1 root     root        4,  20 Jul 31 22:07 tty20
-crw-------  1 root     root        4,  21 Jul 31 22:07 tty21
-crw-------  1 root     root        4,  22 Jul 31 22:07 tty22
-crw-------  1 root     root        4,  23 Jul 31 22:07 tty23
-crw-------  1 root     root        4,  24 Jul 31 22:07 tty24
-crw-------  1 root     root        4,  25 Jul 31 22:07 tty25
-crw-------  1 root     root        4,  26 Jul 31 22:07 tty26
-crw-------  1 root     root        4,  27 Jul 31 22:07 tty27
-crw-------  1 root     root        4,  28 Jul 31 22:07 tty28
-crw-------  1 root     root        4,  29 Jul 31 22:07 tty29
-crw-rw----  1 root     tty         4,   3 Jul 31 22:07 tty3
-crw-------  1 root     root        4,  30 Jul 31 22:07 tty30
-crw-------  1 root     root        4,  31 Jul 31 22:07 tty31
-crw-------  1 root     root        4,  32 Jul 31 22:07 tty32
-crw-------  1 root     root        4,  33 Jul 31 22:07 tty33
-crw-------  1 root     root        4,  34 Jul 31 22:07 tty34
-crw-------  1 root     root        4,  35 Jul 31 22:07 tty35
-crw-------  1 root     root        4,  36 Jul 31 22:07 tty36
-crw-------  1 root     root        4,  37 Jul 31 22:07 tty37
-crw-------  1 root     root        4,  38 Jul 31 22:07 tty38
-crw-------  1 root     root        4,  39 Jul 31 22:07 tty39
-crw-rw----  1 root     tty         4,   4 Jul 31 22:07 tty4
-crw-------  1 root     root        4,  40 Jul 31 22:07 tty40
-crw-------  1 root     root        4,  41 Jul 31 22:07 tty41
-crw-------  1 root     root        4,  42 Jul 31 22:07 tty42
-crw-------  1 root     root        4,  43 Jul 31 22:07 tty43
-crw-------  1 root     root        4,  44 Jul 31 22:07 tty44
-crw-------  1 root     root        4,  45 Jul 31 22:07 tty45
-crw-------  1 root     root        4,  46 Jul 31 22:07 tty46
-crw-------  1 root     root        4,  47 Jul 31 22:07 tty47
-crw-------  1 root     root        4,  48 Jul 31 22:07 tty48
-crw-------  1 root     root        4,  49 Jul 31 22:07 tty49
-crw-rw----  1 root     tty         4,   5 Jul 31 22:07 tty5
-crw-------  1 root     root        4,  50 Jul 31 22:07 tty50
-crw-------  1 root     root        4,  51 Jul 31 22:07 tty51
-crw-------  1 root     root        4,  52 Jul 31 22:07 tty52
-crw-------  1 root     root        4,  53 Jul 31 22:07 tty53
-crw-------  1 root     root        4,  54 Jul 31 22:07 tty54
-crw-------  1 root     root        4,  55 Jul 31 22:07 tty55
-crw-------  1 root     root        4,  56 Jul 31 22:07 tty56
-crw-------  1 root     root        4,  57 Jul 31 22:07 tty57
-crw-------  1 root     root        4,  58 Jul 31 22:07 tty58
-crw-------  1 root     root        4,  59 Jul 31 22:07 tty59
-crw-rw----  1 root     tty         4,   6 Jul 31 22:07 tty6
-crw-------  1 root     root        4,  60 Jul 31 22:07 tty60
-crw-------  1 root     root        4,  61 Jul 31 22:07 tty61
-crw-------  1 root     root        4,  62 Jul 31 22:07 tty62
-crw-------  1 root     root        4,  63 Jul 31 22:07 tty63
-crw-------  1 root     root        4,   7 Aug 12 19:15 tty7
-crw-------  1 root     root        4,   8 Jul 31 22:07 tty8
-crw-------  1 root     root        4,   9 Jul 31 22:07 tty9
-crw-rw---T  1 root     dialout     5,   3 Jul 31 22:07 ttyprintk
-crw-rw---T  1 root     dialout     4,  64 Jul 31 22:07 ttyS0
-crw-rw---T  1 root     dialout     4,  65 Jul 31 22:07 ttyS1
-crw-rw---T  1 root     dialout     4,  74 Jul 31 22:07 ttyS10
-crw-rw---T  1 root     dialout     4,  75 Jul 31 22:07 ttyS11
-crw-rw---T  1 root     dialout     4,  76 Jul 31 22:07 ttyS12
-crw-rw---T  1 root     dialout     4,  77 Jul 31 22:07 ttyS13
-crw-rw---T  1 root     dialout     4,  78 Jul 31 22:07 ttyS14
-crw-rw---T  1 root     dialout     4,  79 Jul 31 22:07 ttyS15
-crw-rw---T  1 root     dialout     4,  80 Jul 31 22:07 ttyS16
-crw-rw---T  1 root     dialout     4,  81 Jul 31 22:07 ttyS17
-crw-rw---T  1 root     dialout     4,  82 Jul 31 22:07 ttyS18
-crw-rw---T  1 root     dialout     4,  83 Jul 31 22:07 ttyS19
-crw-rw---T  1 root     dialout     4,  66 Jul 31 22:07 ttyS2
-crw-rw---T  1 root     dialout     4,  84 Jul 31 22:07 ttyS20
-crw-rw---T  1 root     dialout     4,  85 Jul 31 22:07 ttyS21
-crw-rw---T  1 root     dialout     4,  86 Jul 31 22:07 ttyS22
-crw-rw---T  1 root     dialout     4,  87 Jul 31 22:07 ttyS23
-crw-rw---T  1 root     dialout     4,  88 Jul 31 22:07 ttyS24
-crw-rw---T  1 root     dialout     4,  89 Jul 31 22:07 ttyS25
-crw-rw---T  1 root     dialout     4,  90 Jul 31 22:07 ttyS26
-crw-rw---T  1 root     dialout     4,  91 Jul 31 22:07 ttyS27
-crw-rw---T  1 root     dialout     4,  92 Jul 31 22:07 ttyS28
-crw-rw---T  1 root     dialout     4,  93 Jul 31 22:07 ttyS29
-crw-rw---T  1 root     dialout     4,  67 Jul 31 22:07 ttyS3
-crw-rw---T  1 root     dialout     4,  94 Jul 31 22:07 ttyS30
-crw-rw---T  1 root     dialout     4,  95 Jul 31 22:07 ttyS31
-crw-rw---T  1 root     dialout     4,  68 Jul 31 22:07 ttyS4
-crw-rw---T  1 root     dialout     4,  69 Jul 31 22:07 ttyS5
-crw-rw---T  1 root     dialout     4,  70 Jul 31 22:07 ttyS6
-crw-rw---T  1 root     dialout     4,  71 Jul 31 22:07 ttyS7
-crw-rw---T  1 root     dialout     4,  72 Jul 31 22:07 ttyS8
-crw-rw---T  1 root     dialout     4,  73 Jul 31 22:07 ttyS9
-crw-------  1 root     root       10, 223 Jul 31 22:07 uinput
-crw-rw-rw-  1 root     root        1,   9 Jul 31 22:07 urandom
-crw-------  1 root     root      252,   0 Jul 31 22:07 usbmon0
-crw-------  1 root     root      252,   1 Jul 31 22:07 usbmon1
-crw-------  1 root     root      252,   2 Jul 31 22:07 usbmon2
-crw-------  1 root     root      252,   3 Jul 31 22:07 usbmon3
-crw-------  1 root     root      252,   4 Jul 31 22:07 usbmon4
-crw-------  1 root     root      252,   5 Jul 31 22:07 usbmon5
-crw-------  1 root     root      252,   6 Jul 31 22:07 usbmon6
-crw-------  1 root     root      252,   7 Jul 31 22:07 usbmon7
-drwxr-xr-x  4 root     root          4096 Jul 31 22:07 v4l
-crw-------  1 root     root       10,  57 Jul 31 22:07 vboxdrv
-crw-------  1 root     root       10,  56 Jul 31 22:07 vboxnetctl
-drwxr-x---  5 root     vboxusers     4096 Aug 11 18:41 vboxusb
-crw-------  1 root     root        7,   0 Jul 31 22:07 vcs
-crw-------  1 root     root        7,   1 Jul 31 22:07 vcs1
-crw-------  1 root     root        7,  10 Jul 31 22:07 vcs10
-crw-------  1 root     root        7,   2 Jul 31 22:07 vcs2
-crw-------  1 root     root        7,   3 Jul 31 22:07 vcs3
-crw-------  1 root     root        7,   4 Jul 31 22:07 vcs4
-crw-------  1 root     root        7,   5 Jul 31 22:07 vcs5
-crw-------  1 root     root        7,   6 Jul 31 22:07 vcs6
-crw-------  1 root     root        7,  63 Jul 31 22:07 vcs63
-crw-------  1 root     root        7,   7 Jul 31 22:07 vcs7
-crw-------  1 root     root        7,   8 Jul 31 22:26 vcs8
-crw-------  1 root     root        7, 128 Jul 31 22:07 vcsa
-crw-------  1 root     root        7, 129 Jul 31 22:07 vcsa1
-crw-------  1 root     root        7, 138 Jul 31 22:07 vcsa10
-crw-------  1 root     root        7, 130 Jul 31 22:07 vcsa2
-crw-------  1 root     root        7, 131 Jul 31 22:07 vcsa3
-crw-------  1 root     root        7, 132 Jul 31 22:07 vcsa4
-crw-------  1 root     root        7, 133 Jul 31 22:07 vcsa5
-crw-------  1 root     root        7, 134 Jul 31 22:07 vcsa6
-crw-------  1 root     root        7, 191 Jul 31 22:07 vcsa63
-crw-------  1 root     root        7, 135 Jul 31 22:07 vcsa7
-crw-------  1 root     root        7, 136 Jul 31 22:26 vcsa8
-crw-------  1 root     root       10,  63 Jul 31 22:07 vga_arbiter
-crw-rw---T+ 1 root     video      81,   0 Jul 31 22:07 video0
-prw-r-----  1 root     adm              0 Aug 12 23:23 xconsole
-crw-rw-rw-  1 root     root        1,   5 Jul 31 22:07 zero
+crw-rw---T  1 root     video      10, 175 Aug 28 08:20 agpgart
+crw------T  1 root     root       10, 235 Aug 28 08:20 autofs
+drwxr-xr-x  2 root     root          4096 Aug 30 11:43 block
+drwxr-xr-x  2 root     root          4096 Aug 30 11:43 bsg
+crw------T  1 root     root       10, 234 Aug 28 08:20 btrfs-control
+drwxr-xr-x  3 root     root          4096 Aug 28 08:20 bus
+lrwxrwxrwx  1 root     root             3 Aug 30 07:35 cdrom -> sr0
+lrwxrwxrwx  1 root     root             3 Aug 30 07:35 cdrw -> sr0
+drwxr-xr-x  2 root     root          4096 Aug 30 11:43 char
+crw-------  1 root     root        5,   1 Aug 28 08:20 console
+lrwxrwxrwx  1 root     root            11 Aug 28 08:20 core -> /proc/kcore
+drwxr-xr-x  2 root     root          4096 Aug 28 08:20 cpu
+crw-------  1 root     root       10,  60 Aug 28 08:20 cpu_dma_latency
+drwxr-xr-x  5 root     root          4096 Aug 30 11:43 disk
+drwxr-xr-x  2 root     root          4096 Aug 28 08:20 dri
+lrwxrwxrwx  1 root     root             3 Aug 30 07:35 dvd -> sr0
+lrwxrwxrwx  1 root     root             3 Aug 30 07:35 dvdrw -> sr0
+crw-------  1 root     root       10,  61 Aug 28 08:20 ecryptfs
+crw-rw---T  1 root     video      29,   0 Aug 28 08:20 fb0
+lrwxrwxrwx  1 root     root            13 Aug 28 08:20 fd -> /proc/self/fd
+crw-rw-rw-  1 root     root        1,   7 Aug 28 08:20 full
+crw-rw---T  1 root     fuse       10, 229 Aug 28 08:20 fuse
+crw-------  1 root     root      251,   0 Aug 28 08:20 fw0
+crw-------  1 root     root       10, 228 Aug 28 08:20 hpet
+drwxr-xr-x  4 root     root          4096 Aug 28 08:20 input
+crw-------  1 root     root        1,  11 Aug 28 08:20 kmsg
+crw-rw---T+ 1 root     kvm        10, 232 Aug 28 08:20 kvm
+srw-rw-rw-  1 root     root             0 Aug 28 08:20 log
+brw-rw---T  1 root     disk        7,   0 Aug 28 08:20 loop0
+brw-rw---T  1 root     disk        7,   1 Aug 28 08:20 loop1
+brw-rw---T  1 root     disk        7,   2 Aug 28 08:20 loop2
+brw-rw---T  1 root     disk        7,   3 Aug 28 08:20 loop3
+brw-rw---T  1 root     disk        7,   4 Aug 28 08:20 loop4
+brw-rw---T  1 root     disk        7,   5 Aug 28 08:20 loop5
+brw-rw---T  1 root     disk        7,   6 Aug 28 08:20 loop6
+brw-rw---T  1 root     disk        7,   7 Aug 28 08:20 loop7
+crw-------  1 root     root       10, 237 Aug 28 08:20 loop-control
+drwxr-xr-x  2 root     root          4096 Aug 28 08:20 mapper
+crw-------  1 root     root       10, 227 Aug 28 08:20 mcelog
+crw-r----T  1 root     kmem        1,   1 Aug 28 08:20 mem
+drwxr-xr-x  2 root     root          4096 Aug 28 08:20 net
+crw-------  1 root     root       10,  59 Aug 28 08:20 network_latency
+crw-------  1 root     root       10,  58 Aug 28 08:20 network_throughput
+crw-rw-rw-  1 root     root        1,   3 Aug 28 08:20 null
+crw-r----T  1 root     kmem       10, 144 Aug 28 08:20 nvram
+crw-------  1 root     root        1,  12 Aug 28 08:20 oldmem
+crw-r----T  1 root     kmem        1,   4 Aug 28 08:20 port
+crw-------  1 root     root      108,   0 Aug 28 08:20 ppp
+crw-------  1 root     root       10,   1 Aug 28 08:20 psaux
+crw-rw-rw-  1 root     root        5,   2 Aug 30 18:16 ptmx
+drwxr-xr-x  2 root     root          4096 Aug 28 08:20 pts
+brw-rw---T  1 root     disk        1,   0 Aug 28 08:20 ram0
+brw-rw---T  1 root     disk        1,   1 Aug 28 08:20 ram1
+brw-rw---T  1 root     disk        1,  10 Aug 28 08:20 ram10
+brw-rw---T  1 root     disk        1,  11 Aug 28 08:20 ram11
+brw-rw---T  1 root     disk        1,  12 Aug 28 08:20 ram12
+brw-rw---T  1 root     disk        1,  13 Aug 28 08:20 ram13
+brw-rw---T  1 root     disk        1,  14 Aug 28 08:20 ram14
+brw-rw---T  1 root     disk        1,  15 Aug 28 08:20 ram15
+brw-rw---T  1 root     disk        1,   2 Aug 28 08:20 ram2
+brw-rw---T  1 root     disk        1,   3 Aug 28 08:20 ram3
+brw-rw---T  1 root     disk        1,   4 Aug 28 08:20 ram4
+brw-rw---T  1 root     disk        1,   5 Aug 28 08:20 ram5
+brw-rw---T  1 root     disk        1,   6 Aug 28 08:20 ram6
+brw-rw---T  1 root     disk        1,   7 Aug 28 08:20 ram7
+brw-rw---T  1 root     disk        1,   8 Aug 28 08:20 ram8
+brw-rw---T  1 root     disk        1,   9 Aug 28 08:20 ram9
+crw-rw-rw-  1 root     root        1,   8 Aug 28 08:20 random
+crw-r--r-T+ 1 root     root       10,  62 Aug 28 08:20 rfkill
+lrwxrwxrwx  1 root     root             4 Aug 28 08:20 rtc -> rtc0
+crw-------  1 root     root      254,   0 Aug 28 08:20 rtc0
+brw-rw---T  1 root     disk        8,   0 Aug 28 08:20 sda
+brw-rw---T  1 root     disk        8,   1 Aug 28 08:20 sda1
+brw-rw---T  1 root     disk        8,   2 Aug 28 08:20 sda2
+crw-------  1 root     root       21,   0 Aug 28 08:20 sg0
+crw-rw---T+ 1 root     cdrom      21,   1 Aug 28 08:20 sg1
+lrwxrwxrwx  1 root     root             8 Aug 28 08:20 shm -> /run/shm
+crw-------  1 root     root       10, 231 Aug 28 08:20 snapshot
+drwxr-xr-x  3 root     root          4096 Aug 28 08:20 snd
+lrwxrwxrwx  1 root     root            24 Aug 28 08:20 sndstat -> /proc/asound/oss/sndstat
+brw-rw---T+ 1 root     cdrom      11,   0 Aug 30 07:35 sr0
+lrwxrwxrwx  1 root     root            15 Aug 28 08:20 stderr -> /proc/self/fd/2
+lrwxrwxrwx  1 root     root            15 Aug 28 08:20 stdin -> /proc/self/fd/0
+lrwxrwxrwx  1 root     root            15 Aug 28 08:20 stdout -> /proc/self/fd/1
+crw-rw-rw-  1 root     root        5,   0 Aug 28 08:20 tty
+crw-------  1 root     root        4,   0 Aug 28 08:20 tty0
+crw-------  1 jdanecki tty         4,   1 Aug 30 17:52 tty1
+crw-r-----  1 root     adm         4,  10 Aug 30 18:16 tty10
+crw-------  1 root     root        4,  11 Aug 28 08:20 tty11
+crw-------  1 root     root        4,  12 Aug 28 08:20 tty12
+crw-------  1 root     root        4,  13 Aug 28 08:20 tty13
+crw-------  1 root     root        4,  14 Aug 28 08:20 tty14
+crw-------  1 root     root        4,  15 Aug 28 08:20 tty15
+crw-------  1 root     root        4,  16 Aug 28 08:20 tty16
+crw-------  1 root     root        4,  17 Aug 28 08:20 tty17
+crw-------  1 root     root        4,  18 Aug 28 08:20 tty18
+crw-------  1 root     root        4,  19 Aug 28 08:20 tty19
+crw-rw----  1 root     tty         4,   2 Aug 28 08:20 tty2
+crw-------  1 root     root        4,  20 Aug 28 08:20 tty20
+crw-------  1 root     root        4,  21 Aug 28 08:20 tty21
+crw-------  1 root     root        4,  22 Aug 28 08:20 tty22
+crw-------  1 root     root        4,  23 Aug 28 08:20 tty23
+crw-------  1 root     root        4,  24 Aug 28 08:20 tty24
+crw-------  1 root     root        4,  25 Aug 28 08:20 tty25
+crw-------  1 root     root        4,  26 Aug 28 08:20 tty26
+crw-------  1 root     root        4,  27 Aug 28 08:20 tty27
+crw-------  1 root     root        4,  28 Aug 28 08:20 tty28
+crw-------  1 root     root        4,  29 Aug 28 08:20 tty29
+crw-rw----  1 root     tty         4,   3 Aug 28 08:20 tty3
+crw-------  1 root     root        4,  30 Aug 28 08:20 tty30
+crw-------  1 root     root        4,  31 Aug 28 08:20 tty31
+crw-------  1 root     root        4,  32 Aug 28 08:20 tty32
+crw-------  1 root     root        4,  33 Aug 28 08:20 tty33
+crw-------  1 root     root        4,  34 Aug 28 08:20 tty34
+crw-------  1 root     root        4,  35 Aug 28 08:20 tty35
+crw-------  1 root     root        4,  36 Aug 28 08:20 tty36
+crw-------  1 root     root        4,  37 Aug 28 08:20 tty37
+crw-------  1 root     root        4,  38 Aug 28 08:20 tty38
+crw-------  1 root     root        4,  39 Aug 28 08:20 tty39
+crw-rw----  1 root     tty         4,   4 Aug 28 08:20 tty4
+crw-------  1 root     root        4,  40 Aug 28 08:20 tty40
+crw-------  1 root     root        4,  41 Aug 28 08:20 tty41
+crw-------  1 root     root        4,  42 Aug 28 08:20 tty42
+crw-------  1 root     root        4,  43 Aug 28 08:20 tty43
+crw-------  1 root     root        4,  44 Aug 28 08:20 tty44
+crw-------  1 root     root        4,  45 Aug 28 08:20 tty45
+crw-------  1 root     root        4,  46 Aug 28 08:20 tty46
+crw-------  1 root     root        4,  47 Aug 28 08:20 tty47
+crw-------  1 root     root        4,  48 Aug 28 08:20 tty48
+crw-------  1 root     root        4,  49 Aug 28 08:20 tty49
+crw-rw----  1 root     tty         4,   5 Aug 28 08:20 tty5
+crw-------  1 root     root        4,  50 Aug 28 08:20 tty50
+crw-------  1 root     root        4,  51 Aug 28 08:20 tty51
+crw-------  1 root     root        4,  52 Aug 28 08:20 tty52
+crw-------  1 root     root        4,  53 Aug 28 08:20 tty53
+crw-------  1 root     root        4,  54 Aug 28 08:20 tty54
+crw-------  1 root     root        4,  55 Aug 28 08:20 tty55
+crw-------  1 root     root        4,  56 Aug 28 08:20 tty56
+crw-------  1 root     root        4,  57 Aug 28 08:20 tty57
+crw-------  1 root     root        4,  58 Aug 28 08:20 tty58
+crw-------  1 root     root        4,  59 Aug 28 08:20 tty59
+crw-rw----  1 root     tty         4,   6 Aug 28 08:20 tty6
+crw-------  1 root     root        4,  60 Aug 28 08:20 tty60
+crw-------  1 root     root        4,  61 Aug 28 08:20 tty61
+crw-------  1 root     root        4,  62 Aug 28 08:20 tty62
+crw-------  1 root     root        4,  63 Aug 28 08:20 tty63
+crw-------  1 root     root        4,   7 Aug 30 10:07 tty7
+crw-------  1 root     root        4,   8 Aug 28 08:20 tty8
+crw-------  1 root     root        4,   9 Aug 28 08:20 tty9
+crw-rw---T  1 root     dialout     5,   3 Aug 28 08:20 ttyprintk
+crw-rw---T  1 root     dialout     4,  64 Aug 28 08:20 ttyS0
+crw-rw---T  1 root     dialout     4,  65 Aug 28 08:20 ttyS1
+crw-rw---T  1 root     dialout     4,  74 Aug 28 08:20 ttyS10
+crw-rw---T  1 root     dialout     4,  75 Aug 28 08:20 ttyS11
+crw-rw---T  1 root     dialout     4,  76 Aug 28 08:20 ttyS12
+crw-rw---T  1 root     dialout     4,  77 Aug 28 08:20 ttyS13
+crw-rw---T  1 root     dialout     4,  78 Aug 28 08:20 ttyS14
+crw-rw---T  1 root     dialout     4,  79 Aug 28 08:20 ttyS15
+crw-rw---T  1 root     dialout     4,  80 Aug 28 08:20 ttyS16
+crw-rw---T  1 root     dialout     4,  81 Aug 28 08:20 ttyS17
+crw-rw---T  1 root     dialout     4,  82 Aug 28 08:20 ttyS18
+crw-rw---T  1 root     dialout     4,  83 Aug 28 08:20 ttyS19
+crw-rw---T  1 root     dialout     4,  66 Aug 28 08:20 ttyS2
+crw-rw---T  1 root     dialout     4,  84 Aug 28 08:20 ttyS20
+crw-rw---T  1 root     dialout     4,  85 Aug 28 08:20 ttyS21
+crw-rw---T  1 root     dialout     4,  86 Aug 28 08:20 ttyS22
+crw-rw---T  1 root     dialout     4,  87 Aug 28 08:20 ttyS23
+crw-rw---T  1 root     dialout     4,  88 Aug 28 08:20 ttyS24
+crw-rw---T  1 root     dialout     4,  89 Aug 28 08:20 ttyS25
+crw-rw---T  1 root     dialout     4,  90 Aug 28 08:20 ttyS26
+crw-rw---T  1 root     dialout     4,  91 Aug 28 08:20 ttyS27
+crw-rw---T  1 root     dialout     4,  92 Aug 28 08:20 ttyS28
+crw-rw---T  1 root     dialout     4,  93 Aug 28 08:20 ttyS29
+crw-rw---T  1 root     dialout     4,  67 Aug 28 08:20 ttyS3
+crw-rw---T  1 root     dialout     4,  94 Aug 28 08:20 ttyS30
+crw-rw---T  1 root     dialout     4,  95 Aug 28 08:20 ttyS31
+crw-rw---T  1 root     dialout     4,  68 Aug 28 08:20 ttyS4
+crw-rw---T  1 root     dialout     4,  69 Aug 28 08:20 ttyS5
+crw-rw---T  1 root     dialout     4,  70 Aug 28 08:20 ttyS6
+crw-rw---T  1 root     dialout     4,  71 Aug 28 08:20 ttyS7
+crw-rw---T  1 root     dialout     4,  72 Aug 28 08:20 ttyS8
+crw-rw---T  1 root     dialout     4,  73 Aug 28 08:20 ttyS9
+crw-------  1 root     root       10, 223 Aug 28 08:20 uinput
+crw-rw-rw-  1 root     root        1,   9 Aug 28 08:20 urandom
+crw-------  1 root     root      252,   0 Aug 28 08:20 usbmon0
+crw-------  1 root     root      252,   1 Aug 28 08:20 usbmon1
+crw-------  1 root     root      252,   2 Aug 28 08:20 usbmon2
+crw-------  1 root     root      252,   3 Aug 28 08:20 usbmon3
+crw-------  1 root     root      252,   4 Aug 28 08:20 usbmon4
+crw-------  1 root     root      252,   5 Aug 28 08:20 usbmon5
+crw-------  1 root     root      252,   6 Aug 28 08:20 usbmon6
+crw-------  1 root     root      252,   7 Aug 28 08:20 usbmon7
+drwxr-xr-x  4 root     root          4096 Aug 28 08:20 v4l
+crw-------  1 root     root       10,  57 Aug 28 08:20 vboxdrv
+crw-------  1 root     root       10,  56 Aug 28 08:20 vboxnetctl
+drwxr-x---  5 root     vboxusers     4096 Aug 30 11:42 vboxusb
+crw-------  1 root     root        7,   0 Aug 28 08:20 vcs
+crw-------  1 root     root        7,   1 Aug 28 08:20 vcs1
+crw-------  1 root     root        7,  10 Aug 28 08:20 vcs10
+crw-------  1 root     root        7,   2 Aug 28 08:20 vcs2
+crw-------  1 root     root        7,   3 Aug 28 08:20 vcs3
+crw-------  1 root     root        7,   4 Aug 28 08:20 vcs4
+crw-------  1 root     root        7,   5 Aug 28 08:20 vcs5
+crw-------  1 root     root        7,   6 Aug 28 08:20 vcs6
+crw-------  1 root     root        7,  63 Aug 28 08:38 vcs63
+crw-------  1 root     root        7,   7 Aug 28 08:20 vcs7
+crw-------  1 root     root        7,   8 Aug 28 08:20 vcs8
+crw-------  1 root     root        7, 128 Aug 28 08:20 vcsa
+crw-------  1 root     root        7, 129 Aug 28 08:20 vcsa1
+crw-------  1 root     root        7, 138 Aug 28 08:20 vcsa10
+crw-------  1 root     root        7, 130 Aug 28 08:20 vcsa2
+crw-------  1 root     root        7, 131 Aug 28 08:20 vcsa3
+crw-------  1 root     root        7, 132 Aug 28 08:20 vcsa4
+crw-------  1 root     root        7, 133 Aug 28 08:20 vcsa5
+crw-------  1 root     root        7, 134 Aug 28 08:20 vcsa6
+crw-------  1 root     root        7, 191 Aug 28 08:38 vcsa63
+crw-------  1 root     root        7, 135 Aug 28 08:20 vcsa7
+crw-------  1 root     root        7, 136 Aug 28 08:20 vcsa8
+crw-------  1 root     root       10,  63 Aug 28 08:20 vga_arbiter
+crw-rw---T+ 1 root     video      81,   0 Aug 28 08:20 video0
+prw-r-----  1 root     adm              0 Aug 30 18:16 xconsole
+crw-rw-rw-  1 root     root        1,   5 Aug 28 08:20 zero
 
 builds/dev/block:
 razem 0
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:0 -> ../ram0
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:1 -> ../ram1
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 1:10 -> ../ram10
-lrwxrwxrwx 1 root root 6 Aug 11 18:17 11:0 -> ../sr0
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 1:11 -> ../ram11
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 1:12 -> ../ram12
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 1:13 -> ../ram13
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 1:14 -> ../ram14
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 1:15 -> ../ram15
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:2 -> ../ram2
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:3 -> ../ram3
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:4 -> ../ram4
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:5 -> ../ram5
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:6 -> ../ram6
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:7 -> ../ram7
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:8 -> ../ram8
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 1:9 -> ../ram9
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 7:0 -> ../loop0
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 7:1 -> ../loop1
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 7:2 -> ../loop2
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 7:3 -> ../loop3
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 7:4 -> ../loop4
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 7:5 -> ../loop5
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 7:6 -> ../loop6
-lrwxrwxrwx 1 root root 8 Jul 31 22:07 7:7 -> ../loop7
-lrwxrwxrwx 1 root root 6 Jul 31 22:07 8:0 -> ../sda
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 8:1 -> ../sda1
-lrwxrwxrwx 1 root root 7 Jul 31 22:07 8:2 -> ../sda2
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:0 -> ../ram0
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:1 -> ../ram1
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 1:10 -> ../ram10
+lrwxrwxrwx 1 root root 6 Aug 30 07:35 11:0 -> ../sr0
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 1:11 -> ../ram11
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 1:12 -> ../ram12
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 1:13 -> ../ram13
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 1:14 -> ../ram14
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 1:15 -> ../ram15
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:2 -> ../ram2
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:3 -> ../ram3
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:4 -> ../ram4
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:5 -> ../ram5
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:6 -> ../ram6
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:7 -> ../ram7
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:8 -> ../ram8
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 1:9 -> ../ram9
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 7:0 -> ../loop0
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 7:1 -> ../loop1
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 7:2 -> ../loop2
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 7:3 -> ../loop3
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 7:4 -> ../loop4
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 7:5 -> ../loop5
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 7:6 -> ../loop6
+lrwxrwxrwx 1 root root 8 Aug 28 08:20 7:7 -> ../loop7
+lrwxrwxrwx 1 root root 6 Aug 28 08:20 8:0 -> ../sda
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 8:1 -> ../sda1
+lrwxrwxrwx 1 root root 7 Aug 28 08:20 8:2 -> ../sda2
 
 builds/dev/bsg:
 razem 0
-crw------- 1 root root 253, 0 Jul 31 22:07 0:0:0:0
-crw------- 1 root root 253, 1 Jul 31 22:07 3:0:0:0
+crw------- 1 root root 253, 0 Aug 28 08:20 0:0:0:0
+crw------- 1 root root 253, 1 Aug 28 08:20 3:0:0:0
 
 builds/dev/bus:
 razem 4
-drwxr-xr-x 9 root root 4096 Jul 31 22:07 usb
+drwxr-xr-x 9 root root 4096 Aug 28 08:20 usb
 
 builds/dev/bus/usb:
 razem 28
-drwxr-xr-x 2 root root 4096 Jul 31 22:07 001
-drwxr-xr-x 2 root root 4096 Aug 11 22:05 002
-drwxr-xr-x 2 root root 4096 Jul 31 22:07 003
-drwxr-xr-x 2 root root 4096 Jul 31 22:07 004
-drwxr-xr-x 2 root root 4096 Aug 12 16:55 005
-drwxr-xr-x 2 root root 4096 Jul 31 22:07 006
-drwxr-xr-x 2 root root 4096 Jul 31 22:07 007
+drwxr-xr-x 2 root root 4096 Aug 30 11:43 001
+drwxr-xr-x 2 root root 4096 Aug 28 20:42 002
+drwxr-xr-x 2 root root 4096 Aug 28 08:20 003
+drwxr-xr-x 2 root root 4096 Aug 28 08:20 004
+drwxr-xr-x 2 root root 4096 Aug 28 08:20 005
+drwxr-xr-x 2 root root 4096 Aug 28 08:20 006
+drwxr-xr-x 2 root root 4096 Aug 28 08:20 007
 
 builds/dev/bus/usb/001:
 razem 0
-crw-rw-r-T 1 root root 189, 0 Jul 31 22:07 001
+crw-rw-r-T 1 root root 189, 0 Aug 28 08:20 001
 
 builds/dev/bus/usb/002:
 razem 0
-crw-rw-r-T 1 root root 189, 128 Jul 31 22:07 001
-crw-rw-r-T 1 root root 189, 129 Jul 31 22:07 002
+crw-rw-r-T 1 root root 189, 128 Aug 28 08:20 001
+crw-rw-r-T 1 root root 189, 129 Aug 28 08:20 002
 
 builds/dev/bus/usb/003:
 razem 0
-crw-rw-r-T 1 root root 189, 256 Jul 31 22:07 001
-crw-rw-r-T 1 root root 189, 257 Jul 31 22:07 002
-crw-rw-r-T 1 root root 189, 258 Jul 31 22:07 003
+crw-rw-r-T 1 root root 189, 256 Aug 28 08:20 001
+crw-rw-r-T 1 root root 189, 257 Aug 28 08:20 002
+crw-rw-r-T 1 root root 189, 258 Aug 28 08:20 003
 
 builds/dev/bus/usb/004:
 razem 0
-crw-rw-r-T 1 root root 189, 384 Jul 31 22:07 001
+crw-rw-r-T 1 root root 189, 384 Aug 28 08:20 001
 
 builds/dev/bus/usb/005:
 razem 0
-crw-rw-r-T 1 root root 189, 512 Jul 31 22:07 001
-crw-rw-r-T 1 root root 189, 514 Aug 12 16:55 003
+crw-rw-r-T 1 root root 189, 512 Aug 28 08:20 001
 
 builds/dev/bus/usb/006:
 razem 0
-crw-rw-r-T 1 root root 189, 640 Jul 31 22:07 001
+crw-rw-r-T 1 root root 189, 640 Aug 28 08:20 001
 
 builds/dev/bus/usb/007:
 razem 0
-crw-rw-r-T 1 root root 189, 768 Jul 31 22:07 001
+crw-rw-r-T 1 root root 189, 768 Aug 28 08:20 001
 
 builds/dev/char:
 razem 0
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 10:1 -> ../psaux
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 10:144 -> ../nvram
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 10:175 -> ../agpgart
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 10:200 -> ../net/tun
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 10:223 -> ../uinput
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 10:227 -> ../mcelog
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 10:228 -> ../hpet
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 10:229 -> ../fuse
-lrwxrwxrwx 1 root root 11 Jul 31 22:07 10:231 -> ../snapshot
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 10:232 -> ../kvm
-lrwxrwxrwx 1 root root 16 Jul 31 22:07 10:234 -> ../btrfs-control
-lrwxrwxrwx 1 root root 17 Jul 31 22:07 10:236 -> ../mapper/control
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 10:237 -> ../loop-control
-lrwxrwxrwx 1 root root 13 Jul 31 22:07 10:56 -> ../vboxnetctl
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 10:57 -> ../vboxdrv
-lrwxrwxrwx 1 root root 21 Jul 31 22:07 10:58 -> ../network_throughput
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 10:59 -> ../network_latency
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 10:60 -> ../cpu_dma_latency
-lrwxrwxrwx 1 root root 11 Jul 31 22:07 10:61 -> ../ecryptfs
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 10:62 -> ../rfkill
-lrwxrwxrwx 1 root root 14 Jul 31 22:07 10:63 -> ../vga_arbiter
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 108:0 -> ../ppp
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 1:1 -> ../mem
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 1:11 -> ../kmsg
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 1:12 -> ../oldmem
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 116:1 -> ../snd/seq
-lrwxrwxrwx 1 root root 17 Jul 31 22:07 116:2 -> ../snd/controlC29
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 116:3 -> ../snd/pcmC0D1p
-lrwxrwxrwx 1 root root 12 Jul 31 22:07 116:33 -> ../snd/timer
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 116:4 -> ../snd/pcmC0D0p
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 116:5 -> ../snd/pcmC0D0c
-lrwxrwxrwx 1 root root 13 Jul 31 22:07 116:6 -> ../snd/hwC0D0
-lrwxrwxrwx 1 root root 16 Jul 31 22:07 116:7 -> ../snd/controlC0
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 1:3 -> ../null
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:32 -> ../input/mouse0
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:33 -> ../input/mouse1
-lrwxrwxrwx 1 root root 15 Aug 12 16:55 13:34 -> ../input/mouse2
-lrwxrwxrwx 1 root root 13 Jul 31 22:07 13:63 -> ../input/mice
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:64 -> ../input/event0
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:65 -> ../input/event1
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:66 -> ../input/event2
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:67 -> ../input/event3
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:68 -> ../input/event4
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:69 -> ../input/event5
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:70 -> ../input/event6
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:71 -> ../input/event7
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:72 -> ../input/event8
-lrwxrwxrwx 1 root root 15 Jul 31 22:07 13:73 -> ../input/event9
-lrwxrwxrwx 1 root root 16 Aug 12 16:55 13:74 -> ../input/event10
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 1:4 -> ../port
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 1:5 -> ../zero
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 1:7 -> ../full
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 1:8 -> ../random
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:0 -> ../bus/usb/001/001
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:128 -> ../bus/usb/002/001
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:129 -> ../bus/usb/002/002
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:256 -> ../bus/usb/003/001
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:257 -> ../bus/usb/003/002
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:258 -> ../bus/usb/003/003
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:384 -> ../bus/usb/004/001
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:512 -> ../bus/usb/005/001
-lrwxrwxrwx 1 root root 18 Aug 12 16:55 189:514 -> ../bus/usb/005/003
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:640 -> ../bus/usb/006/001
-lrwxrwxrwx 1 root root 18 Jul 31 22:07 189:768 -> ../bus/usb/007/001
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 1:9 -> ../urandom
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 21:0 -> ../sg0
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 21:1 -> ../sg1
-lrwxrwxrwx 1 root root 12 Jul 31 22:07 226:0 -> ../dri/card0
-lrwxrwxrwx 1 root root 17 Jul 31 22:07 226:64 -> ../dri/controlD64
-lrwxrwxrwx 1 root root 10 Aug 12 16:55 250:0 -> ../hidraw0
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 251:0 -> ../fw0
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 252:0 -> ../usbmon0
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 252:1 -> ../usbmon1
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 252:2 -> ../usbmon2
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 252:3 -> ../usbmon3
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 252:4 -> ../usbmon4
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 252:5 -> ../usbmon5
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 252:6 -> ../usbmon6
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 252:7 -> ../usbmon7
-lrwxrwxrwx 1 root root 14 Jul 31 22:07 253:0 -> ../bsg/0:0:0:0
-lrwxrwxrwx 1 root root 14 Jul 31 22:07 253:1 -> ../bsg/3:0:0:0
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 254:0 -> ../rtc0
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 29:0 -> ../fb0
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:0 -> ../tty0
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:1 -> ../tty1
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:10 -> ../tty10
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:11 -> ../tty11
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:12 -> ../tty12
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:13 -> ../tty13
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:14 -> ../tty14
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:15 -> ../tty15
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:16 -> ../tty16
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:17 -> ../tty17
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:18 -> ../tty18
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:19 -> ../tty19
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:2 -> ../tty2
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:20 -> ../tty20
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:21 -> ../tty21
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:22 -> ../tty22
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:23 -> ../tty23
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:24 -> ../tty24
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:25 -> ../tty25
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:26 -> ../tty26
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:27 -> ../tty27
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:28 -> ../tty28
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:29 -> ../tty29
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:3 -> ../tty3
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:30 -> ../tty30
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:31 -> ../tty31
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:32 -> ../tty32
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:33 -> ../tty33
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:34 -> ../tty34
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:35 -> ../tty35
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:36 -> ../tty36
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:37 -> ../tty37
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:38 -> ../tty38
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:39 -> ../tty39
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:4 -> ../tty4
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:40 -> ../tty40
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:41 -> ../tty41
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:42 -> ../tty42
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:43 -> ../tty43
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:44 -> ../tty44
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:45 -> ../tty45
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:46 -> ../tty46
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:47 -> ../tty47
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:48 -> ../tty48
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:49 -> ../tty49
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:5 -> ../tty5
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:50 -> ../tty50
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:51 -> ../tty51
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:52 -> ../tty52
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:53 -> ../tty53
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:54 -> ../tty54
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:55 -> ../tty55
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:56 -> ../tty56
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:57 -> ../tty57
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:58 -> ../tty58
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:59 -> ../tty59
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:6 -> ../tty6
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:60 -> ../tty60
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:61 -> ../tty61
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:62 -> ../tty62
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:63 -> ../tty63
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:64 -> ../ttyS0
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:65 -> ../ttyS1
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:66 -> ../ttyS2
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:67 -> ../ttyS3
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:68 -> ../ttyS4
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:69 -> ../ttyS5
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:7 -> ../tty7
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:70 -> ../ttyS6
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:71 -> ../ttyS7
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:72 -> ../ttyS8
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 4:73 -> ../ttyS9
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:74 -> ../ttyS10
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:75 -> ../ttyS11
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:76 -> ../ttyS12
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:77 -> ../ttyS13
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:78 -> ../ttyS14
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:79 -> ../ttyS15
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:8 -> ../tty8
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:80 -> ../ttyS16
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:81 -> ../ttyS17
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:82 -> ../ttyS18
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:83 -> ../ttyS19
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:84 -> ../ttyS20
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:85 -> ../ttyS21
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:86 -> ../ttyS22
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:87 -> ../ttyS23
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:88 -> ../ttyS24
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:89 -> ../ttyS25
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 4:9 -> ../tty9
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:90 -> ../ttyS26
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:91 -> ../ttyS27
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:92 -> ../ttyS28
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:93 -> ../ttyS29
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:94 -> ../ttyS30
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 4:95 -> ../ttyS31
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 5:0 -> ../tty
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 5:1 -> ../console
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 5:2 -> ../ptmx
-lrwxrwxrwx 1 root root 12 Jul 31 22:07 5:3 -> ../ttyprintk
-lrwxrwxrwx 1 root root  6 Jul 31 22:07 7:0 -> ../vcs
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 7:1 -> ../vcs1
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:10 -> ../vcs10
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 7:128 -> ../vcsa
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:129 -> ../vcsa1
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:130 -> ../vcsa2
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:131 -> ../vcsa3
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:132 -> ../vcsa4
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:133 -> ../vcsa5
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:134 -> ../vcsa6
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:135 -> ../vcsa7
-lrwxrwxrwx 1 root root  8 Jul 31 22:26 7:136 -> ../vcsa8
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 7:138 -> ../vcsa10
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 7:191 -> ../vcsa63
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 7:2 -> ../vcs2
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 7:3 -> ../vcs3
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 7:4 -> ../vcs4
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 7:5 -> ../vcs5
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 7:6 -> ../vcs6
-lrwxrwxrwx 1 root root  8 Jul 31 22:07 7:63 -> ../vcs63
-lrwxrwxrwx 1 root root  7 Jul 31 22:07 7:7 -> ../vcs7
-lrwxrwxrwx 1 root root  7 Jul 31 22:26 7:8 -> ../vcs8
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 81:0 -> ../video0
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 10:1 -> ../psaux
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 10:144 -> ../nvram
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 10:175 -> ../agpgart
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 10:200 -> ../net/tun
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 10:223 -> ../uinput
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 10:227 -> ../mcelog
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 10:228 -> ../hpet
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 10:229 -> ../fuse
+lrwxrwxrwx 1 root root 11 Aug 28 08:20 10:231 -> ../snapshot
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 10:232 -> ../kvm
+lrwxrwxrwx 1 root root 16 Aug 28 08:20 10:234 -> ../btrfs-control
+lrwxrwxrwx 1 root root 17 Aug 28 08:20 10:236 -> ../mapper/control
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 10:237 -> ../loop-control
+lrwxrwxrwx 1 root root 13 Aug 28 08:20 10:56 -> ../vboxnetctl
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 10:57 -> ../vboxdrv
+lrwxrwxrwx 1 root root 21 Aug 28 08:20 10:58 -> ../network_throughput
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 10:59 -> ../network_latency
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 10:60 -> ../cpu_dma_latency
+lrwxrwxrwx 1 root root 11 Aug 28 08:20 10:61 -> ../ecryptfs
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 10:62 -> ../rfkill
+lrwxrwxrwx 1 root root 14 Aug 28 08:20 10:63 -> ../vga_arbiter
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 108:0 -> ../ppp
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 1:1 -> ../mem
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 1:11 -> ../kmsg
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 1:12 -> ../oldmem
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 116:1 -> ../snd/seq
+lrwxrwxrwx 1 root root 17 Aug 28 08:20 116:2 -> ../snd/controlC29
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 116:3 -> ../snd/pcmC0D1p
+lrwxrwxrwx 1 root root 12 Aug 28 08:20 116:33 -> ../snd/timer
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 116:4 -> ../snd/pcmC0D0p
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 116:5 -> ../snd/pcmC0D0c
+lrwxrwxrwx 1 root root 13 Aug 28 08:20 116:6 -> ../snd/hwC0D0
+lrwxrwxrwx 1 root root 16 Aug 28 08:20 116:7 -> ../snd/controlC0
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 1:3 -> ../null
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:32 -> ../input/mouse0
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:33 -> ../input/mouse1
+lrwxrwxrwx 1 root root 13 Aug 28 08:20 13:63 -> ../input/mice
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:64 -> ../input/event0
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:65 -> ../input/event1
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:66 -> ../input/event2
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:67 -> ../input/event3
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:68 -> ../input/event4
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:69 -> ../input/event5
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:70 -> ../input/event6
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:71 -> ../input/event7
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:72 -> ../input/event8
+lrwxrwxrwx 1 root root 15 Aug 28 08:20 13:73 -> ../input/event9
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 1:4 -> ../port
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 1:5 -> ../zero
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 1:7 -> ../full
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 1:8 -> ../random
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:0 -> ../bus/usb/001/001
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:128 -> ../bus/usb/002/001
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:129 -> ../bus/usb/002/002
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:256 -> ../bus/usb/003/001
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:257 -> ../bus/usb/003/002
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:258 -> ../bus/usb/003/003
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:384 -> ../bus/usb/004/001
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:512 -> ../bus/usb/005/001
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:640 -> ../bus/usb/006/001
+lrwxrwxrwx 1 root root 18 Aug 28 08:20 189:768 -> ../bus/usb/007/001
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 1:9 -> ../urandom
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 21:0 -> ../sg0
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 21:1 -> ../sg1
+lrwxrwxrwx 1 root root 12 Aug 28 08:20 226:0 -> ../dri/card0
+lrwxrwxrwx 1 root root 17 Aug 28 08:20 226:64 -> ../dri/controlD64
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 251:0 -> ../fw0
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 252:0 -> ../usbmon0
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 252:1 -> ../usbmon1
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 252:2 -> ../usbmon2
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 252:3 -> ../usbmon3
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 252:4 -> ../usbmon4
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 252:5 -> ../usbmon5
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 252:6 -> ../usbmon6
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 252:7 -> ../usbmon7
+lrwxrwxrwx 1 root root 14 Aug 28 08:20 253:0 -> ../bsg/0:0:0:0
+lrwxrwxrwx 1 root root 14 Aug 28 08:20 253:1 -> ../bsg/3:0:0:0
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 254:0 -> ../rtc0
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 29:0 -> ../fb0
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:0 -> ../tty0
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:1 -> ../tty1
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:10 -> ../tty10
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:11 -> ../tty11
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:12 -> ../tty12
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:13 -> ../tty13
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:14 -> ../tty14
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:15 -> ../tty15
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:16 -> ../tty16
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:17 -> ../tty17
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:18 -> ../tty18
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:19 -> ../tty19
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:2 -> ../tty2
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:20 -> ../tty20
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:21 -> ../tty21
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:22 -> ../tty22
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:23 -> ../tty23
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:24 -> ../tty24
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:25 -> ../tty25
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:26 -> ../tty26
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:27 -> ../tty27
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:28 -> ../tty28
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:29 -> ../tty29
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:3 -> ../tty3
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:30 -> ../tty30
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:31 -> ../tty31
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:32 -> ../tty32
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:33 -> ../tty33
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:34 -> ../tty34
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:35 -> ../tty35
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:36 -> ../tty36
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:37 -> ../tty37
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:38 -> ../tty38
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:39 -> ../tty39
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:4 -> ../tty4
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:40 -> ../tty40
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:41 -> ../tty41
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:42 -> ../tty42
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:43 -> ../tty43
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:44 -> ../tty44
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:45 -> ../tty45
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:46 -> ../tty46
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:47 -> ../tty47
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:48 -> ../tty48
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:49 -> ../tty49
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:5 -> ../tty5
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:50 -> ../tty50
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:51 -> ../tty51
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:52 -> ../tty52
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:53 -> ../tty53
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:54 -> ../tty54
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:55 -> ../tty55
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:56 -> ../tty56
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:57 -> ../tty57
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:58 -> ../tty58
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:59 -> ../tty59
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:6 -> ../tty6
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:60 -> ../tty60
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:61 -> ../tty61
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:62 -> ../tty62
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:63 -> ../tty63
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:64 -> ../ttyS0
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:65 -> ../ttyS1
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:66 -> ../ttyS2
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:67 -> ../ttyS3
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:68 -> ../ttyS4
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:69 -> ../ttyS5
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:7 -> ../tty7
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:70 -> ../ttyS6
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:71 -> ../ttyS7
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:72 -> ../ttyS8
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 4:73 -> ../ttyS9
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:74 -> ../ttyS10
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:75 -> ../ttyS11
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:76 -> ../ttyS12
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:77 -> ../ttyS13
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:78 -> ../ttyS14
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:79 -> ../ttyS15
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:8 -> ../tty8
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:80 -> ../ttyS16
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:81 -> ../ttyS17
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:82 -> ../ttyS18
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:83 -> ../ttyS19
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:84 -> ../ttyS20
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:85 -> ../ttyS21
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:86 -> ../ttyS22
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:87 -> ../ttyS23
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:88 -> ../ttyS24
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:89 -> ../ttyS25
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 4:9 -> ../tty9
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:90 -> ../ttyS26
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:91 -> ../ttyS27
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:92 -> ../ttyS28
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:93 -> ../ttyS29
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:94 -> ../ttyS30
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 4:95 -> ../ttyS31
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 5:0 -> ../tty
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 5:1 -> ../console
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 5:2 -> ../ptmx
+lrwxrwxrwx 1 root root 12 Aug 28 08:20 5:3 -> ../ttyprintk
+lrwxrwxrwx 1 root root  6 Aug 28 08:20 7:0 -> ../vcs
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:1 -> ../vcs1
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:10 -> ../vcs10
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:128 -> ../vcsa
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:129 -> ../vcsa1
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:130 -> ../vcsa2
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:131 -> ../vcsa3
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:132 -> ../vcsa4
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:133 -> ../vcsa5
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:134 -> ../vcsa6
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:135 -> ../vcsa7
+lrwxrwxrwx 1 root root  8 Aug 28 08:20 7:136 -> ../vcsa8
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 7:138 -> ../vcsa10
+lrwxrwxrwx 1 root root  9 Aug 28 08:38 7:191 -> ../vcsa63
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:2 -> ../vcs2
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:3 -> ../vcs3
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:4 -> ../vcs4
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:5 -> ../vcs5
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:6 -> ../vcs6
+lrwxrwxrwx 1 root root  8 Aug 28 08:38 7:63 -> ../vcs63
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:7 -> ../vcs7
+lrwxrwxrwx 1 root root  7 Aug 28 08:20 7:8 -> ../vcs8
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 81:0 -> ../video0
 
 builds/dev/cpu:
 razem 0
-crw------T 1 root root 10, 184 Jul 31 22:07 microcode
+crw------T 1 root root 10, 184 Aug 28 08:20 microcode
 
 builds/dev/disk:
 razem 12
-drwxr-xr-x 2 root root 4096 Aug 11 22:05 by-id
-drwxr-xr-x 2 root root 4096 Aug 11 22:05 by-path
-drwxr-xr-x 2 root root 4096 Aug 11 22:05 by-uuid
+drwxr-xr-x 2 root root 4096 Aug 30 11:43 by-id
+drwxr-xr-x 2 root root 4096 Aug 30 11:43 by-path
+drwxr-xr-x 2 root root 4096 Aug 30 11:43 by-uuid
 
 builds/dev/disk/by-id:
 razem 0
-lrwxrwxrwx 1 root root  9 Aug 11 18:17 ata-HL-DT-STCD-RW_DVD_DRIVE_GCC-4247N -> ../../sr0
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 ata-SSDSA2SH064G1GC_INTEL_CVEM008101CL064KGN -> ../../sda
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 ata-SSDSA2SH064G1GC_INTEL_CVEM008101CL064KGN-part1 -> ../../sda1
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 ata-SSDSA2SH064G1GC_INTEL_CVEM008101CL064KGN-part2 -> ../../sda2
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 scsi-SATA_SSDSA2SH064G1GCCVEM008101CL064KGN -> ../../sda
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 scsi-SATA_SSDSA2SH064G1GCCVEM008101CL064KGN-part1 -> ../../sda1
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 scsi-SATA_SSDSA2SH064G1GCCVEM008101CL064KGN-part2 -> ../../sda2
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 wwn-0x50015179591db224 -> ../../sda
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 wwn-0x50015179591db224-part1 -> ../../sda1
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 wwn-0x50015179591db224-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  9 Aug 30 07:35 ata-HL-DT-STCD-RW_DVD_DRIVE_GCC-4247N -> ../../sr0
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 ata-SSDSA2SH064G1GC_INTEL_CVEM008101CL064KGN -> ../../sda
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 ata-SSDSA2SH064G1GC_INTEL_CVEM008101CL064KGN-part1 -> ../../sda1
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 ata-SSDSA2SH064G1GC_INTEL_CVEM008101CL064KGN-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 scsi-SATA_SSDSA2SH064G1GCCVEM008101CL064KGN -> ../../sda
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 scsi-SATA_SSDSA2SH064G1GCCVEM008101CL064KGN-part1 -> ../../sda1
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 scsi-SATA_SSDSA2SH064G1GCCVEM008101CL064KGN-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 wwn-0x50015179591db224 -> ../../sda
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 wwn-0x50015179591db224-part1 -> ../../sda1
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 wwn-0x50015179591db224-part2 -> ../../sda2
 
 builds/dev/disk/by-path:
 razem 0
-lrwxrwxrwx 1 root root  9 Aug 11 18:17 pci-0000:00:1f.1-scsi-0:0:0:0 -> ../../sr0
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 pci-0000:00:1f.2-scsi-0:0:0:0 -> ../../sda
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 pci-0000:00:1f.2-scsi-0:0:0:0-part1 -> ../../sda1
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 pci-0000:00:1f.2-scsi-0:0:0:0-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  9 Aug 30 07:35 pci-0000:00:1f.1-scsi-0:0:0:0 -> ../../sr0
+lrwxrwxrwx 1 root root  9 Aug 28 08:20 pci-0000:00:1f.2-scsi-0:0:0:0 -> ../../sda
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 pci-0000:00:1f.2-scsi-0:0:0:0-part1 -> ../../sda1
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 pci-0000:00:1f.2-scsi-0:0:0:0-part2 -> ../../sda2
 
 builds/dev/disk/by-uuid:
 razem 0
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 ae9cc8c9-615e-48f4-8ddb-5dd5adafec65 -> ../../sda2
-lrwxrwxrwx 1 root root 10 Jul 31 22:07 ef33e0de-933b-4866-8b98-ab28c111fee0 -> ../../sda1
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 ae9cc8c9-615e-48f4-8ddb-5dd5adafec65 -> ../../sda2
+lrwxrwxrwx 1 root root 10 Aug 28 08:20 ef33e0de-933b-4866-8b98-ab28c111fee0 -> ../../sda1
 
 builds/dev/dri:
 razem 0
-crw-rw---T+ 1 root video 226,  0 Jul 31 22:07 card0
-crw-rw---T  1 root video 226, 64 Jul 31 22:07 controlD64
+crw-rw---T+ 1 root video 226,  0 Aug 28 08:20 card0
+crw-rw---T  1 root video 226, 64 Aug 28 08:20 controlD64
 
 builds/dev/input:
 razem 8
-drwxr-xr-x 2 root root   4096 Aug 12 16:55 by-id
-drwxr-xr-x 2 root root   4096 Aug 12 16:55 by-path
-crw------- 1 root root 13, 64 Jul 31 22:07 event0
-crw------- 1 root root 13, 65 Jul 31 22:07 event1
-crw------- 1 root root 13, 74 Aug 12 16:55 event10
-crw------- 1 root root 13, 66 Jul 31 22:07 event2
-crw------- 1 root root 13, 67 Jul 31 22:07 event3
-crw------- 1 root root 13, 68 Jul 31 22:07 event4
-crw------- 1 root root 13, 69 Jul 31 22:07 event5
-crw------- 1 root root 13, 70 Jul 31 22:07 event6
-crw------- 1 root root 13, 71 Jul 31 22:07 event7
-crw------- 1 root root 13, 72 Jul 31 22:07 event8
-crw------- 1 root root 13, 73 Jul 31 22:07 event9
-crw------- 1 root root 13, 63 Jul 31 22:07 mice
-crw------- 1 root root 13, 32 Jul 31 22:07 mouse0
-crw------- 1 root root 13, 33 Jul 31 22:07 mouse1
-crw------- 1 root root 13, 34 Aug 12 16:55 mouse2
+drwxr-xr-x 2 root root   4096 Aug 28 08:20 by-id
+drwxr-xr-x 2 root root   4096 Aug 28 08:20 by-path
+crw------- 1 root root 13, 64 Aug 28 08:20 event0
+crw------- 1 root root 13, 65 Aug 28 08:20 event1
+crw------- 1 root root 13, 66 Aug 28 08:20 event2
+crw------- 1 root root 13, 67 Aug 28 08:20 event3
+crw------- 1 root root 13, 68 Aug 28 08:20 event4
+crw------- 1 root root 13, 69 Aug 28 08:20 event5
+crw------- 1 root root 13, 70 Aug 28 08:20 event6
+crw------- 1 root root 13, 71 Aug 28 08:20 event7
+crw------- 1 root root 13, 72 Aug 28 08:20 event8
+crw------- 1 root root 13, 73 Aug 28 08:20 event9
+crw------- 1 root root 13, 63 Aug 28 08:20 mice
+crw------- 1 root root 13, 32 Aug 28 08:20 mouse0
+crw------- 1 root root 13, 33 Aug 28 08:20 mouse1
 
 builds/dev/input/by-id:
 razem 0
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 usb-Chicony_Electronics_Co.__Ltd._Integrated_Camera_SN0001-event-if00 -> ../event6
-lrwxrwxrwx 1 root root 10 Aug 12 16:55 usb-Logitech_USB-PS_2_Optical_Mouse-event-mouse -> ../event10
-lrwxrwxrwx 1 root root  9 Aug 12 16:55 usb-Logitech_USB-PS_2_Optical_Mouse-mouse -> ../mouse2
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 usb-Chicony_Electronics_Co.__Ltd._Integrated_Camera_SN0001-event-if00 -> ../event6
 
 builds/dev/input/by-path:
 razem 0
-lrwxrwxrwx 1 root root 10 Aug 12 16:55 pci-0000:00:1d.0-usb-0:2:1.0-event-mouse -> ../event10
-lrwxrwxrwx 1 root root  9 Aug 12 16:55 pci-0000:00:1d.0-usb-0:2:1.0-mouse -> ../mouse2
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 pci-0000:00:1d.7-usb-0:5:1.0-event -> ../event6
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 platform-i8042-serio-0-event-kbd -> ../event3
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 platform-i8042-serio-1-event-mouse -> ../event7
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 platform-i8042-serio-1-mouse -> ../mouse0
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 platform-i8042-serio-2-event-mouse -> ../event9
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 platform-i8042-serio-2-mouse -> ../mouse1
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 platform-pcspkr-event-spkr -> ../event5
-lrwxrwxrwx 1 root root  9 Jul 31 22:07 platform-thinkpad_acpi-event -> ../event4
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 pci-0000:00:1d.7-usb-0:5:1.0-event -> ../event6
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 platform-i8042-serio-0-event-kbd -> ../event3
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 platform-i8042-serio-1-event-mouse -> ../event7
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 platform-i8042-serio-1-mouse -> ../mouse0
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 platform-i8042-serio-2-event-mouse -> ../event9
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 platform-i8042-serio-2-mouse -> ../mouse1
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 platform-pcspkr-event-spkr -> ../event5
+lrwxrwxrwx 1 root root 9 Aug 28 08:20 platform-thinkpad_acpi-event -> ../event4
 
 builds/dev/mapper:
 razem 0
-crw------- 1 root root 10, 236 Jul 31 22:07 control
+crw------- 1 root root 10, 236 Aug 28 08:20 control
 
 builds/dev/net:
 razem 0
-crw-rw-rwT 1 root root 10, 200 Jul 31 22:07 tun
+crw-rw-rwT 1 root root 10, 200 Aug 28 08:20 tun
 
 builds/dev/pts:
 razem 0
-crw--w---- 1 root     root 136,  0 Aug 12 19:15 0
-crw------- 1 jdanecki tty  136,  1 Aug 12 00:40 1
-crw--w---- 1 root     tty  136, 10 Aug 13 00:21 10
-crw------- 1 jdanecki tty  136,  2 Aug 13 00:20 2
-crw------- 1 jdanecki tty  136,  3 Aug 13 00:21 3
-crw--w---- 1 jdanecki tty  136,  4 Aug 13 00:20 4
-crw--w---- 1 root     tty  136,  5 Aug  4 13:22 5
-crw--w---- 1 jdanecki tty  136,  6 Aug 13 00:21 6
-crw------- 1 jdanecki tty  136,  7 Aug 13 00:21 7
-crw--w---- 1 root     tty  136,  9 Aug 13 00:20 9
-c--------- 1 root     root   5,  2 Jul 31 22:07 ptmx
+crw--w---- 1 root     root 136,  0 Aug 30 10:07 0
+crw------- 1 jdanecki tty  136,  1 Aug 30 09:06 1
+crw------- 1 root     tty  136, 10 Aug 30 18:16 10
+crw------- 1 root     tty  136, 11 Aug 30 18:16 11
+crw--w---- 1 root     tty  136, 12 Aug 30 18:16 12
+crw--w---- 1 jdanecki tty  136,  2 Aug 30 11:43 2
+crw--w---- 1 root     tty  136,  3 Aug 30 11:43 3
+crw--w---- 1 jdanecki tty  136,  4 Aug 30 00:14 4
+crw--w---- 1 root     tty  136,  5 Aug 30 00:14 5
+crw--w---- 1 root     tty  136,  7 Aug 28 08:20 7
+crw------- 1 jdanecki tty  136,  8 Aug 30 09:02 8
+crw--w---- 1 jdanecki tty  136,  9 Aug 29 23:58 9
+c--------- 1 root     root   5,  2 Aug 28 08:20 ptmx
 
 builds/dev/snd:
 razem 4
-drwxr-xr-x  2 root root     4096 Jul 31 22:07 by-path
-crw-rw---T+ 1 root audio 116,  7 Jul 31 22:07 controlC0
-crw-rw---T+ 1 root audio 116,  2 Jul 31 22:07 controlC29
-crw-rw---T+ 1 root audio 116,  6 Jul 31 22:07 hwC0D0
-crw-rw---T+ 1 root audio 116,  5 Aug 12 19:20 pcmC0D0c
-crw-rw---T+ 1 root audio 116,  4 Aug 12 20:02 pcmC0D0p
-crw-rw---T+ 1 root audio 116,  3 Aug 12 19:20 pcmC0D1p
-crw-rw---T+ 1 root audio 116,  1 Jul 31 22:07 seq
-crw-rw---T+ 1 root audio 116, 33 Jul 31 22:07 timer
+drwxr-xr-x  2 root root     4096 Aug 28 08:20 by-path
+crw-rw---T+ 1 root audio 116,  7 Aug 28 08:20 controlC0
+crw-rw---T+ 1 root audio 116,  2 Aug 28 08:20 controlC29
+crw-rw---T+ 1 root audio 116,  6 Aug 28 08:20 hwC0D0
+crw-rw---T+ 1 root audio 116,  5 Aug 28 08:20 pcmC0D0c
+crw-rw---T+ 1 root audio 116,  4 Aug 29 22:24 pcmC0D0p
+crw-rw---T+ 1 root audio 116,  3 Aug 28 08:20 pcmC0D1p
+crw-rw---T+ 1 root audio 116,  1 Aug 28 08:20 seq
+crw-rw---T+ 1 root audio 116, 33 Aug 28 08:20 timer
 
 builds/dev/snd/by-path:
 razem 0
-lrwxrwxrwx 1 root root 12 Jul 31 22:07 pci-0000:00:1b.0 -> ../controlC0
-lrwxrwxrwx 1 root root 13 Jul 31 22:07 platform-thinkpad_acpi -> ../controlC29
+lrwxrwxrwx 1 root root 12 Aug 28 08:20 pci-0000:00:1b.0 -> ../controlC0
+lrwxrwxrwx 1 root root 13 Aug 28 08:20 platform-thinkpad_acpi -> ../controlC29
 
 builds/dev/v4l:
 razem 8
-drwxr-xr-x 2 root root 4096 Jul 31 22:07 by-id
-drwxr-xr-x 2 root root 4096 Jul 31 22:07 by-path
+drwxr-xr-x 2 root root 4096 Aug 28 08:20 by-id
+drwxr-xr-x 2 root root 4096 Aug 28 08:20 by-path
 
 builds/dev/v4l/by-id:
 razem 0
-lrwxrwxrwx 1 root root 12 Jul 31 22:07 usb-Chicony_Electronics_Co.__Ltd._Integrated_Camera_SN0001-video-index0 -> ../../video0
+lrwxrwxrwx 1 root root 12 Aug 28 08:20 usb-Chicony_Electronics_Co.__Ltd._Integrated_Camera_SN0001-video-index0 -> ../../video0
 
 builds/dev/v4l/by-path:
 razem 0
-lrwxrwxrwx 1 root root 12 Jul 31 22:07 pci-0000:00:1d.7-usb-0:5:1.0-video-index0 -> ../../video0
+lrwxrwxrwx 1 root root 12 Aug 28 08:20 pci-0000:00:1d.7-usb-0:5:1.0-video-index0 -> ../../video0
 
 builds/dev/vboxusb:
 razem 12
-drwxr-x--- 2 root vboxusers 4096 Aug 11 22:05 002
-drwxr-x--- 2 root vboxusers 4096 Jul 31 22:07 003
-drwxr-x--- 2 root vboxusers 4096 Aug 12 16:55 005
+drwxr-x--- 2 root vboxusers 4096 Aug 30 11:43 001
+drwxr-x--- 2 root vboxusers 4096 Aug 28 20:42 002
+drwxr-x--- 2 root vboxusers 4096 Aug 28 08:20 003
+
+builds/dev/vboxusb/001:
+razem 0
 
 builds/dev/vboxusb/002:
 razem 0
-crw-rw---- 1 root vboxusers 189, 129 Jul 31 22:07 002
+crw-rw---- 1 root vboxusers 189, 129 Aug 28 08:20 002
 
 builds/dev/vboxusb/003:
 razem 0
-crw-rw---- 1 root vboxusers 189, 257 Jul 31 22:07 002
-crw-rw---- 1 root vboxusers 189, 258 Jul 31 22:07 003
-
-builds/dev/vboxusb/005:
-razem 0
-crw-rw---- 1 root vboxusers 189, 514 Aug 12 16:55 003
+crw-rw---- 1 root vboxusers 189, 257 Aug 28 08:20 002
+crw-rw---- 1 root vboxusers 189, 258 Aug 28 08:20 003
 
 builds/etc:
 razem 96
@@ -745,17 +734,17 @@ lrwxrwxrwx 1 root root   15 Aug  9  2011 blkid.tab -> /dev/.blkid.tab
 drwxr-xr-x 2 root root 4096 Oct  5  2011 default
 drwxr-xr-x 3 root root 4096 Jul 11  2011 emacs
 -rw-r--r-- 1 root root 3343 Oct  4  2011 gai.conf
--rw-r--r-- 1 root root   10 Aug 13 00:21 group
+-rw-r--r-- 1 root root   10 Aug 30 18:16 group
 drwxr-xr-x 2 root root 4096 Jun 24  2011 init
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 init.d
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 init.d
 drwxr-xr-x 2 root root 4096 Nov 14  2011 ldap
 drwxr-xr-x 2 root root 4096 Oct  4  2011 ld.so.conf.d
 -rw-r--r-- 1 root root  111 Aug  8  2011 magic
 -rw-r--r-- 1 root root  111 Aug  8  2011 magic.mime
--rw-r--r-- 1 root root   32 Aug 13 00:21 passwd
+-rw-r--r-- 1 root root   32 Aug 30 18:16 passwd
 drwxr-xr-x 4 root root 4096 Sep  6  2011 perl
 drwxr-xr-x 2 root root 4096 Oct  4  2011 python2.7
--rw-r--r-- 1 root root   72 Aug 13 00:21 resolv.conf
+-rw-r--r-- 1 root root  157 Aug 30 18:16 resolv.conf
 -rwxr-xr-x 1 root root  268 Dec  7  2010 rmt
 drwxr-xr-x 2 root root 4096 May 18  2011 skel
 -rw-r--r-- 1 root root 2083 Jun 10  2011 sysctl.conf
@@ -826,8 +815,8 @@ razem 24
 
 builds/lib:
 razem 624
-lrwxrwxrwx 1 root root     12 Aug 13 00:21 cpp -> /usr/bin/cpp
-drwxr-xr-x 2 root root   4096 Aug 13 00:21 i386-linux-gnu
+lrwxrwxrwx 1 root root     12 Aug 30 18:16 cpp -> /usr/bin/cpp
+drwxr-xr-x 2 root root   4096 Aug 30 18:16 i386-linux-gnu
 lrwxrwxrwx 1 root root     25 Oct  5  2011 ld-linux.so.2 -> i386-linux-gnu/ld-2.13.so
 lrwxrwxrwx 1 root root     15 Dec 13  2011 libbz2.so.1 -> libbz2.so.1.0.4
 lrwxrwxrwx 1 root root     15 Dec 13  2011 libbz2.so.1.0 -> libbz2.so.1.0.4
@@ -941,11 +930,11 @@ razem 0
 
 builds/usr:
 razem 28
-drwxr-xr-x  2 root root 12288 Apr  9 04:33 bin
-drwxr-xr-x 30 root root  4096 Aug 13 00:21 include
+drwxr-xr-x  2 root root 12288 Aug 30 18:16 bin
+drwxr-xr-x 30 root root  4096 Aug 30 18:16 include
 drwxr-xr-x 20 root root  4096 Dec  7  2010 lib
 drwxr-xr-x  2 root root  4096 Dec  7  2010 sbin
-drwxr-xr-x 35 root root  4096 Apr  9 04:33 share
+drwxr-xr-x 35 root root  4096 Mar 21  2011 share
 
 builds/usr/bin:
 razem 31568
@@ -953,7 +942,7 @@ razem 31568
 lrwxrwxrwx 1 root root       8 Oct  8  2011 2to3 -> 2to3-2.7
 -rwxr-xr-x 1 root root      96 Oct  4  2011 2to3-2.7
 -rwxr-xr-x 1 root root  105060 Sep  6  2011 a2p
-lrwxrwxrwx 1 root root      21 Aug 13 00:21 aclocal -> /usr/bin/aclocal-1.11
+lrwxrwxrwx 1 root root      21 Aug 30 18:16 aclocal -> /usr/bin/aclocal-1.11
 -rwxr-xr-x 1 root root   31181 Dec  9  2010 aclocal-1.11
 -rwxr-xr-x 1 root root   26500 Dec 23  2011 addr2line
 -rwxr-xr-x 1 root root   55136 Dec 23  2011 ar
@@ -962,13 +951,13 @@ lrwxrwxrwx 1 root root      21 Aug 13 00:21 aclocal -> /usr/bin/aclocal-1.11
 -rwxr-xr-x 1 root root   14654 May  1  2011 autoconf
 -rwxr-xr-x 1 root root    8612 May  1  2011 autoheader
 -rwxr-xr-x 1 root root   32706 May  1  2011 autom4te
-lrwxrwxrwx 1 root root      22 Aug 13 00:21 automake -> /usr/bin/automake-1.11
+lrwxrwxrwx 1 root root      22 Aug 30 18:16 automake -> /usr/bin/automake-1.11
 -rwxr-xr-x 1 root root  257064 Dec  9  2010 automake-1.11
 -rwxr-xr-x 1 root root   24268 Nov 25  2010 autopoint
 -rwxr-xr-x 1 root root   21370 May  1  2011 autoreconf
 -rwxr-xr-x 1 root root   17189 May  1  2011 autoscan
 -rwxr-xr-x 1 root root   33937 May  1  2011 autoupdate
-lrwxrwxrwx 1 root root      13 Aug 13 00:21 awk -> /usr/bin/gawk
+lrwxrwxrwx 1 root root      13 Aug 30 18:16 awk -> /usr/bin/gawk
 -rwxr-xr-x 1 root root   26148 Feb 23  2011 base64
 -rwxr-xr-x 1 root root   17880 Feb 23  2011 basename
 -rwxr-xr-x 1 root root    6870 May 18  2011 bashbug
@@ -1215,12 +1204,13 @@ razem 1244
 -rw-r--r--  1 root root   7308 Oct  4  2011 argz.h
 -rw-r--r--  1 root root   1792 Oct  4  2011 ar.h
 drwxr-xr-x  2 root root   4096 Oct  4  2011 arpa
-lrwxrwxrwx  1 root root     31 Aug 13 00:21 asm -> /usr/include/i386-linux-gnu/asm
+lrwxrwxrwx  1 root root     31 Aug 30 18:16 asm -> /usr/include/i386-linux-gnu/asm
 drwxr-xr-x  2 root root   4096 Jan  3  2012 asm-generic
 -rw-r--r--  1 root root   3587 Oct  4  2011 assert.h
 -rw-r--r--  1 root root   2284 Nov 25  2010 autosprintf.h
+lrwxrwxrwx  1 root root     32 Aug 30 18:16 bits -> /usr/include/i386-linux-gnu/bits
 -rw-r--r--  1 root root   1489 Oct  4  2011 byteswap.h
-drwxr-xr-x  3 root root   4096 Aug 13 00:21 c++
+drwxr-xr-x  3 root root   4096 Aug 30 18:16 c++
 -rw-r--r--  1 root root   3633 Oct  4  2011 complex.h
 -rw-r--r--  1 root root   2335 Oct  4  2011 cpio.h
 -rw-r--r--  1 root root   2351 Oct  4  2011 crypt.h
@@ -1249,6 +1239,7 @@ drwxr-xr-x  2 root root   4096 Jan  3  2012 drm
 -rw-r--r--  1 root root   6749 Oct  4  2011 getopt.h
 -rw-r--r--  1 root root  15523 Nov 25  2010 gettext-po.h
 -rw-r--r--  1 root root   7015 Oct  4  2011 glob.h
+lrwxrwxrwx  1 root root     31 Aug 30 18:16 gnu -> /usr/include/i386-linux-gnu/gnu
 -rw-r--r--  1 root root   2416 Oct  4  2011 gnu-versions.h
 -rw-r--r--  1 root root   6991 Oct  4  2011 grp.h
 -rw-r--r--  1 root root   4611 Oct  4  2011 gshadow.h
@@ -1323,6 +1314,7 @@ drwxr-xr-x  2 root root   4096 Jan  3  2012 sound
 -rw-r--r--  1 root root  22612 Oct  4  2011 string.h
 -rw-r--r--  1 root root   4763 Oct  4  2011 strings.h
 -rw-r--r--  1 root root   3111 Oct  4  2011 stropts.h
+lrwxrwxrwx  1 root root     31 Aug 30 18:16 sys -> /usr/include/i386-linux-gnu/sys
 -rw-r--r--  1 root root     25 Oct  4  2011 syscall.h
 -rw-r--r--  1 root root   5232 Oct  4  2011 sysexits.h
 -rw-r--r--  1 root root     24 Oct  4  2011 syslog.h
@@ -3344,13 +3336,13 @@ razem 8
 builds/usr/lib:
 razem 7144
 drwxr-xr-x  2 root root    4096 Aug  9  2011 awk
-drwxr-xr-x  2 root root    4096 Aug 13 00:21 compat-ld
+drwxr-xr-x  2 root root    4096 Aug 30 18:16 compat-ld
 drwxr-xr-x  2 root root    4096 Feb 23  2011 coreutils
 drwxr-xr-x  3 root root    4096 Jul 11  2011 emacsen-common
 drwxr-xr-x  3 root root    4096 Apr 16 01:44 gcc
 drwxr-xr-x  2 root root    4096 Nov 25  2010 gettext
-drwxr-xr-x  3 root root    4096 Aug 13 00:21 git-core
-drwxr-xr-x  2 root root    4096 Aug 13 00:21 gold-ld
+drwxr-xr-x  3 root root    4096 Aug 30 18:16 git-core
+drwxr-xr-x  2 root root    4096 Aug 30 18:16 gold-ld
 drwxr-xr-x  9 root root    4096 Jun 21  2011 i386-linux-gnu
 drwxr-xr-x  2 root root    4096 Dec 23  2011 ldscripts
 lrwxrwxrwx  1 root root      15 Dec 12  2011 libarchive.so.1 -> libarchive.so.2
@@ -3409,7 +3401,7 @@ lrwxrwxrwx  1 root root      16 Jan 18  2012 libxml2.so.2 -> libxml2.so.2.7.8
 -rw-r--r--  1 root root    1982 Nov  4  2009 liby.a
 drwxr-xr-x  3 root root    4096 Oct  5  2011 locale
 drwxr-xr-x  3 root root    4096 Dec  7  2010 mime
-drwxr-xr-x  3 root root    4096 Aug 13 00:21 perl
+drwxr-xr-x  3 root root    4096 Sep  6  2011 perl
 drwxr-xr-x  2 root root    4096 Jul  3  2011 pkgconfig
 -rw-r--r--  1 root root   38348 Nov 25  2010 preloadable_libintl.so
 -rwsr-xr-x  1 root root    9732 Oct  5  2011 pt_chown
@@ -3454,7 +3446,7 @@ drwxr-xr-x 3 root root 4096 Apr 16 01:44 i686-linux-gnu
 
 builds/usr/lib/gcc/i686-linux-gnu:
 razem 4
-drwxr-xr-x 4 root root 4096 Aug 13 00:21 4.6
+drwxr-xr-x 4 root root 4096 Aug 30 18:16 4.6
 lrwxrwxrwx 1 root root    3 Sep 16  2011 4.6.1 -> 4.6
 
 builds/usr/lib/gcc/i686-linux-gnu/4.6:
@@ -3823,7 +3815,7 @@ lrwxrwxrwx 1 root root      37 Oct  5  2011 libthread_db.so -> /lib/i386-linux-g
 lrwxrwxrwx 1 root root      32 Oct  5  2011 libutil.so -> /lib/i386-linux-gnu/libutil.so.1
 -rw-r--r-- 1 root root     404 Oct  5  2011 Mcrt1.o
 drwxr-xr-x 3 root root    4096 Oct  5  2011 openssl-1.0.0
-drwxr-xr-x 2 root root    4096 Aug 13 00:21 sasl2
+drwxr-xr-x 2 root root    4096 Aug 30 18:16 sasl2
 -rw-r--r-- 1 root root    1276 Oct  5  2011 Scrt1.o
 drwxr-xr-x 2 root root    4096 Oct  5  2011 xen
 
@@ -6101,31 +6093,31 @@ drwxr-xr-x  2 root root 4096 Dec  9  2010 aclocal-1.11
 drwxr-xr-x  2 root root 4096 Oct  4  2011 applications
 drwxr-xr-x  3 root root 4096 Oct  8  2011 apps
 drwxr-xr-x  7 root root 4096 May  1  2011 autoconf
-drwxr-xr-x  4 root root 4096 Aug 13 00:21 automake-1.11
+drwxr-xr-x  4 root root 4096 Aug 30 18:16 automake-1.11
 drwxr-xr-x  2 root root 4096 Aug  9  2011 awk
 drwxr-xr-x  2 root root 4096 Oct  4  2011 binfmts
 drwxr-xr-x  4 root root 4096 Nov  4  2009 bison
 drwxr-xr-x  6 root root 4096 Jun 24  2011 bug
 drwxr-xr-x  5 root root 4096 Jul 11  2011 cmake-2.8
 drwxr-xr-x  3 root root 4096 Oct  8  2011 debhelper
-drwxr-xr-x 87 root root 4096 Apr  9 04:33 doc
-drwxr-xr-x  2 root root 4096 Apr  9 04:33 doc-base
+drwxr-xr-x 87 root root 4096 Mar 21  2011 doc
+drwxr-xr-x  2 root root 4096 Oct  8  2011 doc-base
 drwxr-xr-x  3 root root 4096 Jul 11  2011 emacs
 drwxr-xr-x  3 root root 4096 Aug  8  2011 file
 drwxr-xr-x  6 root root 4096 Nov 25  2010 gettext
 drwxr-xr-x  4 root root 4096 Apr 11 06:30 git-core
-drwxr-xr-x  3 root root 4096 Aug 13 00:21 gitweb
+drwxr-xr-x  3 root root 4096 Aug 30 18:16 gitweb
 drwxr-xr-x  3 root root 4096 Oct  6  2011 glib-2.0
-drwxr-xr-x  2 root root 4096 Apr  9 04:33 info
+drwxr-xr-x  2 root root 4096 Feb 11  2012 info
 drwxr-xr-x  2 root root 4096 Nov 25  2010 java
 drwxr-xr-x  3 root root 4096 May  1  2011 libtool
 drwxrwxr-x  3 root root 4096 Sep  1  2011 lintian
-drwxr-xr-x  8 root root 4096 Apr  9 04:33 man
+drwxr-xr-x  8 root root 4096 Feb 11  2012 man
 drwxr-xr-x  2 root root 4096 Oct  4  2011 menu
-drwxr-xr-x  2 root root 4096 Aug 13 00:21 misc
+drwxr-xr-x  2 root root 4096 Aug 30 18:16 misc
 drwxr-xr-x  3 root root 4096 Sep  6  2011 perl
 drwxr-xr-x  4 root root 4096 Oct  8  2011 perl5
-drwxr-xr-x  2 root root 4096 Aug 13 00:21 pixmaps
+drwxr-xr-x  2 root root 4096 Aug 30 18:16 pixmaps
 drwxr-xr-x  2 root root 4096 Jul  3  2011 pkgconfig
 -rwxr-xr-x  1 root root  247 Jul  3  2011 pkg-config-crosswrapper
 drwxr-xr-x  4 root root 4096 Oct  8  2011 python
@@ -6463,7 +6455,7 @@ razem 4
 -rw-r--r-- 1 root root 245 Jun 10  2011 presubj
 
 builds/usr/share/cmake-2.8:
-razem 32
+razem 28
 drwxr-xr-x 2 root root  4096 Jul 11  2011 include
 drwxr-xr-x 6 root root 20480 Jul 11  2011 Modules
 drwxr-xr-x 2 root root  4096 Jul 11  2011 Templates
@@ -7080,19 +7072,19 @@ drwxr-xr-x 2 root root 4096 Nov  4  2009 bison
 lrwxrwxrwx 1 root root   10 Jul 11  2011 cmake -> cmake-data
 drwxr-xr-x 2 root root 4096 Jul 11  2011 cmake-data
 drwxr-xr-x 2 root root 4096 Feb 23  2011 coreutils
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 cpp
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 cpp
 lrwxrwxrwx 1 root root   12 Sep 16  2011 cpp-4.6 -> gcc-4.6-base
 drwxr-xr-x 2 root root 4096 May  9  2010 diffutils
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 file
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 file
 drwxr-xr-x 2 root root 4096 Feb 10  2011 findutils
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 flex
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 flex
 lrwxrwxrwx 1 root root    3 Aug 14  2011 g++ -> cpp
 lrwxrwxrwx 1 root root   12 Sep 16  2011 g++-4.6 -> gcc-4.6-base
 drwxr-xr-x 3 root root 4096 Aug  9  2011 gawk
 lrwxrwxrwx 1 root root    3 Aug 14  2011 gcc -> cpp
 lrwxrwxrwx 1 root root   12 Sep 16  2011 gcc-4.6 -> gcc-4.6-base
 drwxr-xr-x 7 root root 4096 Apr 16 01:44 gcc-4.6-base
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 gettext
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 gettext
 drwxr-xr-x 4 root root 4096 Apr 11 06:30 git
 drwxr-xr-x 3 root root 4096 Apr  9 04:33 gperf
 drwxr-xr-x 2 root root 4096 Jul 27  2011 grep
@@ -7103,7 +7095,7 @@ drwxr-xr-x 2 root root 4096 Jul 27  2011 libattr1
 drwxr-xr-x 2 root root 4096 Aug  9  2011 libblkid1
 drwxr-xr-x 2 root root 4096 Dec 13  2011 libbz2-1.0
 drwxr-xr-x 2 root root 4096 Oct  5  2011 libc6
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 libc6-dev
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 libc6-dev
 drwxr-xr-x 2 root root 4096 Oct  5  2011 libc-bin
 drwxr-xr-x 2 root root 4096 Mar 17  2011 libcomerr2
 drwxr-xr-x 2 root root 4096 Nov  5  2009 libcroco3
@@ -7116,20 +7108,20 @@ drwxr-xr-x 2 root root 4096 Apr 21  2011 libgmp10
 drwxr-xr-x 2 root root 4096 Aug 25  2011 libgnutls26
 lrwxrwxrwx 1 root root   12 Sep 16  2011 libgomp1 -> gcc-4.6-base
 drwxr-xr-x 2 root root 4096 May 21  2011 libgpg-error0
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 libgssapi-krb5-2
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 libgssapi-krb5-2
 drwxr-xr-x 2 root root 4096 Aug 11  2011 libidn11
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 libk5crypto3
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 libk5crypto3
 drwxr-xr-x 2 root root 4096 Jul 27  2011 libkeyutils1
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 libkrb5-3
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 libkrb5-3
 drwxr-xr-x 2 root root 4096 Dec  2  2011 libkrb5support0
 drwxr-xr-x 2 root root 4096 Nov 14  2011 libldap-2.4-2
 drwxr-xr-x 2 root root 4096 Nov 12  2010 liblzma2
 drwxr-xr-x 2 root root 4096 Aug  8  2011 libmagic1
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 libmount1
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 libmount1
 drwxr-xr-x 2 root root 4096 Apr 21  2011 libmpc2
 drwxr-xr-x 2 root root 4096 Jul 27  2011 libmpfr4
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 libncurses5
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 libncursesw5
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 libncurses5
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 libncursesw5
 drwxr-xr-x 2 root root 4096 Mar 21  2011 libpcre3
 drwxr-xr-x 2 root root 4096 May 14  2010 libpopt0
 drwxr-xr-x 2 root root 4096 Aug 15  2011 librtmp0
@@ -7151,13 +7143,13 @@ drwxr-xr-x 2 root root 4096 May 30  2011 make
 drwxr-xr-x 3 root root 4096 Jan 14  2010 mawk
 drwxr-xr-x 3 root root 4096 Aug  9  2011 mount
 drwxr-xr-x 2 root root 4096 Jan 31  2012 patch
-drwxr-xr-x 2 root root 4096 Sep  6  2011 perl
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 perl
 lrwxrwxrwx 1 root root    4 Sep  6  2011 perl-base -> perl
 drwxr-xr-x 2 root root 4096 Sep  6  2011 perl-modules
 drwxr-xr-x 2 root root 4096 Jul  3  2011 pkg-config
 drwxr-xr-x 3 root root 4096 Jun 24  2011 procps
-drwxr-xr-x 4 root root 4096 Aug 13 00:21 python
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 python2.7
+drwxr-xr-x 4 root root 4096 Aug 30 18:16 python
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 python2.7
 drwxr-xr-x 2 root root 4096 Oct  4  2011 python2.7-minimal
 drwxr-xr-x 2 root root 4096 Oct  8  2011 python-minimal
 drwxr-xr-x 2 root root 4096 Sep  1  2011 readline-common
@@ -7463,7 +7455,7 @@ lrwxrwxrwx 1 root root    23 Nov 25  2010 ABOUT-NLS -> ../../gettext/ABOUT-NLS
 builds/usr/share/doc/git:
 razem 52
 -rw-r--r--  1 root root  2056 Apr 11 06:30 changelog.Debian.gz
-drwxr-xr-x 23 root root  4096 Aug 13 00:21 contrib
+drwxr-xr-x 23 root root  4096 Aug 30 18:16 contrib
 -rw-r--r--  1 root root 16437 Apr 11 06:30 copyright
 -rw-r--r--  1 root root   826 Apr 11 06:30 NEWS.Debian.gz
 -rw-r--r--  1 root root  2545 Apr 11 06:30 README
@@ -8679,7 +8671,7 @@ razem 0
 
 builds/usr/share/libtool:
 razem 4
-drwxr-xr-x 2 root root 4096 Aug 13 00:21 config
+drwxr-xr-x 2 root root 4096 Aug 30 18:16 config
 
 builds/usr/share/libtool/config:
 razem 332
@@ -8728,7 +8720,7 @@ razem 108
 builds/usr/share/man:
 razem 32
 drwxr-xr-x 3 root root  4096 Jun 24  2011 de
-drwxr-xr-x 2 root root 12288 Apr  9 04:33 man1
+drwxr-xr-x 2 root root 12288 Feb 11  2012 man1
 drwxrwxr-x 2 root root  4096 Sep  1  2011 man3
 drwxr-xr-x 2 root root  4096 Jun 24  2011 man5
 drwxr-xr-x 2 root root  4096 Aug 14  2011 man7
@@ -11453,11 +11445,16 @@ razem 4
 
 builds/var:
 razem 4
-drwxr-xr-x 3 root root 4096 Apr 11 06:29 cache
+drwxr-xr-x 4 root root 4096 Aug 30 18:37 cache
 
 builds/var/cache:
-razem 4
+razem 8
 drwxr-xr-x 2 root root 4096 Apr 11 06:29 git
+drwx------ 2 root root 4096 Aug 30 23:21 ldconfig
 
 builds/var/cache/git:
 razem 0
+
+builds/var/cache/ldconfig:
+razem 4
+-rw------- 1 root root 1666 Aug 30 23:21 aux-cache

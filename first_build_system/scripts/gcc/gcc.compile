@@ -17,33 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-export PATH=/prog:$PATH
+PREFIX=/kanapi_packages/gcc-4.8.0
 
-PREFIX=/packages/gcc-4.7.0
-LIBC_PREFIX=/packages/eglibc-2.15.90
-MPC_PREFIX=/packages/mpc-1.0
-GMP_PREFIX=/packages/gmp-10.0.1
-MPFR_PREFIX=/packages/mpfr-4.1.0
+. ../settings
 
-export LD_LIBRARY_PATH=$MPFR_PREFIX/lib/:$GMP_PREFIX/lib:$MPC_PREFIX/lib
+#../../src/gcc/configure --disable-bootstrap --disable-libatomic --disable-libada  --enable-languages=c --with-mpc=${MPC_PREFIX} --with-mpfr=${MPFR_PREFIX} --with-gmp=${GMP_PREFIX} --prefix=${PREFIX} --disable-threads --disable-nls --disable-decimal-float --disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty --disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-multilib --disable-shared --disable-libssp
 
-export LIBRARY_PATH=$LIBC_PREFIX/lib
-export LDFLAGS=-Wl,-dynamic-linker=$LIBRARY_PATH/ld-linux.so.2
-export CPPFLAGS=-I$LIBC_PREFIX/include
-export CC="gcc-4.6 -mtune=native -I$LIBC_PREFIX/include" 
-../../src/gcc/configure --disable-libada --enable-languages=c --with-mpc=$MPC_PREFIX --with-mpfr=$MPFR_PREFIX --with-gmp=$GMP_PREFIX --prefix=$PREFIX --build=i386-ubuntu-linux --target=i686-kanapi-linux --disable-threads --disable-shared --disable-nls --disable-decimal-float --disable-multilib --disable-libmudflap --disable-libssp --disable-libgomp --disable-libquadmath --disable-target-libiberty --disable-target-zlib --without-ppl --without-cloog
+#make -j 2 MAKEINFO=true
+#make -j 2 install MAKEINFO=true
 
-#--with-boot-ldflags="-dynamic-linker=$LIBC_PREFIX/lib/ld-linux.so.2  --with-stage1-ldflags=-dynamic-linker=$LIBC_PREFIX/lib/ld-linux.so.2
-#../../src/gcc/configure --disable-libada --enable-languages=c,c++ --with-mpc=$MPC_PREFIX --with-mpfr=$MPFR_PREFIX --with-gmp=$GMP_PREFIX --prefix=$PREFIX
+#ln -s ${LIBC_PREFIX}/include/* ${PREFIX}/include
+#ln -s ${LIBC_PREFIX}/lib/* ${PREFIX}/lib
 
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+#ln -s /usr/include/linux $PREFIX/lib/gcc/i686-kanapi-linux/4.8.0/include/linux
+#ln -s /usr/include/asm $PREFIX/lib/gcc/i686-kanapi-linux/4.8.0/include/asm
+#ln -s /usr/include/asm-generic $PREFIX/lib/gcc/i686-kanapi-linux/4.8.0/include/asm-generic
 
-ln -sf $PREFIX/bin/* /prog
-mkdir $PREFIX/i686-kanapi-linux
-ln -s $LIBC_PREFIX/include $PREFIX/i686-kanapi-linux/include
-ln -s $LIBC_PREFIX/lib $PREFIX/i686-kanapi-linux/lib
+${PREFIX}/bin/gcc -dumpspecs | sed "s@/lib/ld-linux.so.2@${LIBC_PREFIX}/lib/ld-linux.so.2@" > ${PREFIX}/lib/gcc/i686-pc-linux-gnu/4.8.0/specs
 
-i686-kanapi-linux-gcc -dumpspecs | sed "s@/lib/ld-linux.so.2@$LIBRARY_PATH/ld-linux.so.2@" > /packages/gcc-4.7.0/lib/gcc/i686-kanapi-linux/4.7.0/specs
-
-ln -sf $PREFIX/sbin/* /prog

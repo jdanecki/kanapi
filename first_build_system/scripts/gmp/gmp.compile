@@ -17,19 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PREFIX=/packages/gmp-10.0.1
-LIBC_PREFIX=/packages/eglibc-2.15.90
+PREFIX=/kanapi_packages/gmp-10.0.1
+. ../settings
 
-export LDFLAGS=-Wl,-dynamic-linker=$LIBC_PREFIX/lib/ld-linux.so.2
-export CC="gcc-4.6 -mtune=native -B/prog" 
 cd ../../src/gmp; ./.bootstrap
 cd ../../out/gmp
-../../src/gmp/configure --prefix=$PREFIX 
+
+../../src/gmp/configure --prefix=$PREFIX
 
 make -j 2 MAKEINFO=true
 make -j 2 check
 make -j 2 install MAKEINFO=true
 
-ln -sf $PREFIX/bin/* /prog
-ln -sf $PREFIX/sbin/* /prog
+echo ${GMP_PREFIX}/lib >> ${LIBC_PREFIX}/etc/ld.so.conf
+${LIBC_PREFIX}/sbin/ldconfig
+
+#ln -sf $PREFIX/bin/* /prog
+#ln -sf $PREFIX/sbin/* /prog
 

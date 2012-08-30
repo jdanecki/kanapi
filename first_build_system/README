@@ -24,5 +24,3 @@ Compilation in chrooted build directory
 	* mpfr.compile
 	* mpc.compile
 	* gcc.compile
-	* busybox
-	* bash
