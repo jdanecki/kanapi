@@ -39,6 +39,7 @@ prepare_release_tgz() {
 	cp $1.compile $BUILD_OUT_DIR/$1
 }
 apply_patch() {
+	cp $2 $BUILD_OUT_DIR/$1
 	cd $BUILD_SRC_DIR/$1
-	patch -p1 < ../../../../../sources/PATCHES/$1/$2
+	patch -p1 < ../../out/$1/$2
 }
