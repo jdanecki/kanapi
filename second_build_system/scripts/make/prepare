@@ -20,7 +20,7 @@
 . ../functions
 
 # :pserver:anonymous@cvs.sv.gnu.org:/sources/make
-# 2012-01-17
+# 3.82
 
 # build dep: git wget
 

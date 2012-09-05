@@ -17,17 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PREFIX=/kanapi_packages/make-3.82
+PREFIX=/kanapi_packages/autoconf-2.69
 . ../settings
 
-
-#cp -ar ../../src/make build
+#cp -ar ../../src/autoconf build
 #cd build
 #autoreconf -i
 
-../../src/make-3.82/configure --prefix=$PREFIX
+../../src/autoconf-2.69/configure --prefix=$PREFIX
 
-#make -j 2 update
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 

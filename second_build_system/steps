@@ -1,11 +1,11 @@
 1. Prepare binaries for eglibc, binutils, gmp, mpfr, mpc, gcc in "first_build_system"
 2. Create "second_build_system"
 3. Copy /kanapi_packages from "first_build_system"
-4. Compile bash
-
-5. Compile make
-6. Compile autoconf
-7. Compile automake
-8. Compile bison
-9. Compile sed
+4. Compile bash 4.2.20
+5. Compile make 3.82
+6. Compile autoconf 2.69
+7. Compile automake 1.12
+8. Compile bison 2.6
+9. Compile sed 4.2
+10.Compile gettext 0.18.1.1
 

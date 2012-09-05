@@ -17,18 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PREFIX=/kanapi_packages/make-3.82
-. ../settings
+. ../functions
 
-
-#cp -ar ../../src/make build
-#cd build
-#autoreconf -i
-
-../../src/make-3.82/configure --prefix=$PREFIX
-
-#make -j 2 update
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
-
+# git://git.sv.gnu.org/bash.git
+# 42a5896
+prepare bash
 
