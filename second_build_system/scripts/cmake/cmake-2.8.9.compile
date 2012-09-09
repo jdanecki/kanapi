@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PREFIX=/packages/cmake-2.8.9
+PREFIX=/kanapi_packages/cmake-2.8.9
 . ../settings
 
 #cp -ar ../../src/cmake build
