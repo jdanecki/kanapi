@@ -8,20 +8,20 @@ binutils	2.22.51.20120122					binutils_2.21.53.20110810-0ubuntu5.1_i386.de
 bison					2.6				bison_2.4.1.dfsg-3_i386.deb
 cmake					2.8.9				cmake_2.8.5-1ubuntu1_i386.deb
 cmake-data				2.8.9				cmake-data_2.8.5-1ubuntu1_all.deb
-coreutils								coreutils_8.5-1ubuntu6_i386.deb
+coreutils				8.19				coreutils_8.5-1ubuntu6_i386.deb
 cpp		gcc-4.7.1		gcc-4.7.1-a			cpp_4.6.1-2ubuntu5_i386.deb
 cpp-4.6		gcc-4.7.1		gcc-4.7.1-a			cpp-4.6_4.6.1-9ubuntu3_i386.deb
-file									file_5.04-5ubuntu3_i386.deb
-flex									flex_2.5.35-10ubuntu1_i386.deb
+file					5.11				file_5.04-5ubuntu3_i386.deb
+flex					2.5.37				flex_2.5.35-10ubuntu1_i386.deb
 g++					gcc-4.7.1-a			g++_4.6.1-2ubuntu5_i386.deb
 g++-4.6					gcc-4.7.1-a			g++-4.6_4.6.1-9ubuntu3_i386.deb
 gcc		gcc-4.7.1		gcc-4.7.1-a			gcc_4.6.1-2ubuntu5_i386.deb
 gcc-4.6		gcc-4.7.1		gcc-4.7.1-a			gcc-4.6_4.6.1-9ubuntu3_i386.deb
 gcc-4.6-base	gcc-4.7.1		gcc-4.7.1-a			gcc-4.6-base_4.6.1-9ubuntu3_i386.deb
 gettext					0.18.1.1			gettext_0.18.1.1-3ubuntu1_i386.deb
-libacl1									libacl1_2.2.51-3_i386.deb
+libacl1					2.2.51				libacl1_2.2.51-3_i386.deb
 libarchive1								libarchive1_2.8.4-1ubuntu0.11.10.1_i386.deb
-libattr1								libattr1_2.4.46-3_i386.deb
+libattr1				2.4.46				libattr1_2.4.46-3_i386.deb
 libbz2-1.0								libbz2-1.0_1.0.5-6ubuntu1.11.10.1_i386.deb
 libc6		eglibc-2.16.90						libc6_2.13-20ubuntu5_i386.deb
 libc-bin	eglibc-2.16.90						libc-bin_2.13-20ubuntu5_i386.deb

@@ -12,4 +12,8 @@
 * Compile gettext 0.18.1.1
 * Compile gawk 
 * Compile cmake 2.8.9
-
+* Compile coreutils 8.19
+* Compile file 5.11
+* Compile flex 2.5.37
+* Compile attr 2.4.46
+* Compile acl 2.2.51

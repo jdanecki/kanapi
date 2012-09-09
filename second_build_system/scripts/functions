@@ -49,6 +49,15 @@ prepare_release_tbz() {
 	cp $1.compile $BUILD_OUT_DIR/$1
 }
 
+prepare_release_xz() {
+	echo "prepare: $1"
+	rm -rf $BUILD_SRC_DIR/$1
+	rm -rf $BUILD_OUT_DIR/$1
+	cp -ar ../../../sources/RELEASES/$1.tar.xz $BUILD_SRC_DIR
+	tar -xJf $BUILD_SRC_DIR/$1.tar.xz -C $BUILD_SRC_DIR
+	mkdir $BUILD_OUT_DIR/$1
+	cp $1.compile $BUILD_OUT_DIR/$1
+}
 apply_patch() {
 	cp $2 $BUILD_OUT_DIR/$1
 	cd $BUILD_SRC_DIR/$1
