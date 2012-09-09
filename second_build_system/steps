@@ -17,3 +17,6 @@
 * Compile flex 2.5.37
 * Compile attr 2.4.46
 * Compile acl 2.2.51
+* Compile libarchive 3.0.4
+* Compile e2fsprogs 1.42.5
+* Compile m4 1.4.16
