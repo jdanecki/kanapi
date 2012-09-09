@@ -38,6 +38,17 @@ prepare_release_tgz() {
 	mkdir $BUILD_OUT_DIR/$1
 	cp $1.compile $BUILD_OUT_DIR/$1
 }
+
+prepare_release_tbz() {
+	echo "prepare: $1"
+	rm -rf $BUILD_SRC_DIR/$1
+	rm -rf $BUILD_OUT_DIR/$1
+	cp -ar ../../../sources/RELEASES/$1.tar.bz2 $BUILD_SRC_DIR
+	tar -xjf $BUILD_SRC_DIR/$1.tar.bz2 -C $BUILD_SRC_DIR
+	mkdir $BUILD_OUT_DIR/$1
+	cp $1.compile $BUILD_OUT_DIR/$1
+}
+
 apply_patch() {
 	cp $2 $BUILD_OUT_DIR/$1
 	cd $BUILD_SRC_DIR/$1
