@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PREFIX=/kanapi_packages/gcc-4.7.0
+
+. ../settings
+
+export CC="${CC} -B $BINUTILS_PREFIX"
+
+ln -sf ${LIBC_PREFIX}/include/*.h  /usr/include
+rm -f /usr/include/bits
+ln -sf ${LIBC_PREFIX}/include/bits /usr/include
+
+rm -f /usr/include/sys
+ln -sf ${LIBC_PREFIX}/include/sys /usr/include
+
+rm -f /usr/include/gnu
+ln -sf ${LIBC_PREFIX}/include/gnu /usr/include
+
+#../../src/gcc-4.7.0/configure --disable-bootstrap --without-headers --disable-libatomic --disable-libada  --enable-languages="c c++" --with-mpc=${MPC_PREFIX} --with-mpfr=${MPFR_PREFIX} --with-gmp=${GMP_PREFIX} --prefix=${PREFIX} --disable-threads --disable-nls --disable-decimal-float --disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty --disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-multilib --disable-shared --disable-libssp
+
+make -j 2 MAKEINFO=true
+#make -j 2 install MAKEINFO=true
+
+#ln -s ${LIBC_PREFIX}/include/* ${PREFIX}/include
+#ln -s ${LIBC_PREFIX}/lib/* ${PREFIX}/lib
+#${PREFIX}/bin/gcc -dumpspecs | sed "s@/lib/ld-linux.so.2@${LIBC_PREFIX}/lib/ld-linux.so.2@" > ${PREFIX}/lib/gcc/i686-pc-linux-gnu/4.7.1/specs
+
+#ln -s /usr/include/linux $PREFIX/lib/gcc/i686-kanapi-linux/4.8.0/include/linux
+#ln -s /usr/include/asm $PREFIX/lib/gcc/i686-kanapi-linux/4.8.0/include/asm
+#ln -s /usr/include/asm-generic $PREFIX/lib/gcc/i686-kanapi-linux/4.8.0/include/asm-generic
