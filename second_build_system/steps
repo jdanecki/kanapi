@@ -1,11 +1,15 @@
-1. Prepare binaries for eglibc, binutils, gmp, mpfr, mpc, gcc in "first_build_system"
-2. Create "second_build_system"
-3. Copy /kanapi_packages from "first_build_system"
-4. Compile bash 4.2.20
-5. Compile make 3.82
-6. Compile autoconf 2.69
-7. Compile automake 1.12
-8. Compile bison 2.6
-9. Compile sed 4.2
-10.Compile gettext 0.18.1.1
+* Prepare binaries for eglibc, binutils, gmp, mpfr, mpc, gcc in "first_build_system"
+* Choosen gcc-4.7.1, newer one had problem with gcc compilation
+
+* Create "second_build_system"
+* Copy /kanapi_packages from "first_build_system"
+* Compile bash 4.2.20
+* Compile make 3.82
+* Compile autoconf 2.69
+* Compile automake 1.12
+* Compile bison 2.6
+* Compile sed 4.2
+* Compile gettext 0.18.1.1
+* Compile gawk 
+* Compile cmake 2.8.9
 
