@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+#  Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+rm -rf kanapi_system
+
+for d in tmp proc bin etc kanapi_packages kanapi_build/src kanapi_build/out
+do
+	mkdir -p kanapi_system/$d
+done
+
+echo "root:x:0:0:root:/root:/bin/bash" > kanapi_system/etc/passwd
+echo "root:x:0:" > kanapi_system/etc/group
+echo "tty:x:5:" >> kanapi_system/etc/group
+cp -ar /dev kanapi_system/dev
+cp /etc/resolv.conf kanapi_system/etc
+
+cp -ar ../second_build_system/builds/kanapi_packages kanapi_system
+
+#echo "#!/bin/bash
+
+#export LD_LIBRARY_PATH=/packages/eglibc-2.15.90/lib
+#export PATH=/prog
+
+#exec /bin/bash
+#" > kanapi_system/init
+
+cd kanapi_system/bin
+ln -sf ../kanapi_packages/*/bin/* .
+
+
