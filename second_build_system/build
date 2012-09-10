@@ -44,8 +44,8 @@ libkrb5support0								libkrb5support0_1.9.1+dfsg-1ubuntu2.2_i386.deb
 libldap-2.4-2								libldap-2.4-2_2.4.25-1.1ubuntu4.1_i386.deb
 liblzma2								liblzma2_5.0.0-2_i386.deb
 libmagic1								libmagic1_5.04-5ubuntu3_i386.deb
-libncurses5								libncurses5_5.9-1ubuntu5_i386.deb
-libncursesw5								libncursesw5_5.9-1ubuntu5_i386.deb
+libncurses5				5.9				libncurses5_5.9-1ubuntu5_i386.deb
+libncursesw5				5.9				libncursesw5_5.9-1ubuntu5_i386.deb
 libpcre3								libpcre3_8.12-3ubuntu2_i386.deb
 libpopt0								libpopt0_1.16-1_i386.deb
 librtmp0								librtmp0_2.3-2ubuntu1_i386.deb
@@ -59,34 +59,34 @@ libunistring0								libunistring0_0.9.3-4_i386.deb
 libxml2									libxml2_2.7.8.dfsg-4ubuntu0.1_i386.deb
 m4						1.4.16			m4_1.4.16-1_i386.deb
 make						3.82			make_3.81-8.1ubuntu1_i386.deb
-perl									perl_5.12.4-4_i386.deb
-perl-base								perl-base_5.12.4-4_i386.deb
-perl-modules								perl-modules_5.12.4-4_all.deb
+perl						5.16.1			perl_5.12.4-4_i386.deb
+perl-base					5.16.1			perl-base_5.12.4-4_i386.deb
+perl-modules					5.16.1			perl-modules_5.12.4-4_all.deb
 pkg-config								pkg-config_0.26-1ubuntu1_i386.deb
-procps									procps_3.2.8-10ubuntu5_i386.deb
+procps						3.2.8			procps_3.2.8-10ubuntu5_i386.deb
 python									python2.7_2.7.2-5ubuntu1_i386.deb
 python2.7								python_2.7.2-7ubuntu2_all.deb
 python2.7-minimal							python2.7-minimal_2.7.2-5ubuntu1_i386.deb
 python-minimal								python-minimal_2.7.2-7ubuntu2_all.deb
 readline-common								readline-common_6.2-2ubuntu1_all.deb
-zlib1g									zlib1g_1.2.3.4.dfsg-3ubuntu3_i386.deb
+zlib1g						1.2.7			zlib1g_1.2.3.4.dfsg-3ubuntu3_i386.deb
 sed						4.2			sed_4.2.1-9_i386.deb
 libgmp10	gmp-10.0.1						libgmp10_5.0.1+dfsg-7ubuntu2_i386.deb
 libmpfr4	mpfr-4.1.0						libmpfr4_3.0.1-5_i386.deb
 libmpc2		mpc-1.0							libmpc2_0.9-3_i386.deb
 strace									strace_4.5.20-2.3ubuntu1_i386.deb
 libc6-dev	eglibc-2.16.90						libc6-dev_2.13-20ubuntu5_i386.deb
-grep									grep_2.9-1_i386.deb
+grep						2.9			grep_2.9-1_i386.deb
 linux-libc-dev								linux-libc-dev_3.0.0-15.25_i386.deb
 gawk						4.0.1			gawk_3.1.8+dfsg-0.1build1_i386.deb
 libsigsegv2								libsigsegv2_2.9-4ubuntu2_i386.deb
 diffutils								diffutils_3.0-1_i386.deb
-libtool									libtool_2.4-2ubuntu1_i386.deb
+libtool						2.4			libtool_2.4-2ubuntu1_i386.deb
 autotools-dev								autotools-dev_20110511.1_all.deb
-mount									mount_2.19.1-2ubuntu3_i386.deb
+mount						util-linux-2.22		mount_2.19.1-2ubuntu3_i386.deb
 libblkid1								libblkid1_2.19.1-2ubuntu3_i386.deb
-tar									tar_1.25-3_i386.deb
-find									findutils_4.4.2-1ubuntu3_i386.deb
-git									git_1.7.9.5-1_i386.deb
-patch									patch_2.6.1-3_i386.deb
+tar						1.26			tar_1.25-3_i386.deb
+find						4.4.2			findutils_4.4.2-1ubuntu3_i386.deb
+git						1.7.12			git_1.7.9.5-1_i386.deb
+patch						2.6			patch_2.6.1-3_i386.deb
 gperf									gperf_3.0.3-1ubuntu1_i386.deb

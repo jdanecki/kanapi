@@ -20,3 +20,19 @@
 * Compile libarchive 3.0.4
 * Compile e2fsprogs 1.42.5
 * Compile m4 1.4.16
+* Compile ncurses 5.9
+* Compile less 451
+* Compile perl 5.16.1
+* Compile procps 3.2.8
+* Compile zlib 1.2.7
+* Compile grep 2.9
+* Compile libtool 2.4
+* Compile tar 1.26
+* Compile findutils 4.4.2
+* Compile git 1.7.12
+* Compile patch 2.6
+* Compile util-linux 2.22
+
+* strace
+
+
