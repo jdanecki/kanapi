@@ -5,6 +5,8 @@ export LC_COLLATE="C"
 export LC_CTYPE="C"
 export LANG="C"
 
+PREFIX=/kanapi_packages/${PACKAGE_NAME}-${VER}
+
 export LIBC_PREFIX="/kanapi_packages/eglibc-20133"
 #export LDFLAGS="-Wl,-dynamic-linker=$LIBC_PREFIX/lib/ld-linux.so.2"
 export BINUTILS_PREFIX="/kanapi_packages/binutils-2.22.51.20120122"
@@ -20,3 +22,9 @@ export PATH=$GCC_PREFIX/bin:$BINUTILS_PREFIX/bin:$PATH
 
 export CC="gcc -mtune=native"
 export CPP="${GCC_PREFIX}/bin/cpp"
+
+local_copy() {
+	cp -ar ../../src/${PACKAGE_NAME}-${VER} build
+	cd build
+}
+

@@ -1,0 +1,12 @@
+diff -urN strace-4.7-orig/util.c strace-4.7/util.c
+--- strace-4.7-orig/util.c	2012-04-28 14:58:35.000000000 +0200
++++ strace-4.7/util.c	2012-09-11 23:10:59.872098894 +0200
+@@ -735,7 +735,7 @@
+ 
+ #if defined(__NR_process_vm_readv)
+ static bool process_vm_readv_not_supported = 0;
+-static ssize_t process_vm_readv(pid_t pid,
++ssize_t process_vm_readv(pid_t pid,
+ 		 const struct iovec *lvec,
+ 		 unsigned long liovcnt,
+ 		 const struct iovec *rvec,

@@ -2,13 +2,35 @@
 * Prepare SBS
 * Prepare KBS
 
+Compile:
+* diff
+* gzip
+* bzip2
+* linux
+* net-tools
+* wget
+* python
+* libffi
+* glib
+* pkg-config
+* pixman
+* kbproto
+* strace
+* xproto
+* update .pc files for pkg-config - script update_pc_files
+* xextproto
+* xtrans
+* libxml2
+* libxslt
+
 TODO:
 
-- ifconfig
+- xcb
+- inputproto
+- libx11
+- xorg-server
 - Xorg
 - iceauth
-- python
 - twm
 - xinit
 - xterm
-- wget

@@ -19,7 +19,7 @@
 
 rm -rf kanapi_system
 
-for d in tmp proc bin etc kanapi_packages kanapi_build/src kanapi_build/out
+for d in tmp proc bin etc kanapi_packages kanapi_build/src kanapi_build/out usr/bin usr/include/linux usr/include/asm usr/include/asm-generic
 do
 	mkdir -p kanapi_system/$d
 done
@@ -35,5 +35,9 @@ cp ../second_build_system/builds/kanapi_build/out/settings kanapi_system/kanapi_
 
 cd kanapi_system/bin
 ln -sf ../kanapi_packages/*/bin/* .
+ln -sf ../kanapi_packages/*/sbin/* .
 ln -s bash sh
+cd ../usr/bin
+ln -s /bin/env .
+cp scripts/update_pc_files kanapi_system/bin
 

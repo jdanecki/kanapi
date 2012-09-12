@@ -1,3 +1,25 @@
+KBS packages
+
+diffutils	3.2
+gzip		1.5
+bzip2		1.0.6
+linux		3.5.3
+net-tools	1.60
+wget		1.14
+python		2.7.3
+libffi		3.0.11
+glib		2.32.4
+pkconfig	0.27
+pixman		0.26.2
+kbproto		1.0.6
+strace 		4.7
+xproto 		7.0.23
+xextproto	7.2.1
+xtrans		1.2.7
+libxml2		2.9.0
+libxslt		1.1.27
+
+#####################################################################################################
 component	FBS			SBS				package
 	
 autoconf				2.69				autoconf_2.68-1ubuntu1_all.deb

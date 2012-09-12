@@ -1,0 +1,20 @@
+diff -urN diffutils-3.2-orig/lib/stdio.in.h diffutils-3.2/lib/stdio.in.h
+--- diffutils-3.2-orig/lib/stdio.in.h	2011-08-28 13:57:28.000000000 +0200
++++ diffutils-3.2/lib/stdio.in.h	2012-09-10 23:51:36.104709076 +0200
+@@ -681,6 +681,7 @@
+ # endif
+ #endif
+ 
++#if defined GETS
+ #if @GNULIB_GETS@
+ # if @REPLACE_STDIO_READ_FUNCS@ && @GNULIB_STDIO_H_NONBLOCKING@
+ #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+@@ -699,7 +700,7 @@
+    always declared, since it is required by C89.  */
+ _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
+ #endif
+-
++#endif
+ 
+ #if @GNULIB_OBSTACK_PRINTF@ || @GNULIB_OBSTACK_PRINTF_POSIX@
+ struct obstack;
