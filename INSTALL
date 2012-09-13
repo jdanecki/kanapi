@@ -1,0 +1,9 @@
+At this moment KaNaPi contains build system to prepare basic system.
+It is built from sources by using scripts.
+
+There are 4 steps to create KaNaPi filesystem:
+- download sources of packages from sources/RELEASES from SF page
+- create FBS - see info in first_build_system/README
+- create SBS - see info in second_build_system/steps
+- create KBS - see info in kanapi_base_system/steps
+
