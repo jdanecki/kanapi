@@ -18,11 +18,11 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 echo "Are you sure you want to remove kanapi_system?"
-read
+read ans
 
 rm -rf kanapi_system
 
-for d in tmp proc bin etc kanapi_packages kanapi_build/src kanapi_build/out usr/bin usr/include/linux usr/include/asm usr/include/asm-generic
+for d in tmp proc bin etc kanapi_packages kanapi_build/src kanapi_build/out usr/include/linux usr/include/asm usr/include/asm-generic
 do
 	mkdir -p kanapi_system/$d
 done
@@ -41,7 +41,8 @@ ln -sf ../kanapi_packages/*/bin/* .
 ln -sf ../kanapi_packages/*/sbin/* .
 ln -s bash sh
 cd ../usr
-ln -s /bin .
+ln -s ../bin bin
+cd ..
 
-cp scripts/update_pc_files kanapi_system/bin
+cp ../scripts/update_pc_files bin
 
