@@ -22,15 +22,49 @@ Compile:
 * xtrans
 * libxml2
 * libxslt
+* xcb-proto
+* libpthread-stubs
+* libXau
+* libxcb
+* inputproto
+* util-macros
+* libx11
+* glproto
+* makedepend
+* libpciaccess
+* libdrm
+* dri2proto
+* libXext
+* damageproto
+* fixesproto
+* libXfixes
+* libXdamage
+* expat
+* groff
+* llvm
+* mesalib
+* xf86driproto
+* openssl
+* xcmiscproto
+* bigreqsproto
+* randrproto
+* renderproto
+* fontsproto
+* videoproto
+* compositeproto
+* recordproto
+* scrnsaverproto
+* resourceproto
+* xineramaproto
+* libxkbfile
+* freetype
+* libfontenc
+* libXfont
+* xorg-server
+* recompile  perl with thread support
 
-TODO:
+- xinit
 
-- xcb
-- inputproto
-- libx11
-- xorg-server
-- Xorg
 - iceauth
 - twm
-- xinit
 - xterm

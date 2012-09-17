@@ -21,9 +21,6 @@ PACKAGE_NAME=libxcb
 VER=1.8.1
 . ../settings
 
-#local_copy
-
-#./configure --prefix=$PREFIX
 ../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true

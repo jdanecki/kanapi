@@ -8,7 +8,6 @@ export LANG="C"
 PREFIX=/kanapi_packages/${PACKAGE_NAME}-${VER}
 
 export LIBC_PREFIX="/kanapi_packages/eglibc-20133"
-#export LDFLAGS="-Wl,-dynamic-linker=$LIBC_PREFIX/lib/ld-linux.so.2"
 export BINUTILS_PREFIX="/kanapi_packages/binutils-2.22.51.20120122"
 export GMP_PREFIX="/kanapi_packages/gmp-10.0.1"
 export MPFR_PREFIX="/kanapi_packages/mpfr-4.1.0"
@@ -17,6 +16,12 @@ export GCC_PREFIX="/kanapi_packages/gcc-4.7.1-a"
 
 export NCURSES_HDR="-I/kanapi_packages/ncurses-5.9/include"
 export NCURSES_LIB="-L/kanapi_packages/ncurses-5.9/lib"
+export ZLIB_LIB="-L/kanapi_packages/zlib-1.2.7/lib"
+export ZLIB_HDR="-I/kanapi_packages/zlib-1.2.7/include"
+export GLIB_CFLAGS="-I/kanapi_packages/glib-2.32.4/include/glib-2.0 -I/kanapi_packages/glib-2.32.4/lib/glib-2.0/include"
+export GLIB_LIBS="-L/kanapi_packages/glib-2.32.4/lib -lglib-2.0"
+export PIXMAN_CFLAGS="-I/kanapi_packages/pixman-0.26.2/include/pixman-1"
+export PIXMAN_LIBS="-L/kanapi_packages/pixman-0.26.2/lib -lpixman-1"
 
 export PATH=$GCC_PREFIX/bin:$BINUTILS_PREFIX/bin:$PATH
 
@@ -24,6 +29,7 @@ export CC="gcc -mtune=native"
 export CPP="${GCC_PREFIX}/bin/cpp"
 
 local_copy() {
+	rm -rf build
 	cp -ar ../../src/${PACKAGE_NAME}-${VER} build
 	cd build
 }

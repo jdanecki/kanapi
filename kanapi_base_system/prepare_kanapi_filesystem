@@ -37,7 +37,8 @@ cd kanapi_system/bin
 ln -sf ../kanapi_packages/*/bin/* .
 ln -sf ../kanapi_packages/*/sbin/* .
 ln -s bash sh
-cd ../usr/bin
-ln -s /bin/env .
+cd ../usr
+ln -s /bin .
+
 cp scripts/update_pc_files kanapi_system/bin
 
