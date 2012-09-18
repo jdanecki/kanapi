@@ -34,7 +34,7 @@ cp -ar /dev kanapi_system/dev
 cp /etc/resolv.conf kanapi_system/etc
 
 cp -ar ../second_build_system/builds/kanapi_packages kanapi_system
-cp ../second_build_system/builds/kanapi_build/out/settings kanapi_system/kanapi_build/out
+cp scripts/settings kanapi_system/kanapi_build/out
 
 cd kanapi_system/bin
 ln -sf ../kanapi_packages/*/bin/* .

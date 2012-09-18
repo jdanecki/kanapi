@@ -24,7 +24,7 @@
 
 PACKAGE_NAME=diffutils
 VER=3.2
-PATCH_NAME=get_fix.patch
+PATCH_NAME=gets_fix.patch
 
 #prepare_release_tgz ${PACKAGE_NAME}-${VER}
 #prepare_release_tbz ${PACKAGE_NAME}-${VER}
