@@ -62,9 +62,15 @@ Compile:
 * libXfont
 * xorg-server
 * recompile  perl with thread support
+* xinit
+* libICE
+* libSM
+* libXt
+* libXmu
+* libXpm
+* libXaw
+* xterm
 
-- xinit
-
-- iceauth
 - twm
-- xterm
+ice
+- iceauth

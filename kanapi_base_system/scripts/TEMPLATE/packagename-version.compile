@@ -25,7 +25,7 @@ VER=
 
 #./configure --prefix=$PREFIX
 ../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-make -j 2 MAKEINFO=true
+#make -j 2 MAKEINFO=true
 #make -j 2 install MAKEINFO=true
 
 #ln -s ${PREFIX}/bin/* /bin

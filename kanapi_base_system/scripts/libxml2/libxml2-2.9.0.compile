@@ -22,7 +22,7 @@ VER=2.9.0
 . ../settings
 
 local_copy
-cd build
+#cd build
 
 ./configure --prefix=$PREFIX --with-python
 make -j 2 MAKEINFO=true

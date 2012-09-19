@@ -1,17 +1,30 @@
-DIRS="diffutils gzip bzip2 linux net-tools wget python libffi glib pkg-config pixman kbproto strace xproto \
+DIRS0="diffutils gzip bzip2 linux net-tools wget Python libffi glib pkg-config pixman kbproto strace xproto \
 xextproto xtrans libxml2 libxslt xcb-proto libpthread-stubs libXau libxcb inputproto util-macros libX11 \
 glproto makedepend libpciaccess libdrm dri2proto libXext damageproto fixesproto libXfixes libXdamage \
 expat groff llvm MesaLib xf86driproto openssl xcmiscproto bigreqsproto randrproto renderproto fontsproto \
 videoproto compositeproto recordproto scrnsaverproto resourceproto xineramaproto libxkbfile freetype libfontenc \
-libXfont xorg-server perl"
+libXfont xorg-server perl xinit libICE libSM libXt libXmu libXpm libXaw xterm"
 
-prepare: check
+DIRS1="diffutils"
+
+DIRS=$(DIRS1)
+
+prepare: check1 copy
+
+copy:
+	@cp Makefile kanapi_system/kanapi_build/out
 	@for d in "$(DIRS)" ; do \
 		cd scripts/$${d} ; ./prepare  ; cd ../.. ; \
 	done
 
-check:
+check1:
 	@for d in "$(DIRS)" ; do \
 		if ! test -f "scripts/$${d}/prepare"  ; then echo "$${d} missing" ; fi \
 	done
+
+compile: 
+	@for d in "$(DIRS)" ; do \
+		cd $${d}-* ; ./$${d}-*.compile ; cd .. ; \
+	done
+
 

@@ -24,7 +24,7 @@ VER=1.0.6
 ../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
-ln -s ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc /kanapi_packages/pkg-config-0.27/share/pkgconfig/${PACKAGE_NAME}.pc
+#ln -s ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc /kanapi_packages/pkg-config-0.27/share/pkgconfig/${PACKAGE_NAME}.pc
 
 
 

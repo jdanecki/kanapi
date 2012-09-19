@@ -17,20 +17,12 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=perl
-VER=5.16.1
+PACKAGE_NAME=libICE
+VER=1.0.8
 . ../settings
 
-export ZLIB_LIB=
-
-local_copy
-#cd build
-
-./Configure -Dprefix=${PREFIX} -Dcf_email="jacek.m.danecki@gmail.com" -Dlocincpth="${LIBC_PREFIX}/include /kanapi_packages/zlib-1.2.7/include" \
-	-Dloclibpth="${LIBC_PREFIX}/lib /kanapi_packages/zlib-1.2.7/lib" -Dlibswanted="pthread rt m dl nsl crypt util c z" -Dusethreads -Dcc=gcc
-
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
-ln -s ${PREFIX}/bin/* /bin
 

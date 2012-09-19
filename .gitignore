@@ -6,3 +6,4 @@ cross_build_system/packages
 second_build_system/builds
 second_build_system/packages
 kanapi_base_system/kanapi_system
+test_system/initrd_fs

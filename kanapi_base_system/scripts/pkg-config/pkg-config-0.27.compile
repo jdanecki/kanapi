@@ -26,4 +26,4 @@ make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 ln -s ${PREFIX}/bin/* /bin
 
-
+mkdir ${PREFIX}/share/pkgconfig
