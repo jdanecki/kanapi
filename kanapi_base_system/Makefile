@@ -3,7 +3,9 @@ xextproto xtrans libxml2 libxslt xcb-proto libpthread-stubs libXau libxcb inputp
 glproto makedepend libpciaccess libdrm dri2proto libXext damageproto fixesproto libXfixes libXdamage \
 expat groff llvm MesaLib xf86driproto openssl xcmiscproto bigreqsproto randrproto renderproto fontsproto \
 videoproto compositeproto recordproto scrnsaverproto resourceproto xineramaproto libxkbfile freetype libfontenc \
-libXfont xorg-server perl xinit libICE libSM libXt libXmu libXpm libXaw xterm"
+libXfont xorg-server perl xinit libICE libSM libXt libXmu libXpm libXaw xterm xf86-input-keyboard xf86-input-mouse \
+xf86-video-vesa xf86-video-fbdev XML-Parser intltool xkbcomp xkeyboard-config mkfontdir bdftopcf mkfontscale \
+font-cursor-misc"
 
 DIRS1="diffutils"
 

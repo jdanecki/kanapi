@@ -70,7 +70,22 @@ Compile:
 * libXpm
 * libXaw
 * xterm
+* xf86-input-keyboard
+* xf86-input-mouse
+* xf86-video-vesa
+* xf86-video-fbdev
+* XML-Parser
+* intltool
+* xkbcomp
+* xkeyboard-config
+* mkfontdir
+* bdftopcf
+* mkfontscale
+* font-cursor-misc
+* xorg-server recompile with xkb packages and cursor font
 
-- twm
+setxkbmap
+xkbutils
+twm
 ice
-- iceauth
+iceauth

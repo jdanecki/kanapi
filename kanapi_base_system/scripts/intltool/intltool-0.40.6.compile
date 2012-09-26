@@ -17,14 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=libX11
-VER=1.5.0
+PACKAGE_NAME=intltool
+VER=0.40.6
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-xthreads
+export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
+
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
-echo ${PREFIX}/lib >> ${LIBC_PREFIX}/etc/ld.so.conf
-ldconfig
+ln -s ${PREFIX}/bin/* /bin
 

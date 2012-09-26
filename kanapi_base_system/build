@@ -66,6 +66,18 @@ libXmu		1.1.1
 libXpm		3.5.10
 libXaw		1.0.11
 xterm		281
+xf86-input-keyboard 	1.6.1
+xf86-input-mouse	1.7.2
+xf86-video-vesa		2.3.1
+xf86-video-fbdev	0.4.2
+XML-Parser		2.34
+intltool		0.40.6
+xkbcomp			1.2.4
+xkeyboard-config	2.6
+mkfontdir		1.0.7
+bdftocpf		1.0.3
+mkfontscale		1.1.0
+font-cursor-misc	1.0.3
 
 #####################################################################################################
 component	FBS			SBS				package

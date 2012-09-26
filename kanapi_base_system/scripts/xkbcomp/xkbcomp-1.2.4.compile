@@ -17,14 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=libX11
-VER=1.5.0
+PACKAGE_NAME=xkbcomp
+VER=1.2.4
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-xthreads
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+export LDFLAGS="-ldl"
 
-echo ${PREFIX}/lib >> ${LIBC_PREFIX}/etc/ld.so.conf
-ldconfig
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --with-xkb-config-root=`pkg-config --variable=xkb_base xkeyboard-config`
+#make -j 2 MAKEINFO=true
+#make -j 2 install MAKEINFO=true
+
+#ln -s ${PREFIX}/bin/* /bin
 
