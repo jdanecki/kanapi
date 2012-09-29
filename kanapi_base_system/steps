@@ -83,6 +83,11 @@ Compile:
 * mkfontscale
 * font-cursor-misc
 * xorg-server recompile with xkb packages and cursor font
+* font-util
+* xorg-cf-files
+* imake
+* rplay
+* vtwm
 
 setxkbmap
 xkbutils

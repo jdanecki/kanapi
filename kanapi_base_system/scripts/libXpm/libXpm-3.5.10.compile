@@ -27,3 +27,6 @@ make -j 2 install MAKEINFO=true
 
 ln -s ${PREFIX}/bin/* /bin
 
+echo "${PREFIX}/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
+ldconfig
+

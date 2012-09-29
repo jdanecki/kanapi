@@ -24,6 +24,9 @@ VER=1.2.1
 export CFLAGS="`pkg-config --cflags uuid` -I/kanapi_packages/util-linux-2.22/include"
 
 ../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-#make -j 2 MAKEINFO=true
+make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
+
+echo "${PREFIX}/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
+ldconfig
 

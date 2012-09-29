@@ -5,7 +5,7 @@ expat groff llvm MesaLib xf86driproto openssl xcmiscproto bigreqsproto randrprot
 videoproto compositeproto recordproto scrnsaverproto resourceproto xineramaproto libxkbfile freetype libfontenc \
 libXfont xorg-server perl xinit libICE libSM libXt libXmu libXpm libXaw xterm xf86-input-keyboard xf86-input-mouse \
 xf86-video-vesa xf86-video-fbdev XML-Parser intltool xkbcomp xkeyboard-config mkfontdir bdftopcf mkfontscale \
-font-cursor-misc"
+font-cursor-misc font-util xorg-cf-files imake rplay vtwm"
 
 DIRS1="diffutils"
 

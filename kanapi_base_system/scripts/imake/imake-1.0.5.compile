@@ -17,14 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=libXt
-VER=1.1.3
+PACKAGE_NAME=imake
+VER=1.0.5
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+local_copy
+#cd build
+
+autoreconf -v --install --force \
+	-I /kanapi_packages/util-macros-1.17/share/aclocal \
+	-I /kanapi_packages/pkg-config-0.27/share/aclocal
+
+./configure --enable-maintainer-mode --prefix=$PREFIX --with-config-dir=/kanapi_packages/xorg-cf-files-1.0.4/lib/X11/config
+
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
-echo "${PREFIX}/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
-ldconfig
+ln -s ${PREFIX}/bin/* /bin
 

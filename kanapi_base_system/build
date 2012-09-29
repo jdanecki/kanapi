@@ -78,6 +78,11 @@ mkfontdir		1.0.7
 bdftocpf		1.0.3
 mkfontscale		1.1.0
 font-cursor-misc	1.0.3
+font-util		1.3.0
+xorg-cf-files		1.0.4
+imake			1.0.5
+rplay			3.3.2
+vtwm			5.4.7
 
 #####################################################################################################
 component	FBS			SBS				package

@@ -17,14 +17,16 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=libXt
-VER=1.1.3
+PACKAGE_NAME=vtwm
+VER=5.4.7
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+#local_copy
 
-echo "${PREFIX}/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
-ldconfig
+#./configure --prefix=$PREFIX
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+#make -j 2 MAKEINFO=true
+#make -j 2 install MAKEINFO=true
+
+#ln -s ${PREFIX}/bin/* /bin
 
