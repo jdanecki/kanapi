@@ -89,8 +89,30 @@ Compile:
 * rplay
 * vtwm
 
-setxkbmap
-xkbutils
-twm
-ice
-iceauth
+TODO:
+- xfce
+- chrome
+- xpaint
+- tuxpaint
+- pencil
+- calc
+- notes
+- abiword
+- music/multimedia package
+- childsplay
+- gcompris
+- omnitux
+- squeak
+- scratch
+- tux packages: tuxpaint, tuxmath, tuxtyping
+- games
+- libreoffice
+- firefox
+- sugar
+
+POSTPONED:
+- matchbox
+- setxkbmap
+- xkbutils
+- ice
+- iceauth
