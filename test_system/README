@@ -1,0 +1,16 @@
+KaNaPi test system
+
+At this phase we can run KaNaPi system in chrooted environment under existing OS
+or run it under Qemu.
+
+Testing in chrooted environment
+1. cd kanapi_base_system/kanapi_system
+2. chroot . /init
+
+Image preparation
+1. Copy kernel image (bzImage) to boot directory
+2. sh ./prepare_initrd_filesystem
+3. sh ./prepare_kanapi_image
+4. sh ./prepare_root_filesystem
+5 ./qemu_test
+

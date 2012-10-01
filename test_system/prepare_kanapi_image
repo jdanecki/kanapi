@@ -19,6 +19,9 @@
 
 dd if=/dev/zero of=kanapi_image bs=1024 count=512000
 losetup /dev/loop0 kanapi_image
+
+echo "Create 2 partitions: first as vfat, second as linux partition\n"
+
 fdisk /dev/loop0
 partprobe /dev/loop0
 
