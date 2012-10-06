@@ -88,9 +88,25 @@ Compile:
 * imake
 * rplay
 * vtwm
+* atk
+* fontconfig
+* pango
+* libpng
+* cairo
+* tiff
+* libjpeg
+* gdk-pixbuf
+* libXrender
+
+gtk+-2.0
+
+xfwm4
+xfce4-panel
+xfce4-settings
+xfconf
+xfdesktop
 
 TODO:
-- xfce
 - chrome
 - xpaint
 - tuxpaint
