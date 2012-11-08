@@ -17,13 +17,13 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xfwm4
-VER=4.10.0
+PACKAGE_NAME=URI
+VER=1.60
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config --cflags x11`" --x-libraries="`pkg-config --libs x11`"
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+local_copy
+#cd build
+perl Makefile.PL PREFIX=${PREFIX}
 
-ln -s ${PREFIX}/bin/* /bin
-
+make -j 2
+make -j 2 install

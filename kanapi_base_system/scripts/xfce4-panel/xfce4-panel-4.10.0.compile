@@ -17,11 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xfwm4
+PACKAGE_NAME=xfce4-panel
 VER=4.10.0
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config --cflags x11`" --x-libraries="`pkg-config --libs x11`"
+export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
+export CPP="/bin/cpp `pkg-config --cflags x11`"
+export CFLAGS="-I/kanapi_packages/cairo-1.12.4/include"
+
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 

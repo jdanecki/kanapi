@@ -27,6 +27,7 @@ export PATH=$GCC_PREFIX/bin:$BINUTILS_PREFIX/bin:$PATH
 
 export CC="gcc -mtune=native"
 export CPP="${GCC_PREFIX}/bin/cpp"
+export CPP_X11="${GCC_PREFIX}/bin/cpp  `pkg-config --cflags x11`"
 
 local_copy() {
 	rm -rf build

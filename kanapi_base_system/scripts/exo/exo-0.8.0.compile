@@ -17,11 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xfwm4
-VER=4.10.0
+PACKAGE_NAME=exo
+VER=0.8.0
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config --cflags x11`" --x-libraries="`pkg-config --libs x11`"
+export PERL5LIB="/kanapi_packages/URI-1.60/lib/site_perl/5.16.1"
+export CPP=${CPP_X11}
+
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 

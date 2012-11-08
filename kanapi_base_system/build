@@ -85,13 +85,30 @@ rplay			3.3.2
 vtwm			5.4.7
 atk			2.4.0
 fontconfig		2.10.1
-pango			1.30.1
 libpng			1.5.13
 cairo			1.12.4
 tiff			4.0.3
 libjpeg			8d
 gdk-pixbuf		2.26.4
 libXrender		0.9.7
+pango			1.30.1
+gtk+			2.24.13
+libxfce4util		4.10.0
+dbus-glib		0.100
+dbus			1.6.8
+ExtUtils-Depends	0.304
+ExtUtils-PkgConfig	1.13
+Glib			1.262
+xfconf			4.10.0
+libxfceui		4.10.0
+libwnck			2.31.0
+xfwm4			4.10.0
+garcon			0.2.0
+URI			1.60
+exo			0.8.0
+xfce4-panel		4.10.0
+xfdesktop		4.10.0
+procps			3.2.8
 
 #####################################################################################################
 component	FBS			SBS				package

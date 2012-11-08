@@ -17,11 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xfwm4
+PACKAGE_NAME=xfconf
 VER=4.10.0
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config --cflags x11`" --x-libraries="`pkg-config --libs x11`"
+export LDFLAGS="`pkg-config --libs glib-2.0` -lpthread -lrt -lgmodule-2.0 -lgobject-2.0 -ldl"
+export LD_LIBRARY_PATH="`pkg-config --variable=libdir  glib-2.0`"
+export LIBS="`pkg-config --libs glib-2.0` -lpthread -lrt -lgmodule-2.0 -lgobject-2.0 -ldl"
+
+export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1:/kanapi_packages/ExtUtils-Depends-0.304/lib/site_perl/5.16.1:/kanapi_packages/ExtUtils-PkgConfig-1.13/lib/site_perl/5.16.1:/kanapi_packages/Glib-1.262/lib/site_perl/5.16.1/i686-linux-thread-multi"
+
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 

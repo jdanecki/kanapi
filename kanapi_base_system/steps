@@ -90,21 +90,35 @@ Compile:
 * vtwm
 * atk
 * fontconfig
-* pango
 * libpng
 * cairo
 * tiff
 * libjpeg
 * gdk-pixbuf
 * libXrender
+* pango
+* gtk+-2.0
+* libxfce4util
+* dbus-glib
+* dbus
+* ExtUtils-Depends
+* ExtUtils-PkgConfig
+* Glib
+* xfconf
+* libxfce4ui
+* libwnck
+* xfwm4
+* garcon
+* URI
+* exo
+* xfce4-panel
+* xfdesktop
+* procps
 
-gtk+-2.0
+insmod,modprobe
+firmware
 
-xfwm4
-xfce4-panel
 xfce4-settings
-xfconf
-xfdesktop
 
 TODO:
 - chrome

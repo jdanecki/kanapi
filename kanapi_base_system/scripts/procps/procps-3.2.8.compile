@@ -17,13 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xfwm4
-VER=4.10.0
+PACKAGE_NAME=procps
+VER=3.2.8
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config --cflags x11`" --x-libraries="`pkg-config --libs x11`"
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+local_copy
+
+make -j 2  DESTDIR=${PREFIX} CC="${CC} ${NCURSES_HDR} ${NCURSES_HDR}/ncurses ${NCURSES_LIB}" ldl="-lproc-${VER} -Lproc"
+make -j 2 DESTDIR=${PREFIX} install
 
 ln -s ${PREFIX}/bin/* /bin
+ln -s ${PREFIX}/sbin/* /bin
+ln -s ${PREFIX}/usr/bin/* /bin
+echo "${PREFIX}/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
+ldconfig
 

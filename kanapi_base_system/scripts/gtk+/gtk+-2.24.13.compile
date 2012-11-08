@@ -21,12 +21,15 @@ PACKAGE_NAME=gtk+
 VER=2.24.13
 . ../settings
 
-#local_copy
+export LDFLAGS="`pkg-config --libs x11` `pkg-config --libs xext` `pkg-config --libs glib-2.0` -lpthread -lrt -lgmodule-2.0 -lgobject-2.0 -ldl `pkg-config --libs libtiff-4` -lm -lz `pkg-config --libs zlib`"
+export LD_LIBRARY_PATH="`pkg-config --variable=libdir  glib-2.0`:`pkg-config --variable=libdir libtiff-4`"
+export LIBS="`pkg-config --libs glib-2.0` -lpthread -lrt -lgmodule-2.0 -lgobject-2.0 -ldl"
+export CPP="/bin/cpp `pkg-config --cflags x11`"
+export CFLAGS="`pkg-config --cflags xfixes`"
 
-#./configure --prefix=$PREFIX
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-#make -j 2 MAKEINFO=true
-#make -j 2 install MAKEINFO=true
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-xinerama
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
-#ln -s ${PREFIX}/bin/* /bin
+ln -s ${PREFIX}/bin/* /bin
 

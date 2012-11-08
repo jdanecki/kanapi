@@ -17,13 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xfwm4
+. ../functions
+
+# URL to package
+# http://archive.xfce.org/xfce/4.10/src
+
+PACKAGE_NAME=libxfce4ui
 VER=4.10.0
-. ../settings
+PATCH_NAME=
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config --cflags x11`" --x-libraries="`pkg-config --libs x11`"
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+#prepare_release_tgz ${PACKAGE_NAME}-${VER}
+prepare_release_tbz ${PACKAGE_NAME}-${VER}
+#prepare_release_xz ${PACKAGE_NAME}-${VER}
 
-ln -s ${PREFIX}/bin/* /bin
-
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}

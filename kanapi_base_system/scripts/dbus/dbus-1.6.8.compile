@@ -17,11 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xfwm4
-VER=4.10.0
+PACKAGE_NAME=dbus
+VER=1.6.8
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config --cflags x11`" --x-libraries="`pkg-config --libs x11`"
+export LDFLAGS="`pkg-config --libs-only-L expat` `pkg-config --libs gobject-2.0` -lpthread -lrt"
+export CFLAGS="`pkg-config --cflags expat`"
+export LD_LIBRARY_PATH="`pkg-config --variable=libdir gobject-2.0`"
+
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
