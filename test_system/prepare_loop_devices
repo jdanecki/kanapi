@@ -17,26 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-rm -rf initrd_fs
-mkdir -p initrd_fs/kanapi_packages
-mkdir initrd_fs/sys
-mkdir initrd_fs/mnt
+losetup /dev/loop0 kanapi_image
+partprobe /dev/loop0
+mount /dev/loop0p1 p1
+mount /dev/loop0p2 p2
 
-for d in bin dev etc proc root tmp usr
-do
-	cp -ar ../kanapi_base_system/kanapi_system/$d initrd_fs
-done
-
-for d in bash-4.2.20/bin \
-	eglibc-20133/bin eglibc-20133/etc eglibc-20133/lib \
-	coreutils-8.19/bin \
-	util-linux-2.22/bin util-linux-2.22/lib
-do
-	mkdir -p initrd_fs/kanapi_packages/$d
-	cp -ar ../kanapi_base_system/kanapi_system/kanapi_packages/$d/* initrd_fs/kanapi_packages/$d
-done
-
-cp boot/init initrd_fs
-cd initrd_fs
-find . -print | cpio -o -Hnewc > ../boot/initrd
-cd ..
