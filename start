@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/usr/sbin/chroot /home/kanapi/kanapi_base_system/kanapi_system /init
+
