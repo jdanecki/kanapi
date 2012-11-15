@@ -82,6 +82,7 @@ Compile:
 * bdftopcf
 * mkfontscale
 * font-cursor-misc
+* xf86dgaproto - needed for xorg with vesa
 * xorg-server recompile with xkb packages and cursor font
 * font-util
 * xorg-cf-files

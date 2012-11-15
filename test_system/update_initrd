@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-qemu-system-i386 -enable-kvm -hda kanapi_image -vga std -serial `tty`
-#append in boot console: kanapi vga=ask console=tty0 console=ttyS0,115200
-
-
+cd initrd_fs
+find . -print | cpio -o -Hnewc > ../boot/initrd
+cd ..

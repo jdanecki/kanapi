@@ -17,21 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xorg-server
-VER=1.12.2
-. ../settings
+. ../functions
 
-export CFLAGS="-I/kanapi_packages/xf86driproto-2.1.1/include -I/kanapi_packages/libpciaccess-0.13.1/include \
-	-I/kanapi_packages/Mesa-8.0.4/include -I/kanapi_packages/glproto-1.4.15/include \
-	`pkg-config --cflags xf86dgaproto`"
+# URL to package
+# http://cgit.freedesktop.org/xorg/proto/xf86dgaproto
 
-export LIBS="-lrt -lpthread"
+PACKAGE_NAME=xf86dgaproto
+VER=2.1
+PATCH_NAME=
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --with-xkb-bin-directory="`pkg-config --variable=prefix xkbcomp`/bin" \
-	--with-fontmiscdir=/kanapi_packages/font-cursor-misc-1.0.3/share/fonts/X11/misc --with-xkb-path=`pkg-config --variable=xkbconfigdir xkbcomp` 
+prepare_release_tgz ${PACKAGE_NAME}-${VER}
+#prepare_release_tbz ${PACKAGE_NAME}-${VER}
+#prepare_release_xz ${PACKAGE_NAME}-${VER}
 
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
-
-ln -s ${PREFIX}/bin/* /bin
-
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
