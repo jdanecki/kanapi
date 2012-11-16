@@ -20,3 +20,7 @@
 cd initrd_fs
 find . -print | cpio -o -Hnewc > ../boot/initrd
 cd ..
+mount /dev/loop0p1 p1
+cp boot/initrd p1/initrd
+umount p1
+

@@ -23,6 +23,10 @@ mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 mount -t ext3 /dev/sda2 /mnt
 ln -s /mnt/* /kanapi_packages
+export USER=root
+export HOME=/root
+
+ln -s /kanapi_packages/font-util-1.3.0/share/fonts /root/.fonts
 
 /bin/bash
 
