@@ -21,7 +21,12 @@ PACKAGE_NAME=xfwm4
 VER=4.10.0
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config --cflags x11`" --x-libraries="`pkg-config --libs x11`"
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/kanapi_packages/libXext-1.3.1/lib
+export LDFLAGS="`pkg-config --libs xext` -ldl"
+
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --x-includes="`pkg-config \
+	--cflags x11`" --x-libraries="`pkg-config --libs x11`" --enable-xsync --enable-render \
+	--enable-randr --enable-compositor 
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
