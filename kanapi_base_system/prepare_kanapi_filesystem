@@ -22,7 +22,7 @@ read ans
 
 rm -rf kanapi_system
 
-for d in tmp proc bin etc kanapi_packages kanapi_build/src kanapi_build/out usr/include/linux usr/include/asm usr/include/asm-generic root sys
+for d in tmp proc bin etc kanapi_packages/libs kanapi_build/src kanapi_build/out usr/include/linux usr/include/asm usr/include/asm-generic root sys
 do
 	mkdir -p kanapi_system/$d
 done
@@ -45,4 +45,5 @@ ln -s ../bin bin
 cd ..
 
 cp ../scripts/update_pc_files bin
+cp ../scripts/prepare_libs bin
 

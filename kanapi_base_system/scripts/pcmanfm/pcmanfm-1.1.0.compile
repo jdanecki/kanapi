@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,14 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-mount -t proc proc /proc
-mount -t sysfs sysfs /sys
-mount -t devpts devpts /dev/pts
-export USER=root
-export HOME=/root
+PACKAGE_NAME=pcmanfm
+VER=1.1.0
+. ../settings
 
-ln -s /kanapi_packages/font-util-1.3.0/share/fonts /root/.fonts
-export LD_LIBRARY_PATH=/kanapi_packages/libs
+export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
+export LDFLAGS="-lz -ldl -lresolv ${ZLIB_LIB}"
+export LD_LIBRARY_PATH="/kanapi_packages/glib-2.32.4/lib"
 
-/bin/bash
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+make V=1 -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+
+ln -s ${PREFIX}/bin/* /bin
 

@@ -115,13 +115,27 @@ Compile:
 * xfce4-panel
 * xfdesktop
 * procps
+* font-adobe-100dpi
+* font-adobe-75dpi
+* font-bitstream-type1
+* font-xfree86-type1
+* libXcursor
+* gdb
+* vim
+* vala 
+* menu-cache
+* libexif
+* libfm
+* pcmanfm
+* hicolor-icon-theme
 
+
+TODO:
 insmod,modprobe
 firmware
 
 xfce4-settings
 
-TODO:
 - chrome
 - xpaint
 - tuxpaint
