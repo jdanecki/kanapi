@@ -45,5 +45,6 @@ ln -s ../bin bin
 cd ..
 
 cp ../scripts/update_pc_files bin
+cp ../scripts/update_dbus_services bin
 cp ../scripts/prepare_libs bin
 
