@@ -128,9 +128,11 @@ Compile:
 * libfm
 * pcmanfm
 * hicolor-icon-theme
-
+* ruby
+*  git - recompiled to create smaller pendrive image
 
 TODO:
+ruby-sdl
 ping
 lsusb
 iwconfig
