@@ -17,10 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-cd initrd_fs
-find . -print | cpio -o -Hnewc > ../boot/initrd_qemu
+cd initrd_fs_usb
+find . -print | cpio -o -Hnewc > ../boot/initrd_usb
 cd ..
-mount /dev/loop0p1 p1
-cp boot/initrd_qemu p1/initrd
+mount /dev/sdb1 p1
+cp boot/initrd_usb p1/initrd
 umount p1
 
