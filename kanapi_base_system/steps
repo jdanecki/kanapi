@@ -131,10 +131,13 @@ Compile:
 
 
 TODO:
-insmod,modprobe
-firmware
+ping
+lsusb
+iwconfig
 
 xfce4-settings
+insmod,modprobe
+firmware for iwlwifi
 
 - chrome
 - xpaint
