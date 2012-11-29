@@ -17,9 +17,22 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-eval `dbus-launch --sh-syntax`
-/root/start_xfce
+dd if=/dev/zero of=kanapi_image_usb bs=4096 count=512000
+losetup /dev/loop0 kanapi_image_usb
 
-xterm
-#-geometry 237x68
+echo "Create 2 partitions:"
+echo "first as vfat for syslinux- about 100MB "
+echo "second as linux partition - /kanapi_packages"
+
+fdisk /dev/loop0
+partprobe /dev/loop0
+
+mkfs.vfat -I /dev/loop0p1
+
+syslinux /dev/loop0p1
+
+mount /dev/loop0p1 tmp
+cp boot_usb/* tmp
+umount tmp
+install-mbr -T /dev/loop0 /dev/loop0
 

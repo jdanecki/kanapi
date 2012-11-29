@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+#  Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+rm -rf initrd_usb
+mkdir -p initrd_usb/kanapi_packages
+mkdir initrd_usb/sys
+mkdir initrd_usb/mnt
+mkdir initrd_usb/bin_boot
+mkdir initrd_usb/proc
+mkdir initrd_usb/tmp
+mkdir initrd_usb/root
+
+for d in dev etc usr
+do
+	cp -ar ../kanapi_base_system/kanapi_system/$d initrd_usb
+done
+
+for d in bash-4.2.20/bin/bash \
+	eglibc-20133/lib/libc.so.6 eglibc-20133/lib/libc-2.16.90.so \
+        eglibc-20133/lib/libdl.so.2 eglibc-20133/lib/libdl-2.16.90.so \
+	eglibc-20133/lib/ld-linux.so.2 eglibc-20133/lib/ld-2.16.90.so \
+	eglibc-20133/etc/ld.so.cache \
+	coreutils-8.19/bin/echo \
+        coreutils-8.19/bin/sleep \
+        coreutils-8.19/bin/ln \
+	util-linux-2.22/bin/mount \
+	util-linux-2.22/lib/libmount.so.1 util-linux-2.22/lib/libmount.so.1.1.0 \
+	util-linux-2.22/lib/libblkid.so.1 util-linux-2.22/lib/libblkid.so.1.1.0 \
+	util-linux-2.22/lib/libuuid.so.1 util-linux-2.22/lib/libuuid.so.1.3.0
+do
+	mkdir -p initrd_usb/kanapi_packages/`dirname $d`/
+	cp -a ../kanapi_base_system/kanapi_system/kanapi_packages/$d initrd_usb/kanapi_packages/$d
+done
+
+cp boot_usb/init initrd_usb/init
+cp ../kanapi_base_system/.xinitrc   initrd_usb/root
+cp ../kanapi_base_system/.xserverrc initrd_usb/root
+cp ../kanapi_base_system/start_xfce initrd_usb/root
+
+cd initrd_usb
+ln -s bin_boot bin
+
+cd bin_boot
+ln -sf ../kanapi_packages/*/bin/* .
+cd ..
+
+find . -print | cpio -o -Hnewc > ../boot_usb/initrd
+cd ..
+

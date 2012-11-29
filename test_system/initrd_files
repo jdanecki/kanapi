@@ -1,0 +1,6 @@
+echo: libc.so.6 ld-linux.so.2
+bash: libc.so.6 libdl.so.2 ld-linux.so.2
+mount: libmount.so.1 libblkid.so.1 libuuid.so.1 libc.so.6 ld-linux.so.2
+sleep: libc.so.6 ld-linux.so.2
+ln: libc.so.6 ld-linux.so.2
+

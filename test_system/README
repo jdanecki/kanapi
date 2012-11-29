@@ -14,3 +14,12 @@ Image preparation
 4. sh ./prepare_root_filesystem
 5 ./qemu_test
 
+USB pendrive image preparation
+1. Copy kernel image (bzImage) to boot directory
+2. sh ./prepare_usb_initrd
+3. sh ./prepare_kanapi_image_usb
+4. Copy additional packages to root filesystem (see prepare_root_filesystem)
+5. Copy bin directory with links to /kanapi_packages/bin
+6. Create link with name kanapi_packages in /kanapi_packages directory
+6. Copy usb image to pendrive
+
