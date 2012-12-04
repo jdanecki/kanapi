@@ -132,7 +132,34 @@ Compile:
 *  git - recompiled to create smaller pendrive image
 
 TODO:
-ruby-sdl
++sdl
++smpeg
+
+http://www.fluidsynth.org/
+http://www.xiph.org/
+http://mikmod.raphnet.net
+http://flac.sourceforge.net/
+
++sdl_mixer
++sdl_ttf
+http://code.google.com/intl/en-US/speed/webp/index.html
++sdl_image
++sge
+
+- ruby-sdl
+- xpaint
+- tuxpaint
+- pencil
+- calc
+- notes
+- childsplay
+- gcompris
+- omnitux
+- squeak
+- scratch
+- tux packages: tuxpaint, tuxmath, tuxtyping
+- sugar
+
 ping
 lsusb
 iwconfig
@@ -142,23 +169,11 @@ insmod,modprobe
 firmware for iwlwifi
 
 - chrome
-- xpaint
-- tuxpaint
-- pencil
-- calc
-- notes
 - abiword
 - music/multimedia package
-- childsplay
-- gcompris
-- omnitux
-- squeak
-- scratch
-- tux packages: tuxpaint, tuxmath, tuxtyping
 - games
 - libreoffice
 - firefox
-- sugar
 
 POSTPONED:
 - matchbox

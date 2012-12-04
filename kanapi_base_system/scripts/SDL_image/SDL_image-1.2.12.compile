@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=SDL_image
+VER=1.2.12
+. ../settings
+
+export CFLAGS="`pkg-config --cflags libtiff-4` -I/kanapi_packages/jpeg-8d/include"
+export LIBS="-ldl `pkg-config --libs libtiff-4` -lm -L/kanapi_packages/libs -L/kanapi_packages/jpeg-8d/lib \
+	`pkg-config --libs libpng`"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:`pkg-config --variable=libdir libtiff-4`:`pkg-config --variable=libdir libpng`"
+
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+
