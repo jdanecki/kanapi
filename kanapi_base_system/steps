@@ -130,23 +130,20 @@ Compile:
 * hicolor-icon-theme
 * ruby
 *  git - recompiled to create smaller pendrive image
+* sdl
+* smpeg
+later: http://www.fluidsynth.org/
+later: http://www.xiph.org/
+later: http://mikmod.raphnet.net
+later: http://flac.sourceforge.net/
+* sdl_mixer
+* sdl_ttf
+later: http://code.google.com/intl/en-US/speed/webp/index.html
+* sdl_image
+* sge
+* ruby-sdl
 
 TODO:
-+sdl
-+smpeg
-
-http://www.fluidsynth.org/
-http://www.xiph.org/
-http://mikmod.raphnet.net
-http://flac.sourceforge.net/
-
-+sdl_mixer
-+sdl_ttf
-http://code.google.com/intl/en-US/speed/webp/index.html
-+sdl_image
-+sge
-
-- ruby-sdl
 - xpaint
 - tuxpaint
 - pencil
