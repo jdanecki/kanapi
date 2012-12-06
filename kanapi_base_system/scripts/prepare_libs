@@ -36,4 +36,4 @@ ln -s /kanapi_packages/libxcb-1.8.1/lib/libxcb*  /kanapi_packages/libs
 ln -s /kanapi_packages/libdrm-2.4.39/lib/libdrm*   /kanapi_packages/libs
 ln -s /kanapi_packages/libXfixes-5.0/lib/lib*   /kanapi_packages/libs
 ln -s /kanapi_packages/libXdamage-1.1.3/lib/lib*   /kanapi_packages/libs
-
+ln -s /kanapi_packages/wireless_tools-29/lib/libiw.so* /kanapi_packages/libs
