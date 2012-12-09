@@ -43,6 +43,9 @@ ln -s bash sh
 cd ../usr
 ln -s ../bin bin
 cd ..
+cd etc
+ln -s /proc/mounts mtab
+cd ..
 
 cp ../scripts/update_pc_files bin
 cp ../scripts/update_dbus_services bin
