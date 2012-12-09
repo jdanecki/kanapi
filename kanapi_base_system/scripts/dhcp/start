@@ -1,0 +1,2 @@
+dhclient -d wlan0 -cf /kanapi_packages/dhcp-4.2.4-P2/etc/dhclient.conf
+

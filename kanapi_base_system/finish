@@ -16,9 +16,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+sync
 
-umount /proc
+mount -o remount,ro /
+
 umount /sys
 umount /dev/pts
-
-
+umount /proc

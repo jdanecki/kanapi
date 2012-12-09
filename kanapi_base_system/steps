@@ -116,6 +116,7 @@ Compile:
 * xfdesktop
 * procps
 * font-adobe-100dpi
+* module_init_tools
 * font-adobe-75dpi
 * font-bitstream-type1
 * font-xfree86-type1
@@ -142,8 +143,25 @@ later: http://code.google.com/intl/en-US/speed/webp/index.html
 * sdl_image
 * sge
 * ruby-sdl
+* firmware for iwlwifi
+* wireless_tools
+* kmod
+* libusb
+* usbutils
+* pci_ids
+* gobject-introspection
+* gperf
+* udev
+* libnl
+* nss-with-nspr
+* dhcp
+* network-manager
+* iso-codes
+* wpa_supplicant
 
 TODO:
+
+
 - xpaint
 - tuxpaint
 - pencil
@@ -157,13 +175,7 @@ TODO:
 - tux packages: tuxpaint, tuxmath, tuxtyping
 - sugar
 
-ping
-lsusb
-iwconfig
-
 xfce4-settings
-insmod,modprobe
-firmware for iwlwifi
 
 - chrome
 - abiword
@@ -178,3 +190,5 @@ POSTPONED:
 - xkbutils
 - ice
 - iceauth
+-network-manager-applet - need gnome-keyring
+

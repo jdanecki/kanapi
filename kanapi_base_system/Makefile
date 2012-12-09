@@ -9,7 +9,8 @@ font-cursor-misc font-util xorg-cf-files imake rplay vtwm atk fontconfig libpng 
 gdk-pixbuf libXrender pango gtk+ libxfce4util dbus-glib dbus ExtUtils-Depends ExtUtils-PkgConfig Glib \
 xfconf libxfceui libwnck xfwm4 garcon URI exo xfce4-panel xfdesktop procps font-adobe-100dpi font-adobe-75dpi \
 font-bitstream-type1 font-xfree86-type1 libXcursor gdb vim vala menu-cache libexif libfm pcmanfm hicolor-icon-theme \
-ruby git SDL smpeg SDL_mixer SDL_ttf SDL_image sge rubysdl"
+ruby git SDL smpeg SDL_mixer SDL_ttf SDL_image sge rubysdl wireless_tools kmod libusb usbutils pci_ids gobject-introspection \
+gperf udev libnl nss-with-nspr dhcp NetworkManager iso-codes wpa_supplicant"
 
 DIRS1="diffutils"
 

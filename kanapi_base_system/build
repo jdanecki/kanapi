@@ -132,7 +132,21 @@ SDL_ttf			2.0.11
 SDL_image		1.2.12
 sge			030809
 rubysdl			2.1.2
-
+iwlwifi firmware	
+wireless_tools		29
+kmod			5
+libusb			1.0.9
+usbutils		006
+pci_ids			06-12-2012
+gobject-introspection	1.32.1 - newer version don't compile
+gperf			3.0.4
+udev			182
+libnl			3.2.16
+nss-with-nspr		3.14
+dhcp			2.4.2-P2
+network-manager		0.9.6.4
+iso-codes		3.40
+wpa_supplicant 		1.1
 #####################################################################################################
 component	FBS			SBS				package
 	

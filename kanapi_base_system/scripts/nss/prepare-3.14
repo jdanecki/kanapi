@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,17 +17,20 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-echo "Witam w KaNaPi"
+. ../functions
 
-mount -t proc proc /proc
-mount -t sysfs sysfs /sys
-mount -t ext3 /dev/sda2 /mnt
-ln -s /mnt/* /kanapi_packages
-export USER=root
-export HOME=/root
+# URL to package
+# ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_14_RTM/src/
 
-ln -s /kanapi_packages/font-util-1.3.0/share/fonts /root/.fonts
-/kanapi_packages/udev-182/libexec/udev/udevd --daemon
+PACKAGE_NAME=nss
+VER=3.14
+PATCH_NAME=
+#nss-3.14-with-nspr-4.9.2.tar.gz
 
-/bin/bash
+prepare_release_tgz ${PACKAGE_NAME}-${VER}-with-nspr-4.9.2
+cp nss.pc $BUILD_OUT_DIR/nss.pc
 
+#prepare_release_tbz ${PACKAGE_NAME}-${VER}
+#prepare_release_xz ${PACKAGE_NAME}-${VER}
+
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}

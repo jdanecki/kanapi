@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,17 +17,22 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-echo "Witam w KaNaPi"
+PACKAGE_NAME=wpa_supplicant
+VER=1.1
+. ../settings
 
-mount -t proc proc /proc
-mount -t sysfs sysfs /sys
-mount -t ext3 /dev/sda2 /mnt
-ln -s /mnt/* /kanapi_packages
-export USER=root
-export HOME=/root
+local_copy
+#cd build
+cp ../config-${VER} wpa_supplicant/.config
+make V=1 -C wpa_supplicant
+make V=1 -C wpa_supplicant  install
+mkdir -p ${PREFIX}/share/dbus-1/system-services
+mkdir -p ${PREFIX}/etc
+mkdir -p ${PREFIX}/run
 
-ln -s /kanapi_packages/font-util-1.3.0/share/fonts /root/.fonts
-/kanapi_packages/udev-182/libexec/udev/udevd --daemon
+cp -v ../fi.w1.wpa_supplicant1.service ${PREFIX}/share/dbus-1/system-services
+#cp -v wpa_supplicant/dbus/fi.w1.wpa_supplicant1.service ${PREFIX}/share/dbus-1/system-services
+cp -v wpa_supplicant/dbus/dbus-wpa_supplicant.conf ${PREFIX}/etc
 
-/bin/bash
+ln -sf ${PREFIX}/bin/* /bin
 

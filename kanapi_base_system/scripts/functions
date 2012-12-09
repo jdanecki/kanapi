@@ -67,3 +67,7 @@ apply_patch() {
 #	echo -n "Returning: "
 	popd
 }
+copy_file() {
+	cp -v $2 $BUILD_OUT_DIR/$1
+}
+

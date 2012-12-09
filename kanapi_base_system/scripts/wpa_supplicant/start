@@ -1,0 +1,2 @@
+wpa_supplicant -Dwext -iwlan0 -c /kanapi_packages/wpa_supplicant-1.1/etc/wifi.conf
+
