@@ -17,21 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=SDL
-VER=1.2.15
-. ../settings
+. ../functions
 
-export CPP="/bin/cpp `pkg-config --cflags x11`"
-export CFLAGS="`pkg-config --cflags x11 xext alsa`"
-export LDFLAGS="`pkg-config --libs x11 xext alsa` -lpthread -lm -ldl -lrt"
+# URL to package
+# http://packages.debian.org/source/sid/libpaper
 
-#export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:`pkg-config --variable=libdir x11`:`pkg-config --variable=libdir xext`"
-#export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:`pkg-config --variable=libdir x11 xext`"
-#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-pthreads --enable-alsa
+PACKAGE_NAME=libpaper
+VER=1.1.24+nmu2
+PATCH_NAME=
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-alsa
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+prepare_release_tgz ${PACKAGE_NAME}-${VER}
+#prepare_release_tbz ${PACKAGE_NAME}-${VER}
+#prepare_release_xz ${PACKAGE_NAME}-${VER}
 
-#ln -s ${PREFIX}/bin/* /bin
-
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}

@@ -40,4 +40,17 @@ ln -s /kanapi_packages/wireless_tools-29/lib/libiw.so* /kanapi_packages/libs
 ln -s /kanapi_packages/nss-3.14/lib/lib* /kanapi_packages/libs
 ln -s /kanapi_packages/libnl-3.2.16/lib/libnl* /kanapi_packages/libs
 ln -s /kanapi_packages/dbus-1.6.8/lib/libdbus-1.* /kanapi_packages/libs/
+ln -s /kanapi_packages/libXaw3dXft-1.6.2/lib/libXaw3d.* /kanapi_packages/libs
+ln -s /kanapi_packages/libXft-2.3.1/lib/libXft.*  /kanapi_packages/libs
+ln -s  /kanapi_packages/libpng-1.5.13/lib/libpng* /kanapi_packages/libs
+ln -s  /kanapi_packages/tiff-4.0.3/lib/libtiff*  /kanapi_packages/libs
+ln -s /kanapi_packages/jpeg-8d/lib/libjpeg.* /kanapi_packages/libs
+ln -s /kanapi_packages/libelf-0.8.13/lib/libelf.* /kanapi_packages/libs/
+ln -s /kanapi_packages/alsa-lib-1.0.25/lib/libasound.* /kanapi_packages/libs
+ln -s /kanapi_packages/ncurses-5.9/lib/lib* /kanapi_packages/libs
+ln -s /kanapi_packages/libXfont-1.4.5/lib/libXfont.* /kanapi_packages/libs
+ln -s /kanapi_packages/SDL_mixer-1.2.12/lib/libSDL_mixer* /kanapi_packages/libs
+ln -s /kanapi_packages/SDL_image-1.2.12/lib/libSDL_image*  /kanapi_packages/libs
+ln -s /kanapi_packages/SDL_gfx-2.0.24/lib/libSDL_gfx.*  /kanapi_packages/libs
+ln -s /kanapi_packages/SDL_ttf-2.0.11/lib/libSDL_ttf*  /kanapi_packages/lib
 
