@@ -24,7 +24,7 @@ mkdir initrd_usb/mnt
 mkdir initrd_usb/bin_boot
 mkdir initrd_usb/proc
 mkdir initrd_usb/tmp
-mkdir initrd_usb/root
+mkdir -p initrd_usb/run/udev
 
 for d in dev etc usr
 do

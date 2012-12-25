@@ -37,5 +37,15 @@ ln -s /kanapi_packages/xfconf-4.10.0/share/dbus-1/services/org.xfce.Xfconf.servi
 
 export LD_LIBRARY_PATH=/kanapi_packages/libs
 
+/kanapi_packages/udev-182/libexec/udev/udevd --daemon
+rm -f /kanapi_packages/dbus-1.6.8/var/run/dbus/pid
+dbus-daemon --system
+
+modprobe -d /kanapi_packages/linux-3.5.3/ iwl4965
+modprobe -d /kanapi_packages/linux-3.5.3/ iwl3945
+
+wpa_supplicant -B -Dwext -iwlan0 -c /kanapi_packages/wpa_supplicant-1.1/etc/biv2.conf
+dhclient wlan0 -cf /kanapi_packages/dhcp-4.2.4-P2/etc/dhclient.conf
+
 /bin/bash
 
