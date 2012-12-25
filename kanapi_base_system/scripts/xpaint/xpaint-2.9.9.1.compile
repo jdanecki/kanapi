@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=xpaint
+VER=2.9.9.1
+. ../settings
+
+rm -rf build
+cp -ar ../../src/${PACKAGE_NAME}-${VER} build
+cd build
+
+rm -f xaw_incdir
+ln -s /kanapi_packages/libXaw3dXft-1.6.2/include/X11/Xaw3d xaw_incdir
+
+export CC="gcc `pkg-config --cflags x11 xpm ice sm  xt cairo gl xaw3d fontconfig freetype2 xext zlib libpng libtiff-4` \
+	-I/kanapi_packages/jpeg-8d/include"
+export CFLAGS="-O2 -mtune=native "
+export LDFLAGS="`pkg-config --libs x11 sm ice xt xpm cairo gl xaw3d fontconfig freetype2 xext zlib libpng libtiff-4` \
+       -lpthread -lrt -lm -lstdc++ -lresolv -ldl -L/kanapi_packages/jpeg-8d/lib"
+export CPP="${CPP} `pkg-config --cflags freetype2` -I/kanapi_packages/jpeg-8d/include"
+
+./configure --prefix=${PREFIX}
+make  MAKEINFO=true
+make  install MAKEINFO=true
+
+#ln -s ${PREFIX}/bin/* /bin
+
