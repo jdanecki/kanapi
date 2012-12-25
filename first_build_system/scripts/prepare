@@ -17,7 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-for package in eglibc binutils gmp mpfr mpc gcc bash make autoconf automake bison sed
+for package in eglibc binutils gmp mpfr mpc gcc
+       #	bash make autoconf automake bison sed
 #busybox
 do
 	cd $package
