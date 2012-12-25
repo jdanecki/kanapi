@@ -30,4 +30,6 @@ PATCH_NAME=
 prepare_release_tbz ${PACKAGE_NAME}-${VER}
 #prepare_release_xz ${PACKAGE_NAME}-${VER}
 
+copy_file ${PACKAGE_NAME}-${VER} termcap.patch
+
 #apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}

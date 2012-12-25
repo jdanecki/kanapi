@@ -26,11 +26,18 @@ VER_DIR=73
 rm -rf build
 cp -ar ../../src/${PACKAGE_NAME}${VER_DIR} build
 cd build
+export CC=gcc
+export CFLAGS="-O2 -mtune=native ${NCURSES_HDR} ${NCURSES_HDR}/ncurses `pkg-config --cflags x11 xpm ice sm xt cairo gl`"
+export LDFLAGS="${NCURSES_LIB} -ldl `pkg-config --libs x11 sm ice xt xpm cairo gl` -lpthread -lrt -lm -lstdc++ -lresolv"
+export CPP=${CPP_X11}
+cd src
+patch -p1 < ../../termcap.patch
+cd ..
+./configure --prefix=${PREFIX} --enable-pythoninterp --with-x \
+	--enable-python3interp=yes --enable-rubyinterp --enable-cscope --enable-multibyte --disable-hangulinput \
+	--enable-fontset=gtk2 --enable-gui=gtk2 --disable-acl  --with-local-dir=${PREFIX} --disable-selinux \
 
-export CFLAGS="${NCURSES_HDR}"
-export LDFLAGS="${NCURSES_LIB}"
-
-./configure --prefix=$PREFIX
+#--enable-luainterp=yes --enable-perlinterp=yes
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
