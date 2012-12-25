@@ -158,12 +158,63 @@ later: http://code.google.com/intl/en-US/speed/webp/index.html
 * network-manager
 * iso-codes
 * wpa_supplicant
+* libxft
+* libXaw3dXft
+* xpaint
+* iwlwifi-3945-ucode
+* setxkbmap
+* xcursorgen
+* xcursor-theme
+* default-icon-theme
+* XML-NamespaceSupport
+* XML::SAX::Base
+* XML-SAX
+* XML-SAX-Expat
+* XML-Simple
+* icon-naming-utils
+* ImageMagick
+* tango-icon-theme
+* libXi
+todo: xrandr
+todo: libnotify
+* xfce4-settings
+* libelf
+* ltrace
+todo: pcre oniguruma
+* slang
+* mc
+* alsa-lib
+* alsa-utils
+* alsa-plugins
+* alsa-oss
+* udev -175
+* pciutils
+* screen
+* xterm and utf8
+* xlsfonts
+* bdfresize
+* efont-unicode-bdf
+* ctags
+* fribidi
+* SDL_Pango
+* libcroco
+* librsvg-2.0
+* libsvg
+* libsvg-cairo
+* libpaper
+* xz
+* libpng 1.4.12 - tuxpaint needs this version
+* recompile SDL with alsa support and threads support
+* tuxpaint
+* sdl_rotozoom - deprecated by sdl-gfx
+* sdl-gfx http://www.ferzkopp.net/joomla/software-mainmenu-14/4-ferzkopps-linux-software/19-sdlgfx
 
 TODO:
+cgdb http://cgdb.github.com/
+tzdata http://www.iana.org/time-zones
 
-
-- xpaint
-- tuxpaint
+todo: http://sourceforge.net/projects/gpaint
+todo: http://sourceforge.net/projects/kolourpaint/
 - pencil
 - calc
 - notes
@@ -172,15 +223,16 @@ TODO:
 - omnitux
 - squeak
 - scratch
-- tux packages: tuxpaint, tuxmath, tuxtyping
+- tux packages: tuxmath, tuxtyping
 - sugar
+tcl/tk
 
-xfce4-settings
-
+webkitgtk http://www.linuxfromscratch.org/blfs/view/svn/x/webkitgtk.html
 - chrome
 - abiword
 - music/multimedia package
-- games
+- games:gnurobo, supertux, minecraft,rili,funnyboat,abe,berusky,freeciv,alex the aligator 4,rocksdiamonfds,
+	supertuxkart,cuyo,frozen-bubble, xboard, fillets-ng,torcs,pingus, 
 - libreoffice
 - firefox
 
@@ -191,4 +243,6 @@ POSTPONED:
 - ice
 - iceauth
 -network-manager-applet - need gnome-keyring
+
+http://www.linuxfromscratch.org/blfs/view/svn/index.html
 

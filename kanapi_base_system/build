@@ -182,11 +182,16 @@ efont-unicode-bdf	0.4.2
 ctags			5.8
 fribidi			0.19.5
 SDL_Pango		0.1.2
-
-
-
-
-
+libcroco		0.6.8
+librsvg-2.0		2.36.4
+libsvg			0.1.4
+libsvg-cairo		0.1.6
+libpaper		1.1.23+nmu2
+xz			5.0.4
+libpng 			1.4.12
+tuxpaint		0.9.21
+sdl_rotozoom		1.6
+sdl-gfx			2.0.24
 
 #####################################################################################################
 component	FBS			SBS				package
