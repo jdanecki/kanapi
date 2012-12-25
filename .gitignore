@@ -9,3 +9,5 @@ kanapi_base_system/kanapi_system
 test_system/initrd_fs
 test_system/initrd_fs_usb-old
 test_system/initrd_usb
+test_system/__BASE__USB
+

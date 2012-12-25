@@ -1,3 +1,23 @@
+#
+#  Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+# this file is not updated to the latest version
+#
 DIRS0="diffutils gzip bzip2 linux net-tools wget Python libffi glib pkg-config pixman kbproto strace xproto \
 xextproto xtrans libxml2 libxslt xcb-proto libpthread-stubs libXau libxcb inputproto util-macros libX11 \
 glproto makedepend libpciaccess libdrm dri2proto libXext damageproto fixesproto libXfixes libXdamage \

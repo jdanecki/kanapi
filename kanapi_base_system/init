@@ -34,6 +34,8 @@ modprobe -d /kanapi_packages/linux-3.5.3/ iwl4965
 
 wpa_supplicant -B -Dwext -iwlan0 -c /kanapi_packages/wpa_supplicant-1.1/etc/wifi.conf
 dhclient wlan0 -cf /kanapi_packages/dhcp-4.2.4-P2/etc/dhclient.conf
+export LC_ALL=pl_PL.UTF-8
+export LANG-pl_PL.UTF-8
 
 /bin/bash
 

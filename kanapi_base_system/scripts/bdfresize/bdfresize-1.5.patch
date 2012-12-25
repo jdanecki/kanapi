@@ -1,0 +1,12 @@
+diff -urNp bdfresize-1.5-orig/charresize.c bdfresize-1.5/charresize.c
+--- bdfresize-1.5-orig/charresize.c	2000-12-12 11:18:14.000000000 +0000
++++ bdfresize-1.5/charresize.c	2012-12-23 03:16:11.028455984 +0000
+@@ -46,7 +46,7 @@ static int	bit[8] = { 0x80, 0x40, 0x20,
+ void
+ processChar(void)
+ {
+-  char	*malloc();
++  //char	*malloc();
+   char	*srcimage;
+   int	*dstgray;
+ 

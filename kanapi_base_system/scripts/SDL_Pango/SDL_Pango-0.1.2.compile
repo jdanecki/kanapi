@@ -17,24 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xterm
-VER=281
+PACKAGE_NAME=SDL_Pango
+VER=0.1.2
 . ../settings
 
-export CFLAGS="${NCURSES_HDR}/ncurses ${NCURSES_HDR} `pkg-config --cflags xaw3d fontconfig`"
-export LDFLAGS="${NCURSES_LIB} `pkg-config --libs ice freetype2 xaw3d fontconfig` -ldl"
-export CPP="${CPP_X11} ${NCURSES_HDR}"
+export LDFLAGS="-lrt -lm -ldl -lpthread"
 
-#export LD_LIBRARY_PATH="`pkg-config --variable=libdir ice freetype2`"
-
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX  --with-x --with-Xaw3d --enable-delete-is-del \
-	--enable-256-color --enable-exec-xterm --enable-freetype --enable-i18n --enable-readline-mouse \
-	--enable-luit --enable-wide-chars 
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
-make -j 2 install-ti MAKEINFO=true
 
 ln -s ${PREFIX}/bin/* /bin
-mkdir -p /kanapi_packages/libXt-1.1.3/lib/X11/app-defaults
-ln -s ${PREFIX}/lib/X11/app-defaults/* /kanapi_packages/libXt-1.1.3/lib/X11/app-defaults
 
