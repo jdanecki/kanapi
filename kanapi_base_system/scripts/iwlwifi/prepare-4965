@@ -20,7 +20,7 @@
 . ../functions
 
 # URL to package
-# http://ftp.gnome.org/pub/gnome/sources/intltool/0.40
+# http://intellinuxwireless.org/?n=Downloads
 
 PACKAGE_NAME=iwlwifi-4965-ucode
 VER=228.61.2.24

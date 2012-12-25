@@ -17,9 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=iwlwifi-4965-ucode
-VER=228.61.2.24
+PACKAGE_NAME=iwlwifi-3945-ucode
+VER=15.32.2.9
 
-cp ../../src/${PACKAGE_NAME}-${VER}/iwlwifi-4965-2.ucode /kanapi_packages/linux-3.5.3/firmware
+cp ../../src/${PACKAGE_NAME}-${VER}/iwlwifi-3945-2.ucode /kanapi_packages/linux-3.5.3/firmware
 
 
