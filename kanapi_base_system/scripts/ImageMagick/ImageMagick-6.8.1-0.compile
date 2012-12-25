@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=ImageMagick
+VER=6.8.1-0
+. ../settings
+
+export LDFLAGS="-L/kanapi_packages/bzip2-1.0.6/lib ${ZLIB_LIB} `pkg-config --libs x11 sm ice xt xpm cairo fontconfig freetype2 xext zlib libpng libtiff-4` \
+	-lpthread -lrt -lm -lstdc++ -lresolv -ldl -L/kanapi_packages/jpeg-8d/lib"
+export CFLAGS="-I/kanapi_packages/bzip2-1.0.6/include ${ZLIB_HDR} `pkg-config --cflags x11 xpm ice sm  xt fontconfig freetype2 xext zlib libpng libtiff-4` \
+	-I/kanapi_packages/jpeg-8d/include"
+export CPP="${CPP_X11}"
+
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --with-x
+#--with-modules --with-perl
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+
+ln -s ${PREFIX}/bin/* /bin
+
