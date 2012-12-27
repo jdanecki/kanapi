@@ -222,10 +222,10 @@ todo: pcre oniguruma
 * pygobject
 * numpy
 * pygtk 
+todo: PyOpenGL
+* Pygame
 
 TODO:
-
-Pygame www.pygame.org
 
 scipy http://scipy.github.com/download.html
 
