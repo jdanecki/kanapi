@@ -208,24 +208,46 @@ todo: pcre oniguruma
 * tuxpaint
 * sdl_rotozoom - deprecated by sdl-gfx
 * sdl-gfx http://www.ferzkopp.net/joomla/software-mainmenu-14/4-ferzkopps-linux-software/19-sdlgfx
+* Thunar
+* readline
+* cgdb
+* libglade
+* libxfcegui4
+* libsoup
+* http://goodies.xfce.org/projects/applications/xfce4-screenshooter
+* tcl
+* tk
+* ri-li
 
 TODO:
-cgdb http://cgdb.github.com/
-tzdata http://www.iana.org/time-zones
+
++ py2cairo
++ pygobject
++ numpy
++ pygtk 
+
+Pygame www.pygame.org
+
+scipy http://scipy.github.com/download.html
+
+SQLAlchemy www.sqlalchemy.org
+libogg0 http://downloads.xiph.org/releases/ogg/
+- childsplay
+
+- gcompris http://sourceforge.net/projects/gcompris/files/12.11/
+- omnitux http://sourceforge.net/projects/omnitux/files/omnitux/v1.2.1/
 
 todo: http://sourceforge.net/projects/gpaint
 todo: http://sourceforge.net/projects/kolourpaint/
 - pencil
 - calc
 - notes
-- childsplay
-- gcompris
-- omnitux
 - squeak
 - scratch
 - tux packages: tuxmath, tuxtyping
 - sugar
-tcl/tk
+gtk-xfce-engine, http://archive.xfce.org/xfce/4.10/src
+tzdata http://www.iana.org/time-zones
 
 webkitgtk http://www.linuxfromscratch.org/blfs/view/svn/x/webkitgtk.html
 - chrome
@@ -245,4 +267,7 @@ POSTPONED:
 -network-manager-applet - need gnome-keyring
 
 http://www.linuxfromscratch.org/blfs/view/svn/index.html
+-Wl,-rpath=directory_with_libs:drugi_katalog
+objdump -x app | grep RPATH
+
 
