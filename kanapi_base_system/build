@@ -192,6 +192,13 @@ libpng 			1.4.12
 tuxpaint		0.9.21
 sdl_rotozoom		1.6
 sdl-gfx			2.0.24
+Thunar			1.4.0
+readline		6.2
+cgdb			0.6.6
+libglade		2.6.4
+libxfcegui4		4.10.0
+libsoup			2.38.1
+xfce4-screenshooter	1.7.9
 
 #####################################################################################################
 component	FBS			SBS				package
