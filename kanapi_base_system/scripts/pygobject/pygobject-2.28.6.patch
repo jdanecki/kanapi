@@ -1,0 +1,29 @@
+diff -urN pygobject-2.28.6-orig/gi/pygi-info.c pygobject-2.28.6/gi/pygi-info.c
+--- pygobject-2.28.6-orig/gi/pygi-info.c	2011-06-13 16:30:25.000000000 +0000
++++ pygobject-2.28.6/gi/pygi-info.c	2012-12-27 14:14:54.709514681 +0000
+@@ -162,9 +162,6 @@
+         case GI_INFO_TYPE_CONSTANT:
+             type = &PyGIConstantInfo_Type;
+             break;
+-        case GI_INFO_TYPE_ERROR_DOMAIN:
+-            type = &PyGIErrorDomainInfo_Type;
+-            break;
+         case GI_INFO_TYPE_UNION:
+             type = &PyGIUnionInfo_Type;
+             break;
+@@ -481,7 +478,6 @@
+                 case GI_INFO_TYPE_INVALID:
+                 case GI_INFO_TYPE_FUNCTION:
+                 case GI_INFO_TYPE_CONSTANT:
+-                case GI_INFO_TYPE_ERROR_DOMAIN:
+                 case GI_INFO_TYPE_VALUE:
+                 case GI_INFO_TYPE_SIGNAL:
+                 case GI_INFO_TYPE_PROPERTY:
+@@ -860,7 +856,6 @@
+                     case GI_INFO_TYPE_INVALID:
+                     case GI_INFO_TYPE_FUNCTION:
+                     case GI_INFO_TYPE_CONSTANT:
+-                    case GI_INFO_TYPE_ERROR_DOMAIN:
+                     case GI_INFO_TYPE_VALUE:
+                     case GI_INFO_TYPE_SIGNAL:
+                     case GI_INFO_TYPE_PROPERTY:

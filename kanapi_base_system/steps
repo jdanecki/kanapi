@@ -218,13 +218,12 @@ todo: pcre oniguruma
 * tcl
 * tk
 * ri-li
+* py2cairo
+* pygobject
+* numpy
+* pygtk 
 
 TODO:
-
-+ py2cairo
-+ pygobject
-+ numpy
-+ pygtk 
 
 Pygame www.pygame.org
 
@@ -236,6 +235,7 @@ libogg0 http://downloads.xiph.org/releases/ogg/
 
 - gcompris http://sourceforge.net/projects/gcompris/files/12.11/
 - omnitux http://sourceforge.net/projects/omnitux/files/omnitux/v1.2.1/
+- gnurobo
 
 todo: http://sourceforge.net/projects/gpaint
 todo: http://sourceforge.net/projects/kolourpaint/
