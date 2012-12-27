@@ -204,7 +204,7 @@ todo: pcre oniguruma
 * libpaper
 * xz
 * libpng 1.4.12 - tuxpaint needs this version
-* recompile SDL with alsa support and threads support
+* recompile SDL with alsa and threads support
 * tuxpaint
 * sdl_rotozoom - deprecated by sdl-gfx
 * sdl-gfx http://www.ferzkopp.net/joomla/software-mainmenu-14/4-ferzkopps-linux-software/19-sdlgfx
@@ -224,18 +224,22 @@ todo: pcre oniguruma
 * pygtk 
 todo: PyOpenGL
 * Pygame
+* libogg0
+* libvorbis
+* SDL_mixer recompile with ogg support
+* gnurobbo
+* omnitux
 
 TODO:
+
+
+gnuchess
+- gcompris http://sourceforge.net/projects/gcompris/files/12.11/
 
 scipy http://scipy.github.com/download.html
 
 SQLAlchemy www.sqlalchemy.org
-libogg0 http://downloads.xiph.org/releases/ogg/
 - childsplay
-
-- gcompris http://sourceforge.net/projects/gcompris/files/12.11/
-- omnitux http://sourceforge.net/projects/omnitux/files/omnitux/v1.2.1/
-- gnurobo
 
 todo: http://sourceforge.net/projects/gpaint
 todo: http://sourceforge.net/projects/kolourpaint/
@@ -257,6 +261,7 @@ webkitgtk http://www.linuxfromscratch.org/blfs/view/svn/x/webkitgtk.html
 	supertuxkart,cuyo,frozen-bubble, xboard, fillets-ng,torcs,pingus, 
 - libreoffice
 - firefox
+- vlc http://www.videolan.org/vlc/download-sources.html
 
 POSTPONED:
 - matchbox
