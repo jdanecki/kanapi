@@ -231,12 +231,11 @@ todo: PyOpenGL
 * omnitux
 * gnuchess
 * gcompris
+* sqlite
+
+webkitgtk http://webkitgtk.org/?page=download
 
 TODO:
-scipy http://scipy.github.com/download.html
-SQLAlchemy www.sqlalchemy.org
-- childsplay
-
 todo: http://sourceforge.net/projects/gpaint
 todo: http://sourceforge.net/projects/kolourpaint/
 - pencil
@@ -249,19 +248,21 @@ todo: http://sourceforge.net/projects/kolourpaint/
 gtk-xfce-engine, http://archive.xfce.org/xfce/4.10/src
 tzdata http://www.iana.org/time-zones
 
-webkitgtk http://www.linuxfromscratch.org/blfs/view/svn/x/webkitgtk.html
 - chrome
 - abiword
 - music/multimedia package
-- games:gnurobo, supertux, minecraft,rili,funnyboat,abe,berusky,freeciv,alex the aligator 4,rocksdiamonfds,
+- games: supertux, minecraft,funnyboat,abe,berusky,freeciv,alex the aligator 4,rocksdiamonfds,
 	supertuxkart,cuyo,frozen-bubble, xboard, fillets-ng,torcs,pingus, 
 - libreoffice
 - firefox
 - vlc http://www.videolan.org/vlc/download-sources.html
+scipy http://scipy.github.com/download.html
+SQLAlchemy www.sqlalchemy.org
+- childsplay
+http://sourceforge.net/projects/vdrift/files/vdrift/vdrift-2012-07-22/
 
 POSTPONED:
 - matchbox
-- setxkbmap
 - xkbutils
 - ice
 - iceauth
