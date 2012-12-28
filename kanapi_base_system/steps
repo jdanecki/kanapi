@@ -232,7 +232,9 @@ todo: PyOpenGL
 * gnuchess
 * gcompris
 * sqlite
+* cpio
 
+matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
 webkitgtk http://webkitgtk.org/?page=download
 
 TODO:
@@ -262,7 +264,6 @@ SQLAlchemy www.sqlalchemy.org
 http://sourceforge.net/projects/vdrift/files/vdrift/vdrift-2012-07-22/
 
 POSTPONED:
-- matchbox
 - xkbutils
 - ice
 - iceauth
