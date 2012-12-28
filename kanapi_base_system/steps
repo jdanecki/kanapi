@@ -229,15 +229,11 @@ todo: PyOpenGL
 * SDL_mixer recompile with ogg support
 * gnurobbo
 * omnitux
+* gnuchess
+* gcompris
 
 TODO:
-
-
-gnuchess
-- gcompris http://sourceforge.net/projects/gcompris/files/12.11/
-
 scipy http://scipy.github.com/download.html
-
 SQLAlchemy www.sqlalchemy.org
 - childsplay
 

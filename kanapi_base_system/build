@@ -211,6 +211,8 @@ libogg			1.3.0
 libvorbis		1.3.3
 gnurobbo		0.66
 omnitux			1.2.1
+gnuchess		6.0.2
+gcompris		12.11
 
 #####################################################################################################
 component	FBS			SBS				package
