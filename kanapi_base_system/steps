@@ -233,6 +233,7 @@ todo: PyOpenGL
 * gcompris
 * sqlite
 * cpio
+* dosfstools
 
 matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
 webkitgtk http://webkitgtk.org/?page=download
