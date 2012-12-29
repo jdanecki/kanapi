@@ -24,6 +24,7 @@ mkdir initrd_usb/mnt
 mkdir initrd_usb/bin_boot
 mkdir initrd_usb/proc
 mkdir initrd_usb/tmp
+mkdir initrd_usb/sbin
 mkdir -p initrd_usb/run/udev
 
 for d in dev etc usr
@@ -49,6 +50,8 @@ do
 done
 
 cp boot_usb/init initrd_usb/init
+cp boot_usb/modprobe initrd_usb/init
+
 cp ../kanapi_base_system/.xinitrc   initrd_usb/root
 cp ../kanapi_base_system/.xserverrc initrd_usb/root
 cp ../kanapi_base_system/start_xfce initrd_usb/root
@@ -58,6 +61,10 @@ ln -s bin_boot bin
 
 cd bin_boot
 ln -sf ../kanapi_packages/*/bin/* .
+cd ..
+
+cd sbin
+ln -s /bin/blkid .
 cd ..
 
 find . -print | cpio -o -Hnewc > ../boot_usb/initrd

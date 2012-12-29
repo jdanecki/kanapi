@@ -16,36 +16,73 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+echo "###########################################################"
+echo "#                                                         #"
+echo "#                                                         #"
+echo "#                       Witam w KaNaPi                    #"
+echo "#                                                         #"
+echo "#                                                         #"
+echo "###########################################################"
 
-echo "Witam w KaNaPi"
+export LANG=pl_PL.UTF-8
+export LC_ALL=pl_PL.UTF-8
+export EDITOR=vim
 
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
+mount -t devpts devpts /dev/pts
 echo "czekam na dysk"
 sleep 3
 
 mount -t ext4 /dev/sdb2 -o noatime /kanapi_packages
-ln -sfn /kanapi_packages/bin /bin
+grep kanapi_packages /proc/mounts
+if [ $? != 0 ]
+then
+	mount -t ext4 /dev/sda2 -o noatime /kanapi_packages
+fi
 
-mount -t devpts devpts /dev/pts
+grep kanapi_packages /proc/mounts
+if [ $? != 0 ]
+then
+	echo "#######################################"
+	echo "####   Nie moge wystartowac KaNaPi ####"
+	echo "#######################################"
+	echo "#    Napisz o tym pod adres:          #"
+	echo "#   jacek.m.danecki@gmail.com         #"
+	echo "#######################################"
+	exec /bin/bash
+fi
+
+ln -sfn /kanapi_packages/bin /bin
+rm -rf /root
+ln -sfv /kanapi_packages/config/* /
+ln -sfv /kanapi_packages/config/.* /
+
 export USER=root
 export HOME=/root
 export PATH=/bin:.
+depmod -a
 
-ln -s /kanapi_packages/font-util-1.3.0/share/fonts /root/.fonts
-ln -s /kanapi_packages/xfconf-4.10.0/share/dbus-1/services/org.xfce.Xfconf.service /kanapi_packages/dbus-1.6.8/share/dbus-1/services
+ifconfig lo up
 
 export LD_LIBRARY_PATH=/kanapi_packages/libs
 
-/kanapi_packages/udev-182/libexec/udev/udevd --daemon
+/kanapi_packages/udev-175/libexec/udevd --daemon
+udevadm trigger
+udevadm settle
+lsmod
 rm -f /kanapi_packages/dbus-1.6.8/var/run/dbus/pid
 dbus-daemon --system
+alsactl init
 
-modprobe -d /kanapi_packages/linux-3.5.3/ iwl4965
-modprobe -d /kanapi_packages/linux-3.5.3/ iwl3945
-
-wpa_supplicant -B -Dwext -iwlan0 -c /kanapi_packages/wpa_supplicant-1.1/etc/biv2.conf
+wpa_supplicant -B -Dwext -iwlan0 -c /kanapi_packages/wpa_supplicant-1.1/etc/wifi.conf
 dhclient wlan0 -cf /kanapi_packages/dhcp-4.2.4-P2/etc/dhclient.conf
 
-/bin/bash
+wpa_supplicant -B -Dwext -ieth1 -c /kanapi_packages/wpa_supplicant-1.1/etc/wifi.conf
+dhclient eth1 -cf /kanapi_packages/dhcp-4.2.4-P2/etc/dhclient.conf
+
+startx
+
+sync; sync; sync
+mount -o remount,ro /kanapi_packages
 
