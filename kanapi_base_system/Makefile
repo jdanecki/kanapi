@@ -17,7 +17,9 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 # this file is not updated to the latest version
+# and was not tested yet
 #
+
 DIRS0="diffutils gzip bzip2 linux net-tools wget Python libffi glib pkg-config pixman kbproto strace xproto \
 xextproto xtrans libxml2 libxslt xcb-proto libpthread-stubs libXau libxcb inputproto util-macros libX11 \
 glproto makedepend libpciaccess libdrm dri2proto libXext damageproto fixesproto libXfixes libXdamage \

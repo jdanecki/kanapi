@@ -22,5 +22,12 @@ exec /bin/X -verbose -modulepath "/kanapi_packages/xf86-video-fbdev-0.4.2/lib/xo
 /kanapi_packages/xorg-server-1.12.2/lib/xorg/modules,\
 /kanapi_packages/xf86-input-mouse-1.7.2/lib/xorg/modules/input,\
 /kanapi_packages/xf86-input-keyboard-1.6.1/lib/xorg/modules/input,\
-/kanapi_packages/xf86-video-intel-2.19.0/lib/xorg/modules/drivers"
+/kanapi_packages/xf86-video-intel-2.19.0/lib/xorg/modules/drivers" \
+-fp "/kanapi_packages/font-cursor-misc-1.0.3/share/fonts/X11/misc/,\
+/kanapi_packages/font-util-1.3.0/share/fonts/X11/Type1/,\
+/kanapi_packages/font-util-1.3.0/share/fonts/X11/100dpi/,\
+/kanapi_packages/font-util-1.3.0/share/fonts/X11/75dpi/,\
+/kanapi_packages/font-util-1.3.0/share/fonts/X11/efont"
+
+
 

@@ -17,9 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-eval `dbus-launch --sh-syntax`
+eval `dbus-launch --sh-syntax --exit-with-session`
+setxkbmap pl
 /root/start_xfce
-
+alsactl init
 xterm
 #-geometry 237x68
 

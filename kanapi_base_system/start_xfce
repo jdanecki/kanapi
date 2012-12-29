@@ -1,4 +1,11 @@
-xfwm4 &
-xfce4-panel &
+#run xfconfd
+xfconf-query -l
+echo xfsettingsd
+xfsettingsd
+echo xfwm4
+xfwm4 --daemon
+echo xfdesktop
 xfdesktop &
+echo xfce4-panel
+xfce4-panel &
 
