@@ -240,13 +240,23 @@ todo: PyOpenGL
 * as86
 * mbr
 * lua
+*libmad
 
+todo: madplay http://www.underbit.com/products/mad/
+
+yasm
+libav
 - vlc http://www.videolan.org/vlc/download-sources.html
 
-matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
+TODO:
+
+mpg321
+lame
+
+lxlauncher
+
 webkitgtk http://webkitgtk.org/?page=download
 
-TODO:
 todo: http://sourceforge.net/projects/gpaint
 todo: http://sourceforge.net/projects/kolourpaint/
 - pencil
@@ -269,12 +279,15 @@ tzdata http://www.iana.org/time-zones
 scipy http://scipy.github.com/download.html
 SQLAlchemy www.sqlalchemy.org
 - childsplay
+pysycache
+
 http://sourceforge.net/projects/vdrift/files/vdrift/vdrift-2012-07-22/
 qemu
 - xkbutils
 - ice
 - iceauth
 -network-manager-applet - need gnome-keyring
+matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
 
 http://www.linuxfromscratch.org/blfs/view/svn/index.html
 
