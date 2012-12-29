@@ -234,7 +234,13 @@ todo: PyOpenGL
 * sqlite
 * cpio
 * dosfstools
+* nasm
+* syslinux
+* mtools
+* as86
+* mbr
 
+qemu
 matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
 webkitgtk http://webkitgtk.org/?page=download
 
