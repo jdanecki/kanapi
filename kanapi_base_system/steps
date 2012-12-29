@@ -239,8 +239,10 @@ todo: PyOpenGL
 * mtools
 * as86
 * mbr
+* lua
 
-qemu
+- vlc http://www.videolan.org/vlc/download-sources.html
+
 matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
 webkitgtk http://webkitgtk.org/?page=download
 
@@ -264,20 +266,20 @@ tzdata http://www.iana.org/time-zones
 	supertuxkart,cuyo,frozen-bubble, xboard, fillets-ng,torcs,pingus, 
 - libreoffice
 - firefox
-- vlc http://www.videolan.org/vlc/download-sources.html
 scipy http://scipy.github.com/download.html
 SQLAlchemy www.sqlalchemy.org
 - childsplay
 http://sourceforge.net/projects/vdrift/files/vdrift/vdrift-2012-07-22/
-
-POSTPONED:
+qemu
 - xkbutils
 - ice
 - iceauth
 -network-manager-applet - need gnome-keyring
 
 http://www.linuxfromscratch.org/blfs/view/svn/index.html
--Wl,-rpath=directory_with_libs:drugi_katalog
+
+gcc -Wl,-rpath=directory_with_libs:drugi_katalog
+
 objdump -x app | grep RPATH
 
 
