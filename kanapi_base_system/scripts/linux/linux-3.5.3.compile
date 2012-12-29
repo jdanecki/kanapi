@@ -35,14 +35,28 @@ for f in errno socket sockios errno types bitsperlong posix_types posix_types_32
 do
 	if [ ! -f /usr/include/asm/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/arch/x86/include/asm/${f}.h /usr/include/asm ; fi
 done
-#make -C ../../src/linux-3.5.3/ O=`pwd` HOST_EXTRACFLAGS='${NCURSES_HDR}/ncurses ${NCURSES_HDR} ${NCURSES_LIB} -lncurses -DCURSES_LOC="<ncurses.h>"' menuconfig
-#make  -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` i386_defconfig
-make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2 oldconfig
-make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2 all
-make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_MOD_PATH=${PREFIX} modules_install
-make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_FW_PATH=${PREFIX}/firmware firmware_install
-make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_HDR_PATH=${PREFIX} headers_install
-cp arch/x86/boot/bzImage ${PREFIX}
 
-rm -rf /usr/include/linux /usr/include/asm-generic /usr/include/asm
-ln -s ${PREFIX}/include/* /usr/include
+config() {
+	make -C ../../src/linux-3.5.3/ O=`pwd` HOST_EXTRACFLAGS='${NCURSES_HDR}/ncurses ${NCURSES_HDR} ${NCURSES_LIB} -lncurses -DCURSES_LOC="<ncurses.h>"' menuconfig
+	#make  -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` i386_defconfig
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2 oldconfig
+}
+
+compile() {
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2 all
+}
+
+install() {
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_MOD_PATH=${PREFIX} modules_install
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_FW_PATH=${PREFIX}/firmware firmware_install
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_HDR_PATH=${PREFIX} headers_install
+	cp arch/x86/boot/bzImage ${PREFIX}
+
+	rm -rf /usr/include/linux /usr/include/asm-generic /usr/include/asm
+	ln -s ${PREFIX}/include/* /usr/include
+}
+
+config
+compile
+install
+
