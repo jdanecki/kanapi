@@ -248,10 +248,10 @@ todo: PyOpenGL
 * madplay
 * x11perf
 * gtkperf
+* mplayer
 
 TODO:
 
-mplayer
 - vlc http://www.videolan.org/vlc/download-sources.html
 mpg321
 lame
@@ -290,7 +290,7 @@ qemu
 - iceauth
 -network-manager-applet - need gnome-keyring
 matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
-
+defoma
 http://www.linuxfromscratch.org/blfs/view/svn/index.html
 http://roscidus.com/desktop/
 
