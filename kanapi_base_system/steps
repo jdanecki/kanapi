@@ -247,8 +247,10 @@ todo: PyOpenGL
 * libid3tag
 * madplay
 * x11perf
+* gtkperf
 
 TODO:
+
 mplayer
 - vlc http://www.videolan.org/vlc/download-sources.html
 mpg321
