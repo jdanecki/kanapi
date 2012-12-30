@@ -242,10 +242,10 @@ todo: PyOpenGL
 * lua
 *libmad
 * shared-mime-info
+* yasm
 
 todo: madplay http://www.underbit.com/products/mad/
 
-yasm
 libav
 - vlc http://www.videolan.org/vlc/download-sources.html
 
