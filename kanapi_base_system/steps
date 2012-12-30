@@ -241,22 +241,19 @@ todo: PyOpenGL
 * mbr
 * lua
 *libmad
+todo: madplay http://www.underbit.com/products/mad/
 * shared-mime-info
 * yasm
-
-todo: madplay http://www.underbit.com/products/mad/
-
-libav
-- vlc http://www.videolan.org/vlc/download-sources.html
-
+* libav
 
 TODO:
-
+- vlc http://www.videolan.org/vlc/download-sources.html
+mplayer
+x11perf
 mpg321
 lame
-
 lxlauncher
-http://roscidus.com/desktop/
+
 
 webkitgtk http://webkitgtk.org/?page=download
 
@@ -287,12 +284,12 @@ pysycache
 http://sourceforge.net/projects/vdrift/files/vdrift/vdrift-2012-07-22/
 qemu
 - xkbutils
-- ice
 - iceauth
 -network-manager-applet - need gnome-keyring
 matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
 
 http://www.linuxfromscratch.org/blfs/view/svn/index.html
+http://roscidus.com/desktop/
 
 gcc -Wl,-rpath=directory_with_libs:drugi_katalog
 
