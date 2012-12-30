@@ -246,11 +246,11 @@ todo: PyOpenGL
 * libav
 * libid3tag
 * madplay
+* x11perf
 
 TODO:
 mplayer
 - vlc http://www.videolan.org/vlc/download-sources.html
-x11perf
 mpg321
 lame
 lxlauncher

@@ -58,4 +58,5 @@ ln -s /kanapi_packages/libxslt-1.1.27/lib/lib* /kanapi_packages/libs
 ln -s /kanapi_packages/libvorbis-1.3.3/lib/libvorbis* /kanapi_packages/libs
 ln -s /kanapi_packages/libogg-1.3.0/lib/libogg.* /kanapi_packages/libs
 ln -s /kanapi_packages/libmad-0.15.1b/lib/libmad.* /kanapi_packages/libs
+ln -s /kanapi_packages/libXrender-0.9.7/lib/libXrender.* /kanapi_packages/libs
 
