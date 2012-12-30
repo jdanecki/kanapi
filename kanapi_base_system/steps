@@ -241,6 +241,7 @@ todo: PyOpenGL
 * mbr
 * lua
 *libmad
+* shared-mime-info
 
 todo: madplay http://www.underbit.com/products/mad/
 
@@ -248,12 +249,14 @@ yasm
 libav
 - vlc http://www.videolan.org/vlc/download-sources.html
 
+
 TODO:
 
 mpg321
 lame
 
 lxlauncher
+http://roscidus.com/desktop/
 
 webkitgtk http://webkitgtk.org/?page=download
 
