@@ -241,14 +241,15 @@ todo: PyOpenGL
 * mbr
 * lua
 *libmad
-todo: madplay http://www.underbit.com/products/mad/
 * shared-mime-info
 * yasm
 * libav
+* libid3tag
 
 TODO:
-- vlc http://www.videolan.org/vlc/download-sources.html
+madplay 
 mplayer
+- vlc http://www.videolan.org/vlc/download-sources.html
 x11perf
 mpg321
 lame
