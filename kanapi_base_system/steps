@@ -302,7 +302,7 @@ todo: PyOpenGL
 * gnutls 3.1.6
 * glib-networking 2.35.3
 * midori 0.4.7 - segfault on html5test.com
-
+* lua 5.1.5
 
 ############ PREPARED and  ready to add ###################################
 

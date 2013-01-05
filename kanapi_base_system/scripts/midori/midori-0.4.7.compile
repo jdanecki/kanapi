@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=midori
+VER=0.4.7
+. ../settings
+
+local_copy
+#cd build
+export LIBSOUP_CFLAGS="-I/kanapi_packages/libsoup-2.41.3/include/libsoup-2.4"
+export LIBSOUP_LIBS="-L/kanapi_packages/libsoup-2.41.3/lib -lsoup-2.4"
+export CFLAGS="${LIBSOUP_CFLAGS}"
+export LDFLAGS="-ldl -lresolv -lm -lpthread -lrt ${LIBSOUP_LIBS} \
+	-L/kanapi_packages/glib-2.35.3/lib \
+	-Wl,-rpath=/kanapi_packages/glib-2.35.3/lib -lglib-2.0 -lgobject-2.0 -lgmodule-2.0 -lgio-2.0"
+
+./configure --prefix=$PREFIX --disable-gtk3 --disable-libnotify --disable-unique 
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+
+cp midori_start.sh  ${PREFIX}/bin
+ln -s ${PREFIX}/bin/midori_start.sh /bin/midori
+
+
