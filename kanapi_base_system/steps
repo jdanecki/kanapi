@@ -647,6 +647,7 @@ font-schumacher-misc	1.1.2
 font-sony-misc		1.0.3
 font-sun-misc		1.0.3
 liba52			0.7.4
+a52dec			0.7.4
 
 #####################################################################################################
 component	FBS			SBS				package
