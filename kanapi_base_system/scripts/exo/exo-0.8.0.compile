@@ -23,8 +23,9 @@ VER=0.8.0
 
 export PERL5LIB="/kanapi_packages/URI-1.60/lib/site_perl/5.16.1"
 export CPP=${CPP_X11}
+export LDFLAGS="`pkg-config --libs x11 ice` -ldl"
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --with-x
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
