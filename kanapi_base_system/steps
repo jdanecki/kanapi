@@ -274,13 +274,13 @@ todo: PyOpenGL
 * SDL_net 1.2.8
 * t4k_common 0.1.1
 * tuxmath 2.0.1
+* libmikmod 3.2.0
+* mikmod 3.2.2
+* SDL_mixer 1.2.12 recompile with MOD support
+* tuxtype 1.8.1
 
 ############ PREPARED and  ready to add ###################################
 
-* libmikmod
-* mikmod 
-* SDL_mixer recompile with MOD support
-* tuxtype
 
 * xcb-util
 * xcb-util-keysyms
