@@ -59,4 +59,19 @@ ln -s /kanapi_packages/libvorbis-1.3.3/lib/libvorbis* /kanapi_packages/libs
 ln -s /kanapi_packages/libogg-1.3.0/lib/libogg.* /kanapi_packages/libs
 ln -s /kanapi_packages/libmad-0.15.1b/lib/libmad.* /kanapi_packages/libs
 ln -s /kanapi_packages/libXrender-0.9.7/lib/libXrender.* /kanapi_packages/libs
+ln -s /kanapi_packages/fribidi-0.19.5/lib/libfribidi.* /kanapi_packages/libs
+ln -s /kanapi_packages/libsoup-2.38.1/lib/libsoup-2.4.* /kanapi_packages/libs
+ln -s /kanapi_packages/icu4c-50_1_1/lib/libicu* /kanapi_packages/libs
+ln -s /kanapi_packages/librsvg-2.36.4/lib/lib* /kanapi_packages/libs
+ln -s /kanapi_packages/SDL_net-1.2.8/lib/libSDL_net* /kanapi_packages/libs
+ln -s /kanapi_packages/t4k_common-0.1.1/lib/libt4k_common.* /kanapi_packages/libs
+ln -s /kanapi_packages/SDL_Pango-0.1.2/lib/libSDL_Pango.* /kanapi_packages/libs
+ln -s /kanapi_packages/webkitgtk-1.10.2/lib/lib* /kanapi_packages/libs
+ln -s /kanapi_packages/gstreamer-0.10.36/lib/libgst* /kanapi_packages/libs
+ln -s /kanapi_packages/udev-175/lib/lib* /kanapi_packages/libs
+ln -s /kanapi_packages/nettle-2.5/lib/lib* /kanapi_packages/libs
+ln -s /kanapi_packages/gst-plugins-base-0.10.36/lib/libgst* /kanapi_packages/libs
+ln -s /kanapi_packages/libXi-1.6.1/lib/libXi.* /kanapi_packages/libs
+ln -s /kanapi_packages/libmikmod-3.2.0/lib/libmikmod.* /kanapi_packages/libs
+ln -s /kanapi_packages/libXrandr-1.3.2/lib/libXrandr.* /kanapi_packages/libs
 
