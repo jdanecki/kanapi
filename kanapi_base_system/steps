@@ -293,24 +293,19 @@ todo: PyOpenGL
 * gst-plugins-base 0.10.36
 * webkitgtk 1.10.2 needs libsoup >= 2.39.3, gstreamer 0.10.36
 * wxWidgets 2.9.4
+* qt 4.8.4
+* vlc 2.0.5 - recompile with Qt
+* qt 5.0
 
 
 ############ PREPARED and  ready to add ###################################
-
-
-
-* qt 4.8.4
-* vlc 
-* qt 5.0
-
+* libXrandr
+* xrandr
+* nettle
+* gnutls
+* glib-networking
 * midori - segfault on html5test.com
 
-* nettle 
-* gnutls 
-* glib-networking
-
-* libXrandr
-* xrandr 
 
 ########### WIP ################################################
 
