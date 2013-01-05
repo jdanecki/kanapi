@@ -278,23 +278,24 @@ todo: PyOpenGL
 * mikmod 3.2.2
 * SDL_mixer 1.2.12 recompile with MOD support
 * tuxtype 1.8.1
-
-############ PREPARED and  ready to add ###################################
-
-
-* xcb-util
-* xcb-util-keysyms
-* icu http://site.icu-project.org/download/50
-* glib 2.33.14  
-* libsoup-2.39.2 needs glib 2.33.14  
+* xcb-util 0.3.9
+* xcb-util-keysyms 0.3.9
+* icu 4c-50.1.1
+* glib 2.33.14
+* libsoup-2.39.2 needs glib 2.33.14
 * glib 2.35.0
 * libsoup-2.41.3 needs glib 2.35.0
 * geoclue
 * gstreamer 1.04
-* libXcomposite
+* libXcomposite 0.4.3
 * gst-plugins-base 1.04
 * gstreamer 0.10.36
 * gst-plugins-base 0.10.36
+
+
+############ PREPARED and  ready to add ###################################
+
+
 * webkitgtk needs libsoup >= 2.39.3, gstreamer 0.10.36
 * wxWidgets
 * qt 4.8.4
