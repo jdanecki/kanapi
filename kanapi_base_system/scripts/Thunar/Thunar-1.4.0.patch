@@ -1,0 +1,19 @@
+diff -urNp Thunar-1.4.0-orig/thunar/thunar-window.c Thunar-1.4.0/thunar/thunar-window.c
+--- Thunar-1.4.0-orig/thunar/thunar-window.c	2012-04-28 20:16:39.000000000 +0000
++++ Thunar-1.4.0/thunar/thunar-window.c	2013-01-06 19:25:51.889855582 +0000
+@@ -798,6 +798,7 @@ thunar_window_init (ThunarWindow *window
+   gtk_widget_show (window->throbber);
+ 
+   /* check if we need to add the root warning */
++#if 0
+   if (G_UNLIKELY (geteuid () == 0))
+     {
+       /* install default settings for the root warning text box */
+@@ -821,6 +822,7 @@ thunar_window_init (ThunarWindow *window
+       gtk_table_attach (GTK_TABLE (window->table), separator, 0, 1, 3, 4, GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
+       gtk_widget_show (separator);
+     }
++#endif
+ 
+   window->paned = gtk_hpaned_new ();
+   gtk_container_set_border_width (GTK_CONTAINER (window->paned), 0);
