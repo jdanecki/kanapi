@@ -304,6 +304,7 @@ todo: PyOpenGL
 * lua 5.1.5
 * Thunar 1.4.0 - recompile without "root warning"
 * openssh 6.1p1
+* openssl 1.0.1c -recompile with shared libraries
 
 ############ PREPARED and  ready to add ###################################
 
