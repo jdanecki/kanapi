@@ -175,7 +175,6 @@ later: http://code.google.com/intl/en-US/speed/webp/index.html
 * ImageMagick
 * tango-icon-theme
 * libXi
-todo: xrandr
 todo: libnotify
 * xfce4-settings
 * libelf
@@ -303,6 +302,8 @@ todo: PyOpenGL
 * glib-networking 2.35.3
 * midori 0.4.7 - segfault on html5test.com
 * lua 5.1.5
+* Thunar 1.4.0 - recompile without "root warning"
+* openssh 6.1p1
 
 ############ PREPARED and  ready to add ###################################
 
@@ -325,7 +326,6 @@ rdoc-3.9.4
 ? cmake- supertux http://supertux.lethargik.org/download.html
 
 ##########  TODO #############################################
-ssh
 
 todo: kde-  http://sourceforge.net/projects/kolourpaint/
 totem
