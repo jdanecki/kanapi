@@ -1,0 +1,48 @@
+diff -urNp webkit-1.1.17-orig/JavaScriptCore/jit/ExecutableAllocator.h webkit-1.1.17/JavaScriptCore/jit/ExecutableAllocator.h
+--- webkit-1.1.17-orig/JavaScriptCore/jit/ExecutableAllocator.h	2009-11-20 17:22:22.000000000 +0000
++++ webkit-1.1.17/JavaScriptCore/jit/ExecutableAllocator.h	2013-01-08 20:32:15.567873960 +0000
+@@ -32,7 +32,7 @@
+ #include <wtf/RefCounted.h>
+ #include <wtf/UnusedParam.h>
+ #include <wtf/Vector.h>
+-
++#include <cstddef>
+ #if PLATFORM(IPHONE)
+ #include <libkern/OSCacheControl.h>
+ #include <sys/mman.h>
+diff -urNp webkit-1.1.17-orig/JavaScriptCore/wtf/unicode/icu/UnicodeIcu.h webkit-1.1.17/JavaScriptCore/wtf/unicode/icu/UnicodeIcu.h
+--- webkit-1.1.17-orig/JavaScriptCore/wtf/unicode/icu/UnicodeIcu.h	2009-11-14 14:00:38.000000000 +0000
++++ webkit-1.1.17/JavaScriptCore/wtf/unicode/icu/UnicodeIcu.h	2013-01-08 21:56:46.872472188 +0000
+@@ -27,6 +27,7 @@
+ #include <unicode/uchar.h>
+ #include <unicode/ustring.h>
+ #include <unicode/utf16.h>
++#include <unicode/uversion.h>
+ 
+ namespace WTF {
+ namespace Unicode {
+diff -urNp webkit-1.1.17-orig/WebCore/dom/make_names.pl webkit-1.1.17/WebCore/dom/make_names.pl
+--- webkit-1.1.17-orig/WebCore/dom/make_names.pl	2013-01-08 19:34:52.458916040 +0000
++++ webkit-1.1.17/WebCore/dom/make_names.pl	2013-01-08 20:32:15.567873960 +0000
+@@ -46,7 +46,8 @@ my %tags = ();
+ my %attrs = ();
+ my %parameters = ();
+ my $extraDefines = 0;
+-my $preprocessor = "/usr/bin/gcc -E -P -x c++";
++#my $preprocessor = "/usr/bin/gcc -E -P -x c++";
++my $preprocessor = "/usr/bin/gcc -E -x c++";
+ 
+ GetOptions(
+     'tags=s' => \$tagsFile, 
+diff -urNp webkit-1.1.17-orig/WebCore/platform/text/TextBreakIterator.h webkit-1.1.17/WebCore/platform/text/TextBreakIterator.h
+--- webkit-1.1.17-orig/WebCore/platform/text/TextBreakIterator.h	2009-11-14 14:00:39.000000000 +0000
++++ webkit-1.1.17/WebCore/platform/text/TextBreakIterator.h	2013-01-08 21:58:18.212329151 +0000
+@@ -26,7 +26,7 @@
+ 
+ namespace WebCore {
+ 
+-    class TextBreakIterator;
++    typedef struct UBreakIterator TextBreakIterator;
+ 
+     // Note: The returned iterator is good only until you get another iterator.
+ 
