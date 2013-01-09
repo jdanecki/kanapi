@@ -306,11 +306,19 @@ todo: PyOpenGL
 * openssh 6.1p1
 * openssl 1.0.1c -recompile with shared libraries
 * abe 1.1
+* bison 2.5.1 
+* webkit-1.8.3 needs bison 2.5.1
+* midori 0.4.7 recompiled with webkit-1.8.3 - problem with javascript on html5test.com fixed
 
 ############ PREPARED and  ready to add ###################################
+#+ enchant 1.6.0
++ Switch.pm 2.16
++ libpng 1.2.50 
+todo: webkit-1.1.17 - not needed anymore since webkit-1.8.3 works OK, needs bison 2.5.1
 
-########### WIP ################################################
-
+########## WIP ################################################
++ unzip 6.0
+firefox 17.0.1 ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/17.0.1/source/
 
 bigdecimal-1.1.0,
 io-console-0.3
@@ -329,6 +337,7 @@ rdoc-3.9.4
 
 
 ##########  TODO #############################################
+firefox 18.0 ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/18.0/source/
 
 todo: kde-  http://sourceforge.net/projects/kolourpaint/
 totem
