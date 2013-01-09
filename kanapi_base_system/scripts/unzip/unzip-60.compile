@@ -17,31 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=Python
-VER=2.7.3
+PACKAGE_NAME=unzip
+VER=60
 . ../settings
 
-if ! grep zlib-1.2.7 ${LIBC_PREFIX}/etc/ld.so.conf
-then
-	echo "/kanapi_packages/zlib-1.2.7/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
-	ldconfig
-fi
+local_copy
+#cd build
+./unix/configure gcc
+ln -s unix/Makefile Makefile
 
-export LIBS="-lcrypt -lz -lncurses"
-export LDFLAGS="${NCURSES_LIB} `pkg-config --libs zlib sqlite3 openssl` \
-	-lpthread -ldl -lreadline -lbz2 \
-	-L/kanapi_packages/readline-6.2/lib \
-	-L/kanapi_packages/bzip2-1.0.6/lib" 
-export CFLAGS="${NCURSES_HDR} ${NCURSES_HDR}/ncurses \
-	-I/kanapi_packages/readline-6.2/include \
-	-I/kanapi_packages/bzip2-1.0.6/include \
-	`pkg-config --cflags zlib sqlite3 openssl `"
-export CPPFLAGS=${CFLAGS}
-
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX 
-
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+make linux
+make prefix=${PREFIX} install
 
 ln -s ${PREFIX}/bin/* /bin
+
 

@@ -17,31 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=Python
-VER=2.7.3
+PACKAGE_NAME=firefox
+VER=17.0.1.source
 . ../settings
 
-if ! grep zlib-1.2.7 ${LIBC_PREFIX}/etc/ld.so.conf
-then
-	echo "/kanapi_packages/zlib-1.2.7/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
-	ldconfig
-fi
-
-export LIBS="-lcrypt -lz -lncurses"
-export LDFLAGS="${NCURSES_LIB} `pkg-config --libs zlib sqlite3 openssl` \
-	-lpthread -ldl -lreadline -lbz2 \
-	-L/kanapi_packages/readline-6.2/lib \
-	-L/kanapi_packages/bzip2-1.0.6/lib" 
-export CFLAGS="${NCURSES_HDR} ${NCURSES_HDR}/ncurses \
-	-I/kanapi_packages/readline-6.2/include \
-	-I/kanapi_packages/bzip2-1.0.6/include \
-	`pkg-config --cflags zlib sqlite3 openssl `"
+export CPP="${CPP_X11} `pkg-config --cflags xt`"
+export CFLAGS="`pkg-config --cflags x11 xt fontconfig xext gl x11-xcb zlib xrender alsa gobject-2.0 dbus-glib-1` \
+	-I/kanapi_packages/wireless_tools-29/include"
 export CPPFLAGS=${CFLAGS}
+export LDFLAGS="-ldl -lrt -lpthread -lm -lstdc++ -lresolv \
+	`pkg-config --libs x11 xt fontconfig ice xext gl x11-xcb xrender zlib alsa gobject-2.0 dbus-glib-1`"
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX 
-
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-crashreporter --with-x
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
-ln -s ${PREFIX}/bin/* /bin
+ln -s ${PREFIX}/lib/${PACKAGE_NAME}-17.0.1/firefox /bin
+
 

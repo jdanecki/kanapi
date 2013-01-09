@@ -313,13 +313,13 @@ todo: PyOpenGL
 * Switch.pm 2.16
 * libpng 1.2.50 
 todo: webkit-1.1.17 - not needed anymore since webkit-1.8.3 works OK, needs bison 2.5.1
+* unzip 6.0
+* zip 3.0 
+* recompile python 2.7.3 with zlib and others modules
+* firefox 17.0.1 
 
-
-############ PREPARED and  ready to add ###################################
+########### PREPARED and  ready to add ###################################
 ########## WIP ################################################
-+ unzip 6.0
-firefox 17.0.1 ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/17.0.1/source/
-
 bigdecimal-1.1.0,
 io-console-0.3
 json-1.5.4
