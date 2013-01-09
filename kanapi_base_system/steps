@@ -317,8 +317,10 @@ todo: webkit-1.1.17 - not needed anymore since webkit-1.8.3 works OK, needs biso
 * zip 3.0 
 * recompile python 2.7.3 with zlib and others modules
 * firefox 17.0.1 
+* psmisc 22.20
 
 ########### PREPARED and  ready to add ###################################
+
 ########## WIP ################################################
 bigdecimal-1.1.0,
 io-console-0.3
