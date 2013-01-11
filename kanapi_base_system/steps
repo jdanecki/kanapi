@@ -319,16 +319,23 @@ todo: webkit-1.1.17 - not needed anymore since webkit-1.8.3 works OK, needs biso
 * firefox 17.0.1 
 * psmisc 22.20
 * sysvinit 2.88dsf 
+* squeak
+* etoys
 
 ########### PREPARED and  ready to add ###################################
 
 ########## WIP ################################################
-bigdecimal-1.1.0,
-io-console-0.3
-json-1.5.4
-minitest-2.5.1
-rake-0.9.2.2
-rdoc-3.9.4
+Pharo http://www.pharo-project.org
+alex the allegator http://allegator.sourceforge.net/
+maps http://allegator.sourceforge.net/a4maps/
+maps http://alex4.webz.cz/
+
+- bigdecimal-1.1.0,
+- io-console-0.3
+- json-1.5.4
+- minitest-2.5.1
+- rake-0.9.2.2
+- rdoc-3.9.4
 ? ruby-gtk2
 
 ? gamine, http://gnunux.info/projets/gamine
@@ -338,9 +345,15 @@ rdoc-3.9.4
 
 ? cmake- supertux http://supertux.lethargik.org/download.html
 
+espeak
++ pysiogame 
 
 ##########  TODO #############################################
+screncast http://www.linuxhaxor.net/5-ways-to-screencast-your-linux-desktop/
+
 firefox 18.0 ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/18.0/source/
+http://xfce-look.org
+http://art4linux.org/
 
 todo: kde-  http://sourceforge.net/projects/kolourpaint/
 totem
@@ -350,10 +363,8 @@ lxlauncher
 - pencil
 - calc, gcalctool, 
 - notes
-- etoys http://download.sugarlabs.org/sources/sucrose/glucose/etoys/
 comikit http://www.comikit.se/page_download.html
-squeak http://www.squeak.org/Download/
-- scratch
+- scratch http://scratch.mit.edu
 - sugar
 - eog, evince
 gtk-xfce-engine, http://archive.xfce.org/xfce/4.10/src
@@ -364,12 +375,13 @@ tzdata http://www.iana.org/time-zones
 vkeybd, timidity
 hydrogen, songwrite, sound recorder
 stopmotion
+mousepad
 minetest
 funnyboat,
 ,berusky,freeciv,alex the aligator 4,rocksdiamonfds,
 	supertuxkart, cuyo,
 frozen-bubble,
-xboard, fillets-ng,torcs,pingus, 
+xboard, fillets-ng,torcs,pingus, tower toppler
 	sudoku, mines, tetravex, klotski, mastermind, four in line
 	five or more, gweled, kolf, hannah's horse, nikwi, 
 	ceferino, 
@@ -396,8 +408,12 @@ http://en.wikipedia.org/wiki/Xaw
 http://developer.gnome.org/
 http://www.berlios.de/
 http://download.sugarlabs.org/
-
+http://www.freelunchdesign.com/
 xorg-server 1.13
+
+http://www.speedhack.allegro.cc/intro
+http://alleg.sourceforge.net/
+http://www.zwodnik.pl/
 
 gcc -Wl,-rpath=directory_with_libs:drugi_katalog
 
