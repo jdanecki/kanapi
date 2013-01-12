@@ -319,16 +319,33 @@ todo: webkit-1.1.17 - not needed anymore since webkit-1.8.3 works OK, needs biso
 * firefox 17.0.1 
 * psmisc 22.20
 * sysvinit 2.88dsf 
-* squeak
-* etoys
+* squeak 4.10.2.2614
+* etoys 5.0.2408
+* portaudio v19-20111121
+* espeak 1.46.02
+* pysiogame 0.4.1
+* cmake 2.8.9 - add KaNaPi directories
 
 ########### PREPARED and  ready to add ###################################
+todo: xmms http://www.xmms.org
++ flac http://sourceforge.net/projects/flac/files/flac-src/flac-1.2.1-src
++ openal http://kcat.strangesoft.net/openal.html
++ physfs
++ SDL_sound http://icculus.org/SDL_sound
++ dumb http://dumb.sourceforge.net/index.php?page=downloads
++ allegro http://alleg.sourceforge.net/download.html
 
-########## WIP ################################################
+todo: port needed - alex the allegator http://allegator.sourceforge.net
+	maps http://allegator.sourceforge.net/a4maps
+	maps http://alex4.webz.cz/
+	http://packages.debian.org/pl/source/sid/alex4
 
-alex the allegator http://allegator.sourceforge.net/
-maps http://allegator.sourceforge.net/a4maps/
-maps http://alex4.webz.cz/
++ boost 1.52
++ curl
++ glew
++ supertux
+
+########## QUEUE ################################################
 
 - bigdecimal-1.1.0,
 - io-console-0.3
@@ -342,12 +359,6 @@ maps http://alex4.webz.cz/
 
 ?gnome-libs
 ?todo: http://sourceforge.net/projects/gpaint
-
-? cmake- supertux http://supertux.lethargik.org/download.html
-
-+ portaudio
-espeak http://sourceforge.net/projects/espeak
-+ pysiogame 
 
 ##########  TODO #############################################
 
@@ -372,7 +383,7 @@ comikit http://www.comikit.se/page_download.html
 - eog, evince
 gtk-xfce-engine, http://archive.xfce.org/xfce/4.10/src
 tzdata http://www.iana.org/time-zones
-
+http://glm.g-truc.net/
 - chrome, epiphany, firefox
 - music/multimedia package
 vkeybd, timidity
