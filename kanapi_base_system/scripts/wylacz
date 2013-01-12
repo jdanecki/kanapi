@@ -1,0 +1,11 @@
+#!/bin/bash
+
+killall -9 dhclient
+killall -9 wpa_supplicant
+killall -9 dbus-daemon
+killall -9 udevd
+sync
+sync
+sync
+poweroff -f
+
