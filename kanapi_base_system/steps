@@ -325,7 +325,7 @@ todo: webkit-1.1.17 - not needed anymore since webkit-1.8.3 works OK, needs biso
 ########### PREPARED and  ready to add ###################################
 
 ########## WIP ################################################
-Pharo http://www.pharo-project.org
+
 alex the allegator http://allegator.sourceforge.net/
 maps http://allegator.sourceforge.net/a4maps/
 maps http://alex4.webz.cz/
@@ -345,11 +345,14 @@ maps http://alex4.webz.cz/
 
 ? cmake- supertux http://supertux.lethargik.org/download.html
 
-espeak
++ portaudio
+espeak http://sourceforge.net/projects/espeak
 + pysiogame 
 
 ##########  TODO #############################################
+
 screncast http://www.linuxhaxor.net/5-ways-to-screencast-your-linux-desktop/
+Pharo http://www.pharo-project.org
 
 firefox 18.0 ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/18.0/source/
 http://xfce-look.org

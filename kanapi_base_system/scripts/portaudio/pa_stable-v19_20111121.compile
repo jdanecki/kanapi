@@ -17,18 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ../functions
+#PACKAGE_NAME=pa_stable
+PACKAGE_NAME=portaudio
+VER=v19_20111121
+. ../settings
 
-# URL to package
-# http://
+export CFLAGS="`pkg-config --cflags alsa`"
+export LDFLAGS="-lrt -lpthread -ldl -lm `pkg-config --libs alsa`"
 
-PACKAGE_NAME=
-VER=
-PATCH_NAME=
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-cxx
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
-#prepare_release_tgz ${PACKAGE_NAME}-${VER}
-prepare_release_tbz ${PACKAGE_NAME}-${VER}
-#prepare_release_xz ${PACKAGE_NAME}-${VER}
-#prepare_release_zip ${PACKAGE_NAME}-${VER}
+find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
-#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
+

@@ -77,4 +77,6 @@ ln -s /kanapi_packages/libXrandr-1.3.2/lib/libXrandr.* /kanapi_packages/libs
 ln -s /kanapi_packages/openssl-1.0.1c/lib/lib* /kanapi_packages/libs
 ln -s /kanapi_packages/dbus-glib-0.100/lib/lib* /kanapi_packages/libs
 ln -s /kanapi_packages/util-linux-2.22/lib/lib* /kanapi_packages/libs
+ln -s /kanapi_packages/portaudio-v19_20111121/lib/libportaudio* /kanapi_packages/libs
+ln -s /kanapi_packages/espeak-1.46.02-source/lib/libespeak.* /kanapi_packages/libs
 

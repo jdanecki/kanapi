@@ -20,15 +20,14 @@
 . ../functions
 
 # URL to package
-# http://
+# http://sourceforge.net/projects/pysiogame
 
-PACKAGE_NAME=
-VER=
+PACKAGE_NAME=pysiogame
+VER=0.4.1-beta
 PATCH_NAME=
 
 #prepare_release_tgz ${PACKAGE_NAME}-${VER}
 prepare_release_tbz ${PACKAGE_NAME}-${VER}
 #prepare_release_xz ${PACKAGE_NAME}-${VER}
-#prepare_release_zip ${PACKAGE_NAME}-${VER}
 
 #apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}

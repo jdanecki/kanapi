@@ -17,18 +17,23 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ../functions
+PACKAGE_NAME=espeak
+VER=1.46.02-source
+. ../settings
 
-# URL to package
-# http://
+local_copy
+rm src/portaudio.h
+ln -s portaudio19.h src/portaudio.h
 
-PACKAGE_NAME=
-VER=
-PATCH_NAME=
+#cd build
 
-#prepare_release_tgz ${PACKAGE_NAME}-${VER}
-prepare_release_tbz ${PACKAGE_NAME}-${VER}
-#prepare_release_xz ${PACKAGE_NAME}-${VER}
-#prepare_release_zip ${PACKAGE_NAME}-${VER}
+export LDFLAGS="-lrt -ldl -lpthread `pkg-config --libs portaudio-2.0 alsa`"
 
-#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
+export CXX="g++ -mtune=native -g"
+
+make -C src -j 2 PREFIX=${PREFIX} DATADIR=${PREFIX} 
+make -C src -j 2 PREFIX=${PREFIX} DATADIR=${PREFIX} install
+
+ln -s ${PREFIX}/bin/* /bin
+
+
