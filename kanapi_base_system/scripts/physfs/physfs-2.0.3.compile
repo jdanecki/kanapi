@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=physfs
+VER=2.0.3
+. ../settings
+
+export LDFLAGS="${LDFLAGS} -L/kanapi_packages/readline-6.2/lib"
+export CFLAGS="-I/kanapi_packages/readline-6.2/include"
+
+cmake  ../../src/${PACKAGE_NAME}-${VER} -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+       -DZLIB_INCLUDE_DIR="`pkg-config --variable=includedir zlib`" \
+       -DZLIB_LIBRARY="/kanapi_packages/zlib-1.2.7/lib/libz.so"  \
+       -DREADLINE_H="/kanapi_packages/readline-6.2/include/readline" \
+       -DHISTORY_H="/kanapi_packages/readline-6.2/include/readline" \
+       -DREADLINE_LIBRARY="/kanapi_packages/readline-6.2/lib/libreadline.so" \
+       -DCURSES_LIBRARY="/kanapi_packages/ncurses-5.9/lib/libncurses.a"
+
+#-DPHYSFS_BUILD_WX_TEST:BOOL=ON \
+
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+
+ln -s ${PREFIX}/bin/* /bin
+
+

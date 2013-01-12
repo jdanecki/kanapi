@@ -325,21 +325,15 @@ todo: webkit-1.1.17 - not needed anymore since webkit-1.8.3 works OK, needs biso
 * espeak 1.46.02
 * pysiogame 0.4.1
 * cmake 2.8.9 - add KaNaPi directories
+todo: xmms 1.2.11 
+* flac 1.2.1
+* openal 1.15.1
+* physfs 2.0.3
+* SDL_sound 1.0.3
+* dumb 0.9.3
+* allegro 5.0.8
 
 ########### PREPARED and  ready to add ###################################
-todo: xmms http://www.xmms.org
-+ flac http://sourceforge.net/projects/flac/files/flac-src/flac-1.2.1-src
-+ openal http://kcat.strangesoft.net/openal.html
-+ physfs
-+ SDL_sound http://icculus.org/SDL_sound
-+ dumb http://dumb.sourceforge.net/index.php?page=downloads
-+ allegro http://alleg.sourceforge.net/download.html
-
-todo: port needed - alex the allegator http://allegator.sourceforge.net
-	maps http://allegator.sourceforge.net/a4maps
-	maps http://alex4.webz.cz/
-	http://packages.debian.org/pl/source/sid/alex4
-
 + boost 1.52
 + curl
 + glew
@@ -361,6 +355,10 @@ todo: port needed - alex the allegator http://allegator.sourceforge.net
 ?todo: http://sourceforge.net/projects/gpaint
 
 ##########  TODO #############################################
+todo: port needed - alex the allegator http://allegator.sourceforge.net
+	maps http://allegator.sourceforge.net/a4maps
+	maps http://alex4.webz.cz/
+	http://packages.debian.org/pl/source/sid/alex4
 
 screncast http://www.linuxhaxor.net/5-ways-to-screencast-your-linux-desktop/
 Pharo http://www.pharo-project.org

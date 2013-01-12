@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=openal-soft
+VER=1.15.1
+. ../settings
+
+export LDFLAGS+="`pkg-config --libs portaudio-2.0 alsa libavcodec zlib` \
+	-L/kanapi_packages/bzip2-1.0.6/lib"
+export CFLAGS+="`pkg-config --cflags portaudio-2.0 alsa libavcodec zlib`"
+
+cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} ../../src/${PACKAGE_NAME}-${VER}  \
+	-DHAVE_ALSA_ASOUNDLIB_H="/kanapi_packages/alsa-lib-1.0.25/include" \
+	-DHAVE_PORTAUDIO_H="/kanapi_packages/portaudio-v19_20111121/include"
+
+make
+make  install
+
+ln -s ${PREFIX}/bin/* /bin
+find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+
+
