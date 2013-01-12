@@ -27,6 +27,7 @@ VER=
 PATCH_NAME=
 
 #prepare_release_tgz ${PACKAGE_NAME}-${VER}
+#prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
 prepare_release_tbz ${PACKAGE_NAME}-${VER}
 #prepare_release_xz ${PACKAGE_NAME}-${VER}
 #prepare_release_zip ${PACKAGE_NAME}-${VER}
