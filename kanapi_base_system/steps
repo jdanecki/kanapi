@@ -332,13 +332,12 @@ todo: xmms 1.2.11
 * SDL_sound 1.0.3
 * dumb 0.9.3
 * allegro 5.0.8
+* boost 1.52
+* curl 7.28.1
+* glew 1.9.0
+* supertux 0.3.3
 
 ########### PREPARED and  ready to add ###################################
-+ boost 1.52
-+ curl
-+ glew
-+ supertux
-
 ########## QUEUE ################################################
 
 - bigdecimal-1.1.0,

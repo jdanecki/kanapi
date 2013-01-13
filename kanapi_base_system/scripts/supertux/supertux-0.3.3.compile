@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=supertux
+VER=0.3.3
+. ../settings
+# crash when used with GL
+# works with SDL
+
+local_copy
+#cd build
+patch -p1 < ../supertux2-0.3.3-squirrel-gcc47.patch 
+patch -p1 < ../gcc-4.6.patch
+patch -p1 < ../supertux-0.3.3.patch
+
+export LDFLAGS+="`pkg-config --libs ice vorbis libcurl` -L/kanapi_packages/boost-1_52_0/lib"
+export CFLAGS="`pkg-config --cflags vorbis libcurl`"
+
+config() {
+	cmake -DCMAKE_INSTALL_PREFIX=${PREFIX}  -DBOOST_ROOT=/kanapi_packages/boost-1_52_0 \
+       -DVORBIS_INCLUDE_DIR="/kanapi_packages/libvorbis-1.3.3/include" \
+       -DVORBIS_LIBRARY="/kanapi_packages/libvorbis-1.3.3/lib/libvorbis.so" \
+       -DVORBISFILE_LIBRARY="/kanapi_packages/libvorbis-1.3.3/lib/libvorbisfile.so" \
+       -DPHYSFS_LIBRARY="/kanapi_packages/physfs-2.0.3/lib/libphysfs.so" \
+       -DPHYSFS_INCLUDE_DIR="/kanapi_packages/physfs-2.0.3/include" \
+       -DCURL_LIBRARY="/kanapi_packages/curl-7.28.1/lib/libcurl.so" \
+       -DCURL_INCLUDE_DIR="/kanapi_packages/curl-7.28.1/include/curl" \
+       -DOGG_LIBRARY="/kanapi_packages/libogg-1.3.0/lib/libogg.so" \
+       -DGLEW_LIBRARY="/kanapi_packages/glew-1.9.0/lib/libGLEW.so" \
+       -DGLEW_INCLUDE_DIR="/kanapi_packages/glew-1.9.0/include" \
+       -DCMAKE_CFLAGS="${CFLAGS}" \
+       -DCMAKE_CXX_FLAGS="${CFLAGS}" \
+	.
+       #-DCMAKE_VERBOSE_MAKEFILE=ON \
+}
+
+config
+
+make -j 2
+make -j 2 install
+
+ln -s ${PREFIX}/games/* /bin
+
+
