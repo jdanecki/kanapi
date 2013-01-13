@@ -84,4 +84,5 @@ ln -s /kanapi_packages/curl-7.28.1/lib/libcurl.* /kanapi_packages/libs
 ln -s /kanapi_packages/SDL-1.2.15/lib/libSDL* /kanapi_packages/libs
 ln -s /kanapi_packages/openal-soft-1.15.1/lib/libopenal.so* /kanapi_packages/libs
 ln -s /kanapi_packages/glew-1.9.0/lib/libGLEW.* /kanapi_packages/libs
+ln -s /kanapi_packages/allegro-5.0.8/lib/liballegro* /kanapi_packages/libs
 
