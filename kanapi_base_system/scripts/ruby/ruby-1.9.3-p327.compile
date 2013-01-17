@@ -21,7 +21,7 @@ PACKAGE_NAME=ruby
 VER=1.9.3-p327
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-shared --enable-rubygems 
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
