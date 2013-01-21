@@ -17,26 +17,20 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=firefox
-VER=17.0.1.source
+PACKAGE_NAME=pcre
+VER=8.32
 . ../settings
 
-export CPP="${CPP_X11} `pkg-config --cflags xt`"
-export CFLAGS="`pkg-config --cflags x11 xt fontconfig xext gl x11-xcb zlib xrender alsa gobject-2.0 dbus-glib-1` \
-	-I/kanapi_packages/wireless_tools-29/include"
-export CPPFLAGS=${CFLAGS}
-export LDFLAGS="-ldl -lrt -lpthread -lm -lstdc++ -lresolv \
-	`pkg-config --libs x11 xt fontconfig ice xext gl x11-xcb xrender zlib alsa gobject-2.0 dbus-glib-1`"
+export CFLAGS="-I/kanapi_packages/bzip2-1.0.6/include -I/kanapi_packages/readline-6.2/include ${NCURSES_HDR}"
+export LDFLAGS="-L/kanapi_packages/bzip2-1.0.6/lib -L/kanapi_packages/readline-6.2/lib ${NCURSES_LIB}"
 
-#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-crashreporter \
-#	--enable-application=browser --with-x --enable-xul
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-utf --enable-unicode-properties --enable-jit  \
+	--enable-pcregrep-libbz2 --enable-pcre32 --enable-pcretest-libreadline
 
-#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-crashreporter \
-#	--enable-application=xulrunner --with-x --enable-xul
-#make -j 2 MAKEINFO=true
-#make -j 2 install MAKEINFO=true
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
-#ln -s ${PREFIX}/lib/${PACKAGE_NAME}-17.0.1/firefox /bin
+ln -s ${PREFIX}/bin/* /bin
 find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 

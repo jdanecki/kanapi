@@ -17,26 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=firefox
-VER=17.0.1.source
+PACKAGE_NAME=libsigc++
+VER=2.3.1
 . ../settings
 
-export CPP="${CPP_X11} `pkg-config --cflags xt`"
-export CFLAGS="`pkg-config --cflags x11 xt fontconfig xext gl x11-xcb zlib xrender alsa gobject-2.0 dbus-glib-1` \
-	-I/kanapi_packages/wireless_tools-29/include"
-export CPPFLAGS=${CFLAGS}
-export LDFLAGS="-ldl -lrt -lpthread -lm -lstdc++ -lresolv \
-	`pkg-config --libs x11 xt fontconfig ice xext gl x11-xcb xrender zlib alsa gobject-2.0 dbus-glib-1`"
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
-#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-crashreporter \
-#	--enable-application=browser --with-x --enable-xul
-
-#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-crashreporter \
-#	--enable-application=xulrunner --with-x --enable-xul
-#make -j 2 MAKEINFO=true
-#make -j 2 install MAKEINFO=true
-
-#ln -s ${PREFIX}/lib/${PACKAGE_NAME}-17.0.1/firefox /bin
 find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 

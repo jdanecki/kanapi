@@ -338,18 +338,18 @@ todo: xmms 1.2.11
 * supertux 0.3.3
 * libunique 1.1.6
 * xfce4-notes-plugin 1.7.7
+* sigc++-2.0 
+* glibmm  2.28.2
+* libxml++ 2.33.2 
+todo: libxml++ 2.36 needs glibmm 2.32.0
+* pcre 8.32
+* firefox 17.0.1 - added xulrunner
+todo: lightspark 0.5.0 - needs boost filesystem with version 2
+* librtmp 2.3
+* lightspark 0.7.1
+
 
 ########### PREPARED and  ready to add ###################################
-+ sigc++-2.0 
-+ glibmm  2.28.2
-+ libxml++ 2.33.2 
-todo: libxml++ 2.36 needs glibmm 2.32.0
-+ pcre 8.32
-+ firefox 17.0.1 - added xulrunner
-todo: lightspark 0.5.0 - needs boost filesystem with version 2
-+librtmp 2.3
-+ lightspark 0.7.1
-
 ########## WIP ################################################
 
 https://github.com/flowplayer/flowplayer
