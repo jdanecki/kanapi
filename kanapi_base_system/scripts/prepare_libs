@@ -85,4 +85,12 @@ ln -s /kanapi_packages/SDL-1.2.15/lib/libSDL* /kanapi_packages/libs
 ln -s /kanapi_packages/openal-soft-1.15.1/lib/libopenal.so* /kanapi_packages/libs
 ln -s /kanapi_packages/glew-1.9.0/lib/libGLEW.* /kanapi_packages/libs
 ln -s /kanapi_packages/allegro-5.0.8/lib/liballegro* /kanapi_packages/libs
-
+ln -s /kanapi_packages/glibmm-2.28.2/lib/libg* /kanapi_packages/libs
+ln -sf /kanapi_packages/libsigc++-2.3.1/lib/libsigc-2.0.* /kanapi_packages/libs
+ln -s /kanapi_packages/boost-1_52_0/lib/libboost_* /kanapi_packages/libs
+ln -s /kanapi_packages/xz-5.0.4/lib/liblzma.* /kanapi_packages/libs
+ln -s /kanapi_packages/rtmpdump-2.3/lib/librtmp.*  /kanapi_packages/libs
+ln -s /kanapi_packages/pcre-8.32/lib/libpcre*   /kanapi_packages/libs
+ln -s /kanapi_packages/libxml2-2.9.0/lib/libxml2.*   /kanapi_packages/libs
+ln -s /kanapi_packages/libxml++-2.33.2/lib/libxml++-2.6*   /kanapi_packages/libs
+ln -s /kanapi_packages/yaml-0.1.4/lib/libyaml* /kanapi_packages/libs

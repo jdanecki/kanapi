@@ -17,18 +17,12 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=ruby
-VER=1.9.3-p327
+PACKAGE_NAME=pkg-config
+VER=1.1.5
 . ../settings
 
-export LDFLAGS+="`pkg-config --libs zlib x11  yaml-0.1` -L/kanapi_packages/readline-6.2/lib\
-	${NCURSES_LIB}"
-export CPP="${CPP_X11} `pkg-config --cflags zlib`"
-export CFLAGS="`pkg-config --cflags zlib` ${NCURSES_HDR} -I/kanapi_packages/yaml-0.1.4/include"
+local_copy
+gem build pkg-config.gemspec
+gem install pkg-config
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-shared --enable-rubygems 
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
-
-ln -s ${PREFIX}/bin/* /bin
 

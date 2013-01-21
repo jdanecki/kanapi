@@ -347,7 +347,12 @@ todo: libxml++ 2.36 needs glibmm 2.32.0
 todo: lightspark 0.5.0 - needs boost filesystem with version 2
 * librtmp 2.3
 * lightspark 0.7.1
-
+todo: hoe http://rubyforge.org/projects/seattlerb
+todo: rake-compiler https://github.com/luislavena/rake-compiler
+* libyaml 
+* ruby 1.9.3-p327 - recompile with zlib support
+* pkg-config.rb 1.1.5: zlib
+* ruby-gtk2 1.1.9 : pkg-config
 
 ########### PREPARED and  ready to add ###################################
 ########## WIP ################################################
@@ -357,13 +362,6 @@ https://github.com/flowplayer/flowplayer
 gnash http://ftp.gnu.org/pub/gnu/gnash/0.8.10/
 
 ovp: http://openvideoplayer.sourceforge.net/
-
-todo: hoe http://rubyforge.org/projects/seattlerb
-todo: rake-compiler https://github.com/luislavena/rake-compiler
-+ libyaml 
-+ ruby 1.9.3-p327 - recompile with zlib support
-+ pkg-config.rb 1.1.5: zlib
-? ruby-gtk2 1.1.9 : pkg-config
 
 ? gamine, http://gnunux.info/projets/gamine
 

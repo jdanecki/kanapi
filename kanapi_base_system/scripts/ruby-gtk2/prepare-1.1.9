@@ -17,18 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=ruby
-VER=1.9.3-p327
-. ../settings
+. ../functions
 
-export LDFLAGS+="`pkg-config --libs zlib x11  yaml-0.1` -L/kanapi_packages/readline-6.2/lib\
-	${NCURSES_LIB}"
-export CPP="${CPP_X11} `pkg-config --cflags zlib`"
-export CFLAGS="`pkg-config --cflags zlib` ${NCURSES_HDR} -I/kanapi_packages/yaml-0.1.4/include"
+# URL to package
+# http://sourceforge.net/projects/ruby-gnome2
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-shared --enable-rubygems 
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+PACKAGE_NAME=ruby-gtk2
+VER=1.1.9
+PATCH_NAME=
 
-ln -s ${PREFIX}/bin/* /bin
+prepare_release_tgz ${PACKAGE_NAME}-${VER}
+#prepare_release_tbz ${PACKAGE_NAME}-${VER}
+#prepare_release_xz ${PACKAGE_NAME}-${VER}
 
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
