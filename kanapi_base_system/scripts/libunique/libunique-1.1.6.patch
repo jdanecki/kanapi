@@ -1,0 +1,34 @@
+diff -urNp libunique-1.1.6-orig/Makefile.in libunique-1.1.6/Makefile.in
+--- libunique-1.1.6-orig/Makefile.in	2009-11-12 13:57:59.000000000 +0000
++++ libunique-1.1.6/Makefile.in	2013-01-20 00:38:36.374597945 +0000
+@@ -317,7 +317,7 @@ top_srcdir = @top_srcdir@
+ @USE_SHAVE_FALSE@QUIET_RM_ = $(QUIET_RM_$(AM_DEFAULT_VERBOSITY))
+ @USE_SHAVE_FALSE@QUIET_RM_0 = @echo '  RM     '$@;
+ ACLOCAL_AMFLAGS = -I build/autotools
+-SUBDIRS = build unique tests doc po
++SUBDIRS = build unique tests po
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = unique-1.0.pc
+ EXTRA_DIST = unique.pc.in NEWS TODO
+diff -urNp libunique-1.1.6-orig/unique/uniquebackend.h libunique-1.1.6/unique/uniquebackend.h
+--- libunique-1.1.6-orig/unique/uniquebackend.h	2009-09-21 12:31:14.000000000 +0000
++++ libunique-1.1.6/unique/uniquebackend.h	2013-01-20 00:23:44.438748679 +0000
+@@ -27,6 +27,7 @@
+ #include <unique/uniqueapp.h>
+ 
+ G_BEGIN_DECLS
++#define G_CONST_RETURN const
+ 
+ #define UNIQUE_TYPE_BACKEND             (unique_backend_get_type ())
+ #define UNIQUE_BACKEND(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), UNIQUE_TYPE_BACKEND, UniqueBackend))
+diff -urNp libunique-1.1.6-orig/unique/uniquemessage.h libunique-1.1.6/unique/uniquemessage.h
+--- libunique-1.1.6-orig/unique/uniquemessage.h	2009-09-21 12:31:14.000000000 +0000
++++ libunique-1.1.6/unique/uniquemessage.h	2013-01-20 00:23:07.557209761 +0000
+@@ -28,6 +28,7 @@
+ G_BEGIN_DECLS
+ 
+ #define UNIQUE_TYPE_MESSAGE_DATA        (unique_message_data_get_type ())
++#define G_CONST_RETURN const
+ 
+ /**
+  * UniqueMessageData:

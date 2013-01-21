@@ -336,99 +336,160 @@ todo: xmms 1.2.11
 * curl 7.28.1
 * glew 1.9.0
 * supertux 0.3.3
+* libunique 1.1.6
+* xfce4-notes-plugin 1.7.7
 
 ########### PREPARED and  ready to add ###################################
-########## QUEUE ################################################
++ sigc++-2.0 
++ glibmm  2.28.2
++ libxml++ 2.33.2 
+todo: libxml++ 2.36 needs glibmm 2.32.0
++ pcre 8.32
++ firefox 17.0.1 - added xulrunner
+todo: lightspark 0.5.0 - needs boost filesystem with version 2
++librtmp 2.3
++ lightspark 0.7.1
 
-- bigdecimal-1.1.0,
-- io-console-0.3
-- json-1.5.4
-- minitest-2.5.1
-- rake-0.9.2.2
-- rdoc-3.9.4
-? ruby-gtk2
+########## WIP ################################################
+
+https://github.com/flowplayer/flowplayer
+
+gnash http://ftp.gnu.org/pub/gnu/gnash/0.8.10/
+
+ovp: http://openvideoplayer.sourceforge.net/
+
+todo: hoe http://rubyforge.org/projects/seattlerb
+todo: rake-compiler https://github.com/luislavena/rake-compiler
++ libyaml 
++ ruby 1.9.3-p327 - recompile with zlib support
++ pkg-config.rb 1.1.5: zlib
+? ruby-gtk2 1.1.9 : pkg-config
 
 ? gamine, http://gnunux.info/projets/gamine
 
 ?gnome-libs
 ?todo: http://sourceforge.net/projects/gpaint
 
++ fontforge 20120731
++ freefont 20120503
 ##########  TODO #############################################
-todo: port needed - alex the allegator http://allegator.sourceforge.net
-	maps http://allegator.sourceforge.net/a4maps
-	maps http://alex4.webz.cz/
-	http://packages.debian.org/pl/source/sid/alex4
-
-screncast http://www.linuxhaxor.net/5-ways-to-screencast-your-linux-desktop/
-Pharo http://www.pharo-project.org
-
-firefox 18.0 ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/18.0/source/
-http://xfce-look.org
-http://art4linux.org/
-
-todo: kde-  http://sourceforge.net/projects/kolourpaint/
-totem
-mpg321
-lame
-lxlauncher
-- pencil
-- calc, gcalctool, 
-- notes
-comikit http://www.comikit.se/page_download.html
-- scratch http://scratch.mit.edu
-- sugar
-- eog, evince
-gtk-xfce-engine, http://archive.xfce.org/xfce/4.10/src
-tzdata http://www.iana.org/time-zones
-http://glm.g-truc.net/
-- chrome, epiphany, firefox
-- music/multimedia package
-vkeybd, timidity
-hydrogen, songwrite, sound recorder
-stopmotion
-mousepad
-minetest
-funnyboat,
-,berusky,freeciv,alex the aligator 4,rocksdiamonfds,
+games:
+	http://www.bigorno.net/xrick/
+	minetest
+	funnyboat,
+	,berusky,freeciv,alex the aligator 4,rocksdiamonfds,
 	supertuxkart, cuyo,
-frozen-bubble,
-xboard, fillets-ng,torcs,pingus, tower toppler
+	frozen-bubble,
+	xboard, fillets-ng,torcs,pingus, tower toppler
 	sudoku, mines, tetravex, klotski, mastermind, four in line
 	five or more, gweled, kolf, hannah's horse, nikwi, 
 	ceferino, 
-- libreoffice, abiword, gedit, 
-- opendict, 
-kletters, khangman, kanagram, kgeography
-scipy http://scipy.github.com/download.html
-SQLAlchemy www.sqlalchemy.org
-- childsplay
-pysycache
-sdl2
-blender
-http://sourceforge.net/projects/vdrift/files/vdrift/vdrift-2012-07-22/
-qemu
-- xkbutils
-- iceauth
--network-manager-applet - need gnome-keyring
-matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
-defoma
-http://www.linuxfromscratch.org/blfs/view/svn/index.html
-http://roscidus.com/desktop/
-http://www.t2-project.org/
-http://en.wikipedia.org/wiki/Xaw
-http://developer.gnome.org/
-http://www.berlios.de/
-http://download.sugarlabs.org/
-http://www.freelunchdesign.com/
-xorg-server 1.13
+	todo: port needed - alex the allegator http://allegator.sourceforge.net
+		maps http://allegator.sourceforge.net/a4maps
+		maps http://alex4.webz.cz/
+		http://packages.debian.org/pl/source/sid/alex4
+	xrick http://howto.landure.fr/gnu-linux/ubuntu-gutsy-gibbon/xrick-aka-rick-dangerous-for-ubuntu-7-10-gutsy-gibbon
+	http://sourceforge.net/projects/vdrift/files/vdrift/vdrift-2012-07-22/
+	http://en.wikipedia.org/wiki/List_of_open_source_games
+	http://forum.freegamedev.net/
+	http://jeuxlibres.net/
+	http://brainworkshop.sourceforge.net/
+	simutrans-pak128.britain
 
-http://www.speedhack.allegro.cc/intro
-http://alleg.sourceforge.net/
-http://www.zwodnik.pl/
+tools:
+	rsync
+	tzcode http://www.iana.org/time-zones
+	screncast http://www.linuxhaxor.net/5-ways-to-screencast-your-linux-desktop/
+	firefox 18.0 ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/18.0/source/
+	http://xfce-look.org
+	http://art4linux.org/
+	lxlauncher
+	- eog, evince
+	gtk-xfce-engine, http://archive.xfce.org/xfce/4.10/src
+	qemu
+	- xkbutils
+	- iceauth
+	-network-manager-applet - need gnome-keyring
+	matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
+	defoma
+	http://www.gnu.org/software/freefont/sources/
+apps:
+	- pencil
+	hydrogen, songwrite, sound recorder
+	stopmotion
+	todo: kde-  http://sourceforge.net/projects/kolourpaint/
+	totem
+	mpg321
+	lame
+	- chrome, epiphany
+	sdl2
+	blender
+	http://agateau.com/2012/09/03/kidmp-a-kid-friendly-media-player/
 
-gcc -Wl,-rpath=directory_with_libs:drugi_katalog
+education:
+	http://lightspeed.sourceforge.net/download.html
+	http://packages.debian.org/pl/source/squeeze/mathwar
+	http://mnemosyne-proj.org/download-mnemosyne.php
+	multiplicationStation	http://www.asymptopia.org/download/
+	http://www.asymptopia.org/
+	http://code.google.com/p/munchers/
+	http://ironphoenix.org/tril/wordplay/
+	http://sourceforge.net/projects/tuxwordsmith/files/
+	http://sourceforge.net/projects/tuxmathscrabble/?source=navbar
+	kletters, khangman, kanagram, kgeography
+	vkeybd, timidity
+	kturtle
+	- sugar
+	- scratch http://scratch.mit.edu
+	mousepad
+	Pharo http://www.pharo-project.org
+	http://glm.g-truc.net/
+	- libreoffice, abiword, gedit, 
+	- opendict, 
+	scipy http://scipy.github.com/download.html
+	- childsplay
+	SQLAlchemy www.sqlalchemy.org
+	pysycache
+	http://visualruby.net/
+	bambam http://linux.softpedia.com/get/Education/Bambam-34475.shtml
+	myabc http://sourceforge.net/projects/myabcs/
+	vym http://sourceforge.net/projects/vym/?source=navbar
+	klavaro
+	krecipes
+	fritzing
+	einstein
+	http://homepages.ihug.co.nz/~trmusson/programs.html#ignuit
+	http://blends.alioth.debian.org/junior/tasks/
+	Stamp files for Tux Paint,
+	https://schoolforge.net/
+	http://www.osef.org/
+	http://linux.softpedia.com/get/Education/
+	edu.kde.org
+	https://projects.kde.org/projects/kde/kdeedu
+	http://ankisrs.net/
+	http://code.google.com/p/anagramarama/
+development:
+	http://gvr.sourceforge.net/
+	http://littlewizard.sourceforge.net/
+	http://sourceforge.net/projects/johnnysimulator/
+check:
+	comikit http://www.comikit.se/page_download.html
+	http://projects.tuxfamily.org/?lang=en_US#%3Fdo%3Dallgroups
+pages:
+	http://www.linuxfromscratch.org/blfs/view/svn/index.html
+	http://roscidus.com/desktop/
+	http://www.t2-project.org/
+	http://en.wikipedia.org/wiki/Xaw
+	http://developer.gnome.org/
+	http://www.berlios.de/
+	http://download.sugarlabs.org/
+	http://www.freelunchdesign.com/
+	xorg-server 1.13
 
-objdump -x app | grep RPATH
+	http://www.speedhack.allegro.cc/intro
+	http://alleg.sourceforge.net/
+	http://www.zwodnik.pl/
+
 
 #########################################################
 Information about versions:
