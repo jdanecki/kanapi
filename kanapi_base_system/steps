@@ -353,6 +353,8 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * ruby 1.9.3-p327 - recompile with zlib support
 * pkg-config.rb 1.1.5: zlib
 * ruby-gtk2 1.1.9 : pkg-config
+* fontforge 20120731
+* freefont 20120503
 
 ########### PREPARED and  ready to add ###################################
 ########## WIP ################################################
@@ -368,8 +370,6 @@ ovp: http://openvideoplayer.sourceforge.net/
 ?gnome-libs
 ?todo: http://sourceforge.net/projects/gpaint
 
-+ fontforge 20120731
-+ freefont 20120503
 ##########  TODO #############################################
 games:
 	http://www.bigorno.net/xrick/
