@@ -355,15 +355,12 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * ruby-gtk2 1.1.9 : pkg-config
 * fontforge 20120731
 * freefont 20120503
+* gtksourceview 2.10.5
+* pygtksourceview 2.10.1 
+* GvRng 4.4 
 
 ########### PREPARED and  ready to add ###################################
 ########## WIP ################################################
-
-https://github.com/flowplayer/flowplayer
-
-gnash http://ftp.gnu.org/pub/gnu/gnash/0.8.10/
-
-ovp: http://openvideoplayer.sourceforge.net/
 
 ? gamine, http://gnunux.info/projets/gamine
 
@@ -371,6 +368,11 @@ ovp: http://openvideoplayer.sourceforge.net/
 ?todo: http://sourceforge.net/projects/gpaint
 
 ##########  TODO #############################################
+flash:
+	https://github.com/flowplayer/flowplayer
+	gnash http://ftp.gnu.org/pub/gnu/gnash/0.8.10/
+	ovp: http://openvideoplayer.sourceforge.net/
+
 games:
 	http://www.bigorno.net/xrick/
 	minetest
@@ -395,6 +397,7 @@ games:
 	simutrans-pak128.britain
 
 tools:
+
 	rsync
 	tzcode http://www.iana.org/time-zones
 	screncast http://www.linuxhaxor.net/5-ways-to-screencast-your-linux-desktop/
@@ -402,7 +405,7 @@ tools:
 	http://xfce-look.org
 	http://art4linux.org/
 	lxlauncher
-	- eog, evince
+	- eog, evince, okular
 	gtk-xfce-engine, http://archive.xfce.org/xfce/4.10/src
 	qemu
 	- xkbutils
@@ -419,7 +422,7 @@ apps:
 	totem
 	mpg321
 	lame
-	- chrome, epiphany
+	- chrome, epiphany, iron, chromium
 	sdl2
 	blender
 	http://agateau.com/2012/09/03/kidmp-a-kid-friendly-media-player/
@@ -442,7 +445,8 @@ education:
 	mousepad
 	Pharo http://www.pharo-project.org
 	http://glm.g-truc.net/
-	- libreoffice, abiword, gedit, 
+	- libreoffice, abiword, 
+	gedit,  http://projects.gnome.org/gedit/
 	- opendict, 
 	scipy http://scipy.github.com/download.html
 	- childsplay
@@ -466,8 +470,8 @@ education:
 	https://projects.kde.org/projects/kde/kdeedu
 	http://ankisrs.net/
 	http://code.google.com/p/anagramarama/
+
 development:
-	http://gvr.sourceforge.net/
 	http://littlewizard.sourceforge.net/
 	http://sourceforge.net/projects/johnnysimulator/
 check:

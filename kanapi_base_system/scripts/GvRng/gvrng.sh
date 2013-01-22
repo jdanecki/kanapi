@@ -17,16 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=pygobject
-VER=2.28.6
-. ../settings
+cd /kanapi_packages/GvRng-4.4
+export  PYTHONPATH="/kanapi_packages/pygtk-2.24.0/lib/python2.7/site-packages/gtk-2.0:/kanapi_packages/pygobject-2.28.6/lib/python2.7/site-packages:/kanapi_packages/py2cairo-1.10.0/lib/python2.7/site-packages:/kanapi_packages/pygobject-2.28.6/lib/python2.7/site-packages/gtk-2.0:/kanapi_packages/pygtksourceview-2.10.1/lib/python2.7/site-packages"
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
-
-ln -s ${PREFIX}/bin/* /bin
-find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
-
-ln -s /kanapi_packages/pygobject-2.28.6/share/pygobject /kanapi_packages/pygtk-2.24.0/share
-
+python gvrng.py

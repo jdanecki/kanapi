@@ -17,16 +17,19 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=pygobject
-VER=2.28.6
-. ../settings
+. ../functions
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+# URL to package
+# http://projects.gnome.org/gtksourceview/pygtksourceview.html
 
-ln -s ${PREFIX}/bin/* /bin
-find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+PACKAGE_NAME=pygtksourceview
+VER=2.10.1
+PATCH_NAME=
 
-ln -s /kanapi_packages/pygobject-2.28.6/share/pygobject /kanapi_packages/pygtk-2.24.0/share
+#prepare_release_tgz ${PACKAGE_NAME}-${VER}
+#prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
+prepare_release_tbz ${PACKAGE_NAME}-${VER}
+#prepare_release_xz ${PACKAGE_NAME}-${VER}
+#prepare_release_zip ${PACKAGE_NAME}-${VER}
 
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}

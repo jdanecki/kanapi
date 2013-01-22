@@ -17,16 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=pygobject
-VER=2.28.6
+PACKAGE_NAME=pygtksourceview
+VER=2.10.1
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX  --disable-docs
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
-ln -s ${PREFIX}/bin/* /bin
 find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
-ln -s /kanapi_packages/pygobject-2.28.6/share/pygobject /kanapi_packages/pygtk-2.24.0/share
 
