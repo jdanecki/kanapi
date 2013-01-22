@@ -359,9 +359,22 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * pygtksourceview 2.10.1 
 * GvRng 4.4 
 * littlewizard 1.2.2
+* tuxmathscrabble 0.7.4
 
 ########### PREPARED and  ready to add ###################################
-########## WIP ################################################
+
+###########  WIP ###############################################
+
+
+########## QUEUE ################################################
+libxml-2.0 >= 2.5.0
+glib-2.0 >= 2.25.6
+gthread-2.0 >= 2.13.0
+gio-2.0 >= 2.25.8
+gtk+-2.0 >= 2.16.0
+gtksourceview-2.0 >= 2.9.7
+gconf-2.0 >= 2.31.1
+? gedit  2.31.3
 
 ? gamine, http://gnunux.info/projets/gamine
 
@@ -437,7 +450,6 @@ education:
 	http://code.google.com/p/munchers/
 	http://ironphoenix.org/tril/wordplay/
 	http://sourceforge.net/projects/tuxwordsmith/files/
-	http://sourceforge.net/projects/tuxmathscrabble/?source=navbar
 	kletters, khangman, kanagram, kgeography
 	vkeybd, timidity
 	kturtle
@@ -447,7 +459,6 @@ education:
 	Pharo http://www.pharo-project.org
 	http://glm.g-truc.net/
 	- libreoffice, abiword, 
-	gedit,  http://projects.gnome.org/gedit/
 	- opendict, 
 	scipy http://scipy.github.com/download.html
 	- childsplay
@@ -474,6 +485,7 @@ education:
 
 development:
 	http://sourceforge.net/projects/johnnysimulator/
+	http://www.lazarus.freepascal.org/
 check:
 	comikit http://www.comikit.se/page_download.html
 	http://projects.tuxfamily.org/?lang=en_US#%3Fdo%3Dallgroups
