@@ -358,6 +358,7 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * gtksourceview 2.10.5
 * pygtksourceview 2.10.1 
 * GvRng 4.4 
+* littlewizard 1.2.2
 
 ########### PREPARED and  ready to add ###################################
 ########## WIP ################################################
@@ -472,7 +473,6 @@ education:
 	http://code.google.com/p/anagramarama/
 
 development:
-	http://littlewizard.sourceforge.net/
 	http://sourceforge.net/projects/johnnysimulator/
 check:
 	comikit http://www.comikit.se/page_download.html
