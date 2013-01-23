@@ -360,6 +360,7 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * GvRng 4.4 
 * littlewizard 1.2.2
 * tuxmathscrabble 0.7.4
+* wxPython 2.8.12.1
 
 ########### PREPARED and  ready to add ###################################
 
@@ -380,6 +381,11 @@ gconf-2.0 >= 2.31.1
 
 ?gnome-libs
 ?todo: http://sourceforge.net/projects/gpaint
+
+libIDL-2.0 http://freecode.com/projects/libidl
+ORBit-2.0  http://projects.gnome.org/ORBit2/
+gconf-2.0 
+sugar 0.94.1
 
 ##########  TODO #############################################
 flash:
@@ -442,6 +448,8 @@ apps:
 	http://agateau.com/2012/09/03/kidmp-a-kid-friendly-media-player/
 
 education:
+	sugar 0.98.3 needs gtk+-3.0
+
 	http://lightspeed.sourceforge.net/download.html
 	http://packages.debian.org/pl/source/squeeze/mathwar
 	http://mnemosyne-proj.org/download-mnemosyne.php
@@ -453,7 +461,6 @@ education:
 	kletters, khangman, kanagram, kgeography
 	vkeybd, timidity
 	kturtle
-	- sugar
 	- scratch http://scratch.mit.edu
 	mousepad
 	Pharo http://www.pharo-project.org

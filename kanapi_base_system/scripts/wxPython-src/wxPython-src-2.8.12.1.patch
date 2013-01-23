@@ -1,0 +1,51 @@
+diff -urNp wxPython-src-2.8.12.1-orig/configure wxPython-src-2.8.12.1/configure
+--- wxPython-src-2.8.12.1-orig/configure	2011-07-14 03:49:11.000000000 +0000
++++ wxPython-src-2.8.12.1/configure	2013-01-22 23:31:33.060446019 +0000
+@@ -24931,45 +24931,8 @@ ac_link='$CC -o conftest$ac_exeext $CFLA
+ ac_compiler_gnu=$ac_cv_c_compiler_gnu
+ 
+ 
+-
+-SEARCH_INCLUDE="\
+-    /usr/local/include        \
+-    /usr/local/X11/include    \
+-    /usr/local/include/X11    \
+-    /usr/local/X11R6/include  \
+-    /usr/local/include/X11R6  \
+-                              \
+-    /usr/Motif-2.1/include    \
+-    /usr/Motif-1.2/include    \
+-    /usr/include/Motif1.2     \
+-                              \
+-    /usr/dt/include           \
+-    /usr/openwin/include      \
+-                              \
+-    /usr/include/Xm           \
+-                              \
+-    /usr/X11R6/include        \
+-    /usr/X11R6.4/include      \
+-                              \
+-    /usr/include/X11R6        \
+-                              \
+-    /usr/X11/include          \
+-    /usr/include/X11          \
+-                              \
+-    /usr/XFree86/include/X11  \
+-    /usr/pkg/include          \
+-                              \
+-    /usr/local/X1R5/include  \
+-    /usr/local/include/X11R5  \
+-    /usr/X11R5/include        \
+-    /usr/include/X11R5        \
+-                              \
+-    /usr/local/X11R4/include  \
+-    /usr/local/include/X11R4  \
+-    /usr/X11R4/include        \
+-    /usr/include/X11R4        \
+-                              \
+-    /usr/openwin/share/include"
++PKG="gl glu x11 sm x11-xcb expat xext ice pango"
++SEARCH_INCLUDE="`pkg-config --variable=includedir ${PKG}`"
+ 
+ echo "$as_me:$LINENO: checking for libraries directory" >&5
+ echo $ECHO_N "checking for libraries directory... $ECHO_C" >&6
