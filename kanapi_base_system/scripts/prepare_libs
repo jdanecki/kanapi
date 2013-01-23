@@ -95,4 +95,6 @@ ln -s /kanapi_packages/libxml2-2.9.0/lib/libxml2.*   /kanapi_packages/libs
 ln -s /kanapi_packages/libxml++-2.33.2/lib/libxml++-2.6*   /kanapi_packages/libs
 ln -s /kanapi_packages/yaml-0.1.4/lib/libyaml* /kanapi_packages/libs
 ln -s /kanapi_packages/wxPython-src-2.8.12.1/lib/libwx_* /kanapi_packages/libs
+ln -s /kanapi_packages/gnutls-3.1.6/lib/libgnutls* /kanapi_packages/libs
+ln -s /kanapi_packages/pixman-0.26.2/lib/libpixman-1.* /kanapi_packages/libs
 
