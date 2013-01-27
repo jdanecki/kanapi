@@ -362,18 +362,53 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * tuxmathscrabble 0.7.4
 * wxPython 2.8.12.1
 * qemu 1.3.0
+* linux 3.5.3 recompile with CONFIG_CFG80211=m
+* compat-wireless-3.5-3-snpc for alx 1969:1090
 
 ########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
+wxPython-demo 2.8.12.1
+
 * libIDL-2.0 0.8.14
 * ORBit-2.0 2.14.19 
 * popt 1.14
 * gconf-2.0 2.9.91
-ImportError: No module named jarabe.util
-sugar 0.94.1
+* sugar 0.94.1
+* sugar-base 0.94.0
+* sugar-toolkit 0.94.1
+* libXv 1.0.7
+* libXdmcp 1.1.1
+* xf86-input-evdev 2.7.0 
+* xorg-server - recompile with Xephyr
+* libXtst 1.2.1
+* xdpyinfo 1.3.0
+* dbus-python 1.1.1
+
+No package 'gnome-vfs-2.0' found http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.24/
+No package 'libbonobo-2.0' found http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.32/
+No package 'libcanberra' found http://0pointer.de/lennart/projects/libcanberra/
+
+libgnome http://ftp.gnome.org/pub/GNOME/sources/libgnome/2.32/
+gnome-python
+
+37 http://download.sugarlabs.org/sources/sucrose/fructose/Calculate
+
+0.8.2 http://download.sugarlabs.org/sources/sucrose/glucose/hulahop/
+0.94.0 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-artwork/
+0.90.2 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-presence-service/
+0.94.0 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-datastore/
+
+41 http://download.sugarlabs.org/sources/sucrose/fructose/Pippy
+116 http://download.sugarlabs.org/sources/sucrose/fructose/TurtleArt
+23 http://download.sugarlabs.org/sources/sucrose/fructose/Jukebox
+
+kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
+
 
 ########## QUEUE ################################################
+http://flavio.tordini.org/minitube
+
 libxml-2.0 >= 2.5.0
 glib-2.0 >= 2.25.6
 gthread-2.0 >= 2.13.0
@@ -416,7 +451,7 @@ games:
 	http://jeuxlibres.net/
 	http://brainworkshop.sourceforge.net/
 	simutrans-pak128.britain
-
+	http://gamesined.wikispaces.com/
 tools:
 
 	rsync
@@ -435,6 +470,7 @@ tools:
 	matchbox https://launchpad.net/ubuntu/raring/+source/matchbox-window-manager
 	defoma
 	http://www.gnu.org/software/freefont/sources/
+	pygconf http://sourceforge.net/projects/pygconf
 apps:
 	- pencil
 	hydrogen, songwrite, sound recorder
@@ -490,10 +526,14 @@ education:
 	https://projects.kde.org/projects/kde/kdeedu
 	http://ankisrs.net/
 	http://code.google.com/p/anagramarama/
+	kicad
+	eagle
 
 development:
 	http://sourceforge.net/projects/johnnysimulator/
 	http://www.lazarus.freepascal.org/
+	TurtleArts
+	https://love2d.org/
 check:
 	comikit http://www.comikit.se/page_download.html
 	http://projects.tuxfamily.org/?lang=en_US#%3Fdo%3Dallgroups
