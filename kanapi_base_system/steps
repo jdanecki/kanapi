@@ -365,6 +365,7 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * linux 3.5.3 recompile with CONFIG_CFG80211=m
 * compat-wireless-3.5-3-snpc for alx 1969:1090
 * rsync 3.0.9
+* linux 3.5.3 recompile with PAE support
 
 ########### PREPARED and  ready to add ###################################
 
