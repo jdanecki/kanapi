@@ -365,12 +365,6 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * linux 3.5.3 recompile with CONFIG_CFG80211=m
 * compat-wireless-3.5-3-snpc for alx 1969:1090
 * rsync 3.0.9
-
-########### PREPARED and  ready to add ###################################
-
-###########  WIP ###############################################
-wxPython-demo 2.8.12.1
-
 * libIDL-2.0 0.8.14
 * ORBit-2.0 2.14.19 
 * popt 1.14
@@ -378,6 +372,8 @@ wxPython-demo 2.8.12.1
 * sugar 0.94.1
 * sugar-base 0.94.0
 * sugar-toolkit 0.94.1
+
+########### PREPARED and  ready to add ###################################
 * libXv 1.0.7
 * libXdmcp 1.1.1
 * xf86-input-evdev 2.7.0 
@@ -385,27 +381,93 @@ wxPython-demo 2.8.12.1
 * libXtst 1.2.1
 * xdpyinfo 1.3.0
 * dbus-python 1.1.1
+* gnome-mime-data-2.0 2.18.0 
+* gnome-vfs-2.0 2.24.4
+* libbonobo-2.0 2.32.1
+* lynx 2.8.7
+* libcanberra 0.30
+* libgnome 2.32.1
+* Python 2.7 - recompile with fixed compilation flags
+* pangox-compat 0.0.2
+* libart-2.0
+* libgnomecanvas-2.0
+* libbonoboui-2.0
+* libgpg
+* libgcrypt
+* libtasn1
+* gnome-keyring-1
+* libgnome-keyring 
+* libgnomeui-2.0
+* pyorbit-2 2.0.0
+* pyorbit-2 2.24.0
+* GConf 2.32.4 - switch to newer version
+* gnome-python
+* setuptools - installed from egg
+todo: setuptools installation from sources
+* python-dateutil
+* decorator 3.4.0
+* gnome-icon-theme 2.31.0
+* poppler-data
+* openjpeg 2.0.0
+* openjpeg 1.5.1
+* poppler 0.22.0
+todo: libspectre - ps support for evince
+todo: djvulibre - djvu support for evince
+todo: kpathsea, tex - dvi support
+* gsettings-desktop-schemas
+* evince
+* gnome-python-desktop 
+todo: gir-repository 0.6.5
+* pango - recompile with introspection and new backends
+* atk - recompile with introspection
+* gtk+ - recompile with introspection
+ * hippo-canvas 0.3.1
+* telepathy-python
+* simplejson
+* sugar-datastore 0.94.0  
+* cjson 1.0.5 
+* xapian-core
+* xapian-bindings
+* icon-slicer
+* sugar-artwork
+* xbitmaps
+* xsetroot
+* gsettings-desktop-schemas 3.3.2
+* gnome-doc-utils 
+* docbook-xml 4.2
+* scrollkeeper 0.3.14
 
-No package 'gnome-vfs-2.0' found http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.24/
-No package 'libbonobo-2.0' found http://ftp.gnome.org/pub/GNOME/sources/libbonobo/2.32/
-No package 'libcanberra' found http://0pointer.de/lennart/projects/libcanberra/
+###########  WIP ###############################################
+?wxPython-demo 2.8.12.1
 
-libgnome http://ftp.gnome.org/pub/GNOME/sources/libgnome/2.32/
-gnome-python
+zenity 2.32.1
+metacity 2.34
 
-37 http://download.sugarlabs.org/sources/sucrose/fructose/Calculate
+sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
+glucose:
+*	sugar 0.94.1
+*	sugar-datastore 0.94.0  http://download.sugarlabs.org/sources/sucrose/glucose/sugar-datastore/
+*	sugar-toolkit 0.94.0
+*	sugar-base 0.94.0
+?	sugar-presense-service 0.90.2 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-presence-service/
+*	sugar-artwork 0.94.0 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-artwork/
+	etoys 4.1.2390
+?	hulahop 0.8.2  http://download.sugarlabs.org/sources/sucrose/glucose/hulahop/
+fructose:
+?	pippy 41 http://download.sugarlabs.org/sources/sucrose/fructose/Pippy
+	browse 128
+?	calculate 37 http://download.sugarlabs.org/sources/sucrose/fructose/Calculate
+	etoys 116
+	chat 71
+?	turtleart 116 http://download.sugarlabs.org/sources/sucrose/fructose/TurtleArt
+?	jukebox 23 http://download.sugarlabs.org/sources/sucrose/fructose/Jukebox
+	log 24
+	imageviewer 17
+	write 77
+	terminal 35
+	read 91
 
-0.8.2 http://download.sugarlabs.org/sources/sucrose/glucose/hulahop/
-0.94.0 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-artwork/
-0.90.2 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-presence-service/
-0.94.0 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-datastore/
-
-41 http://download.sugarlabs.org/sources/sucrose/fructose/Pippy
-116 http://download.sugarlabs.org/sources/sucrose/fructose/TurtleArt
-23 http://download.sugarlabs.org/sources/sucrose/fructose/Jukebox
-
-kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
-
+* kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
 
 ########## QUEUE ################################################
 http://flavio.tordini.org/minitube
@@ -485,8 +547,8 @@ apps:
 	http://agateau.com/2012/09/03/kidmp-a-kid-friendly-media-player/
 
 education:
+	sugar 0.96 - based on gnome 3
 	sugar 0.98.3 needs gtk+-3.0
-
 	http://lightspeed.sourceforge.net/download.html
 	http://packages.debian.org/pl/source/squeeze/mathwar
 	http://mnemosyne-proj.org/download-mnemosyne.php
