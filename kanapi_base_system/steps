@@ -378,8 +378,6 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * xorg-server 1.12.2 - recompile with Xephyr
 * libXtst 1.2.1
 * xdpyinfo 1.3.0
-
-########### PREPARED and  ready to add ###################################
 * dbus-python 1.1.1
 * gnome-mime-data-2.0 2.18.0 
 * gnome-vfs-2.0 2.24.4
@@ -387,76 +385,101 @@ todo: rake-compiler https://github.com/luislavena/rake-compiler
 * lynx 2.8.7
 * libcanberra 0.30
 * libgnome 2.32.1
-* Python 2.7 - recompile with fixed compilation flags
+* Python 2.7 - recompile with corrected compilation flags
 * pangox-compat 0.0.2
-* libart-2.0
-* libgnomecanvas-2.0
-* libbonoboui-2.0
-* libgpg
-* libgcrypt
-* libtasn1
-* gnome-keyring-1
-* libgnome-keyring 
-* libgnomeui-2.0
+* libart_lgpl 2.32.21
+* libgnomecanvas 2.30.3
+* libbonoboui 2.24.5
+* libgpg-error 1.9
+* libgcrypt 1.5.0
+* libtasn1 3.2
+* gnome-keyring 2.32.1
+* libgnome-keyring 2.32.0
+* libgnomeui 2.24.5
 * pyorbit-2 2.0.0
 * pyorbit-2 2.24.0
 * GConf 2.32.4 - switch to newer version
-* gnome-python
-* setuptools - installed from egg
-todo: setuptools installation from sources
-* python-dateutil
+* gnome-python 2.28.1
+* setuptools 0.6c11-py2.7 - installed from egg 
+todo: setuptools 0.6c11 installation from sources
+* python-dateutil 1.5
 * decorator 3.4.0
 * gnome-icon-theme 2.31.0
-* poppler-data
+* poppler-data 0.4.6
 * openjpeg 2.0.0
 * openjpeg 1.5.1
 * poppler 0.22.0
 todo: libspectre - ps support for evince
 todo: djvulibre - djvu support for evince
 todo: kpathsea, tex - dvi support
-* gsettings-desktop-schemas
-* evince
-* gnome-python-desktop 
+* gsettings-desktop-schemas 0.1.7
+* evince 2.32.0
+* gnome-python-desktop 2.32.0
 todo: gir-repository 0.6.5
-* pango - recompile with introspection and new backends
-* atk - recompile with introspection
-* gtk+ - recompile with introspection
- * hippo-canvas 0.3.1
-* telepathy-python
-* simplejson
+* pango 1.30.1 - recompile with introspection and new backends
+* atk 2.4.0 - recompile with introspection
+* gtk+ 2.24.13 - recompile with introspection
+* hippo-canvas 0.3.1
+* telepathy-python 0.15.19
+* simplejson 3.0.7
 * sugar-datastore 0.94.0  
-* cjson 1.0.5 
-* xapian-core
-* xapian-bindings
-* icon-slicer
-* sugar-artwork
-* xbitmaps
-* xsetroot
+* python-cjson 1.0.5 
+* xapian-core 1.2.13
+* xapian-bindings 1.2.13
+* icon-slicer 0.3
+* sugar-artwork 0.94.0
+* xbitmaps 1.1.1
+* xsetroot 1.1.1
 * gsettings-desktop-schemas 3.3.2
-* gnome-doc-utils 
-* docbook-xml 4.2
+* gnome-doc-utils 0.20.10
+* docbook-xml 4.2 
 * scrollkeeper 0.3.14
 * zenity 2.32.1
 * itstool 1.2.0
+* metacity 2.34.13
+* sugar-presence-service 0.90.2
+* gnome-themes-standard 3.7.4
+* pudb - 2012.3
+* telepathy-glib 0.20.1
+* telepathy-mission-control 5.14.0
+* libxklavier 5.3
+* python-xklavier 0.4
+* Calculate 37
+* turtleart 116 
 
+########### PREPARED and  ready to add ###################################
+* gamine 1.1
 ###########  WIP ###############################################
-?wxPython-demo 2.8.12.1
-metacity 2.34
+wxPython-demo 2.8.12.1
 
+tuxpaint-stamp
+
+pygst
+* jukebox 23 
+
+vte
+* pippy 41
+
+libphonon
+http://flavio.tordini.org/minitube
+
+gnome-libs
+http://sourceforge.net/projects/gpaint
+________________________________________________________________
 sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
 glucose:
 *	sugar 0.94.1
-*	sugar-datastore 0.94.0  http://download.sugarlabs.org/sources/sucrose/glucose/sugar-datastore/
+*	sugar-datastore 0.94.0  
 *	sugar-toolkit 0.94.0
 *	sugar-base 0.94.0
-?	sugar-presense-service 0.90.2 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-presence-service/
-*	sugar-artwork 0.94.0 http://download.sugarlabs.org/sources/sucrose/glucose/sugar-artwork/
+*	sugar-presense-service 0.90.2 
+*	sugar-artwork 0.94.0 
 	etoys 4.1.2390
 ?	hulahop 0.8.2  http://download.sugarlabs.org/sources/sucrose/glucose/hulahop/
 fructose:
 ?	pippy 41 http://download.sugarlabs.org/sources/sucrose/fructose/Pippy
 	browse 128
-?	calculate 37 http://download.sugarlabs.org/sources/sucrose/fructose/Calculate
+*	calculate 37 
 	etoys 116
 	chat 71
 ?	turtleart 116 http://download.sugarlabs.org/sources/sucrose/fructose/TurtleArt
@@ -466,25 +489,14 @@ fructose:
 	write 77
 	terminal 35
 	read 91
-
+--------------------------------------------------------------------
 * kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
 
 ########## QUEUE ################################################
-http://flavio.tordini.org/minitube
 
-libxml-2.0 >= 2.5.0
-glib-2.0 >= 2.25.6
-gthread-2.0 >= 2.13.0
-gio-2.0 >= 2.25.8
-gtk+-2.0 >= 2.16.0
-gtksourceview-2.0 >= 2.9.7
-gconf-2.0 >= 2.31.1
-? gedit  2.31.3
+todo: gedit 2.30
+todo: gedit 2.31
 
-? gamine, http://gnunux.info/projets/gamine
-
-?gnome-libs
-?todo: http://sourceforge.net/projects/gpaint
 
 ##########  TODO #############################################
 flash:
@@ -545,6 +557,7 @@ apps:
 	sdl2
 	blender
 	http://agateau.com/2012/09/03/kidmp-a-kid-friendly-media-player/
+	 gedit  2.31.3
 
 education:
 	sugar 0.96 - based on gnome 3
