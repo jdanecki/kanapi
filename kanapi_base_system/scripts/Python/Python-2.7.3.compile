@@ -28,14 +28,17 @@ then
 fi
 
 export LIBS="-lcrypt -lz -lncurses"
+
 export LDFLAGS="${NCURSES_LIB} `pkg-config --libs zlib sqlite3 openssl` \
-	-lpthread -ldl -lreadline -lbz2 \
-	-L/kanapi_packages/readline-6.2/lib \
-	-L/kanapi_packages/bzip2-1.0.6/lib" 
+-lpthread -ldl -lreadline -lbz2 \
+-L/kanapi_packages/readline-6.2/lib \
+-L/kanapi_packages/bzip2-1.0.6/lib" 
+
 export CFLAGS="${NCURSES_HDR} ${NCURSES_HDR}/ncurses \
-	-I/kanapi_packages/readline-6.2/include \
-	-I/kanapi_packages/bzip2-1.0.6/include \
-	`pkg-config --cflags zlib sqlite3 openssl `"
+-I/kanapi_packages/readline-6.2/include \
+-I/kanapi_packages/bzip2-1.0.6/include \
+`pkg-config --cflags zlib sqlite3 openssl `"
+
 export CPPFLAGS=${CFLAGS}
 
 ../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX 

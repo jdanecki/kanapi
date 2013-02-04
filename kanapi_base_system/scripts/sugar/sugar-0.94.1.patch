@@ -1,0 +1,28 @@
+diff -urNp sugar-0.94.1-orig/bin/sugar-emulator sugar-0.94.1/bin/sugar-emulator
+--- sugar-0.94.1-orig/bin/sugar-emulator	2011-02-18 18:44:58.000000000 +0000
++++ sugar-0.94.1/bin/sugar-emulator	2013-01-23 19:44:03.881258602 +0000
+@@ -1,10 +1,5 @@
+ #!/bin/sh
+ 
+-if [ "$(id -u)" -eq 0 -o "$(id -ru)" -eq 0 ] ; then
+-	echo Refusing to run as root.
+-	exit 3
+-fi
+-
+ # Source debug definitions
+ if [ -f ~/.sugar/debug ]; then
+         . ~/.sugar/debug
+diff -urNp sugar-0.94.1-orig/bin/sugar.in sugar-0.94.1/bin/sugar.in
+--- sugar-0.94.1-orig/bin/sugar.in	2011-10-18 13:14:38.000000000 +0000
++++ sugar-0.94.1/bin/sugar.in	2013-01-23 19:44:23.253016423 +0000
+@@ -1,10 +1,5 @@
+ #!/bin/sh
+ 
+-if [ "$(id -u)" -eq 0 -o "$(id -ru)" -eq 0 ] ; then
+-	echo Refusing to run as root.
+-	exit 3
+-fi
+-
+ usage() {
+     cat <<EOF
+ Usage: sugar [OPTION]..

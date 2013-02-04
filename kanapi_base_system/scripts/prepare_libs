@@ -97,4 +97,10 @@ ln -s /kanapi_packages/yaml-0.1.4/lib/libyaml* /kanapi_packages/libs
 ln -s /kanapi_packages/wxPython-src-2.8.12.1/lib/libwx_* /kanapi_packages/libs
 ln -s /kanapi_packages/gnutls-3.1.6/lib/libgnutls* /kanapi_packages/libs
 ln -s /kanapi_packages/pixman-0.26.2/lib/libpixman-1.* /kanapi_packages/libs
+ln -s /kanapi_packages/libXtst-1.2.1/lib/libXtst.* /kanapi_packages/libs
+ln -s /kanapi_packages/libXcomposite-0.4.3/lib/libXcomposite.*  /kanapi_packages/libs
+ln -s /kanapi_packages/GConf-2.32.4/lib/libgconf-2.* /kanapi_packages/libs
+ln -s /kanapi_packages/openjpeg-1.5.1/lib/libopenjpeg.so* /kanapi_packages/libs
+ln -s /kanapi_packages/libwnck-2.31.0/lib/libwnck-1.* /kanapi_packages/libs
+ln -s  /kanapi_packages/popt-1.14/lib/libpopt.* /kanapi_packages/libs
 

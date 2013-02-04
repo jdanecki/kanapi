@@ -22,6 +22,8 @@ VER=
 . ../settings
 
 #local_copy
+#export CFLAGS="`pkg-config --cflags `"
+#export LDFLAGS+="`pkg-config --libs `"
 
 #./configure --prefix=$PREFIX
 ../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
