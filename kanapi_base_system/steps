@@ -455,12 +455,12 @@ todo: gir-repository 0.6.5
 * gamine 1.1
 * add pygame into Python
 * sugar: physics 10
+* tuxpaint-stamp 2009.06.28
 
 ########### PREPARED and  ready to add ###################################
 ###########  WIP ###############################################
 wxPython-demo 2.8.12.1
 
-tuxpaint-stamp
 
 pygst
 * jukebox 23 
@@ -474,6 +474,12 @@ http://flavio.tordini.org/minitube
 
 gnome-libs
 http://sourceforge.net/projects/gpaint
+
+hdparm
+
+sdparm
+
+libXinerama.so.1
 ________________________________________________________________
 sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
 glucose:

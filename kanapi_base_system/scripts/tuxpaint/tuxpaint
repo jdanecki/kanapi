@@ -9,4 +9,4 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/kanapi_packages/SDL_mixer-1.2.12/lib:
 /kanapi_packages/libpng-1.4.12/lib:\
 /kanapi_packages/fribidi-0.19.5/lib
 
-/kanapi_packages/tuxpaint-0.9.21/bin/tuxpaint.bin $@
+/kanapi_packages/tuxpaint-0.9.21/bin/tuxpaint.bin $*

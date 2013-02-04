@@ -1,0 +1,32 @@
+diff -urNp tuxpaint-stamps-2009.06.28-orig/Makefile tuxpaint-stamps-2009.06.28/Makefile
+--- tuxpaint-stamps-2009.06.28-orig/Makefile	2006-09-10 19:06:55.000000000 +0000
++++ tuxpaint-stamps-2009.06.28/Makefile	2013-02-04 21:52:57.026035154 +0000
+@@ -79,28 +79,6 @@ releaseclean:
+ 	@rm -rf "build/tuxpaint-stamps-$(VER_DATE)" "build/tuxpaint-stamps-$(VER_DATE).tar.gz"
+ 	@-if [ -d build ] ; then rmdir build ; fi
+ 
+-releasedir: build/tuxpaint-stamps-$(VER_DATE)
+-
+-build/tuxpaint-stamps-$(VER_DATE):
+-	@echo
+-	@echo "Creating release directory"
+-	@echo
+-	@mkdir -p build/tuxpaint-stamps-$(VER_DATE)
+-	@find . -follow \
+-		\( -wholename '*/CVS' -o -name .cvsignore -o -name 'build' -o -name '.#*' \) \
+-		-prune -o -type f -exec cp --parents -vdp \{\} build/tuxpaint-stamps-$(VER_DATE)/ \;
+-	@sed s/__VER_DATE__/$(VER_DATE)/ < tuxpaint-stamps.spec.in > build/tuxpaint-stamps-$(VER_DATE)/tuxpaint-stamps.spec
+-	@rm -f build/tuxpaint-stamps-$(VER_DATE)/tuxpaint-stamps.spec.in
+-
+-release: releasedir
+-	@echo
+-	@echo "Creating release tarball"
+-	@echo
+-	@cd build ; \
+-		tar -czvf tuxpaint-stamps-$(VER_DATE).tar.gz tuxpaint-stamps-$(VER_DATE)
+-
+-
+-
+ # "make uninstall" should remove the various parts from their
+ # installation locations.  BE SURE the *PREFIX variables at the top
+ # are the same as they were when you installed, of course!!!
