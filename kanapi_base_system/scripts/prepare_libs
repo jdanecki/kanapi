@@ -103,4 +103,5 @@ ln -s /kanapi_packages/GConf-2.32.4/lib/libgconf-2.* /kanapi_packages/libs
 ln -s /kanapi_packages/openjpeg-1.5.1/lib/libopenjpeg.so* /kanapi_packages/libs
 ln -s /kanapi_packages/libwnck-2.31.0/lib/libwnck-1.* /kanapi_packages/libs
 ln -s  /kanapi_packages/popt-1.14/lib/libpopt.* /kanapi_packages/libs
+ln -s /kanapi_packages/libXinerama-1.1.2/lib/libXinerama.* /kanapi_packages/libs
 

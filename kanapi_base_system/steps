@@ -456,6 +456,7 @@ todo: gir-repository 0.6.5
 * add pygame into Python
 * sugar: physics 10
 * tuxpaint-stamp 2009.06.28
+* libXinerama 1.1.2
 
 ########### PREPARED and  ready to add ###################################
 ###########  WIP ###############################################
@@ -479,7 +480,6 @@ hdparm
 
 sdparm
 
-libXinerama.so.1
 ________________________________________________________________
 sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
 glucose:
