@@ -457,11 +457,24 @@ todo: gir-repository 0.6.5
 * sugar: physics 10
 * tuxpaint-stamp 2009.06.28
 * libXinerama 1.1.2
+* glu 9.0.0
+todo: mesaglut
+* freeglut 2.8.0
+* glw 8.0.0
+* mesa-demos 8.0.1
+* xf86vidmodeproto 2.3.1
+* libXxf86vm  1.1.2
+* supertuxkart 0.8
+* recompile xorg-server 1.12.2 with vidmodeproto and xxf86vm
 
 ########### PREPARED and  ready to add ###################################
-###########  WIP ###############################################
-wxPython-demo 2.8.12.1
+* wxPython-demo 2.8.12.1 
 
+* kernel snd-usb-audio added
+
+* hdparm 9.43
+###########  WIP ###############################################
+* kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
 
 pygst
 * jukebox 23 
@@ -476,10 +489,7 @@ http://flavio.tordini.org/minitube
 gnome-libs
 http://sourceforge.net/projects/gpaint
 
-hdparm
-
-sdparm
-
+sdparm http://sg.danny.cz/sg/sdparm.html
 ________________________________________________________________
 sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
 glucose:
@@ -505,7 +515,6 @@ fructose:
 	terminal 35
 	read 91
 --------------------------------------------------------------------
-* kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
 
 ########## QUEUE ################################################
 
@@ -524,7 +533,7 @@ games:
 	minetest
 	funnyboat,
 	,berusky,freeciv,alex the aligator 4,rocksdiamonfds,
-	supertuxkart, cuyo,
+	 cuyo,
 	frozen-bubble,
 	xboard, fillets-ng,torcs,pingus, tower toppler
 	sudoku, mines, tetravex, klotski, mastermind, four in line
@@ -543,7 +552,6 @@ games:
 	simutrans-pak128.britain
 	http://gamesined.wikispaces.com/
 tools:
-
 	tzcode http://www.iana.org/time-zones
 	screncast http://www.linuxhaxor.net/5-ways-to-screencast-your-linux-desktop/
 	firefox 18.0 ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/18.0/source/

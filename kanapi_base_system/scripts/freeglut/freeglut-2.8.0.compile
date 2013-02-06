@@ -17,25 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xorg-server
-VER=1.12.2
+PACKAGE_NAME=freeglut
+VER=2.8.0
 . ../settings
 
-local_copy
-#cd build
-export CFLAGS="-I/kanapi_packages/xf86driproto-2.1.1/include -I/kanapi_packages/libpciaccess-0.13.1/include \
-	-I/kanapi_packages/Mesa-8.0.4/include -I/kanapi_packages/glproto-1.4.15/include \
-	`pkg-config --cflags  xxf86vm xf86vidmodeproto xf86dgaproto xproto x11 xext pixman-1 inputproto xcb videoproto` -I../../../Xext"
+export CFLAGS="`pkg-config --cflags gl glu xrandr xi xext x11-xcb x11` "
+export LDFLAGS+="`pkg-config --libs gl glu xrandr xi xext x11-xcb x11` -lstdc++"
+export CPP="${CPP_X11}"
 
-export LIBS="-lrt -lpthread"
-
-./configure --prefix=$PREFIX --with-xkb-bin-directory="`pkg-config --variable=prefix xkbcomp`/bin" \
-	--enable-kdrive --enable-xephyr --enable-kdrive-evdev --enable-config-udev \
-	--with-fontmiscdir=/kanapi_packages/font-cursor-misc-1.0.3/share/fonts/X11/misc \
-       	--with-xkb-path=`pkg-config --variable=xkbconfigdir xkbcomp` 
-
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
-ln -s ${PREFIX}/bin/* /bin
+
 
