@@ -468,11 +468,12 @@ todo: mesaglut
 * recompile xorg-server 1.12.2 with vidmodeproto and xxf86vm
 * wxPython-demo 2.8.12.1 
 * kernel snd-usb-audio added
+* hdparm 9.43
+* sdparm 1.07
 
 ########### PREPARED and  ready to add ###################################
 
 
-* hdparm 9.43
 ###########  WIP ###############################################
 * kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
 
@@ -489,7 +490,6 @@ http://flavio.tordini.org/minitube
 gnome-libs
 http://sourceforge.net/projects/gpaint
 
-sdparm http://sg.danny.cz/sg/sdparm.html
 ________________________________________________________________
 sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
 glucose:
