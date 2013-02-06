@@ -467,10 +467,10 @@ todo: mesaglut
 * supertuxkart 0.8
 * recompile xorg-server 1.12.2 with vidmodeproto and xxf86vm
 * wxPython-demo 2.8.12.1 
+* kernel snd-usb-audio added
 
 ########### PREPARED and  ready to add ###################################
 
-* kernel snd-usb-audio added
 
 * hdparm 9.43
 ###########  WIP ###############################################
