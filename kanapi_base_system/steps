@@ -466,9 +466,9 @@ todo: mesaglut
 * libXxf86vm  1.1.2
 * supertuxkart 0.8
 * recompile xorg-server 1.12.2 with vidmodeproto and xxf86vm
+* wxPython-demo 2.8.12.1 
 
 ########### PREPARED and  ready to add ###################################
-* wxPython-demo 2.8.12.1 
 
 * kernel snd-usb-audio added
 
