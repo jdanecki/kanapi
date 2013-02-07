@@ -374,7 +374,7 @@ todo: http://linuxwireless.org/en/users/Drivers/brcm80211
 * libIDL-2.0 0.8.14
 * ORBit-2.0 2.14.19 
 * popt 1.14
-* gconf-2.0 2.9.91
+* GConf-2.0 2.9.91
 * sugar 0.94.1
 * sugar-base 0.94.0
 * sugar-toolkit 0.94.1
@@ -470,19 +470,15 @@ todo: mesaglut
 * kernel snd-usb-audio added
 * hdparm 9.43
 * sdparm 1.07
-
-########### PREPARED and  ready to add ###################################
-
-
-###########  WIP ###############################################
-* kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
-
-pygst
+* gst-python 0.10.22
 * jukebox 23 
-
-vte
+* dejavu-fonts-ttf 2.33
+* recompile sugar 0.94.1 with GConf 2.32.4
+* vte 0.28.2
 * pippy 41
 
+########### PREPARED and  ready to add ###################################
+###########  WIP ###############################################
 
 libphonon
 http://flavio.tordini.org/minitube
@@ -502,24 +498,26 @@ glucose:
 	etoys 4.1.2390
 ?	hulahop 0.8.2  http://download.sugarlabs.org/sources/sucrose/glucose/hulahop/
 fructose:
-?	pippy 41 http://download.sugarlabs.org/sources/sucrose/fructose/Pippy
+*	pippy 41
 	browse 128
 *	calculate 37 
 	etoys 116
 	chat 71
-?	turtleart 116 http://download.sugarlabs.org/sources/sucrose/fructose/TurtleArt
-?	jukebox 23 http://download.sugarlabs.org/sources/sucrose/fructose/Jukebox
+*	turtleart 116 
+*	jukebox 23 
 	log 24
 	imageviewer 17
 	write 77
 	terminal 35
 	read 91
 --------------------------------------------------------------------
+http://www.tenshu.net/p/terminator.html
 
 ########## QUEUE ################################################
 
 todo: gedit 2.30
 todo: gedit 2.31
+* kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
 
 
 ##########  TODO #############################################
