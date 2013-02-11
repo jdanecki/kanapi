@@ -28,9 +28,10 @@ export LIBS="`pkg-config --libs glib-2.0` -lpthread -lrt -lgmodule-2.0 -lgobject
 export CPP="/bin/cpp `pkg-config --cflags x11`"
 export CFLAGS="`pkg-config --cflags xfixes inputproto`"
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-xinerama --enable-introspection=yes
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-xinerama \
+	--enable-introspection=yes --with-x --enable-xkb --enable-shm
 
-make V=1 MAKEINFO=true
+make V=1 -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
 ln -s ${PREFIX}/bin/* /bin

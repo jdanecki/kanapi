@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,20 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=
-VER=
-. ../settings
+. ../functions
 
-#local_copy
-#export CFLAGS="`pkg-config --cflags `"
-#export LDFLAGS+="`pkg-config --libs `"
+# URL to package
+# http://ftp.gnome.org/pub/gnome/sources/gtk+/2.24
 
-#./configure --prefix=$PREFIX
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-#make -j 2 MAKEINFO=true
-#make -j 2 install MAKEINFO=true
+PACKAGE_NAME=gtk+
+VER=2.24.13
+PATCH_NAME=
 
-#ln -s ${PREFIX}/bin/* /bin
-#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+#prepare_release_tgz ${PACKAGE_NAME}-${VER}
+#prepare_release_tbz ${PACKAGE_NAME}-${VER}
+prepare_release_xz ${PACKAGE_NAME}-${VER}
 
-
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}

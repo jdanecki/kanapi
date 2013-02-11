@@ -467,7 +467,7 @@ todo: mesaglut
 * supertuxkart 0.8
 * recompile xorg-server 1.12.2 with vidmodeproto and xxf86vm
 * wxPython-demo 2.8.12.1 
-* kernel snd-usb-audio added
+* linux 3.5.3 - module snd-usb-audio added
 * hdparm 9.43
 * sdparm 1.07
 * gst-python 0.10.22
@@ -476,17 +476,53 @@ todo: mesaglut
 * recompile sugar 0.94.1 with GConf 2.32.4
 * vte 0.28.2
 * pippy 41
-
+* compat-wireless-3.5-3-snpc - recompile with new kernel
+* recompile gtk+ 2.24.13
+* sugar: Chat 71
+* sugar: ImageViewer 17 
+* sugar: Log 24
+* sugar: Terminal 35
+* gst-plugins-good 0.10.31
+* sugar: CartoonBuilder 11
+* sugar: Paint 43
 ########### PREPARED and  ready to add ###################################
+
+http://activities.sugarlabs.org/en-US/sugar/
+* sugar: CartoonBuilder.xo 17
+* sugar: flip_sticks.xo 13
+* sugar: labirynth.xo 14
+* sugar: story-builder 19
+* sugar: kandid.xo 11
+* sugar: edukt.xo 3
+* sugar: screencast.xo 8
+* sugar: didgart.xo 27
+* sugar: annotate.xo 1
+* sugar: adventure_book 3
+* sugar: Calculate - new version 40
+
 ###########  WIP ###############################################
+csound
+* sugar:filemixaudio 5
+
+* libsndfile 1.0.25 
+http://www.scons.org/
+swig
+csound http://www.csounds.com/
+* sugar: TamTamSuite-66
+
+csound
+* sugar: jam2jam 4
+
+xdt-autogen
+http://goodies.xfce.org/projects/applications/parole
 
 libphonon
 http://flavio.tordini.org/minitube
 
-gnome-libs
-http://sourceforge.net/projects/gpaint
-
+http://gstreamer.freedesktop.org/src/gst-player
 ________________________________________________________________
+
+
 sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
 glucose:
 *	sugar 0.94.1
@@ -495,32 +531,57 @@ glucose:
 *	sugar-base 0.94.0
 *	sugar-presense-service 0.90.2 
 *	sugar-artwork 0.94.0 
-	etoys 4.1.2390
-?	hulahop 0.8.2  http://download.sugarlabs.org/sources/sucrose/glucose/hulahop/
+	etoys 4.1.2390 http://download.sugarlabs.org/sources/sucrose/glucose/etoys/etoys-4.1.2390.tar.gz
+?	hulahop 0.8.2  
 fructose:
 *	pippy 41
-	browse 128
+?	browse 128 
 *	calculate 37 
-	etoys 116
-	chat 71
+	etoys 116 http://download.sugarlabs.org/sources/sucrose/fructose/Etoys/Etoys-116.tar.gz
+*	chat 71 
 *	turtleart 116 
 *	jukebox 23 
-	log 24
-	imageviewer 17
-	write 77
-	terminal 35
-	read 91
+*	Log 24 
+*	imageviewer 17 
+*	write 77 
+*	Terminal 35 
+?	read 91 
 --------------------------------------------------------------------
 http://www.tenshu.net/p/terminator.html
 
 ########## QUEUE ################################################
 
+sugar3.activity
+TypingTurtle 30 
+
+swig
+sugar: Colors -15
+
 todo: gedit 2.30
 todo: gedit 2.31
 * kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
 
+* glib 1.2.9
+gtk+ 1.2
+gnome-libs 
+http://sourceforge.net/projects/gpaint
 
+xpidl
+sugar: hulahop
+* sugar: Browse
+
+lxml
+* sugar: Read
+
+abiword
+* sugar: write
 ##########  TODO #############################################
+sugar:
+	tuxpaint
+	ooo4kidses
+	map
+	broadway
+
 flash:
 	https://github.com/flowplayer/flowplayer
 	gnash http://ftp.gnu.org/pub/gnu/gnash/0.8.10/
