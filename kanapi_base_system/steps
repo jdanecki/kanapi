@@ -485,9 +485,6 @@ todo: mesaglut
 * gst-plugins-good 0.10.31
 * sugar: CartoonBuilder 11
 * sugar: Paint 43
-########### PREPARED and  ready to add ###################################
-
-http://activities.sugarlabs.org/en-US/sugar/
 * sugar: CartoonBuilder.xo 17
 * sugar: flip_sticks.xo 13
 * sugar: labirynth.xo 14
@@ -497,8 +494,10 @@ http://activities.sugarlabs.org/en-US/sugar/
 * sugar: screencast.xo 8
 * sugar: didgart.xo 27
 * sugar: annotate.xo 1
-* sugar: adventure_book 3
-* sugar: Calculate - new version 40
+* sugar: adventure_book.xo 3
+* sugar: Calculate.xo - new version 40
+
+########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
 csound
