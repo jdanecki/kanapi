@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=Csound
+VER=5.19.01
+. ../settings
+
+local_copy
+#cd build
+cp ../custom.py .
+CFG="useDouble=1 useJack=0 buildCsoundVST=0 buildCsoundAC=0 buildCsound5GUI=1 \
+	buildPythonOpcodes=1 buildLuaOpcodes=0 prefix=${PREFIX} gcc4opt=native \
+	buildStkOpcodes=1 buildTclcsound=1 buildVirtual=1 buildInterfaces=1 \
+	buildLuaWrapper=0 buildPythonWrapper=1 buildcatalog=1 tclversion=8.6"
+scons  -j 2 ${CFG}
+python install.py --prefix=${PREFIX}
+
+ln -s ${PREFIX}/bin/* /bin
+
+#  OPCODEDIR64=/kanapi_packages/Csound-5.19.01/lib/csound/plugins64
+#  CSSTRNGS=/kanapi_packages/Csound-5.19.01/share/locale
+

@@ -496,21 +496,26 @@ todo: mesaglut
 * sugar: annotate.xo 1
 * sugar: adventure_book.xo 3
 * sugar: Calculate.xo - new version 40
+* libsndfile 1.0.25 
+* scons 2.2.0
+* swig 2.0.9
+* fltk 1.3.2
+* fluidsynth 1.1.1
+* Csound-5.19.01
 
 ########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
-csound
-* sugar:filemixaudio 5
 
-* libsndfile 1.0.25 
-http://www.scons.org/
-swig
-csound http://www.csounds.com/
+
+* Csound 5.8
+todo: http://ccrma.stanford.edu/software/stk
+todo: _bsddb for TamTamSynthLab
 * sugar: TamTamSuite-66
 
-csound
-* sugar: jam2jam 4
+* sugar: filemixaudio.xo 5
+* sugar: jam2jam.xo 4
+
 
 xdt-autogen
 http://goodies.xfce.org/projects/applications/parole
@@ -580,6 +585,28 @@ sugar:
 	ooo4kidses
 	map
 	broadway
+	memorize
+	moon
+	infoslicer
+	clock
+	arithmetic
+	read etext
+	speak
+	fraction bounce
+	turtle in a pond
+	slider puzzle
+	spirolaterals
+	reflection
+	jigsaw puzzle
+	end game
+	flip
+	dr geo
+	across and down
+	turtle machine
+	implode
+	ruler
+	typing turtle
+	
 
 flash:
 	https://github.com/flowplayer/flowplayer
