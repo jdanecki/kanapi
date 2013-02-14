@@ -502,19 +502,18 @@ todo: mesaglut
 * fltk 1.3.2
 * fluidsynth 1.1.1
 * Csound-5.19.01
-
+* Csound 5.8
+todo: http://ccrma.stanford.edu/software/stk
+todo: _bsddb for TamTamSynthLab
+* sugar: TamTamSuite-66
+* sugar: filemixaudio.xo 5
+* sugar: jam2jam.xo 4
 ########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
 
 
-* Csound 5.8
-todo: http://ccrma.stanford.edu/software/stk
-todo: _bsddb for TamTamSynthLab
-* sugar: TamTamSuite-66
 
-* sugar: filemixaudio.xo 5
-* sugar: jam2jam.xo 4
 
 
 xdt-autogen

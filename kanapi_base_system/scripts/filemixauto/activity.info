@@ -1,0 +1,14 @@
+[Activity]
+
+name = FileMixAuto
+
+bundle_id = org.laptop.FileMixAuto
+icon = activity-filemixauto
+
+activity_version = 5
+
+host_version = 1
+
+show_launcher = yes
+exec = /kanapi_packages/sugar-0.94.1/bin/sugar-activity-csound-5.8.sh filemixauto.FileMixAuto
+license = CC-by-SA 3.0

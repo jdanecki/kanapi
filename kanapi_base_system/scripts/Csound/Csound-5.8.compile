@@ -1,0 +1,41 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=Csound
+VER=5.8
+. ../settings
+ln -s /kanapi_packages/libs/libpcre.so.1 /kanapi_packages/eglibc-20133/lib/libpcre.so.1
+ln -s /kanapi_packages/libs/libz.so.1 /kanapi_packages/eglibc-20133/lib/libz.so.1
+
+CFG="useDouble=0 useJack=0 buildCsoundVST=0 buildCsoundAC=0 buildCsound5GUI=0 \
+	buildPythonOpcodes=1 buildLuaOpcodes=0 prefix=${PREFIX} gcc4opt=native \
+	buildStkOpcodes=1 buildTclcsound=0 buildVirtual=0 buildInterfaces=1 \
+	buildLuaWrapper=0 buildPythonWrapper=1 buildcatalog=1 tclversion=8.6 \
+	dynamicCsoundLibrary=1 install=1"
+scons ${CFG}
+python install.py --prefix=${PREFIX}
+
+#ln -s ${PREFIX}/bin/* /bin
+#mv /usr/lib/python2.7/site-packages/_csnd.so /kanapi_packages/Python-2.7.3/lib/python2.7/site-packages
+#mv /usr/lib/python2.7/site-packages/csnd.py /kanapi_packages/Python-2.7.3/lib/python2.7/site-packages
+
+# export OPCODEDIR=/kanapi_packages/Csound-5.8/lib/csound/plugins
+# export CSSTRNGS=/kanapi_packages/Csound-5.8/share/csound/xmg
+
+
