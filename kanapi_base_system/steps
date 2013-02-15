@@ -508,13 +508,10 @@ todo: _bsddb for TamTamSynthLab
 * sugar: TamTamSuite-66
 * sugar: filemixaudio.xo 5
 * sugar: jam2jam.xo 4
+* graphviz 2.30.1
 ########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
-
-
-
-
 
 xdt-autogen
 http://goodies.xfce.org/projects/applications/parole
@@ -579,6 +576,7 @@ lxml
 abiword
 * sugar: write
 ##########  TODO #############################################
+
 sugar:
 	tuxpaint
 	ooo4kidses
@@ -734,7 +732,7 @@ pages:
 	http://alleg.sourceforge.net/
 	http://www.zwodnik.pl/
 
-
+-Wl,--as-needed
 #########################################################
 Information about versions:
 For new packages versions will be added above in this file
