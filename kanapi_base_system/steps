@@ -512,6 +512,7 @@ todo: _bsddb for TamTamSynthLab
 * libevent
 * transmission 2.77 needs gtk 3.0, so only CLI interface was build
 * transmission 2.60 build with gtk 2.0
+* sugar: Colors 15
 ########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
@@ -557,8 +558,6 @@ http://www.tenshu.net/p/terminator.html
 sugar3.activity
 TypingTurtle 30 
 
-swig
-sugar: Colors -15
 
 todo: gedit 2.30
 todo: gedit 2.31
