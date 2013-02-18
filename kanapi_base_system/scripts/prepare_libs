@@ -108,7 +108,9 @@ ln -s /kanapi_packages/libgnome-2.32.1/lib/libgnome-2.* /kanapi_packages/libs
 ln -s /kanapi_packages/libbonobo-2.32.1/lib/libbonobo-* /kanapi_packages/libs
 ln -s /kanapi_packages/flac-1.2.1/lib/libFLAC* /kanapi_packages/libs
 ln -s /kanapi_packages/libsndfile-1.0.25/lib/libsndfile.* /kanapi_packages/libs
-ln -s /kanapi_packages/Csound-5.19.01/lib/libcs* /kanapi_packages/libs
+ln -s /kanapi_packages/Csound-5.8/lib/libcs* /kanapi_packages/libs
 ln -s /kanapi_packages/fluidsynth-1.1.1/lib/libfluidsynth.* /kanapi_packages/libs
 ln -s /kanapi_packages/tk-8.6.0/lib/libtk* /kanapi_packages/libs
+ln -s /kanapi_packages/Csound-5.19.01/lib/libcsound.so.5.2 /kanapi_packages/libs
+ln -s /kanapi_packages/Csound-5.19.01/lib/libcsnd.so.5.2  /kanapi_packages/libs
 
