@@ -514,16 +514,37 @@ todo: _bsddb for TamTamSynthLab
 * transmission 2.60 build with gtk 2.0
 * sugar: Colors 15
 * xfce4-terminal 0.6
+* gedit 2.30.4
 ########### PREPARED and  ready to add ###################################
 
-###########  WIP ###############################################
+* automoc4 0.9.88
+* phonon 4.6.0
+* phonon-backend-gstreamer 0.6.2
+* faac 1.28
+* faad 2.7
+* gst-plugins-bad 0.10.23
+* x264 snapshot-20130218-2245
+* gst-plugins-ugly 0.10.19
+* libva 1.1.0
+* libva-intel-driver 1.0.19
+* gstreamer-vaapi 0.5.1
+* libav 0.8.4 recompile with new codecs
+* orc 0.4.17
+* gst-ffmpeg 0.10.13
+* minitube 1.9
 
+###########  WIP ###############################################
 xdt-autogen
 http://goodies.xfce.org/projects/applications/parole
 
-http://flavio.tordini.org/minitube
-
+gstreamer-play-0.8 >= 0.8.0
+gstreamer-interfaces-0.8 >= 0.8.0 
+gstreamer-gconf-0.8 >= 0.8.0.
 http://gstreamer.freedesktop.org/src/gst-player
+
+todo: gst-ffmpeg 11.3
+http://gstreamer.freedesktop.org/src/gst-libav/
+http://gstreamer.freedesktop.org/src/gst-editor
 ________________________________________________________________
 
 sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
@@ -558,7 +579,6 @@ sugar3.activity
 TypingTurtle 30 
 
 
-todo: gedit 2.30
 todo: gedit 2.31
 * kernel 14e4:4727 broadcom bcm4313 http://ubuntuforums.org/showthread.php?p=11752852
 

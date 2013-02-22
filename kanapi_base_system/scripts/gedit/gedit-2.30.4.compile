@@ -17,21 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=
-VER=
+PACKAGE_NAME=gedit
+VER=2.30.4
 . ../settings
 
-#local_copy
-#PKG=""
-#export CFLAGS="`pkg-config --cflags ${PKG}`"
-#export LDFLAGS+="`pkg-config --libs ${PKG}`"
+export CFLAGS="${NCURSES_HDR}"
+export LDFLAGS+="${NCURSES_LIB}"
 
-#./configure --prefix=$PREFIX
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-#make -j 2 MAKEINFO=true
-#make -j 2 install MAKEINFO=true
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --disable-updater 
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
-#ln -s ${PREFIX}/bin/* /bin
-#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+ln -s ${PREFIX}/bin/* /bin
+find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 
