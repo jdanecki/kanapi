@@ -530,7 +530,10 @@ todo: _bsddb for TamTamSynthLab
 * orc 0.4.17
 * gst-ffmpeg 0.10.13
 * minitube 1.9
+* multiplicationStation	0.6.4
 ########### PREPARED and  ready to add ###################################
+* gnumch 0.2.0
+* vym 2.2.4
 
 ###########  WIP ###############################################
 xdt-autogen
@@ -544,6 +547,8 @@ http://gstreamer.freedesktop.org/src/gst-player
 todo: gst-ffmpeg 11.3
 http://gstreamer.freedesktop.org/src/gst-libav/
 http://gstreamer.freedesktop.org/src/gst-editor
+
+
 ________________________________________________________________
 
 sugar-0.94: http://wiki.sugarlabs.org/go/0.94/Notes
@@ -623,7 +628,6 @@ sugar:
 	implode
 	ruler
 	typing turtle
-	
 
 flash:
 	https://github.com/flowplayer/flowplayer
@@ -632,6 +636,7 @@ flash:
 
 games:
 	http://www.bigorno.net/xrick/
+	http://sourceforge.net/projects/extremetuxracer/
 	minetest
 	funnyboat,
 	,berusky,freeciv,alex the aligator 4,rocksdiamonfds,
@@ -662,7 +667,6 @@ tools:
 	lxlauncher
 	- eog, evince, okular
 	gtk-xfce-engine, http://archive.xfce.org/xfce/4.10/src
-	qemu
 	- xkbutils
 	- iceauth
 	-network-manager-applet - need gnome-keyring
@@ -690,9 +694,7 @@ education:
 	http://lightspeed.sourceforge.net/download.html
 	http://packages.debian.org/pl/source/squeeze/mathwar
 	http://mnemosyne-proj.org/download-mnemosyne.php
-	multiplicationStation	http://www.asymptopia.org/download/
 	http://www.asymptopia.org/
-	http://code.google.com/p/munchers/
 	http://ironphoenix.org/tril/wordplay/
 	http://sourceforge.net/projects/tuxwordsmith/files/
 	kletters, khangman, kanagram, kgeography
@@ -708,17 +710,14 @@ education:
 	- childsplay
 	SQLAlchemy www.sqlalchemy.org
 	pysycache
-	http://visualruby.net/
 	bambam http://linux.softpedia.com/get/Education/Bambam-34475.shtml
 	myabc http://sourceforge.net/projects/myabcs/
-	vym http://sourceforge.net/projects/vym/?source=navbar
 	klavaro
 	krecipes
 	fritzing
 	einstein
 	http://homepages.ihug.co.nz/~trmusson/programs.html#ignuit
 	http://blends.alioth.debian.org/junior/tasks/
-	Stamp files for Tux Paint,
 	https://schoolforge.net/
 	http://www.osef.org/
 	http://linux.softpedia.com/get/Education/
@@ -732,6 +731,7 @@ education:
 development:
 	http://sourceforge.net/projects/johnnysimulator/
 	http://www.lazarus.freepascal.org/
+	http://visualruby.net/
 	TurtleArts
 	https://love2d.org/
 check:
