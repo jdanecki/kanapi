@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,20 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=minitube
-VER=1.9
+PACKAGE_NAME=libva-intel-driver
+VER=1.0.19
 . ../settings
 
 local_copy
 #cd build
+export CFLAGS="`pkg-config --cflags x11`"
+export LDFLAGS+="`pkg-config --libs x11`"
 
-export PATH="/kanapi_packages/qt-everywhere-opensource-src-4.8.4/bin:${PATH}"
+autoreconf -v -i -I /kanapi_packages/util-macros-1.17/share/aclocal \
+	-I /kanapi_packages/pkg-config-0.27/share/aclocal \
+	-I /kanapi_packages/libtool-2.4/share/aclocal
 
-#qmake -query
-qmake
-make -j2
-make  install INSTALL_ROOT=${PREFIX}
-
-ln -s ${PREFIX}/usr/bin/* /bin
+./configure --prefix=$PREFIX
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
 

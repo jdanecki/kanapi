@@ -515,8 +515,6 @@ todo: _bsddb for TamTamSynthLab
 * sugar: Colors 15
 * xfce4-terminal 0.6
 * gedit 2.30.4
-########### PREPARED and  ready to add ###################################
-
 * automoc4 0.9.88
 * phonon 4.6.0
 * phonon-backend-gstreamer 0.6.2
@@ -532,6 +530,7 @@ todo: _bsddb for TamTamSynthLab
 * orc 0.4.17
 * gst-ffmpeg 0.10.13
 * minitube 1.9
+########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
 xdt-autogen

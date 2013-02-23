@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,20 +17,19 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=minitube
-VER=1.9
-. ../settings
+. ../functions
 
-local_copy
-#cd build
+# URL to package
+# http://download.kde.org/stable/phonon
 
-export PATH="/kanapi_packages/qt-everywhere-opensource-src-4.8.4/bin:${PATH}"
+PACKAGE_NAME=phonon
+VER=4.6.0
+PATCH_NAME=
 
-#qmake -query
-qmake
-make -j2
-make  install INSTALL_ROOT=${PREFIX}
+#prepare_release_tgz ${PACKAGE_NAME}-${VER}
+#prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
+#prepare_release_tbz ${PACKAGE_NAME}-${VER}
+prepare_release_xz ${PACKAGE_NAME}-${VER}
+#prepare_release_zip ${PACKAGE_NAME}-${VER}
 
-ln -s ${PREFIX}/usr/bin/* /bin
-
-
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,20 +17,20 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=minitube
-VER=1.9
+PACKAGE_NAME=automoc4
+VER=0.9.88
 . ../settings
 
-local_copy
-#cd build
+PKG="xext x11-xcb x11"
+export CFLAGS="`pkg-config --cflags ${PKG}`"
+export LDFLAGS+="`pkg-config --libs ${PKG}` -lresolv"
 
 export PATH="/kanapi_packages/qt-everywhere-opensource-src-4.8.4/bin:${PATH}"
+cmake ../../src/${PACKAGE_NAME}-${VER} -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
-#qmake -query
-qmake
-make -j2
-make  install INSTALL_ROOT=${PREFIX}
+make -j 2 
+make -j 2 install
 
-ln -s ${PREFIX}/usr/bin/* /bin
+ln -s ${PREFIX}/bin/* /bin
 
 

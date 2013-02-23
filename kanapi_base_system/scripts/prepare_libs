@@ -113,4 +113,10 @@ ln -s /kanapi_packages/fluidsynth-1.1.1/lib/libfluidsynth.* /kanapi_packages/lib
 ln -s /kanapi_packages/tk-8.6.0/lib/libtk* /kanapi_packages/libs
 ln -s /kanapi_packages/Csound-5.19.01/lib/libcsound.so.5.2 /kanapi_packages/libs
 ln -s /kanapi_packages/Csound-5.19.01/lib/libcsnd.so.5.2  /kanapi_packages/libs
+ln -s /kanapi_packages/gst-plugins-bad-0.10.23/lib/libgst* /kanapi_packages/libs
+ln -s /kanapi_packages/x264-snapshot-20130218-2245/lib/libx264.so* /kanapi_packages/libs
+ln -s /kanapi_packages/libva-1.1.0/lib/libva* /kanapi_packages/libs
+ln -s /kanapi_packages/libav-0.8.4/lib/lib* /kanapi_packages/libs
+ln -s /kanapi_packages/faac-1.28/lib/libfaac.* /kanapi_packages/libs
+ln -s /kanapi_packages/phonon-4.6.0/lib/libphononexperimental.so* /kanapi_packages/libs
 

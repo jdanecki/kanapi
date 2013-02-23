@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=phonon
+VER=4.6.0
+. ../settings
+
+PKG="x11 ice xext x11-xcb"
+export CFLAGS="`pkg-config --cflags ${PKG}`"
+export LDFLAGS+="`pkg-config --libs ${PKG}`"
+
+export PATH="/kanapi_packages/qt-everywhere-opensource-src-4.8.4/bin:${PATH}"
+cmake ../../src/${PACKAGE_NAME}-${VER} -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+	-DAutomoc4_DIR="/kanapi_packages/automoc4-0.9.88/lib/automoc4"
+make -j 2
+make -j 2 install
+
+mkdir demos
+cd demos
+export CFLAGS+="-I/kanapi_packages/phonon-4.6.0/include"
+export CXXFLAGS="${CFLAGS}"
+export LDFLAGS+="-L/kanapi_packages/phonon-4.6.0/lib -lresolv "
+
+cmake ../../../src/${PACKAGE_NAME}-${VER}/demos -DCMAKE_INSTALL_PREFIX=${PREFIX}
+make -j 2
+mkdir ${PREFIX}/bin
+cp simpleplayer/simpleplayer ${PREFIX}/bin
+cp simplecapture/simplecapture ${PREFIX}/bin
+cp phota/phota ${PREFIX}/bin
+
+#QMAKEPATH=${PREFIX}
