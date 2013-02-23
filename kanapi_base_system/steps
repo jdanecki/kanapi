@@ -509,7 +509,7 @@ todo: _bsddb for TamTamSynthLab
 * sugar: filemixaudio.xo 5
 * sugar: jam2jam.xo 4
 * graphviz 2.30.1
-* libevent
+* libevent 2.0.21-stable
 * transmission 2.77 needs gtk 3.0, so only CLI interface was build
 * transmission 2.60 build with gtk 2.0
 * sugar: Colors 15
