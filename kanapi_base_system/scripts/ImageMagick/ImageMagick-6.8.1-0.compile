@@ -21,13 +21,15 @@ PACKAGE_NAME=ImageMagick
 VER=6.8.1-0
 . ../settings
 
-export LDFLAGS="-L/kanapi_packages/bzip2-1.0.6/lib ${ZLIB_LIB} `pkg-config --libs x11 sm ice xt xpm cairo fontconfig freetype2 xext zlib libpng libtiff-4` \
-	-lpthread -lrt -lm -lstdc++ -lresolv -ldl -L/kanapi_packages/jpeg-8d/lib"
-export CFLAGS="-I/kanapi_packages/bzip2-1.0.6/include ${ZLIB_HDR} `pkg-config --cflags x11 xpm ice sm  xt fontconfig freetype2 xext zlib libpng libtiff-4` \
+PKG="x11 sm ice libxml-2.0 xt xpm librsvg-2.0 cairo fontconfig freetype2 xext zlib libpng libtiff-4"
+
+export LDFLAGS+="-L/kanapi_packages/bzip2-1.0.6/lib `pkg-config --libs ${PKG}` \
+	-lstdc++ -lresolv -L/kanapi_packages/jpeg-8d/lib"
+export CFLAGS="-I/kanapi_packages/bzip2-1.0.6/include `pkg-config --cflags ${PKG}` \
 	-I/kanapi_packages/jpeg-8d/include"
 export CPP="${CPP_X11}"
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --with-x
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --with-x --with-rsvg=yes --with-png=yes
 #--with-modules --with-perl
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true

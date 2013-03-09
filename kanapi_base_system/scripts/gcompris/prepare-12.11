@@ -31,3 +31,5 @@ prepare_release_tbz ${PACKAGE_NAME}-${VER}
 #prepare_release_xz ${PACKAGE_NAME}-${VER}
 
 #apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
+copy_file ${PACKAGE_NAME} ${PACKAGE_NAME}
+

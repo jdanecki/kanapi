@@ -21,17 +21,21 @@ PACKAGE_NAME=gcompris
 VER=12.11
 . ../settings
 
+local_copy
+#cd build
 export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
 
 export CFLAGS="`pkg-config --cflags x11 SDL_mixer sqlite3` "
 export LDFLAGS="`pkg-config --libs x11 SDL_mixer gmodule-2.0 sqlite3` -ldl"
-export PYTHONPATH=/kanapi_packages/pygtk-2.24.0/lib/python2.7/site-packages/gtk-2.0:/kanapi_packages/pygobject-2.28.6/lib/python2.7/site-packages:/kanapi_packages/py2cairo-1.10.0/lib/python2.7/site-packages:/kanapi_packages/pygobject-2.28.6/lib/python2.7/site-packages/gtk-2.0/
+#export PYTHONPATH=/kanapi_packages/pygtk-2.24.0/lib/python2.7/site-packages/gtk-2.0:/kanapi_packages/pygobject-2.28.6/lib/python2.7/site-packages:/kanapi_packages/py2cairo-1.10.0/lib/python2.7/site-packages:/kanapi_packages/pygobject-2.28.6/lib/python2.7/site-packages/gtk-2.0/
 export LD_LIBRARY_PATH="`pkg-config --variable=libdir sqlite3`:${LD_LIBRARY_PATH}"
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-sdlmixer
+./configure --prefix=$PREFIX --enable-sdlmixer --enable-debug 
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
 ln -s ${PREFIX}/bin/* /bin
+mv ${PREFIX}/bin/gcompris ${PREFIX}/bin/gcompris.bin
+cp gcompris ${PREFIX}/bin
 
 

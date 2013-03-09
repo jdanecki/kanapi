@@ -535,9 +535,35 @@ todo: _bsddb for TamTamSynthLab
 * gnumch 0.2.0
 * vym 2.2.4
 * dia 0.97.2
-########### PREPARED and  ready to add ###################################
+* python 2.7.3 - recompiled with dynamic library
+* cairo 1.12.4 - recompile
+* ImageMagick 6.8.1-0 - recompile with more formats
+* pycairo 1.8.8
+* pygoocanvas 0.14.1 - python must be compiled with shared library 
+todo: gnucap
+* librsvg 2.34.0 - needed for gcompris
+* gcompris 12.11 recompile with shared python library
 
+########### PREPARED and  ready to add ###################################
 ###########  WIP ###############################################
+
+* glib2 1.2.1
+* rcairo 1.12.2
+todo: goocanvas 2.0.1 needs gtk 3.0
+* goocanvas 1.0.0
+* ruby-gnome2 1.1.9
+* rake-tasks.gem 0.2
+* glib2-1.2.1.gem
+* atk-1.2.1.gem
+* cairo.1.12.3.gem
+* pango-1.2.1.gem
+* gdk_pixbuf2-1.2.1.gem
+* gtk2-1.2.1.gem
+* vrlib-0.3.33.gem
+* gtksourceview2-1.2.1.gem 
+* visualruby-0.1.2.gem 
+* glade3 3.8.3
+
 xdt-autogen
 http://goodies.xfce.org/projects/applications/parole
 
@@ -681,6 +707,7 @@ tools:
 	http://www.gnu.org/software/freefont/sources/
 	pygconf http://sourceforge.net/projects/pygconf
 apps:
+	spice
 	pencil http://www.pencil-animation.org/ - is an animation/drawing software 
 	hydrogen, songwrite, sound recorder
 	stopmotion

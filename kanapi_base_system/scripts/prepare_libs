@@ -119,4 +119,8 @@ ln -s /kanapi_packages/libva-1.1.0/lib/libva* /kanapi_packages/libs
 ln -s /kanapi_packages/libav-0.8.4/lib/lib* /kanapi_packages/libs
 ln -s /kanapi_packages/faac-1.28/lib/libfaac.* /kanapi_packages/libs
 ln -s /kanapi_packages/phonon-4.6.0/lib/libphononexperimental.so* /kanapi_packages/libs
+ln -s /kanapi_packages/poppler-0.22.0/lib/libpoppler* /kanapi_packages/libs
+ln -s /kanapi_packages/gtksourceview-2.10.5/lib/libgtksourceview-2.0.* /kanapi_packages/libs
+ln -s /kanapi_packages/Python-2.7.3/lib/libpython2.7.* /kanapi_packages/libs
+ln -s /kanapi_packages/goocanvas-1.0.0/lib/libgoocanvas.* /kanapi_packages/libs
 

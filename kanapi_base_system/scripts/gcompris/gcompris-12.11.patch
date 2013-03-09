@@ -1,0 +1,12 @@
+diff -urNp gcompris-12.11-orig/src/goocanvas/src/goocanvassvg.h gcompris-12.11/src/goocanvas/src/goocanvassvg.h
+--- gcompris-12.11-orig/src/goocanvas/src/goocanvassvg.h	2011-01-08 22:27:14.000000000 +0000
++++ gcompris-12.11/src/goocanvas/src/goocanvassvg.h	2013-03-08 08:16:05.614098989 +0000
+@@ -10,7 +10,7 @@
+ #include <gtk/gtk.h>
+ #include "goocanvasitemsimple.h"
+ #include <librsvg/rsvg.h>
+-#include <librsvg/rsvg-cairo.h>
++//#include <librsvg/rsvg-cairo.h>
+ 
+ G_BEGIN_DECLS
+ 

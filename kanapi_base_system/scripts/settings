@@ -16,8 +16,9 @@ export GCC_PREFIX="/kanapi_packages/gcc-4.7.1-a"
 
 export NCURSES_HDR="-I/kanapi_packages/ncurses-5.9/include"
 export NCURSES_LIB="-L/kanapi_packages/ncurses-5.9/lib"
-export ZLIB_LIB="-L/kanapi_packages/zlib-1.2.7/lib"
-export ZLIB_HDR="-I/kanapi_packages/zlib-1.2.7/include"
+export ZLIB_DIR="/kanapi_packages/zlib-1.2.7"
+export ZLIB_LIB="-L${ZLIB_DIR}/lib"
+export ZLIB_HDR="-I/${ZLIB_DIR}/include"
 export GLIB_CFLAGS="-I/kanapi_packages/glib-2.32.4/include/glib-2.0 -I/kanapi_packages/glib-2.32.4/lib/glib-2.0/include"
 export GLIB_LIBS="-L/kanapi_packages/glib-2.32.4/lib -lglib-2.0"
 export PIXMAN_CFLAGS="-I/kanapi_packages/pixman-0.26.2/include/pixman-1"
@@ -25,9 +26,12 @@ export PIXMAN_LIBS="-L/kanapi_packages/pixman-0.26.2/lib -lpixman-1"
 
 export PATH=$GCC_PREFIX/bin:$BINUTILS_PREFIX/bin:$PATH
 
-export CC="gcc -mtune=native"
+export CC="gcc -mtune=native -g"
+export CXX="g++ -mtune=native -g"
 export CPP="${GCC_PREFIX}/bin/cpp"
 export CPP_X11="${GCC_PREFIX}/bin/cpp  `pkg-config --cflags x11`"
+export LDFLAGS="-lrt -ldl -lm -lpthread "
+export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
 
 local_copy() {
 	rm -rf build

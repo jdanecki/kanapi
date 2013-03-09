@@ -21,11 +21,11 @@ PACKAGE_NAME=Python
 VER=2.7.3
 . ../settings
 
-if ! grep zlib-1.2.7 ${LIBC_PREFIX}/etc/ld.so.conf
-then
-	echo "/kanapi_packages/zlib-1.2.7/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
-	ldconfig
-fi
+#if ! grep zlib-1.2.7 ${LIBC_PREFIX}/etc/ld.so.conf
+#then
+#	echo "/kanapi_packages/zlib-1.2.7/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
+#	ldconfig
+#fi
 
 export LIBS="-lcrypt -lz -lncurses"
 
@@ -41,7 +41,8 @@ export CFLAGS="${NCURSES_HDR} ${NCURSES_HDR}/ncurses \
 
 export CPPFLAGS=${CFLAGS}
 
-../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX 
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-shared
+#	--with-pydebug --with-threads
 
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
