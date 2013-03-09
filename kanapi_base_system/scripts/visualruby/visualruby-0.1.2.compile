@@ -17,21 +17,15 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ../functions
+PACKAGE_NAME=visualruby
+VER=0.1.2
+. ../settings
 
-# URL to package
-# http://
+export CFLAGS="-O2 -lresolv"
+export PKG_CONFIG_LIBDIR=/kanapi_packages/pkg-config-0.27/share/pkgconfig
 
-PACKAGE_NAME=
-VER=
-PATCH_NAME=
+gem install  ${PACKAGE_NAME}
 
-#prepare_release_tgz ${PACKAGE_NAME}-${VER}
-#prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
-prepare_release_tbz ${PACKAGE_NAME}-${VER}
-#prepare_release_xz ${PACKAGE_NAME}-${VER}
-#prepare_release_zip ${PACKAGE_NAME}-${VER}
-#prepare_gem ${PACKAGE_NAME}-${VER}
 
-#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
+
 

@@ -77,6 +77,17 @@ prepare_release_xz() {
 	mkdir $BUILD_OUT_DIR/$1
 	cp $1.compile $BUILD_OUT_DIR/$1
 }
+
+prepare_gem() {
+	echo "prepare: $1"
+	rm -rf $BUILD_SRC_DIR/$1
+	rm -rf $BUILD_OUT_DIR/$1
+	cp -ar ../../../sources/RELEASES/$1.gem $BUILD_SRC_DIR
+	gem unpack $BUILD_SRC_DIR/$1.gem --target=$BUILD_SRC_DIR
+	mkdir $BUILD_OUT_DIR/$1
+	cp $1.compile $BUILD_OUT_DIR/$1
+}
+
 apply_patch() {
 #	echo "apply_patch $1 $2"
 	cp -v $2 $BUILD_OUT_DIR/$1
@@ -96,6 +107,7 @@ apply_patch_p0() {
 #	echo -n "Returning: "
 	popd
 }
+
 copy_file() {
 	cp -v $2 $BUILD_OUT_DIR/$1
 }

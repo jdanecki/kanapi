@@ -543,26 +543,25 @@ todo: _bsddb for TamTamSynthLab
 todo: gnucap
 * librsvg 2.34.0 - needed for gcompris
 * gcompris 12.11 recompile with shared python library
-
-########### PREPARED and  ready to add ###################################
-###########  WIP ###############################################
-
-* glib2 1.2.1
 * rcairo 1.12.2
 todo: goocanvas 2.0.1 needs gtk 3.0
 * goocanvas 1.0.0
 * ruby-gnome2 1.1.9
-* rake-tasks.gem 0.2
+* rake-tasks.gem 0.2 - installed from gems
 * glib2-1.2.1.gem
-* atk-1.2.1.gem
-* cairo.1.12.3.gem
-* pango-1.2.1.gem
-* gdk_pixbuf2-1.2.1.gem
-* gtk2-1.2.1.gem
+* atk-1.2.1.gem - installed from gems
+* cairo.1.12.3.gem - installed from gems
+* pango-1.2.1.gem - installed from gems 
+* gdk_pixbuf2-1.2.1.gem - installed from gems
+* gtk2-1.2.1.gem - installed from gems
 * vrlib-0.3.33.gem
 * gtksourceview2-1.2.1.gem 
 * visualruby-0.1.2.gem 
 * glade3 3.8.3
+########### PREPARED and  ready to add ###################################
+###########  WIP ###############################################
+
+
 
 xdt-autogen
 http://goodies.xfce.org/projects/applications/parole
