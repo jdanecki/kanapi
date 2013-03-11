@@ -540,7 +540,7 @@ todo: _bsddb for TamTamSynthLab
 * ImageMagick 6.8.1-0 - recompile with more formats
 * pycairo 1.8.8
 * pygoocanvas 0.14.1 - python must be compiled with shared library 
-todo: gnucap
+* gnucap 0.35
 * librsvg 2.34.0 - needed for gcompris
 * gcompris 12.11 recompile with shared python library
 * rcairo 1.12.2
@@ -554,7 +554,7 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 * pango-1.2.1.gem - installed from gems 
 * gdk_pixbuf2-1.2.1.gem - installed from gems
 * gtk2-1.2.1.gem - installed from gems
-* vrlib-0.3.33.gem
+* vrlib-0.0.33.gem
 * gtksourceview2-1.2.1.gem 
 * visualruby-0.1.2.gem 
 * glade3 3.8.3

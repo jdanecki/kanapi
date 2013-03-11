@@ -1,0 +1,77 @@
+diff -urNp gnucap-0.35-orig/modelgen/ap_construct.cc gnucap-0.35/modelgen/ap_construct.cc
+--- gnucap-0.35-orig/modelgen/ap_construct.cc	2006-08-28 06:15:43.000000000 +0000
++++ gnucap-0.35/modelgen/ap_construct.cc	2013-03-09 20:55:57.490970417 +0000
+@@ -22,6 +22,7 @@
+  * construction, copy, etc.
+  */
+ //testing=script,sparse 2006.07.17
++
+ #include "ap.h"
+ /*--------------------------------------------------------------------------*/
+ CS::CS(CS_FILE, const std::string& name, int i)
+diff -urNp gnucap-0.35-orig/modelgen/ap.h gnucap-0.35/modelgen/ap.h
+--- gnucap-0.35-orig/modelgen/ap.h	2006-08-28 06:15:43.000000000 +0000
++++ gnucap-0.35/modelgen/ap.h	2013-03-09 20:55:57.944970394 +0000
+@@ -25,6 +25,7 @@
+ #ifndef AP_H
+ #define AP_H
+ #include "md.h"
++#include <cstring>
+ /*--------------------------------------------------------------------------*/
+ enum AP_MOD{
+   mNONE,	/* nothing special */
+diff -urNp gnucap-0.35-orig/src/ap.h gnucap-0.35/src/ap.h
+--- gnucap-0.35-orig/src/ap.h	2006-08-28 06:15:43.000000000 +0000
++++ gnucap-0.35/src/ap.h	2013-03-09 20:57:20.215966928 +0000
+@@ -24,6 +24,7 @@
+ //testing=script,sparse 2006.07.17
+ #ifndef AP_H
+ #define AP_H
++#include <cstring>
+ #include "md.h"
+ /*--------------------------------------------------------------------------*/
+ enum AP_MOD{
+diff -urNp gnucap-0.35-orig/src/e_base.h gnucap-0.35/src/e_base.h
+--- gnucap-0.35-orig/src/e_base.h	2006-08-28 06:15:43.000000000 +0000
++++ gnucap-0.35/src/e_base.h	2013-03-09 20:56:56.448967945 +0000
+@@ -24,6 +24,7 @@
+ //testing=script,complete 2006.07.12
+ #ifndef E_BASE_H
+ #define E_BASE_H
++#include <cstring>
+ #include "l_compar.h"
+ #include "u_opt.h"
+ #include "u_status.h"
+diff -urNp gnucap-0.35-orig/src/io_getln.cc gnucap-0.35/src/io_getln.cc
+--- gnucap-0.35-orig/src/io_getln.cc	2006-08-28 06:15:43.000000000 +0000
++++ gnucap-0.35/src/io_getln.cc	2013-03-09 20:58:39.194963651 +0000
+@@ -27,6 +27,7 @@
+  * start with + is extension line, spice compatibility.
+  */
+ //testing=script 2006.07.17
++#include <cstring>
+ #include "l_lib.h"
+ /*--------------------------------------------------------------------------*/
+ std::string getlines(FILE *fileptr)
+diff -urNp gnucap-0.35-orig/src/main.cc gnucap-0.35/src/main.cc
+--- gnucap-0.35-orig/src/main.cc	2006-09-20 17:18:52.000000000 +0000
++++ gnucap-0.35/src/main.cc	2013-03-09 20:58:01.302965248 +0000
+@@ -23,6 +23,7 @@
+  * it all starts here
+  */
+ //testing=script 2006.07.14
++#include <cstring>
+ #include "patchlev.h"
+ #include "c_comand.h"
+ #include "declare.h"	/* lots */
+diff -urNp gnucap-0.35-orig/src/md.h gnucap-0.35/src/md.h
+--- gnucap-0.35-orig/src/md.h	2006-08-28 06:15:43.000000000 +0000
++++ gnucap-0.35/src/md.h	2013-03-09 20:59:26.870961678 +0000
+@@ -58,6 +58,7 @@
+ /* usual but non-standard (POSIX??) collection of includes */
+ #include <unistd.h>	/* chdir, access, getcwd */
+ #include <fcntl.h>	/* old style unix files */
++#include <cstring>
+ /*--------------------------------------------------------------------------*/
+ /* constants related to memory size, word size, etc */
+ enum {
