@@ -21,20 +21,22 @@ PACKAGE_NAME=linux
 VER=3.5.3
 . ../settings
 
-for f in limits errno types posix_types stddef compiler
-do
-	if [ ! -f /usr/include/linux/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/include/linux/${f}.h /usr/include/linux ; fi
-done
+prepare() {
+	for f in limits errno types posix_types stddef compiler
+	do
+		if [ ! -f /usr/include/linux/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/include/linux/${f}.h /usr/include/linux ; fi
+	done
 
-for f in socket sockios errno types int-ll64 errno-base bitsperlong posix_types
-do
-	if [ ! -f /usr/include/asm-generic/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/include/asm-generic/${f}.h /usr/include/asm-generic ; fi
-done
+	for f in socket sockios errno types int-ll64 errno-base bitsperlong posix_types
+	do
+		if [ ! -f /usr/include/asm-generic/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/include/asm-generic/${f}.h /usr/include/asm-generic ; fi
+	done
 
-for f in errno socket sockios errno types bitsperlong posix_types posix_types_32
-do
-	if [ ! -f /usr/include/asm/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/arch/x86/include/asm/${f}.h /usr/include/asm ; fi
-done
+	for f in errno socket sockios errno types bitsperlong posix_types posix_types_32
+	do
+		if [ ! -f /usr/include/asm/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/arch/x86/include/asm/${f}.h /usr/include/asm ; fi
+	done
+}
 
 config() {
 	make -C ../../src/linux-3.5.3/ O=`pwd` HOST_EXTRACFLAGS='${NCURSES_HDR}/ncurses ${NCURSES_HDR} ${NCURSES_LIB} -lncurses -DCURSES_LOC="<ncurses.h>"' menuconfig
@@ -46,7 +48,7 @@ compile() {
 	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2 all
 }
 
-install() {
+installation() {
 	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_MOD_PATH=${PREFIX} modules_install
 	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_FW_PATH=${PREFIX}/firmware firmware_install
 	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2  INSTALL_HDR_PATH=${PREFIX} headers_install
@@ -56,7 +58,12 @@ install() {
 	ln -s ${PREFIX}/include/* /usr/include
 }
 
+prepare
 config
 compile
-install
+installation
+
+#recompile /kanapi_build/out/compat-wireless-3.5-3-snpc/
+#recompile /kanapi_build/out/broadcom-wifi/
+
 
