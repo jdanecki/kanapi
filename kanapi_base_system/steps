@@ -558,10 +558,85 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 * gtksourceview2-1.2.1.gem 
 * visualruby-0.1.2.gem 
 * glade3 3.8.3
+* sugar: arithmetic.activity.xo 2
+* sugar: domino.xo 8
+* sugar: deducto.xo 8
+* sugar: colordeducto.xo 5
+* sugar: sliderule.xo 24
+* sugar: visual_match.xo 46
+* sugar: plot.xo 6
+* sugar: Quinteti.xo 3 
+* sugar: tetris_mat.xo 2
+* sugar: starchart.xo 13
+* sugar: Spirolaterals.xo 23 
+* sugar: numbers.xo 25
+* sugar: turtle_machine.xo 22
+* sugar: Tessellations.xo 23 
+* sugar: boxes.xo 22
+* sugar: Rectangles.xo 23 
+* sugar: trails.xo 23
+* sugar: blocku.xo 3
+* sugar: paths.xo 14
+* sugar: appel_haken.xo 24
+* sugar: ominoes.xo 22
+* sugar: shapes.xo 22
+* sugar: napier.xo 4
+* sugar: mateton.xo 6
+* sugar: turtle_confussion.xo 149
+* sugar: pmj.xo 22
+* sugar: triples.xo 25
+* sugar: iq.xo 22
+* sugar: soma.xo 25
+* sugar: pursuit.xo 22
+* sugar: simcom.xo 26 
+* sugar: FractionBounce.xo 14
+* sugar: Turtle_in_a_Pond.xo 6 
+* sugar: reflection.xo 8
+* sugar: flip.xo 4
+* sugar: kuku_anukula.xo 4
+* sugar: trans.xo 26
+* sugar: oct.xo 29
+* sugar: lybniz_graph_plotter-1.xo 1
+* sugar: horsegame.xo 4
+* sugar: cookiesearch.xo 1
+* sugar: amazonas_tortuga.xo 149
+* sugar: jamath.xo 2 - to fast
+* sugar: jump.xo 2
+* sugar: reversi.xo 2
+* sugar: biodiv.xo 6 - German only
+* sugar: turtleblocks.xo 174
 ########### PREPARED and  ready to add ###################################
+pingus 0.7.6
+
 ###########  WIP ###############################################
 
+* wayland
+* libxkbcommon
+* MesaLib 8.0.4 recompiled for egl and glesv2 support 
+* MesaLib 9.2.0 needed for libgbm support
+* mtdev 
+* libunwind
+todo: cairo-gl
+* weston
 
+http://numptyphysics.garage.maemo.org/levels/
+
+gnash
+* sugar: eatboom.xo 2
+
+sugar: geogebra 4 - recompile
+sugar: mathgraph.xo 14
+sugar: timeline.xo 3
+sugar: drgeo.xo 1204
+sugar: graph_plotter.xo 9
+
+sugar: foodchain.xo 3 - need sugar >= 0.96
+
+libgoffice 
+libgsf
+gnumeric 1.10
+
+ftp://ftp.mozilla.org/pub/thunderbird/releases/17.0.4/source/
 
 xdt-autogen
 http://goodies.xfce.org/projects/applications/parole
@@ -574,7 +649,6 @@ http://gstreamer.freedesktop.org/src/gst-player
 todo: gst-ffmpeg 11.3
 http://gstreamer.freedesktop.org/src/gst-libav/
 http://gstreamer.freedesktop.org/src/gst-editor
-
 
 ________________________________________________________________
 
@@ -663,6 +737,7 @@ flash:
 	ovp: http://openvideoplayer.sourceforge.net/
 
 games:
+	numpty physics
 	http://www.bigorno.net/xrick/
 	http://sourceforge.net/projects/extremetuxracer/
 	minetest
@@ -670,7 +745,7 @@ games:
 	berusky,freeciv,alex the aligator 4,rocksdiamonfds,
 	 cuyo,
 	frozen-bubble,
-	xboard, fillets-ng,torcs,pingus, tower toppler
+	xboard, fillets-ng,torcs, tower toppler
 	sudoku, mines, tetravex, klotski, mastermind, four in line
 	five or more, gweled, kolf, hannah's horse, nikwi, 
 	ceferino, 
@@ -786,6 +861,24 @@ development:
 check:
 	comikit http://www.comikit.se/page_download.html - smalltalk
 	http://www.fluendo.com/shop/product/fluendo-mp3-decoder/
+
+
+new:
+	gaphor
+	gEda
+	gtkwave
+	gwave
+	oregano
+	qucs
+
+	kolourpaint
+	pencil
+	psychopy
+	xfig
+	xaos
+
+	turtleart
+	geany
 
 -Wl,--as-needed
 #########################################################
