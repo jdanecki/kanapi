@@ -606,14 +606,12 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 * sugar: biodiv.xo 6 - German only
 * sugar: turtleblocks.xo 174
 * pingus 0.7.6
-########### PREPARED and  ready to add ###################################
 * SDL - recompile with OGL support
-* http://sourceforge.net/projects/extremetuxracer/
+* extremetuxracer 0.5beta
+* tuxracer 0.61
+########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
-
-http://sourceforge.net/projects/tuxracer/
-
 * wayland
 * libxkbcommon
 * MesaLib 8.0.4 recompiled for egl and glesv2 support 
