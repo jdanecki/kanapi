@@ -609,9 +609,6 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 * SDL - recompile with OGL support
 * extremetuxracer 0.5beta
 * tuxracer 0.61
-########### PREPARED and  ready to add ###################################
-
-###########  WIP ###############################################
 * wayland
 * libxkbcommon
 * MesaLib 8.0.4 recompiled for egl and glesv2 support 
@@ -621,6 +618,9 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 todo: cairo-gl
 * weston
 
+########### PREPARED and  ready to add ###################################
+
+###########  WIP ###############################################
 * numpty physics
 http://numptyphysics.garage.maemo.org/levels/
 

@@ -17,18 +17,25 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ../functions
+PACKAGE_NAME=wayland
+#git://anongit.freedesktop.org/wayland/wayland 
+VER=509d1d8
+. ../settings
 
-# URL to package
-# ftp://ftp.freedesktop.org/pub/mesa/8.0.4
-# git://anongit.freedesktop.org/mesa/mesa 
+autoreconf --force -v --install \
+       -I /kanapi_packages/pkg-config-0.27/share/aclocal  \
+	-I /kanapi_packages/libtool-2.4/share/aclocal 
 
-PACKAGE_NAME=MesaLib
-VER=8.0.4
-PATCH_NAME=
+PKG="expat"
+export CFLAGS="`pkg-config --cflags ${PKG}`"
+export LDFLAGS+="`pkg-config --libs ${PKG}`"
 
-#prepare_release_tgz ${PACKAGE_NAME}-${VER}
-prepare_release_tbz ${PACKAGE_NAME}-${VER}
-#prepare_release_xz ${PACKAGE_NAME}-${VER}
+configure --prefix=${PREFIX} --disable-documentation
 
-#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+
+ln -s ${PREFIX}/bin/* /bin
+find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+
+

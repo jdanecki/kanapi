@@ -18,28 +18,32 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 PACKAGE_NAME=Mesa
-VER=8.0.4
+# git://anongit.freedesktop.org/mesa/mesa 
+VER=1079475
 . ../settings
 
-local_copy
-PKG="x11 xext"
+PKG="x11 xext expat"
 export CFLAGS="-I/kanapi_packages/llvm-3.0/include -lrt -ldl \
        	-lpthread `pkg-config --cflags ${PKG}`"
 export CXXFLAGS="${CFLAGS}"
 export LDFLAGS+=" -L/kanapi_packages/llvm-3.0/lib `pkg-config --libs ${PKG}`"
 
-#cd build
+autoreconf -v --install --force \
+	-I /kanapi_packages/util-macros-1.17/share/aclocal \
+	-I /kanapi_packages/pkg-config-0.27/share/aclocal \
+	-I /kanapi_packages/font-util-1.3.0/share/aclocal \
+	-I /kanapi_packages/libtool-2.4/share/aclocal \
+	-I /kanapi_packages/autoconf-2.69/share/autoconf
 
 ./configure --prefix=$PREFIX  --with-expat=`pkg-config --variable=prefix expat`\
-       	--with-gallium-drivers="i915,svga,swrast" \
+      	--with-gallium-drivers="i915,svga,swrast" \
 	--with-dri-drivers="i915,i965,swrast" \
-       	--enable-egl --enable-gles2
-
-#--with-egl-platforms=x11,wayland,drm \
-#	--enable-gbm --enable-shared-glapi 
+       	--enable-egl --enable-gles2 \
+	--with-egl-platforms=x11,wayland,drm \
+	--enable-gbm --enable-shared-glapi 
 
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
-find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
