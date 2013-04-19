@@ -617,11 +617,11 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 * libunwind
 todo: cairo-gl
 * weston
+* numpty physics 0.3.3
 
 ########### PREPARED and  ready to add ###################################
 
 ###########  WIP ###############################################
-* numpty physics
 http://numptyphysics.garage.maemo.org/levels/
 
 gnash
