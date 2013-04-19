@@ -607,8 +607,12 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 * sugar: turtleblocks.xo 174
 * pingus 0.7.6
 ########### PREPARED and  ready to add ###################################
+* SDL - recompile with OGL support
+* http://sourceforge.net/projects/extremetuxracer/
 
 ###########  WIP ###############################################
+
+http://sourceforge.net/projects/tuxracer/
 
 * wayland
 * libxkbcommon
@@ -619,6 +623,7 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 todo: cairo-gl
 * weston
 
+* numpty physics
 http://numptyphysics.garage.maemo.org/levels/
 
 gnash
@@ -737,9 +742,7 @@ flash:
 	ovp: http://openvideoplayer.sourceforge.net/
 
 games:
-	numpty physics
 	http://www.bigorno.net/xrick/
-	http://sourceforge.net/projects/extremetuxracer/
 	minetest
 	funnyboat,
 	berusky,freeciv,alex the aligator 4,rocksdiamonfds,
