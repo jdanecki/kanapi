@@ -56,6 +56,7 @@ c9a1c92865ef0af61dcb3fd7d92d24ee RELEASES/Csound-5.19.01.tar.gz
 c00f82ecdcc357434731913e5b48630d RELEASES/ctags-5.8.tar.gz
 26eb081c999b0e203770869427e9a93d RELEASES/curl-7.28.1.tar.bz2
 998e5904764b82642cc63d97b4ba9e95 RELEASES/damageproto-1.2.1.tar.bz2
+b0f1c777708cb8e9d37fb47e7ed3312d RELEASES/db-4.5.20.tar.gz
 3bf059c7dd5eda5f539a1b7cfe7a14a2 RELEASES/dbus-1.6.8.tar.gz
 d33959a9c0c6a158f5ac6d640316e89e RELEASES/dbus-glib-0.100.tar.gz
 742c7432ad0f7c3f98291d58fa2e35dc RELEASES/dbus-python-1.1.1.tar.gz
@@ -81,6 +82,7 @@ c79ee59d8e100cfc2934af8da90519b5 RELEASES/etoys-5.0.2408.tar.gz
 ebc3ce6df8dcbf29cb9492f8dd031319 RELEASES/evince-2.32.0.tar.bz2
 189bd19210e1d7d8601be1cdf27bf259 RELEASES/exo-0.8.0.tar.bz2
 dd7dab7a5fea97d2a6a43f511449b7cd RELEASES/expat-2.1.0.tar.gz
+cacc56bb5b36e698c976872605dee6cc RELEASES/extremetuxracer-0.5beta.tar.gz
 da66d6cb19e2c76d7f3266846832026c RELEASES/ExtUtils-Depends-0.304.tar.gz
 cc41813a491e15e0d46eef3233786369 RELEASES/ExtUtils-PkgConfig-1.13.tar.gz
 c5dde68840cefe46532089c9392d1df0 RELEASES/faac-1.28.tar.bz2
@@ -103,6 +105,7 @@ df608717c47506cf5eddf7dea2940689 RELEASES/Files-2013-01-13
 c25409c8a0d2d86249b710ddabd60ed4 RELEASES/Files-2013-02-13
 4c5037d295e9f6e0d8984c6f588e9533 RELEASES/Files-2013-03-11
 dc2d3f05ea64d774434a15b2e74195de RELEASES/Files-2013-04-18
+8a8de2c5061554f2a79650dc421a5bae RELEASES/Files-2013-05-20
 351cc4adb07d54877fa15f75fb77d39f RELEASES/findutils-4.4.2.tar.gz
 13d616028eb77de927c29b6655c832c9 RELEASES/firefox-17.0.1.source.tar.bz2
 782437beac194dfa19b3e1b9d9508917 RELEASES/firefox-18.0.source.tar.bz2
@@ -243,6 +246,7 @@ eabdaf4c86457efbadaa0d1001674e7d RELEASES/imake-1.0.5.tar.gz
 520f0ce93fbe0cfada6ed65cd06c227c RELEASES/iputils-s20121126.tar.bz2
 eaba788643c7cc7483dd67ace70f6e99 RELEASES/ipw2200-fw-3.1.tar.gz
 ad717a3a50576095d827e4229feb9068 RELEASES/iq-22.xo
+d06329d8f466658caaf4838ba349e393 RELEASES/irrlicht-1.8.zip
 7ad31f8488a6cc26a142b9bf5e4eea2c RELEASES/iso-codes-3.40.tar.xz
 c0925f6869e33af8e7fe56848c129152 RELEASES/itstool-1.2.0.tar.bz2
 d99a75ab1305d1532a09471b2f9a547a RELEASES/iwlwifi-3945-ucode-15.32.2.9.tar.gz
@@ -395,6 +399,7 @@ a5553fb4644dba74d02beaed6fd9e20e RELEASES/nasm-2.10.06.tar.xz
 90dd5cd1d552b975fa3206b1487b29ba RELEASES/ominoes-22.xo
 e0c4da272baaa4f09b90cc060f7b605c RELEASES/omnitux-1.2.1.tar.bz2
 ea83dec3b9655a27d28e7bc7cae9cd71 RELEASES/openal-soft-1.15.1.tar.bz2
+c284c89a104f64a95afde3a96138ef0f RELEASES/openjdk-7-fcs-src-b147-27_jun_2011.zip
 b5f74cec2688fb918331bb014061be6f RELEASES/openjpeg-1.5.1.tar.gz
 d9be274bddc0f47f268e484bdcaaa6c5 RELEASES/openjpeg-2.0.0.tar.gz
 3345cbf4efe90ffb06a78670ab2d05d5 RELEASES/openssh-6.1p1.tar.gz
@@ -465,6 +470,7 @@ cfdb57dae221b71b2703f8e2980eaaf4 RELEASES/resourceproto-1.2.0.tar.bz2
 d788cf42c6412a438d58ca269e83d7ba RELEASES/reversi-2.xo
 57a2ff50a0c704786da8adf61d78bf52 RELEASES/Ri-li-2.0.1.tar.bz2
 e39888f6bea32e1c8cf4a8880b416e56 RELEASES/rplay-3.3.2.tar.gz
+3077f1c68442aeb420e00099d5d4c117 RELEASES/rpm-4.9.1.1.tar.gz
 5ee72266fe2c1822333c407e1761b92b RELEASES/rsync-3.0.9.tar.gz
 75a1da3caa0b1c95e81dfba207f834c6 RELEASES/rt2860.bin
 36c944c3138125605d28c0a3a1338be9 RELEASES/rt2870.bin
@@ -503,6 +509,8 @@ e2e19685508e9de11b9f86fc7fcbe542 RELEASES/smpeg-3.12.2012.tar.gz
 29aa0363d1ccec2e8055745be028fe6a RELEASES/soma-25.xo
 7d4deb394c49e4c049de5cf71a4db493 RELEASES/spirolaterals-23.xo
 a67c25afa199a11f0a37aff7ed9d2c14 RELEASES/sqlite-autoconf-3071501.tar.gz
+5ca3d41cca454235b93ce72cd585dfe3 RELEASES/sqlitebrowser-200_b1_src.tar.gz
+c0af4dec3445c28fecb2513a10223d84 RELEASES/sqlite_export_src-18.05.2013.zip
 8a5cb1d6899d55df56154fab8716e034 RELEASES/Squeak-4.10.2.2614-src.tar.gz
 c382d1d25646a8299688b63fbd832103 RELEASES/starchart-13.xo
 26d1c657855a5359f0a23f40ebeca8e6 RELEASES/story_builder-19.xo
@@ -548,6 +556,8 @@ e7a437a05c19a377c86110750a6e0385 RELEASES/turtle_in_a_pond-6.xo
 dd9237f9ce38f931ecaae552cdaaaefe RELEASES/tuxmath_w_fonts-2.0.1.tar.gz
 a88401d1860648098eeed819cff038fa RELEASES/tuxpaint-0.9.21.tar.gz
 06ceccd22074bdbf95c7c8776f7f49a9 RELEASES/tuxpaint-stamps-2009.06.28.tar.gz
+206e8197ceaf0f00b25d4e2b4156e563 RELEASES/tuxracer-0.61.tar.gz
+aef877fee9e1a56483ff01fbdfb1e4b3 RELEASES/tuxracer-data-0.61.tar.gz
 ce96616ba0c9e619ce0071a528301e94 RELEASES/tuxtype_w_fonts-1.8.1.tar.gz
 0273cdc00aa915896151d7747f428ebf RELEASES/TypingTurtle-30.tar.bz2
 868b5d0dbf0e115ae4eb39a932ad0c4c RELEASES/tzcode-2012j.tar.gz
@@ -604,6 +614,7 @@ eaac343af094e6b608cf15cfba0f77c5 RELEASES/xextproto-7.2.1.tar.bz2
 f397bddfc88d4c9b30b56526c1e02e8e RELEASES/xf86-video-intel-2.19.0.tar.bz2
 02e6eacc2d1e07ac893b62481905d6f0 RELEASES/xf86-video-vesa-2.3.1.tar.bz2
 e793ecefeaecfeabd1aed6a01095174e RELEASES/xf86vidmodeproto-2.3.1.tar.bz2
+e47d5b3e873fdee3fa80d309a5f53e9c RELEASES/xfce4-mixer-4.10.0.tar.bz2
 42b924b23f2fec6a1099e9b7a87db4a3 RELEASES/xfce4-notes-plugin-1.7.7.tar.bz2
 cf7351a4b952dbe3fc5ff509c68def33 RELEASES/xfce4-panel-4.10.0.tar.bz2
 c01d1cf3830bf8d60e09c0cdd223034c RELEASES/xfce4-screenshooter-1.7.9.tar.bz2
