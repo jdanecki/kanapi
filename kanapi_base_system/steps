@@ -618,6 +618,7 @@ todo: goocanvas 2.0.1 needs gtk 3.0
 todo: cairo-gl
 * weston
 * numpty physics 0.3.3
+* irrlicht 1.8
 
 ######## Tested binary packages - not included in KaNaPi  #####################
 * bolzplatz2006 - http://sourceforge.net/projects/bp2k6
@@ -631,7 +632,6 @@ todo: cairo-gl
 * montezuma - http://www.java-gaming.org/index.php?topic=27545.0
 
 ########### PREPARED and  ready to add ###################################
-* irrlicht 1.8
 * minetest
 * xfce4-mixer
 * rpm, bdb

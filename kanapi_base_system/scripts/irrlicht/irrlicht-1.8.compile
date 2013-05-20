@@ -27,9 +27,11 @@ PKG="gl"
 export CFLAGS="`pkg-config --cflags ${PKG}`"
 export LDFLAGS+="`pkg-config --libs ${PKG}`"
 
-make -C source/Irrlicht -j 2 sharedlib LDFLAGS="${LDFLAGS}" \
+make -C source/Irrlicht -j 2 LDFLAGS="${LDFLAGS}" \
 	CFLAGS="${CFLAGS}" CXXFLAGS="${CFLAGS}"
-make -C source/Irrlicht -j 2 install INSTALL_DIR=${PREFIX}/lib
+#make -C source/Irrlicht -j 2 sharedlib LDFLAGS="${LDFLAGS}" \
+#	CFLAGS="${CFLAGS}" CXXFLAGS="${CFLAGS}"
+#make -C source/Irrlicht -j 2 install INSTALL_DIR=${PREFIX}/lib
 
 
 
