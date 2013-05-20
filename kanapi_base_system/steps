@@ -623,6 +623,8 @@ todo: cairo-gl
 * xfce4-mixer 4.10.0
 * rpm 4.9.1.1
 * db 4.5.20
+* sqlitebrowser 200_b1
+* sqlite_export 18.05.2013
 
 ######## Tested binary packages - not included in KaNaPi  #####################
 * bolzplatz2006 - http://sourceforge.net/projects/bp2k6
@@ -636,8 +638,6 @@ todo: cairo-gl
 * montezuma - http://www.java-gaming.org/index.php?topic=27545.0
 
 ########### PREPARED and  ready to add ###################################
-* sqlitebrowser
-* sqlite_export
 ###########  WIP ###############################################
 
 maniadrive
