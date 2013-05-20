@@ -619,10 +619,29 @@ todo: cairo-gl
 * weston
 * numpty physics 0.3.3
 
+######## Tested binary packages - not included in KaNaPi  #####################
+* bolzplatz2006 - http://sourceforge.net/projects/bp2k6
+* Mythruna 20120627 - http://mythruna.com
+* PuzzleMoppetFullVersion - http://garnetgames.com/puzzlemoppet
+* braid - http://braid-game.com/news/2011/10/braid-is-now-available-direct
+* cogs - http://www.cogsgame.com/
+* jdk1.7.0_21 - http://download.oracle.com
+* jre1.7.0_21 - http://download.oracle.com
+* minecraft - https://minecraft.net
+* montezuma - http://www.java-gaming.org/index.php?topic=27545.0
+
 ########### PREPARED and  ready to add ###################################
 * irrlicht 1.8
-
+* minetest
+* xfce4-mixer
+* rpm, bdb
+* sqlitebrowser
+* sqlite_export
 ###########  WIP ###############################################
+
+maniadrive
+dosemu/dosbox
+smart
 
 http://numptyphysics.garage.maemo.org/levels/
 
@@ -684,6 +703,10 @@ fructose:
 http://www.tenshu.net/p/terminator.html
 
 ########## QUEUE ################################################
+PuzzleMoppetFullVersion
+https://bitbucket.org/Knitter/puzzlemoppet
+
+bolzplatz2006
 
 sugar3.activity
 TypingTurtle 30 
@@ -708,7 +731,7 @@ abiword
 * sugar: write
 ##########  TODO #############################################
 	xorg-server 1.13 - new opengl support
-
+http://irrlicht3d.org/wiki/index.php?n=Main.IrrlichtPoweredGames
 sugar:
 	tuxpaint
 	ooo4kidses
@@ -743,7 +766,6 @@ flash:
 
 games:
 	http://www.bigorno.net/xrick/
-	minetest
 	funnyboat,
 	berusky,freeciv,alex the aligator 4,rocksdiamonfds,
 	 cuyo,
