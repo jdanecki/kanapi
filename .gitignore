@@ -2,6 +2,10 @@ first_build_system/builds
 first_build_system/packages
 sources/RELEASES
 sources/TODO
+sources/binary
+sources/git-repos
+sources/pakiety
+sources/moje
 cross_build_system/builds
 cross_build_system/packages
 second_build_system/builds
