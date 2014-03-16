@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=gcc
+VER=4.7.1
+. ../settings
+
+PREFIX=/kanapi_packages/gcc-4.7.1-x86_64
+
+#ln -s /kanapi_packages/eglibc-20133/include/* /usr/include
+#ln -s ${LIBC_PREFIX}/lib/crti.o /lib/crti.o
+#ln -s ${LIBC_PREFIX}/lib/crtn.o /lib/crtn.o
+#ln -s ${LIBC_PREFIX}/lib/crt1.o /lib/crt1.o
+#ln -s ${LIBC_PREFIX}/lib/libc.so /lib/libc.so
+#ln -s ${LIBC_PREFIX}/lib/libm.so /lib/libm.so
+#ln -sf ${LIBC_PREFIX}/lib/libpthread.so /lib/libpthread.so
+
+../../src/gcc-4.7.1/configure --disable-bootstrap --disable-multilib  --target=x86_64-pc-linux-gnu \
+--disable-libada  --enable-languages="c c++" --with-mpc=${MPC_PREFIX} --with-mpfr=${MPFR_PREFIX} \
+--with-gmp=${GMP_PREFIX} --prefix=${PREFIX} --disable-nls --disable-libmudflap \
+--host=i686-pc-linux-gnu
+
+#--enable-multilib
+
+make -j 2 MAKEINFO=true all-gcc
+#make -j 2 install-gcc MAKEINFO=true
+
+#ln -s ${PREFIX}/bin/* /bin
+
+

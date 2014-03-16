@@ -24,7 +24,7 @@ PREFIX=/kanapi_packages/ncurses-5.9
 #cd build
 #./bootstrap --prefix=$PREFIX
 
-../../src/ncurses-5.9/configure --prefix=$PREFIX
+../../src/ncurses-5.9/configure --prefix=$PREFIX --with-shared --with-termlib 
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 

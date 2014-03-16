@@ -17,29 +17,29 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=rpm
-VER=4.9.1.1
+PACKAGE_NAME=libva
+VER=master
 . ../settings
 
 #local_copy
-#cp -ar /kanapi_build/src/db-4.5.20 .
-#ln -s db-4.5.20 db
-
 cd build
+export CFLAGS="`pkg-config --cflags x11`"
+export LDFLAGS+="`pkg-config --libs x11`"
+export CXXFLAGS="${CFLAGS}"
 
-PKG="zlib nss nspr python"
-export CFLAGS="-lrt -lpthread -ldl `pkg-config --cflags ${PKG}` \
-	-I/kanapi_packages/file-5.11/include \
-	-I/kanapi_packages/popt-1.14/include"
-export LDFLAGS+="`pkg-config --libs ${PKG}` -lcrypt -lutil\
-	-L/kanapi_packages/popt-1.14/lib \
-	-L/kanapi_packages/file-5.11/lib"
+#mkdir -p m4
 
-./configure --prefix=${PREFIX} --without-lua --enable-python --localstatedir=${PREFIX}/var
-make -j 2 MAKEINFO=true
+#autoreconf -v -i --force \
+#		-I /kanapi_packages/util-macros-1.17/share/aclocal \
+#	    -I /kanapi_packages/pkg-config-0.27/share/aclocal \
+#		-I /kanapi_packages/autoconf-2.69/share/autoconf \
+#		-I /kanapi_packages/libtool-2.4/share/aclocal
+
+#./configure --prefix=$PREFIX
+#make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
-ln -s ${PREFIX}/bin/* /bin
-find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+#ln -s ${PREFIX}/bin/* /bin
+#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 

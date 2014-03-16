@@ -17,29 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=rpm
-VER=4.9.1.1
+PACKAGE_NAME=gcompris
+VER=12.01
 . ../settings
 
-#local_copy
-#cp -ar /kanapi_build/src/db-4.5.20 .
-#ln -s db-4.5.20 db
+export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
 
-cd build
+export CFLAGS="`pkg-config --cflags x11 SDL_mixer sqlite3` "
+export LDFLAGS+="`pkg-config --libs x11 SDL_mixer gmodule-2.0 sqlite3` -ldl"
+export PYTHONPATH=/kanapi_packages/pygtk-2.24.0/lib/python2.7/site-packages/gtk-2.0:/kanapi_packages/pygobject-2.28.6/lib/python2.7/site-packages:/kanapi_packages/py2cairo-1.10.0/lib/python2.7/site-packages:/kanapi_packages/pygobject-2.28.6/lib/python2.7/site-packages/gtk-2.0/
+export LD_LIBRARY_PATH="`pkg-config --variable=libdir sqlite3`:${LD_LIBRARY_PATH}"
 
-PKG="zlib nss nspr python"
-export CFLAGS="-lrt -lpthread -ldl `pkg-config --cflags ${PKG}` \
-	-I/kanapi_packages/file-5.11/include \
-	-I/kanapi_packages/popt-1.14/include"
-export LDFLAGS+="`pkg-config --libs ${PKG}` -lcrypt -lutil\
-	-L/kanapi_packages/popt-1.14/lib \
-	-L/kanapi_packages/file-5.11/lib"
-
-./configure --prefix=${PREFIX} --without-lua --enable-python --localstatedir=${PREFIX}/var
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-sdlmixer
 make -j 2 MAKEINFO=true
 make -j 2 install MAKEINFO=true
 
 ln -s ${PREFIX}/bin/* /bin
-find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 

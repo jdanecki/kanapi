@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,19 +17,26 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=bzip2
-VER=1.0.6
+PACKAGE_NAME=dunelegacy
+VER=0.96.3
 . ../settings
 
-local_copy
-#cd build
+PKG="alsa SDL_mixer"
+export CFLAGS="`pkg-config --cflags ${PKG}` \
+	-I/kanapi_packages/SDL_sound-1.0.3/include/SDL \
+	-I/kanapi_packages/glu-9.0.0/include "
+export LDFLAGS+="`pkg-config --libs ${PKG}` \
+	-L/kanapi_packages/SDL_sound-1.0.3/lib "
+export CPPFLAGS=${CFLAGS}
 
-make -j 2
-make -j 2 install PREFIX=${PREFIX}
-make -j 2 -f Makefile-libbz2_so
-cp -a libbz2.so.* ${PREFIX}/lib
+#autoreconf -v --install --force \
+ #       -I /kanapi_packages/util-macros-1.17/share/aclocal \
+ #       -I /kanapi_packages/pkg-config-0.27/share/aclocal
 
-ln -s ${PREFIX}/bin/* /bin
+#./configure --prefix=$PREFIX
+#make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
+#ln -s ${PREFIX}/bin/* /bin
 
 

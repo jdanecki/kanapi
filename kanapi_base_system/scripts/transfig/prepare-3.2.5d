@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,19 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=bzip2
-VER=1.0.6
-. ../settings
+. ../functions
 
-local_copy
-#cd build
+# URL to package
+# http://www.xfig.org/art17.html
 
-make -j 2
-make -j 2 install PREFIX=${PREFIX}
-make -j 2 -f Makefile-libbz2_so
-cp -a libbz2.so.* ${PREFIX}/lib
+PACKAGE_NAME=transfig
+VER=3.2.5d
+PATCH_NAME=
 
-ln -s ${PREFIX}/bin/* /bin
+#prepare_release_tgz ${PACKAGE_NAME}-${VER}
+prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
+#prepare_release_tbz ${PACKAGE_NAME}-${VER}
+#prepare_release_xz ${PACKAGE_NAME}-${VER}
+#prepare_release_zip ${PACKAGE_NAME}-${VER}
+#prepare_gem ${PACKAGE_NAME}-${VER}
 
-
+#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
 

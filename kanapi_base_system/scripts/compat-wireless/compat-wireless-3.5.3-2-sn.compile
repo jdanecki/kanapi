@@ -17,19 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=bzip2
-VER=1.0.6
+PACKAGE_NAME=compat-wireless
+VER=3.5.3-2-sn
 . ../settings
 
-local_copy
-#cd build
+#local_copy
 
-make -j 2
-make -j 2 install PREFIX=${PREFIX}
-make -j 2 -f Makefile-libbz2_so
-cp -a libbz2.so.* ${PREFIX}/lib
+#./configure --prefix=$PREFIX
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+#make -j 2 MAKEINFO=true
+#make -j 2 install MAKEINFO=true
 
-ln -s ${PREFIX}/bin/* /bin
-
+#ln -s ${PREFIX}/bin/* /bin
+#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 

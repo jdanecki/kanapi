@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,19 +17,19 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=bzip2
-VER=1.0.6
+PACKAGE_NAME=pulseaudio
+VER=4.0
 . ../settings
 
-local_copy
-#cd build
+PKG="x11 xi xext"
+export CFLAGS="`pkg-config --cflags ${PKG}` -I/kanapi_packages/libtool-2.4/include -O2"
+export LDFLAGS+="`pkg-config --libs ${PKG}` -L/kanapi_packages/libtool-2.4/lib"
 
-make -j 2
-make -j 2 install PREFIX=${PREFIX}
-make -j 2 -f Makefile-libbz2_so
-cp -a libbz2.so.* ${PREFIX}/lib
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --with-system-user=root --with-system-group=root
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
 ln -s ${PREFIX}/bin/* /bin
-
+find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 

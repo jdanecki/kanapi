@@ -17,29 +17,22 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=rpm
-VER=4.9.1.1
+PACKAGE_NAME=gcc
+VER=4.7.1
 . ../settings
 
 #local_copy
-#cp -ar /kanapi_build/src/db-4.5.20 .
-#ln -s db-4.5.20 db
+#PKG=""
+#export CFLAGS="`pkg-config --cflags ${PKG}`"
+#export LDFLAGS+="`pkg-config --libs ${PKG}`"
 
-cd build
+#./configure --prefix=$PREFIX
+#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+../../src/gcc-4.7.1/configure --disable-bootstrap --disable-libada  --enable-languages="c c++" --with-mpc=${MPC_PREFIX} --with-mpfr=${MPFR_PREFIX} --with-gmp=${GMP_PREFIX} --prefix=${PREFIX} --disable-nls --disable-libmudflap
+#make -j 2 MAKEINFO=true
+#make -j 2 install MAKEINFO=true
 
-PKG="zlib nss nspr python"
-export CFLAGS="-lrt -lpthread -ldl `pkg-config --cflags ${PKG}` \
-	-I/kanapi_packages/file-5.11/include \
-	-I/kanapi_packages/popt-1.14/include"
-export LDFLAGS+="`pkg-config --libs ${PKG}` -lcrypt -lutil\
-	-L/kanapi_packages/popt-1.14/lib \
-	-L/kanapi_packages/file-5.11/lib"
-
-./configure --prefix=${PREFIX} --without-lua --enable-python --localstatedir=${PREFIX}/var
-make -j 2 MAKEINFO=true
-make -j 2 install MAKEINFO=true
-
-ln -s ${PREFIX}/bin/* /bin
-find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+#ln -s ${PREFIX}/bin/* /bin
+#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 
