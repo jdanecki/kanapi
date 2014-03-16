@@ -14,17 +14,21 @@ f3993b4c79b0d70ef682e93bd1f00433 RELEASES/annotate-1.xo
 d69a0a55b8ac60d1ff233882184f8a13 RELEASES/appel_haken-24.xo
 af10ad43da6d8ae910a38c2eb8806061 RELEASES/arithmetic-2.xo
 299a9aafccd7149edb3616d39111262e RELEASES/as86-0.16.19.tar.gz
+92a74a275def5515f055974c78e77d7e RELEASES/atari800-3.0.0.tar.gz
 2184a140f71d50276669d6eda5cce5db RELEASES/atk-2.4.0.tar.xz
 db557c17fdfa4f785333ecda08654010 RELEASES/attr-2.4.46.tar.gz
+657f71a5a214fe84731ed9842e09fa04 RELEASES/audacity-minsrc-2.0.5.tar.xz
 82d05e03b93e45f5a39b828dc9c6c29b RELEASES/autoconf-2.69.tar.gz
 d8a8f6bd898a6b34a874728cd1e47a95 RELEASES/automake-1.12.tar.gz
 91bf517cb940109180ecd07bc90c69ec RELEASES/automoc4-0.9.88.tar.bz2
+d44b5dddebd8a7a7309aea6c36fda117 RELEASES/bc-1.06.tar.gz
 b0736e3590b05d27284fbb8a3efd50e1 RELEASES/bcm43xx-0.fw
 5e51778ee011badcb42f1e2cb4ab3956 RELEASES/bcm43xx_hdr-0.fw
 8169ac564fe676d53a9b4d7aad163005 RELEASES/bdfresize-1.5.tar.gz
 4a7a4a848c43c42f7d499b60666434a4 RELEASES/bdftopcf-1.0.3.tar.bz2
 1a05fb01fa1d5198894c931cf925c025 RELEASES/bigreqsproto-1.1.2.tar.bz2
 8b3ad7090e3989810943aa19103fdb83 RELEASES/binutils-2.22.tar.gz
+e0f71a7b2ddab0f8612336ac81d9636b RELEASES/binutils-2.24.tar.bz2
 f637e14a3c9065f5cf295985df8042c8 RELEASES/biodiv-6.xo
 012708d801a3c986d8654aa673530b61 RELEASES/bison-2.5.1.tar.xz
 823ee3d582a526b436409506005c9550 RELEASES/bison-2.6.tar.gz
@@ -40,12 +44,15 @@ a64bb8774a1e476e5cdd69e635794dfb RELEASES/cairo-1.12.4.tar.xz
 e74d3f55839181aca4484c8e2cf51aed RELEASES/calculate-40.xo
 b7eed2ba8fc3b9e89c5ddda208815c7e RELEASES/CartoonBuilder-11.tar.bz2
 18fb6c9d26530c9e368f1e18c10ff794 RELEASES/cartoon_builder-17.xo
+65f48376a91d3651d6527ca568858be8 RELEASES/ccache-3.1.9.tar.bz2
 394b542b495755ab8392b7e88dace744 RELEASES/cgdb-0.6.6.tar.gz
 811c20390ff7afbb1ac9c0210bb8364e RELEASES/Chat-71.tar.bz2
 d113ca45424f48e5f8fee6df04ffa7a1 RELEASES/childsplay-1.6.tar.gz
 801f4c87f8b604f727df5bf1f05a59e7 RELEASES/cmake-2.8.9.tar.gz
 8159e7223a3cd539798dd6d768901fbc RELEASES/colordeducto-5.xo
 49d18e0408d521ec630a230cc4a2d130 RELEASES/Colors-15.tar.bz2
+74afce88cfcdb18f671bb520857bcbb1 RELEASES/compat-drivers-2013-02-13.tar.bz2
+76db859d6eb3abadeba232190ca547dd RELEASES/compat-drivers-3.9-rc4-2-su.tar.bz2
 a89a0a427ceba9fdfb46d7dbe837d73d RELEASES/compat-wireless-3.5.3-2-sn.tar.bz2
 48490b659d5ab261a688c48ca52b2763 RELEASES/compat-wireless-3.5-3-snpc.tar.bz2
 98482f65ba1e74a08bf5b056a4031ef0 RELEASES/compositeproto-0.4.2.tar.bz2
@@ -71,6 +78,7 @@ fe36056f2d274fa4b82a5422f192e65f RELEASES/dhcp-4.2.4-P2.tar.gz
 73fe50dfe74ca631c1602f558ed8961f RELEASES/docbook-xml-4.2.zip
 147ab3706e878c5357a3d3755d1cddf5 RELEASES/domino-8.xo
 c1d851e3fc065a935c7cf919545d239f RELEASES/dosfstools-3.0.13.tar.xz
+a20a06a5272717274a8b009368f237da RELEASES/dpkg-1.16.10.tar.xz
 2eb74959684f47c862081099059a11ab RELEASES/dri2proto-2.6.tar.bz2
 f48da5b990aa8aa822d3b6a951baf5c2 RELEASES/dumb-0.9.3.tar.gz
 aca828bb4bcca20991a442deb950b670 RELEASES/e2fsprogs-1.42.5.tar.gz
@@ -106,6 +114,7 @@ c25409c8a0d2d86249b710ddabd60ed4 RELEASES/Files-2013-02-13
 4c5037d295e9f6e0d8984c6f588e9533 RELEASES/Files-2013-03-11
 dc2d3f05ea64d774434a15b2e74195de RELEASES/Files-2013-04-18
 8a8de2c5061554f2a79650dc421a5bae RELEASES/Files-2013-05-20
+a5682c926c204a26eca3e2d7332b81c3 RELEASES/Files-2014-03-16
 351cc4adb07d54877fa15f75fb77d39f RELEASES/findutils-4.4.2.tar.gz
 13d616028eb77de927c29b6655c832c9 RELEASES/firefox-17.0.1.source.tar.bz2
 782437beac194dfa19b3e1b9d9508917 RELEASES/firefox-18.0.source.tar.bz2
@@ -155,6 +164,7 @@ bab2bda483e9f32be65b43b8dab39fa5 RELEASES/gawk-4.0.1.tar.gz
 933e6f15f51c031060af64a9e14149ff RELEASES/gcc-4.7.1.tar.bz2
 e3eb4aaa3709dadd62b4fe3c67207ee9 RELEASES/gcompris-12.01.tar.gz
 3c6b3aee13708d9066366bbbc9b7d4ff RELEASES/gcompris-12.11.tar.bz2
+7c3396c02e44bbf72424ca12bfff9cf3 RELEASES/gcompris-13.11.tar.bz2
 083db5086d4a5a469e0e3b77847d9d8e RELEASES/GConf-2.32.4.tar.xz
 65cf7da6b91f168a8b9c9eb7503781d6 RELEASES/GConf-2.9.91.tar.bz2
 dfaca66905cf6f7d1926d5fb793ee06c RELEASES/gconf-python-0.0.1.tar.gz
@@ -208,6 +218,7 @@ c1f1db32fb6598d6a93e6e88796a8632 RELEASES/gperf-3.0.4.tar.gz
 8130785a8f1fb8a57f6b839b617e85fa RELEASES/graphviz-2.30.1.tar.gz
 25e41b2aa201104354740961ef36005a RELEASES/grep-2.9.tar.xz
 8b8cd29385b97616a0f0d96d0951c5bf RELEASES/groff-1.21.tar.gz
+a1043102fbc7bcedbf53e7ee3d17ab91 RELEASES/grub-2.00.tar.xz
 c838d059136132a2c0b1cf1602d6e92f RELEASES/gsettings-desktop-schemas-0.1.7.tar.bz2
 1724256b17cb0b933794875fa137055f RELEASES/gsettings-desktop-schemas-3.3.2.tar.xz
 7f5beacaf1312db2db30a026b36888c4 RELEASES/gst-ffmpeg-0.10.13.tar.bz2
@@ -254,11 +265,13 @@ d99a75ab1305d1532a09471b2f9a547a RELEASES/iwlwifi-3945-ucode-15.32.2.9.tar.gz
 5c0700924ee87fd72369b10d279d5917 RELEASES/jam2jam-4.xo
 fab3ee617edc4a65f8fe5bbcfbe8340c RELEASES/jamath-2.xo
 52654eb3b2e60c35731ea8fc87f1bd29 RELEASES/jpeg-8d.tar.gz
+aa02367d2f7a830bf1e3376f77881e98 RELEASES/json-c-0.11.tar.gz
 27bf3c657dad696f94fe5070a6d33698 RELEASES/Jukebox-23.tar.bz2
 d81c3874653bbee8baeeaca15cd051f8 RELEASES/jump-2.xo
 d47453163a3c22c4989434cb1b5be8e1 RELEASES/kandid-11.xo
 677ea8523eec6caca86121ad2dca0b71 RELEASES/kbproto-1.0.6.tar.bz2
 b271c2ec54aba1c67bda63c8579d8c15 RELEASES/kmod-5.tar.xz
+dcd2d22b06201e00cf4fac8bc98f21af RELEASES/kolourpaint-1.2.2_kde3.tar.bz2
 05e0ed5cdb577bbe61341446e8bc5829 RELEASES/kuku_anakula-4.xo
 96b156039556aa4a60c70f36a6828904 RELEASES/labyrinth-14.xo
 765f082658002b2b46b86af4a0da1842 RELEASES/less-451.tar.gz
@@ -286,6 +299,7 @@ d4bb506b1916015323928faab5aa708b RELEASES/libgnomeui-2.24.5.tar.bz2
 471b5ca9f5562ac0d6eac7a0bf650738 RELEASES/libICE-1.0.8.tar.bz2
 e5808ad997ba32c498803822078748c3 RELEASES/libid3tag-0.15.1b.tar.gz
 bb8e10a218fac793a52d404d14adedcb RELEASES/libIDL-0.8.14.tar.bz2
+82f3fcbf9f8cf3c4e25e1bdd77d65164 RELEASES/libjson-7.6.1.zip
 1be543bc30c56fb6bea1d7bf6a64e66c RELEASES/libmad-0.15.1b.tar.gz
 96e9820d72a41fe27ff304071739696c RELEASES/libmikmod-3.2.0.tar.gz
 f06e6de102abb2cef71ed671957ee099 RELEASES/libnl-3.2.16.tar.gz
@@ -353,6 +367,7 @@ ffd93bcedd8b2b5aeabf184e7b91f326 RELEASES/libXxf86vm-1.1.2.tar.bz2
 aedf6ca70c59e9e869604ead0a16cc3b RELEASES/lightspark-0.7.1.tar.gz
 925bc1a6e2c98cb1e4d9ed8d30986dfb RELEASES/linux-3.5.3.tar.bz2
 1a6f4405418c8b55b29de0ce5934d73f RELEASES/littlewizard-1.2.2.tar.gz
+408339fda5ca14ebf7ca34b7bd637bc6 RELEASES/littlewizard-examples-20071206.zip
 a8e5f5f1c1adebae7b4a654c376a6005 RELEASES/llvm-3.0.tar.gz
 16eaa7679f84113f65b12760fdfe4ee1 RELEASES/llvm-3.1.tar.gz
 623a1956fa88295d2cf0a5f85a1d0611 RELEASES/Log-24.tar.bz2
@@ -406,6 +421,7 @@ d9be274bddc0f47f268e484bdcaaa6c5 RELEASES/openjpeg-2.0.0.tar.gz
 ae412727c8c15b67880aef7bd2999b2e RELEASES/openssl-1.0.1c.tar.gz
 7082d317a9573ab338302243082d10d1 RELEASES/ORBit2-2.14.19.tar.bz2
 af1bf3dab9e69f3c36f389285e2a12a1 RELEASES/orc-0.4.17.tar.gz
+266b95db35560e505c9f69cc3e539e41 RELEASES/otp_src-R16B01.tar.gz
 ed6c7bd752097f9768cc826f1c02d291 RELEASES/Paint-43.tar.bz2
 ec3c1f236ee9bd4a982a5f46fcaff7b9 RELEASES/pango-1.30.1.tar.xz
 7bcbd0187f03e1e27af9a81e07249c33 RELEASES/pangox-compat-0.0.2.tar.xz
@@ -437,6 +453,8 @@ a8a7ca808827dd674faba6e4fc73b471 RELEASES/poppler-data-0.4.6.tar.gz
 a25fc99a6dc7fa7ae6e4549be80b401f RELEASES/psmisc-22.20.tar.gz
 5075cb023f27a978ef8a20d57cde03bd RELEASES/psych-master-17.01.zip
 d07d6622901b1addeb64e833fea5eb9b RELEASES/pudb-2012.3.tar.gz
+47fd7eca8479c757822bee68a1feef25 RELEASES/pulseaudio-3.0.tar.xz
+591f211db2790a7e4d222f2dc6858db3 RELEASES/pulseaudio-4.0.tar.xz
 8aca2023521b990d647401515f55f0b0 RELEASES/pursuit-22.xo
 20337132c4ab06c1146ad384d55372c5 RELEASES/py2cairo-1.10.0.tar.bz2
 054da6c125cb427a003f5fd6c54f853e RELEASES/pycairo-1.8.8.tar.gz
@@ -505,6 +523,7 @@ b063a90334eb8137632afd66d6d55753 RELEASES/simcom-26.xo
 f674e9035aee1064dae90b22aa76ea98 RELEASES/simplejson-3.0.7.tar.gz
 7fcfd447e378f07dd0c0bae671fe6487 RELEASES/slang-2.2.4.tar.bz2
 2ad0b9176b964a36eb7cb2514d4261ef RELEASES/sliderule-24.xo
+573ef32ba177a6b3c4bf7ef04873fcb6 RELEASES/smart-1.4.1.tar.bz2
 e2e19685508e9de11b9f86fc7fcbe542 RELEASES/smpeg-3.12.2012.tar.gz
 29aa0363d1ccec2e8055745be028fe6a RELEASES/soma-25.xo
 7d4deb394c49e4c049de5cf71a4db493 RELEASES/spirolaterals-23.xo
@@ -513,8 +532,10 @@ a67c25afa199a11f0a37aff7ed9d2c14 RELEASES/sqlite-autoconf-3071501.tar.gz
 c0af4dec3445c28fecb2513a10223d84 RELEASES/sqlite_export_src-18.05.2013.zip
 8a5cb1d6899d55df56154fab8716e034 RELEASES/Squeak-4.10.2.2614-src.tar.gz
 c382d1d25646a8299688b63fbd832103 RELEASES/starchart-13.xo
+daedab8d79fbfbe38711880beba5a23c RELEASES/stgit-0.17.tar.gz
 26d1c657855a5359f0a23f40ebeca8e6 RELEASES/story_builder-19.xo
 6054c3880a00c6703f83b57f15e04642 RELEASES/strace-4.7.tar.xz
+7d7bd97347a4491e1ffb529563ce2e9e RELEASES/subversion-1.8.3.tar.bz2
 117fb7671b8ac9b3a7424651e8320ce7 RELEASES/sugar-0.94.1.tar.bz2
 ecbc2bec4ea9026ff03d652ea10789ec RELEASES/sugar-0.98.3.tar.bz2
 3c5da23d2b43f7d66ec823b73e7980a6 RELEASES/sugar-artwork-0.94.0.tar.bz2
@@ -544,6 +565,7 @@ b9a23bbe947be3b8f5e682f83cdc2cdb RELEASES/tessellations-23.xo
 b883a1a3c489c17413fb602a94bf54e8 RELEASES/tk-8.6.0.tar.gz
 324e28961d1988a8b03de1db5c03a6f3 RELEASES/trails-23.xo
 2346244486f870386647675bfe56a795 RELEASES/trans-26.xo
+f9eac7f265668ecbfda6aaf7581989ad RELEASES/transfig-3.2.5d.tar.gz
 2aff84c29a3c4b51ac5682a89d96bda5 RELEASES/transmission-2.60.tar.xz
 60c0e77a1852656215f7102a437b2a3d RELEASES/transmission-2.77.tar.xz
 2259f7eee0d9cd978c4d38007394bd99 RELEASES/triples-25.xo
@@ -585,6 +607,8 @@ f07a4bf943194f94b7f142db8f7f36dc RELEASES/vte-0.28.2.tar.bz2
 dcbf9d5e2e6391f857c29a57528b32a6 RELEASES/webkit-1.8.3.tar.xz
 7b1a652af1eb11bee5bf7209e9ff67e6 RELEASES/webkitgtk-1.10.2.tar.xz
 12edc291dba8127f2e9696e69f36299e RELEASES/wget-1.14.tar.gz
+47cf1e121d395e9c8ca1a4ab88f1e658 RELEASES/wine-1.6.tar.bz2
+f62a06acdbf2d4ef09ce2bf55e8cec0f RELEASES/wings-1.4.1.tar.bz2
 e06c222e186f7cc013fd272d023710cb RELEASES/wireless_tools-29.tar.gz
 07bbf9eb6c824a011706057cc49c256d RELEASES/wpa_supplicant-09.12.2012.tar.gz
 b29b9af02d7e092db8c5c8508de0e45c RELEASES/wpa_supplicant-1.1.tar.gz
@@ -614,6 +638,8 @@ eaac343af094e6b608cf15cfba0f77c5 RELEASES/xextproto-7.2.1.tar.bz2
 f397bddfc88d4c9b30b56526c1e02e8e RELEASES/xf86-video-intel-2.19.0.tar.bz2
 02e6eacc2d1e07ac893b62481905d6f0 RELEASES/xf86-video-vesa-2.3.1.tar.bz2
 e793ecefeaecfeabd1aed6a01095174e RELEASES/xf86vidmodeproto-2.3.1.tar.bz2
+147cdc2d909e751125be16103b8dc81f RELEASES/xfburn-0.4.3.tar.bz2
+ca2d394e411a20442a519efa0d14f8ec RELEASES/xfce4-battery-plugin-1.0.5.tar.bz2
 e47d5b3e873fdee3fa80d309a5f53e9c RELEASES/xfce4-mixer-4.10.0.tar.bz2
 42b924b23f2fec6a1099e9b7a87db4a3 RELEASES/xfce4-notes-plugin-1.7.7.tar.bz2
 cf7351a4b952dbe3fc5ff509c68def33 RELEASES/xfce4-panel-4.10.0.tar.bz2
@@ -622,6 +648,7 @@ cc4dd9179ead9046c056431f01a12000 RELEASES/xfce4-settings-4.10.0.tar.bz2
 98613ce500fef2ed62cdbe788084acca RELEASES/xfce4-terminal-0.6.1.tar.bz2
 4ed48150a03fb5f42b455494307b7f28 RELEASES/xfconf-4.10.0.tar.bz2
 d5f6fb9fdde3ddff5804b2a251892936 RELEASES/xfdesktop-4.10.0.tar.bz2
+499b0ce103a6b353453bf7e327f9a3b9 RELEASES/xfig-3.2.5b.tar.gz
 333e5e25a85411c304e9b4474bf00537 RELEASES/xfwm4-4.10.0.tar.bz2
 9959fe0bfb22a0e7260433b8d199590a RELEASES/xineramaproto-1.2.1.tar.bz2
 29daeafe1d68c2688f268f41329ced0a RELEASES/xinit-1.3.2.tar.gz
