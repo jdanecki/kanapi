@@ -15,4 +15,8 @@ test_system/initrd_fs
 test_system/initrd_fs_usb-old
 test_system/initrd_usb
 test_system/__BASE__USB
-
+test_system/initrd_fs_qemu
+test_system/qemu-tests
+test_system/t100ta
+test_system/android
+test_system/virtualbox
