@@ -1,0 +1,12 @@
+digraph G {
+	graph [layout=dot rankdir=LR]
+
+
+
+
+    midori
+    Qt browser
+    Firefox 
+}
+
+

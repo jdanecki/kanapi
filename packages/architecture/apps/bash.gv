@@ -1,0 +1,11 @@
+digraph G { graph [layout=dot] 
+_bin_bash[label="/bin/bash"]
+libdl_so_2[label="libdl.so.2"]
+_bin_bash -> libdl_so_2
+_bin_bash[label="/bin/bash"]
+libc_so_6[label="libc.so.6"]
+_bin_bash -> libc_so_6
+libdl_so_2[label="libdl.so.2"]
+libc_so_6[label="libc.so.6"]
+libdl_so_2 -> libc_so_6
+}

@@ -1,0 +1,25 @@
+digraph G {
+	graph [layout=dot rankdir=LR]
+
+    ruby, rubysdl, ruby-gtk2
+    python, pygtk, pygame
+    lua
+    Tcl/Tk
+    C/C++
+    Gtk+
+    Qt
+    webkitgtk
+    many additional libraries
+    make, cmake, patch, ctags
+    nasm, yasm
+    perl
+    sqlite
+    strace/ltrace/gdb/cgdb
+    wxWidgets, wxPython
+    GvRng
+    littlewizard 
+
+
+}
+
+

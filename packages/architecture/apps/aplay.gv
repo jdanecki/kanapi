@@ -1,0 +1,21 @@
+digraph G {
+	graph [layout=dot];
+	_bin_aplay	 [label="/bin/aplay"];
+	libasound_so_2	 [label="libasound.so.2"];
+	_bin_aplay -> libasound_so_2;
+	libz_so_1	 [label="libz.so.1"];
+	libasound_so_2 -> libz_so_1;
+	libm_so_6	 [label="libm.so.6"];
+	libasound_so_2 -> libm_so_6;
+	libdl_so_2	 [label="libdl.so.2"];
+	libasound_so_2 -> libdl_so_2;
+	librt_so_1	 [label="librt.so.1"];
+	libasound_so_2 -> librt_so_1;
+	libc_so_6	 [label="libc.so.6"];
+	libm_so_6 -> libc_so_6;
+	libpthread_so_0	 [label="libpthread.so.0"];
+	libpthread_so_0 -> libc_so_6;
+	libdl_so_2 -> libc_so_6;
+	librt_so_1 -> libpthread_so_0;
+	libz_so_1 -> libc_so_6;
+}

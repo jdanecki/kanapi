@@ -1,0 +1,12 @@
+digraph G {
+	graph [layout=dot]
+
+kanapi->applications->filemanagers->desktop->xfce4->Xorg
+kanapi->multimedia
+kanapi->development->editors
+kanapi->games
+kanapi->painting
+kanapi->sugar
+kanapi->web_browsers->network
+
+}

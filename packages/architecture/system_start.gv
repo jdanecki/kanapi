@@ -1,0 +1,9 @@
+digraph G {
+	graph [layout=dot rankdir=LR]
+
+	BIOS->kernel->init
+init[label="init\nudevd\ndbus-daemon\nwpa_supplicant\ndhclient\nkanapi"]
+init->X->xinit->xinitrc
+xinitrc[label="dbus-launch\nalsactl\nxfconf-query\nxfsettingsd\nxfwm4\nxfdesktop\nxfce4-notes"]
+	
+}

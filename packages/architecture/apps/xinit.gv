@@ -1,0 +1,15 @@
+digraph G {
+	graph [layout=dot];
+	_bin_xinit	 [label="/bin/xinit"];
+	libX11_so_6	 [label="libX11.so.6"];
+	_bin_xinit -> libX11_so_6;
+	libxcb_so_1	 [label="libxcb.so.1"];
+	libX11_so_6 -> libxcb_so_1;
+	libdl_so_2	 [label="libdl.so.2"];
+	libX11_so_6 -> libdl_so_2;
+	libc_so_6	 [label="libc.so.6"];
+	libdl_so_2 -> libc_so_6;
+	libXau_so_6	 [label="libXau.so.6"];
+	libxcb_so_1 -> libXau_so_6;
+	libXau_so_6 -> libc_so_6;
+}

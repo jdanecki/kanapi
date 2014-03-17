@@ -1,0 +1,11 @@
+digraph G {
+	graph [layout=dot rankdir=LR]
+
+vim
+gvim
+mcedit
+
+
+}
+
+

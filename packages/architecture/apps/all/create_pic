@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+cat all.gv | tred > clean.gv
+dot -Tpng -o all.png clean.gv
+
