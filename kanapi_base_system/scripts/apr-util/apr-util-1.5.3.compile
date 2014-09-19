@@ -17,21 +17,16 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ../functions
+PACKAGE_NAME=apr-util
+VER=1.5.3
+. ../settings
 
-# URL to package
-# http://
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --with-apr=/bin/apr-1-config
 
-PACKAGE_NAME=
-VER=
-PATCH_NAME=
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
-#prepare_release_tgz ${PACKAGE_NAME}-${VER}
-#prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
-prepare_release_tbz ${PACKAGE_NAME}-${VER}
-#prepare_release_xz ${PACKAGE_NAME}-${VER}
-#prepare_release_zip ${PACKAGE_NAME}-${VER}
-#prepare_gem ${PACKAGE_NAME}-${VER}
+ln -s ${PREFIX}/bin/* /bin
+find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
-#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
 

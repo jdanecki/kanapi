@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2014 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,21 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ../functions
+PACKAGE_NAME=git
+VER=1.9.0
+. ../settings
 
-# URL to package
-# http://
+#local_copy
+cd build 
 
-PACKAGE_NAME=
-VER=
-PATCH_NAME=
+make -j 2 configure
+export LDFLAGS+="-L/kanapi_packages/libs "
+export CFLAGS+=" -I/kanapi_packages/openssl-1.0.1c/include/ \
+	-I/kanapi_packages/curl-7.28.1/include/ `pkg-config --cflags expat`"
+./configure --prefix=${PREFIX} --with-zlib=${ZLIB_DIR} --with-curl
 
-#prepare_release_tgz ${PACKAGE_NAME}-${VER}
-#prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
-prepare_release_tbz ${PACKAGE_NAME}-${VER}
-#prepare_release_xz ${PACKAGE_NAME}-${VER}
-#prepare_release_zip ${PACKAGE_NAME}-${VER}
-#prepare_gem ${PACKAGE_NAME}-${VER}
+make V=1 -j 2 all
+make -j 2 install
 
-#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
+#ln -sf ${PREFIX}/bin/* /bin
 

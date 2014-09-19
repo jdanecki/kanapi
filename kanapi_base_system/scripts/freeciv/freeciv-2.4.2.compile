@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2014 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,21 +17,25 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ../functions
+PACKAGE_NAME=freeciv
+VER=2.4.2
+. ../settings
 
-# URL to package
-# http://
+PKG="zlib x11 SDL_mixer SDL_image sqlite3"
+export CFLAGS="`pkg-config --cflags ${PKG}` -I/kanapi_packages/SDL_image-1.2.12/include"
+export LDFLAGS+="-ldl `pkg-config --libs ${PKG}`"
+export CPP="${CPP_X11} ${CFLAGS}"
 
-PACKAGE_NAME=
-VER=
-PATCH_NAME=
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX \
+	--enable-ipv6=no --enable-client=sdl \
+	--disable-gtktest --with-x --enable-shared
 
-#prepare_release_tgz ${PACKAGE_NAME}-${VER}
-#prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
-prepare_release_tbz ${PACKAGE_NAME}-${VER}
-#prepare_release_xz ${PACKAGE_NAME}-${VER}
-#prepare_release_zip ${PACKAGE_NAME}-${VER}
-#prepare_gem ${PACKAGE_NAME}-${VER}
+#fc_config.h
+#define ALWAYS_ROOT 1
 
-#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+
+ln -s ${PREFIX}/bin/* /bin
+
 

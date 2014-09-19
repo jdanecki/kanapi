@@ -50,7 +50,7 @@ do
 done
 
 cp boot_usb/init initrd_usb/init
-cp boot_usb/modprobe initrd_usb/init
+cp boot_usb/modprobe initrd_usb/modprobe
 
 cp ../kanapi_base_system/.xinitrc   initrd_usb/root
 cp ../kanapi_base_system/.xserverrc initrd_usb/root

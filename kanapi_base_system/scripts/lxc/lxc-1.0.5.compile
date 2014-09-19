@@ -17,21 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ../functions
+PACKAGE_NAME=lxc
+VER=1.0.5
+. ../settings
 
-# URL to package
-# http://
+local_copy
+#cd build
 
-PACKAGE_NAME=
-VER=
-PATCH_NAME=
+./configure --prefix=$PREFIX
+make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
 
-#prepare_release_tgz ${PACKAGE_NAME}-${VER}
-#prepare_release_tar_gz ${PACKAGE_NAME}-${VER}
-prepare_release_tbz ${PACKAGE_NAME}-${VER}
-#prepare_release_xz ${PACKAGE_NAME}-${VER}
-#prepare_release_zip ${PACKAGE_NAME}-${VER}
-#prepare_gem ${PACKAGE_NAME}-${VER}
+ln -s ${PREFIX}/bin/* /bin
 
-#apply_patch ${PACKAGE_NAME}-${VER} ${PATCH_NAME}
 
