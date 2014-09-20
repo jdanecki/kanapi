@@ -1,6 +1,20 @@
 KaNaPi project
 
-See more details on blog: http://kanapi-project.blogspot.com
+
+Projects goals are:
+
+* Prepare operating system for children based on Linux kernel and free software for use at home. 
+  System should start from USB stick and work on older machines with limited resources too.
+
+* Choose set of educational applications and games for children from existing packages and group 
+  them according to the age of child. Projects I've been testing so far contains many applications 
+  with different levels of difficulty.
+
+* From many of users interfaces XFCE was chosen by children.
+
+* Prepare framework for creating new applications, so older children can build some new activities.
+
+See more details on http://kanapi.tk
 
 Author: jacek.m.danecki@gmail.com
 
