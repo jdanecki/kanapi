@@ -1,0 +1,8 @@
+PKG="sdl gl glu openal zlib SDL_net ogg vorbis libpng SDL_image"
+EXTRA_INCLUDES=`pkg-config --cflags $(PKG)` -I/kanapi_packages/binary-distros/fedora-20/usr/include
+EXTRA_LIBS=`pkg-config --libs $(PKG)` -L/kanapi_packages/binary-distros/fedora-20/usr/lib -L/kanapi_packages/eglibc-20133/lib 
+
+all:
+	make  -f Makefile.linux EXTRA_INCLUDES="$(EXTRA_INCLUDES)" EXTRA_LIBS="$(EXTRA_LIBS)"
+
+

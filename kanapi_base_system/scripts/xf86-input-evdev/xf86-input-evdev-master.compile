@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2014 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=xf86-input-evdev
+VER=master
+. ../settings
+
+export PKG="mtdev libudev"
+
+export CFLAGS="`pkg-config --cflags ${PKG}`"
+export LDFLAGS+="`pkg-config --libs ${PKG}`"
+export CC="${CC} ${CFLAGS}"
+export CXX="${CC}"
+
+
+config () {
+        autoreconf -v --install --force \
+       -I /kanapi_packages/util-macros-master/share/aclocal \
+        -I /kanapi_packages/pkg-config-0.27/share/aclocal \
+        -I /kanapi_packages/font-util-1.3.0/share/aclocal \
+        -I /kanapi_packages/libtool-2.4/share/aclocal \
+        -I /kanapi_packages/autoconf-2.69/share/autoconf
+	./configure --prefix=$PREFIX
+}
+
+#config
+
+#make -j 2 MAKEINFO=true
+make -j 2 install MAKEINFO=true
+
+#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+
+

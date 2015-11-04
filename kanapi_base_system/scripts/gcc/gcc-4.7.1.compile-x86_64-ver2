@@ -1,0 +1,78 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2015 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=gcc
+VER=4.7.1
+. ../settings-cross
+
+#ln -s /kanapi_packages/eglibc-20133/include/* /usr/include
+#ln -s ${LIBC_PREFIX}/lib/crti.o /lib/crti.o
+#ln -s ${LIBC_PREFIX}/lib/crtn.o /lib/crtn.o
+#ln -s ${LIBC_PREFIX}/lib/crt1.o /lib/crt1.o
+#ln -s ${LIBC_PREFIX}/lib/libc.so /lib/libc.so
+#ln -s ${LIBC_PREFIX}/lib/libm.so /lib/libm.so
+#ln -sf ${LIBC_PREFIX}/lib/libpthread.so /lib/libpthread.so
+
+config1()
+{
+	../../src/gcc-4.7.1/configure --disable-bootstrap --disable-multilib  --target=x86_64-pc-linux-gnu \
+	--disable-libada  --enable-languages="c c++" --with-mpc=${MPC_PREFIX} --with-mpfr=${MPFR_PREFIX} \
+	--with-gmp=${GMP_PREFIX} --prefix=${PREFIX} --disable-nls --disable-libmudflap \
+	--host=i686-pc-linux-gnu
+}
+
+config2()
+{
+#	ln -s /kanapi_packages/eglibc-20133/include/* /usr/include
+	../../src/gcc-4.7.1/configure --disable-bootstrap --disable-libatomic --disable-multilib --target=x86_64-pc-linux-gnu \
+	--disable-libada  --enable-languages="c c++" --with-mpc=${MPC32_PREFIX} --with-mpfr=${MPFR32_PREFIX} \
+	--with-gmp=${GMP32_PREFIX} --prefix=${PREFIX} --disable-threads --disable-nls --disable-decimal-float \
+	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
+	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp
+}
+#--enable-multilib
+
+step1()
+{
+	config2
+	make -j 4 MAKEINFO=true all-gcc
+	make -j 4 MAKEINFO=true install-gcc
+}
+
+step2()
+{
+	make -j 4 MAKEINFO=true all-target-libgcc
+	make install-target-libgcc
+	make -j 4 MAKEINFO=true all-target-libstdc++-v3 PIC_CXXFLAGS='-fPIC'
+	make install-target-libstdc++-v3
+}
+
+step3()
+{
+	make -j 4 MAKEINFO=true 
+}
+
+step1
+step2
+#step3
+
+#ln -s ${PREFIX}/bin/* /bin
+#${PREFIX}/bin/gcc -dumpspecs | sed "s@/lib/ld-linux.so.2@${LIBC_PREFIX}/lib/ld-linux.so.2@" > ${PREFIX}/lib/gcc/i686-pc-linux-gnu/4.7.1/specs
+
+

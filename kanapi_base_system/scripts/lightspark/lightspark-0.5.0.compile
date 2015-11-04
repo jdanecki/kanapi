@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=lightspark
+VER=0.5.0
+. ../settings
+
+export LDFLAGS="${LDFLAGS} `pkg-config --libs ice`"
+export CFLAGS="`pkg-config --cflags ice` -I/kanapi_packages/llvm-3.0/include"
+
+config () {
+	cmake ../../src/${PACKAGE_NAME}-${VER} -DAUDIO_BACKEND=sdl -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+       -DZLIB_INCLUDE_DIR="`pkg-config --variable=includedir zlib`" \
+       -DZLIB_LIBRARY="/kanapi_packages/zlib-1.2.7/lib/libz.so" \
+       -DJPEG_LIBRARY="/kanapi_packages/jpeg-8d/lib/libjpeg.so" \
+       -DJPEG_INCLUDE_DIR="/kanapi_packages/jpeg-8d/include" \
+	-DBOOST_INCLUDEDIR="/kanapi_packages/boost-1_52_0/include" \
+       -DCURL_LIBRARY="/kanapi_packages/curl-7.28.1/lib/libcurl.so" \
+       -DCURL_INCLUDE_DIR="/kanapi_packages/curl-7.28.1/include" \
+	-DPCRE_INCLUDE_DIR="/kanapi_packages/pcre-8.32/include" \
+	-DPCRE_LIBRARY="/kanapi_packages/pcre-8.32/lib/libpcre.so" \
+ 	-DFREETYPE_LIBRARY="/kanapi_packages/freetype-2.4.10/lib/libfreetype.so" \
+ 	-DFREETYPE_INCLUDE_DIRS="/kanapi_packages/freetype-2.4.10/include/freetype2" \
+	-DGLEW_INCLUDE_DIR="/kanapi_packages/glew-1.9.0/include" \
+	-DGLEW_LIBRARY="/kanapi_packages/glew-1.9.0/lib/libGLEW.so"	
+}
+
+config
+make -j 2
+#make -j 2 install
+
+#ln -s ${PREFIX}/bin/* /bin
+#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+
+

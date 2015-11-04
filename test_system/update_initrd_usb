@@ -20,7 +20,7 @@
 cd initrd_usb
 find . -print | cpio -o -Hnewc > ../boot_usb/initrd
 cd ..
-mount /dev/sdb1 p1
+mount /dev/sda1 p1
 cp boot_usb/initrd p1/initrd
 umount p1
 

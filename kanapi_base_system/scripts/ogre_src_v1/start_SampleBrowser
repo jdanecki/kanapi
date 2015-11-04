@@ -1,0 +1,3 @@
+export LD_PRELOAD=/kanapi_packages/nvidia-340.46/libGL.so:/kanapi_packages/libs/libGLU.so 
+./SampleBrowser
+

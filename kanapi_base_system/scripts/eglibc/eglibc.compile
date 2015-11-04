@@ -1,0 +1,48 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2015 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=eglibc
+VER=20133
+. ../settings
+
+export CC="ccache x86_64-pc-linux-gnu-gcc  -fno-stack-protector -mtune=native -g -U_FORTIFY_SOURCE -O2"
+
+install()
+{
+	mkdir -p $PREFIX/etc/
+	touch $PREFIX/etc/ld.so.conf
+	make install
+	ln -s /usr/include/asm-generic $PREFIX/include/asm-generic
+	ln -s /usr/include/linux $PREFIX/include/linux
+	ln -s /usr/include/mtd $PREFIX/include/mtd
+	ln -s /usr/include/asm $PREFIX/include/asm
+}
+
+config()
+{
+	../../src/eglibc/libc/configure --disable-sanity-checks --prefix=$PREFIX --host=x86_64-pc-linux-gnu \
+		--with-headers=/kanapi_packages/ARCH_x86_64/linux-lenovo64-x86_64/include libc_cv_ssp=no 
+}
+
+#	make install-bootstrap-headers=yes install-headers
+
+
+#config
+#make -j 4
+install

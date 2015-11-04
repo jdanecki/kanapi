@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2015 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -19,13 +19,13 @@
 
 PACKAGE_NAME=binutils
 VER=2.24
-. ../settings
+. ../settings-cross
 
 ../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --target=x86_64-pc-linux-gnu
 
 make -j 2 MAKEINFO=true
 make install MAKEINFO=true
 
-ln -s ${PREFIX}/bin/* /bin
+#ln -s ${PREFIX}/bin/* /bin
 
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2014 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2015 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -28,8 +28,8 @@ VER=
 
 #./configure --prefix=$PREFIX
 ../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
-#make -j 2 MAKEINFO=true
-#make -j 2 install MAKEINFO=true
+#make -j 4 MAKEINFO=true
+#make -j 4 install MAKEINFO=true
 
 #ln -s ${PREFIX}/bin/* /bin
 #find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;

@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2015 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=freeciv
+VER=2.5.0
+. ../settings
+
+local_copy
+#cd build
+
+PKG="zlib x11 SDL_mixer SDL_image SDL_gfx SDL_ttf sqlite3 "
+export CFLAGS="`pkg-config --cflags ${PKG}` -I/kanapi_packages/SDL_image-1.2.12/include \
+	-I/kanapi_packages/SDL_gfx-2.0.24/include -I/kanapi_packages/SDL_ttf-2.0.11/include"
+export LDFLAGS+="-ldl `pkg-config --libs ${PKG}`"
+export CPP="${CPP_X11} ${CFLAGS}"
+
+#export ACLOCAL_FLAGS="-I /kanapi_packages/libtool-2.4/share/aclocal"
+#./autogen.sh --no-configure-run
+
+#./configure --prefix=$PREFIX \
+#	--enable-ipv6=no --enable-client=sdl,gtk2 \
+#	--disable-gtktest --with-x --enable-shared
+
+#fc_config.h
+#define ALWAYS_ROOT 1
+
+#make -j 2 MAKEINFO=true
+#make -j 2 install MAKEINFO=true
+
+#ln -s ${PREFIX}/bin/* /bin
+#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
+
+

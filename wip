@@ -1,20 +1,23 @@
+== done ==
 
-serf
-subversion
+=== don't compile ====
+libnotify
+http://sourceforge.net/projects/rednotebook/files/rednotebook-1.8.1.tar.gz/download
+upower-glib - needs polkit
+xfce4-power-manager
+luxmark
+http://www.waffle-gl.org/releases.html 1.4.0
+
+===== future ========
 
 +	json
 - cl - disabled in wings3d compilation
 
 audacity
-
 http://archive.xfce.org/src/apps/xfburn/0.4
-
 http://www.apache.org/dist/ant/binaries/
-
 hdaps
-
 maniadrive
-
 http://numptyphysics.garage.maemo.org/levels/
 
 gnash
