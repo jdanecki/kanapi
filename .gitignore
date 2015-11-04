@@ -20,3 +20,5 @@ test_system/qemu-tests
 test_system/t100ta
 test_system/android
 test_system/virtualbox
+cross_x86_64
+
