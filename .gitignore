@@ -21,4 +21,6 @@ test_system/t100ta
 test_system/android
 test_system/virtualbox
 cross_x86_64
+test_system/BOOT_LENOVO
+test_system/initrd_amd
 
