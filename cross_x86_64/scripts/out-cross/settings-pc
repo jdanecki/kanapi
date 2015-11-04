@@ -1,0 +1,27 @@
+export LANGUAGE="C"
+export LC_ALL="C"
+export LC_MESSAGES="C"
+export LC_COLLATE="C"
+export LC_CTYPE="C"
+export LANG="C"
+
+PREFIX=/kanapi_packages/ARCH_x86_64/${PACKAGE_NAME}-${VER}
+
+export GCC_PREFIX="/kanapi_packages/CROSS_x86_64/gcc-4.7.1"
+export BINUTILS_PREFIX="/kanapi_packages/CROSS_x86_64/binutils-2.24"
+
+export NCURSES_HDR="-I/kanapi_packages/ARCH_x86_64/ncurses-5.9/include -I/kanapi_packages/ARCH_x86_64/ncurses-5.9/include/ncurses"
+export NCURSES_LIB="-L/kanapi_packages/ARCH_x86_64/ncurses-5.9/lib"
+export PATH=$GCC_PREFIX/bin:$BINUTILS_PREFIX/bin:$BINUTILS_PREFIX/x86_64-pc-linux-gnu/bin:$PATH
+
+export CC="ccache x86_64-pc-linux-gnu-gcc -mtune=native -g"
+export CXX="ccache x86_64-pc-linux-gnu-g++ -mtune=native -g"
+export CPP="${GCC_PREFIX}/bin/x86_64-pc-linux-gnu-cpp"
+export CPP_X11="${CPP}  `pkg-config --cflags x11`"
+export SIZE=x86_64-pc-linux-gnu-size
+
+local_copy() {
+	rm -rf build
+	cp -ar ../../src/${PACKAGE_NAME}-${VER} build
+	cd build
+}

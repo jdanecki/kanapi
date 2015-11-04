@@ -20,7 +20,8 @@ test_system/qemu-tests
 test_system/t100ta
 test_system/android
 test_system/virtualbox
-cross_x86_64
+cross_x86_64/packages
+cross_x86_64/tests
 test_system/BOOT_LENOVO
 test_system/initrd_amd
 
