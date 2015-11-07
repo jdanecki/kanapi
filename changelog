@@ -1,12 +1,18 @@
-Fri Sep 19 22:43:07 UTC 2014
+Alpha - currect phase
+=====================
 
-Added new packages
+* Recompile selected packages with newer version
+* Remove not used packages
+* Add support for x86_64 architecture
 
-* freeciv 2.4.2
-* git 1.9
-* gcompris 14.05
-* apr 1.5.1 
-* apr-util 1.5.3
-* lxc 1.0.5
-* busybox 1.22.1
-* linux 3.15.0
+Pre-alpha
+=========
+
+* Prepare operating system for children based on Linux kernel and free software for use at home. 
+  System should start from USB stick and work on older machines with limited resources too.
+* Choose set of educational applications and games for children from existing packages and group 
+  them according to the age of child. Projects I've been testing so far contains many applications 
+  with different levels of difficulty.
+* From many of users interfaces XFCE was chosen by children.
+* Prepare framework for creating new applications, so older children can build some new activities.
+
