@@ -17,8 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-BUILD_SRC_DIR=../../kanapi_system/kanapi_build/src
-BUILD_OUT_DIR=../../kanapi_system/kanapi_build/out
+BUILD_SRC_DIR=/kanapi_build/src
+BUILD_OUT_DIR=/kanapi_build/out
 
 prepare() {
 	echo "prepare: $1"
