@@ -17,11 +17,24 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-#qemu-system-i386 -enable-kvm -hda kanapi_image -vga std -serial `tty`
+PEN=/dev/sdc
+PEN_PART=${PEN}1
 
-#qemu-system-i386 -m 1024 -hda /dev/sdc -vga std
-qemu-system-x86_64 -m 1024 -hda /dev/sdc -vga std
+echo "Create 2 partitions:"
+echo "first as vfat (id=b) for syslinux- size about 100MB "
+echo "second as linux partition (id=83) - /kanapi_packages"
 
-#append in boot console: kanapi vga=ask console=tty0 console=ttyS0,115200
+fdisk $PEN
+partx -l $PEN
+udevadm settle
 
+mkfs.vfat -I ${PEN_PART}
+
+syslinux ${PEN_PART}
+
+mkdir tmp
+mount ${PEN_PART} tmp
+cp boot_usb/* tmp
+umount tmp
+install-mbr -T ${PEN} ${PEN}
 
