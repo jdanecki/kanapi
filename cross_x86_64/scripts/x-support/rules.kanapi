@@ -1,0 +1,2 @@
+RUN_TARGET=cd $@-$($@_ver); pkg_kanapi $@.kanapi $(ACTION)
+

@@ -5,14 +5,23 @@ export LC_COLLATE="C"
 export LC_CTYPE="C"
 export LANG="C"
 
-PREFIX=/kanapi_packages/ARCH_x86_64/${PACKAGE_NAME}-${VER}
+PACKAGE_VER=${PACKAGE_NAME}-${VER}
+PREFIX=/kanapi_packages/ARCH_x86_64/${PACKAGE_VER}
+PACKAGE_SRCDIR=/kanapi_build/src/${PACKAGE_VER}
+PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
+if [[ ${URL} == "SF" ]]
+then
+PACKAGE_LINK=http://downloads.sourceforge.net/project/${SF_URL}
+else
+PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
+fi
 
 export GCC_PREFIX="/kanapi_packages/ARCH_x86_64/gcc-4.8.5"
 export BINUTILS_PREFIX="/kanapi_packages/ARCH_x86_64/binutils-2.25"
 export LIBC_PREFIX="/kanapi_packages/ARCH_x86_64/glibc-2.22/"
 
 export NCURSES_HDR="-I/kanapi_packages/ARCH_x86_64/ncurses-5.9/include -I/kanapi_packages/ARCH_x86_64/ncurses-5.9/include/ncurses"
-export NCURSES_LIB="-L/kanapi_packages/ARCH_x86_64/ncurses-5.9/lib"
+export NCURSES_LIB="-L/kanapi_packages/ARCH_x86_64/ncurses-5.9/lib -lncurses -ltinfo"
 #export ZLIB_DIR="/kanapi_packages/zlib-1.2.7"
 #export ZLIB_LIB="-L${ZLIB_DIR}/lib"
 #export ZLIB_HDR="-I/${ZLIB_DIR}/include"
@@ -30,10 +39,116 @@ export CPP="${GCC_PREFIX}/bin/x86_64-kanapi-linux-gnu-cpp"
 #export LDFLAGS="-lrt -ldl -lm -lpthread "
 #export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
 export SIZE=x86_64-kanapi-linux-gnu-size
+export PKGCONFIG_DIR=/kanapi_packages_x86_64/pkg-config-0.29/share/pkgconfig
+
+if [[ -n ${LIB_DEPENDS} ]]
+then
+	export LDFLAGS=`pkg-config --libs ${LIB_DEPENDS}`
+	export LD_LIBRARY_PATH=`pkg-config --variable=libdir ${LIB_DEPENDS} | sed "s/ /:/g"`
+	export CFLAGS=`pkg-config --cflags ${LIB_DEPENDS}`
+fi
+
+MAKE_JOBS=4
 
 local_copy() {
 	rm -rf build
-	cp -ar ../../src/${PACKAGE_NAME}-${VER} build
+	cp -ar ../../src/${PACKAGE_VER} build
 	cd build
+}
+
+pkg_download() {
+	if [ -f /kanapi_build/src/${PACKAGE_FILENAME} ] 
+	then 
+		echo "$PACKAGE_NAME: already downloaded"
+	else
+		echo "downloading ${PACKAGE_NAME}"
+		wget ${PACKAGE_LINK} -O /kanapi_build/src/${PACKAGE_FILENAME}
+	fi
+}
+
+pkg_curl() {
+	if [ -f /kanapi_build/src/${PACKAGE_FILENAME} ] 
+	then 
+		echo "$PACKAGE_NAME: already downloaded"
+	else
+		echo "downloading ${PACKAGE_NAME}"
+		CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi curl ${PACKAGE_LINK} -o /kanapi_build/src/${PACKAGE_FILENAME}
+	fi
+}
+
+pkg_copy() {
+	mkdir /kanapi_build/src/${PACKAGE_VER}
+	cp -v /kanapi_build/src/${PACKAGE_NAME} /kanapi_build/src/${PACKAGE_VER}/${PACKAGE_NAME}
+}
+
+pkg_tar_gz() {
+	 tar -xzf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
+} 
+
+pkg_tar_xz() {
+	 tar -xJf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
+} 
+
+pkg_tar_bz2() {
+	 tar -xjf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
+} 
+
+pkg_version() {
+	echo ${PACKAGE_VER}
+}
+
+pkg_configure() {
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX
+}
+
+pkg_build() {
+	make -j ${MAKE_JOBS} MAKEINFO=true
+}
+
+pkg_install_make() {
+	make -j ${MAKE_JOBS} install MAKEINFO=true
+}
+
+pkg_install() {
+	pkg_install_make
+}	
+
+pkg_install_pc() {	
+	pkg_install_make
+	ln -svf ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+}
+
+pkg_install_pc_share() {	
+	pkg_install_make
+	ln -svf ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+}
+	
+pkg_install_pc_all() {
+	pkg_install_make
+	for i in ${PREFIX}/lib/pkgconfig/*
+	do
+		ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
+	done
+}
+
+pkg_rebuild() {
+	pkg_prepare
+	pkg_configure
+	pkg_build
+}
+
+pkg_clean() {
+	find . -not -name *.kanapi -and -not -name . -and -not -name *.patch -exec rm -rf {} \;
+}
+
+pkg_check() {
+	pkg_download
+	pkg_prepare
+	pkg_configure
+	pkg_build
+}
+
+pkg_install_bin() {
+	ln -svf ${PREFIX}/bin/${PACKAGE_NAME} /bin64/${PACKAGE_NAME}
 }
 
