@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2014-2015 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2014-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -21,8 +21,8 @@ PACKAGE_NAME=llvm
 VER=3.3
 . ../settings
 
-../../src/${PACKAGE_NAME}-${VER}.src/configure --prefix=$PREFIX
-make -j4  MAKEINFO=true
+#../../src/${PACKAGE_NAME}-${VER}.src/configure --prefix=$PREFIX  --enable-shared 
+#make -j4  MAKEINFO=true
 make -j 4 install MAKEINFO=true
 
 #ln -s ${PREFIX}/bin/* /bin
