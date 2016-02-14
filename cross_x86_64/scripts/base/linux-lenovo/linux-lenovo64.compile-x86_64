@@ -1,0 +1,110 @@
+#!/bin/bash
+#
+# Copyright (c) 2015 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=linux
+VER=lenovo64
+. ../settings
+
+export NCURSES_HDR="-I/kanapi_packages/ncurses-5.9/include -I/kanapi_packages/ncurses-5.9/include/ncurses"
+export NCURSES_LIB="-L/kanapi_packages/ncurses-5.9/lib"
+
+prepare() {
+	for f in limits errno types posix_types stddef compiler
+	do
+		if [ ! -f /usr/include/linux/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/include/linux/${f}.h /usr/include/linux ; fi
+	done
+
+	for f in socket sockios errno types int-ll64 errno-base bitsperlong posix_types
+	do
+		if [ ! -f /usr/include/asm-generic/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/include/asm-generic/${f}.h /usr/include/asm-generic ; fi
+	done
+
+	for f in errno socket sockios errno types bitsperlong posix_types posix_types_32
+	do
+		if [ ! -f /usr/include/asm/${f}.h ] ; then cp ../../src/${PACKAGE_NAME}-${VER}/arch/x86/include/asm/${f}.h /usr/include/asm ; fi
+	done
+}
+
+config() {
+	make V=1 -C ../../src/${PACKAGE_NAME}-${VER}/ O=`pwd` \
+		HOST_EXTRACFLAGS='${NCURSES_HDR}/ncurses ${NCURSES_HDR} -DCURSES_LOC="<ncurses.h>"' \
+		HOST_LOADLIBES='${NCURSES_LIB} -lncurses -ltinfo' \
+		menuconfig
+	#make  -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` i386_defconfig
+#	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2 oldconfig
+}
+
+
+config64() {
+	make ARCH=x86_64 V=1 -C ../../src/${PACKAGE_NAME}-${VER}/ O=`pwd` \
+		HOST_EXTRACFLAGS='${NCURSES_HDR}/ncurses ${NCURSES_HDR} -DCURSES_LOC="<ncurses.h>"' \
+		HOST_LOADLIBES='${NCURSES_LIB} -lncurses -ltinfo' \
+		menuconfig
+	#make  -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` i386_defconfig
+#	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2 oldconfig
+}
+
+compile() {
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4 CC="ccache gcc" all
+#	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4 CC="ccache gcc" bzImage
+#	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4 CC="ccache gcc" modules
+#	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4 CC="ccache gcc" SUBDIRS=drivers/gpu/drm/i915 modules
+}
+
+compile64() {
+	export PATH=/kanapi_packages/CROSS_x86_64/binutils-2.24/x86_64-pc-linux-gnu/bin:.:/bin64:/bin
+#	make ARCH=x86_64 -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 2 all
+#	make CROSS_COMPILE=x86_64-pc-linux-gnu- V=1 ARCH=x86_64 -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd`  bzImage
+	make CROSS_COMPILE=x86_64-pc-linux-gnu- ARCH=x86_64 -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4 bzImage
+	make CROSS_COMPILE=x86_64-pc-linux-gnu- ARCH=x86_64 -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4 modules
+}
+
+installation() {
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4  INSTALL_MOD_PATH=${PREFIX} modules_install
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4  INSTALL_FW_PATH=${PREFIX}/firmware firmware_install
+	make -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4  INSTALL_HDR_PATH=${PREFIX} headers_install
+	cp arch/x86/boot/bzImage ${PREFIX}
+
+#	rm -rf /usr/include/linux /usr/include/asm-generic /usr/include/asm
+#	ln -s ${PREFIX}/include/* /usr/include
+}
+
+installation64() {
+	make CROSS_COMPILE=x86_64-pc-linux-gnu- ARCH=x86_64 -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4  INSTALL_MOD_PATH=${PREFIX}-x86_64 modules_install
+	make CROSS_COMPILE=x86_64-pc-linux-gnu- ARCH=x86_64 -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4  INSTALL_FW_PATH=${PREFIX}-x86_64/firmware firmware_install
+	make CROSS_COMPILE=x86_64-pc-linux-gnu- ARCH=x86_64 -C ../../src/${PACKAGE_NAME}-${VER} O=`pwd` -j 4  INSTALL_HDR_PATH=${PREFIX}-x86_64 headers_install
+	cp arch/x86/boot/bzImage ${PREFIX}-x86_64
+
+#	rm -rf /usr/include/linux /usr/include/asm-generic /usr/include/asm
+#	ln -s ${PREFIX}/include/* /usr/include
+}
+
+
+#prepare
+#config
+#compile
+#installation
+
+#config64
+#compile64
+installation64
+
+#recompile /kanapi_build/out/broadcom-wifi/
+#recompile compat-drivers-3.9-rc4-2-su
+
