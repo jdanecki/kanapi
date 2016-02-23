@@ -1,0 +1,4 @@
+DIR_NAME=$@-$($@_ver)
+RUN_TARGET=if [ ! -d  $(DIR_NAME) ]; then mkdir $(DIR_NAME) ; cp ../packages/$(DIR_NAME)/$@.kanapi $(DIR_NAME); fi ; \
+ cd $(DIR_NAME); pkg_kanapi $@.kanapi $(ACTION)
+

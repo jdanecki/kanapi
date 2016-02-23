@@ -1,0 +1,6 @@
+KANAPI_TARGET=i686
+
+echo "*** Processing ${PACKAGE_NAME} for ${KANAPI_TARGET} ***"
+
+. ../../scripts/settings
+
