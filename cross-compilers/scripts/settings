@@ -7,7 +7,7 @@ export LANG="C"
 
 KANAPI_TARGET_NAME=${KANAPI_TARGET}-kanapi-linux-gnu
 KANAPI_VER=0.5
-KANAPI_BASE=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}
+KANAPI_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
 
 ##############################################################
 
