@@ -10,6 +10,10 @@ KANAPI_VER=0.5
 KANAPI_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
 
 ##############################################################
+if [ -f ../../scripts/config.kanapi ]
+then 
+	. ../../scripts/config.kanapi
+fi
 
 PACKAGE_VER=${PACKAGE_NAME}-${VER}
 PREFIX=${KANAPI_BASE}/${PACKAGE_VER}
