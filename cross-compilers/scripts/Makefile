@@ -1,7 +1,7 @@
 include ../scripts/config.kanapi
 include ../scripts/rules.kanapi
 
-PKGS=binutils gmp
+PKGS=binutils gmp mpfr
 
 all: $(PKGS)
 
@@ -11,6 +11,9 @@ binutils:
 	@$(RUN_TARGET)
 
 gmp:
+	@$(RUN_TARGET)
+
+mpfr: gmp
 	@$(RUN_TARGET)
 
 download version prepare configure build install rebuild check clean:
