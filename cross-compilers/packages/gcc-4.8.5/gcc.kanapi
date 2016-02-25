@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=gcc
+VER=4.8.5
+URL="ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.8.5"
+EXT=tar.bz2
+#build depends on
+. ../settings
+
+pkg_prepare() {
+	pkg_tar_bz2
+}
+
+pkg_configure() {
+	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-libatomic --disable-multilib --target=${KANAPI_TARGET_NAME} \
+	--disable-libada  --enable-languages="c c++" \
+	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
+	--prefix=${PREFIX} --disable-threads --disable-nls --disable-decimal-float \
+	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
+	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp
+}
+
+pkg_build() {
+	make -j ${MAKE_JOBS} MAKEINFO=true all-gcc
+}
+
+pkg_install() {
+	make -j ${MAKE_JOBS}  MAKEINFO=true install-gcc
+}	

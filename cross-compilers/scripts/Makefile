@@ -24,6 +24,14 @@ mpfr: gmp
 mpc: mpfr
 	@$(RUN_TARGET)
 
-download version prepare configure build install rebuild check clean:
+gcc: mpc
+	@$(RUN_TARGET)
+
+pakiet1:
+	@$(RUN_TARGET)
+
+pakiet2: pakiet1
+	@$(RUN_TARGET)
+
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
