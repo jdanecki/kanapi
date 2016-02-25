@@ -4,6 +4,7 @@ mpfr_ver=3.1.3
 mpc_ver=1.0.3
 gcc_ver=4.8.5
 linux_ver=4.4.2
+glibc_ver=2.23
 pakiet1_ver=1.0
 pakiet2_ver=2.0
 

@@ -30,6 +30,9 @@ gcc: mpc
 linux:
 	@$(RUN_TARGET)
 
+glibc:
+	@$(RUN_TARGET)
+
 pakiet1:
 	@$(RUN_TARGET)
 
