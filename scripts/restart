@@ -27,11 +27,12 @@ sync
 sync
 mount -o remount,ro /kanapi_packages
 mount -o remount,ro /kanapi_packages_x86_64
-mount -o remount,ro /kanapi_packages_external
-mount -o remount,ro /kanapi_packages_build
-umount /dev/sdb2
-umount /dev/sdb3
-umount /dev/sdb4
+mount -o remount,ro /kanapi_external
+mount -o remount,ro /kanapi_build
+umount /kanapi_packages
+umount /kanapi_packages_x86_64
+umount /kanapi_external
+umount /kanapi_build
 echo "mozna wylaczyc"
 reboot -f
 
