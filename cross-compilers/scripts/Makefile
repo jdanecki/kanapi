@@ -33,11 +33,15 @@ linux:
 glibc:
 	@$(RUN_TARGET)
 
+libgcc: gcc
+	@$(RUN_TARGET)
+
 pakiet1:
 	@$(RUN_TARGET)
 
 pakiet2: pakiet1
 	@$(RUN_TARGET)
 
+download version prepare install clean:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
