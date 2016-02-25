@@ -8,4 +8,6 @@ PKG_ACTION="pkg_$2"
 
 ${PKG_ACTION}
 
+#echo "touching ${PACKAGE_NAME}_$2 in `pwd`"
+#/bin/date -Ins > ${PACKAGE_NAME}_$2
 

@@ -1,4 +1,29 @@
-DIR_NAME=$@-$($@_ver)
-RUN_TARGET=if [ ! -d  $(DIR_NAME) ]; then mkdir $(DIR_NAME) ; cp ../packages/$(DIR_NAME)/$@.kanapi $(DIR_NAME); fi ; \
- cd $(DIR_NAME); pkg_kanapi $@.kanapi $(ACTION)
+DIR_NAME=$@-$($(@)_ver)
+check_dir=if [ ! -d  $(DIR_NAME) ]; then mkdir $(DIR_NAME) ; cp ../packages/$(DIR_NAME)/$@.kanapi $(DIR_NAME); fi
+DATE_RULE=/bin/date -Ins > $@
+
+kanapi_download:
+	pkg_kanapi $(PKG).kanapi download
+	$(call DATE_RULE)
+
+kanapi_prepare: kanapi_download
+	pkg_kanapi $(PKG).kanapi prepare
+	$(call DATE_RULE)
+
+kanapi_configure: kanapi_prepare
+	pkg_kanapi $(PKG).kanapi configure
+	$(call DATE_RULE)
+
+kanapi_build: kanapi_configure
+	pkg_kanapi $(PKG).kanapi build
+	$(call DATE_RULE)
+
+kanapi_install: kanapi_build
+	pkg_kanapi $(PKG).kanapi install
+	$(call DATE_RULE)
+
+kanapi_clean:
+	pkg_kanapi $(PKG).kanapi clean
+
+RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTION) PKG=$@ TOP=$(PWD)
 

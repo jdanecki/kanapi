@@ -1,6 +1,1 @@
-KANAPI_TARGET=arm
-
-echo "*** Processing ${PACKAGE_NAME} for ${KANAPI_TARGET} ***"
-
-. ../../scripts/settings
-
+../scripts/settings-arm

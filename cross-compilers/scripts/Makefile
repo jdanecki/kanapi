@@ -1,7 +1,12 @@
-include ../scripts/config.kanapi
-include ../scripts/rules.kanapi
+ifeq (x$(TOP),x)
+BASE=
+else
+BASE=$(TOP)/
+endif
+include $(BASE)../scripts/config.kanapi
+include $(BASE)../scripts/rules.kanapi
 
-PKGS=binutils mpc
+PKGS=binutils gcc linux
 
 all: $(PKGS)
 
