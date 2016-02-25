@@ -27,6 +27,9 @@ mpc: mpfr
 gcc: mpc
 	@$(RUN_TARGET)
 
+linux:
+	@$(RUN_TARGET)
+
 pakiet1:
 	@$(RUN_TARGET)
 
