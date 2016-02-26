@@ -15,7 +15,7 @@ all: $(PKGS)
 binutils:
 	@$(RUN_TARGET)
 
-gmp:
+gmp: binutils
 	@$(RUN_TARGET)
 
 mpfr: gmp
@@ -27,13 +27,13 @@ mpc: mpfr
 gcc: mpc
 	@$(RUN_TARGET)
 
-linux:
+linux: gcc
 	@$(RUN_TARGET)
 
-glibc:
+glibc: linux
 	@$(RUN_TARGET)
 
-libgcc: gcc
+libgcc: glibc
 	@$(RUN_TARGET)
 
 pakiet1:
