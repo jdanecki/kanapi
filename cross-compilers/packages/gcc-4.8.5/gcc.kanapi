@@ -53,11 +53,9 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-libatomic --disable-multilib --target=${KANAPI_TARGET_NAME} \
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
-	--prefix=${PREFIX} --disable-threads --disable-nls --disable-decimal-float \
+	--prefix=${PREFIX} --disable-threads --disable-shared --disable-nls --disable-decimal-float \
 	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp 
-#	--with-as=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-as \
-#	--with-ld=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-ld
 }
 
 pkg_build() {
