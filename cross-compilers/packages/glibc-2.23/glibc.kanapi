@@ -28,15 +28,29 @@ pkg_prepare() {
 	pkg_tar_xz
 }
 
+set_variables() {
+	export LIBRARIES_PATH=${KANAPI_BASE}/gmp-${gmp_ver}/lib:${KANAPI_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_BASE}/mpc-${mpc_ver}/lib
+	if [ -n "${LD_LIBRARY_PATH}" ] 
+	then
+		export LD_LIBRARY_PATH=${LIBRARIES_PATH}:${LD_LIBRARY_PATH}
+	else
+		export LD_LIBRARY_PATH=${LIBRARIES_PATH}
+	fi
+	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin:${PATH}
+}
+
 pkg_configure() {
-	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin:/bin64:/bin
+	set_variables
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --target=${KANAPI_TARGET_NAME} \
-		--with-headers=${KANAPI_BASE}/linux-4.4.2/include libc_cv_ssp=no  --without-selinux
+	--build=`uname -m`-kanapi-linux-gnu --host=`uname -m`-kanapi-linux-gnu \
+	--with-headers=${KANAPI_BASE}/linux-4.4.2/include libc_cv_ssp=no  --without-selinux \
+	--with-binutils=${KANAPI_BASE}/binutils-${binutils_ver}
+
 	#--enable-multi-arch
 }
 
 pkg_build() {
-	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin:/bin64:/bin
+	set_variables
 	make -j ${MAKE_JOBS} MAKEINFO=true
 }
 
