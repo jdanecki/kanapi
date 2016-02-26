@@ -53,7 +53,7 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-libatomic --disable-multilib --target=${KANAPI_TARGET_NAME} \
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
-	--prefix=${PREFIX} --disable-threads --disable-shared --disable-nls --disable-decimal-float \
+	--prefix=${PREFIX} --disable-threads --disable-shared --enable-static --disable-nls --disable-decimal-float \
 	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp 
 }
@@ -65,4 +65,5 @@ pkg_build() {
 
 pkg_install() {
 	make -j ${MAKE_JOBS}  MAKEINFO=true install-gcc
+	make install-target-libgcc
 }	
