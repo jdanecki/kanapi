@@ -1,0 +1,68 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=libstdc++
+VER=4.8.5
+URL="http://"
+EXT=tar.bz2
+#build depends on
+. ../settings
+
+pkg_download() {
+	echo "already downloaded by gcc"
+}
+
+pkg_prepare() {
+	echo "already prepared by gcc"
+}
+
+set_variables() {
+	export LIBRARIES_PATH=${KANAPI_BASE}/gmp-${gmp_ver}/lib:${KANAPI_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_BASE}/mpc-${mpc_ver}/lib
+	if [ -n "${LD_LIBRARY_PATH}" ] 
+	then
+		export LD_LIBRARY_PATH=${LIBRARIES_PATH}:${LD_LIBRARY_PATH}
+	else
+		export LD_LIBRARY_PATH=${LIBRARIES_PATH}
+	fi
+	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin:${PATH}
+}
+
+pkg_configure() {
+	set_variables
+	for i in ../gcc-${VER}/*
+	do
+		if [ -d $i ]
+		then
+			ln -s $i .
+		fi
+	done
+	ln -s ../gcc-${VER}/Makefile Makefile
+	ln -s ../gcc-${VER}/config.status config.status
+}
+
+pkg_build() {
+	set_variables
+    make -j ${MAKE_JOBS} MAKEINFO=true all-target-libstdc++-v3 PIC_CXXFLAGS='-fPIC'
+}
+
+pkg_install() {
+	make install-target-libstdc++-v3
+	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64
+}	
+

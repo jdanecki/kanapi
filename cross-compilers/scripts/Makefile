@@ -6,7 +6,7 @@ endif
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=binutils gcc linux
+PKGS=libstdcpp
 
 all: $(PKGS)
 
@@ -36,6 +36,9 @@ glibc: linux
 libgcc: glibc
 	@$(RUN_TARGET)
 
+libstdcpp: glibc
+	@$(RUN_TARGET)
+
 pakiet1:
 	@$(RUN_TARGET)
 
@@ -43,7 +46,6 @@ pakiet2: pakiet1
 	@$(RUN_TARGET)
 
 download version prepare install clean test:
-download version prepare install clean:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
 help:	
