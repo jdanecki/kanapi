@@ -42,6 +42,7 @@ pakiet1:
 pakiet2: pakiet1
 	@$(RUN_TARGET)
 
+download version prepare install clean test:
 download version prepare install clean:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

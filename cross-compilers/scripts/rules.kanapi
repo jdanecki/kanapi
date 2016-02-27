@@ -31,6 +31,9 @@ kanapi_install: kanapi_build
 kanapi_clean:
 	pkg_kanapi $(PKG).kanapi clean
 
+kanapi_test:
+	pkg_kanapi $(PKG).kanapi test
+
 kanapi_help:
 	@echo "**********   Help  **********"
 	@echo "run: make package ACTION=action"
@@ -40,3 +43,4 @@ kanapi_help:
 	@echo "configure - configure package"
 	@echo "build     - build package"
 	@echo "install   - install package"
+

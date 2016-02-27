@@ -153,3 +153,8 @@ pkg_install_bin() {
 	ln -svf ${PREFIX}/bin/${PACKAGE_NAME} /bin64/${PACKAGE_NAME}
 }
 
+pkg_test() {
+	echo "tests for ${PACKAGE_NAME}"
+	make -C ../../tests test_${PACKAGE_NAME} KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME} KANAPI_BASE=${KANAPI_BASE}
+}
+
