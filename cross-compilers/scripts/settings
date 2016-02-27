@@ -10,6 +10,10 @@ KANAPI_VER=0.5
 KANAPI_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
 
 ##############################################################
+if [ "${KANAPI_TARGET}" = "arm" ]
+then
+	KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME}eabi
+fi
 if [ -f ../../scripts/config.kanapi ]
 then 
 	. ../../scripts/config.kanapi
