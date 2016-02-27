@@ -33,8 +33,8 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` menuconfig
-#	make ARCH=${KANAPI_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` oldconfig
+#	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` menuconfig
+	make ARCH=${KANAPI_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` olddefconfig
 }
 
 pkg_build() {
