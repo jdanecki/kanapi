@@ -45,3 +45,6 @@ pakiet2: pakiet1
 download version prepare install clean:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
+help:	
+	make kanapi_help
+

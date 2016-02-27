@@ -2,6 +2,12 @@ DIR_NAME=$@-$($(@)_ver)
 check_dir=if [ ! -d  $(DIR_NAME) ]; then mkdir $(DIR_NAME) ; cp ../packages/$(DIR_NAME)/$@.kanapi $(DIR_NAME); fi
 DATE_RULE=/bin/date -Ins > $@
 
+ifeq ($(ACTION),)
+RUN_TARGET=make kanapi_help
+else
+RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTION) PKG=$@ TOP=$(PWD)
+endif
+
 kanapi_download:
 	pkg_kanapi $(PKG).kanapi download
 	$(call DATE_RULE)
@@ -25,5 +31,12 @@ kanapi_install: kanapi_build
 kanapi_clean:
 	pkg_kanapi $(PKG).kanapi clean
 
-RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTION) PKG=$@ TOP=$(PWD)
-
+kanapi_help:
+	@echo "**********   Help  **********"
+	@echo "run: make package ACTION=action"
+	@echo "where action is one from:"
+	@echo "download  - download sources"
+	@echo "prepare   - uncompress sources"
+	@echo "configure - configure package"
+	@echo "build     - build package"
+	@echo "install   - install package"
