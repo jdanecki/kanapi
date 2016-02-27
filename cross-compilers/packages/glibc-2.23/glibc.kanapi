@@ -36,17 +36,37 @@ set_variables() {
 	else
 		export LD_LIBRARY_PATH=${LIBRARIES_PATH}
 	fi
-	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin:${PATH}
+	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin:${PATH}
 }
 
 pkg_configure() {
 	set_variables
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --target=${KANAPI_TARGET_NAME} \
-	--build=`uname -m`-kanapi-linux-gnu --host=`uname -m`-kanapi-linux-gnu \
-	--with-headers=${KANAPI_BASE}/linux-4.4.2/include libc_cv_ssp=no  --without-selinux \
-	--with-binutils=${KANAPI_BASE}/binutils-${binutils_ver}
 
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	libc_cv_ssp=no  --without-selinux \
+	--with-headers=${KANAPI_BASE}/linux-4.4.2/include \
+	--with-binutils=${KANAPI_BASE}/binutils-${binutils_ver}
+	
 	#--enable-multi-arch
+}
+
+header() {
+	make install-headers-nosubdir 
+
+	if [ ! -d ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} ]
+	then 
+		mkdir ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		mkdir ${PREFIX}/lib
+		ln -s ${PREFIX}/include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		ln -s include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/sys-include
+		ln -s ${PREFIX}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
+		touch ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include/gnu/stubs.h
+		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
+	fi
+	make csu/subdir_lib
+	install csu/crt1.o csu/crti.o csu/crtn.o ${PREFIX}/lib
+	${KANAPI_TARGET_NAME}-gcc -nostdlib -nostartfiles -shared -x c /dev/null -o ${PREFIX}/lib/libc.so
+	make install-headers
 }
 
 pkg_build() {
@@ -57,5 +77,21 @@ pkg_build() {
 pkg_install() {
 	date > manual/libc.info
 	pkg_install_make
+
+	if [ ! -d ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} ]
+	then 
+		mkdir ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		ln -s ${PREFIX}/include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		ln -s include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/sys-include
+		ln -s ${PREFIX}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
+		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
+	fi
+	if [ "${KANAPI_TARGET}" = "x86_64" ]
+	then
+		${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/lib64/ld-linux-x86-64.so.2@${PREFIX}/lib/ld-linux-x86-64.so.2@g" \
+			| sed "s@/lib/ld-linux.so.2@${PREFIX}/lib/ld-linux.so.2@" > ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+	else
+			${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/lib/ld-linux.so.2@${PREFIX}/lib/ld-linux.so.2@g" > ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+	fi
 }	
 
