@@ -1,4 +1,7 @@
 cross-compilers/arm
 cross-compilers/x86
 cross-compilers/x86_64
+kanapi-system/arm
+kanapi-system/x86
+kanapi-system/x86_64
 
