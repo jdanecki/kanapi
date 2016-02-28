@@ -66,3 +66,7 @@ pkg_install() {
 	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64
 }	
 
+pkg_test() {
+	echo "tests for ${PACKAGE_NAME}"
+	make -C ../../tests test_libstdcpp KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME} KANAPI_BASE=${KANAPI_BASE}
+}
