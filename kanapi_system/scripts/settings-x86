@@ -1,0 +1,7 @@
+KANAPI_TARGET=i686
+KANAPI_KERNEL_TARGET=x86
+
+echo "*** Processing ${PACKAGE_NAME} for ${KANAPI_TARGET} ***"
+
+. ../../scripts/settings
+
