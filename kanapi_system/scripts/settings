@@ -16,7 +16,7 @@ then
 	KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME}eabi
 fi
 
-. ../../../cross-compilers/scripts/config.kanapi
+. ../../../cross_compilers/scripts/config.kanapi
 . ../../scripts/config.kanapi
 
 PACKAGE_VER=${PACKAGE_NAME}-${VER}

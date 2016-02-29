@@ -3,7 +3,7 @@ BASE=
 else
 BASE=$(TOP)/
 endif
-include $(BASE)../../cross-compilers/scripts/config.kanapi
+include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/rules.kanapi
 
@@ -14,6 +14,9 @@ all: $(PKGS)
 # PACKAGES
 
 gzip:
+	@$(RUN_TARGET)
+
+bash:
 	@$(RUN_TARGET)
 
 download version prepare install clean test:
