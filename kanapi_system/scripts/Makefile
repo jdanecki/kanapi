@@ -19,6 +19,9 @@ gzip:
 bash:
 	@$(RUN_TARGET)
 
+busybox:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
