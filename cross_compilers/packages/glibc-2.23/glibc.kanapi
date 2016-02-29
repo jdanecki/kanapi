@@ -93,5 +93,7 @@ pkg_install() {
 	else
 			${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/lib/ld-linux.so.2@${PREFIX}/lib/ld-linux.so.2@g" > ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
 	fi
+	mkdir -p ${PREFIX}/lib/locale
+	${PREFIX}/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
 }	
 
