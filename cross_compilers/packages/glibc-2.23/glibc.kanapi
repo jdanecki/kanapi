@@ -36,7 +36,13 @@ set_variables() {
 	else
 		export LD_LIBRARY_PATH=${LIBRARIES_PATH}
 	fi
-	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin:${PATH}
+	export PATH_TMP=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin
+	if [ "${KANAPI_TARGET}" = "arm" ]
+	then
+		export PATH=${PATH_TMP}:${PATH}
+	else
+		export PATH=${PATH_TMP}:${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin:${PATH}
+	fi
 }
 
 pkg_configure() {
@@ -75,6 +81,7 @@ pkg_build() {
 }
 
 pkg_install() {
+	set_variables
 	date > manual/libc.info
 	pkg_install_make
 
@@ -88,12 +95,23 @@ pkg_install() {
 	fi
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
-		${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/lib64/ld-linux-x86-64.so.2@${PREFIX}/lib/ld-linux-x86-64.so.2@g" \
-			| sed "s@/lib/ld-linux.so.2@${PREFIX}/lib/ld-linux.so.2@" > ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
-	else
-			${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/lib/ld-linux.so.2@${PREFIX}/lib/ld-linux.so.2@g" > ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+		LINKER_NAME=ld-linux-x86-64.so.2
+		LINKER_PATH=lib64
 	fi
-	mkdir -p ${PREFIX}/lib/locale
-	${PREFIX}/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
+	if [ "${KANAPI_TARGET}" = "i686" ]
+	then
+		LINKER_NAME=ld-linux.so.2
+		LINKER_PATH=lib
+	fi
+	if [ "${KANAPI_TARGET}" = "arm" ]
+	then
+		LINKER_NAME=ld-linux.so.3
+		LINKER_PATH=lib
+	fi
+
+	${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${PREFIX}/lib/${LINKER_NAME}@g" \
+		> ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+#	mkdir -p ${PREFIX}/lib/locale
+#	${PREFIX}/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
 }	
 

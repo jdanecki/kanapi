@@ -30,12 +30,12 @@ else
 PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
 fi
 
-export GCC_PREFIX="${KANAPI_BASE}/gcc-4.8.5"
-export BINUTILS_PREFIX="${KANAPI_BASE}/binutils-2.26"
-export LIBC_PREFIX="${KANAPI_BASE}/glibc-2.22"
+export GCC_PREFIX="${KANAPI_BASE}/gcc-${gcc_ver}"
+export BINUTILS_PREFIX="${KANAPI_BASE}/binutils-${binutils_ver}"
+export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
 export CPP="/bin/cpp"
 
-export PKGCONFIG_DIR=${KANAPI_BASE}/pkg-config-0.29/share/pkgconfig
+#export PKGCONFIG_DIR=${KANAPI_BASE}/pkg-config-0.29/share/pkgconfig
 
 if [[ -n ${LIB_DEPENDS} ]]
 then

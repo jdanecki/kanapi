@@ -33,9 +33,6 @@ linux: gcc
 glibc: linux
 	@$(RUN_TARGET)
 
-libgcc: glibc
-	@$(RUN_TARGET)
-
 libstdcpp: glibc
 	@$(RUN_TARGET)
 
