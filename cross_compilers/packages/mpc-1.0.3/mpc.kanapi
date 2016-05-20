@@ -19,7 +19,8 @@
 
 PACKAGE_NAME=mpc
 VER=1.0.3
-URL="ftp://ftp.gnu.org/gnu/mpc"
+#URL="ftp://ftp.gnu.org/gnu/mpc"
+URL="http://ftp.gnu.org/gnu/mpc"
 EXT=tar.gz
 #build depends on
 . ../settings
