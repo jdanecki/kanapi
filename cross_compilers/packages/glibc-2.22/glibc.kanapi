@@ -1,0 +1,99 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=glibc
+VER=2.23
+URL="http://ftp.gnu.org/gnu/glibc"
+EXT=tar.xz
+#build depends on
+. ../settings
+
+pkg_prepare() {
+	pkg_tar_xz
+}
+
+set_variables() {
+	export LIBRARIES_PATH=${KANAPI_BASE}/gmp-${gmp_ver}/lib:${KANAPI_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_BASE}/mpc-${mpc_ver}/lib
+	if [ -n "${LD_LIBRARY_PATH}" ] 
+	then
+		export LD_LIBRARY_PATH=${LIBRARIES_PATH}:${LD_LIBRARY_PATH}
+	else
+		export LD_LIBRARY_PATH=${LIBRARIES_PATH}
+	fi
+	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin:${PATH}
+}
+
+pkg_configure() {
+	set_variables
+
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	libc_cv_ssp=no  --without-selinux \
+	--with-headers=${KANAPI_BASE}/linux-4.4.2/include \
+	--with-binutils=${KANAPI_BASE}/binutils-${binutils_ver}
+	
+	#--enable-multi-arch
+}
+
+header() {
+	make install-headers-nosubdir 
+
+	if [ ! -d ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} ]
+	then 
+		mkdir ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		mkdir ${PREFIX}/lib
+		ln -s ${PREFIX}/include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		ln -s include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/sys-include
+		ln -s ${PREFIX}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
+		touch ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include/gnu/stubs.h
+		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
+	fi
+	make csu/subdir_lib
+	install csu/crt1.o csu/crti.o csu/crtn.o ${PREFIX}/lib
+	${KANAPI_TARGET_NAME}-gcc -nostdlib -nostartfiles -shared -x c /dev/null -o ${PREFIX}/lib/libc.so
+	make install-headers
+}
+
+pkg_build() {
+	set_variables
+	make -j ${MAKE_JOBS} MAKEINFO=true
+}
+
+pkg_install() {
+	date > manual/libc.info
+	pkg_install_make
+
+	if [ ! -d ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} ]
+	then 
+		mkdir ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		ln -s ${PREFIX}/include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		ln -s include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/sys-include
+		ln -s ${PREFIX}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
+		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
+	fi
+	if [ "${KANAPI_TARGET}" = "x86_64" ]
+	then
+		${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/lib64/ld-linux-x86-64.so.2@${PREFIX}/lib/ld-linux-x86-64.so.2@g" \
+			| sed "s@/lib/ld-linux.so.2@${PREFIX}/lib/ld-linux.so.2@" > ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+	else
+			${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/lib/ld-linux.so.2@${PREFIX}/lib/ld-linux.so.2@g" > ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+	fi
+	mkdir -p ${PREFIX}/lib/locale
+	${PREFIX}/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
+}	
+
