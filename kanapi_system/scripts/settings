@@ -7,7 +7,7 @@ export LANG="C"
 
 KANAPI_TARGET_NAME=${KANAPI_TARGET}-kanapi-linux-gnu
 KANAPI_VER=0.5
-KANAPI_BASE=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}
+KANAPI_BASE=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
 KANAPI_CROSS_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
 
 ##############################################################
@@ -87,6 +87,10 @@ pkg_copy() {
 }
 
 pkg_tar_gz() {
+	 tar -xzf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
+} 
+
+pkg_tgz() {
 	 tar -xzf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
 } 
 

@@ -7,7 +7,7 @@ include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=gzip
+PKGS=gzip bash busybox gdb readline
 
 all: $(PKGS)
 
@@ -20,6 +20,18 @@ bash:
 	@$(RUN_TARGET)
 
 busybox:
+	@$(RUN_TARGET)
+
+ncurses:
+	@$(RUN_TARGET)
+
+gdb: ncurses
+	@$(RUN_TARGET)
+
+readline:
+	@$(RUN_TARGET)
+
+cgdb: readline gdb
 	@$(RUN_TARGET)
 
 download version prepare install clean test:
