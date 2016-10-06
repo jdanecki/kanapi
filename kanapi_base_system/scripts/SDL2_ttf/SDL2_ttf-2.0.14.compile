@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,20 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=SDL2_image
-VER=2.0.0
+PACKAGE_NAME=SDL2_ttf
+VER=2.0.14
 . ../settings
 
-#local_copy
-#PKG=""
-#export CFLAGS="`pkg-config --cflags ${PKG}`"
-#export LDFLAGS+="`pkg-config --libs ${PKG}`"
+
+export CPP="/bin/cpp `pkg-config --cflags x11`"
+export LIBS="-ldl -lm -L/kanapi_packages/libs -lpthread -lrt -L/kanapi_packages/gcc-4.7.1-a/lib"
+export CFLAGS="`pkg-config --cflags gl`"
 
 #../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
 #make -j 4 MAKEINFO=true
 make -j 2 install MAKEINFO=true
-
-#ln -s ${PREFIX}/bin/* /bin
-#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
 
 

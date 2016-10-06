@@ -17,18 +17,20 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=SDL2_image
-VER=2.0.0
+PACKAGE_NAME=SDL2
+VER=2.0.4
 . ../settings
 
 #local_copy
-#PKG=""
-#export CFLAGS="`pkg-config --cflags ${PKG}`"
-#export LDFLAGS+="`pkg-config --libs ${PKG}`"
+PKG="x11 gl xext alsa xrandr ice x11-xcb"
+export CPP="/bin/cpp `pkg-config --cflags ${PKG}`"
+export CFLAGS="`pkg-config --cflags ${PKG}`"
+export LDFLAGS+="`pkg-config --libs ${PKG}` -lstdc++ -lpthread -lm -ldl -lrt"
 
-#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+#./configure --prefix=$PREFIX
+#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX --enable-alsa
 #make -j 4 MAKEINFO=true
-make -j 2 install MAKEINFO=true
+make -j 4 install MAKEINFO=true
 
 #ln -s ${PREFIX}/bin/* /bin
 #find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2013 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,20 +17,22 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=SDL2_image
-VER=2.0.0
+PACKAGE_NAME=SDL2_mixer
+VER=2.0.1
 . ../settings
 
-#local_copy
-#PKG=""
-#export CFLAGS="`pkg-config --cflags ${PKG}`"
-#export LDFLAGS+="`pkg-config --libs ${PKG}`"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/kanapi_packages/smpeg-3.12.2012/lib"
+export CFLAGS="`pkg-config --cflags vorbisfile` -I/kanapi_packages/libmad-0.15.1b/include"
+export LDFLAGS="`pkg-config --libs vorbisfile` -ldl -lrt -lpthread -L/kanapi_packages/libmad-0.15.1b/lib"
 
-#../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+config() {
+../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX \
+	--enable-music-ogg --enable-music-mod --enable-music-mp3 \
+	--enable-music-mp3-mad-gpl
+}
+#	--with-smpeg-prefix=/kanapi_packages/smpeg-3.12.2012 \
+
+#config
 #make -j 4 MAKEINFO=true
-make -j 2 install MAKEINFO=true
-
-#ln -s ${PREFIX}/bin/* /bin
-#find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
-
+make -j 4 install MAKEINFO=true
 
