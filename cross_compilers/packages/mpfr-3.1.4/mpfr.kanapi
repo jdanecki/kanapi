@@ -17,21 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=mpc
-VER=1.0.3
-#URL="ftp://ftp.gnu.org/gnu/mpc"
-URL="http://ftp.gnu.org/gnu/mpc"
-EXT=tar.gz
-#build depends on
+PACKAGE_NAME=mpfr
+VER=3.1.4
+URL="http://mpfr.loria.fr/mpfr-current"
+EXT=tar.xz
+
 . ../settings
 
 pkg_prepare() {
-	pkg_tar_gz
+	pkg_tar_xz
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX \
-		--with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
-		--with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver}
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver}
 }
 

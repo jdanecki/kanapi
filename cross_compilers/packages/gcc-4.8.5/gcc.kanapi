@@ -19,7 +19,8 @@
 
 PACKAGE_NAME=gcc
 VER=4.8.5
-URL="ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.8.5"
+#URL="ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.8.5"
+URL="http://ftp.gnu.org/pub/gnu/gcc/gcc-4.8.5"
 EXT=tar.bz2
 #build depends on
 . ../settings
