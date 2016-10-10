@@ -1,5 +1,13 @@
-Alpha - currect phase
-=====================
+Beta - current phase
+====================
+
+* New build system for i686/x86_64 and arm
+* Automatic build for cross-compilers: binutils, gcc
+* Automatic build for: bash, busybox, cgdb, gdb, gzip, ncurses, readline
+* SDL2 support added to KBS
+
+Alpha
+=====
 
 * Recompile selected packages with newer version
 * Remove not used packages
