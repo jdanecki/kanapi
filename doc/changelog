@@ -5,6 +5,7 @@ Beta - current phase
 * Automatic build for cross-compilers: binutils, gcc
 * Automatic build for: bash, busybox, cgdb, gdb, gzip, ncurses, readline
 * SDL2 support added to KBS
+* gimp
 
 Alpha
 =====
