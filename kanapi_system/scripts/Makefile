@@ -11,6 +11,29 @@ PKGS=gzip bash busybox gdb readline
 
 all: $(PKGS)
 
+compilers: linux glibc libstdcpp
+
+linux:
+	@$(RUN_TARGET)
+
+glibc: linux
+	@$(RUN_TARGET)
+
+binutils:
+	@$(RUN_TARGET)
+
+gmp: binutils
+	@$(RUN_TARGET)
+
+mpfr: gmp
+	@$(RUN_TARGET)
+
+mpc: mpfr
+	@$(RUN_TARGET)
+
+gcc: mpc
+	@$(RUN_TARGET)
+
 # PACKAGES
 
 gzip:

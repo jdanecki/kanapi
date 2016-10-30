@@ -29,19 +29,19 @@ pkg_prepare() {
 }
 
 set_variables() {
-	export LIBRARIES_PATH=${KANAPI_BASE}/gmp-${gmp_ver}/lib:${KANAPI_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_BASE}/mpc-${mpc_ver}/lib
+	export LIBRARIES_PATH=${KANAPI_CROSS_BASE}/gmp-${gmp_ver}/lib:${KANAPI_CROSS_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_CROSS_BASE}/mpc-${mpc_ver}/lib
 	if [ -n "${LD_LIBRARY_PATH}" ] 
 	then
 		export LD_LIBRARY_PATH=${LIBRARIES_PATH}:${LD_LIBRARY_PATH}
 	else
 		export LD_LIBRARY_PATH=${LIBRARIES_PATH}
 	fi
-	export PATH_TMP=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${KANAPI_BASE}/gcc-${gcc_ver}/bin
+	export PATH_TMP=${KANAPI_CROSS_BASE}/binutils-${binutils_ver}/bin:${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin
 	if [ "${KANAPI_TARGET}" = "arm" ]
 	then
 		export PATH=${PATH_TMP}:${PATH}
 	else
-		export PATH=${PATH_TMP}:${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin:${PATH}
+		export PATH=${PATH_TMP}:${KANAPI_CROSS_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin:${PATH}
 	fi
 }
 
@@ -51,7 +51,7 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	libc_cv_ssp=no  --without-selinux \
 	--with-headers=${KANAPI_BASE}/linux-4.4.2/include \
-	--with-binutils=${KANAPI_BASE}/binutils-${binutils_ver}
+	--with-binutils=${KANAPI_CROSS_BASE}/binutils-${binutils_ver}
 	
 	#--enable-multi-arch
 }
@@ -84,14 +84,14 @@ pkg_install() {
 	set_variables
 	date > manual/libc.info
 	pkg_install_make
-
-	if [ ! -d ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} ]
+	CROSS_GCC_DIR=${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} 
+	if [ ! -d ${CROSS_GCC_DIR} ]
 	then 
-		mkdir ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
-		ln -s ${PREFIX}/include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
-		ln -s include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/sys-include
-		ln -s ${PREFIX}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
-		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
+		mkdir -p ${CROSS_GCC_DIR}
+		ln -s ${PREFIX}/include ${CROSS_GCC_DIR}
+		ln -s include ${CROSS_GCC_DIR}/sys-include
+		ln -s ${PREFIX}/lib ${CROSS_GCC_DIR}/lib
+		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${CROSS_GCC_DIR}/include
 	fi
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
@@ -109,7 +109,7 @@ pkg_install() {
 		LINKER_PATH=lib
 	fi
 
-	${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${PREFIX}/lib/${LINKER_NAME}@g" \
+	${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${PREFIX}/lib/${LINKER_NAME}@g" \
 		> ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
 #	mkdir -p ${PREFIX}/lib/locale
 #	${PREFIX}/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8

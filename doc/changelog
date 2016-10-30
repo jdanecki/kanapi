@@ -6,6 +6,11 @@ Beta - current phase
 * Automatic build for: bash, busybox, cgdb, gdb, gzip, ncurses, readline
 * SDL2 support added to KBS
 * gimp
+* qt-5.7.0
+* cmake 3.6.2
+
+* llvm 3.9.0
+* qtcreator
 
 Alpha
 =====

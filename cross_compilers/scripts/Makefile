@@ -27,13 +27,10 @@ mpc: mpfr
 gcc: mpc
 	@$(RUN_TARGET)
 
-linux: gcc
+glibc: gcc
 	@$(RUN_TARGET)
 
-glibc: linux
-	@$(RUN_TARGET)
-
-libstdcpp: glibc
+libstdcpp: gcc
 	@$(RUN_TARGET)
 
 pakiet1:

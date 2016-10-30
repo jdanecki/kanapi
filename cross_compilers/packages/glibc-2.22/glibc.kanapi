@@ -18,7 +18,7 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 PACKAGE_NAME=glibc
-VER=2.23
+VER=2.22
 URL="http://ftp.gnu.org/gnu/glibc"
 EXT=tar.xz
 #build depends on
