@@ -30,10 +30,10 @@ gcc: mpc
 linux: gcc
 	@$(RUN_TARGET)
 
-glibc: gcc
+glibc: linux
 	@$(RUN_TARGET)
 
-libstdcpp: gcc
+libstdcpp: glibc
 	@$(RUN_TARGET)
 
 pakiet1:
