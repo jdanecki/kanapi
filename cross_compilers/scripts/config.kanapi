@@ -1,4 +1,4 @@
-binutils_ver=2.26
+binutils_ver=2.27
 gmp_ver=6.1.0
 mpfr_ver=3.1.5
 mpc_ver=1.0.3
