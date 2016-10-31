@@ -27,6 +27,9 @@ mpc: mpfr
 gcc: mpc
 	@$(RUN_TARGET)
 
+linux: gcc
+	@$(RUN_TARGET)
+
 glibc: gcc
 	@$(RUN_TARGET)
 

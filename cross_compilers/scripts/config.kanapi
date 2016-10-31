@@ -3,6 +3,7 @@ gmp_ver=6.1.0
 mpfr_ver=3.1.5
 mpc_ver=1.0.3
 gcc_ver=4.8.5
+linux_ver=4.4.2
 glibc_ver=2.22
 libstdcpp_ver=4.8.5
 pakiet1_ver=1.0
