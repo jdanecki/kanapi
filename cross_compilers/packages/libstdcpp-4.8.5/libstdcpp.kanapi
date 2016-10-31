@@ -64,6 +64,10 @@ pkg_build() {
 pkg_install() {
 	make install-target-libstdc++-v3
 	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64
+	rm gcc/stmp-int-hdrs gcc/stmp-fixinc
+	make -j ${MAKE_JOBS}  MAKEINFO=true install-fixincludes
+	make -C gcc -j ${MAKE_JOBS}  MAKEINFO=true install-mkheaders 
+	cp ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/install-tools/include/limits.h ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/include-fixed/limits.h 
 }	
 
 pkg_test() {

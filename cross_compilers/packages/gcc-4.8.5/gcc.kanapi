@@ -67,11 +67,7 @@ pkg_build() {
 pkg_install() {
 	set_variables
 	make -j ${MAKE_JOBS}  MAKEINFO=true install-gcc
-	make -j ${MAKE_JOBS}  MAKEINFO=true install-fixincludes
-	make -C gcc -j ${MAKE_JOBS}  MAKEINFO=true install-mkheaders 
-	cp {$KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/{$KANAPI_TARGET_NAME}/${gcc_ver}/install-tools/include/limits.h {$KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/{$KANAPI_TARGET_NAME}/${gcc_ver}/include-fixed/limits.h 
 	make install-target-libgcc
 	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
 	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
-
 }	
