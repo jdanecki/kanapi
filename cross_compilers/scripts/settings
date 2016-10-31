@@ -33,7 +33,7 @@ fi
 export GCC_PREFIX="${KANAPI_BASE}/gcc-${gcc_ver}"
 export BINUTILS_PREFIX="${KANAPI_BASE}/binutils-${binutils_ver}"
 export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
-export CPP="/bin/cpp"
+export CPP="`which cpp`"
 
 #export PKGCONFIG_DIR=${KANAPI_BASE}/pkg-config-0.29/share/pkgconfig
 
