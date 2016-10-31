@@ -38,20 +38,19 @@ set_variables() {
 		export LD_LIBRARY_PATH=${LIBRARIES_PATH}
 	fi
 	export PATH=${KANAPI_BASE}/binutils-${binutils_ver}/bin:${PATH}
-	export OBJDUMP_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-objdump
-	export AS_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-as
-	export AR_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-ar
-	export LD_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-ld
-	export NM_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-nm
-	export RANLIB_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-ranlib
-	export READELF_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-readelf
-	export STRIP_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-strip
+	export OBJDUMP_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/objdump
+	export AS_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/as
+	export AR_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/ar
+	export LD_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/ld
+	export NM_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/nm
+	export RANLIB_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/ranlib
+	export READELF_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/readelf
+	export STRIP_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/strip
 }
-
 
 pkg_configure() {
 	set_variables
-	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-multilib --target=${KANAPI_TARGET_NAME} \
+	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-multilib --target=${KANAPI_TARGET_NAME} --build=${KANAPI_TARGET_NAME} --host=${KANAPI_TARGET_NAME} \
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
 	--prefix=${PREFIX} --disable-nls --disable-decimal-float \
@@ -61,12 +60,16 @@ pkg_configure() {
 
 pkg_build() {
 	set_variables
-	make -j ${MAKE_JOBS} MAKEINFO=true all-gcc all-target-libgcc
+	export MAKE_JOBS=1
+	make -j ${MAKE_JOBS} MAKEINFO=true 
+	#all-gcc all-target-libgcc
 }
 
 pkg_install() {
-	make -j ${MAKE_JOBS}  MAKEINFO=true install-gcc
-	make install-target-libgcc
+	set_variables
+	make -j ${MAKE_JOBS}  MAKEINFO=true 
+	#install-gcc
+	#make install-target-libgcc
 	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
 	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
 

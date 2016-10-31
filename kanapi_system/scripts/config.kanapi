@@ -1,5 +1,6 @@
 linux_ver=4.4.2
 glibc_ver=2.23
+binutils_ver=2.27
 libstdcpp_ver=4.8.5
 gmp_ver=6.1.0
 mpfr_ver=3.1.5

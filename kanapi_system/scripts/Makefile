@@ -19,7 +19,7 @@ linux:
 glibc: linux
 	@$(RUN_TARGET)
 
-binutils:
+binutils: glibc
 	@$(RUN_TARGET)
 
 gmp: binutils

@@ -30,9 +30,14 @@ else
 PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
 fi
 
-export GCC_PREFIX="${KANAPI_CROSS_BASE}/gcc-${gcc_ver}"
-export BINUTILS_PREFIX="${KANAPI_CROSS_BASE}/binutils-${binutils_ver}"
-export LIBC_PREFIX="${KANAPI_CROSS_BASE}/glibc-${glibc_ver}"
+export CROSS_GCC_PREFIX="${KANAPI_CROSS_BASE}/gcc-${gcc_ver}"
+export CROSS_BINUTILS_PREFIX="${KANAPI_CROSS_BASE}/binutils-${binutils_ver}"
+export CROSS_LIBC_PREFIX="${KANAPI_CROSS_BASE}/glibc-${glibc_ver}"
+
+export GCC_PREFIX="${KANAPI_BASE}/gcc-${gcc_ver}"
+export BINUTILS_PREFIX="${KANAPI_BASE}/binutils-${binutils_ver}"
+export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
+
 #export CPP="/bin/cpp"
 
 #export PKGCONFIG_DIR=${KANAPI_BASE}/pkg-config-0.29/share/pkgconfig
@@ -53,7 +58,23 @@ then
 else
 		export LD_LIBRARY_PATH=${LIBRARIES_PATH}
 fi
-export PATH=${BINUTILS_PREFIX}/bin:${GCC_PREFIX}/bin:${PATH}
+
+if [ -d ${BINUTILS_PREFIX} ]
+then 
+	export PATH_BIN=${BINUTILS_PREFIX}/bin
+else
+	export PATH_BIN=${CROSS_BINUTILS_PREFIX}/bin
+fi
+
+if [ -d ${GCC_PREFIX} ]
+then 
+	export PATH_GCC=${GCC_PREFIX}/bin
+else
+	export PATH_GCC=${CROSS_GCC_PREFIX}/bin
+fi
+
+export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
+echo "PATH=$PATH"
 
 local_copy() {
 	rm -rf build
@@ -111,7 +132,7 @@ pkg_configure() {
 }
 
 pkg_configure_target() {	
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --build=${KANAPI_TARGET_NAME}
 }
 
 pkg_build() {
