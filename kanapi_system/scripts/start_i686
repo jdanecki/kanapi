@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+cd /kanapi_0.6/i686/packages
+. ./set_variables
+
+sh
+
+
