@@ -3,7 +3,9 @@ KaNaPi project
 Main goal of this project is to create educational operating system based on Linux kernel
 and free software for use at home.
 
-Current phase: Alpha
+Current phase: Beta
+
+You can read doc/INSTALL to learn how to build KaNaPi.
 
 See more details on http://kanapi.tk
 
