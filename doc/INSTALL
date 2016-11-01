@@ -10,6 +10,8 @@ There are 4 steps to create KaNaPi filesystem:
 Using above steps you can prepare about 600 packages.
 
 There is also new method to build KaNaPi.
+- make directory /kanapi_build/src
+  This directory will contain downloaded packages and source for compilation
 - copy script cross_compilers/scripts/pkg_kanapi to your PATH, for example /usr/local/bin
 - compile cross-compilers using by running commands
   cd cross_compilers/`uname -m`
