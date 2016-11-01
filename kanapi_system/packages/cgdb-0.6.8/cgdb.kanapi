@@ -22,6 +22,7 @@ VER=0.6.8
 URL="http://cgdb.me/files"
 EXT=tar.gz
 #build depends on
+export LD_LIBRARY_PATH=
 . ../settings
 NCURSES_BASE=${KANAPI_BASE}/ncurses-${ncurses_ver}
 READLINE_BASE=${KANAPI_BASE}/readline-${readline_ver}
@@ -32,8 +33,9 @@ pkg_prepare() {
 pkg_configure() {
 	export CFLAGS="-I/${NCURSES_BASE}/include -I${READLINE_BASE}/include"
 	export LDFLAGS="-L/${NCURSES_BASE}/lib -L${READLINE_BASE}/lib"
-	export LD_LIBRARY_PATH+=":${NCURSES_BASE}/lib:${READLINE_BASE}/lib" 
+	export LD_LIBRARY_PATH="${NCURSES_BASE}/lib:${READLINE_BASE}/lib:${LD_LIBRARY_PATH}" 
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  ac_cv_prog_HAS_MAKEINFO=yes ac_cv_prog_HAS_HELP2MAN=yes 
+	echo $LD_LIBRARY_PATH
 }
 
 pkg_install() {
