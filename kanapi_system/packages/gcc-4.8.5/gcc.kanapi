@@ -44,14 +44,32 @@ pkg_configure() {
 }
 
 pkg_build() {
-#	export LD_PRELOAD=/kanapi_0.6/i686/packages/glibc-2.23/lib/libm.so.6
 	make -j ${MAKE_JOBS} MAKEINFO=true 
 }
 
 pkg_install() {
-#	export LD_PRELOAD=/kanapi_0.6/i686/packages/glibc-2.23/lib/libm.so.6
 	make -j ${MAKE_JOBS}  MAKEINFO=true install
 	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
 	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
+
+	if [ "${KANAPI_TARGET}" = "x86_64" ]
+	then
+		LINKER_NAME=ld-linux-x86-64.so.2
+		LINKER_PATH=lib64
+	fi
+	if [ "${KANAPI_TARGET}" = "i686" ]
+	then
+		LINKER_NAME=ld-linux.so.2
+		LINKER_PATH=lib
+	fi
+	if [ "${KANAPI_TARGET}" = "arm" ]
+	then
+		LINKER_NAME=ld-linux.so.3
+		LINKER_PATH=lib
+	fi
+
+
+	${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
+		> ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
 
 }	

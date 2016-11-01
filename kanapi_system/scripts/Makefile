@@ -31,10 +31,10 @@ mpfr: gmp
 mpc: mpfr
 	@$(RUN_TARGET)
 
-gcc: mpc
+binutils: glibc
 	@$(RUN_TARGET)
 
-binutils: glibc
+gcc: mpc
 	@$(RUN_TARGET)
 
 # PACKAGES
