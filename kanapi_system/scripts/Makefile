@@ -19,10 +19,10 @@ linux:
 glibc: linux
 	@$(RUN_TARGET)
 
-binutils: glibc
+libstdcpp: glibc
 	@$(RUN_TARGET)
 
-gmp: binutils
+gmp:
 	@$(RUN_TARGET)
 
 mpfr: gmp
@@ -32,6 +32,9 @@ mpc: mpfr
 	@$(RUN_TARGET)
 
 gcc: mpc
+	@$(RUN_TARGET)
+
+binutils: glibc
 	@$(RUN_TARGET)
 
 # PACKAGES

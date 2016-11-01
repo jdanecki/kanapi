@@ -66,7 +66,7 @@ else
 	export PATH_BIN=${CROSS_BINUTILS_PREFIX}/bin
 fi
 
-if [ -d ${GCC_PREFIX} ]
+if [ -d ${GCC_PREFIX}/bin ]
 then 
 	export PATH_GCC=${GCC_PREFIX}/bin
 else

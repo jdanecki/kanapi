@@ -84,13 +84,15 @@ pkg_install() {
 	set_variables
 	date > manual/libc.info
 	pkg_install_make
-#	CROSS_GCC_DIR=${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} 
-#	ln -sfn ${PREFIX}/include ${CROSS_GCC_DIR}
-#	ln -sfn include ${CROSS_GCC_DIR}/sys-include
-#	ln -sfn ${PREFIX}/lib ${CROSS_GCC_DIR}/lib
-#	cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${CROSS_GCC_DIR}/include
-#	ln -s ${KANAPI_CROSS_BASE}/glibc-${glibc_ver}/include/c++ ${CROSS_GCC_DIR}/include/c++
-
+	CROSS_GCC_DIR=${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} 
+	if [ ! -d ${CROSS_GCC_DIR} ]
+	then 
+		mkdir -p ${CROSS_GCC_DIR}
+		ln -s ${PREFIX}/include ${CROSS_GCC_DIR}
+		ln -s include ${CROSS_GCC_DIR}/sys-include
+		ln -s ${PREFIX}/lib ${CROSS_GCC_DIR}/lib
+		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${CROSS_GCC_DIR}/include
+	fi
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
 		LINKER_NAME=ld-linux-x86-64.so.2
@@ -107,8 +109,8 @@ pkg_install() {
 		LINKER_PATH=lib
 	fi
 
-#	${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${PREFIX}/lib/${LINKER_NAME}@g" \
-#		> ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+	${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${PREFIX}/lib/${LINKER_NAME}@g" \
+		> ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
 #	mkdir -p ${PREFIX}/lib/locale
 #	${PREFIX}/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
 }	

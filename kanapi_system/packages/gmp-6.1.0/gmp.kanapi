@@ -32,3 +32,7 @@ pkg_prepare() {
 	pkg_tar_xz
 }
 
+
+pkg_configure() {
+	pkg_configure_target
+}

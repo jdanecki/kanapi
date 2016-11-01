@@ -27,15 +27,6 @@ mpc: mpfr
 gcc: mpc
 	@$(RUN_TARGET)
 
-linux: gcc
-	@$(RUN_TARGET)
-
-glibc: linux
-	@$(RUN_TARGET)
-
-libstdcpp: glibc
-	@$(RUN_TARGET)
-
 pakiet1:
 	@$(RUN_TARGET)
 

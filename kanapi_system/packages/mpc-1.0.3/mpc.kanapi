@@ -32,6 +32,7 @@ pkg_prepare() {
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX \
 		--with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
-		--with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver}
+		--with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} \
+		--host=${KANAPI_TARGET_NAME} --build=${KANAPI_TARGET_NAME}
 }
 
