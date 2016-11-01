@@ -48,12 +48,11 @@ set_variables() {
 	export STRIP_FOR_TARGET=${KANAPI_BASE}/binutils-${binutils_ver}/bin/${KANAPI_TARGET_NAME}-strip
 }
 
-
 pkg_configure() {
 	set_variables
 	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-libatomic --disable-multilib --target=${KANAPI_TARGET_NAME} \
-	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
+	--disable-libada  --enable-languages="c c++" \
 	--prefix=${PREFIX} --disable-threads --disable-shared --enable-static --disable-nls --disable-decimal-float \
 	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp 

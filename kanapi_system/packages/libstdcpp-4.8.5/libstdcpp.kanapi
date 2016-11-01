@@ -33,8 +33,7 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	/kanapi_build/src/gcc-${gcc_ver}/libstdc++-v3/configure  --disable-multilib --target=${KANAPI_TARGET_NAME} \
-   --host=${KANAPI_TARGET_NAME} --build=${KANAPI_TARGET_NAME} \
+	/kanapi_build/src/gcc-${gcc_ver}/libstdc++-v3/configure  --disable-multilib --host=${KANAPI_TARGET_NAME} \
 	--prefix=${KANAPI_BASE}/gcc-${gcc_ver}  --disable-shared --enable-static --disable-nls  
 	#--with-gxx-include-dir= 
 }
@@ -46,12 +45,13 @@ pkg_build() {
 pkg_install() {
 	make install
 	ln -s ${KANAPI_BASE}/gcc-${gcc_ver}/include/c++ ${KANAPI_BASE}/glibc-${glibc_ver}/include/c++
-	ln -s ${KANAPI_BASE}/gcc-${gcc_ver}/lib/* ${KANAPI_BASE}/glibc-${glibc_ver}/lib
-
-#	rm gcc/stmp-int-hdrs gcc/stmp-fixinc
-#	make -j ${MAKE_JOBS}  MAKEINFO=true install-fixincludes
-#	make -C gcc -j ${MAKE_JOBS}  MAKEINFO=true install-mkheaders 
-#	cp ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/install-tools/include/limits.h ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/include-fixed/limits.h 
+	for i in ${KANAPI_BASE}/gcc-${gcc_ver}/lib/*  ${KANAPI_BASE}/gcc-${gcc_ver}/lib64/* 
+	do
+		if [ -f $i ] 
+	   	then
+			ln -s $i ${KANAPI_BASE}/glibc-${glibc_ver}/lib
+		fi
+	done
 }	
 
 pkg_test() {
