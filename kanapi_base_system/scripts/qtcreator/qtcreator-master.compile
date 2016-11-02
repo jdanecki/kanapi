@@ -22,9 +22,13 @@ VER=master
 . ../settings
 
 export LLVM_INSTALL_DIR=/kanapi_packages/llvm-3.9.0
-qmake -r QMAKE_CXX=i686-kanapi-linux-gnu-g++ QMAKE_INCDIR_OPENGL=/kanapi_packages/Mesa-master/include QMAKE_LFLAGS="`pkg-config --libs Qt5Qml`"
-make 
-#make install INSTALL_ROOT=$PREFIX
+PKGS="Qt5Qml Qt5Help Qt5PrintSupport Qt5Sql Qt5Quick Qt5Xml gl xcb libdrm x11 xext glib-2.0 gmodule-2.0 \
+	gobject-2.0 gthread-2.0 x11-xcb xcb-glx xcb-dri2 icu-i18n xfixes xdmcp xxf86vm expat xdamage  xau libffi"
+
+qmake -r QMAKE_CXX=i686-kanapi-linux-gnu-g++ QMAKE_INCDIR_OPENGL=/kanapi_packages/Mesa-master/include \
+	QMAKE_LFLAGS="`pkg-config --libs ${PKGS}` -lQt5CLucene -lpthread -lm -lrt -ldl -lstdc++ -lglapi " QMAKE_CXXFLAGS=-std=c++11
+make -j 4
+make install INSTALL_ROOT=${PREFIX}
 
 #ln -s ${PREFIX}/bin/* /bin
 #find ${PREFIX} -name \*.pc -exec ln -sf {} /kanapi_packages/pkg-config-0.27/share/pkgconfig \;
