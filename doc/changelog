@@ -8,8 +8,11 @@ Beta - current phase
 * gimp
 * qt-5.7.0
 * cmake 3.6.2
-
 * llvm 3.9.0
+
+todo
+====
+
 * qtcreator
 
 Alpha
