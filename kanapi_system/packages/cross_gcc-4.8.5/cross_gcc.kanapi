@@ -47,12 +47,13 @@ pkg_build() {
 
 pkg_install() {
 	make -j ${MAKE_JOBS}  MAKEINFO=true install
-	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64
-	ln -s ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/libstdc++.so.6 ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/libstdc++.so
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
 		LINKER_NAME=ld-linux-x86-64.so.2
 		LINKER_PATH=lib64
+		ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64
+		ln -s ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/libstdc++.so.6 ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/libstdc++.so
+		ln -s ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/* ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
 	fi
 	if [ "${KANAPI_TARGET}" = "i686" ]
 	then
