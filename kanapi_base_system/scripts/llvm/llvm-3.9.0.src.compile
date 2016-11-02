@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2014 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2014-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -18,11 +18,12 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 PACKAGE_NAME=llvm
-VER=3.9.0.src
+VER=3.9.0
 . ../settings
+#add clang sources inside llvm into tools/clang
 
-../../src/${PACKAGE_NAME}-${VER}.src/configure --prefix=$PREFIX
-make -j 4  MAKEINFO=true
+#cmake ../../src/${PACKAGE_NAME}-${VER}.src -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_C_COMPILER=i686-kanapi-linux-gnu-gcc -DCMAKE_CXX_COMPILER=i686-kanapi-linux-gnu-g++ -DCMAKE_BUILD_TYPE=Release
+#make  -j 4 MAKEINFO=true
 make -j 4 install MAKEINFO=true
 
 #ln -s ${PREFIX}/bin/* /bin
