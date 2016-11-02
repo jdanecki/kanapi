@@ -44,9 +44,9 @@ then
 	export CFLAGS=`pkg-config --cflags ${LIB_DEPENDS}`
 fi
 
-MAKE_JOBS=4
+#MAKE_JOBS=4
 #for build machine
-#MAKE_JOBS=8
+MAKE_JOBS=8
 
 local_copy() {
 	rm -rf build
