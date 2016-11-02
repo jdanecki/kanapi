@@ -44,9 +44,9 @@ then
 	export CFLAGS=`pkg-config --cflags ${LIB_DEPENDS}`
 fi
 
-#MAKE_JOBS=4
-#for build machine
-MAKE_JOBS=8
+NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+MAKE_JOBS=${NR_CPUS}
+echo $MAKE_JOBS
 
 local_copy() {
 	rm -rf build
