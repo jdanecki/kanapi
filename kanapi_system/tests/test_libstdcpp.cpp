@@ -1,8 +1,9 @@
 #include <iostream>
 
-int main()
+int main(int argc, char * argv[])
 {
-	std::cout << "test for libstdc++\n";
+	if (argv[0] != nullptr)
+		std::cout << "test for libstdc++\n";
 	return 0;
 }
 
