@@ -19,12 +19,13 @@ glibc: linux
 
 cross_gcc: glibc
 	@$(RUN_TARGET)
-##############
-
-rootfs: libstdcpp
-	@$(RUN_TARGET)
-
-gmp: libstdcpp
+###################
+#
+#rootfs: libstdcpp
+#	@$(RUN_TARGET)
+###################
+#native compilers
+gmp:
 	@$(RUN_TARGET)
 
 mpfr: gmp

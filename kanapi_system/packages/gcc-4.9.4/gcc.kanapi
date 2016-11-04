@@ -18,29 +18,33 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 PACKAGE_NAME=gcc
-VER=4.8.5
-#URL="ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.8.5"
-URL="http://ftp.gnu.org/pub/gnu/gcc/gcc-4.8.5"
+VER=4.9.4
+#URL="ftp://ftp.gnu.org/pub/gnu/gcc/gcc-4.9.4"
+URL="http://ftp.gnu.org/pub/gnu/gcc/gcc-4.9.4"
 EXT=tar.bz2
 #build depends on
 . ../settings
 
 pkg_prepare() {
 	pkg_tar_bz2
-	cat ${PACKAGE_SRCDIR}/gcc/limitx.h ${PACKAGE_SRCDIR}/gcc/glimits.h ${PACKAGE_SRCDIR}/gcc/limity.h > ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/include-fixed/limits.h 
-	mkdir -p ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
-	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
+	mkdir -p ${PREFIX}/${KANAPI_TARGET_NAME}
+	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${PREFIX}/${KANAPI_TARGET_NAME}/lib
+	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/include
+	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/sys-include
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-multilib --build=${KANAPI_TARGET_NAME} --host=${KANAPI_TARGET_NAME} \
+	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-multilib \
+	--target=${KANAPI_TARGET_NAME} \
+	--build=i686-kanapi-linux-gnu \
+	--host=${KANAPI_TARGET_NAME} \
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
 	--prefix=${PREFIX} --disable-nls --disable-decimal-float \
 	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp \
-    --with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include 
-#	--disable-libatomic  --disable-threads --disable-shared --enable-static
+    --with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include \
+	--disable-static --enable-__cxa_atexit --enable-threads=posix --enable-libstdcxx-time
 }
 
 pkg_build() {
@@ -49,8 +53,8 @@ pkg_build() {
 
 pkg_install() {
 	make -j ${MAKE_JOBS}  MAKEINFO=true install
-	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
-	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
+	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
+	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
 
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
@@ -67,9 +71,7 @@ pkg_install() {
 		LINKER_NAME=ld-linux.so.3
 		LINKER_PATH=lib
 	fi
-
-
-	${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
-		> ${KANAPI_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
-
+# to be run on target machine
+#	${PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
+#		> ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
 }	
