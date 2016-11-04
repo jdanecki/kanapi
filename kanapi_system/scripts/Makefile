@@ -7,7 +7,7 @@ include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=gzip bash busybox gdb readline
+PKGS=gzip bash busybox gdb cgdb
 
 all: $(PKGS)
 
