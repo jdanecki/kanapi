@@ -89,6 +89,9 @@ glib: libffi zlib
 mc: libssh2 slang glib
 	@$(RUN_TARGET)
 
+vim: ncurses
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

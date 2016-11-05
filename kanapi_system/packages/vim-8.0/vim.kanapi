@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=vim
+VER=8.0
+URL="ftp://ftp.vim.org/pub/vim/unix"
+EXT=tar.bz2
+#build depends on
+. ../settings
+
+export CFLAGS="-I${KANAPI_BASE}/ncurses-${ncurses_ver}/include"
+export LDFLAGS="-L${KANAPI_BASE}/ncurses-${ncurses_ver}/lib -lncurses"
+export STRIP=${KANAPI_TARGET_NAME}-strip
+
+pkg_prepare() {
+	pkg_tar_bz2
+	ln -s /kanapi_build/src/vim80 ${PACKAGE_SRCDIR}
+}
+
+pkg_configure() {
+	rm -rf build
+	mkdir build
+	cp -ar ${PACKAGE_SRCDIR}/* build
+	cd build
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} vim_cv_toupper_broken=no --with-tlib=ncurses vim_cv_terminfo=no vim_cv_tty_group=world vim_cv_tty_mode=0620 \
+	vim_cv_getcwd_broken=no vim_cv_stat_ignores_slash=no vim_cv_memmove_handles_overlap=yes
+
+}
+
+pkg_build() {
+	cd build
+	make -j ${MAKE_JOBS} MAKEINFO=true
+}
+
+pkg_install() {
+	cd build
+	make -j ${MAKE_JOBS} install MAKEINFO=true
+}
+
