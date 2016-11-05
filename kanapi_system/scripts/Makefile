@@ -95,6 +95,9 @@ vim: ncurses
 make:
 	@$(RUN_TARGET)
 
+git:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

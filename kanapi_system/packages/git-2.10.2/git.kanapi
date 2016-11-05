@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=git
+VER=2.10.2
+URL="https://www.kernel.org/pub/software/scm/git"
+EXT=tar.xz
+#build depends on
+. ../settings
+
+pkg_download() {
+	pkg_curl
+}
+
+pkg_prepare() {
+	pkg_tar_xz
+}
+
+pkg_configure() {
+	local_copy
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} ac_cv_fread_reads_directories=no ac_cv_snprintf_returns_bogus=no \
+	--with-zlib=${KANAPI_BASE}/zlib-${zlib_ver}
+}
+
+pkg_build() {
+	cd build
+	make -j ${MAKE_JOBS} MAKEINFO=true
+}
+
+pkg_install() {
+	cd build
+	make -j ${MAKE_JOBS} install MAKEINFO=true
+}
+
+
