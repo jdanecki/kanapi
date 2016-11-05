@@ -39,7 +39,3 @@ pkg_configure() {
 		ac_cv_rl_version=${readline_ver}
 }
 
-pkg_install() {
-	pkg_install_pc
-}	
-

@@ -32,7 +32,4 @@ pkg_configure() {
 	pkg_configure_target
 }
 
-pkg_install() {
-	pkg_install_pc
-}	
 

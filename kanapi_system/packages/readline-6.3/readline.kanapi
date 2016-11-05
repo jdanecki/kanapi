@@ -33,7 +33,3 @@ pkg_configure() {
 
 }
 
-pkg_install() {
-	pkg_install_pc
-}	
-
