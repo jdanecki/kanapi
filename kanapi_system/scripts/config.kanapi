@@ -15,4 +15,11 @@ ncurses_ver=6.0-20161029
 gdb_ver=7.11
 readline_ver=6.3
 cgdb_ver=0.6.8
-
+mc_ver=4.8.18
+libgpg_error_ver=1.24
+libgcrypt_ver=1.7.3
+slang_ver=2.3.1
+libssh2_ver=1.8.0
+glib_ver=2.51.0
+libffi_ver=3.2.1
+zlib_ver=1.2.8

@@ -5,6 +5,7 @@ BASE=$(TOP)/
 endif
 include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
+include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
 PKGS=gzip bash busybox gdb cgdb
@@ -62,6 +63,30 @@ readline:
 	@$(RUN_TARGET)
 
 cgdb: readline gdb
+	@$(RUN_TARGET)
+
+libgpg-error:
+	@$(RUN_TARGET)
+
+libgcrypt: libgpg-error
+	@$(RUN_TARGET)
+
+libssh2: libgcrypt
+	@$(RUN_TARGET)
+
+slang:
+	@$(RUN_TARGET)
+
+libffi:
+	@$(RUN_TARGET)
+
+zlib:
+	@$(RUN_TARGET)
+
+glib: libffi zlib
+	@$(RUN_TARGET)
+
+mc: libssh2 slang glib
 	@$(RUN_TARGET)
 
 download version prepare install clean test:
