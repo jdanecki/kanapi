@@ -63,7 +63,7 @@ export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
 
 local_copy() {
 	rm -rf build
-	cp -ar ../../src/${PACKAGE_VER} build
+	cp -ar ${PACKAGE_SRCDIR} build
 	cd build
 }
 
