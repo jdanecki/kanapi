@@ -24,4 +24,5 @@ glib_ver=2.51.0
 libffi_ver=3.2.1
 zlib_ver=1.2.8
 vim_ver=8.0
+make_ver=4.2
 

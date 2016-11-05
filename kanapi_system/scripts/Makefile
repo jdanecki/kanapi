@@ -92,6 +92,9 @@ mc: libssh2 slang glib
 vim: ncurses
 	@$(RUN_TARGET)
 
+make:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
