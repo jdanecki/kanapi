@@ -98,6 +98,12 @@ make:
 git:
 	@$(RUN_TARGET)
 
+openssl:
+	@$(RUN_TARGET)
+
+openssh: openssl
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
