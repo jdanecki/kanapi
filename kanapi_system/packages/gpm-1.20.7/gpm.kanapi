@@ -1,0 +1,75 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=gpm
+VER=1.20.7
+URL="http://www.nico.schottelius.org/software/gpm/archives"
+EXT=tar.bz2
+#build depends on
+. ../settings
+
+pkg_prepare() {
+	pkg_tar_bz2
+}
+
+pkg_configure() {
+	local_copy
+	[ -d config ] || mkdir config
+
+	version=$(git describe 2>/dev/null)
+
+	# No git? use changelog information
+	if [ -z "$version" ]; then
+		version=$(grep '^[[:digit:]]' doc/changelog | head -n1 | cut -d: -f1)
+		date=$(grep '^[[:digit:]]' doc/changelog | head -n1 | cut -d: -f2)
+	else
+		date=$(git log -1 --pretty="format:%ai" "$version")
+	fi
+
+	cat << eof > configure.ac
+	AC_INIT([gpm],[$version],[http://www.nico.schottelius.org/software/gpm/])
+
+	releasedate="$date"
+	release="$version"
+	AM_INIT_AUTOMAKE
+eof
+
+	cat configure.ac.footer >> configure.ac
+
+	 autoreconf -v --install --force \
+		 -I /kanapi_packages/libtool-2.4/share/aclocal \
+		 -I /kanapi_packages/autoconf-2.69/share/autoconf \
+		 -I /kanapi_packages/util-macros-master/share/aclocal \
+		 -I /kanapi_packages/pkg-config-0.27/share/aclocal
+	 export CFLAGS="-I${KANAPI_BASE}/ncurses-${ncurses_ver}/include"
+	 export LDFLAGS="-L${KANAPI_BASE}/ncurses-${ncurses_ver}/lib -lncurses"
+
+	./configure	--prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+}
+
+pkg_build() {
+	cd build
+	make -j ${MAKE_JOBS} MAKEINFO=true
+}
+
+pkg_install() {
+	cd build
+	touch doc/gpm.info
+	make -j ${MAKE_JOBS} install MAKEINFO=true
+}

@@ -28,4 +28,11 @@ make_ver=4.2
 git_ver=2.10.2
 openssl_ver=1.0.2j
 openssh_ver=7.3p1
+sdl2_ver=2.0.5
+sdl_ver=1.2.15
+xflame_ver=1.0
+water_ver=1.0
+sdl_image_ver=1.2.12
+libpng_ver=1.6.26
+gpm_ver=1.20.7
 
