@@ -25,4 +25,5 @@ There is also new method to build KaNaPi.
 - compile the rest of packages in the same directory
   ./install all	
   Packages will be installed in /kanapi_${VER}/${KANAPI_TARGET}/packages
+  or selected packages. Dependencies will be installed also.
 

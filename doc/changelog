@@ -1,19 +1,45 @@
 Beta - current phase
 ====================
 
-* New build system for i686/x86_64 and arm
-* Automatic build for cross-compilers: binutils, gcc
-* Automatic build for: bash, busybox, cgdb, gdb, gzip, ncurses, readline
-* SDL2 support added to KBS
-* gimp
+v0.6
+====
+
+Changes in KBS
+
+* gimp 2.8.18
+* binutils 2.27
 * qt-5.7.0
 * cmake 3.6.2
 * llvm 3.9.0
 * qtcreator 4.2.82
 
-todo
+Changes in KS
+
+* Refactored and simplified build system
+* Full cross and native gcc compilers 4.8.5 and 4.94
+* gmp 6.1.0
+* mpc 1.0.3
+* mpfr 3.1.5
+* glibc 2.23
+* binutils 2.27
+* Fixes for KaNaPi compilation under Debian, OpenSuSe, Debian, Fedora, Mint 
+* Tests added to check compilers
+* ncurses 6.0.20161029
+* mc 4.8.18 with dependencies
+* vim 8.0
+* make 4.2
+* git 2.10.1
+* openssh 7.3p1 with openssl 
+* SDL 1.2.15 with tests
+* gpm 1.20.7
+
+v0.5
 ====
 
+* New build system for i686/x86_64 and arm
+* Automatic build for cross-compilers: binutils, gcc
+* Automatic build for: bash, busybox, cgdb, gdb, gzip, ncurses, readline
+* SDL2 support added to KBS
 
 Alpha
 =====

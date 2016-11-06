@@ -8,9 +8,11 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=gzip bash busybox gdb cgdb
+PKGS=gzip bash busybox gdb cgdb mc vim make git openssh sdl_image gpm
 
 all: $(PKGS)
+
+native_gcc: gcc
 
 linux:
 	@$(RUN_TARGET)
@@ -116,7 +118,7 @@ water: sdl
 libpng: zlib
 	@$(RUN_TARGET)
 
-sdl_image:
+sdl_image: libpng sdl
 	@$(RUN_TARGET)
 
 #sdl2:
