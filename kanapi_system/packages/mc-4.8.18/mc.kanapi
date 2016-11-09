@@ -24,19 +24,23 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
-export LIBS="-ldl -lm"
-export LIBSSH_CFLAGS="-I${KANAPI_BASE}/libssh2-${libssh2_ver}/include -I${KANAPI_BASE}/libgcrypt-${libgcrypt_ver}/include"
-export LIBSSH_LIBS="-L${KANAPI_BASE}/libssh2-${libssh2_ver}/lib -L${KANAPI_BASE}/libgcrypt-${libgcrypt_ver}/lib -lssh2"
-export GLIB_CFLAGS="-I${KANAPI_BASE}/glib-${glib_ver}/include/glib-2.0 -I${KANAPI_BASE}/glib-${glib_ver}/lib/glib-2.0/include"
-export GLIB_LIBS="-L${KANAPI_BASE}/glib-${glib_ver}/lib -lglib-2.0"
+export LIBSSH_CFLAGS="-I${KANAPI_BASE}/libssh2-${libssh2_ver}/include"
+export LIBSSH_LIBS="-L${KANAPI_BASE}/libssh2-${libssh2_ver}/lib -lssh2"
+export SLANG_CFLAGS="-I${KANAPI_BASE}/slang-${slang_ver}/include"
+export SLANG_LIBS="-L${KANAPI_BASE}/slang-${slang_ver}/lib -lslang"
+export GLIB_CFLAGS="-I${KANAPI_BASE}/glib-${glib_ver}/include -I${KANAPI_BASE}/glib-${glib_ver}/include/glib-2.0 -I${KANAPI_BASE}/glib-${glib_ver}/lib/glib-2.0/include"
+
+export GLIB_LIBS="-L${KANAPI_BASE}/glib-${glib_ver}/lib -lglib-2.0 -lgmodule-2.0"
+export GMODULE_CFLAGS="-I${KANAPI_BASE}/glib-${glib_ver}/include"
+export GMODULE_LIBS="-L${KANAPI_BASE}/glib-${glib_ver}/lib -lgmodule-2.0"
+
+export LIBS="-lm -ldl"
 
 pkg_prepare() {
 	pkg_tar_xz
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
-		--with-slang-libs=${KANAPI_BASE}/slang-${slang_ver}/lib \
-		--with-slang-includes=${KANAPI_BASE}/slang-${slang_ver}/include
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
 }
 
