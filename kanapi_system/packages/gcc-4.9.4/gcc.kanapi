@@ -72,6 +72,10 @@ pkg_install() {
 		LINKER_PATH=lib
 	fi
 # to be run on target machine
-#	${PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
-#		> ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+	if [ "${KANAPI_TARGET}" = `uname -m` ] 
+	then
+		echo "updating spec"
+		${PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
+		> ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+	fi
 }	
