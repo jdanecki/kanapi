@@ -5,7 +5,7 @@ DATE_RULE=/bin/date -Ins > $@
 ifeq ($(ACTION),)
 RUN_TARGET=make kanapi_help
 else
-RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTION) PKG=$@ TOP=$(PWD)
+RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTION) PKG=$@ KANAPI_TOP=$(PWD)
 endif
 
 kanapi_download:

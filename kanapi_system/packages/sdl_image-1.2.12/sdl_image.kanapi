@@ -26,7 +26,7 @@ EXT=tar.gz
 
 export LIBPNG_CFLAGS="-I${KANAPI_BASE}/libpng-${libpng_ver}/include"
 export LIBPNG_LIBS="-L${KANAPI_BASE}/libpng-${libpng_ver}/lib"
-export SDL_CFLAGS="-I${KANAPI_BASE}/SDL-${sdl_ver}/include"
+export SDL_CFLAGS="-I${KANAPI_BASE}/SDL-${sdl_ver}/include -I${KANAPI_BASE}/SDL-${sdl_ver}/include/SDL"
 export SDL_LIBS="-L${KANAPI_BASE}/SDL-${sdl_ver}/lib"
 export LIBS="${LIBPNG_LIBS} ${SDL_LIBS} -lSDL -ldl -lpthread -lm"
 

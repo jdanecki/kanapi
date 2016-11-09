@@ -31,7 +31,8 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-zlib=${KANAPI_BASE}/zlib-${zlib_ver} --with-ssl-dir=${KANAPI_BASE}/openssl-${openssl_ver} --disable-strip
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-zlib=${KANAPI_BASE}/zlib-${zlib_ver} --with-ssl-dir=${KANAPI_BASE}/openssl-${openssl_ver} --disable-strip \
+		--without-openssl-header-check
 }
 
 pkg_install() {

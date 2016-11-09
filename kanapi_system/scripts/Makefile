@@ -1,14 +1,15 @@
-ifeq (x$(TOP),x)
+ifeq (x$(KANAPI_TOP),x)
 BASE=
 else
-BASE=$(TOP)/
+BASE=$(KANAPI_TOP)/
 endif
 include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=gzip bash busybox gdb cgdb mc vim make git openssh sdl_image gpm
+PKGS=gzip bash busybox cgdb mc vim make git openssh sdl_image gpm
+TESTS=xflame water
 
 all: $(PKGS)
 
