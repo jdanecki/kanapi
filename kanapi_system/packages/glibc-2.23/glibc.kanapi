@@ -97,6 +97,7 @@ pkg_install() {
 	then
 		LINKER_NAME=ld-linux-x86-64.so.2
 		LINKER_PATH=lib64
+		ln -s ${PREFIX}/lib/${LINKER_NAME} ${PREFIX}/lib64
 	fi
 	if [ "${KANAPI_TARGET}" = "i686" ]
 	then
@@ -108,10 +109,15 @@ pkg_install() {
 		LINKER_NAME=ld-linux.so.3
 		LINKER_PATH=lib
 	fi
-
+	
 	${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${PREFIX}/lib/${LINKER_NAME}@g" \
 		> ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
-#	mkdir -p ${PREFIX}/lib/locale
-#	${PREFIX}/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
+
+#execute this on target only
+	if [ ${KANAPI_TARGET} = `uname -m` ]
+	then
+		mkdir -p ${PREFIX}/lib/locale
+		${PREFIX}/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
+	fi
 }	
 
