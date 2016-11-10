@@ -24,6 +24,7 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
+export CFLAGS="-I${KANAPI_BASE}/libgpg-error-${libgpg_error_ver}/include"
 export LDFLAGS="-L${KANAPI_BASE}/libgpg-error-${libgpg_error_ver}/lib -lgpg-error"
 
 pkg_download() {
