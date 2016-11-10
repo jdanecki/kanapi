@@ -24,11 +24,17 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
+if [ "${KANAPI_TARGET}" = "x86_64" ]
+then
+	LIBFFI_LIBDIR=lib64
+else
+	LIBFFI_LIBDIR=lib
+fi
+	
 export CFLAGS="-I${KANAPI_BASE}/libffi-${libffi_ver}/lib/libffi-${libffi_ver}/include -I${KANAPI_BASE}/zlib-${zlib_ver}/include"
-export LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/lib -lffi -L${KANAPI_BASE}/zlib-${zlib_ver}/lib "
-
 export LIBFFI_CFLAGS="-I${KANAPI_BASE}/libffi-${libffi_ver}/lib/libffi-${libffi_ver}/include"
-export LIBFFI_LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/lib -lffi "
+export LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/${LIBFFI_LIBDIR} -lffi -L${KANAPI_BASE}/zlib-${zlib_ver}/lib "
+export LIBFFI_LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/${LIBFFI_LIBDIR} -lffi "
 
 pkg_prepare() {
 	pkg_tar_xz
