@@ -78,4 +78,13 @@ pkg_install() {
 		${PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
 		> ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
 	fi
-}	
+}
+
+pkg_check() {
+	echo "TARGET=${KANAPI_TARGET_NAME}"
+	echo "HOST=`uname -m`"
+	echo "PATH=$PATH"
+	x86_64-kanapi-linux-gnu-gcc --version
+
+}
+
