@@ -29,7 +29,12 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	pkg_configure_target
+	 if [ "${KANAPI_TARGET}" = "x86_64" ]
+	 then
+		 export CFLAGS="${CFLAGS} -fPIC"
+	 	 export LDFLAGS="${LDFLAGS} -fPIC"
+	 fi
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
 }
 
 
