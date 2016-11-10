@@ -51,5 +51,5 @@ pkg_build() {
 
 pkg_install() {
 	cd build
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	make -j ${MAKE_JOBS} install_sw MAKEINFO=true 
 }
