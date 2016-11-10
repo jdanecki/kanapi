@@ -30,7 +30,10 @@ export STRIP=${KANAPI_TARGET_NAME}-strip
 
 pkg_prepare() {
 	pkg_tar_bz2
-	ln -s /kanapi_build/src/vim80 ${PACKAGE_SRCDIR}
+	if [ ! -L ${PACKAGE_SRCDIR}
+	then
+		ln -s /kanapi_build/src/vim80 ${PACKAGE_SRCDIR}
+	fi
 }
 
 pkg_configure() {
