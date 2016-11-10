@@ -47,7 +47,8 @@ export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
 #	export CFLAGS=`pkg-config --cflags ${LIB_DEPENDS}`
 #fi
 
-MAKE_JOBS=4
+NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+MAKE_JOBS=${NR_CPUS}
 
 export LIBRARIES_PATH=${KANAPI_CROSS_BASE}/gmp-${gmp_ver}/lib:${KANAPI_CROSS_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_CROSS_BASE}/mpc-${mpc_ver}/lib
 if [ -n "${LD_LIBRARY_PATH}" ]
