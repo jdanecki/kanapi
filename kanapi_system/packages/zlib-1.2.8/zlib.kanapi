@@ -30,7 +30,7 @@ pkg_prepare() {
 
 pkg_configure() {
 	local_copy
-	prefix=$PREFIX CC=${KANAPI_TARGET_NAME}-gcc ${PACKAGE_SRCDIR}/configure 
+	prefix=$PREFIX CC=${KANAPI_TARGET_NAME}-gcc AR=${KANAPI_TARGET_NAME}-ar RANLIB=${KANAPI_TARGET_NAME}-ranlib ${PACKAGE_SRCDIR}/configure 
 }
 
 pkg_build() {
