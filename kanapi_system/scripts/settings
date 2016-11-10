@@ -85,9 +85,9 @@ pkg_curl() {
 		echo "downloading ${PACKAGE_NAME}"
 		if [ "`lsb_release -is`" = "KaNaPi" ]
 		then 
-			CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi curl ${PACKAGE_LINK} -o /kanapi_build/src/${PACKAGE_FILENAME}
+			CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi curl -L ${PACKAGE_LINK} -o /kanapi_build/src/${PACKAGE_FILENAME}
 		else
-			curl ${PACKAGE_LINK} -o /kanapi_build/src/${PACKAGE_FILENAME}
+			curl -L ${PACKAGE_LINK} -o /kanapi_build/src/${PACKAGE_FILENAME}
 		fi
 	fi
 }
