@@ -42,8 +42,7 @@ pkg_configure() {
 	then
 		ln -s lock-obj-pub.x86_64-pc-linux-gnu.h src/syscfg/lock-obj-pub.linux-gnu.h
 	fi
-
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  CC_FOR_BUILD=gcc
 }
 
 pkg_build() {
