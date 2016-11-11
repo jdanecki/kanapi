@@ -53,7 +53,6 @@ pkg_install() {
 		LINKER_PATH=lib64
 		ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64
 		ln -s ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/libstdc++.so.6 ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/libstdc++.so
-		ln -s ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/* ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
 	fi
 	if [ "${KANAPI_TARGET}" = "i686" ]
 	then
