@@ -6,7 +6,7 @@ endif
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=libstdcpp
+PKGS= gcc
 
 all: $(PKGS)
 
