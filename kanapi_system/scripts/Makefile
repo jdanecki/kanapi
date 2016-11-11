@@ -77,13 +77,13 @@ libgcrypt: libgpg-error
 libssh2: libgcrypt
 	@$(RUN_TARGET)
 
-slang:
+zlib:
+	@$(RUN_TARGET)
+
+slang: zlib
 	@$(RUN_TARGET)
 
 libffi:
-	@$(RUN_TARGET)
-
-zlib:
 	@$(RUN_TARGET)
 
 glib: libffi zlib
