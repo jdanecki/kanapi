@@ -11,7 +11,7 @@ include $(BASE)../scripts/rules.kanapi
 PKGS=gzip bash busybox cgdb mc vim make git openssh sdl_image gpm
 TESTS=xflame water
 
-all: $(PKGS)
+all: cross_gcc $(PKGS)
 
 native_gcc: gcc
 
