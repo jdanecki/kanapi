@@ -33,6 +33,6 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	pkg_configure_target
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-pulseaudio
 }
 
