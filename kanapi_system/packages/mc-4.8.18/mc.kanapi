@@ -42,6 +42,6 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-x
 }
 
