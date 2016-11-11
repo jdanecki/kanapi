@@ -35,6 +35,7 @@ export GMODULE_CFLAGS="-I${KANAPI_BASE}/glib-${glib_ver}/include"
 export GMODULE_LIBS="-L${KANAPI_BASE}/glib-${glib_ver}/lib -lgmodule-2.0"
 
 export LIBS="-lm -ldl"
+export CFLAGS="${GLIB_CFLAGS}"
 
 pkg_prepare() {
 	pkg_tar_xz
