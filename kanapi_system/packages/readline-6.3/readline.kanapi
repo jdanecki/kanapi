@@ -19,7 +19,8 @@
 
 PACKAGE_NAME=readline
 VER=6.3
-URL="ftp://ftp.cwru.edu/pub/bash"
+#URL="ftp://ftp.cwru.edu/pub/bash"
+URL="http://ftpmirror.gnu.org/readline"
 EXT=tar.gz
 #build depends on
 . ../settings
