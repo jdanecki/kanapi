@@ -23,6 +23,8 @@ URL="http://ftp.gnu.org/gnu/glibc"
 EXT=tar.xz
 #build depends on
 . ../settings
+	
+export LDFLAGS="-fno-stack-protector -O2"
 
 pkg_prepare() {
 	pkg_tar_xz
@@ -47,9 +49,9 @@ set_variables() {
 
 pkg_configure() {
 	set_variables
-
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
-	libc_cv_ssp=no  --without-selinux \
+	libc_cv_ssp=no  libc_cv_ssp_strong=no --without-selinux --disable-stackguard-randomization \
+	--without-selinux \
 	--with-headers=${KANAPI_BASE}/linux-4.4.2/include \
 	--with-binutils=${KANAPI_CROSS_BASE}/binutils-${binutils_ver}
 	
@@ -97,8 +99,8 @@ pkg_install() {
 	then
 		LINKER_NAME=ld-linux-x86-64.so.2
 		LINKER_PATH=lib64
-		ln -s ${PREFIX}/lib/${LINKER_NAME} ${PREFIX}/lib64
-	fi
+		ln -s ${PREFIX}/lib ${PREFIX}/lib64
+    	fi
 	if [ "${KANAPI_TARGET}" = "i686" ]
 	then
 		LINKER_NAME=ld-linux.so.2
@@ -121,3 +123,8 @@ pkg_install() {
 	fi
 }	
 
+pkg_check() {
+	ld --version
+	echo PATH=$PATH
+
+}
