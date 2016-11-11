@@ -33,9 +33,23 @@ pkg_prepare() {
 pkg_configure() {
 	export CFLAGS="-I/${NCURSES_BASE}/include -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
 	export LDFLAGS="-L/${NCURSES_BASE}/lib -L${READLINE_BASE}/lib"
-	export LD_LIBRARY_PATH="${NCURSES_BASE}/lib:${READLINE_BASE}/lib:${LD_LIBRARY_PATH}" 
+	if [ "`lsb_release -is`" != "LinuxMint" ]
+	then
+		if [ -n "${LD_LIBRARY_PATH}" ]
+		then
+			export LD_LIBRARY_PATH="${NCURSES_BASE}/lib:${READLINE_BASE}/lib:${LD_LIBRARY_PATH}" 
+		else
+			export LD_LIBRARY_PATH="${NCURSES_BASE}/lib:${READLINE_BASE}/lib" 
+		fi
+	fi
+	echo ${LD_LIBRARY_PATH}
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  \
 		ac_cv_prog_HAS_MAKEINFO=yes ac_cv_prog_HAS_HELP2MAN=yes ac_cv_file__dev_ptmx=yes ac_cv_func_setpgrp_void=yes \
 		ac_cv_rl_version=${readline_ver}
 }
 
+pkg_check() {
+	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+	gawk --version
+	LD_LIBRARY_PATH=/kanapi_0.6/i686/packages/readline-6.3/lib  ;  ldd `which gawk `
+}
