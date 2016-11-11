@@ -30,7 +30,7 @@ pkg_prepare() {
 
 pkg_configure() {
 	local_copy
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-pcre --without-png --with-z=${KANAPI_BASE}/zlib-${zlib_ver}
 }
 
 pkg_build() {
