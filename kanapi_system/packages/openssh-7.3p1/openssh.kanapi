@@ -31,6 +31,15 @@ pkg_prepare() {
 }
 
 pkg_configure() {
+	KANAPI_LIBS=${KANAPI_BASE}/zlib-${zlib_ver}/lib:${KANAPI_BASE}/openssl-${openssl_ver}/lib
+
+	if [ -n "$LD_LIBRARY_PATH" ]
+	then 
+		export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${KANAPI_LIBS}
+	else
+		export LD_LIBRARY_PATH=${KANAPI_LIBS}
+	fi
+
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-zlib=${KANAPI_BASE}/zlib-${zlib_ver} --with-ssl-dir=${KANAPI_BASE}/openssl-${openssl_ver} --disable-strip \
 		--without-openssl-header-check
 }
@@ -39,3 +48,9 @@ pkg_install() {
 	make install-nokeys MAKEINFO=true
 }
 
+pkg_check() {
+	if [ "${KANAPI_TARGET}" = `uname -m` ] 
+	then
+		echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+	fi
+}
