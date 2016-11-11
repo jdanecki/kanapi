@@ -30,7 +30,7 @@ export STRIP=${KANAPI_TARGET_NAME}-strip
 
 pkg_prepare() {
 	pkg_tar_bz2
-	if [ ! -L ${PACKAGE_SRCDIR}
+	if [ ! -L ${PACKAGE_SRCDIR} ]
 	then
 		ln -s /kanapi_build/src/vim80 ${PACKAGE_SRCDIR}
 	fi
@@ -56,3 +56,6 @@ pkg_install() {
 	make -j ${MAKE_JOBS} install MAKEINFO=true
 }
 
+pkg_check() {
+	echo "PACKAGE_SRCDIR=${PACKAGE_SRCDIR}"
+}
