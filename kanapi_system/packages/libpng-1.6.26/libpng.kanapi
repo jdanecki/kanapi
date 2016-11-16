@@ -28,6 +28,10 @@ SF_URL="libpng/libpng16/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
 export INCLUDES="-I${KANAPI_BASE}/zlib-${zlib_ver}/include"
 export LIBS="-L${KANAPI_BASE}/zlib-${zlib_ver}/lib"
 
+pkg_download() {
+	pkg_curl
+}
+
 pkg_prepare() {
 	pkg_tar_xz
 }
