@@ -8,4 +8,5 @@ test_gcc: test_gcc0.c test_gcc1.c test_libstdcpp.cpp test_threads.cpp
 	. ./set_variables; $(KANAPI_TARGET_NAME)-g++ test_libstdcpp.cpp -Wall -lstdc++ -std=c++11 -o $(KANAPI_BASE)/tests_results/test_libstdcpp
 	. ./set_variables; $(KANAPI_TARGET_NAME)-g++ test_threads.cpp -Wall -lstdc++ -std=c++11 -o $(KANAPI_BASE)/tests_results/test_threads -pthread
 	. ./set_variables; $(KANAPI_TARGET_NAME)-g++ test_chrono.cpp -Wall -std=c++11 -o $(KANAPI_BASE)/tests_results/test_chrono
+	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_lm.c -Wall -lm -o $(KANAPI_BASE)/tests_results/test_lm
 
