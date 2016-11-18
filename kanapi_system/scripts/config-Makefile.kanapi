@@ -1,2 +1,3 @@
 libgpg-error_ver=$(libgpg_error_ver)
+pkg-config_ver=$(pkg_config_ver)
 

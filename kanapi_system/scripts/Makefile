@@ -47,6 +47,18 @@ gcc: binutils
 
 # PACKAGES
 
+zlib:
+	@$(RUN_TARGET)
+
+libffi:
+	@$(RUN_TARGET)
+
+glib: libffi zlib
+	@$(RUN_TARGET)
+
+pkg-config: glib
+	@$(RUN_TARGET)
+
 gzip:
 	@$(RUN_TARGET)
 
@@ -77,16 +89,7 @@ libgcrypt: libgpg-error
 libssh2: libgcrypt
 	@$(RUN_TARGET)
 
-zlib:
-	@$(RUN_TARGET)
-
 slang: zlib
-	@$(RUN_TARGET)
-
-libffi:
-	@$(RUN_TARGET)
-
-glib: libffi zlib
 	@$(RUN_TARGET)
 
 mc: libssh2 slang glib

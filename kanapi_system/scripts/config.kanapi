@@ -35,4 +35,5 @@ water_ver=1.0
 sdl_image_ver=1.2.12
 libpng_ver=1.6.26
 gpm_ver=1.20.7
+pkg_config_ver=0.29.1
 
