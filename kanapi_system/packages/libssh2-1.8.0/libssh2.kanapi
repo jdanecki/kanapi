@@ -21,11 +21,12 @@ PACKAGE_NAME=libssh2
 VER=1.8.0
 URL="https://www.libssh2.org/download"
 EXT=tar.gz
-#build depends on
+LIB_DEPENDS=zlib
+
 . ../settings
 
-export CFLAGS="-I${KANAPI_BASE}/libgpg-error-${libgpg_error_ver}/include"
-export LDFLAGS="-L${KANAPI_BASE}/libgpg-error-${libgpg_error_ver}/lib -lgpg-error"
+export CFLAGS="${CFLAGS} `gpg-error-config --cflags`"
+export LDFLAGS="${LDFLAGS} `gpg-error-config --libs`"
 
 pkg_download() {
 	pkg_curl
@@ -36,6 +37,22 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-libgcrypt=${KANAPI_BASE}/libgcrypt-${libgcrypt_ver} --without-openssl --without-libz 
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-libgcrypt=`libgcrypt-config --prefix` --without-openssl --with-libz-prefix=`pkg-config --variable=prefix zlib`
 }
 
+pkg_check() {
+	gpg-error-config --cflags
+	gpg-error-config --libs
+	libgcrypt-config --cflags
+	libgcrypt-config --libs
+	libgcrypt-config --prefix
+	pkg-config --variable=prefix zlib
+	echo "CFLAGS=${CFLAGS}"
+	echo "LDFLAGS=${LDFLAGS}"
+	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+}
+
+pkg_install() {
+	pkg_install_pc
+	pkg_install_libs
+}

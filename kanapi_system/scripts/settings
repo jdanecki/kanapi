@@ -35,6 +35,16 @@ export CROSS_BINUTILS_PREFIX="${KANAPI_CROSS_BASE}/binutils-${binutils_ver}"
 
 export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
 
+export PATH_BIN=${CROSS_BINUTILS_PREFIX}/bin
+export PATH_GCC=${CROSS_GCC_PREFIX}/bin
+
+if [ -d /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin ]
+then
+	export PATH=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin:${PATH_BIN}:${PATH_GCC}:${PATH}
+else
+	export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
+fi
+
 export LD_LIBRARY_PATH=${KANAPI_CROSS_BASE}/gmp-${gmp_ver}/lib:${KANAPI_CROSS_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_CROSS_BASE}/mpc-${mpc_ver}/lib
 
 if [ -d ${KANAPI_BASE}/pkg-config-${pkg_config_ver} ]
@@ -57,15 +67,7 @@ fi
 NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
 MAKE_JOBS=${NR_CPUS}
 
-export PATH_BIN=${CROSS_BINUTILS_PREFIX}/bin
-export PATH_GCC=${CROSS_GCC_PREFIX}/bin
 
-if [ -d /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin ]
-then
-	export PATH=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin:${PATH_BIN}:${PATH_GCC}:${PATH}
-else
-	export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
-fi
 
 local_copy() {
 	rm -rf build
