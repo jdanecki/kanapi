@@ -57,11 +57,11 @@ eof
 		KANAPI_AC_SCRIPTS="-I /kanapi_packages/libtool-2.4/share/aclocal \
 		 -I /kanapi_packages/autoconf-2.69/share/autoconf \
 		 -I /kanapi_packages/util-macros-master/share/aclocal \
-		 -I /kanapi_packages/pkg-config-0.27/share/aclocal"
+		 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal"
 	fi
 	 autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
-	 export CFLAGS="-I${KANAPI_BASE}/ncurses-${ncurses_ver}/include"
-	 export LDFLAGS="-L${KANAPI_BASE}/ncurses-${ncurses_ver}/lib -lncurses"
+	 export CFLAGS="`ncurses6-config --cflags`"
+	 export LDFLAGS="`ncurses6-config --libs`"
 
 	./configure	--prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
 }
@@ -75,4 +75,7 @@ pkg_install() {
 	cd build
 	touch doc/gpm.info
 	make -j ${MAKE_JOBS} install MAKEINFO=true
+	pkg_install_bin_all
+	pkg_install_sbin_all
+	pkg_install_libs
 }
