@@ -24,28 +24,35 @@ EXT=tar.gz
 #build depends on
 export LD_LIBRARY_PATH=
 . ../settings
+
 NCURSES_BASE=${KANAPI_BASE}/ncurses-${ncurses_ver}
 READLINE_BASE=${KANAPI_BASE}/readline-${readline_ver}
+
 pkg_prepare() {
 	pkg_tar_gz
 }
 
 pkg_configure() {
-	export CFLAGS="-I/${NCURSES_BASE}/include -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
-	export LDFLAGS="-L/${NCURSES_BASE}/lib -L${READLINE_BASE}/lib"
+	export CFLAGS="`ncurses6-config --cflags` -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
+	export LDFLAGS="`ncurses6-config --libs` -L${READLINE_BASE}/lib"
 	if [ "`lsb_release -is`" != "LinuxMint" ]
 	then
 		if [ -n "${LD_LIBRARY_PATH}" ]
 		then
-			export LD_LIBRARY_PATH="${NCURSES_BASE}/lib:${READLINE_BASE}/lib:${LD_LIBRARY_PATH}" 
+			export LD_LIBRARY_PATH="`ncurses-config --libdir`:${READLINE_BASE}/lib:${LD_LIBRARY_PATH}" 
 		else
-			export LD_LIBRARY_PATH="${NCURSES_BASE}/lib:${READLINE_BASE}/lib" 
+			export LD_LIBRARY_PATH="`ncurses-config --libdir`:${READLINE_BASE}/lib" 
 		fi
 	fi
 	echo ${LD_LIBRARY_PATH}
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  \
 		ac_cv_prog_HAS_MAKEINFO=yes ac_cv_prog_HAS_HELP2MAN=yes ac_cv_file__dev_ptmx=yes ac_cv_func_setpgrp_void=yes \
 		ac_cv_rl_version=${readline_ver}
+}
+
+pkg_install() {
+	pkg_install_make
+	pkg_install_bin
 }
 
 pkg_check() {

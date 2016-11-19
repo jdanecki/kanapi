@@ -34,3 +34,11 @@ pkg_configure() {
 
 }
 
+pkg_install() {
+	pkg_install_make
+	for f in ${PREFIX}/lib/lib*
+	do
+		ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
+	done
+	ldconfig
+}
