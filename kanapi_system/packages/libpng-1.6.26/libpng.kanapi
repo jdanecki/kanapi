@@ -22,11 +22,11 @@ VER=1.6.26
 URL="SF"
 EXT=tar.xz
 SF_URL="libpng/libpng16/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
-#build depends on
+LIB_DEPENDS=zlib
+
 . ../settings
 
-export INCLUDES="-I${KANAPI_BASE}/zlib-${zlib_ver}/include"
-export LIBS="-L${KANAPI_BASE}/zlib-${zlib_ver}/lib"
+export INCLUDES="`pkg-config --cflags zlib`"
 
 pkg_download() {
 	pkg_curl
@@ -38,5 +38,12 @@ pkg_prepare() {
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+}
+
+pkg_install() {
+	pkg_install_pc_all
+	pkg_install_libs
+	pkg_install_bin_all
+	
 }
 
