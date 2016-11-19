@@ -37,4 +37,8 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
 }
 
+pkg_install() {
+	make -j ${MAKE_JOBS} install MAKEINFO=true
+	pkg_install_bin_all
+}
 
