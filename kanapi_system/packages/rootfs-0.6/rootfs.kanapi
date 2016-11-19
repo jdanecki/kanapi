@@ -41,14 +41,34 @@ pkg_build() {
 }
 
 pkg_install() {
-	mkdir ${KANAPI_BASE}/lib
-	cp ../../scripts/start_${KANAPI_TARGET} ${KANAPI_BASE}
-	cp ../../scripts/set_variables ${KANAPI_BASE}
-	echo "${KANAPI_BASE}/gmp-${gmp_ver}/lib" > ${LIBC_PREFIX}/etc/ld.so.conf
-	echo "${KANAPI_BASE}/mpc-${mpc_ver}/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
-	echo "${KANAPI_BASE}/mpfr-${mpfr_ver}/lib" >> ${LIBC_PREFIX}/etc/ld.so.conf
+	mkdir ${KANAPI_BASE}/libs
+	for i in bin dev etc lib/modules proc run/shm sys tmp var/empty var/lib/alsa var/run
+	do
+		mkdir -p ${KANAPI_BASE}/../$i
+	done
+	mkdir -p /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}
+	ln -s ../../packages /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
+	cp ../../scripts/start_${KANAPI_TARGET} ${KANAPI_BASE}/../
+	for p in glib libffi zlib
+	do
+		PKG_VER=${p}_ver
+		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/lib/lib*
+		do
+			ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
+		done
+	done
+	echo "${KANAPI_BASE}/libs" > ${LIBC_PREFIX}/etc/ld.so.conf
 	${LIBC_PREFIX}/sbin/ldconfig
-
-#	echo "${KANAPI_BASE}/gcc-${gcc_ver}"
+	
+	for p in glib glibc 
+	do
+		PKG_VER=${p}_ver
+		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/bin/*
+		do
+			ln -svf $f ${KANAPI_BASE}/../bin/`basename $f`
+		done	
+	done
+	ln -s ${LIBC_PREFIX}/sbin/ldconfig ${KANAPI_BASE}/../bin
+	ln -s ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ${KANAPI_BASE}/../bin
 }	
 

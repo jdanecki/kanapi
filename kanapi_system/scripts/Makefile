@@ -11,7 +11,7 @@ include $(BASE)../scripts/rules.kanapi
 PKGS=gzip bash busybox cgdb mc vim make git openssh sdl_image gpm
 TESTS=xflame water
 
-all: cross_gcc $(PKGS)
+all: $(PKGS)
 
 native_gcc: gcc
 
@@ -23,11 +23,7 @@ glibc: linux
 
 cross_gcc: glibc
 	@$(RUN_TARGET)
-###################
-#
-#rootfs: libstdcpp
-#	@$(RUN_TARGET)
-###################
+
 #native compilers
 gmp:
 	@$(RUN_TARGET)
@@ -44,10 +40,9 @@ binutils: mpc
 gcc: binutils
 	@$(RUN_TARGET)
 
-
 # PACKAGES
 
-zlib:
+zlib: cross_gcc
 	@$(RUN_TARGET)
 
 libffi:
@@ -59,7 +54,10 @@ glib: libffi zlib
 pkg-config: glib
 	@$(RUN_TARGET)
 
-gzip:
+rootfs: pkg-config
+	@$(RUN_TARGET)
+
+gzip: rootfs
 	@$(RUN_TARGET)
 
 bash:
