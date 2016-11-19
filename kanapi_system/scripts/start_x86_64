@@ -1,8 +1,6 @@
 #!/bin/bash
 
-
-cd /kanapi_0.6/x86_64/packages
-. ./set_variables
+export PATH=/kanapi_0.6/x86_64/bin:$PATH
 
 sh
 
