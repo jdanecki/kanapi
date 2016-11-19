@@ -180,7 +180,11 @@ pkg_package() {
 }
 
 pkg_install_bin() {
-	ln -svf ${PREFIX}/bin/${PACKAGE_NAME} /bin64/${PACKAGE_NAME}
+	ln -svf ${PREFIX}/bin/${PACKAGE_NAME} ${KANAPI_BASE}/../bin/${PACKAGE_NAME}
+}
+
+pkg_install_bin_all() {
+	ln -svf ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
 }
 
 pkg_test() {
