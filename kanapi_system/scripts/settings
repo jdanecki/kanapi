@@ -190,11 +190,20 @@ pkg_install_bin_all() {
 }
 
 pkg_install_libs() {
-	for f in ${PREFIX}/lib/lib*
+	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a 
 	do
-		ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
+		if [ -f $f ] 
+		then
+			ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
+		fi
 	done
 	ldconfig
+}
+
+pkg_install_all() {
+	pkg_install_pc
+	pkg_install_libs
+	pkg_install_bin
 }
 
 pkg_test() {
