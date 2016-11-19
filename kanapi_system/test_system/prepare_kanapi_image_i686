@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+#  Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+ARCH=i686
+
+dd if=/dev/zero of=kanapi_image bs=1024 count=524288
+sleep 1
+losetup /dev/loop0 kanapi_image
+
+echo "Create 2 partitions:"
+echo "first as vfat for syslinux- about 10MB "
+echo "second as linux partition - /kanapi_packages"
+
+fdisk /dev/loop0
+partx -a /dev/loop0
+
+mkfs.vfat -I /dev/loop0p1
+
+syslinux /dev/loop0p1
+
+./prepare_initrd ${ARCH}
+mount /dev/loop0p1 p1
+cp boot-${ARCH}/* p1
+umount p1
+install-mbr -T /dev/loop0 /dev/loop0
+
+mkfs.ext4 /dev/loop0p2
+mount /dev/loop0p2 p2
+
