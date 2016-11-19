@@ -29,8 +29,18 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	export CFLAGS="`${KANAPI_BASE}/ncurses-${ncurses_ver}/bin/ncurses6-config --cflags`"
-	export LDLAGS="`${KANAPI_BASE}/ncurses-${ncurses_ver}/bin/ncurses6-config --libs`"
+	export CFLAGS="`ncurses6-config --cflags`"
+	export LDLAGS="`ncurses6-config --libs`"
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+}
+
+pkg_check() {
+	ncurses6-config --cflags
+	ncurses6-config --libs
+}
+
+pkg_install() {
+	make -j ${MAKE_JOBS} install MAKEINFO=true
+	pkg_install_bin_all
 }
 
