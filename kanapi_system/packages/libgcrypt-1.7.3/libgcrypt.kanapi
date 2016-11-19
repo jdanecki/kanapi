@@ -30,13 +30,13 @@ pkg_prepare() {
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} ac_cv_sys_symbol_underscore=no \
-	--with-libgpg-error-prefix=`gpg-error-config --prefix` CC_FOR_BUILD=gcc
+	--with-libgpg-error-prefix=`${GPG_ERROR_CONFIG} --prefix` CC_FOR_BUILD=gcc
 }
 
 pkg_check() {
-	gpg-error-config --cflags
-	gpg-error-config --libs
-	gpg-error-config --prefix
+	echo "gpg-error-config --cflags = ${GPG_ERROR_CFLAGS}"
+	echo "gpg-error-config --libs = ${GPG_ERROR_LDFLAGS}"
+	echo "gpg-error-config --prefix = ${GPG_ERROR_CONFIG} --prefix"
 }
 
 pkg_install() {

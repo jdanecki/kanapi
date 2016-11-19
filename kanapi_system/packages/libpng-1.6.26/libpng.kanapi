@@ -26,7 +26,7 @@ LIB_DEPENDS=zlib
 
 . ../settings
 
-export INCLUDES="`pkg-config --cflags zlib`"
+export INCLUDES="`${PKG_CONFIG} --cflags zlib`"
 
 pkg_download() {
 	pkg_curl
@@ -44,6 +44,5 @@ pkg_install() {
 	pkg_install_pc_all
 	pkg_install_libs
 	pkg_install_bin_all
-	
 }
 

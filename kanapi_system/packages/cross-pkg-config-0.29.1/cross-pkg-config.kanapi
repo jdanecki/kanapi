@@ -17,39 +17,26 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=mc
-VER=4.8.18
-URL="http://ftp.midnight-commander.org"
-EXT=tar.xz
-LIB_DEPENDS="libssh2 slang glib-2.0 zlib libffi"
+PACKAGE_NAME=pkg-config
+VER=0.29.1
+URL="http://pkgconfig.freedesktop.org/releases"
+EXT=tar.gz
 
 . ../settings
 
-export LIBS="-lm -ldl -lpthread"
-export CFLAGS="${CFLAGS} ${LIBGCRYPT_CFLAGS}"
-export LDFLAGS="${LDFLAGS} ${LIBGCRYPT_LDFLAGS}"
+PREFIX=${KANAPI_CROSS_BASE}/${PACKAGE_VER}
 
 pkg_prepare() {
-	pkg_tar_xz
-}
-
-pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-x
+	pkg_tar_gz
 }
 
 pkg_install() {
-	pkg_install_make
-	pkg_install_bin
+	make -j ${MAKE_JOBS} install MAKEINFO=true
+	ln -sv ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig ${PREFIX}/share/pkgconfig
 }
 
 pkg_check() {
-	${KANAPI_PKGCONFIG} --cflags libssh2
-	${KANAPI_PKGCONFIG} --libs libssh2
-	${KANAPI_PKGCONFIG} --cflags slang
-	${KANAPI_PKGCONFIG} --libs slang
-	${KANAPI_PKGCONFIG} --cflags glib-2.0
-	${KANAPI_PKGCONFIG} --libs glib-2.0
-	echo "CFLAGS=${CFLAGS}"
-	echo "LDFLAGS=${LDFLAGS}"
-	echo "PKG_CONFIG=${PKG_CONFIG}"
+	${PREFIX}/bin/pkg-config --list-all	
+	echo "KANAPI_PKGCONFIG=${KANAPI_PKGCONFIG}"
+
 }

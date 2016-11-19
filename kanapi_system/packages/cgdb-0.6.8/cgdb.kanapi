@@ -25,7 +25,6 @@ EXT=tar.gz
 export LD_LIBRARY_PATH=
 . ../settings
 
-NCURSES_BASE=${KANAPI_BASE}/ncurses-${ncurses_ver}
 READLINE_BASE=${KANAPI_BASE}/readline-${readline_ver}
 
 pkg_prepare() {
@@ -33,15 +32,15 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	export CFLAGS="`ncurses6-config --cflags` -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
-	export LDFLAGS="`ncurses6-config --libs` -L${READLINE_BASE}/lib"
+	export CFLAGS="${NCURSES_CFLAGS} -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
+	export LDFLAGS="${NCURSES_LDFLAGS} -L${READLINE_BASE}/lib"
 	if [ "`lsb_release -is`" != "LinuxMint" ]
 	then
 		if [ -n "${LD_LIBRARY_PATH}" ]
 		then
-			export LD_LIBRARY_PATH="`ncurses-config --libdir`:${READLINE_BASE}/lib:${LD_LIBRARY_PATH}" 
+			export LD_LIBRARY_PATH="`${NCURSES_CONFIG} --libdir`:${READLINE_BASE}/lib:${LD_LIBRARY_PATH}" 
 		else
-			export LD_LIBRARY_PATH="`ncurses-config --libdir`:${READLINE_BASE}/lib" 
+			export LD_LIBRARY_PATH="`${NCURSES_CONFIG} --libdir`:${READLINE_BASE}/lib" 
 		fi
 	fi
 	echo ${LD_LIBRARY_PATH}
@@ -59,4 +58,7 @@ pkg_check() {
 	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 	gawk --version
 	LD_LIBRARY_PATH=/kanapi_0.6/i686/packages/readline-6.3/lib  ;  ldd `which gawk `
+	echo "PATH=${PATH}"
+	echo "ncurses6-config=`${NCURSES_CONFIG} --cflags`"
+
 }

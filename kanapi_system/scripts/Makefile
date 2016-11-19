@@ -54,7 +54,10 @@ glib: libffi zlib
 pkg-config: glib
 	@$(RUN_TARGET)
 
-rootfs: pkg-config
+cross-pkg-config: pkg-config
+	@$(RUN_TARGET)
+
+rootfs: cross-pkg-config
 	@$(RUN_TARGET)
 
 gzip: rootfs

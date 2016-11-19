@@ -60,8 +60,8 @@ eof
 		 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal"
 	fi
 	 autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
-	 export CFLAGS="`ncurses6-config --cflags`"
-	 export LDFLAGS="`ncurses6-config --libs`"
+	 export CFLAGS="${NCURSES_CFLAGS}"
+	 export LDFLAGS="${NCURSES_LDFLAGS}"
 
 	./configure	--prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
 }

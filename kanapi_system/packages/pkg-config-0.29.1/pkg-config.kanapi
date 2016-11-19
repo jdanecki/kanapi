@@ -28,6 +28,10 @@ pkg_prepare() {
 	pkg_tar_gz
 }
 
+pkg_configure() {
+	pkg_configure_target
+}
+
 pkg_install() {
 	make -j ${MAKE_JOBS} install MAKEINFO=true
 	mkdir ${PREFIX}/share/pkgconfig

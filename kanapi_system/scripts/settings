@@ -37,14 +37,20 @@ export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
 
 export PATH_BIN=${CROSS_BINUTILS_PREFIX}/bin
 export PATH_GCC=${CROSS_GCC_PREFIX}/bin
+export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
 
-if [ -d /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin ]
+if [ "${KANAPI_TARGET}" = "uname -m" ]
 then
-	export PATH=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin:${PATH_BIN}:${PATH_GCC}:${PATH}
-else
-	export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
+	if [ -d /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin ]
+	then
+		export PATH=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin:${PATH}
+		KANAPI_PKGCONFIG=pkg-config
+	fi
+else 	
+	KANAPI_PKGCONFIG=${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
 fi
 
+export PKG_CONFIG=${KANAPI_PKGCONFIG}
 export LD_LIBRARY_PATH=${KANAPI_CROSS_BASE}/gmp-${gmp_ver}/lib:${KANAPI_CROSS_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_CROSS_BASE}/mpc-${mpc_ver}/lib
 
 if [ -d ${KANAPI_BASE}/pkg-config-${pkg_config_ver} ]
@@ -52,9 +58,9 @@ then
 	export PKGCONFIG_DIR=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig
 	if [[ -n ${LIB_DEPENDS} ]]
 	then
-		export LDFLAGS=`pkg-config --libs ${LIB_DEPENDS}`
-		export LD_LIBRARY_PATH=`pkg-config --variable=libdir ${LIB_DEPENDS} | sed "s/ /:/g"`:${LD_LIBRARY_PATH}
-		export CFLAGS=`pkg-config --cflags ${LIB_DEPENDS}`
+		export LDFLAGS=`${KANAPI_PKGCONFIG} --libs ${LIB_DEPENDS}`
+		export LD_LIBRARY_PATH=`${KANAPI_PKGCONFIG} --variable=libdir ${LIB_DEPENDS} | sed "s/ /:/g"`:${LD_LIBRARY_PATH}
+		export CFLAGS=`${KANAPI_PKGCONFIG} --cflags ${LIB_DEPENDS}`
 	fi
 else
 	if [ -d ${KANAPI_BASE}/glib-${glibc_ver} ]
@@ -64,10 +70,29 @@ else
 	fi
 fi
 
+if [ -f ${KANAPI_BASE}/ncurses-${ncurses_ver}/bin/ncurses6-config ]
+then
+	NCURSES_CONFIG=${KANAPI_BASE}/ncurses-${ncurses_ver}/bin/ncurses6-config
+	NCURSES_CFLAGS=`${NCURSES_CONFIG} --cflags`
+	NCURSES_LDFLAGS=`${NCURSES_CONFIG} --libs`
+fi
+
+if [ -f ${KANAPI_BASE}/libgpg-error-${libgpg_error_ver}/bin/gpg-error-config ]
+then
+	GPG_ERROR_CONFIG=${KANAPI_BASE}/libgpg-error-${libgpg_error_ver}/bin/gpg-error-config
+	GPG_ERROR_CFLAGS=`${GPG_ERROR_CONFIG} --cflags`
+	GPG_ERROR_LDFLAGS=`${GPG_ERROR_CONFIG} --libs`
+fi
+
+if [ -f ${KANAPI_BASE}/libgcrypt-${libgcrypt_ver}/bin/libgcrypt-config ]
+then
+	LIBGCRYPT_CONFIG=${KANAPI_BASE}/libgcrypt-${libgcrypt_ver}/bin/libgcrypt-config
+	LIBGCRYPT_CFLAGS=`${LIBGCRYPT_CONFIG} --cflags`
+	LIBGCRYPT_LDFLAGS=`${LIBGCRYPT_CONFIG} --libs`
+fi
+
 NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
 MAKE_JOBS=${NR_CPUS}
-
-
 
 local_copy() {
 	rm -rf build

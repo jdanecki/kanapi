@@ -24,9 +24,9 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
-export CFLAGS="`ncurses6-config --cflags` -Og"
+export CFLAGS="${NCURSES_CFLAGS} -Og"
 export CPPFLAGS=${CFLAGS}
-export LDFLAGS="`ncurses6-config --libs`"
+export LDFLAGS="${NCURSES_LDFLAGS}"
 export STRIP=${KANAPI_TARGET_NAME}-strip
 
 pkg_prepare() {
