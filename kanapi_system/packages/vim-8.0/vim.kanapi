@@ -24,8 +24,9 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
-export CFLAGS="-I${KANAPI_BASE}/ncurses-${ncurses_ver}/include"
-export LDFLAGS="-L${KANAPI_BASE}/ncurses-${ncurses_ver}/lib -lncurses"
+export CFLAGS="`ncurses6-config --cflags` -Og"
+export CPPFLAGS=${CFLAGS}
+export LDFLAGS="`ncurses6-config --libs`"
 export STRIP=${KANAPI_TARGET_NAME}-strip
 
 pkg_prepare() {
@@ -41,7 +42,8 @@ pkg_configure() {
 	mkdir build
 	cp -ar ${PACKAGE_SRCDIR}/* build
 	cd build
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} vim_cv_toupper_broken=no --with-tlib=ncurses vim_cv_terminfo=no vim_cv_tty_group=world vim_cv_tty_mode=0620 \
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} vim_cv_toupper_broken=no \
+	--with-tlib=ncurses vim_cv_terminfo=yes vim_cv_tty_group=world vim_cv_tty_mode=0620 \
 	vim_cv_getcwd_broken=no vim_cv_stat_ignores_slash=no vim_cv_memmove_handles_overlap=yes --without-x --enable-gui=no
 
 }
@@ -54,8 +56,12 @@ pkg_build() {
 pkg_install() {
 	cd build
 	make -j ${MAKE_JOBS} install MAKEINFO=true
+	pkg_install_bin_all
 }
 
 pkg_check() {
 	echo "PACKAGE_SRCDIR=${PACKAGE_SRCDIR}"
+	echo "CFLAGS=${CFLAGS}"
+	echo "LDFLAGS=${LDFLAGS}"
 }
+
