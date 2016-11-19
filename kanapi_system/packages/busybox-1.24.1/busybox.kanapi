@@ -43,4 +43,8 @@ pkg_build() {
 
 pkg_install() {
 	make CONFIG_PREFIX=${PREFIX} CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -j ${MAKE_JOBS} install
+	ln -svf ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
+	ln -svf ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
+	ln -svf ${PREFIX}/usr/bin/* ${KANAPI_BASE}/../bin
+	ln -svf ${PREFIX}/usr/sbin/* ${KANAPI_BASE}/../bin
 }
