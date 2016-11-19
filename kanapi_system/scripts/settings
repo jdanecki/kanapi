@@ -187,6 +187,14 @@ pkg_install_bin_all() {
 	ln -svf ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
 }
 
+pkg_install_libs() {
+	for f in ${PREFIX}/lib/lib*
+	do
+		ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
+	done
+	ldconfig
+}
+
 pkg_test() {
 	echo "tests for ${PACKAGE_NAME}"
 	make -C ../../tests test_${PACKAGE_NAME} KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME} KANAPI_BASE=${KANAPI_BASE}
