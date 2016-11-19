@@ -21,21 +21,13 @@ PACKAGE_NAME=mc
 VER=4.8.18
 URL="http://ftp.midnight-commander.org"
 EXT=tar.xz
-#build depends on
+LIB_DEPENDS="libssh2 slang glib-2.0 zlib libffi"
+
 . ../settings
 
-export LIBSSH_CFLAGS="-I${KANAPI_BASE}/libssh2-${libssh2_ver}/include"
-export LIBSSH_LIBS="-L${KANAPI_BASE}/libssh2-${libssh2_ver}/lib -lssh2"
-export SLANG_CFLAGS="-I${KANAPI_BASE}/slang-${slang_ver}/include"
-export SLANG_LIBS="-L${KANAPI_BASE}/slang-${slang_ver}/lib -lslang"
-export GLIB_CFLAGS="-I${KANAPI_BASE}/glib-${glib_ver}/include -I${KANAPI_BASE}/glib-${glib_ver}/include/glib-2.0 -I${KANAPI_BASE}/glib-${glib_ver}/lib/glib-2.0/include"
-
-export GLIB_LIBS="-L${KANAPI_BASE}/glib-${glib_ver}/lib -lglib-2.0 -lgmodule-2.0"
-export GMODULE_CFLAGS="-I${KANAPI_BASE}/glib-${glib_ver}/include"
-export GMODULE_LIBS="-L${KANAPI_BASE}/glib-${glib_ver}/lib -lgmodule-2.0"
-
-export LIBS="-lm -ldl"
-export CFLAGS="${GLIB_CFLAGS}"
+export LIBS="-lm -ldl -lpthread"
+export CFLAGS="${CFLAGS} `libgcrypt-config --cflags`"
+export LDFLAGS="${LDFLAGS} `libgcrypt-config --libs`"
 
 pkg_prepare() {
 	pkg_tar_xz
@@ -45,3 +37,18 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-x
 }
 
+pkg_install() {
+	pkg_install_make
+	pkg_install_bin
+}
+
+pkg_check() {
+	pkg-config --cflags libssh2
+	pkg-config --libs libssh2
+	pkg-config --cflags slang
+	pkg-config --libs slang
+	pkg-config --cflags glib-2.0
+	pkg-config --libs glib-2.0
+	echo "CFLAGS=${CFLAGS}"
+	echo "LDFLAGS=${LDFLAGS}"
+}
