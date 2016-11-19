@@ -189,6 +189,10 @@ pkg_install_bin_all() {
 	ln -svf ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
 }
 
+pkg_install_sbin_all() {
+	ln -svf ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
+}
+
 pkg_install_libs() {
 	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a 
 	do

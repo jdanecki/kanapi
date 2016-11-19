@@ -21,31 +21,25 @@ PACKAGE_NAME=openssh
 VER=7.3p1
 URL="http://ftp.icm.edu.pl/pub/OpenBSD/OpenSSH/portable"
 EXT=tar.gz
-#build depends on
+LIB_DEPENDS="zlib openssl"
+
 . ../settings
 
-export CFLAGS="-lpthread"
+export CFLAGS="${CFLAGS}"
+export LDFLAGS="${LDFLAGS} -ldl -lpthread"
 
 pkg_prepare() {
 	pkg_tar_gz
 }
 
 pkg_configure() {
-	KANAPI_LIBS=${KANAPI_BASE}/zlib-${zlib_ver}/lib:${KANAPI_BASE}/openssl-${openssl_ver}/lib
-
-	if [ -n "$LD_LIBRARY_PATH" ]
-	then 
-		export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${KANAPI_LIBS}
-	else
-		export LD_LIBRARY_PATH=${KANAPI_LIBS}
-	fi
-
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-zlib=${KANAPI_BASE}/zlib-${zlib_ver} --with-ssl-dir=${KANAPI_BASE}/openssl-${openssl_ver} --disable-strip \
-		--without-openssl-header-check
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-openssl-header-check --disable-strip 
 }
 
 pkg_install() {
 	make install-nokeys MAKEINFO=true
+	pkg_install_bin_all
+	pkg_install_sbin_all
 }
 
 pkg_check() {
@@ -53,4 +47,7 @@ pkg_check() {
 	then
 		echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 	fi
+
+	echo "CFLAGS=${CFLAGS}"
+	echo "LDFLAGS=${LDFLAGS}"
 }
