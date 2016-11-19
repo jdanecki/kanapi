@@ -41,19 +41,22 @@ export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
 
 if [ "${KANAPI_TARGET}" = "uname -m" ]
 then
-	if [ -d /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin ]
+	if [ -f ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
 	then
 		export PATH=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin:${PATH}
-		KANAPI_PKGCONFIG=pkg-config
+		KANAPI_PKGCONFIG=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
 	fi
 else 	
-	KANAPI_PKGCONFIG=${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
+	if [ -f ${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
+	then
+		KANAPI_PKGCONFIG=${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
+	fi
 fi
 
 export PKG_CONFIG=${KANAPI_PKGCONFIG}
 export LD_LIBRARY_PATH=${KANAPI_CROSS_BASE}/gmp-${gmp_ver}/lib:${KANAPI_CROSS_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_CROSS_BASE}/mpc-${mpc_ver}/lib
 
-if [ -d ${KANAPI_BASE}/pkg-config-${pkg_config_ver} ]
+if [ -n "${KANAPI_PKGCONFIG}" ]
 then
 	export PKGCONFIG_DIR=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig
 	if [[ -n ${LIB_DEPENDS} ]]
@@ -63,7 +66,7 @@ then
 		export CFLAGS=`${KANAPI_PKGCONFIG} --cflags ${LIB_DEPENDS}`
 	fi
 else
-	if [ -d ${KANAPI_BASE}/glib-${glibc_ver} ]
+	if [ -d ${KANAPI_BASE}/glib-${glib_ver} ]
 	then
 		export GLIB_CFLAGS="-I${KANAPI_BASE}/glib-${glib_ver}/include -I${KANAPI_BASE}/glib-${glib_ver}/include/glib-2.0 -I${KANAPI_BASE}/glib-${glib_ver}/lib/glib-2.0/include"
 		export GLIB_LIBS="-L${KANAPI_BASE}/glib-${glib_ver}/lib -lglib-2.0 -lgmodule-2.0"
