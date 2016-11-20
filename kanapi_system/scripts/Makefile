@@ -150,6 +150,9 @@ gettext:
 gawk:
 	@$(RUN_TARGET)
 
+cmake:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
