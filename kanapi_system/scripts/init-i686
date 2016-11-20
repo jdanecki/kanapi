@@ -49,12 +49,15 @@ mount -t sysfs sysfs /sys
 mkdir /dev/pts
 mount -t devpts devpts /dev/pts
 mount -t debugfs debugs /sys/kernel/debug
+mount /dev/sda2 /packages
+
 gpm -m /dev/input/mice -t exps2
 /kanapi_packages/config/network
 
 openvt
 openvt
 /bin/sshd
+#/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
 
 /bin/bash
 

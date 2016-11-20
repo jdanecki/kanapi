@@ -17,14 +17,53 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
+KANAPI_VER=0.6
+KANAPI_BASE=/kanapi_${KANAPI_VER}/$1
+GLIBC_VER=2.23
+BASH_VER=4.3
+
 rm -rf initrd-$1
 mkdir initrd-$1
+cd initrd-$1
+
 for d in bin dev etc lib proc run sys tmp var init init-$1
 do
-	cp -ar /kanapi_0.6/$1/$d initrd-$1
+	cp -ar ${KANAPI_BASE}/$d .
 done
 
-cd initrd-$1
+mkdir packages
+cp -ar ${KANAPI_BASE}/packages/busybox* packages
+rm bin/bash
+cp ${KANAPI_BASE}/packages/bash-${BASH_VER}/bin/bash bin
+
+mkdir -p packages/glibc-${GLIBC_VER}/lib
+for f in ld-linux.so.2 libm.so.6 libc.so.6 libdl.so.2
+do	
+	cp ${KANAPI_BASE}/packages/glibc-${GLIBC_VER}/lib/$f packages/glibc-${GLIBC_VER}/lib
+done
+
+mkdir -p kanapi_${KANAPI_VER}/$1
+ln -s ../../packages kanapi_${KANAPI_VER}/$1
+ln -s kanapi_${KANAPI_VER}/$1/packages kanapi_packages
+
+echo "nameserver 10.0.2.3" > etc/resolv.conf
+
+echo "sync
+mount -o remount,ro /packages
+sync
+poweroff -f
+" > bin/koniec
+chmod +x bin/koniec
+ln -s /bin/koniec bin/finish
+
+echo "sync
+mount -o remount,ro /packages
+sync
+reboot -f
+" > bin/restart
+chmod +x bin/restart
+
+
 find . -print | cpio -o -Hnewc > ../boot-$1/initrd
 cd ..
 

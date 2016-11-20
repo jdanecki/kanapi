@@ -28,6 +28,7 @@ mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 mount -t devpts devpts /dev/pts
 mount -t debugfs debugs /sys/kernel/debug
+mount /dev/sda2 /packages
 
 export USER=kanapi
 export HOME=/kanapi_packages/home
@@ -55,6 +56,7 @@ echo "#                       Welcome to KaNaPi ${KANAPI_VER}"
 echo "                        Arch: ${ARCH}                      "
 echo "                        Kernel: ${KERNEL}                  "
 echo "###########################################################"
+#/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
 
 /bin/bash
 

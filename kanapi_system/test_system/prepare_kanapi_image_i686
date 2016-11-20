@@ -18,17 +18,23 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 ARCH=i686
+KANAPI_VER=0.6
 
-dd if=/dev/zero of=kanapi_image bs=1024 count=524288
-sleep 1
-losetup /dev/loop0 kanapi_image
+if [ ! -f kanapi_image.${ARCH} ]
+then	
+	dd if=/dev/zero of=kanapi_image.${ARCH} bs=1024 count=524288
+fi
+sync
+losetup /dev/loop0 kanapi_image.${ARCH}
 
 echo "Create 2 partitions:"
-echo "first as vfat for syslinux- about 10MB "
+echo "first as vfat for syslinux- about 50MB "
 echo "second as linux partition - /kanapi_packages"
 
 fdisk /dev/loop0
-partx -a /dev/loop0
+#kpartx -a /dev/loop0
+#partx -a /dev/loop0
+partprobe /dev/loop0
 
 mkfs.vfat -I /dev/loop0p1
 
@@ -40,6 +46,21 @@ cp boot-${ARCH}/* p1
 umount p1
 install-mbr -T /dev/loop0 /dev/loop0
 
-mkfs.ext4 /dev/loop0p2
+mkfs.ext4 -F /dev/loop0p2
 mount /dev/loop0p2 p2
+echo "copying files..."
+cp -ar /kanapi_${KANAPI_VER}/${ARCH}/packages/* p2
+
+mkdir -p p2/config/current
+ln -s /kanapi_packages/config/current p2/home
+echo "ifconfig eth0 up
+ifconfig eth0 10.0.2.1
+route add default gw 10.0.2.2
+ifconfig -a
+" > p2/config/network
+chmod +x p2/config/network
+
+umount p2
+sync
+losetup -d /dev/loop0
 
