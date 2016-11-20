@@ -21,7 +21,7 @@ rm -rf initrd-$1
 mkdir initrd-$1
 for d in bin dev etc lib proc run sys tmp var init init-$1
 do
-	cp -ar /kanapi_0.6/$1/$d initrd-$1
+	cp -ar /kanapi_0.7/$1/$d initrd-$1
 done
 
 cd initrd-$1
