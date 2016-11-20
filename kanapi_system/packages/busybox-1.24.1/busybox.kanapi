@@ -47,4 +47,5 @@ pkg_install() {
 	ln -svf ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
 	ln -svf ${PREFIX}/usr/bin/* ${KANAPI_BASE}/../bin
 	ln -svf ${PREFIX}/usr/sbin/* ${KANAPI_BASE}/../bin
+	rm ${KANAPI_BASE}/../bin/init
 }

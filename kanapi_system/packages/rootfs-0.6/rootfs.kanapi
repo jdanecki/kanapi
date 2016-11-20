@@ -74,7 +74,6 @@ pkg_install() {
 	cp -a ../../configs/etc/* ${KANAPI_BASE}/../etc
 	cp ../../scripts/init-${KANAPI_TARGET} ${KANAPI_BASE}/../
 	ln -s init-${KANAPI_TARGET} ${KANAPI_BASE}/../init
-	rm ${KANAPI_BASE}/../bin/init
 	ln -s kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages ${KANAPI_BASE}/../kanapi_packages
 }	
 
