@@ -18,7 +18,7 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 ARCH=i686
-KANAPI_VER=0.6
+KANAPI_VER=0.7
 
 if [ ! -f kanapi_image.${ARCH} ]
 then	
@@ -32,9 +32,16 @@ echo "first as vfat for syslinux- about 50MB "
 echo "second as linux partition - /kanapi_packages"
 
 fdisk /dev/loop0
+
 #kpartx -a /dev/loop0
-#partx -a /dev/loop0
-partprobe /dev/loop0
+PARTPROBE=`which partprobe`
+if [ -n "${PARTPROBE}" ]
+then
+	partprobe /dev/loop0
+else
+	partx -d /dev/loop0
+	partx -a /dev/loop0
+fi
 
 mkfs.vfat -I /dev/loop0p1
 
@@ -51,7 +58,9 @@ mount /dev/loop0p2 p2
 echo "copying files..."
 cp -ar /kanapi_${KANAPI_VER}/${ARCH}/packages/* p2
 
-mkdir -p p2/config/current
+mkdir -p p2/config/current/.config/mc
+cp ../configs/mc/ini p2/config/current/.config/mc
+
 ln -s /kanapi_packages/config/current p2/home
 echo "ifconfig eth0 up
 ifconfig eth0 10.0.2.1
@@ -59,6 +68,10 @@ route add default gw 10.0.2.2
 ifconfig -a
 " > p2/config/network
 chmod +x p2/config/network
+
+echo "localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8" > p2/config/create_locale
+chmod +x p2/config/create_locale
+
 
 umount p2
 sync

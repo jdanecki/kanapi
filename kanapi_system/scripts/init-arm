@@ -47,6 +47,7 @@ ifconfig lo up
 /kanapi_packages/config/network
 openvt
 openvt
+ssh-keygen -A
 /bin/sshd
 
 echo "###########################################################"
