@@ -156,6 +156,9 @@ cmake:
 file:
 	@$(RUN_TARGET)
 
+flex:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
