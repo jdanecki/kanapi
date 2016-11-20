@@ -39,3 +39,5 @@ pkg_config_ver=0.29.1
 cross_pkg_config_ver=0.29.1
 autoconf_ver=2.69
 automake_ver=1.15
+bison_ver=3.0.4
+
