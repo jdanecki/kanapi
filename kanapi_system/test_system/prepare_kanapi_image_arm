@@ -17,5 +17,5 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-. ./prepare_kanapi_image i686
+. ./prepare_kanapi_image arm
 

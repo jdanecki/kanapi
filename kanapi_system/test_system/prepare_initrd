@@ -17,16 +17,20 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-KANAPI_VER=0.7
-KANAPI_BASE=/kanapi_${KANAPI_VER}/$1
-GLIBC_VER=2.23
-BASH_VER=4.3
+. ../scripts/config.kanapi
 
-rm -rf initrd-$1
-mkdir initrd-$1
-cd initrd-$1
+echo "Preparing initrd for ${KANAPI_VER} on ${ARCH}"
+KANAPI_BASE=/kanapi_${KANAPI_VER}/${ARCH}
+KANAPI_BASE_LOCAL=kanapi_${KANAPI_VER}/${ARCH}
+INITRD_DIR=initrd-${ARCH}
 
-for d in bin dev etc lib proc run sys tmp var init init-$1
+echo "KANAPI_BASE=${KANAPI_BASE}"
+echo "INITRD_DIR=${INITRD_DIR}"
+rm -rf ${INITRD_DIR}
+mkdir ${INITRD_DIR}
+cd ${INITRD_DIR}
+
+for d in bin dev etc lib proc run sys tmp var init init-${ARCH}
 do
 	cp -ar ${KANAPI_BASE}/$d .
 done
@@ -34,17 +38,32 @@ done
 mkdir packages
 cp -ar ${KANAPI_BASE}/packages/busybox* packages
 rm bin/bash
-cp ${KANAPI_BASE}/packages/bash-${BASH_VER}/bin/bash bin
+cp ${KANAPI_BASE}/packages/bash-${bash_ver}/bin/bash bin
 
-mkdir -p packages/glibc-${GLIBC_VER}/lib
-for f in ld-linux.so.2 libm.so.6 libc.so.6 libdl.so.2
+mkdir -p packages/glibc-${glibc_ver}/lib
+
+if [ "${ARCH}" = "x86_64" ]
+	then
+		LINKER_NAME=ld-linux-x86-64.so.2
+fi
+if [ "${ARCH}" = "i686" ]
+then
+	LINKER_NAME=ld-linux.so.2
+fi
+if [ "${ARCH}" = "arm" ]
+then
+	LINKER_NAME=ld-linux.so.3
+	cp -ar ../modules-arm/* lib/modules
+fi
+	
+for f in ${LINKER_NAME} libm.so.6 libc.so.6 libdl.so.2
 do	
-	cp ${KANAPI_BASE}/packages/glibc-${GLIBC_VER}/lib/$f packages/glibc-${GLIBC_VER}/lib
+	cp ${KANAPI_BASE}/packages/glibc-${glibc_ver}/lib/$f packages/glibc-${glibc_ver}/lib
 done
 
-mkdir -p kanapi_${KANAPI_VER}/$1
-ln -s ../../packages kanapi_${KANAPI_VER}/$1
-ln -s kanapi_${KANAPI_VER}/$1/packages kanapi_packages
+mkdir -p ${KANAPI_BASE_LOCAL}
+ln -s ../../packages ${KANAPI_BASE_LOCAL}
+ln -s ${KANAPI_BASE_LOCAL}/packages kanapi_packages
 
 echo "nameserver 10.0.2.3" > etc/resolv.conf
 
@@ -63,7 +82,6 @@ reboot -f
 " > bin/restart
 chmod +x bin/restart
 
-
-find . -print | cpio -o -Hnewc > ../boot-$1/initrd
+find . -print | cpio -o -Hnewc > ../boot-${ARCH}/initrd
 cd ..
 

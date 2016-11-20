@@ -1,0 +1,2 @@
+qemu-system-x86_64 -hda kanapi_image.x86_64 -m 512
+

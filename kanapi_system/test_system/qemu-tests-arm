@@ -1,0 +1,2 @@
+qemu-system-arm -M versatilepb -hda kanapi_image.arm -m 512 -kernel boot-arm/vmlinuz-3.2.0-4-versatile -initrd boot-arm/initrd
+

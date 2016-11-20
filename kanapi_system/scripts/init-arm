@@ -22,13 +22,23 @@ KERNEL=`uname -r`
 export LANG=pl_PL.UTF-8
 export LC_ALL=pl_PL.UTF-8
 export EDITOR=vim
-export KANAPI_VER=0.6
+export KANAPI_VER=0.7
 
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 mount -t devpts devpts /dev/pts
 mount -t debugfs debugs /sys/kernel/debug
-mount /dev/sda2 /packages
+
+modprobe crc16
+modprobe crc_t10dif
+modprobe scsi_mod
+modprobe scsi_transport_spi
+modprobe sym53c8xx
+modprobe sd_mod
+modprobe jbd2
+modprobe mbcache
+modprobe ext4
+
 
 export USER=kanapi
 export HOME=/kanapi_packages/home
@@ -41,9 +51,15 @@ export LD_LIBRARY_PATH=/kanapi_packages/libs
 export PATH=/bin
 
 dmesg -n 4
-
+lsmod
 ifconfig lo up
-
+echo -n "waiting for disk"
+while ! grep sda2 /proc/partitions 
+do 
+	echo -n "."
+done
+echo " disk found, mounting"
+mount /dev/sda2 /packages
 /kanapi_packages/config/network
 openvt
 openvt

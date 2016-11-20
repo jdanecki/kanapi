@@ -22,7 +22,7 @@ KERNEL=`uname -r`
 export LANG=pl_PL.UTF-8
 export LC_ALL=pl_PL.UTF-8
 export EDITOR=vim
-export KANAPI_VER=0.6
+export KANAPI_VER=0.7
 export USER=kanapi
 export HOME=/kanapi_packages/home
 export XDG_CONFIG_HOME=${HOME}/.config
@@ -35,14 +35,6 @@ export PATH=/bin
 dmesg -n 4
 
 ifconfig lo up
-
-echo "###########################################################"
-echo "#                                                         "
-echo "#                                                         "
-echo "#                       Welcome to KaNaPi ${KANAPI_VER} for i686"
-echo "                        Arch: ${ARCH}                      "
-echo "                        Kernel: ${KERNEL}                  "
-echo "###########################################################"
 
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
@@ -59,6 +51,13 @@ openvt
 ssh-keygen -A
 /bin/sshd
 #/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
+echo "###########################################################"
+echo "#                                                          "
+echo "#                                                          "
+echo "#    Welcome to KaNaPi ${KANAPI_VER} for i686              "
+echo "#    Arch: ${ARCH}                                         "
+echo "#    Kernel: ${KERNEL}                                     "
+echo "###########################################################"
 
 /bin/bash
 

@@ -1,0 +1,92 @@
+#!/bin/bash
+#
+#  Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+if [ -z "$1" ]
+then
+	echo "Run script with arch name, eg:"
+	echo "$0 i686"
+	echo "$0 x86_64"
+	echo "$0 arm"
+	exit 
+fi
+
+export ARCH=$1
+export KANAPI_VER=`cat ../scripts/KANAPI_VER`
+. ../scripts/config.kanapi
+
+echo "Preparing image for KaNaPi ${KANAPI_VER} on ${ARCH}"
+
+if [ ! -f kanapi_image.${ARCH} ]
+then	
+	dd if=/dev/zero of=kanapi_image.${ARCH} bs=1024 count=524288
+fi
+sync
+losetup /dev/loop0 kanapi_image.${ARCH}
+
+echo "Create 2 partitions:"
+echo "first as vfat for syslinux- about 50MB "
+echo "second as linux partition - /kanapi_packages"
+
+fdisk /dev/loop0
+
+#kpartx -a /dev/loop0
+PARTPROBE=`which partprobe`
+if [ -n "${PARTPROBE}" ]
+then
+	partprobe /dev/loop0
+else
+	partx -d /dev/loop0
+	partx -a /dev/loop0
+fi
+
+mkfs.vfat -I /dev/loop0p1
+
+syslinux /dev/loop0p1
+
+./prepare_initrd
+
+mount /dev/loop0p1 p1
+cp boot-${ARCH}/* p1
+umount p1
+install-mbr -T /dev/loop0 /dev/loop0
+
+mkfs.ext4 -F /dev/loop0p2
+mount /dev/loop0p2 p2
+echo "copying files..."
+cp -ar /kanapi_${KANAPI_VER}/${ARCH}/packages/* p2
+
+mkdir -p p2/config/current/.config/mc
+cp ../configs/mc/ini p2/config/current/.config/mc
+
+ln -s /kanapi_packages/config/current p2/home
+echo "ifconfig eth0 up
+ifconfig eth0 10.0.2.1
+route add default gw 10.0.2.2
+ifconfig -a
+" > p2/config/network
+chmod +x p2/config/network
+
+echo "mkdir -p /packages/glibc-${glibc_ver}/lib/locale
+localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8" > p2/config/create_locale
+chmod +x p2/config/create_locale
+
+umount p2
+sync
+losetup -d /dev/loop0
+
