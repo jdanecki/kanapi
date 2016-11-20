@@ -69,9 +69,9 @@ ssh-keygen -A
 echo "###########################################################"
 echo "#                                                         "
 echo "#                                                         "
-echo "#                       Welcome to KaNaPi ${KANAPI_VER}"
-echo "                        Arch: ${ARCH}                      "
-echo "                        Kernel: ${KERNEL}                  "
+echo "#    Welcome to KaNaPi ${KANAPI_VER}"
+echo "#    Arch: ${ARCH}                      "
+echo "#    Kernel: ${KERNEL}                  "
 echo "###########################################################"
 #/bin/localedef -c -i pl_PL -f UTF-8 pl_PL.UTF-8
 
