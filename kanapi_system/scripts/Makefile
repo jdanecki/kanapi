@@ -141,6 +141,9 @@ automake:
 bison:	
 	@$(RUN_TARGET)
 
+sed:	
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
