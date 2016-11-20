@@ -3,6 +3,13 @@
 # $1 - name
 # $2 - version
 
+if [ -z "$1" -o -z "$2" ] 
+then
+	echo "Run with 2 parameters:"
+	echo "$0 name version"
+	exit
+fi
+
 mkdir $1-$2
 cd $1-$2
 cat  ../template.kanapi | sed "s/@NAME@/$1/" | sed "s/@VER@/$2/" > $1.kanapi
