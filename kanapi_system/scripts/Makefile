@@ -144,6 +144,9 @@ bison:
 sed:	
 	@$(RUN_TARGET)
 
+gettext:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

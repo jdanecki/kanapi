@@ -41,4 +41,5 @@ autoconf_ver=2.69
 automake_ver=1.15
 bison_ver=3.0.4
 sed_ver=4.2.2
+gettext_ver=0.19.8
 
