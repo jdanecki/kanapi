@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=binutils
 VER=2.27
-URL="http://ftp.gnu.org/gnu/binutils"
+URL="GNU"
 EXT=tar.bz2
 
 . ../settings

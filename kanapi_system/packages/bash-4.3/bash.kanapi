@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=bash
 VER=4.3
-URL="http://git.savannah.gnu.org/cgit/bash.git/snapshot"
+URL="GNU"
 EXT=tar.gz
 #build depends on
 . ../settings

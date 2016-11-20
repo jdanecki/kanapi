@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=autoconf
 VER=2.69
-URL="ftp://ftp.gnu.org/pub/gnu/autoconf"
+URL="GNU"
 EXT=tar.xz
 #build depends on
 . ../settings

@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=gdb
 VER=7.11
-URL="http://ftp.gnu.org/gnu/gdb"
+URL="GNU"
 EXT=tar.xz
 #build depends on
 . ../settings

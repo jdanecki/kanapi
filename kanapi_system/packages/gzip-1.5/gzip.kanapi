@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=gzip
 VER=1.5
-URL="http://ftp.gnu.org/gnu/gzip"
+URL="GNU"
 EXT=tar.xz
 #build depends on
 . ../settings
