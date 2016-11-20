@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-KANAPI_VER=0.6
+KANAPI_VER=0.7
 KANAPI_BASE=/kanapi_${KANAPI_VER}/$1
 GLIBC_VER=2.23
 BASH_VER=4.3

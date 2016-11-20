@@ -45,7 +45,7 @@ gcc: binutils
 zlib: cross_gcc
 	@$(RUN_TARGET)
 
-libffi:
+libffi: cross_gcc
 	@$(RUN_TARGET)
 
 glib: libffi zlib

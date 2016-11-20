@@ -24,6 +24,10 @@ EXT=tar.gz
 
 . ../settings
 
+pkg_download() {
+	pkg_curl
+}
+
 pkg_prepare() {
 	pkg_tar_gz
 }
