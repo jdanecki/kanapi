@@ -132,6 +132,9 @@ sdl_image: libpng sdl
 gpm:
 	@$(RUN_TARGET)
 
+autoconf:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
