@@ -46,4 +46,5 @@ gawk_ver=4.1.4
 cmake_ver=3.7.0
 file_ver=5.29
 flex_ver=2.6.2
+attr_ver=2.4.47
 
