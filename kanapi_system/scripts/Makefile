@@ -153,6 +153,9 @@ gawk:
 cmake:
 	@$(RUN_TARGET)
 
+file:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

@@ -44,4 +44,5 @@ sed_ver=4.2.2
 gettext_ver=0.19.8
 gawk_ver=4.1.4
 cmake_ver=3.7.0
+file_ver=5.29
 
