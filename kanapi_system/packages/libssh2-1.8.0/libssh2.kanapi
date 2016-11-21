@@ -28,10 +28,6 @@ LIB_DEPENDS=zlib
 export CFLAGS="${CFLAGS} ${GPG_ERROR_CFLAGS}"
 export LDFLAGS="${LDFLAGS} ${GPG_ERROR_LDFLAGS}"
 
-pkg_download() {
-	pkg_curl
-}
-
 pkg_prepare() {
 	pkg_tar_gz
 }

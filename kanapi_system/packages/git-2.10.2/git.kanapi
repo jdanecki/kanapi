@@ -25,10 +25,6 @@ LIB_DEPENDS=zlib
 
 . ../settings
 
-pkg_download() {
-	pkg_curl
-}
-
 pkg_prepare() {
 	pkg_tar_xz
 }

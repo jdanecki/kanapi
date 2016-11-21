@@ -27,10 +27,6 @@ LIB_DEPENDS="libpng sdl zlib"
 
 export LDFLAGS="${LDFLAGS} -ldl -lpthread -lm"
 
-pkg_download() {
-	pkg_curl
-}
-
 pkg_prepare() {
 	pkg_tar_gz
 }

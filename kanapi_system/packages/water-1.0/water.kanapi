@@ -26,10 +26,6 @@ EXT=tar.gz
 
 export LIBS="-lm -ldl"
 
-pkg_download() {
-	pkg_curl
-}
-
 pkg_prepare() {
 	pkg_tar_gz
 }

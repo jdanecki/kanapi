@@ -24,10 +24,6 @@ URL="http://xorg.freedesktop.org/releases/individual/proto"
 
 . ../settings
 
-pkg_download() {
-	pkg_curl
-}
-
 pkg_prepare() {
 	pkg_tar_bz2
 }

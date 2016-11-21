@@ -28,10 +28,6 @@ LIB_DEPENDS=zlib
 
 export INCLUDES="`${PKG_CONFIG} --cflags zlib`"
 
-pkg_download() {
-	pkg_curl
-}
-
 pkg_prepare() {
 	pkg_tar_xz
 }
