@@ -177,6 +177,9 @@ m4:
 perl:
 	@$(RUN_TARGET)
 
+libtool:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
