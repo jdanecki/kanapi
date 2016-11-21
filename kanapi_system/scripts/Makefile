@@ -168,6 +168,9 @@ acl:
 libarchive:
 	@$(RUN_TARGET)
 
+e2fsprogs:
+	@$(RUN_TARGET)
+	
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
