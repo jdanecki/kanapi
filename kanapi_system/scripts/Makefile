@@ -174,6 +174,9 @@ e2fsprogs:
 m4:
 	@$(RUN_TARGET)
 
+perl:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
