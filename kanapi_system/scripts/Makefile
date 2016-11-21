@@ -162,6 +162,9 @@ flex:
 attr:
 	@$(RUN_TARGET)
 
+acl:
+	@$(RUN_TARGET)
+
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
