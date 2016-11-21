@@ -50,4 +50,5 @@ attr_ver=2.4.47
 acl_ver=2.2.52
 libarchive_ver=3.2.2
 e2fsprogs_ver=1.43.3
+m4_ver=1.4.17
 
