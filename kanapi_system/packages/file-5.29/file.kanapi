@@ -29,12 +29,25 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	pkg_configure_target
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		pkg_configure_target
+	fi
+}
+
+pkg_build() {
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		make -j ${MAKE_JOBS} MAKEINFO=true
+	fi
 }
 
 pkg_install() {
-	pkg_install_make
-	pkg_install_bin_all
-	pkg_install_libs
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		pkg_install_make
+		pkg_install_bin_all
+		pkg_install_libs
+	fi
 }
 
