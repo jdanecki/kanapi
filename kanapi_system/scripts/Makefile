@@ -8,7 +8,10 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=gzip bash busybox cgdb mc vim make git openssh sdl_image gpm
+PKGS=gzip bash busybox cgdb mc vim make git openssh sdl_image gpm native_gcc \
+	autoconf automake bison sed gettext gawk cmake file flex attr acl \
+	libarchive e2fsprogs m4 perl libtool
+
 TESTS=xflame water
 
 all: $(PKGS)
