@@ -54,4 +54,5 @@ m4_ver=1.4.17
 perl_ver=5.24.0
 libtool_ver=2.4.6
 kbproto_ver=1.0.7
+xproto_ver=7.0.31
 
