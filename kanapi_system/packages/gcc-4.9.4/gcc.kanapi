@@ -36,14 +36,13 @@ pkg_prepare() {
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-multilib \
 	--target=${KANAPI_TARGET_NAME} \
-	--build=i686-kanapi-linux-gnu \
 	--host=${KANAPI_TARGET_NAME} \
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
 	--prefix=${PREFIX} --disable-nls --disable-decimal-float \
 	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp \
-    --with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include \
+	--with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include \
 	--disable-static --enable-__cxa_atexit --enable-threads=posix --enable-libstdcxx-time
 }
 
