@@ -29,20 +29,29 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	local_copy
-	./Configure -Dprefix=${PREFIX} -Dcf_email="jacek.m.danecki@gmail.com" -Dlocincpth="${LIBC_PREFIX}/include ${KANAPI_BASE}/zlib-${zlib_ver}/include" \
-        -Dloclibpth="${LIBC_PREFIX}/lib ${KANAPI_BASE}/zlib-${zlib_ver}/lib" -Dlibswanted="pthread rt m dl nsl crypt util c z" -Dusethreads -Dcc=${KANAPI_TARGET_NAME}-gcc
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		local_copy
+		./Configure -Dprefix=${PREFIX} -Dcf_email="jacek.m.danecki@gmail.com" -Dlocincpth="${LIBC_PREFIX}/include ${KANAPI_BASE}/zlib-${zlib_ver}/include" \
+			-Dloclibpth="${LIBC_PREFIX}/lib ${KANAPI_BASE}/zlib-${zlib_ver}/lib" -Dlibswanted="pthread rt m dl nsl crypt util c z" -Dusethreads -Dcc=${KANAPI_TARGET_NAME}-gcc
+	fi
 }
 
 pkg_build() {
-	cd build
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		cd build
+		make -j ${MAKE_JOBS} MAKEINFO=true
+	fi
 }
 
 pkg_install() {
-	cd build
-	pkg_install_make
-	pkg_install_bin_all
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		cd build
+		pkg_install_make
+		pkg_install_bin_all
+	fi
 }
 
 
