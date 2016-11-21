@@ -52,7 +52,9 @@ then
 		export PATH=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin:${PATH}
 		KANAPI_PKGCONFIG=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
 	fi
+	KANAPI_CROSS=0
 else 	
+	KANAPI_CROSS=1
 	if [ -f ${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
 	then
 		KANAPI_PKGCONFIG=${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config

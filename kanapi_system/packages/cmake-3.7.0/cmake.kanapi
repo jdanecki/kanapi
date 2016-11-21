@@ -33,11 +33,24 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS}
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS}
+	fi
+}
+
+pkg_build() {
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		make -j ${MAKE_JOBS} MAKEINFO=true
+	fi
 }
 
 pkg_install() {
-	pkg_install_make
-	pkg_install_bin_all
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		pkg_install_make
+		pkg_install_bin_all
+	fi
 }
 
