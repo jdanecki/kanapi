@@ -22,8 +22,10 @@ VER=2.99.917
 URL="http://xorg.freedesktop.org/releases/individual/driver"
 EXT=tar.bz2
 #build depends on libXfont libfreetype libpng16 libfontenc
-LIB_DEPENDS="xfont fontenc freetype2 libpng "
+LIB_DEPENDS="xfont fontenc freetype2 libpng zlib"
 . ../settings
+
+export LDFLAGS="${LDFLAGS} -lm"
 
 pkg_prepare() {
 	pkg_tar_bz2
