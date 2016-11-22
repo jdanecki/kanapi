@@ -36,7 +36,6 @@ else
 	fi
 fi
 
-
 export GCC_PREFIX="${KANAPI_BASE}/gcc-${gcc_ver}"
 export BINUTILS_PREFIX="${KANAPI_BASE}/binutils-${binutils_ver}"
 export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
@@ -152,7 +151,7 @@ pkg_rebuild() {
 
 pkg_clean() {
 	echo "*** cleaning ${PACKAGE_VER} ***"
-	cd .. ; rm -rf ${PACKAGE_VER}
+	cd .. ; if [ -d ${PACKAGE_VER} ] ; then rm -rf ${PACKAGE_VER} ; fi
 }
 
 pkg_package() {
