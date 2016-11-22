@@ -250,6 +250,7 @@ pkg_install_libs() {
 			ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
 		fi
 	done
+	export LD_LIBRARY_PATH=
 	ldconfig
 }
 
