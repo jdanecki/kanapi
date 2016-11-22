@@ -161,6 +161,11 @@ pkg_tar_bz2() {
 	 tar -xjf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
 } 
 
+pkg_bz2() {
+	mkdir /kanapi_build/src/${PACKAGE_VER}
+	bzip2 -d /kanapi_build/src/${PACKAGE_FILENAME} -c > /kanapi_build/src/${PACKAGE_VER}/${PACKAGE_NAME}
+}
+
 pkg_version() {
 	echo ${PACKAGE_VER}
 }

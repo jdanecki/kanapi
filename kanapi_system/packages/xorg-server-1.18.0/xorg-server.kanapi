@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=xorg-server
+VER=1.18.0
+URL="http://xorg.freedesktop.org/releases/individual/xserver"
+EXT=tar.bz2
+#build depends on pixman-1 font-util openssl dri3proto dri2proto xf86driproto libxcb libXau xcb-util-keysyms
+LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms"
+. ../settings
+
+export CFLAGS+=" -I`pkg-config --variable=includedir xf86driproto`"
+
+pkg_prepare() {
+	pkg_tar_bz2
+}
+
+pkg_configure() {
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --disable-secure-rpc --disable-screensaver \
+	--with-xkb-bin-directory="`pkg-config --variable=prefix xkbcomp`/bin" \
+    --with-xkb-path=`pkg-config --variable=xkbconfigdir xkbcomp` \
+	--with-fontmiscdir=`pkg-config --variable=fontrootdir fontutil`/misc
+}
+
+pkg_install() {
+	pkg_install_pc
+	ln -svf ${PREFIX}/bin/X /bin64/X
+	ln -svf /kanapi_packages_x86_64/xf86-input-mouse-1.9.1/lib/xorg/modules/input/* ${PREFIX}/lib/xorg/modules/input
+	ln -svf /kanapi_packages_x86_64/xf86-input-keyboard-1.8.1/lib/xorg/modules/input/* ${PREFIX}/lib/xorg/modules/input
+	ln -svf /kanapi_packages_x86_64/xf86-input-evdev-2.10.1/lib/xorg/modules/input/* ${PREFIX}/lib/xorg/modules/input
+	ln -svf /kanapi_packages_x86_64/xf86-video-intel-master/lib/xorg/modules/drivers/* ${PREFIX}/lib/xorg/modules/drivers
+	cp -v 10-evdev.conf ${PREFIX}/share/X11/xorg.conf.d
+
+}	
+
