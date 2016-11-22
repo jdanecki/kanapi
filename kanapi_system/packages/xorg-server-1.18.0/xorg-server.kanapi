@@ -22,10 +22,11 @@ VER=1.18.0
 URL="http://xorg.freedesktop.org/releases/individual/xserver"
 EXT=tar.bz2
 #build depends on pixman-1 font-util openssl dri3proto dri2proto xf86driproto libxcb libXau xcb-util-keysyms
-LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms"
+LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms openssl libcrypto"
 . ../settings
 
-export CFLAGS+=" -I`pkg-config --variable=includedir xf86driproto`"
+export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
+export LIBS="-ldl"
 
 pkg_prepare() {
 	pkg_tar_bz2
@@ -33,19 +34,21 @@ pkg_prepare() {
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --disable-secure-rpc --disable-screensaver \
-	--with-xkb-bin-directory="`pkg-config --variable=prefix xkbcomp`/bin" \
-    --with-xkb-path=`pkg-config --variable=xkbconfigdir xkbcomp` \
-	--with-fontmiscdir=`pkg-config --variable=fontrootdir fontutil`/misc
+	--with-xkb-bin-directory="`${PKG_CONFIG} --variable=prefix xkbcomp`/bin" \
+    --with-xkb-path=`${PKG_CONFIG} --variable=xkbconfigdir xkbcomp` \
+	--with-fontmiscdir=`${PKG_CONFIG} --variable=fontrootdir fontutil`/misc \
+	--host=${KANAPI_TARGET_NAME} 
+
 }
 
 pkg_install() {
 	pkg_install_pc
-	ln -svf ${PREFIX}/bin/X /bin64/X
-	ln -svf /kanapi_packages_x86_64/xf86-input-mouse-1.9.1/lib/xorg/modules/input/* ${PREFIX}/lib/xorg/modules/input
-	ln -svf /kanapi_packages_x86_64/xf86-input-keyboard-1.8.1/lib/xorg/modules/input/* ${PREFIX}/lib/xorg/modules/input
-	ln -svf /kanapi_packages_x86_64/xf86-input-evdev-2.10.1/lib/xorg/modules/input/* ${PREFIX}/lib/xorg/modules/input
-	ln -svf /kanapi_packages_x86_64/xf86-video-intel-master/lib/xorg/modules/drivers/* ${PREFIX}/lib/xorg/modules/drivers
-	cp -v 10-evdev.conf ${PREFIX}/share/X11/xorg.conf.d
+	pkg_install_bin_all
+	mkdir ${PREFIX}/lib/xorg/modules/input
+}
 
-}	
+pkg_check() {
+	echo "LDFLAGS=${LDFLAGS}"
+}
+
 

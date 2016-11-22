@@ -29,15 +29,16 @@ pkg_download() {
 	PACKAGE_NAME=cfe
 	PACKAGE_VER=${PACKAGE_NAME}-${VER}
 	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
+	PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
 	pkg_curl
 }
 
 pkg_prepare() {
 	pkg_tar_gz
 	PACKAGE_NAME=cfe
-	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
 	PACKAGE_VER=${PACKAGE_NAME}-${VER}
 	PACKAGE_SRCDIR=/kanapi_build/src/${PACKAGE_VER}
+	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
 	pkg_tar_gz
 	ln -s ${PACKAGE_SRCDIR} /kanapi_build/src/llvm-${VER}/tools/clang
 }

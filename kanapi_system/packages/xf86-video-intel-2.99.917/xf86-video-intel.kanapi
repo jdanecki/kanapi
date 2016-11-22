@@ -35,5 +35,6 @@ pkg_configure() {
 
 pkg_install() {
 	pkg_install_make
+	ln -svf ${PREFIX}/lib/xorg/modules/drivers/* ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/lib/xorg/modules/drivers
 }	
 

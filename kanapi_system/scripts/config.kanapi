@@ -120,11 +120,11 @@ libXt_ver=1.1.5
 libXmu_ver=1.1.2
 libXpm_ver=3.5.11
 libXaw_ver=1.0.13
-xterm_ver=322
+xterm_ver=327
 xf86_input_keyboard_ver=1.8.1
 xf86_input_mouse_ver=1.9.1
 libevdev_ver=1.4.6
 mtdev_ver=1.1.5
-xf86_input_evdev=2.10.1
+xf86_input_evdev_ver=2.10.1
 xf86_video_intel_ver=2.99.917
 

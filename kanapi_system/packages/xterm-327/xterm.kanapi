@@ -18,15 +18,15 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 PACKAGE_NAME=xterm
-VER=322
+VER=327
 URL="http://invisible-island.net/datafiles/release/xterm.tar.gz"
 EXT=tar.gz
 #build depends on libXext libxcb libXau libXpm libX11 ncurses
 LIB_DEPENDS="xext xcb xau xpm x11"
 . ../settings
 
-export CFLAGS+=" ${NCURSES_HDR}/ncurses ${NCURSES_HDR}"
-export LDFLAGS+=" ${NCURSES_LIB}"
+export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
+export LIBS="${NCURSES_LDFLAGS} -ldl"
 
 pkg_download() {
 	if [ -f /kanapi_build/src/${PACKAGE_FILENAME} ] 
@@ -38,12 +38,21 @@ pkg_download() {
 	fi
 }
 
+pkg_configure() {	
+	pkg_configure_target
+}
+
 pkg_prepare() {
 	pkg_tar_gz
 }
 
+pkg_build() {
+	MAKE_JOBS=1
+	make -j ${MAKE_JOBS} MAKEINFO=true
+}
+
 pkg_install() {
 	pkg_install_make
-	pkg_install_bin
+	pkg_install_bin_all
 }	
 

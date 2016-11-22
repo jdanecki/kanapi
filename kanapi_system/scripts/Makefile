@@ -18,6 +18,17 @@ all: $(PKGS)
 
 native_gcc: gcc
 
+x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
+	util-macros fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
+	bigreqsproto randrproto renderproto fontsproto videoproto compositeproto \
+	recordproto scrnsaverproto resourceproto xineramaproto xf86dgaproto \
+	xf86vidmodeproto dri2proto dri3proto glproto presentproto pixman libxkbfile \
+	freetype font-util libfontenc libXfont xkeyboard-config xkbcomp mkfontscale \
+	mkfontdir bdftopcf font-cursor-misc libpciaccess libdrm libxshmfence pci_ids \
+	cacert libusb usbutils udev expat llvm mesa xcb-util-keysyms xinit libICE libSM \
+	libXt libXmu libXpm libXaw xterm libevdev mtdev xorg-server xf86-input-keyboard \
+	xf86-input-mouse xf86-input-evdev xf86-video-intel
+
 linux:
 	@$(RUN_TARGET)
 
@@ -357,10 +368,6 @@ mesa: libxshmfence udev expat llvm
 xcb-util-keysyms:
 	@$(RUN_TARGET)
 
-
-xorg-server: dri3proto dri2proto xf86driproto libxcb xcb-util-keysyms llvm
-	@$(RUN_TARGET)
-
 xinit: libxcb
 	@$(RUN_TARGET)
 
@@ -385,24 +392,26 @@ libXaw:
 xterm: libXext libxcb libXau libXpm libX11 ncurses
 	@$(RUN_TARGET)
 
-xf86-input-keyboard:
-	@$(RUN_TARGET)
-
-xf86-input-mouse:
-	@$(RUN_TARGET)
-
 libevdev:
 	@$(RUN_TARGET)
 
 mtdev:
 	@$(RUN_TARGET)
 
-xf86-input-evdev: mtdev libevdev libudev
+xorg-server: dri3proto dri2proto xf86driproto libxcb xcb-util-keysyms llvm
 	@$(RUN_TARGET)
 
-xf86-video-intel: libXfont freetype libpng libfontenc
+xf86-input-keyboard: xorg-server xproto inputproto
 	@$(RUN_TARGET)
 
+xf86-input-mouse: xorg-server xproto inputproto
+	@$(RUN_TARGET)
+
+xf86-input-evdev: mtdev libevdev udev xorg-server xproto inputproto
+	@$(RUN_TARGET)
+
+xf86-video-intel: libXfont freetype libpng libfontenc xorg-server xproto fontsproto pixman
+	@$(RUN_TARGET)
 
 download version prepare install clean test:
 	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )

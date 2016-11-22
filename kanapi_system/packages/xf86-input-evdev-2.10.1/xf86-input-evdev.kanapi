@@ -32,5 +32,7 @@ pkg_prepare() {
 
 pkg_install() {
 	pkg_install_pc_all
+	ln -svf ${PREFIX}/lib/xorg/modules/input/* ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/lib/xorg/modules/input
+	ln -svf ${PREFIX}/share/X11/xorg.conf.d/10-evdev.conf ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/share/X11/xorg.conf.d
 }	
 
