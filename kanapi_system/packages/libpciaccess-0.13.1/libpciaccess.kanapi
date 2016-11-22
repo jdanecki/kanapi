@@ -28,10 +28,6 @@ pkg_prepare() {
 	pkg_tar_bz2
 }
 
-pkg_configure() {
-	pkg_configure_target
-}
-
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_libs
