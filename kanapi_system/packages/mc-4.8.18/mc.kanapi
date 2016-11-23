@@ -52,4 +52,9 @@ pkg_check() {
 	echo "CFLAGS=${CFLAGS}"
 	echo "LDFLAGS=${LDFLAGS}"
 	echo "PKG_CONFIG=${PKG_CONFIG}"
+	ldd ${PKG_CONFIG}
+	echo ${LD_LIBRARY_PATH}
+	echo ${PATH}
+	echo "CROSS=${KANAPI_CROSS}"
+	echo "KANAPI_TARGET=${KANAPI_TARGET}"
 }
