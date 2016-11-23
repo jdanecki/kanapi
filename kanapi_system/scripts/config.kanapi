@@ -124,5 +124,5 @@ xf86_input_mouse_ver=1.9.1
 libevdev_ver=1.4.6
 mtdev_ver=1.1.5
 xf86_input_evdev_ver=2.10.1
-xf86_video_intel_ver=2.99.917
+xf86_video_intel_ver=bde9460
 
