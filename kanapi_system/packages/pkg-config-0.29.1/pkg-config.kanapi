@@ -47,4 +47,13 @@ pkg_check() {
 	echo "PKG_CONFIG=${PKG_CONFIG}"
 	pkg-config --exists --print-errors "glib-2.0 >= 2.16"; echo $?
 	echo "GLIB_CFLAGS=${GLIB_CFLAGS}"
+	for p in glib libffi zlib
+	do
+		PKG_VER=${p}_ver
+		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/lib/pkgconfig/*.pc 
+		do
+			echo "ln -svf $f ${PKGCONFIG_DIR}/`basename $f`"
+		done
+	done
+
 }
