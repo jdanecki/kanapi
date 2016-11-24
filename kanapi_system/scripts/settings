@@ -280,3 +280,7 @@ pkg_test() {
 	make -C ../../tests test_${PACKAGE_NAME} KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME} KANAPI_BASE=${KANAPI_BASE}
 }
 
+pkg_check() {
+	echo "!!! Add your tests in ${PACKAGE_NAME}.kanapi file !!!"
+}
+

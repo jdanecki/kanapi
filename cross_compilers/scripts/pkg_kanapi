@@ -2,6 +2,7 @@
 
 PKG_FILE=$1
 PKG_ACTION="pkg_$2"
+PKG_VERBOSE="$3"
 
 #echo "running $PKG_FILE ${PKG_ACTION}"
 . ./$PKG_FILE
