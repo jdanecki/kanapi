@@ -8,15 +8,20 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=gzip bash busybox cgdb mc vim make git openssh sdl_image gpm \
+PKGS=gzip bash busybox cgdb mc vim make git openssh gpm \
 	autoconf automake bison sed gettext gawk cmake file flex attr acl \
 	libarchive e2fsprogs m4 perl libtool
 
-TESTS=xflame water
+sbs: busybox bash make autoconf automake bison sed gettext gawk cmake file flex attr \
+	acl libarchive e2fsprogs m4 ncurses less perl procps zlib libtool git
+
+#coreutils grep tar findutils patch util-linux
 
 all: rootfs native_gcc $(PKGS)
 
 native_gcc: gcc
+
+sdl-support: sdl_image
 
 x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	util-macros fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -28,6 +33,8 @@ x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	cacert libusb usbutils udev expat llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libXpm libXaw xterm libevdev mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel
+
+tests: xflame water
 
 linux:
 	@$(RUN_TARGET)
