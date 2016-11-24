@@ -314,7 +314,10 @@ libfontenc: zlib font-util
 libXfont: zlib
 	@$(RUN_TARGET)
 
-xkeyboard-config:
+xml-parser:
+	@$(RUN_TARGET)
+
+xkeyboard-config: xml-parser
 	@$(RUN_TARGET)
 
 xkbcomp: libxcb

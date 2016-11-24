@@ -13,4 +13,5 @@ xf86-input-keyboard_ver=$(xf86_input_keyboard_ver)
 xf86-input-mouse_ver=$(xf86_input_mouse_ver)
 xf86-input-evdev_ver=$(xf86_input_evdev_ver)
 xf86-video-intel_ver=$(xf86_video_intel_ver)
+xml-parser_ver=${xml_parser_ver}
 
