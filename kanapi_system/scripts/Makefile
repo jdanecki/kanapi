@@ -8,16 +8,15 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-PKGS=gzip bash busybox cgdb mc vim make git openssh gpm \
-	autoconf automake bison sed gettext gawk cmake file flex attr acl \
-	libarchive e2fsprogs m4 perl libtool
+all: rootfs sbs kbs native_gcc sdl-support x-support
 
+#SBS - second build system 
 sbs: busybox bash make autoconf automake bison sed gettext gawk cmake file flex attr \
-	acl libarchive e2fsprogs m4 ncurses less perl procps zlib libtool git
+	acl libarchive e2fsprogs m4 ncurses perl libtool git
+#coreutils grep tar findutils patch util-linux less procps
 
-#coreutils grep tar findutils patch util-linux
-
-all: rootfs native_gcc $(PKGS)
+#KBS - KaNaPi Base System
+kbs: gzip cgdb mc vim openssh gpm
 
 native_gcc: gcc
 
@@ -63,7 +62,7 @@ gcc: binutils
 
 # PACKAGES
 
-zlib: cross_gcc
+zlib:
 	@$(RUN_TARGET)
 
 libffi: cross_gcc
@@ -141,7 +140,7 @@ xflame: sdl
 water: sdl
 	@$(RUN_TARGET)
 
-libpng: zlib
+libpng:
 	@$(RUN_TARGET)
 
 sdl_image: libpng sdl
@@ -315,10 +314,10 @@ freetype: libpng
 font-util:
 	@$(RUN_TARGET)
 
-libfontenc: zlib font-util
+libfontenc: font-util
 	@$(RUN_TARGET)
 
-libXfont: zlib
+libXfont: 
 	@$(RUN_TARGET)
 
 xml-parser:
@@ -423,8 +422,8 @@ xf86-input-evdev: mtdev libevdev udev xorg-server xproto inputproto
 xf86-video-intel: libXfont freetype libpng libfontenc xorg-server xproto fontsproto pixman
 	@$(RUN_TARGET)
 
-download version prepare install clean test:
-	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
+#download version prepare install clean test:
+#	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
 help:	
 	make kanapi_help
