@@ -20,33 +20,31 @@
 PACKAGE_NAME=xf86-video-intel
 VER=bde9460
 URL="git://anongit.freedesktop.org/xorg/driver"
-EXT=tar.bz2
+EXT=
 #build depends on libXfont libfreetype libpng16 libfontenc
-LIB_DEPENDS="xfont fontenc freetype2 libpng zlib"
+LIB_DEPENDS="xfont fontenc freetype2 libpng zlib fixesproto"
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lm"
 
 pkg_download() {
-	#get sources from git
+	pkg_git_clone
 }
 
 pkg_prepare() {
-	pkg_tar_bz2
+	pkg_git_checkout
 }
 
 pkg_configure() {
 	local_copy
-	if [ "`lsb_release -is`" = "KaNaPi" ]
-	then 
-		KANAPI_AC_SCRIPTS="-I /kanapi_packages/libtool-2.4/share/aclocal \
-		 -I /kanapi_packages/autoconf-2.69/share/autoconf \
-		 -I /kanapi_packages/util-macros-master/share/aclocal \
-		 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal"
-	fi
+	KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
+	 -I ${KANAPI_BASE}/autoconf-${autoconf_ver}/share/autoconf \
+	 -I ${KANAPI_BASE}/util-macros-${util_macros_ver}/share/aclocal \
+	 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal \
+	 -I ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/share/aclocal"
 	autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
 	
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --disable-uxa
+	./configure --prefix=$PREFIX --disable-uxa
 }
 
 pkg_build() {
