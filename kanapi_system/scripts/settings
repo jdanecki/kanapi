@@ -1,3 +1,5 @@
+#set -x
+
 export LANGUAGE="C"
 export LC_ALL="C"
 export LC_MESSAGES="C"
@@ -70,9 +72,13 @@ then
 	export PKGCONFIG_DIR=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig
 	if [[ -n ${LIB_DEPENDS} ]]
 	then
-		export LDFLAGS=`${KANAPI_PKGCONFIG} --libs ${LIB_DEPENDS}`
-		export LD_LIBRARY_PATH=`${KANAPI_PKGCONFIG} --variable=libdir ${LIB_DEPENDS} | sed "s/ /:/g"`:${LD_LIBRARY_PATH}
-		export CFLAGS=`${KANAPI_PKGCONFIG} --cflags ${LIB_DEPENDS}`
+		${KANAPI_PKGCONFIG} --exists ${LIB_DEPENDS}
+		if [ "$?" = "0" ]
+		then
+			export LDFLAGS=`${KANAPI_PKGCONFIG} --libs ${LIB_DEPENDS}`
+			export LD_LIBRARY_PATH=`${KANAPI_PKGCONFIG} --variable=libdir ${LIB_DEPENDS} | sed "s/ /:/g"`:${LD_LIBRARY_PATH}
+			export CFLAGS=`${KANAPI_PKGCONFIG} --cflags ${LIB_DEPENDS}`
+		fi
 	fi
 else
 	if [ -d ${KANAPI_BASE}/glib-${glib_ver} ]
@@ -225,6 +231,13 @@ pkg_install_pc_all() {
 	do
 		ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
 	done
+}
+
+pkg_uninstall() {
+	if [ -d ${PREFIX} ]
+	then	
+		rm -rf /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages/${PACKAGE_VER}
+	fi
 }
 
 pkg_rebuild() {

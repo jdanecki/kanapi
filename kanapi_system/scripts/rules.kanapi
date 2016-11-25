@@ -28,6 +28,9 @@ kanapi_install: kanapi_build
 	pkg_kanapi $(PKG).kanapi install $(V)
 	$(call DATE_RULE)
 
+kanapi_uninstall:
+	pkg_kanapi $(PKG).kanapi uninstall $(V)
+
 kanapi_clean:
 	pkg_kanapi $(PKG).kanapi clean $(V)
 
