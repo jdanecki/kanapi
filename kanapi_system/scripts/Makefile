@@ -27,9 +27,9 @@ x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	bigreqsproto randrproto renderproto fontsproto videoproto compositeproto \
 	recordproto scrnsaverproto resourceproto xineramaproto xf86dgaproto \
 	xf86vidmodeproto dri2proto dri3proto glproto presentproto pixman libxkbfile \
-	freetype font-util libfontenc libXfont xkeyboard-config xkbcomp mkfontscale \
+	freetype font-util libfontenc libXfont expat xkeyboard-config xkbcomp mkfontscale \
 	mkfontdir bdftopcf font-cursor-misc libpciaccess libdrm libxshmfence pci_ids \
-	cacert libusb usbutils udev expat llvm mesa xcb-util-keysyms xinit libICE libSM \
+	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libXpm libXaw xterm libevdev mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel
 
