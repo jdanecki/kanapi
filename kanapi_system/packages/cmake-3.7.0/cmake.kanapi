@@ -31,7 +31,8 @@ pkg_prepare() {
 pkg_configure() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS}
+		${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS} \
+		-- -DBUILD_CursesDialog=OFF
 	fi
 }
 
@@ -50,3 +51,7 @@ pkg_install() {
 	fi
 }
 
+pkg_check() {
+	echo "CFLAGS=${CFLAGS}"
+	echo "LDFLAGS=${LDFLAGS}"
+}
