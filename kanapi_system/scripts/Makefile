@@ -11,8 +11,8 @@ include $(BASE)../scripts/rules.kanapi
 all: rootfs sbs kbs native_gcc sdl-support x-support
 
 #SBS - second build system 
-sbs: busybox bash make autoconf automake bison sed gettext gawk cmake file flex attr \
-	acl libarchive e2fsprogs m4 ncurses perl libtool git
+sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake file flex attr \
+	acl libarchive e2fsprogs m4 perl libtool git
 #coreutils grep tar findutils patch util-linux less procps
 
 #KBS - KaNaPi Base System
@@ -20,7 +20,7 @@ kbs: gzip cgdb mc vim openssh gpm
 
 native_gcc: gcc
 
-sdl-support: sdl_image
+sdl-support: SDL_image
 
 x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	util-macros fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -65,7 +65,7 @@ gcc: binutils
 zlib:
 	@$(RUN_TARGET)
 
-libffi: cross_gcc
+libffi:
 	@$(RUN_TARGET)
 
 glib: libffi zlib
@@ -92,7 +92,7 @@ busybox:
 ncurses:
 	@$(RUN_TARGET)
 
-gdb: ncurses
+gdb:
 	@$(RUN_TARGET)
 
 readline:
@@ -116,7 +116,7 @@ slang: zlib
 mc: libssh2 slang glib
 	@$(RUN_TARGET)
 
-vim: ncurses
+vim: 
 	@$(RUN_TARGET)
 
 make:
@@ -131,22 +131,22 @@ openssl:
 openssh: openssl
 	@$(RUN_TARGET)
 
-sdl:
+SDL:
 	@$(RUN_TARGET)
 
-xflame: sdl
+xflame: SDL
 	@$(RUN_TARGET)
 
-water: sdl
+water: SDL
 	@$(RUN_TARGET)
 
 libpng:
 	@$(RUN_TARGET)
 
-sdl_image: libpng sdl
+SDL_image: libpng SDL
 	@$(RUN_TARGET)
 
-#sdl2:
+#SDL2:
 #	@$(RUN_TARGET)
 
 gpm:
@@ -320,10 +320,10 @@ libfontenc: font-util
 libXfont: 
 	@$(RUN_TARGET)
 
-xml-parser:
+XML-Parser:
 	@$(RUN_TARGET)
 
-xkeyboard-config: xml-parser
+xkeyboard-config: XML-Parser
 	@$(RUN_TARGET)
 
 xkbcomp: libxcb
@@ -398,7 +398,7 @@ libXpm:
 libXaw:
 	@$(RUN_TARGET)
 
-xterm: libXext libxcb libXau libXpm libX11 ncurses
+xterm: libXext libxcb libXau libXpm libX11 
 	@$(RUN_TARGET)
 
 libevdev:
