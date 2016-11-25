@@ -17,9 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xkeyboard-config
-VER=2.16
-URL="http://xorg.freedesktop.org/releases/individual/data/xkeyboard-config"
+PACKAGE_NAME=intltool
+VER=0.40.6
+URL="http://ftp.acc.umu.se/pub/gnome/sources/intltool/0.40/"
 EXT=tar.bz2
 #build depends on
 . ../settings
@@ -31,9 +31,7 @@ pkg_prepare() {
 }
 
 pkg_install() {
-	pkg_install_pc_share
-}	
-
-pkg_check() {
-	perl --version
+	pkg_install_make
+	pkg_install_bin_all
 }
+

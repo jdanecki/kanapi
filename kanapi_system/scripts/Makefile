@@ -323,7 +323,13 @@ libXfont:
 XML-Parser:
 	@$(RUN_TARGET)
 
-xkeyboard-config: XML-Parser
+intltool: XML-Parser
+	@$(RUN_TARGET)
+
+libxslt:
+	@$(RUN_TARGET)
+
+xkeyboard-config: intltool libxslt
 	@$(RUN_TARGET)
 
 xkbcomp: libxcb
