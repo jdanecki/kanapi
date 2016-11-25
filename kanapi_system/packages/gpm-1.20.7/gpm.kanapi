@@ -49,19 +49,18 @@ pkg_configure() {
 	release="$version"
 	AM_INIT_AUTOMAKE
 eof
-
 	cat configure.ac.footer >> configure.ac
 
-	if [ "`lsb_release -is`" = "KaNaPi" ]
-	then 
-		KANAPI_AC_SCRIPTS="-I /kanapi_packages/libtool-2.4/share/aclocal \
-		 -I /kanapi_packages/autoconf-2.69/share/autoconf \
-		 -I /kanapi_packages/util-macros-master/share/aclocal \
-		 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal"
-	fi
-	 autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
-	 export CFLAGS="${NCURSES_CFLAGS}"
-	 export LDFLAGS="${NCURSES_LDFLAGS}"
+	KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
+	 -I ${KANAPI_BASE}/autoconf-${autoconf_ver}/share/autoconf \
+	 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal"
+
+	# -I ${KANAPI_BASE}/util-macros-${util_macros_ver}/share/aclocal \
+
+	autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
+
+	export CFLAGS="${NCURSES_CFLAGS}"
+	export LDFLAGS="${NCURSES_LDFLAGS}"
 
 	./configure	--prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
 }
