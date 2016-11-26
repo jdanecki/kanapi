@@ -326,7 +326,10 @@ XML-Parser:
 intltool: XML-Parser
 	@$(RUN_TARGET)
 
-libxslt:
+libxml2:
+	@$(RUN_TARGET)
+
+libxslt: libxml2
 	@$(RUN_TARGET)
 
 xkeyboard-config: intltool libxslt
