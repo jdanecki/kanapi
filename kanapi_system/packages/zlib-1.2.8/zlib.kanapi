@@ -41,5 +41,6 @@ pkg_build() {
 pkg_install() {
 	cd build
 	make -j ${MAKE_JOBS} install MAKEINFO=true
+	pkg_install_libs
 }
 

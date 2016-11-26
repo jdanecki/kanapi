@@ -229,7 +229,10 @@ pkg_install_pc_all() {
 	pkg_install_make
 	for i in ${PREFIX}/lib/pkgconfig/*
 	do
-		ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
+		if [ -f $i ]
+		then
+			ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
+		fi
 	done
 }
 
