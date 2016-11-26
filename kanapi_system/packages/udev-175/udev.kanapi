@@ -32,9 +32,9 @@ pkg_prepare() {
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --with-pci-ids-path=${KANAPI_BASE}/pci_ids-${pci_ids_ver}/pci.ids \
-		--with-rootprefix=${PREFIX} --without-selinux --disable-introspection --disable-gudev \
+		--without-selinux --disable-introspection --disable-gudev \
 		--with-usb-ids-path=${KANAPI_BASE}/usbutils-${usbutils_ver}/share \
-		--disable-keymap --disable-mtd_probe
+		--disable-keymap --disable-mtd_probe --host=${KANAPI_TARGET_NAME} 
 }
 
 pkg_install() {
