@@ -9,6 +9,7 @@ test_gcc: test_gcc0.c test_gcc1.c
 	. ./set_variables; echo $$PATH;  $(KANAPI_BASE)/gcc-$(gcc_ver)/bin/$(KANAPI_TARGET_NAME)-gcc test_gcc0.c -Wall -o $(KANAPI_BASE)/tests_results/test_gcc0
 	. ./set_variables; echo $$PATH;  $(KANAPI_BASE)/gcc-$(gcc_ver)/bin/$(KANAPI_TARGET_NAME)-gcc test_gcc1.c -Wall -o $(KANAPI_BASE)/tests_results/test_gcc1
 	. ./set_variables; echo $$PATH;  $(KANAPI_BASE)/gcc-$(gcc_ver)/bin/$(KANAPI_TARGET_NAME)-gcc test_lm.c -Wall -o $(KANAPI_BASE)/tests_results/test_lm -lm
+	. ./set_variables; echo $$PATH;  $(KANAPI_BASE)/gcc-$(gcc_ver)/bin/$(KANAPI_TARGET_NAME)-gcc test_backtrace.c -Wall -o $(KANAPI_BASE)/tests_results/test_backtrace
 
 test_libstdcpp: test_libstdcpp.cpp test_threads.cpp
 	@echo "tests for $@ for TARGET=$(KANAPI_TARGET_NAME)"
