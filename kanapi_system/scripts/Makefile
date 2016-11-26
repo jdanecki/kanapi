@@ -8,7 +8,7 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-all: rootfs sbs kbs native_gcc sdl-support x-support
+all: cross_gcc rootfs sbs kbs native_gcc sdl-support x-support
 
 #SBS - second build system 
 sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake file flex attr \
