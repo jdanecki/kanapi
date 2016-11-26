@@ -109,6 +109,11 @@ then
 	LIBGCRYPT_LDFLAGS=`${LIBGCRYPT_CONFIG} --libs`
 fi
 
+if [ "${KANAPI_TARGET}" = "x86_64" ]
+then
+	CFLAGS="${CFLAGS} -fPIC"
+fi
+
 NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
 MAKE_JOBS=${NR_CPUS}
 
