@@ -21,8 +21,8 @@ PACKAGE_NAME=xterm
 VER=327
 URL="http://invisible-island.net/datafiles/release/xterm.tar.gz"
 EXT=tar.gz
-#build depends on libXext libxcb libXau libXpm libX11 ncurses
-LIB_DEPENDS="xext xcb xau xpm x11"
+LIB_DEPENDS="xext xcb xau xpm x11 uuid"
+
 . ../settings
 
 export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
