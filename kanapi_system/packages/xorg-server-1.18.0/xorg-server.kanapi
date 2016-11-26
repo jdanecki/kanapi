@@ -25,8 +25,14 @@ EXT=tar.bz2
 LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms openssl libcrypto"
 . ../settings
 
-export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
+export CFLAGS="-g -Og ${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
 export LIBS="-ldl"
+
+if [ ${KANAPI_TARGET} = "x86_64" ]
+then
+	#use gcc 4.8.5, as 4.9.4 has problem with backtrace()
+	export CC="${KANAPI_CROSS_BASE}/gcc-4.8.5/bin/${KANAPI_TARGET_NAME}-gcc"
+fi
 
 pkg_prepare() {
 	pkg_tar_bz2
@@ -49,6 +55,9 @@ pkg_install() {
 
 pkg_check() {
 	echo "LDFLAGS=${LDFLAGS}"
+	echo "PATH=${PATH}"
+	echo "CC=${CC}"
+	${CC} --version
 }
 
 

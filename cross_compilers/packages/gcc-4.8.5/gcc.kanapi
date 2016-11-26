@@ -25,6 +25,8 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
+export gcc_ver=${VER}
+
 pkg_prepare() {
 	pkg_tar_bz2
 }

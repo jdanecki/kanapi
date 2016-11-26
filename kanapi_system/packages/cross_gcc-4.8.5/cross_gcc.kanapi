@@ -25,6 +25,8 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
+export gcc_ver=${VER}
+
 pkg_prepare() {
 	pkg_tar_bz2
 	cat ${PACKAGE_SRCDIR}/gcc/limitx.h ${PACKAGE_SRCDIR}/gcc/glimits.h ${PACKAGE_SRCDIR}/gcc/limity.h > ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/include-fixed/limits.h 
@@ -53,7 +55,6 @@ pkg_install() {
 		LINKER_PATH=lib64
 		ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64
 		ln -s ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/libstdc++.so.6 ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/libstdc++.so
-		ln -s ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib64/* ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
 	fi
 	if [ "${KANAPI_TARGET}" = "i686" ]
 	then
