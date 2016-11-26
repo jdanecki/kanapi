@@ -10,6 +10,7 @@ export LANG="C"
 KANAPI_TARGET_NAME=${KANAPI_TARGET}-kanapi-linux-gnu
 KANAPI_VER=`cat ../../scripts/KANAPI_VER`
 KANAPI_BASE=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
+KANAPI_HOST_BASE=/kanapi_${KANAPI_VER}/`uname -m`/packages
 KANAPI_CROSS_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
 KANAPI_BUILD_SRC=/kanapi_build/src
 
