@@ -24,7 +24,7 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
-export LDFLAGS="-lpthread"
+export LDFLAGS="-lpthread -ldl"
 
 pkg_prepare() {
 	pkg_tar_xz
@@ -35,7 +35,7 @@ pkg_configure() {
 }
 
 pkg_build() {
-#	MAKE_JOBS=1
+	MAKE_JOBS=1
 	make -j ${MAKE_JOBS} MAKEINFO=true
 }
 
