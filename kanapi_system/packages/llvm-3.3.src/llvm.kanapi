@@ -40,7 +40,7 @@ pkg_prepare() {
 	PACKAGE_SRCDIR=/kanapi_build/src/${PACKAGE_VER}
 	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
 	pkg_tar_gz
-	ln -s ${PACKAGE_SRCDIR} /kanapi_build/src/llvm-${VER}/tools/clang
+	ln -svf ${PACKAGE_SRCDIR} /kanapi_build/src/llvm-${VER}/tools/clang
 }
 
 pkg_configure() {
