@@ -125,6 +125,7 @@ pkg_install() {
 
 pkg_check() {
 	ld --version
-	echo PATH=$PATH
-
+	echo "PATH=$PATH"
+	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+	gcc --version
 }
