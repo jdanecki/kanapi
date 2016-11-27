@@ -431,6 +431,9 @@ xf86-input-evdev: mtdev libevdev udev xorg-server xproto inputproto
 xf86-video-intel: libXfont freetype libpng libfontenc xorg-server xproto fontsproto pixman
 	@$(RUN_TARGET)
 
+xf86-video-vesa: xorg-server
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
