@@ -17,6 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
+#1.5GB
+IMAGE_SIZE_MB=1536
+IMAGE_SIZE_BLOCKS=$(($IMAGE_SIZE_MB * 1024))
+
 if [ -z "$1" ]
 then
 	echo "Run script with arch name, eg:"
@@ -30,29 +34,45 @@ export ARCH=$1
 export KANAPI_VER=`cat ../scripts/KANAPI_VER`
 . ../scripts/config.kanapi
 
-echo "Preparing image for KaNaPi ${KANAPI_VER} on ${ARCH}"
+echo "Preparing image for KaNaPi ${KANAPI_VER} on ${ARCH} size=$((${IMAGE_SIZE_BLOCKS} / 1024)) MB"
 
 if [ ! -f kanapi_image.${ARCH} ]
 then	
-	dd if=/dev/zero of=kanapi_image.${ARCH} bs=1024 count=524288
+	dd if=/dev/zero of=kanapi_image.${ARCH} bs=1024 count=${IMAGE_SIZE_BLOCKS}
 fi
 sync
 losetup /dev/loop0 kanapi_image.${ARCH}
 
-echo "Create 2 partitions:"
-echo "first as vfat for syslinux- about 50MB "
-echo "second as linux partition - /kanapi_packages"
-
+echo "************************************************"
+echo "*** Create 2 partitions:"
+echo "*** first as vfat for syslinux- about 50MB "
+echo "*** second as linux partition - /kanapi_packages"
+echo "************************************************"
 fdisk /dev/loop0
 
 #kpartx -a /dev/loop0
+
+echo "Looking for new partitions"
+cat /proc/partitions
 PARTPROBE=`which partprobe`
 if [ -n "${PARTPROBE}" ]
 then
 	partprobe /dev/loop0
 else
-	partx -d /dev/loop0
+	grep loop0p1 /proc/partitions
+	if [ "$?" = "0" ]
+	then
+		partx -d /dev/loop0
+	fi
 	partx -a /dev/loop0
+	grep loop0p1 /proc/partitions
+	if [ "$?" = "0" ]
+	then
+		echo "Partitions created"
+	else
+		echo "Partitions were not created"
+		exit
+	fi
 fi
 
 mkfs.vfat -I /dev/loop0p1
