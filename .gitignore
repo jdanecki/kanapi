@@ -4,5 +4,9 @@ cross_compilers/x86_64
 kanapi_system/arm
 kanapi_system/x86
 kanapi_system/x86_64
+kanapi_system/test_system/initrd-i686
+kanapi_system/test_system/initrd-x86_64
+kanapi_system/test_system/initrd-arm
+kanapi_system/test_system/modules-arm
 kanapi_initrd
 sources/RELEASES
