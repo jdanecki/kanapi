@@ -26,7 +26,8 @@ PAR3=$3
 SF_URL=http://downloads.sourceforge.net/project/kanapi/packages/v${KANAPI_VERSION}
 
 download() {
-#	wget $1 -O $2
+#	wget $1 -O $2a
+	echo "downloading $1"
 	if [ "`lsb_release -is`" = "KaNaPi" ]
 		then 
 			CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi curl -L $1 -o $2
@@ -44,12 +45,9 @@ pkg_pull() {
 		PKG_ARCH=`uname -m`
 	fi
 	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages.md5
-	if [ ! -f /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages.md5 ] 
-	then
-		echo "getting list of packages for ${PKG_ARCH}"
-		download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
-	fi
-	echo "looking for ${PAR2}"
+	echo "getting list of packages for ${PKG_ARCH}"
+	download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
+	echo "looking for ${PAR2} in ${PKG_ARCH}"
 	PKGS=`grep ${PAR2} ${PKGS_LIST} | awk '{print $2}'`
 	for p in ${PKGS}
 	do
@@ -67,11 +65,8 @@ pkg_pull_all() {
 		PKG_ARCH=`uname -m`
 	fi
 	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages.md5
-	if [ ! -f /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages.md5 ] 
-	then
-		echo "getting list of packages for ${PKG_ARCH}"
-		download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
-	fi
+	echo "getting list of packages for ${PKG_ARCH}"
+	download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
 	PKGS=`cat ${PKGS_LIST} | awk '{print $2}'`
 	for p in ${PKGS}
 	do
@@ -137,12 +132,7 @@ pkg_check() {
 		PKG_ARCH=`uname -m`
 	fi
 	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages.md5
-	if [ ! -f /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages.md5 ] 
-	then
-		echo "getting list of packages for ${PKG_ARCH}"
-		download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
-	fi
-	echo "looking for ${PAR2}"
+	echo "looking for ${PAR2} for ${PKG_ARCH}"
 	grep ${PAR2} ${PKGS_LIST} > ${PAR2}.md5
 	md5sum -c ${PAR2}.md5
 }

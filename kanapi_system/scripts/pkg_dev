@@ -62,7 +62,7 @@ pkg_md5() {
 	do 
 		md5sum $i  >> packages
 	done
-	cat packages | awk '{print $2 " " $1}' | sort  | awk '{print $2 " " $1 }' > packages.md5
+	cat packages | awk '{print $2 " " $1}' | sort  | awk '{print $2 "  " $1 }' > packages.md5
 	rm packages
 	cd ..
 }
