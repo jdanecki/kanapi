@@ -34,6 +34,7 @@ for d in bin dev etc lib proc run sys tmp var init init-${ARCH}
 do
 	cp -ar ${KANAPI_BASE}/$d .
 done
+ln -s bin sbin
 
 mkdir packages
 cp -ar ${KANAPI_BASE}/packages/busybox* packages

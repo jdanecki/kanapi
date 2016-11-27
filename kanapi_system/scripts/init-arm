@@ -60,6 +60,11 @@ do
 done
 echo " disk found, mounting"
 mount /dev/sda2 /packages
+
+/kanapi_${KANAPI_VER}/${ARCH}/packages/udev-175/libexec/udevd --daemon
+udevadm trigger
+udevadm settle
+
 /kanapi_packages/config/network
 openvt
 openvt

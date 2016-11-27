@@ -43,6 +43,10 @@ mount -t devpts devpts /dev/pts
 mount -t debugfs debugs /sys/kernel/debug
 mount /dev/sda2 /packages
 
+/kanapi_${KANAPI_VER}/${ARCH}/packages/udev-175/libexec/udevd --daemon
+udevadm trigger
+udevadm settle
+
 gpm -m /dev/input/mice -t exps2
 
 /kanapi_packages/config/network
