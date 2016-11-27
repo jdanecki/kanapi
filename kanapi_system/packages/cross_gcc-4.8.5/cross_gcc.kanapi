@@ -67,8 +67,29 @@ pkg_install() {
 		LINKER_PATH=lib
 	fi
 
-
 	${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
 		> ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
 
 }	
+
+pkg_check() {
+	if [ "${KANAPI_TARGET}" = "x86_64" ]
+	then
+		LINKER_NAME=ld-linux-x86-64.so.2
+		LINKER_PATH=lib64
+	fi
+	if [ "${KANAPI_TARGET}" = "i686" ]
+	then
+		LINKER_NAME=ld-linux.so.2
+		LINKER_PATH=lib
+	fi
+	if [ "${KANAPI_TARGET}" = "arm" ]
+	then
+		LINKER_NAME=ld-linux.so.3
+		LINKER_PATH=lib
+	fi
+
+	echo "${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc"
+  	echo "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g"
+	echo "${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs"
+}
