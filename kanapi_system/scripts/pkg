@@ -119,7 +119,7 @@ pkg_check_all() {
 	fi
 	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages.md5
 	echo "Checking packages with ${PKGS_LIST}"
-	md5sum -c ${PKGS_LIST} 
+	md5sum -w -c ${PKGS_LIST} 
 	echo "Result: $?"
 }
 
@@ -134,7 +134,7 @@ pkg_check() {
 	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages.md5
 	echo "looking for ${PAR2} for ${PKG_ARCH}"
 	grep ${PAR2} ${PKGS_LIST} > ${PAR2}.md5
-	md5sum -c ${PAR2}.md5
+	md5sum -w -c ${PAR2}.md5
 }
 
 pkg_help() {
