@@ -156,5 +156,9 @@ pkg_help() {
 	echo "check package [ arm | i686 | x86_64 ] - check md5 sum of package"
 }
 
+pkg_() {
+	pkg_help
+}
+
 ${PKG_ACTION}
 
