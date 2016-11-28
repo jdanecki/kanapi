@@ -31,11 +31,22 @@ pkg_prepare() {
 }
 
 pkg_configure_target() {	
+	if [ ${KANAPI_CROSS} -eq 1 ]
+	then
+		export HELP2MAN=true
+		export PERL=false
+	fi
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --enable-install-program=arch
 }
 
 pkg_install() {
 	pkg_install_make
 	pkg_install_bin_all
+}
+
+pkg_check() {
+	perl -v
+	echo "PATH=${PATH}"
+
 }
 

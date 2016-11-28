@@ -47,7 +47,7 @@ pkg_install() {
 		mkdir -p ${KANAPI_BASE}/../$i
 	done
 	mkdir -p /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}
-	ln -s ../../packages /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
+	ln -svf ../../packages /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
 	cp ../../scripts/start_${KANAPI_TARGET} ${KANAPI_BASE}/../
 	for p in glib libffi zlib
 	do
@@ -68,12 +68,12 @@ pkg_install() {
 			ln -svf $f ${KANAPI_BASE}/../bin/`basename $f`
 		done	
 	done
-	ln -s ${LIBC_PREFIX}/sbin/ldconfig ${KANAPI_BASE}/../bin
-	ln -s ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ${KANAPI_BASE}/../bin
+	ln -svf ${LIBC_PREFIX}/sbin/ldconfig ${KANAPI_BASE}/../bin
+	ln -svf ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ${KANAPI_BASE}/../bin
 	cp -ar /dev/* ${KANAPI_BASE}/../dev
 	cp -a ../../configs/etc/* ${KANAPI_BASE}/../etc
 	cp ../../scripts/init-${KANAPI_TARGET} ${KANAPI_BASE}/../
-	ln -s init-${KANAPI_TARGET} ${KANAPI_BASE}/../init
-	ln -s kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages ${KANAPI_BASE}/../kanapi_packages
+	ln -svf init-${KANAPI_TARGET} ${KANAPI_BASE}/../init
+	ln -svf kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages ${KANAPI_BASE}/../kanapi_packages
 }	
 

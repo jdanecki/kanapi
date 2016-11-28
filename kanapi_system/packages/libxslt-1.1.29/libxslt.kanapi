@@ -33,6 +33,13 @@ pkg_prepare() {
 	pkg_tar_gz
 }
 
+pkg_configure_target() {	
+#	export XML_CONFIG=
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-crypto \
+		ac_cv_path_LIBGCRYPT_CONFIG=${LIBGCRYPT_CONFIG} \
+		ac_cv_path_XML_CONFIG="`${PKG_CONFIG} --variable=prefix libxml-2.0`/bin/xml2-config"
+}
+
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_bin_all
@@ -40,7 +47,13 @@ pkg_install() {
 }
 
 pkg_check() {
-	echo "${LIBGCRYPT_LDFLAGS}"
+	echo "LIBGCRYPT_LDFLAGS=${LIBGCRYPT_LDFLAGS}"
+	echo "LIBGCRYPT_CONFIG=${LIBGCRYPT_CONFIG}"
 	echo $PATH
+	ls -l ${LIBGCRYPT_CONFIG}
+	echo "PKG_CONFIG=${PKG_CONFIG}"
+	echo "`${PKG_CONFIG} --variable=prefix libxml-2.0`"
+	DIR=`${PKG_CONFIG} --variable=prefix libxml-2.0`
+	${DIR}/bin/xml2-config --version
 }
 

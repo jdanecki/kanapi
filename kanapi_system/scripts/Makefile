@@ -12,8 +12,8 @@ all: cross_gcc rootfs sbs kbs native_gcc sdl-support x-support
 
 #SBS - second build system 
 sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
-	coreutils \
-	file flex attr acl libarchive e2fsprogs m4 perl libtool git
+	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
+	coreutils
 #grep tar findutils patch util-linux less procps
 
 #KBS - KaNaPi Base System
@@ -32,7 +32,7 @@ x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	mkfontdir bdftopcf font-cursor-misc libpciaccess libdrm libxshmfence pci_ids \
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libXpm libXaw xterm libevdev mtdev xorg-server xf86-input-keyboard \
-	xf86-input-mouse xf86-input-evdev xf86-video-intel
+	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa
 
 tests: xflame water
 
