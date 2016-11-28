@@ -11,9 +11,10 @@ include $(BASE)../scripts/rules.kanapi
 all: cross_gcc rootfs sbs kbs native_gcc sdl-support x-support
 
 #SBS - second build system 
-sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake file flex attr \
-	acl libarchive e2fsprogs m4 perl libtool git
-#coreutils grep tar findutils patch util-linux less procps
+sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
+	coreutils \
+	file flex attr acl libarchive e2fsprogs m4 perl libtool git
+#grep tar findutils patch util-linux less procps
 
 #KBS - KaNaPi Base System
 kbs: gzip cgdb mc vim openssh gpm
@@ -432,6 +433,9 @@ xf86-video-intel: libXfont freetype libpng libfontenc xorg-server xproto fontspr
 	@$(RUN_TARGET)
 
 xf86-video-vesa: xorg-server
+	@$(RUN_TARGET)
+
+coreutils:
 	@$(RUN_TARGET)
 
 #download version prepare install clean test:

@@ -130,4 +130,5 @@ intltool_ver=0.40.6
 libxslt_ver=1.1.29
 libxml2_ver=2.9.4
 xf86_video_vesa_ver=2.3.4
+coreutils_ver=8.25
 
