@@ -31,7 +31,7 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --disable-udev
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --disable-udev --host=${KANAPI_TARGET_NAME} 
 }
 
 pkg_install() {

@@ -29,19 +29,28 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	local_copy
-	perl Makefile.PL PREFIX=${PREFIX} EXPATLIBPATH=`${PKG_CONFIG} --variable=libdir  expat` \
-        EXPATINCPATH=`${PKG_CONFIG} --variable=includedir  expat`
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		local_copy
+		perl Makefile.PL PREFIX=${PREFIX} EXPATLIBPATH=`${PKG_CONFIG} --variable=libdir  expat` \
+			EXPATINCPATH=`${PKG_CONFIG} --variable=includedir  expat`
+	fi
 }
 
 pkg_build () {
-	cd build
-	make -j ${MAKE_JOBS}
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		cd build
+		make -j ${MAKE_JOBS}
+	fi
 }
 
 pkg_install() {
-	cd build
-	pkg_install_make
-	pkg_install_bin_all
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		cd build
+		pkg_install_make
+		pkg_install_bin_all
+	fi
 }
 

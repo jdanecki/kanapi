@@ -24,7 +24,15 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
-export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+if [ ${KANAPI_CROSS} -eq 0 ]
+then
+	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+else 
+	if [ "`lsb_release -is`" = "KaNaPi" ] 
+	then
+		export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
+	fi
+fi	
 
 pkg_prepare() {
 	pkg_tar_bz2

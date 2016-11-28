@@ -22,6 +22,7 @@ VER=3.3.src
 URL="http://llvm.org/releases/3.3"
 EXT=tar.gz
 #build depends on
+
 . ../settings
 
 pkg_download() {
@@ -44,17 +45,44 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --enable-shared
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --build=${KANAPI_BUILD_NAME} --host=${KANAPI_TARGET_NAME} \
+		--enable-shared --enable-targets=host,x86,x86_64,arm --enable-zlib --enable-cxx11
+}
+
+cross_compile_build() {
+	 if [ ! -f BuildTools/Makefile ]; then mkdir BuildTools; \
+	  cd BuildTools ; \
+	  unset CFLAGS ; \
+	  unset CXXFLAGS ; \
+	  unset SDKROOT ; \
+	  unset UNIVERSAL_SDK_PATH ; \
+	  ${PACKAGE_SRCDIR}/configure --build=${KANAPI_BUILD_NAME} \
+		--host=${KANAPI_BUILD_NAME} --target=${KANAPI_BUILD_NAME} \
+	    --disable-polly --disable-zlib ; \
+	  cd .. ; \
+	fi; 
 }
 
 pkg_build() {
 	MAKE_JOBS=1
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	if [ ${KANAPI_CROSS} -eq 0 ]
+	then
+		make -j ${MAKE_JOBS} MAKEINFO=true
+	else
+		cross_compile_build
+		make -j ${MAKE_JOBS} MAKEINFO=true
+	fi
 }
 
 pkg_install() {
 	pkg_install_make
 	pkg_install_bin_all
 	pkg_install_libs
+}
+
+pkg_check() {
+	echo "CFLAGS=${CFLAGS}"
+	echo "CXXFLAGS=${CXXFLAGS}"
+	echo "KANAPI_CROSS=${KANAPI_CROSS}"
 }
 
