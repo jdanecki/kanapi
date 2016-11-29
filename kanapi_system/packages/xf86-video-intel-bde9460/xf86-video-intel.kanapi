@@ -36,25 +36,38 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	local_copy
-	KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
-	 -I ${KANAPI_BASE}/autoconf-${autoconf_ver}/share/autoconf \
-	 -I ${KANAPI_BASE}/util-macros-${util_macros_ver}/share/aclocal \
-	 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal \
-	 -I ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/share/aclocal"
-	autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
-	
-	./configure --prefix=$PREFIX --disable-uxa
+	if [ "${KANAPI_TARGET}" != "arm" ]
+	then
+		local_copy
+		KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
+		 -I ${KANAPI_BASE}/autoconf-${autoconf_ver}/share/autoconf \
+		 -I ${KANAPI_BASE}/util-macros-${util_macros_ver}/share/aclocal \
+		 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal \
+		 -I ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/share/aclocal"
+		autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
+		
+		./configure --prefix=$PREFIX --disable-uxa --host=${KANAPI_TARGET_NAME}
+	fi
 }
 
 pkg_build() {
-	cd build
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	if [ "${KANAPI_TARGET}" != "arm" ]
+	then
+		cd build
+		make -j ${MAKE_JOBS} MAKEINFO=true
+	fi
 }
 
 pkg_install() {
-	cd build
-	pkg_install_make
-	ln -svf ${PREFIX}/lib/xorg/modules/drivers/* ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/lib/xorg/modules/drivers
-}	
+	if [ "${KANAPI_TARGET}" != "arm" ]
+	then
+		cd build
+		pkg_install_make
+		ln -svf ${PREFIX}/lib/xorg/modules/drivers/* ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/lib/xorg/modules/drivers
+	fi
+}
+
+pkg_check() {
+	echo "TARGET=${KANAPI_TARGET}"
+}
 
