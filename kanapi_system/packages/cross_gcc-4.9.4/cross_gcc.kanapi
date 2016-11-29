@@ -34,11 +34,11 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-multilib --target=${KANAPI_TARGET_NAME} \
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_CROSS_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_CROSS_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_CROSS_BASE}/gmp-${gmp_ver} \
-	--prefix=${KANAPI_CROSS_BASE}/${PACKAGE_VER} --disable-nls --disable-decimal-float \
+	--prefix=${KANAPI_CROSS_BASE}/${PACKAGE_VER} --disable-nls --enable-decimal-float \
 	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
-	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp \
+	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --enable-libssp \
     --with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include \
-	--disable-static --enable-__cxa_atexit --enable-threads=posix --enable-libstdcxx-time
+	--enable-static --enable-shared --enable-__cxa_atexit --enable-threads=posix --enable-libstdcxx-time
 }
 
 pkg_build() {
@@ -64,7 +64,6 @@ pkg_install() {
 		LINKER_NAME=ld-linux.so.3
 		LINKER_PATH=lib
 	fi
-
 
 	${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
 		> ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
