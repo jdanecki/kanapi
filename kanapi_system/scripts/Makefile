@@ -17,7 +17,7 @@ sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
 #grep tar findutils patch util-linux less procps
 
 #KBS - KaNaPi Base System
-kbs: gzip cgdb mc vim openssh gpm
+kbs: gzip cgdb mc vim openssh gpm qemu
 
 native_gcc: gcc
 
@@ -439,6 +439,12 @@ xf86-video-fbdev: xorg-server
 	@$(RUN_TARGET)
 
 coreutils:
+	@$(RUN_TARGET)
+
+dtc:
+	@$(RUN_TARGET)
+
+qemu: dtc
 	@$(RUN_TARGET)
 
 #download version prepare install clean test:

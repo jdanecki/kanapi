@@ -132,4 +132,5 @@ libxml2_ver=2.9.4
 xf86_video_vesa_ver=2.3.4
 xf86_video_fbdev_ver=0.4.4
 coreutils_ver=8.25
-
+dtc_ver=1.4.2
+qemu_ver=2.7.0
