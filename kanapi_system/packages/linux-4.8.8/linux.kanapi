@@ -29,16 +29,17 @@ pkg_prepare() {
 }
 
 configure_menu() {
-    export NCURSES_HDR="-I/kanapi_0.6/i686/packages/ncurses-6.0-20161029/include"
-    export NCURSES_LIB="-L/kanapi_0.6/i686/packages/ncurses-6.0-20161029/lib"
-	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` \
+	export PATH=${KANAPI_HOST_BASE}/../cross/`uname -m`/gcc-${gcc_ver}/bin:${PATH}
+    export NCURSES_HDR="-I${KANAPI_HOST_BASE}/ncurses-${ncurses_ver}/include"
+    export NCURSES_LIB="-L${KANAPI_HOST_BASE}/ncurses-${ncurses_ver}/lib"
+	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` HOSTCC=`uname -m`-kanapi-linux-gnu-gcc \
     HOST_EXTRACFLAGS='${NCURSES_HDR}/ncurses ${NCURSES_HDR} -DCURSES_LOC="<ncurses.h>"' \
     HOST_LOADLIBES='${NCURSES_LIB} -lncurses -ldl -lrt -lm -lpthread' menuconfig
 }
 
 pkg_configure() {
-#	configure_menu
-	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` versatile_defconfig
+	configure_menu
+#	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` versatile_defconfig
 #	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` olddefconfig
 }
 
@@ -59,8 +60,14 @@ pkg_install() {
 	if [ "${KANAPI_TARGET}" = "arm" ]
 	then
 		cp arch/arm/boot/zImage ${PREFIX}
+		cp arch/arm/boot/dts/versatile-pb.dtb ${PREFIX}
 	else
 		cp arch/${KANAPI_TARGET}/boot/bzImage ${PREFIX}
 	fi
 }	
 
+pkg_check() {
+	export PATH=${KANAPI_HOST_BASE}/../cross/`uname -m`/gcc-${gcc_ver}/bin:${PATH}
+	echo "PATH=${PATH}"
+	`uname -m`-kanapi-linux-gnu-gcc --version
+}

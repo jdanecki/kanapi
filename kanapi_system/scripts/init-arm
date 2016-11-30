@@ -30,6 +30,8 @@ mount -t devpts devpts /dev/pts
 mount -t debugfs debugs /sys/kernel/debug
 
 modprobe crc16
+modprobe crct10dif_common
+modprobe crct10dif_generic
 modprobe crc_t10dif
 modprobe scsi_mod
 modprobe scsi_transport_spi
@@ -49,6 +51,7 @@ export XDG_RUNTIME_DIR=${HOME}/.cache
 
 export LD_LIBRARY_PATH=/kanapi_packages/libs
 export PATH=/bin
+/bin/bash
 
 dmesg -n 4
 lsmod
@@ -61,7 +64,7 @@ done
 echo " disk found, mounting"
 mount /dev/sda2 /packages
 
-/kanapi_${KANAPI_VER}/arm/packages/udev-175/libexec/udevd --daemon
+/kanapi_${KANAPI_VER}/${ARCH}/packages/udev-175/libexec/udevd --daemon
 udevadm trigger
 udevadm settle
 
