@@ -61,7 +61,7 @@ done
 echo " disk found, mounting"
 mount /dev/sda2 /packages
 
-/kanapi_${KANAPI_VER}/${ARCH}/packages/udev-175/libexec/udevd --daemon
+/kanapi_${KANAPI_VER}/arm/packages/udev-175/libexec/udevd --daemon
 udevadm trigger
 udevadm settle
 
