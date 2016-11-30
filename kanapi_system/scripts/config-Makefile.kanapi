@@ -15,4 +15,5 @@ xf86-input-evdev_ver=$(xf86_input_evdev_ver)
 xf86-video-intel_ver=$(xf86_video_intel_ver)
 XML-Parser_ver=${XML_Parser_ver}
 xf86-video-vesa_ver=${xf86_video_vesa_ver}
+xf86-video-fbdev_ver=${xf86_video_fbdev_ver}
 

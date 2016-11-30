@@ -32,7 +32,7 @@ x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	mkfontdir bdftopcf font-cursor-misc libpciaccess libdrm libxshmfence pci_ids \
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libXpm libXaw xterm libevdev mtdev xorg-server xf86-input-keyboard \
-	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa
+	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev
 
 tests: xflame water
 
@@ -433,6 +433,9 @@ xf86-video-intel: libXfont freetype libpng libfontenc xorg-server xproto fontspr
 	@$(RUN_TARGET)
 
 xf86-video-vesa: xorg-server
+	@$(RUN_TARGET)
+
+xf86-video-fbdev: xorg-server
 	@$(RUN_TARGET)
 
 coreutils:
