@@ -1,8 +1,1 @@
-#include <stdio.h>
-
-int main()
-{
-	printf("test passed\n");
-	return 0;
-}
-
+../../cross_compilers/tests/test_gcc0.c

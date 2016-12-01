@@ -1,9 +1,1 @@
-#include <limits.h>
-#include <stdio.h>
-
-int main()
-{
-	printf("SSIZE_MAX = %ld\n", SSIZE_MAX);
-	return 0;
-}
-
+../../cross_compilers/tests/test_gcc1.c
