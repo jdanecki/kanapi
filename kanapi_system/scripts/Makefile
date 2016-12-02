@@ -447,6 +447,9 @@ dtc:
 qemu: dtc
 	@$(RUN_TARGET)
 
+SDL-x: xorg-server
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

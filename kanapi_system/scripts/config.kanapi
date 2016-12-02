@@ -29,6 +29,7 @@ openssl_ver=1.0.2j
 openssh_ver=7.3p1
 SDL2_ver=2.0.5
 SDL_ver=1.2.15
+SDL_x_ver=1.2.15
 xflame_ver=1.0
 water_ver=1.0
 SDL_image_ver=1.2.12
