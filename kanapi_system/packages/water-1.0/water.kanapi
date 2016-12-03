@@ -22,11 +22,15 @@ VER=1.0
 URL="https://www.libsdl.org/projects/water/src"
 EXT=tar.gz
 #build depends on
+
+LIB_DEPENDS="sdl"
 . ../settings
 
 export LIBS="-lm -ldl"
+export CFLAGS="${CFLAGS} -I`sdl-config --prefix`/include"
 
 pkg_prepare() {
 	pkg_tar_gz
+	cp ${PACKAGE_SRCDIR}/water320.bmp .
 }
 

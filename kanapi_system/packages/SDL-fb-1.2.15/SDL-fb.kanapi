@@ -22,35 +22,21 @@ VER=1.2.15
 URL="https://www.libsdl.org/release"
 EXT=tar.gz
 #build depends on
-
-LIB_DEPENDS="x11 xcb xau xext"
-
 . ../settings
-
-export LDFLAGS="${LDFLAGS} -ldl"
-export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
 	pkg_tar_gz
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix="${KANAPI_BASE}/SDL-x-${VER}" --host=${KANAPI_TARGET_NAME} --disable-pulseaudio --disable-video-directfb
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-pulseaudio --without-x --disable-video-directfb
 }
 
 pkg_install() {
 	pkg_install_make
-	ln -svf ${KANAPI_BASE}/SDL-x-${VER}/lib/pkgconfig/sdl.pc ${PKGCONFIG_DIR}/sdl-x.pc
+	ln -svf ${PREFIX}/lib/pkgconfig/sdl.pc ${PKGCONFIG_DIR}/sdl.pc
 	pkg_install_libs
 	pkg_install_bin_all
-}
-
-pkg_test() {
-	echo "x11 hdr = `${PKG_CONFIG} --cflags x11 xcb`"
-	echo "x11 lib = `${PKG_CONFIG} --libs x11 xcb`"
-	echo "CFLAGS = ${CFLAGS}"
-	echo "LDFLAGS = ${LDFLAGS}"
-	echo "CPP = ${CPP}"
-	${KANAPI_TARGET_NAME}-gcc --version
 
 }
+
