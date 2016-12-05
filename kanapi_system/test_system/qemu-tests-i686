@@ -1,2 +1,4 @@
-qemu-system-i386 -hda kanapi_image.i686 -m 512
+ARCH=`uname -m`
+
+/kanapi_0.7/${ARCH}/bin/qemu-system-i386 -hda kanapi_image.i686 -m 512
 
