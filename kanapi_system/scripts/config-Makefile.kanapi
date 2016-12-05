@@ -17,3 +17,5 @@ XML-Parser_ver=${XML_Parser_ver}
 xf86-video-vesa_ver=${xf86_video_vesa_ver}
 xf86-video-fbdev_ver=${xf86_video_fbdev_ver}
 SDL-fb_ver=${SDL_fb_ver}
+alsa-lib_ver=${alsa_lib_ver}
+alsa-utils_ver=${alsa_utils_ver}

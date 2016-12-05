@@ -135,3 +135,8 @@ xf86_video_fbdev_ver=0.4.4
 coreutils_ver=8.25
 dtc_ver=1.4.2
 qemu_ver=2.7.0
+alsa_lib_ver=1.1.2
+alsa_utils_ver=1.1.2
+esound_ver=0.2.41
+audiofile_ver=0.3.6
+

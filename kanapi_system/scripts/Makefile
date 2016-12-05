@@ -132,9 +132,6 @@ openssl:
 openssh: openssl
 	@$(RUN_TARGET)
 
-SDL: xorg-server
-	@$(RUN_TARGET)
-
 SDL-fb:
 	@$(RUN_TARGET)
 
@@ -450,6 +447,20 @@ dtc:
 qemu: dtc
 	@$(RUN_TARGET)
 
+alsa-lib:
+	@$(RUN_TARGET)
+
+alsa-utils: alsa-lib
+	@$(RUN_TARGET)
+
+audiofile:
+	@$(RUN_TARGET)
+
+esound: audiofile alsa-lib
+	@$(RUN_TARGET)
+
+SDL: xorg-server esound
+	@$(RUN_TARGET)
 
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
