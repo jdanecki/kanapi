@@ -17,8 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-#1.5GB
-IMAGE_SIZE_MB=1536
+#2.5GB
+IMAGE_SIZE_MB=2536
 IMAGE_SIZE_BLOCKS=$(($IMAGE_SIZE_MB * 1024))
 
 if [ -z "$1" ]
