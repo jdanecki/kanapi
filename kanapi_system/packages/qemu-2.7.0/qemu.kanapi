@@ -23,34 +23,33 @@ URL="http://wiki.qemu-project.org/download"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="zlib"
+LIB_DEPENDS="zlib x11 xcb xau"
 
 . ../settings
 
 export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
-export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS}"
+export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS} -ldl -lm"
 export LIBS="-lncurses"
 
 pkg_prepare() {
 	pkg_tar_bz2
 }
 
-pkg_configure_target() {	
+pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --cross-prefix="${KANAPI_TARGET_NAME}-" --enable-fdt \
-	 --target-list="arm-softmmu arm-linux-user" \
+	 --target-list="arm-softmmu arm-linux-user i386-softmmu i386-linux-user x86_64-softmmu x86_64-linux-user" \
 	 --extra-cflags="${CFLAGS}" --extra-ldflags="${LDFLAGS}" 
 	 echo  "disabled targets: aarch64-softmmu alpha-softmmu 
-                           arm-softmmu cris-softmmu i386-softmmu lm32-softmmu 
+                           cris-softmmu  lm32-softmmu 
                            m68k-softmmu microblazeel-softmmu microblaze-softmmu 
                            mips64el-softmmu mips64-softmmu mipsel-softmmu 
                            mips-softmmu moxie-softmmu or32-softmmu 
                            ppc64-softmmu ppcemb-softmmu ppc-softmmu 
                            s390x-softmmu sh4eb-softmmu sh4-softmmu 
                            sparc64-softmmu sparc-softmmu tricore-softmmu 
-                           unicore32-softmmu x86_64-softmmu xtensaeb-softmmu 
+                           unicore32-softmmu xtensaeb-softmmu 
                            xtensa-softmmu aarch64-linux-user alpha-linux-user 
-                           armeb-linux-user arm-linux-user cris-linux-user 
-                           i386-linux-user m68k-linux-user 
+                           armeb-linux-user cris-linux-user m68k-linux-user 
                            microblazeel-linux-user microblaze-linux-user 
                            mips64el-linux-user mips64-linux-user 
                            mipsel-linux-user mips-linux-user 
@@ -60,7 +59,7 @@ pkg_configure_target() {
                            s390x-linux-user sh4eb-linux-user sh4-linux-user 
                            sparc32plus-linux-user sparc64-linux-user 
                            sparc-linux-user tilegx-linux-user 
-                           unicore32-linux-user x86_64-linux-user
+                           unicore32-linux-user 
 						   "
 }
 
