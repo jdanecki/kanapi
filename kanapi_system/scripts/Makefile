@@ -465,6 +465,9 @@ SDL: xorg-server esound
 strace:
 	@$(RUN_TARGET)
 
+vtwm:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
