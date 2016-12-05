@@ -462,6 +462,9 @@ esound: audiofile alsa-lib
 SDL: xorg-server esound
 	@$(RUN_TARGET)
 
+strace:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
