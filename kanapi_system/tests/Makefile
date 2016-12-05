@@ -10,4 +10,5 @@ test_gcc: test_gcc0.c test_gcc1.c test_libstdcpp.cpp test_threads.cpp
 	. ./set_variables; $(KANAPI_TARGET_NAME)-g++ test_chrono.cpp -Wall -std=c++11 -o $(KANAPI_BASE)/tests_results/test_chrono
 	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_lm.c -Wall -lm -o $(KANAPI_BASE)/tests_results/test_lm
 	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_backtrace.c -Wall -o $(KANAPI_BASE)/tests_results/test_backtrace
+	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_long.c -Wall -o $(KANAPI_BASE)/tests_results/test_long
 
