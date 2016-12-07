@@ -468,6 +468,24 @@ strace:
 vtwm:
 	@$(RUN_TARGET)
 
+ratpoison: libXft
+	@$(RUN_TARGET)
+
+libXft: libXrender fontconfig
+	@$(RUN_TARGET)
+
+libXrender:
+	@$(RUN_TARGET)
+
+fontconfig:
+	@$(RUN_TARGET)
+
+freefont-ttf: fontconfig
+	@$(RUN_TARGET)
+
+dejavu-fonts-ttf:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

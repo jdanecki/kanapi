@@ -189,6 +189,10 @@ pkg_tar_bz2() {
 	 tar -xjf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
 } 
 
+pkg_zip() {
+	 unzip ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -o -d ${KANAPI_BUILD_SRC}
+} 
+
 pkg_bz2() {
 	mkdir ${KANAPI_BUILD_SRC}/${PACKAGE_VER}
 	bzip2 -d ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -c > ${KANAPI_BUILD_SRC}/${PACKAGE_VER}/${PACKAGE_NAME}
