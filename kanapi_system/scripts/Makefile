@@ -486,6 +486,12 @@ freefont-ttf: fontconfig
 dejavu-fonts-ttf:
 	@$(RUN_TARGET)
 
+xfd:
+	@$(RUN_TARGET)
+
+libXcursor:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
