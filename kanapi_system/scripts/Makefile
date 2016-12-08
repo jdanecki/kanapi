@@ -477,16 +477,16 @@ libXft: libXrender fontconfig
 libXrender:
 	@$(RUN_TARGET)
 
-fontconfig:
+fontconfig: freetype
 	@$(RUN_TARGET)
 
 freefont-ttf: fontconfig
 	@$(RUN_TARGET)
 
-dejavu-fonts-ttf:
+dejavu-fonts-ttf: fontconfig
 	@$(RUN_TARGET)
 
-xfd:
+xfd: freefont-ttf dejavu-fonts-ttf libXft libXcursor
 	@$(RUN_TARGET)
 
 libXcursor:

@@ -17,25 +17,24 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=xfd
-VER=1.1.2
-URL="https://www.x.org/releases/individual/app"
+PACKAGE_NAME=freetype
+VER=2.7
+URL="http://mirror.easyname.at/nongnu/freetype"
 EXT=tar.bz2
-#build depends on
-LIB_DEPENDS="xext sm ice xcb xau libpng expat zlib x11 xpm freetype2"
+#build depends on libpng
 . ../settings
-
-export LDFLAGS="${LDFLAGS} -ldl -lm -lpthread"
 
 pkg_prepare() {
 	pkg_tar_bz2
 }
 
-pkg_install() {
-	pkg_install_make
-	pkg_install_bin_all
+pkg_configure() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-zlib=no
 }
 
-pkg_check() {
-	echo "LDFLAGS=${LDFLAGS}"
-}
+pkg_install() {
+	pkg_install_pc_all
+	pkg_install_bin_all
+	pkg_install_libs
+}	
+
