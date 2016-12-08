@@ -22,7 +22,7 @@ VER=1.1.2
 URL="https://www.x.org/releases/individual/app"
 EXT=tar.bz2
 #build depends on
-LIB_DEPENDS="xext sm ice xcb xau libpng expat zlib x11 xpm freetype2"
+LIB_DEPENDS="xext sm ice xcb xau libpng expat zlib x11 xpm freetype2 uuid"
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -ldl -lm -lpthread"
