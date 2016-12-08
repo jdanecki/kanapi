@@ -22,7 +22,11 @@ VER=2.11.1
 URL="http://www.freedesktop.org/software/fontconfig/release"
 EXT=tar.bz2
 #build depends on
+LIB_DEPENDS="libpng zlib"
+
 . ../settings
+
+export LIBS="-lm"
 
 pkg_prepare() {
 	pkg_tar_bz2
