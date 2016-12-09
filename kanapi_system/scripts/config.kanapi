@@ -163,4 +163,5 @@ yajl_ver=2.1.0
 pcre_ver=8.38
 cairo_ver=1.14.8
 cairo_demos_ver=02a3208
+pango_ver=1.30.1
 
