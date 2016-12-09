@@ -492,6 +492,47 @@ xfd: freefont-ttf dejavu-fonts-ttf libXft libXcursor
 libXcursor:
 	@$(RUN_TARGET)
 
+libev:
+	@$(RUN_TARGET)
+
+startup-notification: xcb-util	
+	@$(RUN_TARGET)
+
+xcb-util:
+	@$(RUN_TARGET)
+
+xcb-util-renderutil:
+	@$(RUN_TARGET)
+
+xcb-util-image: libXau libxcb
+	@$(RUN_TARGET)
+
+xcb-util-cursor: xcb-util-renderutil xcb-util-image
+	@$(RUN_TARGET)
+
+xcb-util-wm:
+	@$(RUN_TARGET)
+
+xcb-util-xrm:
+	@$(RUN_TARGET)
+
+libxkbcommon:
+	@$(RUN_TARGET)
+yajl:
+	@$(RUN_TARGET)
+
+pcre:
+	@$(RUN_TARGET)
+
+cairo: 
+	@$(RUN_TARGET)
+
+pango: cairo
+	@$(RUN_TARGET)
+
+i3: libev startup-notification xcb-util xcb-util-cursor xcb-util-wm xcb-util-xrm libxkbcommon yajl pcre pango
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

@@ -21,4 +21,11 @@ alsa-lib_ver=${alsa_lib_ver}
 alsa-utils_ver=${alsa_utils_ver}
 freefont-ttf_ver=${freefont_ttf_ver}
 dejavu-fonts-ttf_ver=${dejavu_fonts_ttf_ver}
+startup-notification_ver=${startup_notification_ver}
+xcb-util_ver=${xcb_util_ver}
+xcb-util-cursor_ver=${xcb_util_cursor_ver}
+xcb-util-renderutil_ver=${xcb_util_renderutil_ver}
+xcb-util-image_ver=${xcb_util_image_ver}
+xcb-util-wm_ver=${xcb_util_wm_ver}
+xcb-util-xrm_ver=${xcb_util_xrm_ver}
 

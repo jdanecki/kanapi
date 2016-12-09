@@ -168,6 +168,11 @@ pkg_git_checkout() {
 	git checkout -f ${VER}
 }
 
+pkg_git_submodule_init() {
+	cd ${PACKAGE_SRCDIR}
+	git submodule update --init
+}
+
 pkg_copy() {
 	mkdir ${KANAPI_BUILD_SRC}/${PACKAGE_VER}
 	cp -v ${KANAPI_BUILD_SRC}/${PACKAGE_NAME} ${KANAPI_BUILD_SRC}/${PACKAGE_VER}/${PACKAGE_NAME}
