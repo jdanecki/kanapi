@@ -28,4 +28,5 @@ xcb-util-renderutil_ver=${xcb_util_renderutil_ver}
 xcb-util-image_ver=${xcb_util_image_ver}
 xcb-util-wm_ver=${xcb_util_wm_ver}
 xcb-util-xrm_ver=${xcb_util_xrm_ver}
+cairo-demos_ver=${cairo_demos_ver}
 

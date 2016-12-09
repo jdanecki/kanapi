@@ -17,41 +17,35 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=yajl
-VER=2.1.0
-URL=" http://github.com/lloyd/yajl/tarball/2.1.0"
-EXT=tar.gz
+PACKAGE_NAME=cairo-demos
+VER=02a3208
+URL="git://people.freedesktop.org/~ickle"
+EXT=
 #build depends on
+LIB_DEPENDS="zlib xau expat pixman-1 fontconfig freetype2 xrender libpng xcb-shm"
+
 . ../settings
 
+export LDFLAGS="${LDFLAGS} -lrt -lpthread -ldl"
+
 pkg_download() {
-	PACKAGE_LINK=${URL}
-	pkg_curl
+	pkg_git_clone
 }
 
 pkg_prepare() {
-	pkg_tar_gz
-	ln -svf ${KANAPI_BUILD_SRC}/lloyd-yajl-66cb08c ${KANAPI_BUILD_SRC}/${PACKAGE_VER}
+	pkg_git_checkout
 }
 
 pkg_configure() {
-	rm -rf build
-	mkdir build
-	cp -ar ${PACKAGE_SRCDIR}/* build
-	cd build
-	${PACKAGE_SRCDIR}/configure -p $PREFIX
+	local_copy
 }
 
 pkg_build() {
 	cd build
-	MAKE_JOBS=1
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	make -j ${MAKE_JOBS} MAKEINFO=true CC="${KANAPI_TARGET_NAME}-gcc ${LDFLAGS}"
 }
 
 pkg_install() {
-	cd build
-	pkg_install_pc_share
-	pkg_install_bin_all
-	pkg_install_libs
+	echo "FIXME"
 }
 

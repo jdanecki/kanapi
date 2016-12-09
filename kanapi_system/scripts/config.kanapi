@@ -161,4 +161,6 @@ xcb_util_xrm_ver=v1.2
 libxkbcommon_ver=0.7.0
 yajl_ver=2.1.0
 pcre_ver=8.38
+cairo_ver=1.14.8
+cairo_demos_ver=02a3208
 

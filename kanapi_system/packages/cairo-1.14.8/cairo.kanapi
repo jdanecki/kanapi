@@ -17,40 +17,25 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=yajl
-VER=2.1.0
-URL=" http://github.com/lloyd/yajl/tarball/2.1.0"
-EXT=tar.gz
+PACKAGE_NAME=cairo
+VER=1.14.8
+URL="https://www.cairographics.org/releases"
+EXT=tar.xz
+
+LIB_DEPENDS="libpng zlib expat x11 xcb xau xext"
+
 #build depends on
 . ../settings
 
-pkg_download() {
-	PACKAGE_LINK=${URL}
-	pkg_curl
-}
+export LDFLAGS="${LDFLAGS} -lpthread -lm -ldl"
+export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
-	pkg_tar_gz
-	ln -svf ${KANAPI_BUILD_SRC}/lloyd-yajl-66cb08c ${KANAPI_BUILD_SRC}/${PACKAGE_VER}
-}
-
-pkg_configure() {
-	rm -rf build
-	mkdir build
-	cp -ar ${PACKAGE_SRCDIR}/* build
-	cd build
-	${PACKAGE_SRCDIR}/configure -p $PREFIX
-}
-
-pkg_build() {
-	cd build
-	MAKE_JOBS=1
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	pkg_tar_xz
 }
 
 pkg_install() {
-	cd build
-	pkg_install_pc_share
+	pkg_install_pc_all
 	pkg_install_bin_all
 	pkg_install_libs
 }

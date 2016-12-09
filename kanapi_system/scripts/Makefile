@@ -527,6 +527,9 @@ pcre:
 cairo: 
 	@$(RUN_TARGET)
 
+cairo-demos: cairo 
+	@$(RUN_TARGET)
+
 pango: cairo
 	@$(RUN_TARGET)
 
