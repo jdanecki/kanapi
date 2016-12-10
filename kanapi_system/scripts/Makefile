@@ -536,6 +536,15 @@ pango: cairo
 i3: libev startup-notification xcb-util xcb-util-cursor xcb-util-wm xcb-util-xrm libxkbcommon yajl pcre pango
 	@$(RUN_TARGET)
 
+#i3status: i3
+#	@$(RUN_TARGET)
+
+i3blocks: i3
+	@$(RUN_TARGET)
+
+st: fontconfig freetype
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
