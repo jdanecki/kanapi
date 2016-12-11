@@ -692,6 +692,21 @@ xclock:
 xconsole:
 	@$(RUN_TARGET)
 
+xedit:
+	@$(RUN_TARGET)
+
+xorg-cf-files:
+	@$(RUN_TARGET)
+
+imake: xorg-cf-files
+	@$(RUN_TARGET)
+
+oneko: imake
+	@$(RUN_TARGET)
+
+xdriinfo: gl
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

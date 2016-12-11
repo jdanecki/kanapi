@@ -215,5 +215,9 @@ xconsole_ver=1.0.6
 default_icon_theme_ver=0.1
 hicolor_icon_theme_ver=0.15
 tango_icon_theme_ver=0.8.90
-
+xdriinfo_ver=1.0.5
+xedit_ver=1.2.2
+oneko_ver=1.2.sakura.5
+imake_ver=1.0.7
+xorg_cf_files_ver=1.0.6
 

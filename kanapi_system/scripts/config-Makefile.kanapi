@@ -62,4 +62,5 @@ font-alias_ver=${font_alias_ver}
 default-icon-theme_ver=${default_icon_theme_ver}
 hicolor-icon-theme_ver=${hicolor_icon_theme_ver}
 tango-icon-theme_ver=${tango_icon_theme_ver}
+xorg-cf-files_ver=${xorg_cf_files_ver}
 
