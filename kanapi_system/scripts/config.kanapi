@@ -219,4 +219,6 @@ xdpyinfo_ver=1.3.2
 libXtst_ver=1.2.3
 libXi_ver=1.7.8
 xeyes_ver=1.1.1
+xev_ver=1.2.2
+libXrandr_ver=1.5.1
 

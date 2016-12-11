@@ -704,6 +704,12 @@ libXi:
 xeyes:
 	@$(RUN_TARGET)
 
+xev:libXrandr
+	@$(RUN_TARGET)
+
+libXrandr:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
