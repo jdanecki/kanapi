@@ -713,6 +713,9 @@ libXrandr:
 xhost:
 	@$(RUN_TARGET)
 
+xkill:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
