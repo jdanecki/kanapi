@@ -692,6 +692,15 @@ xclock:
 xconsole:
 	@$(RUN_TARGET)
 
+xdpyinfo: libXtst libXrender
+	@$(RUN_TARGET)
+
+libXtst: libXi
+	@$(RUN_TARGET)
+
+libXi:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
