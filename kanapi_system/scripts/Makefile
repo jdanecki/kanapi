@@ -707,6 +707,33 @@ oneko: imake
 xdriinfo: gl
 	@$(RUN_TARGET)
 
+xdpyinfo: libXtst libXrender
+	@$(RUN_TARGET)
+
+libXtst: libXi
+	@$(RUN_TARGET)
+
+libXi:
+	@$(RUN_TARGET)
+
+xeyes:
+	@$(RUN_TARGET)
+
+xev:libXrandr
+	@$(RUN_TARGET)
+
+libXrandr:
+	@$(RUN_TARGET)
+
+xhost:
+	@$(RUN_TARGET)
+
+xkill:
+	@$(RUN_TARGET)
+
+xload:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

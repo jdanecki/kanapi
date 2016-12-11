@@ -220,4 +220,13 @@ xedit_ver=1.2.2
 oneko_ver=1.2.sakura.5
 imake_ver=1.0.7
 xorg_cf_files_ver=1.0.6
+xdpyinfo_ver=1.3.2
+libXtst_ver=1.2.3
+libXi_ver=1.7.8
+xeyes_ver=1.1.1
+xev_ver=1.2.2
+libXrandr_ver=1.5.1
+xhost_ver=1.0.7
+xkill_ver=1.0.4
+xload_ver=1.1.2
 
