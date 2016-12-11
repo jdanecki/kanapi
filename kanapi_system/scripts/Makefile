@@ -701,6 +701,9 @@ libXtst: libXi
 libXi:
 	@$(RUN_TARGET)
 
+xeyes:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
