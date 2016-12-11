@@ -545,6 +545,153 @@ i3blocks: i3
 st: fontconfig freetype
 	@$(RUN_TARGET)
 
+font-adobe-75dpi:
+	@$(RUN_TARGET)
+
+font-adobe-100dpi:
+	@$(RUN_TARGET)
+
+font-adobe-utopia-75dpi:
+	@$(RUN_TARGET)
+
+font-adobe-utopia-100dpi:
+	@$(RUN_TARGET)
+
+font-adobe-utopia-type1:
+	@$(RUN_TARGET)
+
+font-bh-75dpi:
+	@$(RUN_TARGET)
+
+font-bh-100dpi:
+	@$(RUN_TARGET)
+
+font-bh-lucidatypewriter-75dpi:
+	@$(RUN_TARGET)
+
+font-bh-lucidatypewriter-100dpi:
+	@$(RUN_TARGET)
+
+font-bh-type1:
+	@$(RUN_TARGET)
+
+font-bitstream-75dpi:
+	@$(RUN_TARGET)
+
+font-bitstream-100dpi:
+	@$(RUN_TARGET)
+
+font-bitstream-speedo:
+	@$(RUN_TARGET)
+
+font-daewoo-misc:
+	@$(RUN_TARGET)
+
+font-dec-misc:
+	@$(RUN_TARGET)
+
+font-ibm-type1:
+	@$(RUN_TARGET)
+
+font-isas-misc:
+	@$(RUN_TARGET)
+
+font-jis-misc:
+	@$(RUN_TARGET)
+
+font-micro-misc:
+	@$(RUN_TARGET)
+
+font-misc-misc:
+	@$(RUN_TARGET)
+
+font-mutt-misc:
+	@$(RUN_TARGET)
+
+font-schumacher-misc:
+	@$(RUN_TARGET)
+
+font-sony-misc:
+	@$(RUN_TARGET)
+
+font-sun-misc:
+	@$(RUN_TARGET)
+
+font-xfree86-type1:
+	@$(RUN_TARGET)
+
+font-alias:
+	@$(RUN_TARGET)
+
+xf86-video-modesetting: xorg-server
+	@$(RUN_TARGET)
+
+xbitmaps:
+	@$(RUN_TARGET)
+
+bitmap: xbitmaps
+	@$(RUN_TARGET)
+
+xz:
+	@$(RUN_TARGET)
+
+kmod: xz
+	@$(RUN_TARGET)
+
+procps:
+	@$(RUN_TARGET)
+
+procps-ng:
+	@$(RUN_TARGET)
+
+libunwind:
+	@$(RUN_TARGET)
+
+intel-gpu-tools: kmod procps-ng libunwind udev libpciaccess xcb 
+	@$(RUN_TARGET)
+
+oclock:	
+	@$(RUN_TARGET)
+
+setxkbmap: xkbcomp
+	@$(RUN_TARGET)
+
+libFS:
+	@$(RUN_TARGET)
+
+showfont: libFS
+	@$(RUN_TARGET)
+
+x11perf:
+	@$(RUN_TARGET)
+
+xbacklight:
+	@$(RUN_TARGET)
+
+xcursorgen:
+	@$(RUN_TARGET)
+
+xcursor-themes: xcursorgen
+	@$(RUN_TARGET)
+
+default-icon-theme:
+	@$(RUN_TARGET)
+
+hicolor-icon-theme:
+	@$(RUN_TARGET)
+
+#tango-icon-theme:
+#	@$(RUN_TARGET)
+
+xcalc:
+	@$(RUN_TARGET)
+
+xclock:
+	@$(RUN_TARGET)
+
+xconsole:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 

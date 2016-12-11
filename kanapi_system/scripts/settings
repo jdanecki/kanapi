@@ -121,7 +121,8 @@ MAKE_JOBS=${NR_CPUS}
 
 local_copy() {
 	rm -rf build
-	cp -ar ${PACKAGE_SRCDIR} build
+	mkdir build
+	cp -ar ${PACKAGE_SRCDIR}/* build
 	cd build
 }
 
@@ -288,6 +289,10 @@ pkg_install_bin_all() {
 
 pkg_install_sbin_all() {
 	ln -svf ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
+}
+
+pkg_install_usr_bin_all() {
+	ln -svf ${PREFIX}/usr/bin/* ${KANAPI_BASE}/../bin
 }
 
 pkg_install_libs() {
