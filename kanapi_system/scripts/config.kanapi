@@ -230,4 +230,6 @@ xhost_ver=1.0.7
 xkill_ver=1.0.4
 xload_ver=1.1.2
 xfontsel_ver=1.0.5
+package1_ver=1
+package2_ver=2
 

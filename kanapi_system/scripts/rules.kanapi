@@ -20,13 +20,22 @@ kanapi_configure: kanapi_prepare
 	pkg_kanapi $(PKG).kanapi configure $(V)
 	$(call DATE_RULE)
 
+kanapi_reconfigure:
+	pkg_kanapi $(PKG).kanapi configure $(V)
+
 kanapi_build: kanapi_configure
 	pkg_kanapi $(PKG).kanapi build $(V)
 	$(call DATE_RULE)
 
+kanapi_rebuild:
+	pkg_kanapi $(PKG).kanapi build $(V)
+
 kanapi_install: kanapi_build
 	pkg_kanapi $(PKG).kanapi install $(V)
 	$(call DATE_RULE)
+
+kanapi_reinstall:
+	pkg_kanapi $(PKG).kanapi install $(V)
 
 kanapi_uninstall:
 	pkg_kanapi $(PKG).kanapi uninstall $(V)
@@ -47,9 +56,13 @@ kanapi_help:
 	@echo "**********   Help  **********"
 	@echo "run: make package ACTION=action"
 	@echo "where action is one from:"
-	@echo "download  - download sources"
-	@echo "prepare   - uncompress sources"
-	@echo "configure - configure package"
-	@echo "build     - build package"
-	@echo "install   - install package"
+	@echo "download    - download sources"
+	@echo "prepare     - uncompress sources"
+	@echo "configure   - configure package/packages"
+	@echo "build       - build package/packages"
+	@echo "install     - install package/packages"
+	@echo "reconfigure - reconfigure package/packages"
+	@echo "rebuild     - rebuild package/packages"
+	@echo "reinstall   - reinstall package/packages"
+
 

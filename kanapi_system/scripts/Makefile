@@ -8,7 +8,7 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-all: cross_gcc rootfs sbs kbs native_gcc sdl-support x-support
+all: cross_gcc rootfs sbs kbs native_gcc sound sdl-support x-support wm xapp tests
 
 #SBS - second build system 
 sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
@@ -17,7 +17,7 @@ sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
 #grep tar findutils patch util-linux less procps
 
 #KBS - KaNaPi Base System
-kbs: gzip cgdb mc vim openssh gpm qemu
+kbs: gzip cgdb mc vim openssh gpm qemu strace kmod procps-ng intel-gpu-tools
 
 native_gcc: gcc
 
@@ -31,11 +31,41 @@ x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	freetype font-util libfontenc libXfont expat xkeyboard-config xkbcomp mkfontscale \
 	mkfontdir bdftopcf font-cursor-misc libpciaccess libdrm libxshmfence pci_ids \
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
-	libXt libXmu libXpm libXaw xterm libevdev mtdev xorg-server xf86-input-keyboard \
-	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev
+	libXt libXmu libevdev mtdev xorg-server xf86-input-keyboard \
+	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
+	xf86-video-modesetting fonts setxkbmap icons
+
+fonts: fonts-bitmap fonts-type1 fonts-misc
+	
+fonts-bitmap: fonts-utopia fonts-bh fonts-bitstream
+	
+fonts-utopia: font-adobe-75dpi font-adobe-100dpi font-adobe-utopia-75dpi font-adobe-utopia-100dpi 
+	
+fonts-bh: font-bh-75dpi font-bh-100dpi font-bh-lucidatypewriter-75dpi font-bh-lucidatypewriter-100dpi
+
+fonts-bitstream: font-bitstream-75dpi font-bitstream-100dpi font-bitstream-speedo 
+
+fonts-type1: font-adobe-utopia-type1 font-bh-type1 font-ibm-type1 font-xfree86-type1 
+
+fonts-misc: font-daewoo-misc font-dec-misc font-isas-misc font-jis-misc font-micro-misc font-misc-misc \
+	font-mutt-misc font-schumacher-misc font-sony-misc font-sun-misc font-alias
+
+wm:	vtwm ratpoison dmenu i3blocks
+
+xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
+   xdpyinfo xeyes xev xhost xkill xload xfontsel	
+	
+icons: xcursor-themes default-icon-theme hicolor-icon-theme 
+
+sound: alsa-utils esound
 
 tests: xflame water
 
+deprecated: procps
+
+#
+# kernel, glibc, compilers
+#
 linux:
 	@$(RUN_TARGET)
 
@@ -45,7 +75,9 @@ glibc: linux
 cross_gcc: glibc
 	@$(RUN_TARGET)
 
+#
 #native compilers
+#
 gmp:
 	@$(RUN_TARGET)
 
@@ -61,8 +93,9 @@ binutils: mpc
 gcc: binutils
 	@$(RUN_TARGET)
 
+#
 # PACKAGES
-
+#
 zlib:
 	@$(RUN_TARGET)
 
@@ -647,7 +680,7 @@ procps-ng:
 libunwind:
 	@$(RUN_TARGET)
 
-intel-gpu-tools: kmod procps-ng libunwind udev libpciaccess xcb 
+intel-gpu-tools: kmod procps-ng libunwind udev libpciaccess libxcb 
 	@$(RUN_TARGET)
 
 oclock:	
@@ -704,7 +737,7 @@ imake: xorg-cf-files
 oneko: imake
 	@$(RUN_TARGET)
 
-xdriinfo: gl
+xdriinfo: mesa
 	@$(RUN_TARGET)
 
 xdpyinfo: libXtst libXrender
@@ -742,4 +775,15 @@ xfontsel:
 
 help:	
 	make kanapi_help
+#
+#for tests only
+#
+
+packages: package1 package2
+
+package1:
+	@$(RUN_TARGET)
+
+package2: package1
+	@$(RUN_TARGET)
 
