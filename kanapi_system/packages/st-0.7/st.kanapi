@@ -46,6 +46,7 @@ pkg_install() {
         mkdir -p ${PREFIX}/bin
         cp -v st ${PREFIX}/bin
 	pkg_install_bin_all
+	${KANAPI_BASE}/ncurses5-${ncurses5_ver}/bin/tic -sx st.info
 }
 
 pkg_check() {
