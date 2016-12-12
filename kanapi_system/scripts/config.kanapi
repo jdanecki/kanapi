@@ -234,4 +234,5 @@ xfontsel_ver=1.0.5
 package1_ver=1
 package2_ver=2
 dmenu_ver=4.6
+ncurses5_ver=5.9
 

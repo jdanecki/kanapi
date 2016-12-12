@@ -126,6 +126,9 @@ busybox:
 ncurses:
 	@$(RUN_TARGET)
 
+ncurses5:
+	@$(RUN_TARGET)
+
 gdb:
 	@$(RUN_TARGET)
 
