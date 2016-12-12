@@ -28,9 +28,9 @@ EXT=tar.bz2
 pkg_prepare() {
 	pkg_tar_bz2
 	mkdir -p ${PREFIX}/${KANAPI_TARGET_NAME}
-	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${PREFIX}/${KANAPI_TARGET_NAME}/lib
-	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/include
-	ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/sys-include
+	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${PREFIX}/${KANAPI_TARGET_NAME}/lib
+	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/include
+	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/sys-include
 }
 
 pkg_configure() {
@@ -76,17 +76,17 @@ pkg_install_headers() {
 	if [ ! -d ${GCC_DIR} ]
 	then 
 		mkdir -p ${GCC_DIR}
-		ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/include ${GCC_DIR}
-		ln -s include ${GCC_DIR}/sys-include
-		ln -s ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${GCC_DIR}/lib
+		ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${GCC_DIR}
+		ln -svf include ${GCC_DIR}/sys-include
+		ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${GCC_DIR}/lib
 		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${GCC_DIR}/include
 	fi
 }
 
 pkg_install() {
 	make -j ${MAKE_JOBS}  MAKEINFO=true install
-	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
-	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
+	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
+	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
 
 	pkg_install_headers
 
