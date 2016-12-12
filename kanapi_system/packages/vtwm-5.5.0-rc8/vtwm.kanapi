@@ -24,11 +24,11 @@ EXT=tar.gz
 SF_URL="${PACKAGE_NAME}/${PACKAGE_NAME}-${VER}.${EXT}"
 #build depends on
 
-LIB_DEPENDS="xext x11 xcb xau xt sm ice uuid xmu libpng zlib"
+LIB_DEPENDS="xext x11 xcb xau xt sm ice uuid xmu libpng zlib fontconfig expat freetype2 xrender"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl -lm"
+export LDFLAGS="${LDFLAGS} -ldl -lm -lpthread"
 
 pkg_prepare() {
 	pkg_tar_gz
