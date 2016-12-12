@@ -21,12 +21,13 @@ PACKAGE_NAME=xterm
 VER=327
 URL="http://invisible-island.net/datafiles/release/xterm.tar.gz"
 EXT=tar.gz
-LIB_DEPENDS="xext xcb xau xpm x11 uuid"
+#build depends on libXext libxcb libXau libXpm libX11 ncurses
+
+LIB_DEPENDS="xext xcb xau xpm x11 xrender ncurses xft fontconfig expat libpng zlib "
 
 . ../settings
 
-export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
-export LIBS="${NCURSES_LDFLAGS} -ldl"
+export LDFLAGS="${LDFLAGS} -ldl -lm -lpthread"
 
 pkg_download() {
 	if [ -f /kanapi_build/src/${PACKAGE_FILENAME} ] 
@@ -42,13 +43,24 @@ pkg_prepare() {
 	pkg_tar_gz
 }
 
+pkg_configure() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+		--enable-readline-mouse --enable-256-color \
+		--enable-luit --enable-exec-xterm --enable-freetype --enable-i18n --enable-wide-chars \
+		--enable-16bit-chars  --enable-toolbar 
+}
+
 pkg_build() {
 	MAKE_JOBS=1
 	make -j ${MAKE_JOBS} MAKEINFO=true
 }
+
 
 pkg_install() {
 	pkg_install_make
 	pkg_install_bin_all
 }	
 
+pkg_check() {
+	${PKG_CONFIG} --libs ${LIB_DEPENDS}
+}

@@ -408,7 +408,7 @@ libXpm:
 libXaw:
 	@$(RUN_TARGET)
 
-xterm: libXext libxcb libXau libXpm libX11 
+xterm: libXext libxcb libXau libXpm libX11 libXrender
 	@$(RUN_TARGET)
 
 libevdev:
