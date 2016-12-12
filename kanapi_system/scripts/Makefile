@@ -147,7 +147,7 @@ libgcrypt: libgpg-error
 libssh2: libgcrypt
 	@$(RUN_TARGET)
 
-slang: zlib
+slang: zlib ncurses5
 	@$(RUN_TARGET)
 
 mc: libssh2 slang glib
