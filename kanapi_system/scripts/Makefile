@@ -770,6 +770,9 @@ xload:
 xfontsel:
 	@$(RUN_TARGET)
 
+dmenu:
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
