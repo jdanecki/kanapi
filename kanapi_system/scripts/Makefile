@@ -13,7 +13,7 @@ all: cross_gcc rootfs sbs kbs native_gcc sound sdl-support x-support wm xapp tes
 #SBS - second build system 
 sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
-	coreutils
+	coreutils diffutils
 #grep tar findutils patch util-linux less procps
 
 #KBS - KaNaPi Base System
@@ -780,6 +780,9 @@ re2c:
 	@$(RUN_TARGET)
 
 ninja: re2c
+	@$(RUN_TARGET)
+
+diffutils:
 	@$(RUN_TARGET)
 
 #download version prepare install clean test:
