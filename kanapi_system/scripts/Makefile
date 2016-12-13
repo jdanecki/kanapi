@@ -50,7 +50,7 @@ fonts-type1: font-adobe-utopia-type1 font-bh-type1 font-ibm-type1 font-xfree86-t
 fonts-misc: font-daewoo-misc font-dec-misc font-isas-misc font-jis-misc font-micro-misc font-misc-misc \
 	font-mutt-misc font-schumacher-misc font-sony-misc font-sun-misc font-alias
 
-wm:	vtwm ratpoison dmenu i3blocks
+wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel	
@@ -575,7 +575,7 @@ i3: libev startup-notification xcb-util xcb-util-cursor xcb-util-wm xcb-util-xrm
 #i3status: i3
 #	@$(RUN_TARGET)
 
-i3blocks: i3
+i3blocks: dmenu i3 
 	@$(RUN_TARGET)
 
 st: fontconfig freetype
