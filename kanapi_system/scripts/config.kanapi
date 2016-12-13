@@ -108,7 +108,6 @@ libusb_ver=1.0.20
 usbutils_ver=006
 udev_ver=175
 expat_ver=2.1.0
-llvm_ver=3.3.src
 mesa_ver=11.0.8
 xcb_util_keysyms_ver=0.4.0
 xorg_server_ver=1.18.0
@@ -235,4 +234,8 @@ package1_ver=1
 package2_ver=2
 dmenu_ver=4.6
 ncurses5_ver=5.9
+ninja_ver=1.7.2
+re2c_ver=0.16
+llvm_ver=3.9.0.src
+#llvm_ver=3.3.src
 

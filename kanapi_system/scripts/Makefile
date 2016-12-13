@@ -776,6 +776,12 @@ xfontsel:
 dmenu:
 	@$(RUN_TARGET)
 
+re2c:
+	@$(RUN_TARGET)
+
+ninja: re2c
+	@$(RUN_TARGET)
+
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
 
