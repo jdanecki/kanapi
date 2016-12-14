@@ -253,4 +253,6 @@ XML_SAX_ver=0.99
 XML_SAX_Expat_ver=0.51
 XML_Simple_ver=2.22
 ImageMagick_ver=7.0.3-10
-
+xclipboard_ver=1.1.3
+xinput_ver=1.6.2
+libXinerama_ver=1.1.3

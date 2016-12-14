@@ -10,7 +10,7 @@ include $(BASE)../scripts/rules.kanapi
 
 all: cross_gcc rootfs bbs kbs native_gcc sound sdl-support x-support wm xapp tests
 
-#basic build system 
+#Basic Build System 
 bbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
 	coreutils diffutils ninja grep tar findutils patch util-linux less
@@ -32,7 +32,7 @@ x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libevdev mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
-	xf86-video-modesetting fonts setxkbmap icons
+	xf86-video-modesetting fonts setxkbmap icons xinput
 
 fonts: fonts-bitmap fonts-type1 fonts-misc
 	
@@ -52,15 +52,32 @@ fonts-misc: font-daewoo-misc font-dec-misc font-isas-misc font-jis-misc font-mic
 wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
-   xdpyinfo xeyes xev xhost xkill xload xfontsel	
+   xdpyinfo xeyes xev xhost xkill xload xfontsel ImageMagick
 	
-icons: xcursor-themes default-icon-theme hicolor-icon-theme 
+icons: xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 
 sound: alsa-utils esound
 
-tests: xflame water
+tests: xflame water xclipboard
 
 deprecated: procps
+
+#download version prepare install clean test:
+#	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
+
+help:	
+	make kanapi_help
+#
+#for tests only
+#
+
+packages: package1 package2
+
+package1:
+	@$(RUN_TARGET)
+
+package2: package1
+	@$(RUN_TARGET)
 
 #
 # kernel, glibc, compilers
@@ -826,20 +843,11 @@ util-linux:
 less:
 	@$(RUN_TARGET)
 
-#download version prepare install clean test:
-#	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
-
-help:	
-	make kanapi_help
-#
-#for tests only
-#
-
-packages: package1 package2
-
-package1:
+xclipboard:
 	@$(RUN_TARGET)
 
-package2: package1
+xinput: libXinerama
 	@$(RUN_TARGET)
 
+libXinerama:
+	@$(RUN_TARGET)
