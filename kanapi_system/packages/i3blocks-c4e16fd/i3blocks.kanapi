@@ -24,6 +24,8 @@ EXT=
 #build depends on
 . ../settings
 
+export CC="${KANAPI_TARGET_NAME}-gcc"
+
 pkg_download() {
 	pkg_git_clone
 }
