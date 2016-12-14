@@ -142,12 +142,7 @@ pkg_curl() {
 		echo "$PACKAGE_NAME: already downloaded"
 	else
 		echo "downloading ${PACKAGE_NAME}"
-		if [ "`lsb_release -is`" = "KaNaPi" ]
-		then 
-			CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-		else
-			curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-		fi
+		curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 	fi
 }
 
