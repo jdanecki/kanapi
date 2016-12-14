@@ -17,7 +17,7 @@ sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
 #grep tar findutils patch util-linux less procps
 
 #KBS - KaNaPi Base System
-kbs: gzip cgdb mc vim openssh gpm qemu strace kmod procps-ng intel-gpu-tools
+kbs: gzip cgdb mc vim openssh curl gpm qemu strace kmod procps-ng intel-gpu-tools
 
 native_gcc: gcc
 
@@ -784,6 +784,10 @@ ninja: re2c
 
 diffutils:
 	@$(RUN_TARGET)
+
+curl:
+	@$(RUN_TARGET)
+
 
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
