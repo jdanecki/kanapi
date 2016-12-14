@@ -32,6 +32,7 @@ pkg_configure() {
 	local_copy
 	imake -I${KANAPI_BASE}/xorg-cf-files-${xorg_cf_files_ver}/lib/X11/config \
 		-DBinDir=${PREFIX}/bin
+#	xmkmf
 }
 
 pkg_build() {
@@ -45,4 +46,11 @@ pkg_install() {
 	pkg_install_make
 	pkg_install_bin_all
 }
+
+pkg_check() {
+	gcc --version
+	g++ --version
+	cc --version
+}
+
 

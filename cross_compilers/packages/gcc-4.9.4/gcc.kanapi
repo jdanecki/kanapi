@@ -68,4 +68,8 @@ pkg_install() {
 	make install-target-libgcc
 	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
 	ln -s ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${KANAPI_BASE}/gcc-${gcc_ver}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
-}	
+	ln -svf ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc ${KANAPI_BASE}/gcc-${gcc_ver}/bin/gcc
+	ln -svf ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc ${KANAPI_BASE}/gcc-${gcc_ver}/bin/cc
+	ln -svf ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-g++ ${KANAPI_BASE}/gcc-${gcc_ver}/bin/g++
+}
+

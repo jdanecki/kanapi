@@ -51,6 +51,16 @@ export PATH_BIN=${CROSS_BINUTILS_PREFIX}/bin
 export PATH_GCC=${CROSS_GCC_PREFIX}/bin
 export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
 
+if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc ]
+then
+	export CC="${KANAPI_TARGET_NAME}-gcc" 
+fi
+
+if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-g++ ]
+then
+	export CXX="${KANAPI_TARGET_NAME}-g++"
+fi
+
 if [ "${KANAPI_TARGET}" = "`uname -m`" ]
 then
 	if [ -f ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
