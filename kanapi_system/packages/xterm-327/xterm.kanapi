@@ -27,7 +27,7 @@ LIB_DEPENDS="xext xcb xau xpm x11 xrender ncurses xft fontconfig expat libpng zl
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl -lm -lpthread"
+export LDFLAGS="${LDFLAGS} -lm -lpthread"
 
 pkg_download() {
 	if [ -f /kanapi_build/src/${PACKAGE_FILENAME} ] 

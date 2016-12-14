@@ -28,7 +28,7 @@ LIB_DEPENDS="zlib x11 xcb xau"
 . ../settings
 
 export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
-export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS} -ldl -lm"
+export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS} -lm"
 export LIBS="-lncurses"
 
 pkg_prepare() {

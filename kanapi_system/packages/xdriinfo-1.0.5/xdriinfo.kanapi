@@ -27,7 +27,7 @@ LIB_DEPENDS="gl expat xext xdamage xfixes x11-xcb x11 xcb-glx xcb-dri2 xcb-dri3 
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl -lpthread -lm -lglapi"
+export LDFLAGS="${LDFLAGS} -lpthread -lm -lglapi"
 
 pkg_prepare() {
 	pkg_tar_bz2

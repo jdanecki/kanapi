@@ -27,7 +27,7 @@ LIB_DEPENDS="sdl"
 
 . ../settings
 
-export LIBS="-lm -ldl"
+export LIBS="-lm"
 export CFLAGS="${CFLAGS} -I`sdl-config --prefix`/include"
 
 pkg_prepare() {

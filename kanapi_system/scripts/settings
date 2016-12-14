@@ -88,7 +88,7 @@ then
 		${KANAPI_PKGCONFIG} --exists ${LIB_DEPENDS}
 		if [ "$?" = "0" ]
 		then
-			export LDFLAGS=`${KANAPI_PKGCONFIG} --libs ${LIB_DEPENDS}`
+			export LDFLAGS="`${KANAPI_PKGCONFIG} --libs ${LIB_DEPENDS}` -ldl"
 			export LD_LIBRARY_PATH=`${KANAPI_PKGCONFIG} --variable=libdir ${LIB_DEPENDS} | sed "s/ /:/g"`:${LD_LIBRARY_PATH}
 			export CFLAGS=`${KANAPI_PKGCONFIG} --cflags ${LIB_DEPENDS}`
 		fi

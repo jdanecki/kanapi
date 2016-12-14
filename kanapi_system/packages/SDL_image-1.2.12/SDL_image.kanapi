@@ -25,7 +25,7 @@ LIB_DEPENDS="libpng sdl zlib"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl -lpthread -lm"
+export LDFLAGS="${LDFLAGS} -lpthread -lm"
 
 pkg_prepare() {
 	pkg_tar_gz

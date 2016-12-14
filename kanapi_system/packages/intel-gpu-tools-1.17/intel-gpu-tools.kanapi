@@ -27,7 +27,7 @@ LIB_DEPENDS="libudev libunwind pciaccess libkmod liblzma zlib xcb xrender xau xc
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lpthread -ldl -lm"
+export LDFLAGS="${LDFLAGS} -lpthread -lm"
 export LIBUNWIND_CFLAGS="-I`${PKG_CONFIG} --variable=includedir libunwind`"
 
 pkg_prepare() {

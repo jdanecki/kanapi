@@ -21,12 +21,13 @@ PACKAGE_NAME=openssh
 VER=7.3p1
 URL="http://ftp.icm.edu.pl/pub/OpenBSD/OpenSSH/portable"
 EXT=tar.gz
+
 LIB_DEPENDS="zlib openssl"
 
 . ../settings
 
 export CFLAGS="${CFLAGS}"
-export LDFLAGS="${LDFLAGS} -ldl -lpthread"
+export LDFLAGS="${LDFLAGS} -lpthread"
 
 pkg_prepare() {
 	pkg_tar_gz

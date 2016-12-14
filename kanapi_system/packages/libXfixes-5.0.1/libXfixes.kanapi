@@ -26,8 +26,6 @@ LIB_DEPENDS="xcb x11 xau"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl"
-
 pkg_prepare() {
 	pkg_tar_bz2
 }

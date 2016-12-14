@@ -28,7 +28,7 @@ LIB_DEPENDS="alsa"
 . ../settings
 
 CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
-LDFLAGS="${LDFLAGS} -ldl -lm -lpthread ${NCURSES_LDFLAGS}"
+LDFLAGS="${LDFLAGS} -lm -lpthread ${NCURSES_LDFLAGS}"
 
 pkg_prepare() {
 	pkg_tar_bz2

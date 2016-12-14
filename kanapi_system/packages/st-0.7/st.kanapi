@@ -26,7 +26,7 @@ EXT=tar.bz2
 LIB_DEPENDS="x11 fontconfig freetype2 xft xproto xcb xau libpng zlib expat xrender"
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lm -ldl -lpthread -lutil"
+export LDFLAGS="${LDFLAGS} -lm -lpthread -lutil"
 pkg_prepare() {
 	pkg_tar_bz2
 }

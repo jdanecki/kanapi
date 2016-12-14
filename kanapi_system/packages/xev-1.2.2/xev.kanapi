@@ -27,8 +27,6 @@ LIB_DEPENDS="xrandr xext xrender xcb xau"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl"
-
 pkg_prepare() {
 	pkg_tar_bz2
 }

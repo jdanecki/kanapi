@@ -27,7 +27,7 @@ LIB_DEPENDS="x11 xcb xau fontconfig expat freetype2 libpng zlib"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl -lm -lpthread"
+export LDFLAGS="${LDFLAGS} -lm -lpthread"
 
 pkg_prepare() {
 	pkg_tar_bz2
