@@ -8,7 +8,11 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-all: cross_gcc rootfs bbs kbs native_gcc sound sdl-support x-support wm xapp tests
+all: required optional
+
+required: cross_gcc rootfs bbs
+   
+optional: kbs native_gcc sound sdl-support x-support wm xapp tests
 
 #Basic Build System 
 bbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
