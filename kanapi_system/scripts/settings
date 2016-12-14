@@ -14,6 +14,7 @@ KANAPI_BASE=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
 KANAPI_HOST_BASE=/kanapi_${KANAPI_VER}/`uname -m`/packages
 KANAPI_CROSS_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
 KANAPI_BUILD_SRC=/kanapi_build/src
+KANAPI_TARGET_BIN=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin
 
 ##############################################################
 if [ "${KANAPI_TARGET}" = "arm" ]
@@ -54,7 +55,7 @@ if [ "${KANAPI_TARGET}" = "`uname -m`" ]
 then
 	if [ -f ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
 	then
-		export PATH=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin:${PATH}
+		export PATH=${KANAPI_TARGET_BIN}:${PATH}
 		KANAPI_PKGCONFIG=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
 	fi
 	KANAPI_CROSS=0

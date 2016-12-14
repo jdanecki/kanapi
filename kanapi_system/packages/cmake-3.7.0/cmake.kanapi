@@ -24,6 +24,9 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
+export CC="${KANAPI_TARGET_NAME}-gcc" 
+export CXX="${KANAPI_TARGET_NAME}-g++"
+
 pkg_prepare() {
 	pkg_tar_gz
 }
@@ -31,8 +34,9 @@ pkg_prepare() {
 pkg_configure() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS} \
-		-- -DBUILD_CursesDialog=OFF
+		${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS} -- \
+		-DCURSES_INCLUDE_PATH=`ncurses6-config --includedir` \
+		-DCURSES_LIBRARY=`ncurses6-config --libdir`/libncurses.a 
 	fi
 }
 
@@ -52,6 +56,6 @@ pkg_install() {
 }
 
 pkg_check() {
-	echo "CFLAGS=${CFLAGS}"
-	echo "LDFLAGS=${LDFLAGS}"
+	echo "${PATH}"
 }
+
