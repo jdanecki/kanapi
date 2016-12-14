@@ -22,7 +22,9 @@ VER=1.18.0
 URL="http://xorg.freedesktop.org/releases/individual/xserver"
 EXT=tar.bz2
 #build depends on pixman-1 font-util openssl dri3proto dri2proto xf86driproto libxcb libXau xcb-util-keysyms
-LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms openssl libcrypto"
+
+LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms openssl libcrypto libunwind"
+
 . ../settings
 
 export CFLAGS="-g -Og ${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
@@ -33,12 +35,12 @@ pkg_prepare() {
 }
 
 pkg_configure() {
+	export LIBUNWIND_CFLAGS="-I`${PKG_CONFIG} --variable=includedir libunwind`"
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --disable-secure-rpc --disable-screensaver \
 	--with-xkb-bin-directory="`${PKG_CONFIG} --variable=prefix xkbcomp`/bin" \
-    --with-xkb-path=`${PKG_CONFIG} --variable=xkbconfigdir xkbcomp` \
+	--with-xkb-path=`${PKG_CONFIG} --variable=xkbconfigdir xkbcomp` \
 	--with-fontmiscdir=`${PKG_CONFIG} --variable=fontrootdir fontutil`/misc \
-	--host=${KANAPI_TARGET_NAME} ac_cv_lib_c_backtrace=no ac_cv_func_backtrace=no
-
+	--host=${KANAPI_TARGET_NAME} ac_cv_lib_c_backtrace=no ac_cv_func_backtrace=no 
 }
 
 pkg_install() {

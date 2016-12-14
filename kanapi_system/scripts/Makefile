@@ -469,7 +469,7 @@ libevdev:
 mtdev:
 	@$(RUN_TARGET)
 
-xorg-server: dri3proto dri2proto xf86driproto libxcb xcb-util-keysyms llvm
+xorg-server: dri3proto dri2proto xf86driproto libxcb xcb-util-keysyms llvm libunwind
 	@$(RUN_TARGET)
 
 xf86-input-keyboard: xorg-server xproto inputproto
