@@ -23,6 +23,13 @@ URL="https://cdn.kernel.org/pub/linux/kernel/v4.x"
 EXT=tar.xz
 
 . ../settings
+	
+if [ -d ${KANAPI_BASE}/glibc-${glibc_ver} ]
+then
+	HOSTCC=gcc
+else
+	HOSTCC=/usr/bin/gcc
+fi
 
 pkg_prepare() {
 	pkg_tar_xz
@@ -30,22 +37,22 @@ pkg_prepare() {
 
 pkg_configure() {
 #	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` menuconfig
-	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` olddefconfig
+	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` HOSTCC=${HOSTCC} olddefconfig
 }
 
 pkg_build() {
 	export PATH=${KANAPI_CROSS_BASE}/binutils-${binutils_ver}/bin:${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin:${PATH}
-#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  headers
-#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  all
-#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  bzImage
-#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  modules
+#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  HOSTCC=${HOSTCC} headers
+#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  HOSTCC=${HOSTCC} all
+#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  HOSTCC=${HOSTCC} bzImage
+#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  HOSTCC=${HOSTCC} modules
 }
 
 pkg_install() {
 	export PATH=${KANAPI_CROSS_BASE}/binutils-${binutils_ver}/bin:${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin:${PATH}
-#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  INSTALL_MOD_PATH=${PREFIX} modules_install
-#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  INSTALL_FW_PATH=${PREFIX}/firmware firmware_install
-	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  INSTALL_HDR_PATH=${PREFIX} headers_install
+#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  HOSTCC=${HOSTCC} INSTALL_MOD_PATH=${PREFIX} modules_install
+#	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  HOSTCC=${HOSTCC} INSTALL_FW_PATH=${PREFIX}/firmware firmware_install
+	make CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -C ${PACKAGE_SRCDIR} O=`pwd` -j ${MAKE_JOBS}  HOSTCC=${HOSTCC} INSTALL_HDR_PATH=${PREFIX} headers_install
 #	cp arch/x86/boot/bzImage ${PREFIX}
 }	
 
