@@ -17,46 +17,19 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=llvm
-VER=3.9.0.src
-URL="http://llvm.org/releases/3.9.0"
+PACKAGE_NAME=grep
+VER=2.27
+URL="GNU"
 EXT=tar.xz
 #build depends on
-
 . ../settings
-
-pkg_download() {
-	pkg_curl
-	PACKAGE_NAME=cfe
-	PACKAGE_VER=${PACKAGE_NAME}-${VER}
-	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
-	PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
-	pkg_curl
-}
 
 pkg_prepare() {
 	pkg_tar_xz
-	PACKAGE_NAME=cfe
-	PACKAGE_VER=${PACKAGE_NAME}-${VER}
-	PACKAGE_SRCDIR=/kanapi_build/src/${PACKAGE_VER}
-	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
-	pkg_tar_xz
-	ln -svf ${PACKAGE_SRCDIR} /kanapi_build/src/llvm-${VER}/tools/clang
-}
-
-pkg_configure() {
-	cmake -G Ninja ${PACKAGE_SRCDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_C_COMPILER=${KANAPI_TARGET_NAME}-gcc \
-		-DCMAKE_CXX_COMPILER=${KANAPI_TARGET_NAME}-g++ -DCMAKE_BUILD_TYPE=Release
-
-#	LLVM_TARGETS_TO_BUILD="AArch64,AMDGPU,ARM,BPF,Hexagon,Mips,MSP430,NVPTX,PowerPC,Sparc,SystemZ,X86,XCore"
-}
-
-pkg_build() {
-	ninja
 }
 
 pkg_install() {
-	ninja install
+	pkg_install_make
 	pkg_install_bin_all
 }
 

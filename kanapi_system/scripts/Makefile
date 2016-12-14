@@ -8,13 +8,12 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
-all: cross_gcc rootfs sbs kbs native_gcc sound sdl-support x-support wm xapp tests
+all: cross_gcc rootfs bbs kbs native_gcc sound sdl-support x-support wm xapp tests
 
-#SBS - second build system 
-sbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
+#basic build system 
+bbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
-	coreutils diffutils
-#grep tar findutils patch util-linux less procps
+	coreutils diffutils ninja grep tar findutils patch util-linux less
 
 #KBS - KaNaPi Base System
 kbs: gzip cgdb mc vim openssh curl gpm qemu strace kmod procps-ng intel-gpu-tools
@@ -414,7 +413,7 @@ udev: pci_ids usbutils
 expat:
 	@$(RUN_TARGET)
 
-llvm:
+llvm: ninja
 	@$(RUN_TARGET)
 
 mesa: libxshmfence udev expat llvm
@@ -788,6 +787,23 @@ diffutils:
 curl:
 	@$(RUN_TARGET)
 
+grep:
+	@$(RUN_TARGET)
+
+tar:
+	@$(RUN_TARGET)
+
+findutils:
+	@$(RUN_TARGET)
+
+patch:
+	@$(RUN_TARGET)
+
+util-linux:
+	@$(RUN_TARGET)
+
+less:
+	@$(RUN_TARGET)
 
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
