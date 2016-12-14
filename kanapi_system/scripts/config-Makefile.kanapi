@@ -64,4 +64,10 @@ hicolor-icon-theme_ver=${hicolor_icon_theme_ver}
 tango-icon-theme_ver=${tango_icon_theme_ver}
 xorg-cf-files_ver=${xorg_cf_files_ver}
 util-linux_ver=${util_linux_ver}
+icon-naming-utils_ver=${icon_naming_utils_ver}
+XML-NamespaceSupport_ver=${XML_NamespaceSupport_ver}
+XML-SAX-Base_ver=${XML_SAX_Base_ver}
+XML-SAX_ver=${XML_SAX_ver}
+XML-SAX-Expat_ver=${XML_SAX_Expat_ver}
+XML-Simple_ver=${XML_Simple_ver}
 

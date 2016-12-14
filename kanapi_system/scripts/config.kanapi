@@ -246,3 +246,11 @@ findutils_ver=4.6.0
 patch_ver=2.7
 util_linux_ver=2.29
 less_ver=481
+icon_naming_utils_ver=0.8.90
+XML_NamespaceSupport_ver=1.11
+XML_SAX_Base_ver=1.08
+XML_SAX_ver=0.99
+XML_SAX_Expat_ver=0.51
+XML_Simple_ver=2.22
+ImageMagick_ver=7.0.3-10
+

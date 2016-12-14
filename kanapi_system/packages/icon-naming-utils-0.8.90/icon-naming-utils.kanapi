@@ -17,20 +17,20 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=tango-icon-theme
+PACKAGE_NAME=icon-naming-utils
 VER=0.8.90
 URL="http://tango.freedesktop.org/releases"
-EXT=tar.gz
+EXT=tar.bz2
 #build depends on
 . ../settings
 
 export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-NamespaceSupport-${XML_NamespaceSupport_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-Base-${XML_SAX_Base_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-${XML_SAX_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-Expat-${XML_SAX_Expat_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-Simple-${XML_Simple_ver}/lib/site_perl/${perl_ver}"
 
 pkg_prepare() {
-	pkg_tar_gz
+	pkg_tar_bz2
 }
 
 pkg_install() {
-	pkg_install_make
+	pkg_install_pc_share
 }
 

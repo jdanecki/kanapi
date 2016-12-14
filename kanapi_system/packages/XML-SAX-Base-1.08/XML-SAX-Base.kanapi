@@ -17,20 +17,29 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=tango-icon-theme
-VER=0.8.90
-URL="http://tango.freedesktop.org/releases"
+PACKAGE_NAME=XML-SAX-Base
+VER=1.08
+URL="http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM"
 EXT=tar.gz
 #build depends on
 . ../settings
-
-export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-NamespaceSupport-${XML_NamespaceSupport_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-Base-${XML_SAX_Base_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-${XML_SAX_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-Expat-${XML_SAX_Expat_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-Simple-${XML_Simple_ver}/lib/site_perl/${perl_ver}"
 
 pkg_prepare() {
 	pkg_tar_gz
 }
 
+pkg_configure() {
+	local_copy
+	perl Makefile.PL PREFIX=${PREFIX}
+}
+
+pkg_build() {
+	cd build
+	make -j ${MAKE_JOBS} MAKEINFO=true
+}
+
 pkg_install() {
-	pkg_install_make
+	cd build
+	make -j 1 install MAKEINFO=true
 }
 

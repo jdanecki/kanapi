@@ -715,8 +715,29 @@ default-icon-theme:
 hicolor-icon-theme:
 	@$(RUN_TARGET)
 
-#tango-icon-theme:
-#	@$(RUN_TARGET)
+XML-NamespaceSupport:
+	@$(RUN_TARGET)
+
+XML-SAX-Base:
+	@$(RUN_TARGET)
+
+XML-SAX: XML-NamespaceSupport XML-SAX-Base XML-Parser
+	@$(RUN_TARGET)
+
+XML-SAX-Expat: XML-SAX
+	@$(RUN_TARGET)
+
+XML-Simple: XML-SAX-Expat
+	@$(RUN_TARGET)
+
+icon-naming-utils: XML-Simple
+	@$(RUN_TARGET)
+
+ImageMagick:
+	@$(RUN_TARGET)
+
+tango-icon-theme: icon-naming-utils ImageMagick
+	@$(RUN_TARGET)
 
 xcalc:
 	@$(RUN_TARGET)
