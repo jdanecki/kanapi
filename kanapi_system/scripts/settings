@@ -53,7 +53,10 @@ export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
 
 if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc ]
 then
-	export CC="${KANAPI_TARGET_NAME}-gcc" 
+	if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
+	then
+		export CC="${KANAPI_TARGET_NAME}-gcc" 
+	fi
 fi
 
 if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-g++ ]
