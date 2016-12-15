@@ -20,7 +20,7 @@ bbs: busybox bash make autoconf automake bison sed gettext gawk ncurses cmake \
 	coreutils diffutils ninja grep tar findutils patch util-linux less
 
 #KBS - KaNaPi Base System
-kbs: gzip cgdb mc vim openssh curl gpm qemu strace kmod procps-ng intel-gpu-tools
+kbs: gzip cgdb mc vim openssh gpm qemu strace kmod procps-ng intel-gpu-tools
 
 native_gcc: gcc
 
@@ -179,7 +179,7 @@ vim:
 make:
 	@$(RUN_TARGET)
 
-git:
+git: curl openssl libssh2
 	@$(RUN_TARGET)
 
 openssl:
