@@ -13,7 +13,11 @@ test_binutils:
 	for i in addr2line ar as c++filt elfedit gprof ld ld.bfd nm objcopy objdump ranlib readelf size strings strip ;\
 	do echo -n "$$i: " ; . ./set_variables ; ${KANAPI_TARGET_NAME}-$${i} --version | grep Binutils ; done
 
-test_gcc: test_gcc0.c test_gcc1.c
+test_gcc:
+	for i in cpp gcc gcc-ar gcc-nm gcc-ranlib ;\
+	do echo -n "$$i: " ; . ./set_variables ; ${KANAPI_TARGET_NAME}-$${i} --version | grep -E "GCC|Binutils" ; done
+
+test_gcc_glibc: test_gcc0.c test_gcc1.c
 	@echo "tests for $@ for TARGET=$(KANAPI_TARGET_NAME)"
 	@if [ ! -d $(KANAPI_BASE)/tests_results ] ; then mkdir $(KANAPI_BASE)/tests_results ; fi
 	. ./set_variables; $(KANAPI_BASE)/gcc-$(gcc_ver)/bin/$(KANAPI_TARGET_NAME)-gcc test_gcc0.c -Wall -o $(KANAPI_BASE)/tests_results/test_gcc0
