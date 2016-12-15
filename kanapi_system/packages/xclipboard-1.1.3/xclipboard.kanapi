@@ -27,8 +27,6 @@ LIB_DEPENDS="xext sm ice xpm xcb xau"
 
 . ../settings
 
-LDFLAGS="${LDFLAGS} -ldl"
-
 pkg_prepare() {
 	pkg_tar_bz2
 }

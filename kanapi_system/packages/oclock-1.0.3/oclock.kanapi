@@ -26,8 +26,6 @@ LIB_DEPENDS="xmu ice xcb sm xext xau uuid"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl"
-
 pkg_prepare() {
 	pkg_tar_bz2
 }

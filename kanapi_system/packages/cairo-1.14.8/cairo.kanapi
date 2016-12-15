@@ -27,7 +27,7 @@ LIB_DEPENDS="libpng zlib expat x11 xcb xau xext"
 #build depends on
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lpthread -lm -ldl"
+export LDFLAGS="${LDFLAGS} -lpthread -lm"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {

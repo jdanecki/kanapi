@@ -27,7 +27,7 @@ LIB_DEPENDS="alsa"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lm -ldl -lpthread"
+export LDFLAGS="${LDFLAGS} -lm -lpthread"
 
 pkg_prepare() {
 	pkg_tar_bz2

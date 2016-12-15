@@ -28,7 +28,6 @@ LIB_DEPENDS="x11 xcb xau xext"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
