@@ -10,11 +10,17 @@ export LANG="C"
 KANAPI_TARGET_NAME=${KANAPI_TARGET}-kanapi-linux-gnu
 KANAPI_BUILD_NAME=`uname -m`-kanapi-linux-gnu
 KANAPI_VER=`cat ../../scripts/KANAPI_VER`
-KANAPI_BASE=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
-KANAPI_HOST_BASE=/kanapi_${KANAPI_VER}/`uname -m`/packages
-KANAPI_CROSS_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
+if [ "`id -u`" != "0" ]
+then
+	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
+else
+	KANAPI_ROOT="/kanapi_${KANAPI_VER}"
+fi
+KANAPI_BASE=${KANAPI_ROOT}/${KANAPI_TARGET}/packages
+KANAPI_HOST_BASE=${KANAPI_ROOT}/`uname -m`/packages
+KANAPI_CROSS_BASE=${KANAPI_ROOT}/`uname -m`/cross/${KANAPI_TARGET}
+KANAPI_TARGET_BIN=${KANAPI_ROOT}/${KANAPI_TARGET}/bin
 KANAPI_BUILD_SRC=/${HOME}/src
-KANAPI_TARGET_BIN=/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin
 
 ##############################################################
 if [ "${KANAPI_TARGET}" = "arm" ]
@@ -269,7 +275,7 @@ pkg_install_pc_all() {
 pkg_uninstall() {
 	if [ -d ${PREFIX} ]
 	then	
-		rm -rf /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages/${PACKAGE_VER}
+		rm -rf ${KANAPI_ROOT}/${KANAPI_TARGET}/packages/${PACKAGE_VER}
 	fi
 }
 

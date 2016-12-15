@@ -1,7 +1,11 @@
 include ../scripts/config.kanapi
 
-test_binutils test_glibc test_gmp test_linux test_mpc test_mpfr: 
+test_glibc test_gmp test_linux test_mpc test_mpfr: 
 	@echo "!!! tests for $@ missing !!!"
+
+test_binutils:
+	for i in addr2line ar as c++filt elfedit gprof ld ld.bfd nm objcopy objdump ranlib readelf size strings strip ;\
+	do echo -n "$$i: " ; . ./set_variables ; ${KANAPI_TARGET_NAME}-$${i} --version | grep Binutils ; done
 
 test_gcc: test_gcc0.c test_gcc1.c
 	@echo "tests for $@ for TARGET=$(KANAPI_TARGET_NAME)"

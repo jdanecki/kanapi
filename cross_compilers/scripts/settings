@@ -7,7 +7,13 @@ export LANG="C"
 
 KANAPI_TARGET_NAME=${KANAPI_TARGET}-kanapi-linux-gnu
 KANAPI_VER=0.7
-KANAPI_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
+if [ "`id -u`" != "0" ]
+then
+	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
+else
+	KANAPI_ROOT="/kanapi_${KANAPI_VER}"
+fi
+KANAPI_BASE=${KANAPI_ROOT}/`uname -m`/cross/${KANAPI_TARGET}
 
 ##############################################################
 if [ "${KANAPI_TARGET}" = "arm" ]
@@ -21,7 +27,7 @@ fi
 
 PACKAGE_VER=${PACKAGE_NAME}-${VER}
 PREFIX=${KANAPI_BASE}/${PACKAGE_VER}
-KANAPI_BUILD_SRC=/${HOME}/src
+KANAPI_BUILD_SRC=${HOME}/src
 PACKAGE_SRCDIR=${KANAPI_BUILD_SRC}/${PACKAGE_VER}
 PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
 
@@ -76,12 +82,7 @@ pkg_curl() {
 		echo "$PACKAGE_NAME: already downloaded"
 	else
 		echo "downloading ${PACKAGE_NAME}"
-		if [ "`lsb_release -is`" = "KaNaPi" ]
-		then 
-			CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi curl ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-		else
-			curl ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-		fi
+		curl ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 	fi
 }
 

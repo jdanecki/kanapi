@@ -1,9 +1,7 @@
-all: binutils
-
-binutils:
-	cd ../cross_compilers/x86_64 ; make $@ ACTION=build
+all:
+	cd ../cross_compilers/`uname -m` ; make binutils ACTION=install
 
 test:
-	@echo "make test"
+	cd ../cross_compilers/`uname -m` ; make binutils ACTION=test
 
 
