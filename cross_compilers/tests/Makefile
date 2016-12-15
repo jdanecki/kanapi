@@ -14,7 +14,7 @@ test_binutils:
 	do echo -n "$$i: " ; . ./set_variables ; ${KANAPI_TARGET_NAME}-$${i} --version | grep Binutils ; done
 
 test_gcc:
-	for i in cpp gcc gcc-ar gcc-nm gcc-ranlib ;\
+	for i in cpp gcc gcc-ar gcc-nm gcc-ranlib g++ ;\
 	do echo -n "$$i: " ; . ./set_variables ; ${KANAPI_TARGET_NAME}-$${i} --version | grep -E "GCC|Binutils" ; done
 
 test_gcc_glibc: test_gcc0.c test_gcc1.c
