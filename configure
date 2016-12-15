@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "configure test"
+exit 0
+
