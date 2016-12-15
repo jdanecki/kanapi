@@ -58,7 +58,10 @@ fi
 
 if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-g++ ]
 then
-	export CXX="${KANAPI_TARGET_NAME}-g++"
+	if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
+	then
+		export CXX="${KANAPI_TARGET_NAME}-g++"
+	fi
 fi
 
 if [ "${KANAPI_TARGET}" = "`uname -m`" ]
