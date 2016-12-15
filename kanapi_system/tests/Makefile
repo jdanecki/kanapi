@@ -12,3 +12,15 @@ test_gcc: test_gcc0.c test_gcc1.c test_libstdcpp.cpp test_threads.cpp
 	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_backtrace.c -Wall -o $(KANAPI_BASE)/tests_results/test_backtrace
 	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_long.c -Wall -o $(KANAPI_BASE)/tests_results/test_long
 
+test_%:
+	@echo "missing tests for $@"
+
+test_gmp:
+	./test_lib gmp
+
+test_mpc:
+	./test_lib mpc
+
+test_mpfr:
+	./test_lib mpfr
+
