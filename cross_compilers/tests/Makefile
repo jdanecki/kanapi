@@ -1,7 +1,13 @@
 include ../scripts/config.kanapi
 
-test_glibc test_gmp test_linux test_mpc test_mpfr: 
-	@echo "!!! tests for $@ missing !!!"
+test_gmp:
+	./test_lib gmp
+
+test_mpc:
+	./test_lib mpc
+
+test_mpfr:
+	./test_lib mpfr
 
 test_binutils:
 	for i in addr2line ar as c++filt elfedit gprof ld ld.bfd nm objcopy objdump ranlib readelf size strings strip ;\

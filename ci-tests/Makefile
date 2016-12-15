@@ -1,7 +1,7 @@
 all:
-	cd ../cross_compilers/`uname -m` ; make binutils ACTION=install
+	cd ../cross_compilers/`uname -m` ; make mpc ACTION=install
 
 test:
-	cd ../cross_compilers/`uname -m` ; make binutils ACTION=test
+	cd ../cross_compilers/`uname -m` ; make mpc ACTION=test
 
 
