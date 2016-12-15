@@ -1,5 +1,17 @@
 #!/bin/bash
 
 echo "configure test"
+
+pwd
+df -h
+wget --version
+curl --version
+pkg-config --version
+
+NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo ${NR_CPUS}
+
+env
+
 exit 0
 

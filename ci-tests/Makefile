@@ -1,9 +1,9 @@
-all:
-	echo "make all with CC=$(CC)"
-	true
+all: binutils
+
+binutils:
+	cd ../cross_compilers/x86_64 ; make $@ ACTION=download
 
 test:
-	echo "make test"
-	true
+	@echo "make test"
 
 
