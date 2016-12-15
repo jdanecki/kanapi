@@ -1,5 +1,33 @@
 #!/bin/bash
 
 echo "configure test"
-exit 0
+
+wget --version
+curl --version
+echo "PKG_CONFIG: `pkg-config --version`"
+
+NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "NR_CPUS=${NR_CPUS}"
+
+#env
+if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
+
+if [ -d ${HOME}/src ]
+then
+	echo "sources dir exists"
+else
+	echo "missing sources dir, recreating"
+	mkdir ${HOME}/src
+fi
+
+ln -svf `pwd`/cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
+ls -l ${HOME}/bin 
+
+if [ -x ${HOME}/bin/pkg_kanapi ] 
+then 
+	exit 0 
+else
+	exit 2
+fi
+
 

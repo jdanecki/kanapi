@@ -7,7 +7,13 @@ export LANG="C"
 
 KANAPI_TARGET_NAME=${KANAPI_TARGET}-kanapi-linux-gnu
 KANAPI_VER=0.7
-KANAPI_BASE=/kanapi_${KANAPI_VER}/`uname -m`/cross/${KANAPI_TARGET}
+if [ "`id -u`" != "0" ]
+then
+	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
+else
+	KANAPI_ROOT="/kanapi_${KANAPI_VER}"
+fi
+KANAPI_BASE=${KANAPI_ROOT}/`uname -m`/cross/${KANAPI_TARGET}
 
 ##############################################################
 if [ "${KANAPI_TARGET}" = "arm" ]
@@ -21,7 +27,8 @@ fi
 
 PACKAGE_VER=${PACKAGE_NAME}-${VER}
 PREFIX=${KANAPI_BASE}/${PACKAGE_VER}
-PACKAGE_SRCDIR=/kanapi_build/src/${PACKAGE_VER}
+KANAPI_BUILD_SRC=${HOME}/src
+PACKAGE_SRCDIR=${KANAPI_BUILD_SRC}/${PACKAGE_VER}
 PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
 
 if [[ ${URL} == "SF" ]]
@@ -60,45 +67,40 @@ local_copy() {
 }
 
 pkg_download() {
-	if [ -s /kanapi_build/src/${PACKAGE_FILENAME} ] 
+	if [ -s ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 	then 
 		echo "$PACKAGE_NAME: already downloaded"
 	else
 		echo "downloading ${PACKAGE_NAME}"
-		wget ${PACKAGE_LINK} -O /kanapi_build/src/${PACKAGE_FILENAME}
+		wget ${PACKAGE_LINK} -O ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 	fi
 }
 
 pkg_curl() {
-	if [ -s /kanapi_build/src/${PACKAGE_FILENAME} ] 
+	if [ -s ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 	then 
 		echo "$PACKAGE_NAME: already downloaded"
 	else
 		echo "downloading ${PACKAGE_NAME}"
-		if [ "`lsb_release -is`" = "KaNaPi" ]
-		then 
-			CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi curl ${PACKAGE_LINK} -o /kanapi_build/src/${PACKAGE_FILENAME}
-		else
-			curl ${PACKAGE_LINK} -o /kanapi_build/src/${PACKAGE_FILENAME}
-		fi
+		curl ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 	fi
 }
 
 pkg_copy() {
-	mkdir /kanapi_build/src/${PACKAGE_VER}
-	cp -v /kanapi_build/src/${PACKAGE_NAME} /kanapi_build/src/${PACKAGE_VER}/${PACKAGE_NAME}
+	mkdir ${KANAPI_BUILD_SRC}/${PACKAGE_VER}
+	cp -v ${KANAPI_BUILD_SRC}/${PACKAGE_NAME} ${KANAPI_BUILD_SRC}/${PACKAGE_VER}/${PACKAGE_NAME}
 }
 
 pkg_tar_gz() {
-	 tar -xzf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
+	 tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
 } 
 
 pkg_tar_xz() {
-	 tar -xJf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
+	 tar -xJf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
 } 
 
 pkg_tar_bz2() {
-	 tar -xjf /kanapi_build/src/${PACKAGE_FILENAME} -C /kanapi_build/src
+	 tar -xjf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
 } 
 
 pkg_version() {

@@ -1,9 +1,7 @@
 all:
-	echo "make all with CC=$(CC)"
-	true
+	cd ../cross_compilers/`uname -m` ; make binutils ACTION=install
 
 test:
-	echo "make test"
-	true
+	cd ../cross_compilers/`uname -m` ; make binutils ACTION=test
 
 
