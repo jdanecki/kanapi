@@ -2,16 +2,23 @@
 
 echo "configure test"
 
-pwd
-df -h
 wget --version
 curl --version
-pkg-config --version
+echo "PKG_CONFIG: `pkg-config --version`"
 
 NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo ${NR_CPUS}
+echo "NR_CPUS=${NR_CPUS}"
 
-env
+#env
+if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
 
-exit 0
+ln -svf `pwd`/cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
+ls -l ${HOME}/bin 
+
+if [ -x ${HOME}/bin/pkg_kanapi ] 
+then 
+	exit 0 
+else
+	exit 2
+fi
 
