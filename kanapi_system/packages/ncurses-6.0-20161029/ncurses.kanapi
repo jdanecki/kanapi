@@ -34,12 +34,14 @@ pkg_configure() {
 		 export CFLAGS="${CFLAGS} -fPIC"
 	 	 export LDFLAGS="${LDFLAGS} -fPIC"
 	 fi
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  --enable-pc-files=yes
+	if [ ! -d ${PKGCONFIG} ] ; then  mkdir -p ${PREFIX}/lib/pkgconfig ; fi
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  --enable-pc-files=yes --with-pkg-config-libdir=${PREFIX}/lib/pkgconfig
 }
 
 pkg_install() {
 	make -j 1 install MAKEINFO=true
 	pkg_install_bin_all
+	pkg_install_pc_all_only
 	pkg_install_libs
 }
 

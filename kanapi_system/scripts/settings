@@ -279,6 +279,16 @@ pkg_install_pc_all() {
 	done
 }
 
+pkg_install_pc_all_only() {
+	for i in ${PREFIX}/lib/pkgconfig/*
+	do
+		if [ -f $i ]
+		then
+			ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
+		fi
+	done
+}
+
 pkg_uninstall() {
 	if [ -d ${PREFIX} ]
 	then	
