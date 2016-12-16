@@ -20,7 +20,7 @@ KANAPI_BASE=${KANAPI_ROOT}/${KANAPI_TARGET}/packages
 KANAPI_HOST_BASE=${KANAPI_ROOT}/`uname -m`/packages
 KANAPI_CROSS_BASE=${KANAPI_ROOT}/`uname -m`/cross/${KANAPI_TARGET}
 KANAPI_TARGET_BIN=${KANAPI_ROOT}/${KANAPI_TARGET}/bin
-KANAPI_BUILD_SRC=/${HOME}/src
+KANAPI_BUILD_SRC=${HOME}/src
 
 ##############################################################
 if [ "${KANAPI_TARGET}" = "arm" ]
