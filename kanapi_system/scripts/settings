@@ -328,8 +328,12 @@ pkg_install_libs() {
 			ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
 		fi
 	done
+if [ "`id -u`" = "0" ]
+then
 	export LD_LIBRARY_PATH=
 	ldconfig
+fi
+
 }
 
 pkg_install_all() {
