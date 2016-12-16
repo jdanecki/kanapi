@@ -145,8 +145,10 @@ MAKE_JOBS=${NR_CPUS}
 if [ "x${PKG_VERBOSE}" = "x1" ]
 then
 	MAKE=make
+	LN_SF="ln -svf"
 else
 	MAKE="make -s"
+	LN_SF="ln -sf"
 fi
 
 local_copy() {
@@ -240,7 +242,12 @@ pkg_configure_native() {
 }
 
 pkg_configure_target() {	
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+	if [ "x${PKG_VERBOSE}" = "x1" ]
+	then
+		${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+	else
+		${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} > /dev/null
+	fi
 }
 
 pkg_configure() {
@@ -248,11 +255,21 @@ pkg_configure() {
 }
 
 pkg_build() {
-	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+	if [ "x${PKG_VERBOSE}" = "x1" ]
+	then
+		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+	else
+		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true > /dev/null
+	fi
 }
 
 pkg_install_make() {
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
+	if [ "x${PKG_VERBOSE}" = "x1" ]
+	then
+		${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
+	else
+		${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true > /dev/null
+	fi
 }
 
 pkg_install() {
@@ -261,12 +278,12 @@ pkg_install() {
 
 pkg_install_pc() {	
 	pkg_install_make
-	ln -svf ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+	${LN_SF} ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
 }
 
 pkg_install_pc_share() {	
 	pkg_install_make
-	ln -svf ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+	${LN_SF} ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
 }
 	
 pkg_install_pc_all() {
@@ -275,7 +292,7 @@ pkg_install_pc_all() {
 	do
 		if [ -f $i ]
 		then
-			ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
+			${LN_SF} $i ${PKGCONFIG_DIR}/`basename $i`
 		fi
 	done
 }
@@ -285,7 +302,7 @@ pkg_install_pc_all_only() {
 	do
 		if [ -f $i ]
 		then
-			ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
+			${LN_SF} $i ${PKGCONFIG_DIR}/`basename $i`
 		fi
 	done
 }
@@ -316,19 +333,19 @@ pkg_package() {
 }
 
 pkg_install_bin() {
-	ln -svf ${PREFIX}/bin/${PACKAGE_NAME} ${KANAPI_BASE}/../bin/${PACKAGE_NAME}
+	${LN_SF} ${PREFIX}/bin/${PACKAGE_NAME} ${KANAPI_BASE}/../bin/${PACKAGE_NAME}
 }
 
 pkg_install_bin_all() {
-	ln -svf ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
+	${LN_SF} ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
 }
 
 pkg_install_sbin_all() {
-	ln -svf ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
+	${LN_SF} ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
 }
 
 pkg_install_usr_bin_all() {
-	ln -svf ${PREFIX}/usr/bin/* ${KANAPI_BASE}/../bin
+	${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_BASE}/../bin
 }
 
 pkg_install_libs() {
@@ -336,7 +353,7 @@ pkg_install_libs() {
 	do
 		if [ -f $f ] 
 		then
-			ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
+			${LN_SF} $f ${KANAPI_BASE}/libs/`basename $f`
 		fi
 	done
 if [ "`id -u`" = "0" ]
