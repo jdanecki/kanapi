@@ -153,6 +153,7 @@ local_copy() {
 	rm -rf build
 	mkdir build
 	cp -ar ${PACKAGE_SRCDIR}/* build
+	find ${PACKAGE_SRCDIR} -maxdepth 1 -name .\* -exec cp -a {} build \; 
 	cd build
 }
 
