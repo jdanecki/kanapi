@@ -23,7 +23,7 @@ URL="https://curl.haxx.se/download"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="libssh2 zlib"
+LIB_DEPENDS="libssh2 zlib openssl"
 
 . ../settings
 
