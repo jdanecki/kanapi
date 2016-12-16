@@ -46,8 +46,8 @@ pkg_install() {
 	do
 		mkdir -p ${KANAPI_BASE}/../$i
 	done
-	mkdir -p /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}
-	ln -svf ../../packages /kanapi_${KANAPI_VER}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
+	mkdir -p ${KANAPI_ROOT}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}
+	ln -svf ../../packages ${KANAPI_ROOT}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
 	cp ../../scripts/start_${KANAPI_TARGET} ${KANAPI_BASE}/../
 	for p in glib libffi zlib
 	do
