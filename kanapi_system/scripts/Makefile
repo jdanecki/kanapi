@@ -12,15 +12,18 @@ all: required optional
 
 required: cross_gcc rootfs bbs
    
-optional: kbs native_gcc sound sdl-support x-support wm xapp tests
+optional: apps_txt native_gcc sound sdl-support x-support wm xapp tests apps_gui
 
 #Basic Build System 
 bbs: busybox bash make autoconf automake bison sed gettext gawk pkg-config ncurses openssl cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
 	coreutils diffutils ninja grep tar findutils patch slang util-linux less
 
-#KBS - KaNaPi Base System
-kbs: gzip cgdb mc vim openssh gpm qemu strace kmod procps-ng intel-gpu-tools
+#KS - KaNaPi System textmode apps
+aps_txt: gzip cgdb mc vim openssh gpm strace kmod procps-ng
+
+#KS - KaNaPi System gui apps
+apps_gui: qemu
 
 native_gcc: gcc
 
@@ -62,7 +65,7 @@ icons: xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 
 sound: alsa-utils esound
 
-tests: xflame water xclipboard
+tests: xflame water xclipboard intel-gpu-tools
 
 deprecated: procps
 

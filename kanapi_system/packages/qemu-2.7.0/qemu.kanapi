@@ -75,4 +75,6 @@ pkg_install() {
 pkg_check() {
 	echo "CFLAGS=${CFLAGS}"
 	echo "LDFLAGS=${LDFLAGS}"
+	${PKG_CONFIG} --cflags zlib
+	${PKG_CONFIG} --cflags ${LIB_DEPENDS}
 }
