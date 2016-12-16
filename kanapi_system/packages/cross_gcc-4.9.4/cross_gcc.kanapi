@@ -42,11 +42,11 @@ pkg_configure() {
 }
 
 pkg_build() {
-	make -j ${MAKE_JOBS} MAKEINFO=true 
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true 
 }
 
 pkg_install() {
-	make -j ${MAKE_JOBS}  MAKEINFO=true install
+	${MAKE} -j ${MAKE_JOBS}  MAKEINFO=true install
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
 		LINKER_NAME=ld-linux-x86-64.so.2

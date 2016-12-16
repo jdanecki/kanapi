@@ -60,7 +60,7 @@ pkg_configure() {
 }
 
 header() {
-	make install-headers-nosubdir 
+	${MAKE} install-headers-nosubdir 
 
 	if [ ! -d ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} ]
 	then 
@@ -72,15 +72,15 @@ header() {
 		touch ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include/gnu/stubs.h
 		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
 	fi
-	make csu/subdir_lib
+	${MAKE} csu/subdir_lib
 	install csu/crt1.o csu/crti.o csu/crtn.o ${PREFIX}/lib
 	${KANAPI_TARGET_NAME}-gcc -nostdlib -nostartfiles -shared -x c /dev/null -o ${PREFIX}/lib/libc.so
-	make install-headers
+	${MAKE} install-headers
 }
 
 pkg_build() {
 	set_variables
-	make -s -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {

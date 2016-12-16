@@ -142,6 +142,13 @@ fi
 NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
 MAKE_JOBS=${NR_CPUS}
 
+if [ "x${PKG_VERBOSE}" = "x1" ]
+then
+	MAKE=make
+else
+	MAKE="make -s"
+fi
+
 local_copy() {
 	rm -rf build
 	mkdir build
@@ -240,11 +247,11 @@ pkg_configure() {
 }
 
 pkg_build() {
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install_make() {
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 }
 
 pkg_install() {
@@ -333,7 +340,7 @@ pkg_install_all() {
 
 pkg_test() {
 	echo "tests for ${PACKAGE_NAME}"
-	make -C ../../tests test_${PACKAGE_NAME} KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME} KANAPI_BASE=${KANAPI_BASE}
+	${MAKE} -C ../../tests test_${PACKAGE_NAME} KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME} KANAPI_BASE=${KANAPI_BASE}
 }
 
 pkg_check() {
