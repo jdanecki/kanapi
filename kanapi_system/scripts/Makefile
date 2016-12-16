@@ -17,7 +17,7 @@ optional: kbs native_gcc sound sdl-support x-support wm xapp tests
 #Basic Build System 
 bbs: busybox bash make autoconf automake bison sed gettext gawk pkg-config ncurses openssl cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
-	coreutils diffutils ninja grep tar findutils patch util-linux less
+	coreutils diffutils ninja grep tar findutils patch slang util-linux less
 
 #KBS - KaNaPi Base System
 kbs: gzip cgdb mc vim openssh gpm qemu strace kmod procps-ng intel-gpu-tools
@@ -179,7 +179,7 @@ vim:
 make:
 	@$(RUN_TARGET)
 
-git: curl openssl libssh2
+git: curl 
 	@$(RUN_TARGET)
 
 openssl:
@@ -826,7 +826,7 @@ ninja: re2c
 diffutils:
 	@$(RUN_TARGET)
 
-curl:
+curl: openssl libssh2
 	@$(RUN_TARGET)
 
 grep:
