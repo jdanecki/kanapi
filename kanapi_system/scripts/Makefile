@@ -386,7 +386,7 @@ XML-Parser:
 intltool: XML-Parser
 	@$(RUN_TARGET)
 
-libxml2:
+libxml2: xz
 	@$(RUN_TARGET)
 
 libxslt: libxml2

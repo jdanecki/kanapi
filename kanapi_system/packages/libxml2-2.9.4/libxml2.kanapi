@@ -22,7 +22,12 @@ VER=2.9.4
 URL=" ftp://xmlsoft.org/XSLT"
 EXT=tar.gz
 #build depends on
+
+LIB_DEPENDS="liblzma"
+
 . ../settings
+
+export LDFLAGS="${LDFLAGS} -lpthread"
 
 pkg_prepare() {
 	pkg_tar_gz
