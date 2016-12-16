@@ -70,7 +70,10 @@ pkg_install() {
 	done
 	ln -svf ${LIBC_PREFIX}/sbin/ldconfig ${KANAPI_BASE}/../bin
 	ln -svf ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ${KANAPI_BASE}/../bin
-	cp -ar /dev/* ${KANAPI_BASE}/../dev
+	if [ "`id -u`" = "0" ]
+	then
+		cp -ar /dev/* ${KANAPI_BASE}/../dev
+	fi
 	cp -a ../../configs/etc/* ${KANAPI_BASE}/../etc
 	cp ../../scripts/init-${KANAPI_TARGET} ${KANAPI_BASE}/../
 	ln -svf init-${KANAPI_TARGET} ${KANAPI_BASE}/../init
