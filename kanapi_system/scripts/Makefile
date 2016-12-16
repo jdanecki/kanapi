@@ -12,7 +12,7 @@ all: required optional
 
 required: cross_gcc rootfs bbs
    
-optional: apps_txt native_gcc sound sdl-support x-support wm xapp tests apps_gui
+optional: apps_txt native_gcc sound x-support sdl-support wm xapp tests apps_gui
 
 #Basic Build System 
 bbs: busybox bash make autoconf automake bison sed gettext gawk pkg-config ncurses openssl cmake \
