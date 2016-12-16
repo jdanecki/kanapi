@@ -80,7 +80,7 @@ header() {
 
 pkg_build() {
 	set_variables
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	make -s -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {
