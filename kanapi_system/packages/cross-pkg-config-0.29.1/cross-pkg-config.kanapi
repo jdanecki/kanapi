@@ -28,6 +28,7 @@ EXT=tar.gz
 export GLIB_CFLAGS=
 export GLIB_LIBS=
 export PKG_CONFIG=pkg-config
+export CC=gcc
 
 PREFIX=${KANAPI_CROSS_BASE}/${PACKAGE_VER}
 
@@ -50,4 +51,5 @@ pkg_check() {
 	pkg-config --exists --print-errors "glib-2.0 >= 2.16"; echo $?
 	echo "GLIB_CFLAGS=${GLIB_CFLAGS}"
 	echo "KANAPI_PKGCONFIG=${KANAPI_PKGCONFIG}"
+	echo "CC=${CC}"
 }
