@@ -33,7 +33,7 @@ pkg_configure() {
 	then
 		${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS} -- \
 		-DCURSES_INCLUDE_PATH=`ncurses6-config --includedir` \
-		-DCURSES_LIBRARY=`ncurses6-config --libdir`/libncurses.a 
+		-DCURSES_LIBRARY=`ncurses6-config --libdir`/libncurses.a  -DCURSES_EXTRA_LIBRARY=""
 	fi
 }
 
