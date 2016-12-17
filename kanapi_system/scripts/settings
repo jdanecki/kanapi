@@ -185,6 +185,7 @@ pkg_download() {
 	then
 		echo "Running under Travis, removing sources"
 		rm -rf ${KANAPI_BUILD_SRC}
+		mkdir ${KANAPI_BUILD_SRC}
 	else 
 		echo "running without Travis"
 	fi
