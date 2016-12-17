@@ -42,7 +42,8 @@ then
 else
 	if [[ ${URL} == "GNU" ]]
 	then
-		PACKAGE_LINK=http://ftp.gnu.org/pub/gnu/${PACKAGE_NAME}/${PACKAGE_FILENAME}
+		#PACKAGE_LINK=http://ftp.gnu.org/pub/gnu/${PACKAGE_NAME}/${PACKAGE_FILENAME}
+		PACKAGE_LINK=http://sunsite.icm.edu.pl/pub/gnu/${PACKAGE_NAME}/${PACKAGE_FILENAME}
 	else
 		PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
 	fi
