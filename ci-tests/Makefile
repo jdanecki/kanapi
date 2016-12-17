@@ -1,5 +1,4 @@
-all: travis_test
-#bbs
+all: bbs
 
 cross_compilers:
 	cd ../cross_compilers/`uname -m` ; make gcc ACTION=install
