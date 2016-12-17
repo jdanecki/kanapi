@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "configure test"
-
 wget --version
 curl --version
 echo "PKG_CONFIG: `pkg-config --version`"
@@ -12,10 +10,8 @@ echo "NR_CPUS=${NR_CPUS}"
 #env
 if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
 
-if [ -d ${HOME}/src ]
+if [ ! -d ${HOME}/src ]
 then
-	echo "sources dir exists"
-else
 	echo "missing sources dir, recreating"
 	mkdir ${HOME}/src
 fi
