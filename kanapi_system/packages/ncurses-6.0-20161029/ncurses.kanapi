@@ -35,16 +35,17 @@ pkg_configure() {
 	 	 export LDFLAGS="${LDFLAGS} -fPIC"
 	 fi
 	if [ ! -d ${PKGCONFIG} ] ; then  mkdir -p ${PREFIX}/lib/pkgconfig ; fi
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  --enable-pc-files=yes --with-pkg-config-libdir=${PREFIX}/lib/pkgconfig
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  --enable-pc-files=yes --with-pkg-config-libdir=${PREFIX}/lib/pkgconfig \
+  	--enable-termcap --with-termpath=${PREFIX}/etc/termcap
 }
 
 pkg_install() {
-	${MAKE} -j 1 install MAKEINFO=true
+	make -j 1 install MAKEINFO=true
 	pkg_install_bin_all
 	pkg_install_pc_all_only
 	pkg_install_libs
 }
 
 pkg_check() {
-	${MAKE} -n install
+	make -n install
 }
