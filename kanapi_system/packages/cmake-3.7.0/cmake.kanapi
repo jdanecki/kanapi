@@ -31,16 +31,28 @@ pkg_prepare() {
 pkg_configure() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS} -- \
-		-DCURSES_INCLUDE_PATH=`ncurses6-config --includedir` \
-		-DCURSES_LIBRARY=`ncurses6-config --libdir`/libncurses.a  -DCURSES_EXTRA_LIBRARY=""
+		if [ "x${PKG_VERBOSE}" = "x1" ]
+		then
+			${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS} -- \
+			-DCURSES_INCLUDE_PATH=`ncurses6-config --includedir` \
+			-DCURSES_LIBRARY=`ncurses6-config --libdir`/libncurses.a  -DCURSES_EXTRA_LIBRARY=""
+		else
+			${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS} -- \
+			-DCURSES_INCLUDE_PATH=`ncurses6-config --includedir` \
+			-DCURSES_LIBRARY=`ncurses6-config --libdir`/libncurses.a  -DCURSES_EXTRA_LIBRARY="" > /dev/null
+		fi
 	fi
 }
 
 pkg_build() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+		if [ "x${PKG_VERBOSE}" = "x1" ]
+		then
+			${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+		else
+			${MAKE} -j ${MAKE_JOBS} MAKEINFO=true > /dev/null
+		fi
 	fi
 }
 
@@ -56,5 +68,6 @@ pkg_check() {
 	echo "${PATH}"
 	echo "CC=$CC"
 	echo "CXX=${CXX}"
+	echo "PKG_VERBOSE=${PKG_VERBOSE}"
 }
 
