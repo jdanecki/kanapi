@@ -36,6 +36,7 @@ pkg_download() {
 	which curl
 	ldd `which curl`
 	pkg_curl
+	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 }
 
 pkg_prepare() {

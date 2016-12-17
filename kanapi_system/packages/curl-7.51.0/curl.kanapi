@@ -51,5 +51,6 @@ pkg_install() {
 pkg_check() {
 	echo "LDFLAGS=${LDFLAGS}"
 	echo "LIBS=${LIBS}"
+	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 }
 

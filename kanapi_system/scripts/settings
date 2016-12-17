@@ -114,6 +114,11 @@ else
 	fi
 fi
 
+if [ -d ${KANAPI_BASE}/libs ]
+then
+	export LD_LIBRARY_PATH="${KANAPI_BASE}/libs:${LD_LIBRARY_PATH}"
+fi
+
 if [ -f ${KANAPI_BASE}/ncurses-${ncurses_ver}/bin/ncurses6-config ]
 then
 	NCURSES_CONFIG=${KANAPI_BASE}/ncurses-${ncurses_ver}/bin/ncurses6-config
@@ -363,12 +368,11 @@ pkg_install_libs() {
 			${LN_SF} $f ${KANAPI_BASE}/libs/`basename $f`
 		fi
 	done
-if [ "`id -u`" = "0" ]
-then
-	export LD_LIBRARY_PATH=
-	ldconfig
-fi
-
+	if [ "`id -u`" = "0" ]
+	then
+		export LD_LIBRARY_PATH=
+		ldconfig
+	fi
 }
 
 pkg_install_all() {
