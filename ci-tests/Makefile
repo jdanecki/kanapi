@@ -11,7 +11,7 @@ travis_test: check_travis
 	cd ../kanapi_system/`uname -m`   ; make coreutils	 ACTION=install
 
 check_travis:
-	if [ $${TRAVIS} = "true" ] ; then ./prepare_links ; fi
+	if [ "$${TRAVIS}" = "true" ] ; then ./prepare_links ; fi
 
 bbs: check_travis
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
