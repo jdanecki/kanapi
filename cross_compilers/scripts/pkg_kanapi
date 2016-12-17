@@ -7,7 +7,12 @@ PKG_VERBOSE="$3"
 echo "running $PKG_FILE ${PKG_ACTION} ${PKG_VERBOSE}"
 . ./$PKG_FILE
 
-${PKG_ACTION}
+if [ "x${PKG_VERBOSE}" = "x1" ]
+then
+	${PKG_ACTION}
+else
+	${PKG_ACTION} > /dev/null
+fi
 
 #echo "touching ${PACKAGE_NAME}_$2 in `pwd`"
 #/bin/date -Ins > ${PACKAGE_NAME}_$2
