@@ -1,4 +1,5 @@
-all: travis_compilers bbs
+all: travis_test
+#bbs
 
 cross_compilers:
 	cd ../cross_compilers/`uname -m` ; make gcc ACTION=install
@@ -7,7 +8,11 @@ cross_compilers:
 travis_compilers:
 	./prepare_links
 
-bbs:
+travis_test:
+	cd ../kanapi_system/`uname -m`   ; make busybox	 ACTION=download
+	cd ../kanapi_system/`uname -m`   ; make bash	 ACTION=download
+
+bbs: travis_compilers
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
 test:

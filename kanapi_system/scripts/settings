@@ -181,6 +181,13 @@ pkg_curl() {
 }
 
 pkg_download() {
+	if [ "${TRAVIS}" = "true" ]
+	then
+		echo "Running under Travis, removing sources"
+		rm -rf ${KANAPI_BUILD_SRC}
+	else 
+		echo "running without Travis"
+	fi
 	pkg_curl
 }
 
