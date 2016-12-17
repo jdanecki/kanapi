@@ -26,6 +26,18 @@ EXT=tar.xz
 
 export FORCE_UNSAFE_CONFIGURE=1
 
+pkg_download() {
+	if [ "${TRAVIS}" = "true" ]
+	then
+		echo "Running under Travis, removing sources"
+		rm -rf ${KANAPI_BUILD_SRC}
+		mkdir ${KANAPI_BUILD_SRC}
+	fi
+	which curl
+	ldd `which curl`
+	pkg_curl
+}
+
 pkg_prepare() {
 	pkg_tar_xz
 }
