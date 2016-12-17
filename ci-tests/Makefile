@@ -1,4 +1,4 @@
-all: bbs
+all: bbs apps_txt
 
 cross_compilers:
 	cd ../cross_compilers/`uname -m` ; make gcc ACTION=install
@@ -15,6 +15,9 @@ check_travis:
 
 bbs: check_travis
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
+
+apps_txt: check_travis
+	cd ../kanapi_system/`uname -m`   ; make apps_txt ACTION=install
 
 test:
 	echo "tests disabled"
