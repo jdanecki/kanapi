@@ -1,4 +1,5 @@
-all: bbs apps_txt
+all: apps_txt
+#	bbs
 
 cross_compilers:
 	cd ../cross_compilers/`uname -m` ; make gcc ACTION=install
