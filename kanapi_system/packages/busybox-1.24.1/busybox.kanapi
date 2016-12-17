@@ -19,7 +19,8 @@
 
 PACKAGE_NAME=busybox
 VER=1.24.1
-URL="https://busybox.net/downloads"
+#URL="https://busybox.net/downloads"
+URL="http://sources.openelec.tv/mirror/busybox"
 EXT=tar.bz2
 #build depends on
 . ../settings
