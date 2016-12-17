@@ -6,6 +6,7 @@ cross_compilers:
 	cd ../kanapi_system/`uname -m`   ; make cross_gcc ACTION=install
 
 travis_test: check_travis
+	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make openssl	 ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make git	 ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make coreutils	 ACTION=install
