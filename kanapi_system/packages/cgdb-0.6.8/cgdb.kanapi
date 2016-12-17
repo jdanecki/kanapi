@@ -22,7 +22,9 @@ VER=0.6.8
 URL="http://cgdb.me/files"
 EXT=tar.gz
 #build depends on
-export LD_LIBRARY_PATH=
+
+LIB_DEPENDS="ncurses"
+
 . ../settings
 
 READLINE_BASE=${KANAPI_BASE}/readline-${readline_ver}
@@ -32,18 +34,9 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	export CFLAGS="${NCURSES_CFLAGS} -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
-	export LDFLAGS="${NCURSES_LDFLAGS} -L${READLINE_BASE}/lib"
-	if [ "`lsb_release -is`" != "LinuxMint" ]
-	then
-		if [ -n "${LD_LIBRARY_PATH}" ]
-		then
-			export LD_LIBRARY_PATH="`${NCURSES_CONFIG} --libdir`:${READLINE_BASE}/lib:${LD_LIBRARY_PATH}" 
-		else
-			export LD_LIBRARY_PATH="`${NCURSES_CONFIG} --libdir`:${READLINE_BASE}/lib" 
-		fi
-	fi
-	echo ${LD_LIBRARY_PATH}
+	export CFLAGS="${CFLAGS} -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
+	export LDFLAGS="${LDFLAGS} -L${READLINE_BASE}/lib"
+	export AWK=${KANAPI_TARGET_BIN}/gawk
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  \
 		ac_cv_prog_HAS_MAKEINFO=yes ac_cv_prog_HAS_HELP2MAN=yes ac_cv_file__dev_ptmx=yes ac_cv_func_setpgrp_void=yes \
 		ac_cv_rl_version=${readline_ver}
@@ -60,5 +53,4 @@ pkg_check() {
 	LD_LIBRARY_PATH=/kanapi_0.6/i686/packages/readline-6.3/lib  ;  ldd `which gawk `
 	echo "PATH=${PATH}"
 	echo "ncurses6-config=`${NCURSES_CONFIG} --cflags`"
-
 }
