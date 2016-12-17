@@ -36,7 +36,7 @@ pkg_prepare() {
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--without-python  --without-systemd --with-slang  --without-selinux \
-	 --enable-fs-paths-default=${KANAPI_TARGET_BIN} --without-ncursesw
+	 --enable-fs-paths-default=${KANAPI_TARGET_BIN} --without-ncursesw  --disable-use-tty-group
 }
 
  pkg_install() {
