@@ -41,16 +41,16 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	export MAKE_JOBS=1
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j 1 MAKEINFO=true V=1
 }
 
 pkg_install() {
 	cd build
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	pkg_install_bin_all
 }
 
 pkg_check() {
 	echo "CFLAGS=${CFLAGS}"
+	${PKG_CONFIG} --cflags ${LIB_DEPENDS}
 }
