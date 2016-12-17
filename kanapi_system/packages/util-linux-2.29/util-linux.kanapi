@@ -36,7 +36,7 @@ pkg_prepare() {
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--without-python  --without-systemd --with-slang  --without-selinux \
-	 --enable-fs-paths-default=${KANAPI_TARGET_BIN}
+	 --enable-fs-paths-default=${KANAPI_TARGET_BIN} --without-ncursesw
 }
 
  pkg_install() {
@@ -46,3 +46,9 @@ pkg_configure_target() {
 	pkg_install_libs
 }
 
+pkg_check() {
+	echo "LDFLAGS=${LDFLAGS}"
+	echo "PKG_CONFIG=${PKG_CONFIG}"
+	ncurses6-config --libs
+	ncursesw6-config --libs
+}
