@@ -9,29 +9,39 @@ RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTIO
 endif
 
 kanapi_download:
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_download\r"
 	pkg_kanapi $(PKG).kanapi download $(V)
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_download\r"
 	$(call DATE_RULE)
 
 kanapi_prepare: kanapi_download
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_prepare\r"
 	pkg_kanapi $(PKG).kanapi prepare $(V)
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_prepare\r"
 	$(call DATE_RULE)
 
 kanapi_configure: kanapi_prepare
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_configure"
 	pkg_kanapi $(PKG).kanapi configure $(V)
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_configure"
 	$(call DATE_RULE)
 
 kanapi_reconfigure:
 	pkg_kanapi $(PKG).kanapi configure $(V)
 
 kanapi_build: kanapi_configure
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_build"
 	pkg_kanapi $(PKG).kanapi build $(V)
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_build"
 	$(call DATE_RULE)
 
 kanapi_rebuild:
 	pkg_kanapi $(PKG).kanapi build $(V)
 
 kanapi_install: kanapi_build
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install"
 	pkg_kanapi $(PKG).kanapi install $(V)
+	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install"
 	$(call DATE_RULE)
 
 kanapi_reinstall:
