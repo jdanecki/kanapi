@@ -20,7 +20,7 @@ bbs: busybox bash make autoconf automake bison sed gettext gawk pkg-config ncurs
 	coreutils diffutils ninja grep tar findutils patch slang util-linux less
 
 #KS - KaNaPi System textmode apps
-aps_txt: gzip cgdb mc vim openssh gpm strace kmod procps-ng
+apps_txt: gzip cgdb mc vim openssh gpm strace kmod procps-ng
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
