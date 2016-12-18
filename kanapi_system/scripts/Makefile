@@ -12,7 +12,7 @@ all: required optional
 
 required: cross_gcc rootfs bbs
    
-optional: apps_txt native_gcc sound x-support sdl-support wm xapp tests apps_gui
+optional: apps_txt devel native_gcc sound x-support sdl-support wm xapp tests apps_gui
 
 #Basic Build System 
 bbs: busybox bash make autoconf automake bison sed gettext pkg-config ncurses readline gawk openssl cmake \
@@ -20,7 +20,9 @@ bbs: busybox bash make autoconf automake bison sed gettext pkg-config ncurses re
 	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip cgdb mc vim openssh gpm strace kmod procps-ng
+apps_txt: gzip mc vim openssh gpm kmod procps-ng
+
+devel: cgdb strace
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
