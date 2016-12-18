@@ -1,4 +1,5 @@
-all: bbs vim
+all: vim
+	#bbs
 	#apps_txt
 
 cross_compilers:
