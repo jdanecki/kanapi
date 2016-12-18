@@ -22,7 +22,7 @@ bbs: busybox bash make autoconf automake bison sed gettext pkg-config ncurses re
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim openssh gpm kmod procps-ng
 
-devel: cgdb strace
+devel: cgdb strace ltrace
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
@@ -868,4 +868,10 @@ Python: sqlite-autoconf bzip2
 	@$(RUN_TARGET)
 
 bzip2:
+	@$(RUN_TARGET)
+
+ltrace:
+	@$(RUN_TARGET)
+
+libelf:
 	@$(RUN_TARGET)

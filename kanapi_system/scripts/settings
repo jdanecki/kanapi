@@ -201,7 +201,12 @@ pkg_git_clone() {
 		echo "$PACKAGE_NAME: already downloaded"
 	else
 		echo "cloning from ${URL}/${PACKAGE_NAME}"
-		git clone ${URL}/${PACKAGE_NAME} ${PACKAGE_SRCDIR}
+		if [ -n "${EXT}" ]
+		then
+			git clone ${URL}/${PACKAGE_NAME}.${EXT} ${PACKAGE_SRCDIR}
+		else
+			git clone ${URL}/${PACKAGE_NAME} ${PACKAGE_SRCDIR}
+		fi
 	fi
 }
 

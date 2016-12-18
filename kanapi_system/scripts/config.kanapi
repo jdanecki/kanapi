@@ -259,3 +259,5 @@ libXinerama_ver=1.1.3
 sqlite_autoconf_ver=3150200
 Python_ver=2.7.13
 bzip2_ver=1.0.6
+ltrace_ver=c22d359
+libelf_ver=0.8.13
