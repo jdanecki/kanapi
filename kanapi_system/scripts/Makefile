@@ -858,3 +858,12 @@ xinput: libXinerama
 
 libXinerama:
 	@$(RUN_TARGET)
+
+sqlite-autoconf:
+	@$(RUN_TARGET)
+
+Python:
+	@$(RUN_TARGET)
+
+bzip2:
+	@$(RUN_TARGET)
