@@ -31,11 +31,13 @@ pkg_prepare() {
 
 pkg_configure() {
 	cp ../../configs/busybox.config .config
-	${MAKE} CONFIG_PREFIX=${PREFIX} KBUILD_SRC=${PACKAGE_SRCDIR} -f ${PACKAGE_SRCDIR}/Makefile CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} oldconfig
+	${MAKE} CONFIG_PREFIX=${PREFIX} KBUILD_SRC=${PACKAGE_SRCDIR} -f ${PACKAGE_SRCDIR}/Makefile CROSS_COMPILE=${KANAPI_TARGET_NAME}- \
+		ARCH=${KANAPI_KERNEL_TARGET} oldconfig
 }
 
 pkg_build() {
-	${MAKE} CONFIG_PREFIX=${PREFIX} CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -j ${MAKE_JOBS}
+	${MAKE} CONFIG_PREFIX=${PREFIX} CROSS_COMPILE=${KANAPI_TARGET_NAME}- ARCH=${KANAPI_KERNEL_TARGET} -j ${MAKE_JOBS} \
+		CC="${CC}" CXX="${CXX}"
 }
 
 pkg_install() {
@@ -46,3 +48,9 @@ pkg_install() {
 	ln -svf ${PREFIX}/usr/sbin/* ${KANAPI_BASE}/../bin
 	rm ${KANAPI_BASE}/../bin/init
 }
+
+pkg_check() {
+	echo "CC=${CC}"
+	echo "CXX=${CXX}"
+}
+

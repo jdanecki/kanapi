@@ -57,12 +57,21 @@ export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
 export PATH_BIN=${CROSS_BINUTILS_PREFIX}/bin
 export PATH_GCC=${CROSS_GCC_PREFIX}/bin
 export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
+if [ -x ${KANAPI_TARGET_BIN}/ccache ]
+then
+	USE_CCACHE=1
+fi
 
 if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc ]
 then
 	if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
 	then
-		export CC="${KANAPI_TARGET_NAME}-gcc" 
+		if [ "${TRAVIS}" != "true" -a "${USE_CCACHE}" = "1" ]
+		then
+			export CC="ccache ${KANAPI_TARGET_NAME}-gcc" 
+		else
+			export CC="${KANAPI_TARGET_NAME}-gcc" 
+		fi
 	fi
 fi
 
@@ -70,7 +79,12 @@ if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-g++ ]
 then
 	if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
 	then
-		export CXX="${KANAPI_TARGET_NAME}-g++"
+		if [ "${TRAVIS}" != "true" -a "${USE_CCACHE}" = "1" ]
+		then
+			export CXX="ccache ${KANAPI_TARGET_NAME}-g++"
+		else
+			export CXX="${KANAPI_TARGET_NAME}-g++"
+		fi
 	fi
 fi
 
