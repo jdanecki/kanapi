@@ -23,7 +23,7 @@ kanapi_prepare: kanapi_download
 
 kanapi_configure: kanapi_prepare
 	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_configure" ; fi
-	pkg_kanapi $(PKG).kanapi configure $(V)
+	pkg_kanapi $(PKG).kanapi configure $(V); if [ "$$?" != "0" ] ; then cat config.log; cat build/config.log; false; fi
 	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_configure" ; fi
 	$(call DATE_RULE)
 
