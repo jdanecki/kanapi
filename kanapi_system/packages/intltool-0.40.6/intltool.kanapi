@@ -43,7 +43,6 @@ pkg_configure() {
 pkg_build () {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		cd build
 		make -j ${MAKE_JOBS}
 	fi
 }
