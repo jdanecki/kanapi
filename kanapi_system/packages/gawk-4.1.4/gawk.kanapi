@@ -22,10 +22,19 @@ VER=4.1.4
 URL="GNU"
 EXT=tar.xz
 #build depends on
+
+LIB_DEPENDS="ncurses"
+
 . ../settings
+
+export LDFLAGS="-L${KANAPI_BASE}/readline-${readline_ver}/lib -lreadline ${LDFLAGS}"
 
 pkg_prepare() {
 	pkg_tar_xz
+}
+
+pkg_configure_target() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-readline=${KANAPI_BASE}/readline-${readline_ver}
 }
 
 pkg_install() {
