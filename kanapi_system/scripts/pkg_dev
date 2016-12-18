@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-KANAPI_VERSION=v0.7
+KANAPI_VERSION=v0.8
 
 PKG_ACTION="pkg_$1"
 PKG_NAME="$2"

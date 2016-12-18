@@ -22,7 +22,7 @@ KERNEL=`uname -r`
 export LANG=pl_PL.UTF-8
 export LC_ALL=pl_PL.UTF-8
 export EDITOR=vim
-export KANAPI_VER=0.7
+export KANAPI_VER=0.8
 
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys

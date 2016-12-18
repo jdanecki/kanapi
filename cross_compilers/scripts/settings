@@ -6,7 +6,7 @@ export LC_CTYPE="C"
 export LANG="C"
 
 KANAPI_TARGET_NAME=${KANAPI_TARGET}-kanapi-linux-gnu
-KANAPI_VER=0.7
+KANAPI_VER=0.8
 if [ "`id -u`" != "0" ]
 then
 	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
