@@ -1,5 +1,4 @@
-all: bbs vim
-	#apps_txt
+all: bbs apps_txt
 
 cross_compilers:
 	cd ../cross_compilers/`uname -m` ; make gcc ACTION=install

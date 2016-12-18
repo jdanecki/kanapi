@@ -70,4 +70,5 @@ XML-SAX-Base_ver=${XML_SAX_Base_ver}
 XML-SAX_ver=${XML_SAX_ver}
 XML-SAX-Expat_ver=${XML_SAX_Expat_ver}
 XML-Simple_ver=${XML_Simple_ver}
+sqlite-autoconf_ver=${sqlite_autoconf_ver}
 

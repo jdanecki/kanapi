@@ -256,3 +256,6 @@ ImageMagick_ver=7.0.3-10
 xclipboard_ver=1.1.3
 xinput_ver=1.6.2
 libXinerama_ver=1.1.3
+sqlite_autoconf_ver=3150200
+Python_ver=2.7.13
+bzip2_ver=1.0.6
