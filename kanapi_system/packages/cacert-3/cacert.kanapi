@@ -29,24 +29,24 @@ pkg_download() {
 	do
 		for i in crt der txt 
 		do
-			if [ -f /kanapi_build/src/$f.$i-$VER ] 
+			if [ -f ${KANAPI_BUILD_SRC}/$f.$i-$VER ] 
 			then 
 				echo "$PACKAGE_NAME: $f.$i-$VER already downloaded"
 			else
 				echo "downloading $f.$i"
-				curl ${URL}/$f.$i -o /kanapi_build/src/$f.$i-${VER}
+				curl ${URL}/$f.$i -o ${KANAPI_BUILD_SRC}/$f.$i-${VER}
 			fi
 		done
 	done
 }
 
 pkg_prepare() {
-	mkdir /kanapi_build/src/${PACKAGE_VER}
+	mkdir ${PACKAGE_SRCDIR}
 	for f in root class3 
 	do
 		for i in crt der txt 
 		do
-			cp -v /kanapi_build/src/$f.${i}-${VER} /kanapi_build/src/${PACKAGE_VER}/$f.${i}
+			cp -v ${KANAPI_BUILD_SRC}/$f.${i}-${VER} ${PACKAGE_SRCDIR}/$f.${i}
 		done
 	done
 }

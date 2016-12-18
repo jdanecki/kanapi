@@ -30,12 +30,12 @@ LIB_DEPENDS="xext xcb xau xpm x11 xrender ncurses xft fontconfig expat libpng zl
 export LDFLAGS="${LDFLAGS} -lm -lpthread"
 
 pkg_download() {
-	if [ -f /kanapi_build/src/${PACKAGE_FILENAME} ] 
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 	then 
 		echo "$PACKAGE_NAME: already downloaded"
 	else
 		echo "downloading ${PACKAGE_NAME}"
-		wget ${URL} -O /kanapi_build/src/${PACKAGE_FILENAME}
+		wget ${URL} -O ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 	fi
 }
 

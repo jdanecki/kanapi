@@ -33,7 +33,7 @@ pkg_prepare() {
 	pkg_tar_bz2
 	if [ ! -L ${PACKAGE_SRCDIR} ]
 	then
-		ln -svf /kanapi_build/src/vim80 ${PACKAGE_SRCDIR}
+		ln -svf ${KANAPI_BUILD_SRC}/vim80 ${PACKAGE_SRCDIR}
 	else
 		echo "missing ${PACKAGE_SRCDIR}"
 		false
