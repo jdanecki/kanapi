@@ -34,8 +34,8 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS}
-	${MAKE} -j ${MAKE_JOBS} -f Makefile-libbz2_so
+	${MAKE} -j ${MAKE_JOBS} CC=${KANAPI_TARGET_NAME}-gcc
+	${MAKE} -j ${MAKE_JOBS} -f Makefile-libbz2_so CC=${KANAPI_TARGET_NAME}-gcc
 }
 
 pkg_install() {

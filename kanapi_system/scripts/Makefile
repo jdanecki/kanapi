@@ -17,7 +17,7 @@ optional: apps_txt native_gcc sound x-support sdl-support wm xapp tests apps_gui
 #Basic Build System 
 bbs: busybox bash make autoconf automake bison sed gettext pkg-config ncurses readline gawk openssl cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
-	coreutils diffutils ninja grep tar findutils patch slang util-linux less
+	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less
 
 #KS - KaNaPi System textmode apps
 apps_txt: gzip cgdb mc vim openssh gpm strace kmod procps-ng
@@ -862,7 +862,7 @@ libXinerama:
 sqlite-autoconf:
 	@$(RUN_TARGET)
 
-Python:
+Python: sqlite-autoconf bzip2
 	@$(RUN_TARGET)
 
 bzip2:
