@@ -19,6 +19,12 @@ bbs: check_travis
 apps_txt: check_travis
 	cd ../kanapi_system/`uname -m`   ; make apps_txt ACTION=install
 
+devel: check_travis
+	cd ../kanapi_system/`uname -m`   ; make devel ACTION=install
+
+sound: check_travis
+	cd ../kanapi_system/`uname -m`   ; make sound ACTION=install
+
 test:
 	echo "tests disabled"
 
