@@ -34,9 +34,6 @@ pkg_prepare() {
 	if [ ! -L ${PACKAGE_SRCDIR} ]
 	then
 		ln -svf ${KANAPI_BUILD_SRC}/vim80 ${PACKAGE_SRCDIR}
-	else
-		echo "missing ${PACKAGE_SRCDIR}"
-		false
 	fi
 }
 
@@ -66,5 +63,6 @@ pkg_check() {
 	echo "PACKAGE_SRCDIR=${PACKAGE_SRCDIR}"
 	echo "CFLAGS=${CFLAGS}"
 	echo "LDFLAGS=${LDFLAGS}"
+	echo "KANAPI_VER=${KANAPI_VER}"
 }
 
