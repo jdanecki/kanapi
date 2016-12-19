@@ -2,6 +2,8 @@
 
 wget --version
 curl --version
+gcc --version
+
 echo "PKG_CONFIG: `pkg-config --version`"
 
 NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
