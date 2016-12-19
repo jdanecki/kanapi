@@ -870,7 +870,7 @@ Python: sqlite-autoconf bzip2
 bzip2:
 	@$(RUN_TARGET)
 
-ltrace:
+ltrace: libelf
 	@$(RUN_TARGET)
 
 libelf:
