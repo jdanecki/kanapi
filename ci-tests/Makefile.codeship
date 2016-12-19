@@ -11,6 +11,7 @@ devel: check_links
 	cd ../kanapi_system/`uname -m`   ; make devel ACTION=install
 
 sound: check_links
+	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make sound ACTION=install
 
 check_links:

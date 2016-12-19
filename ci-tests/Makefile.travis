@@ -31,6 +31,7 @@ sound: check_travis
 	cd ../kanapi_system/`uname -m`   ; make sound ACTION=install
 
 x-support: check_travis
+	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make x-support ACTION=install
 
 test:
