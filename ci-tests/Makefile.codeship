@@ -1,7 +1,16 @@
-all: bbs
+all: bbs apps_txt devel sound
 
 bbs: check_links
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
+
+apps_txt: check_links
+	cd ../kanapi_system/`uname -m`   ; make apps_txt ACTION=install
+
+devel: check_links
+	cd ../kanapi_system/`uname -m`   ; make devel ACTION=install
+
+sound: check_links
+	cd ../kanapi_system/`uname -m`   ; make sound ACTION=install
 
 check_links:
 	./prepare_links

@@ -18,6 +18,7 @@ bbs: check_travis
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
 native_gcc: check_travis
+	cd ../kanapi_system/`uname -m`   ; make glibc	ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make native_gcc	ACTION=install
 
 apps_txt: check_travis
