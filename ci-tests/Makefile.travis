@@ -1,6 +1,6 @@
 all: x-support
-#	cross_compilers native_gcc
-#bbs apps_txt devel sound
+
+txt-mode: bbs apps_txt devel sound
 
 cross_compilers:
 	cd ../cross_compilers/`uname -m` ; make gcc ACTION=install
@@ -18,7 +18,7 @@ check_travis:
 bbs: check_travis
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
-native_gcc:
+native_gcc: cross-compilers
 	cd ../kanapi_system/`uname -m`   ; make native_gcc	ACTION=install
 
 apps_txt: check_travis
@@ -32,6 +32,8 @@ sound: check_travis
 
 x-support: check_travis
 	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
+	cd ../kanapi_system/`uname -m`   ; make Python ACTION=install
+	cd ../kanapi_system/`uname -m`   ; make ninja ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make perl ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make x-support ACTION=install
 

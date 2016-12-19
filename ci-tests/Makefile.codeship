@@ -1,5 +1,6 @@
-all: sound
-	#bbs apps_txt devel sound
+all: x-support
+
+txt-mode: bbs apps_txt devel sound
 
 bbs: check_links
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
@@ -16,6 +17,8 @@ sound: check_links
 
 x-support: check_links
 	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
+	cd ../kanapi_system/`uname -m`   ; make Python ACTION=install
+	cd ../kanapi_system/`uname -m`   ; make ninja ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make perl ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make x-support ACTION=install
 
