@@ -22,14 +22,17 @@ ls -l ${HOME}/bin
 cd ci-tests
 if [ "${CI}" = "true" ]
 then
+	echo "checking CI"
 	if [ "${TRAVIS}" = "true" ]
 	then
-		ln -s Makefile.travis Makefile
+		echo "TRAVIS"
+		ln -sv Makefile.travis Makefile
 	fi
 
-	if [ "$CODESHIP}" = "TRUE" ]
+	if [ "${CODESHIP}" = "TRUE" ]
 	then
-		ln -s Makefile.codeship Makefile
+		echo "CODESHIP"
+		ln -sv Makefile.codeship Makefile
 	fi
 else
 	ln -s Makefile.local Makefile
