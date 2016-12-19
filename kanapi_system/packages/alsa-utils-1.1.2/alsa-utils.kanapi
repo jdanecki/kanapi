@@ -35,7 +35,8 @@ pkg_prepare() {
 }
 
 pkg_configure() {	
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-xmlto ac_cv_prog_ncurses5_config=ncurses6_config
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-xmlto ac_cv_prog_ncurses5_config=ncurses6_config \
+		--with-curses=ncurses
 }
 
 pkg_install() {
