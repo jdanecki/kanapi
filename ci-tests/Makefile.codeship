@@ -1,4 +1,5 @@
-all: bbs apps_txt devel sound
+all: sound
+	#bbs apps_txt devel sound
 
 bbs: check_links
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install

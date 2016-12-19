@@ -1,4 +1,5 @@
-all: cross_compilers native_gcc
+all: x-support
+#	cross_compilers native_gcc
 #bbs apps_txt devel sound
 
 cross_compilers:
@@ -28,6 +29,9 @@ devel: check_travis
 
 sound: check_travis
 	cd ../kanapi_system/`uname -m`   ; make sound ACTION=install
+
+x-support: check_travis
+	cd ../kanapi_system/`uname -m`   ; make x-support ACTION=install
 
 test:
 	echo "tests disabled"
