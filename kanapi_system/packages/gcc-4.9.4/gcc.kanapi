@@ -39,7 +39,7 @@ pkg_configure() {
 	--host=${KANAPI_TARGET_NAME} \
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
-	--prefix=${PREFIX} --disable-nls --disable-decimal-float \
+	--prefix=${PREFIX} --disable-nls --enable-decimal-float \
 	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp \
 	--with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include \
