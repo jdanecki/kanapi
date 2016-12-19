@@ -1,9 +1,14 @@
-all: check_links
-	cd ../kanapi_system/`uname -m`   ; make busybox	 ACTION=install V=1
+all: bbs
+
+bbs: check_links
+	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
 check_links:
 	./prepare_links
 
 test:
 	echo "tests disabled"
+
+busybox:	
+	cd ../kanapi_system/`uname -m`   ; make busybox	 ACTION=install V=1
 
