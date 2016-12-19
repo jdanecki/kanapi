@@ -196,6 +196,11 @@ pkg_curl() {
 	else
 		echo "downloading ${PACKAGE_NAME}"
 		curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
+		then 
+			echo "downloading ${PACKAGE_NAME} again"
+			curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+		fi
 	fi
 }
 
@@ -208,6 +213,21 @@ pkg_download() {
 	fi
 	pkg_curl
 }
+
+pkg_redownload() {
+	if [ "${TRAVIS}" = "true" ]
+	then
+		echo "Running under Travis, removing sources"
+		rm -rf ${KANAPI_BUILD_SRC}
+		mkdir ${KANAPI_BUILD_SRC}
+	fi
+	if [ -s ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
+	then
+		rm  ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+	fi	
+	pkg_curl
+}
+
 
 pkg_git_clone() {
 	if [ -d ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}-${VER} ] 

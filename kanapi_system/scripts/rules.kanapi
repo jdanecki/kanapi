@@ -15,6 +15,9 @@ kanapi_download:
 	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_download" ; fi
 	$(call DATE_RULE)
 
+kanapi_redownload:
+	pkg_kanapi $(PKG).kanapi redownload $(V)
+
 kanapi_prepare: kanapi_download
 	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_prepare" ; fi
 	pkg_kanapi $(PKG).kanapi prepare $(V)
