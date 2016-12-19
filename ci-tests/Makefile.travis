@@ -1,4 +1,5 @@
-all: bbs apps_txt devel sound
+all: native_gcc
+#bbs apps_txt devel sound
 
 cross_compilers:
 	cd ../cross_compilers/`uname -m` ; make gcc ACTION=install
@@ -15,6 +16,9 @@ check_travis:
 
 bbs: check_travis
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
+
+native_gcc: check_travis
+	cd ../kanapi_system/`uname -m`   ; make native_gcc	ACTION=install
 
 apps_txt: check_travis
 	cd ../kanapi_system/`uname -m`   ; make apps_txt ACTION=install
