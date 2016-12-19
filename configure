@@ -19,6 +19,21 @@ fi
 ln -svf `pwd`/cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
 ls -l ${HOME}/bin 
 
+cd ci-tests
+if [ "${CI}" = "true" ]
+then
+	if [ "${TRAVIS}" = "true" ]
+	then
+		ln -s Makefile.travis Makefile
+	fi
+
+	if [ "$CODESHIP}" = "TRUE" ]
+	then
+		ln -s Makefile.codeship Makefile
+	fi
+else
+	ln -s Makefile.local Makefile
+fi
 if [ -x ${HOME}/bin/pkg_kanapi ] 
 then 
 	exit 0 

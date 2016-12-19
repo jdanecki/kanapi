@@ -1,14 +1,14 @@
 #!/bin/bash
 
+KANAPI_VER=`cat ../kanapi_system/scripts/KANAPI_VER`
+KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
+
 if [ ! -d ${KANAPI_ROOT}/x86_64/packages/libs ]
 then
 	for i in c++ cpp gcc ar as ld nm objcopy objdump ranlib readelf size strings strip
 	do
 		ln -svf `which $i` ${HOME}/bin/x86_64-kanapi-linux-gnu-$i
 	done
-
-	KANAPI_VER=`cat ../kanapi_system/scripts/KANAPI_VER`
-	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
 
 	mkdir -p ${KANAPI_ROOT}/x86_64/bin
 	mkdir -p ${KANAPI_ROOT}/x86_64/packages/libs

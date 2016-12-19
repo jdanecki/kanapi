@@ -1,0 +1,9 @@
+all: check_links
+	cd ../kanapi_system/`uname -m`   ; make busybox	 ACTION=install V=1
+
+check_links:
+	./prepare_links
+
+test:
+	echo "tests disabled"
+
