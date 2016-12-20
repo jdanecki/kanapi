@@ -9,8 +9,5 @@ then
 	do
 		ln -svf `which $i` ${HOME}/bin/x86_64-kanapi-linux-gnu-$i
 	done
-
-	mkdir -p ${KANAPI_ROOT}/x86_64/bin
-	mkdir -p ${KANAPI_ROOT}/x86_64/packages/libs
 fi
 

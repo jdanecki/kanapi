@@ -19,6 +19,11 @@ fi
 ln -svf `pwd`/cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
 ls -l ${HOME}/bin 
 
+KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
+KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
+mkdir -p ${KANAPI_ROOT}/x86_64/bin
+mkdir -p ${KANAPI_ROOT}/x86_64/packages/libs
+
 cd ci-tests
 if [ "${CI}" = "true" ]
 then
