@@ -160,7 +160,7 @@ gdb:
 readline:
 	@$(RUN_TARGET)
 
-cgdb: readline gdb
+cgdb: gdb
 	@$(RUN_TARGET)
 
 libgpg-error:
@@ -175,7 +175,7 @@ libssh2: libgcrypt
 slang: zlib ncurses5
 	@$(RUN_TARGET)
 
-mc: libssh2 slang glib
+mc: libssh2 glib
 	@$(RUN_TARGET)
 
 vim: 
@@ -190,7 +190,7 @@ git: curl
 openssl:
 	@$(RUN_TARGET)
 
-openssh: openssl
+openssh:
 	@$(RUN_TARGET)
 
 SDL-fb:
