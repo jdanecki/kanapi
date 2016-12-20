@@ -20,7 +20,7 @@ if [ "${CI}" = "true" ]
 then
 	if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
 	
-	ln -svf `pwd`/cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
+	ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
 	ls -l ${HOME}/bin 
 
 	KANAPI_VER=`cat ../kanapi_system/scripts/KANAPI_VER`
