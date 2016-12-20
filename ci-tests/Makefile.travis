@@ -33,7 +33,7 @@ sound: check_travis
 x-support: cross_compilers
 	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make ncurses ACTION=install
-	cd ../kanapi_system/`uname -m`   ; make cmake ACTION=install
+	cd ../kanapi_system/`uname -m`   ; make cmake ACTION=install V=1
 	cd ../kanapi_system/`uname -m`   ; make Python ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make ninja ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make perl ACTION=install
