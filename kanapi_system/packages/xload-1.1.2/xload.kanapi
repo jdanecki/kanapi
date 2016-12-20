@@ -23,7 +23,7 @@ URL="http://www.x.org/releases/individual/app"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="xcb xext sm ice xpm xau"
+LIB_DEPENDS="xcb xext sm ice xpm xau uuid"
 
 . ../settings
 
