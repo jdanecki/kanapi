@@ -7,26 +7,25 @@ echo "PKG_CONFIG: `pkg-config --version`"
 NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "NR_CPUS=${NR_CPUS}"
 
-#env
-if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
-
 if [ ! -d ${HOME}/src ]
-then
-	echo "missing sources dir, recreating"
-	mkdir ${HOME}/src
-fi
-
-ln -svf `pwd`/cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
-ls -l ${HOME}/bin 
-
-KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
-KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
-mkdir -p ${KANAPI_ROOT}/x86_64/bin
-mkdir -p ${KANAPI_ROOT}/x86_64/packages/libs
+	then
+		echo "missing sources dir, recreating"
+		mkdir ${HOME}/src
+	fi
 
 cd ci-tests
 if [ "${CI}" = "true" ]
 then
+	if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
+	
+	ln -svf `pwd`/cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
+	ls -l ${HOME}/bin 
+
+	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
+	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
+	mkdir -p ${KANAPI_ROOT}/x86_64/bin
+	mkdir -p ${KANAPI_ROOT}/x86_64/packages/libs
+
 	echo "checking CI"
 	if [ "${TRAVIS}" = "true" ]
 	then
@@ -39,14 +38,13 @@ then
 		echo "CODESHIP"
 		ln -sv Makefile.codeship Makefile
 	fi
+	if [ -x ${HOME}/bin/pkg_kanapi ] 
+	then 
+		exit 0 
+	else
+		exit 2
+	fi
 else
 	ln -s Makefile.local Makefile
 fi
-if [ -x ${HOME}/bin/pkg_kanapi ] 
-then 
-	exit 0 
-else
-	exit 2
-fi
-
 

@@ -1,8 +1,12 @@
-all: required
+all: required optional
 
 required:
 	cd ../cross_compilers/`uname -m` ; make all ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make required ACTION=install
+
+optional:
+	cd ../kanapi_system/`uname -m`   ; make optional ACTION=install
+
 
 bbs:
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
