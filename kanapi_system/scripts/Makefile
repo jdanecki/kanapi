@@ -41,7 +41,7 @@ x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libevdev mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
-	xf86-video-modesetting fonts setxkbmap icons xinput
+	xf86-video-modesetting fonts setxkbmap icons xinput libXft
 
 fonts: fonts-bitmap fonts-type1 fonts-misc
 	
@@ -63,7 +63,7 @@ wm:	vtwm ratpoison i3blocks
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel ImageMagick
 	
-icons: xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
+icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 
 sound: alsa-utils esound
 
@@ -526,10 +526,10 @@ SDL: xorg-server esound
 strace:
 	@$(RUN_TARGET)
 
-vtwm:
+vtwm: libXpm
 	@$(RUN_TARGET)
 
-ratpoison: libXft
+ratpoison:
 	@$(RUN_TARGET)
 
 libXft: libXrender fontconfig
@@ -547,10 +547,10 @@ freefont-ttf: fontconfig
 dejavu-fonts-ttf: fontconfig
 	@$(RUN_TARGET)
 
-xfd: freefont-ttf dejavu-fonts-ttf libXft libXcursor
+xfd: libXaw freefont-ttf dejavu-fonts-ttf
 	@$(RUN_TARGET)
 
-libXcursor:
+libXcursor: libXrender
 	@$(RUN_TARGET)
 
 libev:
@@ -729,7 +729,7 @@ x11perf:
 xbacklight:
 	@$(RUN_TARGET)
 
-xcursorgen:
+xcursorgen: libXcursor
 	@$(RUN_TARGET)
 
 xcursor-themes: xcursorgen
@@ -855,7 +855,7 @@ less:
 xclipboard:
 	@$(RUN_TARGET)
 
-xinput: libXinerama
+xinput: libXi libXrandr libXinerama
 	@$(RUN_TARGET)
 
 libXinerama:

@@ -23,11 +23,11 @@ URL="http://invisible-island.net/datafiles/release/xterm.tar.gz"
 EXT=tar.gz
 #build depends on libXext libxcb libXau libXpm libX11 ncurses
 
-LIB_DEPENDS="xext xcb xau xpm x11 xrender ncurses xft fontconfig expat libpng zlib "
+LIB_DEPENDS="xext xcb xau xpm x11 xrender ncurses xft fontconfig expat libpng zlib uuid"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lm -lpthread"
+export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt"
 
 pkg_download() {
 	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
