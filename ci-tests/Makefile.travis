@@ -30,7 +30,7 @@ devel: check_travis
 sound: check_travis
 	cd ../kanapi_system/`uname -m`   ; make sound ACTION=install
 
-x-support: cross-compilers
+x-support: cross_compilers
 	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make ncurses ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make cmake ACTION=install
