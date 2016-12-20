@@ -24,15 +24,19 @@ EXT=tar.xz
 #build depends on libxshmfence, libudev, expat
 . ../settings
 
-export LLVM_CONFIG=${KANAPI_BASE}/llvm-${llvm_ver}/bin/llvm-config
+#export LLVM_CONFIG=${KANAPI_BASE}/llvm-${llvm_ver}/bin/llvm-config
+export LDFLAGS="-lpthread"
+#export CFLAGS="-I`${LLVM_CONFIG} --includedir`"
 
 pkg_prepare() {
 	pkg_tar_xz
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
-#	   	--disable-llvm-shared-libs
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	--without-gallium-drivers --disable-gallium-llvm --with-dri-drivers="i915,i965,swrast"
+#	--with-gallium-drivers="i915,svga,swrast" 
+# 	--disable-llvm-shared-libs
 }
 
 pkg_install() {
