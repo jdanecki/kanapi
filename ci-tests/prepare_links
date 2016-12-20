@@ -3,7 +3,7 @@
 KANAPI_VER=`cat ../kanapi_system/scripts/KANAPI_VER`
 KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
 
-if [ ! -d ${KANAPI_ROOT}/x86_64/packages/libs ]
+if [ ! -f ${HOME}/bin/x86_64-kanapi-linux-gnu-gcc ]
 then
 	for i in g++ c++ cpp gcc ar as ld nm objcopy objdump ranlib readelf size strings strip
 	do
