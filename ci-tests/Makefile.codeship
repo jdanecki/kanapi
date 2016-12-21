@@ -22,6 +22,7 @@ x-support: check_links
 	cd ../kanapi_system/`uname -m`   ; make Python ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make ninja ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make perl ACTION=install
+	cd ../kanapi_system/`uname -m`   ; make slang ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make util-linux ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make x-support ACTION=install
 
