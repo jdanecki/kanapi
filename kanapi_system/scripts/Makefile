@@ -15,7 +15,7 @@ required: cross_gcc rootfs bbs
 optional: apps_txt devel native_gcc sound x-support sdl-support wm xapp tests apps_gui
 
 #Basic Build System 
-bbs: ccache busybox bash make autoconf automake bison sed gettext pkg-config ncurses readline gawk openssl cmake \
+bbs: ccache busybox bash make autoconf automake bison sed gettext pkg-config ncurses readline gawk openssl curl cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
 	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less
 
