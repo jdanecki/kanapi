@@ -23,7 +23,10 @@ URL="http://www.x.org/releases/individual/app"
 EXT=tar.bz2
 #build depends on
 LIB_DEPENDS="xmu ice xcb sm xext xau xaw7 xpm uuid"
+
 . ../settings
+
+export LDFLAGS="${LDFLAGS} -lpthread"
 
 pkg_prepare() {
 	pkg_tar_bz2
