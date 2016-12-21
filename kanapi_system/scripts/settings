@@ -159,8 +159,13 @@ then
 	CFLAGS="${CFLAGS} -fPIC"
 fi
 
-NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
-MAKE_JOBS=${NR_CPUS}
+if [ "${TRAVIS}" = "true" ]
+then 
+	MAKE_JOBS=2
+else
+	NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+	MAKE_JOBS=${NR_CPUS}
+fi
 
 if [ "x${PKG_VERBOSE}" = "x1" ]
 then
