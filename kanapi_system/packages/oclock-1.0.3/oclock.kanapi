@@ -22,9 +22,12 @@ VER=1.0.3
 URL="http://xorg.freedesktop.org/releases/individual/app"
 EXT=tar.bz2
 #build depends on
+
 LIB_DEPENDS="xmu ice xcb sm xext xau uuid"
 
 . ../settings
+
+export LDFLAGS="${LDFLAGS} -lpthread"
 
 pkg_prepare() {
 	pkg_tar_bz2
