@@ -46,5 +46,6 @@ then
 	fi
 else
 	ln -s Makefile.local Makefile
+	ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi /bin/pkg_kanapi
 fi
 
