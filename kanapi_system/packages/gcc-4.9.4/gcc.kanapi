@@ -69,6 +69,7 @@ pkg_target() {
 	echo "updating spec to ${LINKER_NAME} in ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs"
 	${PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
 		> ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
+	pkg_install_bin_all
 }
 
 pkg_install_headers() {
