@@ -881,3 +881,6 @@ ccache:
 
 xmag:
 	@$(RUN_TARGET)
+
+xman:
+	@$(RUN_TARGET)
