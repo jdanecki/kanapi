@@ -883,3 +883,15 @@ libelf:
 
 ccache:
 	@$(RUN_TARGET)
+
+xmag:
+	@$(RUN_TARGET)
+
+xman:
+	@$(RUN_TARGET)
+
+xmodmap:
+	@$(RUN_TARGET)
+
+xrandr:
+	@$(RUN_TARGET)
