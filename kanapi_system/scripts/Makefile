@@ -887,3 +887,6 @@ xman:
 
 xmodmap:
 	@$(RUN_TARGET)
+
+xrandr:
+	@$(RUN_TARGET)
