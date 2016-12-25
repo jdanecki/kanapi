@@ -884,3 +884,6 @@ xmag:
 
 xman:
 	@$(RUN_TARGET)
+
+xmodmap:
+	@$(RUN_TARGET)
