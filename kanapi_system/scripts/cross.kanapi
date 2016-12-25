@@ -1,3 +1,6 @@
+. ../../../cross_compilers/scripts/config.kanapi
+. ../../scripts/config.kanapi
+
 KANAPI_CROSS_BASE=${KANAPI_ROOT}/`uname -m`/cross/${KANAPI_TARGET}
 
 if [ "${KANAPI_TARGET}" = "`uname -m`" ]
@@ -5,23 +8,21 @@ then
 	KANAPI_CROSS=0
 	if [ -f ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
 	then
-		KANAPI_PKGCONFIG=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
+		export KANAPI_PKGCONFIG=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
 	fi
 else 	
 	KANAPI_CROSS=1
 	if [ -f ${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
 	then
-		KANAPI_PKGCONFIG=${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
+		export KANAPI_PKGCONFIG=${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
 	fi
 fi
 
 if [ "${KANAPI_TARGET}" = "arm" ]
 then
-	KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME}eabi
+	export KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME}eabi
 fi
 
-. ../../../cross_compilers/scripts/config.kanapi
-. ../../scripts/config.kanapi
 
 if [ -x ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc ]
 then
