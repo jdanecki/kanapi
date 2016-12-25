@@ -28,3 +28,7 @@ pkg_prepare() {
 	pkg_tar_bz2
 }
 
+pkg_install() {
+	make -j ${MAKE_JOBS}  MAKEINFO=true install
+	pkg_install_bin_all
+}

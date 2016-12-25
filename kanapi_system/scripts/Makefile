@@ -1,21 +1,30 @@
 ifeq (x$(KANAPI_TOP),x)
 BASE=
+include target_name
 else
 BASE=$(KANAPI_TOP)/
+include $(BASE)target_name
 endif
 include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
+CURRENT_ARCH=$(shell uname -m)
+COMPILERS=cross_gcc
+
+ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
+COMPILERS+=gcc
+endif
+
 all: required optional
 
-required: cross_gcc rootfs bbs
-   
-optional: apps_txt devel native_gcc sound x-support sdl-support wm xapp tests apps_gui
+required: $(COMPILERS) rootfs bbs
+
+optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui
 
 #Basic Build System 
-bbs: ccache busybox bash make autoconf automake bison sed gettext pkg-config ncurses readline gawk openssl cmake \
+bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
 	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less
 
@@ -27,7 +36,6 @@ devel: cgdb strace ltrace
 #KS - KaNaPi System gui apps
 apps_gui: qemu
 
-native_gcc: gcc
 
 sdl-support: SDL_image
 
@@ -100,9 +108,6 @@ glibc: linux
 cross_gcc: glibc
 	@$(RUN_TARGET)
 
-#
-#native compilers
-#
 gmp:
 	@$(RUN_TARGET)
 
