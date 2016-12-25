@@ -35,4 +35,5 @@ pkg_configure_target() {
 pkg_install() {
 	make -j ${MAKE_JOBS}  MAKEINFO=true install
 	pkg_install_bin_all
+	${LN_SF} ${PREFIX}/bin/${KANAPI_TARGET_NAME}-strings ${PREFIX}/bin/strings
 }
