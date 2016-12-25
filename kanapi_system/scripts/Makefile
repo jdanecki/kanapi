@@ -878,3 +878,6 @@ libelf:
 
 ccache:
 	@$(RUN_TARGET)
+
+xmag:
+	@$(RUN_TARGET)
