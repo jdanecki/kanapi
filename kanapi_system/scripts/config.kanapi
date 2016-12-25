@@ -262,3 +262,7 @@ bzip2_ver=1.0.6
 ltrace_ver=c22d359
 libelf_ver=0.8.13
 ccache_ver=3.3.3
+xmag_ver=1.0.6
+xman_ver=1.1.4
+xmodmap_ver=1.0.9
+xrandr_ver=1.5.0
