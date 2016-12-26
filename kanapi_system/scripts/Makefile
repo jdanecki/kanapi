@@ -895,3 +895,18 @@ xmodmap:
 
 xrandr:
 	@$(RUN_TARGET)
+
+xset:
+	@$(RUN_TARGET)
+
+xsetroot:
+	@$(RUN_TARGET)
+
+xsetpointer:
+	@$(RUN_TARGET)
+
+xvinfo: libXv
+	@$(RUN_TARGET)
+
+libXv:
+	@$(RUN_TARGET)
