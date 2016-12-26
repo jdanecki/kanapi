@@ -1,6 +1,6 @@
 DIR_NAME=$@-$($(@)_ver)
 check_dir=if [ ! -d  $(DIR_NAME) ]; then mkdir $(DIR_NAME) ; cp ../packages/$(DIR_NAME)/$@.kanapi $(DIR_NAME); fi
-DATE_RULE=/bin/date -Ins > $@
+DATE_RULE=/bin/date > $@
 
 ifeq ($(ACTION),)
 RUN_TARGET=make kanapi_help
