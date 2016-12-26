@@ -904,3 +904,9 @@ xsetroot:
 
 xsetpointer:
 	@$(RUN_TARGET)
+
+xvinfo: libXv
+	@$(RUN_TARGET)
+
+libXv:
+	@$(RUN_TARGET)
