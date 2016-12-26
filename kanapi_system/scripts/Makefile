@@ -69,7 +69,7 @@ fonts-misc: font-daewoo-misc font-dec-misc font-isas-misc font-jis-misc font-mic
 wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
-   xdpyinfo xeyes xev xhost xkill xload xfontsel ImageMagick
+   xdpyinfo xeyes xev xhost xkill xload xfontsel ImageMagick xmag xman xmodmap xrandr
 	
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 
