@@ -39,8 +39,8 @@ apps_gui: qemu
 
 sdl-support: SDL_image
 
-x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
-	util-macros fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
+x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
+	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
 	bigreqsproto randrproto renderproto fontsproto videoproto compositeproto \
 	recordproto scrnsaverproto resourceproto xineramaproto xf86dgaproto \
 	xf86vidmodeproto dri2proto dri3proto glproto presentproto pixman libxkbfile \
