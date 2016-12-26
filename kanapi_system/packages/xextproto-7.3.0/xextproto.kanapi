@@ -29,6 +29,7 @@ pkg_prepare() {
 }
 
 pkg_install() {
+	export MAKE_JOBS=1
 	pkg_install_pc
 }
 
