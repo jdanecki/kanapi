@@ -26,10 +26,10 @@ optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui
 #Basic Build System 
 bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
-	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less
+	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less openssh vim
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim openssh gpm kmod procps-ng
+apps_txt: gzip mc gpm kmod procps-ng
 
 devel: cgdb strace ltrace
 
