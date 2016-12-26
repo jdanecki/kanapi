@@ -901,3 +901,6 @@ xset:
 
 xsetroot:
 	@$(RUN_TARGET)
+
+xsetpointer:
+	@$(RUN_TARGET)
