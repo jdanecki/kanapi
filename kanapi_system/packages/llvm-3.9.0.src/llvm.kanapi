@@ -25,6 +25,8 @@ EXT=tar.xz
 
 . ../settings
 
+export LD_LIBRARY_PATH=${KANAPI_BASE}/libs
+
 pkg_download() {
 	pkg_curl
 	PACKAGE_NAME=cfe
