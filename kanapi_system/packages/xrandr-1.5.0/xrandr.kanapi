@@ -20,6 +20,7 @@
 PACKAGE_NAME=xrandr
 VER=1.5.0
 URL="https://www.x.org/releases/individual/app/"
+#URL="http://xorg.mirrors.pair.com/individual/app"
 EXT=tar.bz2
 #build depends on
 

@@ -19,7 +19,8 @@
 
 PACKAGE_NAME=xmodmap
 VER=1.0.9
-URL="https://www.x.org/releases/individual/app"
+#URL="https://www.x.org/releases/individual/app"
+URL="http://xorg.mirrors.pair.com/individual/app"
 EXT=tar.bz2
 #build depends on
 
