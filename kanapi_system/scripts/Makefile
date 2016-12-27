@@ -911,3 +911,6 @@ xvinfo: libXv
 
 libXv:
 	@$(RUN_TARGET)
+
+ctags:
+	@$(RUN_TARGET)
