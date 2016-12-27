@@ -29,6 +29,7 @@ pkg_prepare() {
 }
 
 pkg_configure_target() {	
+	export CC_FOR_BUILD=${KANAPI_TARGET_NAME}-gcc
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --program-prefix=${KANAPI_TARGET_NAME}-
 }
 
