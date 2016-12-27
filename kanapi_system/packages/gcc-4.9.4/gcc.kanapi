@@ -90,6 +90,7 @@ pkg_install() {
 	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
 
 	pkg_install_headers
+	${LN_SF} ${PREFIX}/bin/gcc ${PREFIX}/bin/cc
 
 		# to be executed on target machine
 	if [ "${KANAPI_TARGET}" = `uname -m` ] 
@@ -104,5 +105,6 @@ pkg_check() {
 	echo "PATH=$PATH"
 	${KANAPI_TARGET_NAME}-gcc --version
 	${PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc --version
+	${LN_SF} ${PREFIX}/bin/gcc ${PREFIX}/bin/cc
 }
 
