@@ -31,7 +31,7 @@ bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readli
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim gpm kmod procps-ng
 
-devel: cgdb strace ltrace ctags
+devel: cgdb strace ltrace ctags tk
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
@@ -913,4 +913,10 @@ libXv:
 	@$(RUN_TARGET)
 
 ctags:
+	@$(RUN_TARGET)
+
+tcl:
+	@$(RUN_TARGET)
+
+tk: tcl
 	@$(RUN_TARGET)

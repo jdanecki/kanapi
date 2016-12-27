@@ -272,3 +272,5 @@ xsetpointer_ver=1.0.1
 xvinfo_ver=1.1.3
 libXv_ver=1.0.11
 ctags_ver=5.8
+tcl_ver=8.6.6
+tk_ver=8.6.6
