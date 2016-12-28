@@ -36,7 +36,7 @@ devel: cgdb strace ltrace ctags tk
 #KS - KaNaPi System gui apps
 apps_gui: qemu
 
-apps_gtk: gtk+
+apps_gtk: gvim
 
 sdl-support: SDL_image
 
@@ -935,4 +935,7 @@ gtk+: atk gdk-pixbuf
 	@$(RUN_TARGET)
 
 gdk-pixbuf:
+	@$(RUN_TARGET)
+
+gvim: gtk+
 	@$(RUN_TARGET)
