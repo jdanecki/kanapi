@@ -29,7 +29,7 @@ bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readli
 	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less openssh
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng
+apps_txt: gzip mc vim gpm kmod procps-ng bc
 
 devel: cgdb strace ltrace ctags tk
 
@@ -922,4 +922,7 @@ tk: tcl
 	@$(RUN_TARGET)
 
 xauth:
+	@$(RUN_TARGET)
+
+bc:
 	@$(RUN_TARGET)
