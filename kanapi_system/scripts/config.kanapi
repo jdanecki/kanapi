@@ -276,3 +276,6 @@ tcl_ver=8.6.6
 tk_ver=8.6.6
 xauth_ver=1.0.9
 bc_ver=1.06.95
+atk_ver=2.22.0
+gtk_ver=2.24.31
+gdk_pixbuf_ver=2.36.2

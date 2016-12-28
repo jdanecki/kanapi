@@ -21,7 +21,7 @@ all: required optional
 
 required: $(COMPILERS) rootfs bbs
 
-optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui
+optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk
 
 #Basic Build System 
 bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
@@ -36,6 +36,7 @@ devel: cgdb strace ltrace ctags tk
 #KS - KaNaPi System gui apps
 apps_gui: qemu
 
+apps_gtk: gtk+
 
 sdl-support: SDL_image
 
@@ -925,4 +926,13 @@ xauth:
 	@$(RUN_TARGET)
 
 bc:
+	@$(RUN_TARGET)
+
+atk:
+	@$(RUN_TARGET)
+
+gtk+: atk gdk-pixbuf
+	@$(RUN_TARGET)
+
+gdk-pixbuf:
 	@$(RUN_TARGET)
