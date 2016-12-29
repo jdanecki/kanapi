@@ -22,10 +22,19 @@ VER=1.40.3
 URL="http://ftp.gnome.org/pub/gnome/sources/pango/1.40"
 EXT=tar.xz
 #build depends on
+
+LIB_DEPENDS="x11 xcb xau ice"
+
 . ../settings
+
+export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
 	pkg_tar_xz
+}
+
+pkg_configure() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
 }
 
 pkg_install() {

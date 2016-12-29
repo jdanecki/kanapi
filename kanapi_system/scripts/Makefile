@@ -598,7 +598,7 @@ cairo:
 cairo-demos: cairo 
 	@$(RUN_TARGET)
 
-pango: cairo
+pango: harfbuzz
 	@$(RUN_TARGET)
 
 i3: libev startup-notification xcb-util xcb-util-cursor xcb-util-wm xcb-util-xrm libxkbcommon yajl pcre pango
@@ -766,7 +766,7 @@ XML-Simple: XML-SAX-Expat
 icon-naming-utils: XML-Simple
 	@$(RUN_TARGET)
 
-ImageMagick:
+ImageMagick: pango
 	@$(RUN_TARGET)
 
 tango-icon-theme: icon-naming-utils ImageMagick
@@ -931,7 +931,7 @@ bc:
 atk:
 	@$(RUN_TARGET)
 
-gtk+: atk gdk-pixbuf
+gtk+: pango atk gdk-pixbuf
 	@$(RUN_TARGET)
 
 gdk-pixbuf:
@@ -953,6 +953,9 @@ jpegsrc:
 	@$(RUN_TARGET)
 
 gvim: gtk+
+	@$(RUN_TARGET)
+
+harfbuzz: cairo
 	@$(RUN_TARGET)
 
 chrpath:
