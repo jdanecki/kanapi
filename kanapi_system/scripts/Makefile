@@ -21,7 +21,7 @@ all: required optional
 
 required: $(COMPILERS) rootfs bbs
 
-optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk
+optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3
 
 #Basic Build System 
 bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
@@ -36,7 +36,9 @@ devel: cgdb strace ltrace ctags tk chrpath patchelf
 #KS - KaNaPi System gui apps
 apps_gui: qemu
 
-apps_gtk: gimp gvim
+apps_gtk: gtk+ gimp gvim
+
+apps_gtk3: gtk3+
 
 sdl-support: SDL_image
 
@@ -952,10 +954,16 @@ json-glib:
 jpegsrc:
 	@$(RUN_TARGET)
 
-gvim: gtk+
+gvim:
+	@$(RUN_TARGET)
+
+gtk3+: libepoxy
 	@$(RUN_TARGET)
 
 harfbuzz: cairo
+	@$(RUN_TARGET)
+
+libepoxy:
 	@$(RUN_TARGET)
 
 chrpath:
