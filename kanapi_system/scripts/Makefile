@@ -957,10 +957,37 @@ jpegsrc:
 gvim:
 	@$(RUN_TARGET)
 
+libsoup:
+	@$(RUN_TARGET)
+
+#glib-networking:
+#	@$(RUN_TARGET)
+
+icu4c:
+	@$(RUN_TARGET)
+
+libXcomposite:
+	@$(RUN_TARGET)
+
+webkitgtk: libwebp libsoup libXcomposite gperf ruby gnutls
+	@$(RUN_TARGET)
+
+gperf:
+	@$(RUN_TARGET)
+
+ruby:
+	@$(RUN_TARGET)
+
+gnutls: nettle
+	@$(RUN_TARGET)
+
+nettle:
+	@$(RUN_TARGET)
+
 gtk3+: libepoxy
 	@$(RUN_TARGET)
 
-harfbuzz: cairo
+harfbuzz: cairo icu4c
 	@$(RUN_TARGET)
 
 libepoxy:
@@ -970,4 +997,7 @@ chrpath:
 	@$(RUN_TARGET)
 
 patchelf:
+	@$(RUN_TARGET)
+
+libwebp: libpng jpegsrc
 	@$(RUN_TARGET)

@@ -74,4 +74,5 @@ sqlite-autoconf_ver=${sqlite_autoconf_ver}
 gtk+_ver=${gtk_ver}
 gdk-pixbuf_ver=${gdk_pixbuf_ver}
 json-glib_ver=${json_glib_ver}
+#glib-networking_ver=${glib_networking_ver}
 gtk3+_ver=${gtk3_ver}
