@@ -286,3 +286,5 @@ json_glib_ver=1.2.2
 jpegsrc_ver=v9b
 gegl_ver=0.2.0
 gvim_ver=8.0
+chrpath_ver=0.16
+patchelf_ver=0.9
