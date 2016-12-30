@@ -21,7 +21,8 @@ all: required optional
 
 required: $(COMPILERS) rootfs bbs
 
-optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3
+optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
+	www
 
 #Basic Build System 
 bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
@@ -73,11 +74,13 @@ wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel ImageMagick xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth
+   xsetpointer xvinfo xauth graphviz
 	
-icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
+icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme adwaita-icon-theme
 
 sound: alsa-utils esound
+
+www: webkitgtk
 
 tests: xflame water xclipboard intel-gpu-tools
 
@@ -957,10 +960,37 @@ jpegsrc:
 gvim:
 	@$(RUN_TARGET)
 
+libsoup:
+	@$(RUN_TARGET)
+
+glib-networking:
+	@$(RUN_TARGET)
+
+icu4c:
+	@$(RUN_TARGET)
+
+libXcomposite:
+	@$(RUN_TARGET)
+
+webkitgtk: libwebp libsoup libXcomposite gperf ruby gnutls glib-networking
+	@$(RUN_TARGET)
+
+gperf:
+	@$(RUN_TARGET)
+
+ruby:
+	@$(RUN_TARGET)
+
+gnutls: nettle
+	@$(RUN_TARGET)
+
+nettle:
+	@$(RUN_TARGET)
+
 gtk3+: libepoxy
 	@$(RUN_TARGET)
 
-harfbuzz: cairo
+harfbuzz: cairo icu4c
 	@$(RUN_TARGET)
 
 libepoxy:
@@ -973,4 +1003,16 @@ patchelf:
 	@$(RUN_TARGET)
 
 graphviz:
+	@$(RUN_TARGET)
+
+libwebp: libpng jpegsrc
+	@$(RUN_TARGET)
+
+adwaita-icon-theme: librsvg
+	@$(RUN_TARGET)
+
+librsvg: libcroco
+	@$(RUN_TARGET)
+
+libcroco:
 	@$(RUN_TARGET)
