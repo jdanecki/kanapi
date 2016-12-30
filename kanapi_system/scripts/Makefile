@@ -21,7 +21,8 @@ all: required optional
 
 required: $(COMPILERS) rootfs bbs
 
-optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3
+optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
+	qt-everywhere-opensource-src
 
 #Basic Build System 
 bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
@@ -970,4 +971,10 @@ chrpath:
 	@$(RUN_TARGET)
 
 patchelf:
+	@$(RUN_TARGET)
+
+qt-everywhere-opensource-src: dbus
+	@$(RUN_TARGET)
+
+dbus:
 	@$(RUN_TARGET)
