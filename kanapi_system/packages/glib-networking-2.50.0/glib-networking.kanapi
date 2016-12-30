@@ -22,16 +22,26 @@ VER=2.50.0
 URL="http://ftp.acc.umu.se/pub/gnome/sources/glib-networking/2.50"
 EXT=tar.xz
 #build depends on
+
+LIB_DEPENDS="gio-2.0"
+
 . ../settings
 
 export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+export LDFLAGS="${LDFLAGS} -lresolv"
 
 pkg_prepare() {
 	pkg_tar_xz
 }
 
+pkg_configure() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	--with-ca-certificates=`${PKG_CONFIG} --variable=prefix libcurl`/etc/ca-bundle.crt
+}
+
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_libs
+	${LN_SF} ${KANAPI_BASE}/glib-${glib_ver}/lib/gio/modules ${PREFIX}
 }
 

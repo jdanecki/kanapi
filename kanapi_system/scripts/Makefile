@@ -960,8 +960,8 @@ gvim:
 libsoup:
 	@$(RUN_TARGET)
 
-#glib-networking:
-#	@$(RUN_TARGET)
+glib-networking:
+	@$(RUN_TARGET)
 
 icu4c:
 	@$(RUN_TARGET)
@@ -969,7 +969,7 @@ icu4c:
 libXcomposite:
 	@$(RUN_TARGET)
 
-webkitgtk: libwebp libsoup libXcomposite gperf ruby gnutls
+webkitgtk: libwebp libsoup libXcomposite gperf ruby gnutls glib-networking
 	@$(RUN_TARGET)
 
 gperf:
