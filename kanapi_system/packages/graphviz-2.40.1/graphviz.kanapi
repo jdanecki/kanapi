@@ -29,6 +29,7 @@ LIB_DEPENDS="expat xaw7 xrender x11 cairo tcl tk xmu xext"
 
 export LDFLAGS="${LDFLAGS} -lm -lrt -lpthread"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
+export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir cairo`"
 
 pkg_prepare() {
 	pkg_tar_gz
