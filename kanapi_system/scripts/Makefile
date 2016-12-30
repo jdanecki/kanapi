@@ -75,7 +75,7 @@ xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconso
    xdpyinfo xeyes xev xhost xkill xload xfontsel ImageMagick xmag xman xmodmap xrandr xset xsetroot \
    xsetpointer xvinfo xauth
 	
-icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
+icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme adwaita-icon-theme
 
 sound: alsa-utils esound
 
@@ -1000,4 +1000,13 @@ patchelf:
 	@$(RUN_TARGET)
 
 libwebp: libpng jpegsrc
+	@$(RUN_TARGET)
+
+adwaita-icon-theme: librsvg
+	@$(RUN_TARGET)
+
+librsvg: libcroco
+	@$(RUN_TARGET)
+
+libcroco:
 	@$(RUN_TARGET)
