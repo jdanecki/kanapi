@@ -76,3 +76,4 @@ gdk-pixbuf_ver=${gdk_pixbuf_ver}
 json-glib_ver=${json_glib_ver}
 gtk3+_ver=${gtk3_ver}
 qt-everywhere-opensource-src_ver=${qt_everywhere_opensource_src_ver}
+qt-creator_ver=${qt_creator_ver}

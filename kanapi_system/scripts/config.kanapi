@@ -294,3 +294,4 @@ chrpath_ver=0.16
 patchelf_ver=0.9
 qt_everywhere_opensource_src_ver=5.7.1
 dbus_ver=1.11.8
+qt_creator_ver=v4.2.0
