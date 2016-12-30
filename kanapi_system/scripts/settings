@@ -242,7 +242,7 @@ pkg_configure_native() {
 }
 
 pkg_configure_target() {	
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
 }
 
 pkg_configure() {
@@ -322,6 +322,7 @@ pkg_install_bin() {
 }
 
 pkg_install_bin_all() {
+	if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 	${LN_SF} ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
 }
 
@@ -334,6 +335,7 @@ pkg_install_usr_bin_all() {
 }
 
 pkg_install_libs() {
+	if [ ! -d ${KANAPI_BASE}/libs ] ; then mkdir ${KANAPI_BASE}/libs; fi
 	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a 
 	do
 		if [ -f $f ] 

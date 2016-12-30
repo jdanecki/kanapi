@@ -32,7 +32,7 @@ bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readli
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim gpm kmod procps-ng bc
 
-devel: cgdb strace ltrace ctags tk chrpath patchelf
+devel: cgdb strace ltrace ctags chrpath patchelf
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
@@ -53,7 +53,7 @@ x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libevdev mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
-	xf86-video-modesetting fonts setxkbmap icons xinput libXft
+	xf86-video-modesetting fonts setxkbmap xinput libXft icons
 
 fonts: fonts-bitmap fonts-type1 fonts-misc
 	
@@ -73,8 +73,8 @@ fonts-misc: font-daewoo-misc font-dec-misc font-isas-misc font-jis-misc font-mic
 wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
-   xdpyinfo xeyes xev xhost xkill xload xfontsel ImageMagick xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth graphviz
+   xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
+   xsetpointer xvinfo xauth tk graphviz
 	
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme adwaita-icon-theme
 
@@ -190,7 +190,7 @@ slang: zlib ncurses5
 mc: libssh2 glib
 	@$(RUN_TARGET)
 
-vim: 
+vim:
 	@$(RUN_TARGET)
 
 make:
