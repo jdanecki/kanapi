@@ -306,3 +306,5 @@ libwebp_ver=0.5.2
 adwaita_icon_theme_ver=3.22.0
 librsvg_ver=2.40.16
 libcroco_ver=0.6.11
+qt_everywhere_opensource_src_ver=5.7.1
+dbus_ver=1.11.8

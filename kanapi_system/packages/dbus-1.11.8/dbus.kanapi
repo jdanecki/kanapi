@@ -17,12 +17,19 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=bash
-VER=4.4
-URL="GNU"
+PACKAGE_NAME=dbus
+VER=1.11.8
+URL="https://dbus.freedesktop.org/releases/dbus"
 EXT=tar.gz
 #build depends on
+
+LIB_DEPENDS="expat gobject-2.0 x11"
+
 . ../settings
+
+export LDFLAGS="${LDFLAGS} -lrt -lpthread -lresolv"
+export LIBS="${LDFLAGS}"
+export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags x11`"
 
 pkg_prepare() {
 	pkg_tar_gz
@@ -30,12 +37,19 @@ pkg_prepare() {
 
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
-	--without-curses bash_cv_termcap_lib=gnutermcap
+	--disable-selinux --disable-systemd --with-session-socket-dir=${PREFIX}/var \
+	--with-test-socket-dir=${PREFIX}/var --with-system-pid-file=${PREFIX}/var/pid \
+	--with-console-auth-dir=${PREFIX}/var --with-dbus-user=kanapi \
+	--with-dbus-daemondir=${PREFIX}/bin --with-x 
 }
 
 pkg_install() {
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
-	${LN_SF} ${PREFIX}/bin/bash ${PREFIX}/bin/sh
+	pkg_install_pc_all
 	pkg_install_bin_all
+	pkg_install_libs
+	dbus-uuidgen --ensure
 }
 
+pkg_check() {
+	echo $CFLAGS
+}

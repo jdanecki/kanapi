@@ -22,7 +22,7 @@ all: required optional
 required: $(COMPILERS) rootfs bbs
 
 optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	www
+	www qt-everywhere-opensource-src
 
 #Basic Build System 
 bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
@@ -1015,4 +1015,10 @@ librsvg: libcroco
 	@$(RUN_TARGET)
 
 libcroco:
+	@$(RUN_TARGET)
+
+qt-everywhere-opensource-src: dbus
+	@$(RUN_TARGET)
+
+dbus:
 	@$(RUN_TARGET)
