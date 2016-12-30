@@ -22,6 +22,9 @@ VER=1.1
 URL="http://download.savannah.gnu.org/releases/libunwind"
 EXT=tar.gz
 #build depends on
+
+LIB_DEPENDS="liblzma"
+
 . ../settings
 
 pkg_prepare() {
