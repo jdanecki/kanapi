@@ -78,3 +78,4 @@ glib-networking_ver=${glib_networking_ver}
 gtk3+_ver=${gtk3_ver}
 adwaita-icon-theme_ver=${adwaita_icon_theme_ver}
 qt-everywhere-opensource-src_ver=${qt_everywhere_opensource_src_ver}
+qt-creator_ver=${qt_creator_ver}

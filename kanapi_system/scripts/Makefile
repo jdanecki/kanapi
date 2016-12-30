@@ -1022,3 +1022,6 @@ qt-everywhere-opensource-src: dbus
 
 dbus:
 	@$(RUN_TARGET)
+
+qt-creator:
+	@$(RUN_TARGET)
