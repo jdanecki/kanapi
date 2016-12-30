@@ -971,3 +971,6 @@ chrpath:
 
 patchelf:
 	@$(RUN_TARGET)
+
+graphviz:
+	@$(RUN_TARGET)
