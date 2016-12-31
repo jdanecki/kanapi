@@ -1030,3 +1030,6 @@ qt-creator:
 
 groff:
 	@$(RUN_TARGET)
+
+vala:
+	@$(RUN_TARGET)
