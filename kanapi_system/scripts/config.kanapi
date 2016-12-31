@@ -311,3 +311,6 @@ dbus_ver=1.11.8
 qt_creator_ver=v4.2.0
 groff_ver=1.22.3
 vala_ver=0.34.4
+midori_ver=0.5.11
+gcr_ver=3.20.0
+p11_kit_ver=0.23.2
