@@ -82,7 +82,7 @@ icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme ad
 
 sound: alsa-utils esound
 
-www: webkitgtk
+www: webkitgtk midori
 
 tests: xflame water xclipboard intel-gpu-tools
 
