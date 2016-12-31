@@ -309,3 +309,4 @@ libcroco_ver=0.6.11
 qt_everywhere_opensource_src_ver=5.7.1
 dbus_ver=1.11.8
 qt_creator_ver=v4.2.0
+groff_ver=1.22.3

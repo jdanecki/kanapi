@@ -1027,3 +1027,6 @@ dbus:
 
 qt-creator:
 	@$(RUN_TARGET)
+
+groff:
+	@$(RUN_TARGET)
