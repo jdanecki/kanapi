@@ -23,7 +23,9 @@ URL="https://webkitgtk.org/releases"
 EXT=tar.xz
 #build depends on
 
-LIB_DEPENDS="x11 libpng zlib xcomposite xdamage xrender xt fontconfig sqlite3 gl cairo-xlib xcomposite xdamage xrender xt"
+LIB_DEPENDS="x11 libpng zlib xcomposite xdamage xrender xt \
+	fontconfig sqlite3 gl cairo-xlib xcomposite xdamage xrender \
+	xt gtk+-3.0 gdk-3.0 pangocairo atk gdk-pixbuf-2.0 gio-2.0"
 
 . ../settings
 
@@ -46,7 +48,7 @@ pkg_configure() {
 
 	cmake -G Ninja ${PACKAGE_SRCDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_C_COMPILER=${KANAPI_TARGET_NAME}-gcc \
     -DCMAKE_CXX_COMPILER=${KANAPI_TARGET_NAME}-g++ -DPORT=GTK -DENABLE_MINIBROWSER=ON \
-	-DCMAKE_CXX_FLAGS="${CFLAGS}" \
+	-DCMAKE_CXX_FLAGS="${CFLAGS} ${LDFLAGS}" \
 	-DENABLE_CREDENTIAL_STORAGE=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_INTROSPECTION=OFF \
 	-DENABLE_SPELLCHECK=OFF -DENABLE_VIDEO=OFF -DENABLE_WEB_AUDIO=OFF -DUSE_LIBNOTIFY=OFF \
 	-DUSE_LIBHYPHEN=OFF \
@@ -57,7 +59,8 @@ pkg_configure() {
 	-DX11_Xcomposite_LIB=${XCOMPOSITE}/lib/libXcomposite.so -DX11_Xcomposite_INCLUDE_PATH=${XCOMPOSITE}/include \
 	-DX11_Xdamage_LIB=${XDAMAGE}/lib/libXdamage.so -DX11_Xdamage_INCLUDE_PATH=${XDAMAGE}/include \
 	-DX11_Xrender_LIB=${XRENDER}/lib/libXrender.so -DX11_Xrender_INCLUDE_PATH=${XRENDER}/include \
-	-DX11_Xt_LIB=${XT}/lib/libXt.so -DX11_Xt_INCLUDE_PATH=${XT}/include
+	-DX11_Xt_LIB=${XT}/lib/libXt.so -DX11_Xt_INCLUDE_PATH=${XT}/include \
+	-DENABLE_PLUGIN_PROCESS_GTK2=OFF
 }
 
 pkg_build() {
@@ -79,5 +82,7 @@ pkg_check() {
 	ls -l ${X11}/include/X11
 	${PKG_CONFIG} --cflags ${LIB_DEPENDS}
 	echo "CFLAGS=${CFLAGS}"
+	ccache --version
+	${PKG_CONFIG} --libs ${LIB_DEPENDS}
 }
 
