@@ -32,7 +32,7 @@ bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readli
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim gpm kmod procps-ng bc
 
-devel: cgdb strace ltrace ctags chrpath patchelf
+devel: cgdb strace ltrace ctags chrpath patchelf groff vala
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
