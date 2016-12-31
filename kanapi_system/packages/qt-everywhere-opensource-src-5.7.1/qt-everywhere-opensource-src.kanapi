@@ -43,7 +43,11 @@ pkg_configure() {
 #	export QMAKE_AR=${KANAPI_TARGET_NAME}-ar cqs
 #	export QMAKE_OBJCOPY=${KANAPI_TARGET_NAME}-objcopy
 #	export QMAKE_STRIP=${KANAPI_TARGET_NAME}-strip
-
+	if [ "`uname -m`" = "x86_64" ]
+	then 
+		NEW_CFLAGS=`echo "${CFLAGS}" | sed "s/-fPIC//"`
+		export CFLAGS="${NEW_CFLAGS}"
+	fi
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX -v -opensource -confirm-license \
 	-qt-xcb -qt-pcre -qt-zlib -qt-libpng \
 	-qt-libjpeg  -pkg-config -icu -gui -qt-xkbcommon -qt-pcre \
@@ -64,5 +68,14 @@ pkg_install() {
 pkg_check() {
 	${PKG_CONFIG} --libs ${LIB_DEPENDS}
 	${PKG_CONFIG} --cflags ${LIB_DEPENDS}
+	echo "CFLAGS=${CFLAGS}"
+	echo "LDFLAGS=${LDFLAGS}"
+
+	if [ "`uname -m`" = "x86_64" ]
+	then 
+		NEW_CFLAGS=`echo "${CFLAGS}" | sed "s/-fPIC//"`
+	export CFLAGS="${NEW_CFLAGS}"
+	fi
+	echo "CFLAGS=${CFLAGS}"
 }
 
