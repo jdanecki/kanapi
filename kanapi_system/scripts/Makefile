@@ -22,7 +22,7 @@ all: required optional
 required: $(COMPILERS) rootfs bbs
 
 optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	www qt-everywhere-opensource-src
+	apps_qt www 
 
 #Basic Build System 
 bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
@@ -40,6 +40,8 @@ apps_gui: qemu
 apps_gtk: gtk+ gimp gvim
 
 apps_gtk3: gtk3+
+
+apps_qt: qt-everywhere-opensource-src qt-creator
 
 sdl-support: SDL_image
 
