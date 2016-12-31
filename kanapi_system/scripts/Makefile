@@ -1033,3 +1033,12 @@ groff:
 
 vala:
 	@$(RUN_TARGET)
+
+midori: gcr
+	@$(RUN_TARGET)
+
+gcr: p11-kit
+	@$(RUN_TARGET)
+
+p11-kit:
+	@$(RUN_TARGET)
