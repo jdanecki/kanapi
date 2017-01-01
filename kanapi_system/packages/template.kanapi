@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -22,7 +22,12 @@ VER=@VER@
 URL="http://"
 EXT=tar.bz2
 #build depends on
+#LIB_DEPENDS=""
+
 . ../settings
+
+#export LDFLAGS="${LDFLAGS} "
+#export CFLAGS="${CFLAGS} "
 
 pkg_prepare() {
 	pkg_tar_bz2
