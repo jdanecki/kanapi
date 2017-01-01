@@ -1,4 +1,3 @@
-linux_ver=4.4.2
 glibc_ver=2.23
 binutils_ver=2.27
 cross_gcc_ver=4.9.4
@@ -315,4 +314,6 @@ midori_ver=0.5.11
 gcr_ver=3.20.0
 p11_kit_ver=0.23.2
 pciutils_ver=3.5.2
+#linux_ver=4.4.2
+linux_ver=4.9
 dbus_glib_ver=0.108
