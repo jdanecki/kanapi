@@ -10,42 +10,42 @@ endif
 
 
 kanapi_download:
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_download" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_download" ; fi
 	pkg_kanapi $(PKG).kanapi download $(V)
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_download" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_download" ; fi
 	$(call DATE_RULE)
 
 kanapi_redownload:
 	pkg_kanapi $(PKG).kanapi redownload $(V)
 
 kanapi_prepare: kanapi_download
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_prepare" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_prepare" ; fi
 	pkg_kanapi $(PKG).kanapi prepare $(V)
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_prepare" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_prepare" ; fi
 	$(call DATE_RULE)
 
 kanapi_configure: kanapi_prepare
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_configure" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_configure" ; fi
 	pkg_kanapi $(PKG).kanapi configure $(V); if [ "$$?" != "0" ] ; then find . -name config.log -exec cat {} \; ; false; fi
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_configure" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_configure" ; fi
 	$(call DATE_RULE)
 
 kanapi_reconfigure:
 	pkg_kanapi $(PKG).kanapi configure $(V)
 
 kanapi_build: kanapi_configure
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_build" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_build" ; fi
 	pkg_kanapi $(PKG).kanapi build $(V)
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_build" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_build" ; fi
 	$(call DATE_RULE)
 
 kanapi_rebuild:
 	pkg_kanapi $(PKG).kanapi build $(V)
 
 kanapi_install: kanapi_build
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi
 	pkg_kanapi $(PKG).kanapi install $(V)
-	if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install" ; fi
+	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install" ; fi
 	$(call DATE_RULE)
 
 kanapi_reinstall:
