@@ -26,7 +26,7 @@ LIB_DEPENDS="zlib xau expat pixman-1 fontconfig freetype2 xrender libpng xcb-shm
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lrt -lpthread"
+export LDFLAGS="${LDFLAGS} -lrt -lpthread -lresolv"
 
 pkg_download() {
 	pkg_git_clone
