@@ -1045,3 +1045,7 @@ p11-kit:
 
 pciutils:
 	@$(RUN_TARGET)
+
+dbus-glib:
+	@$(RUN_TARGET)
+
