@@ -1042,3 +1042,6 @@ gcr: p11-kit
 
 p11-kit:
 	@$(RUN_TARGET)
+
+pciutils:
+	@$(RUN_TARGET)
