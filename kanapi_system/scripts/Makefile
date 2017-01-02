@@ -9,9 +9,10 @@ include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
-
+KANAPI_VER=$(shell cat  $(BASE)../scripts/KANAPI_VER)
 CURRENT_ARCH=$(shell uname -m)
 COMPILERS=cross_gcc
+KANAPI_BASE=/kanapi_$(KANAPI_VER)/$(CURRENT_ARCH)/packages
 
 ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
 COMPILERS+=gcc
@@ -57,7 +58,20 @@ x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
 	xf86-video-modesetting fonts setxkbmap xinput libXft icons
 
-fonts: fonts-bitmap fonts-type1 fonts-misc
+fonts: fonts-bitmap fonts-type1 fonts-misc fonts-ttf
+	for i in 100dpi 75dpi Speedo Type1 cyrillic misc; do ln -svf $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/$$i $(KANAPI_BASE)/fontconfig-$(fontconfig_ver)/share/fonts ; done
+	if [ ! -d $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ] ; then mkdir $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF; fi
+	for i in $(KANAPI_BASE)/freefont-ttf-$(freefont_ttf_ver)/*.ttf $(KANAPI_BASE)/dejavu-fonts-ttf-$(dejavu_fonts_ttf_ver)/ttf/*.ttf ; do \
+		ln -svf $$i $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; done
+	echo -n > $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts
+	for i in $(KANAPI_BASE)/freefont-ttf-$(freefont_ttf_ver)/fonts.scale $(KANAPI_BASE)/dejavu-fonts-ttf-$(dejavu_fonts_ttf_ver)/ttf/fonts.scale ; do \
+		cat $$i | grep ttf >> $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts ; done
+	cat $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts	| wc -l >  $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts.scale
+	cat $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts	>>  $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts.scale
+	rm $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts
+	cd $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; mkfontdir
+
+fonts-ttf: freefont-ttf dejavu-fonts-ttf
 	
 fonts-bitmap: fonts-utopia fonts-bh fonts-bitstream
 	
@@ -546,7 +560,7 @@ vtwm: libXpm
 ratpoison:
 	@$(RUN_TARGET)
 
-libXft: libXrender fontconfig
+libXft: libXrender
 	@$(RUN_TARGET)
 
 libXrender:
@@ -561,7 +575,7 @@ freefont-ttf: fontconfig
 dejavu-fonts-ttf: fontconfig
 	@$(RUN_TARGET)
 
-xfd: libXaw freefont-ttf dejavu-fonts-ttf
+xfd: libXaw
 	@$(RUN_TARGET)
 
 libXcursor: libXrender

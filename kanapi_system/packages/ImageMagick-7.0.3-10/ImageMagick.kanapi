@@ -33,6 +33,13 @@ pkg_prepare() {
 	pkg_tar_bz2
 }
 
+
+pkg_configure() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	--disable-openmp --with-dejavu-font-dir=${KANAPI_BASE}/dejavu-fonts-ttf-${dejavu_fonts_ttf_ver}/ttf \
+  	--with-gs-font-dir=${KANAPI_BASE}/font-util-${font_util_ver}/share/fonts/X11/Type1
+}
+
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_bin_all
