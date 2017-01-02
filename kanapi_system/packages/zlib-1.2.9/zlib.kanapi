@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -18,15 +18,20 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 PACKAGE_NAME=zlib
-VER=1.2.8
+VER=1.2.9
 URL="SF"
-EXT=tar.gz
+EXT=tar.xz
 SF_URL="libpng/zlib/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
 #build depends on
+#LIB_DEPENDS=""
+
 . ../settings
 
+#export LDFLAGS="${LDFLAGS} "
+#export CFLAGS="${CFLAGS} "
+
 pkg_prepare() {
-	pkg_tar_gz
+	pkg_tar_xz
 }
 
 pkg_configure() {
