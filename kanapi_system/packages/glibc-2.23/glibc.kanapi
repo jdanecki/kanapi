@@ -53,7 +53,7 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	libc_cv_ssp=no  libc_cv_ssp_strong=no --without-selinux --disable-stackguard-randomization \
 	--without-selinux \
-	--with-headers=${KANAPI_BASE}/linux-4.4.2/include \
+	--with-headers=${KANAPI_BASE}/linux-${linux_ver}/include \
 	--with-binutils=${KANAPI_CROSS_BASE}/binutils-${binutils_ver}
 	
 	#--enable-multi-arch
