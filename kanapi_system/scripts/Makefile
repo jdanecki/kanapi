@@ -815,10 +815,10 @@ libXi:
 xeyes:
 	@$(RUN_TARGET)
 
-xev:libXrandr
+xev: libXrandr
 	@$(RUN_TARGET)
 
-libXrandr:
+libXrandr: libXrender
 	@$(RUN_TARGET)
 
 xhost:
