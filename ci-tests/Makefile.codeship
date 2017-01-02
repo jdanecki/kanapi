@@ -1,6 +1,7 @@
 all: bbs
 
 bbs: check_links
+	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
 check_links:
