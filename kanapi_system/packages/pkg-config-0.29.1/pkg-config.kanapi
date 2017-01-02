@@ -31,13 +31,13 @@ pkg_prepare() {
 pkg_install() {
 	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	mkdir ${PREFIX}/share/pkgconfig
-	export PKGCONFIG_DIR=${PREFIX}/share/pkgconfig
+	export PKG_CONFIG_DIR=${PREFIX}/share/pkgconfig
 	for p in glib libffi zlib
 	do
 		PKG_VER=${p}_ver
 		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/lib/pkgconfig/*.pc 
 		do
-			ln -svf $f ${PKGCONFIG_DIR}/`basename $f`
+			ln -svf $f ${PKG_CONFIG_DIR}/`basename $f`
 		done
 	done
 }
@@ -52,7 +52,7 @@ pkg_check() {
 		PKG_VER=${p}_ver
 		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/lib/pkgconfig/*.pc 
 		do
-			echo "ln -svf $f ${PKGCONFIG_DIR}/`basename $f`"
+			echo "ln -svf $f ${PKG_CONFIG_DIR}/`basename $f`"
 		done
 	done
 

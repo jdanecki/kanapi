@@ -31,6 +31,6 @@ pkg_prepare() {
 
 pkg_install() {
 	pkg_install_make
-	ln -svf ${PREFIX}/lib/pkgconfig/pthread-stubs.pc ${PKGCONFIG_DIR}/pthread-stubs.pc
+	ln -svf ${PREFIX}/lib/pkgconfig/pthread-stubs.pc ${PKG_CONFIG_DIR}/pthread-stubs.pc
 }
 

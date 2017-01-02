@@ -30,13 +30,12 @@ pkg_prepare() {
 
 pkg_install() {
 	pkg_install_make
-	ln -svf ${PREFIX}/lib/pkgconfig/xau.pc ${PKGCONFIG_DIR}/xau.pc
+	ln -svf ${PREFIX}/lib/pkgconfig/xau.pc ${PKG_CONFIG_DIR}/xau.pc
 	pkg_install_libs
 }
 
 pkg_check() {
 	echo "PKG_CONFIG=${PKG_CONFIG}"
-	echo "KANAPI_PKGCONFIG=${KANAPI_PKGCONFIG}"
 	echo "KANAPI_CROSS=${KANAPI_CROSS}"
 	echo "${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config"
 	ls -l "${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config"

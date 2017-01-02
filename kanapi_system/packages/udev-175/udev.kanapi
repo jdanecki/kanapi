@@ -41,6 +41,6 @@ pkg_install() {
 	pkg_install_pc_all
 	pkg_install_sbin_all
 	pkg_install_libs
-	ln -svf ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+	ln -svf ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKG_CONFIG_DIR}/${PACKAGE_NAME}.pc
 }	
 
