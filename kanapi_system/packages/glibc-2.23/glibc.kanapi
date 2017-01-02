@@ -53,7 +53,7 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	libc_cv_ssp=no  libc_cv_ssp_strong=no --without-selinux --disable-stackguard-randomization \
 	--without-selinux \
-	--with-headers=${KANAPI_BASE}/linux-${linux_ver}/include \
+	--with-headers=${KANAPI_BASE}/linux-headers-${linux_headers_ver}/include \
 	--with-binutils=${KANAPI_CROSS_BASE}/binutils-${binutils_ver}
 	
 	#--enable-multi-arch
@@ -70,7 +70,7 @@ header() {
 		ln -s include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/sys-include
 		ln -s ${PREFIX}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
 		touch ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include/gnu/stubs.h
-		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
+		cp -ar ${KANAPI_BASE}/linux-headers-${linux_headers_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
 	fi
 	${MAKE} csu/subdir_lib
 	install csu/crt1.o csu/crti.o csu/crtn.o ${PREFIX}/lib
@@ -94,7 +94,7 @@ pkg_install() {
 		ln -s ${PREFIX}/include ${CROSS_GCC_DIR}
 		ln -s include ${CROSS_GCC_DIR}/sys-include
 		ln -s ${PREFIX}/lib ${CROSS_GCC_DIR}/lib
-		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${CROSS_GCC_DIR}/include
+		cp -ar ${KANAPI_BASE}/linux-headers-${linux_headers_ver}/include/* ${CROSS_GCC_DIR}/include
 	fi
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then

@@ -108,10 +108,10 @@ package2: package1
 #
 # kernel, glibc, compilers
 #
-linux:
+linux-headers:
 	@$(RUN_TARGET)
 
-glibc: linux
+glibc: linux-headers
 	@$(RUN_TARGET)
 
 cross_gcc: glibc
