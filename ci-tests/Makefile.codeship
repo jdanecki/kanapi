@@ -3,6 +3,7 @@ all: txt-mode
 txt-mode: bbs apps_txt devel sound
 
 bbs: check_links
+	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
 apps_txt: check_links
@@ -12,7 +13,6 @@ devel: check_links
 	cd ../kanapi_system/`uname -m`   ; make devel ACTION=install
 
 sound: check_links
-	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
 	cd ../kanapi_system/`uname -m`   ; make sound ACTION=install
 
 x-support: check_links
