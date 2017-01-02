@@ -1,4 +1,4 @@
-all: x-support
+all: txt-mode
 
 txt-mode: bbs apps_txt devel sound
 
