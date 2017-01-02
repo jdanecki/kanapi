@@ -32,7 +32,7 @@ bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readli
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim gpm kmod procps-ng bc
 
-devel: cgdb strace ltrace ctags chrpath patchelf groff vala
+devel: cgdb strace ltrace ctags chrpath patchelf vala
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
@@ -76,7 +76,7 @@ wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth tk graphviz
+   xsetpointer xvinfo xauth tk graphviz groff
 	
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme adwaita-icon-theme
 

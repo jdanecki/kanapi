@@ -36,7 +36,7 @@ pkg_prepare() {
 
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
-	--with-x --with-appresdir=${PREFIX}/app-defaults
+	--with-x --with-appresdir=${PREFIX}/app-defaults --with-doc="examples"
 }
 
 pkg_install() {
