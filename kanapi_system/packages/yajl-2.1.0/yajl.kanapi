@@ -23,6 +23,7 @@ URL=" http://github.com/lloyd/yajl/tarball/2.1.0"
 EXT=tar.gz
 #build depends on
 . ../settings
+export LD_LIBRARY_PATH=${KANAPI_BASE}/libs
 
 pkg_download() {
 	PACKAGE_LINK=${URL}

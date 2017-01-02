@@ -1,5 +1,4 @@
-KANAPI_TARGET=i686
-KANAPI_KERNEL_TARGET=x86
+. ../../scripts/target_name_i686
 
 if [ "x${PKG_VERBOSE}" = "x1" ]
 then

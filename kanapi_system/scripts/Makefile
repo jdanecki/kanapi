@@ -1,38 +1,52 @@
 ifeq (x$(KANAPI_TOP),x)
 BASE=
+include target_name
 else
 BASE=$(KANAPI_TOP)/
+include $(BASE)target_name
 endif
 include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
 
+CURRENT_ARCH=$(shell uname -m)
+COMPILERS=cross_gcc
+
+ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
+COMPILERS+=gcc
+endif
+
 all: required optional
 
-required: cross_gcc rootfs bbs
-   
-optional: apps_txt devel native_gcc sound x-support sdl-support wm xapp tests apps_gui
+required: $(COMPILERS) rootfs bbs
+
+optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
+	apps_qt www 
 
 #Basic Build System 
-bbs: ccache busybox bash make autoconf automake bison sed gettext pkg-config ncurses readline gawk openssl curl cmake \
+bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
 	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
-	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less
+	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less openssh
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim openssh gpm kmod procps-ng
+apps_txt: gzip mc vim gpm kmod procps-ng bc
 
-devel: cgdb strace ltrace
+devel: cgdb strace ltrace ctags chrpath patchelf groff vala
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
 
-native_gcc: gcc
+apps_gtk: gtk+ gimp gvim
+
+apps_gtk3: gtk3+
+
+apps_qt: qt-everywhere-opensource-src qt-creator
 
 sdl-support: SDL_image
 
-x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
-	util-macros fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
+x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
+	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
 	bigreqsproto randrproto renderproto fontsproto videoproto compositeproto \
 	recordproto scrnsaverproto resourceproto xineramaproto xf86dgaproto \
 	xf86vidmodeproto dri2proto dri3proto glproto presentproto pixman libxkbfile \
@@ -41,7 +55,7 @@ x-support: kbproto xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libevdev mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
-	xf86-video-modesetting fonts setxkbmap icons xinput libXft
+	xf86-video-modesetting fonts setxkbmap xinput libXft icons
 
 fonts: fonts-bitmap fonts-type1 fonts-misc
 	
@@ -61,11 +75,14 @@ fonts-misc: font-daewoo-misc font-dec-misc font-isas-misc font-jis-misc font-mic
 wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
-   xdpyinfo xeyes xev xhost xkill xload xfontsel ImageMagick
+   xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
+   xsetpointer xvinfo xauth tk graphviz
 	
-icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
+icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme adwaita-icon-theme
 
 sound: alsa-utils esound
+
+www: webkitgtk midori
 
 tests: xflame water xclipboard intel-gpu-tools
 
@@ -100,9 +117,6 @@ glibc: linux
 cross_gcc: glibc
 	@$(RUN_TARGET)
 
-#
-#native compilers
-#
 gmp:
 	@$(RUN_TARGET)
 
@@ -178,7 +192,7 @@ slang: zlib ncurses5
 mc: libssh2 glib
 	@$(RUN_TARGET)
 
-vim: 
+vim:
 	@$(RUN_TARGET)
 
 make:
@@ -591,7 +605,7 @@ cairo:
 cairo-demos: cairo 
 	@$(RUN_TARGET)
 
-pango: cairo
+pango: harfbuzz
 	@$(RUN_TARGET)
 
 i3: libev startup-notification xcb-util xcb-util-cursor xcb-util-wm xcb-util-xrm libxkbcommon yajl pcre pango
@@ -759,7 +773,7 @@ XML-Simple: XML-SAX-Expat
 icon-naming-utils: XML-Simple
 	@$(RUN_TARGET)
 
-ImageMagick:
+ImageMagick: pango
 	@$(RUN_TARGET)
 
 tango-icon-theme: icon-naming-utils ImageMagick
@@ -878,3 +892,160 @@ libelf:
 
 ccache:
 	@$(RUN_TARGET)
+
+xmag:
+	@$(RUN_TARGET)
+
+xman:
+	@$(RUN_TARGET)
+
+xmodmap:
+	@$(RUN_TARGET)
+
+xrandr:
+	@$(RUN_TARGET)
+
+xset:
+	@$(RUN_TARGET)
+
+xsetroot:
+	@$(RUN_TARGET)
+
+xsetpointer:
+	@$(RUN_TARGET)
+
+xvinfo: libXv
+	@$(RUN_TARGET)
+
+libXv:
+	@$(RUN_TARGET)
+
+ctags:
+	@$(RUN_TARGET)
+
+tcl:
+	@$(RUN_TARGET)
+
+tk: tcl
+	@$(RUN_TARGET)
+
+xauth:
+	@$(RUN_TARGET)
+
+bc:
+	@$(RUN_TARGET)
+
+atk:
+	@$(RUN_TARGET)
+
+gtk+: pango atk gdk-pixbuf
+	@$(RUN_TARGET)
+
+gdk-pixbuf:
+	@$(RUN_TARGET)
+
+gimp: babl gegl
+	@$(RUN_TARGET)
+
+babl:
+	@$(RUN_TARGET)
+
+gegl: json-glib jpegsrc
+	@$(RUN_TARGET)
+
+json-glib:
+	@$(RUN_TARGET)
+
+jpegsrc:
+	@$(RUN_TARGET)
+
+gvim:
+	@$(RUN_TARGET)
+
+libsoup:
+	@$(RUN_TARGET)
+
+glib-networking:
+	@$(RUN_TARGET)
+
+icu4c:
+	@$(RUN_TARGET)
+
+libXcomposite:
+	@$(RUN_TARGET)
+
+webkitgtk: libwebp libsoup libXcomposite gperf ruby gnutls glib-networking
+	@$(RUN_TARGET)
+
+gperf:
+	@$(RUN_TARGET)
+
+ruby:
+	@$(RUN_TARGET)
+
+gnutls: nettle
+	@$(RUN_TARGET)
+
+nettle:
+	@$(RUN_TARGET)
+
+gtk3+: libepoxy
+	@$(RUN_TARGET)
+
+harfbuzz: cairo icu4c
+	@$(RUN_TARGET)
+
+libepoxy:
+	@$(RUN_TARGET)
+
+chrpath:
+	@$(RUN_TARGET)
+
+patchelf:
+	@$(RUN_TARGET)
+
+graphviz:
+	@$(RUN_TARGET)
+
+libwebp: libpng jpegsrc
+	@$(RUN_TARGET)
+
+adwaita-icon-theme: librsvg
+	@$(RUN_TARGET)
+
+librsvg: libcroco
+	@$(RUN_TARGET)
+
+libcroco:
+	@$(RUN_TARGET)
+
+qt-everywhere-opensource-src: dbus
+	@$(RUN_TARGET)
+
+dbus:
+	@$(RUN_TARGET)
+
+qt-creator:
+	@$(RUN_TARGET)
+
+groff:
+	@$(RUN_TARGET)
+
+vala:
+	@$(RUN_TARGET)
+
+midori: gcr
+	@$(RUN_TARGET)
+
+gcr: p11-kit
+	@$(RUN_TARGET)
+
+p11-kit:
+	@$(RUN_TARGET)
+
+pciutils:
+	@$(RUN_TARGET)
+
+dbus-glib:
+	@$(RUN_TARGET)
+

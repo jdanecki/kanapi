@@ -27,7 +27,7 @@ LIB_DEPENDS="xcb xext sm ice xpm xau uuid"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lpthread"
+export LDFLAGS="${LDFLAGS} -lpthread -lm -lrt"
 
 pkg_prepare() {
 	pkg_tar_bz2

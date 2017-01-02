@@ -18,18 +18,11 @@ else
 fi
 KANAPI_BASE=${KANAPI_ROOT}/${KANAPI_TARGET}/packages
 KANAPI_HOST_BASE=${KANAPI_ROOT}/`uname -m`/packages
-KANAPI_CROSS_BASE=${KANAPI_ROOT}/`uname -m`/cross/${KANAPI_TARGET}
 KANAPI_TARGET_BIN=${KANAPI_ROOT}/${KANAPI_TARGET}/bin
 KANAPI_BUILD_SRC=${HOME}/src
 
 ##############################################################
-if [ "${KANAPI_TARGET}" = "arm" ]
-then
-	KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME}eabi
-fi
-
-. ../../../cross_compilers/scripts/config.kanapi
-. ../../scripts/config.kanapi
+. ../../scripts/cross.kanapi
 
 PACKAGE_VER=${PACKAGE_NAME}-${VER}
 PREFIX=${KANAPI_BASE}/${PACKAGE_VER}
@@ -49,63 +42,14 @@ else
 	fi
 fi
 
-export CROSS_GCC_PREFIX="${KANAPI_CROSS_BASE}/gcc-${gcc_ver}"
-export CROSS_BINUTILS_PREFIX="${KANAPI_CROSS_BASE}/binutils-${binutils_ver}"
-
 export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
 
-export PATH_BIN=${CROSS_BINUTILS_PREFIX}/bin
-export PATH_GCC=${CROSS_GCC_PREFIX}/bin
-export PATH=${PATH_BIN}:${PATH_GCC}:${PATH}
-if [ -x ${KANAPI_TARGET_BIN}/ccache ]
+if [ -x ${KANAPI_TARGET_BIN}/ccache -a  "${CI}" != "true" ]
 then
 	USE_CCACHE=1
 fi
 
-if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc ]
-then
-	if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
-	then
-		if [ "${TRAVIS}" != "true" -a "${USE_CCACHE}" = "1" ]
-		then
-			export CC="ccache ${KANAPI_TARGET_NAME}-gcc" 
-		else
-			export CC="${KANAPI_TARGET_NAME}-gcc" 
-		fi
-	fi
-fi
-
-if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-g++ ]
-then
-	if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
-	then
-		if [ "${TRAVIS}" != "true" -a "${USE_CCACHE}" = "1" ]
-		then
-			export CXX="ccache ${KANAPI_TARGET_NAME}-g++"
-		else
-			export CXX="${KANAPI_TARGET_NAME}-g++"
-		fi
-	fi
-fi
-
-if [ "${KANAPI_TARGET}" = "`uname -m`" ]
-then
-	if [ -f ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
-	then
-		export PATH=${KANAPI_TARGET_BIN}:${PATH}
-		KANAPI_PKGCONFIG=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
-	fi
-	KANAPI_CROSS=0
-else 	
-	KANAPI_CROSS=1
-	if [ -f ${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
-	then
-		KANAPI_PKGCONFIG=${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
-	fi
-fi
-
 export PKG_CONFIG=${KANAPI_PKGCONFIG}
-export LD_LIBRARY_PATH=${KANAPI_CROSS_BASE}/gmp-${gmp_ver}/lib:${KANAPI_CROSS_BASE}/mpfr-${mpfr_ver}/lib:${KANAPI_CROSS_BASE}/mpc-${mpc_ver}/lib
 
 if [ -n "${KANAPI_PKGCONFIG}" ]
 then
@@ -298,7 +242,7 @@ pkg_configure_native() {
 }
 
 pkg_configure_target() {	
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
 }
 
 pkg_configure() {
@@ -319,27 +263,27 @@ pkg_install() {
 
 pkg_install_pc() {	
 	pkg_install_make
-	${LN_SF} ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+	if [ -f ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ]
+	then	
+		${LN_SF} ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+	fi
 }
 
 pkg_install_pc_share() {	
 	pkg_install_make
-	${LN_SF} ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+	if [ -f ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ]
+	then
+		${LN_SF} ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+	fi
 }
 	
 pkg_install_pc_all() {
 	pkg_install_make
-	for i in ${PREFIX}/lib/pkgconfig/*
-	do
-		if [ -f $i ]
-		then
-			${LN_SF} $i ${PKGCONFIG_DIR}/`basename $i`
-		fi
-	done
+	pkg_install_pc_all_only
 }
 
 pkg_install_pc_all_only() {
-	for i in ${PREFIX}/lib/pkgconfig/*
+	for i in ${PREFIX}/lib/pkgconfig/* ${PREFIX}/lib64/pkgconfig/*
 	do
 		if [ -f $i ]
 		then
@@ -374,23 +318,37 @@ pkg_package() {
 }
 
 pkg_install_bin() {
-	${LN_SF} ${PREFIX}/bin/${PACKAGE_NAME} ${KANAPI_BASE}/../bin/${PACKAGE_NAME}
+	if [ -f ${PREFIX}/bin/${PACKAGE_NAME} ]
+	then
+		${LN_SF} ${PREFIX}/bin/${PACKAGE_NAME} ${KANAPI_BASE}/../bin/${PACKAGE_NAME}
+	fi
 }
 
 pkg_install_bin_all() {
-	${LN_SF} ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
+	if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
+	if [ -d ${PREFIX}/bin ]	
+	then
+		${LN_SF} ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
+	fi
 }
 
 pkg_install_sbin_all() {
-	${LN_SF} ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
+	if [ -d ${PREFIX}/sbin ]	
+	then
+		${LN_SF} ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
+	fi
 }
 
 pkg_install_usr_bin_all() {
-	${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_BASE}/../bin
+	if [ -d ${PREFIX}/usr/bin ]	
+	then
+		${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_BASE}/../bin
+	fi
 }
 
 pkg_install_libs() {
-	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a 
+	if [ ! -d ${KANAPI_BASE}/libs ] ; then mkdir ${KANAPI_BASE}/libs; fi
+	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a  ${PREFIX}/lib/lib64*.so* ${PREFIX}/lib64/lib*.a 
 	do
 		if [ -f $f ] 
 		then

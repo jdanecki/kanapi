@@ -28,3 +28,14 @@ pkg_prepare() {
 	pkg_tar_bz2
 }
 
+pkg_configure_target() {	
+	export CC_FOR_BUILD=${KANAPI_TARGET_NAME}-gcc
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --program-prefix=${KANAPI_TARGET_NAME}-
+}
+
+pkg_install() {
+	make -j ${MAKE_JOBS}  MAKEINFO=true install
+	${LN_SF} ${PREFIX}/bin/${KANAPI_TARGET_NAME}-strings ${PREFIX}/bin/strings
+	pkg_install_bin_all
+	${LN_SF} ${PREFIX}/${KANAPI_TARGET_NAME}/bin/* ${KANAPI_TARGET_BIN}
+}

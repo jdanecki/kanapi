@@ -28,8 +28,14 @@ pkg_prepare() {
 	pkg_tar_gz
 }
 
+pkg_configure() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	--without-curses bash_cv_termcap_lib=gnutermcap
+}
+
 pkg_install() {
 	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
+	${LN_SF} ${PREFIX}/bin/bash ${PREFIX}/bin/sh
 	pkg_install_bin_all
 }
 

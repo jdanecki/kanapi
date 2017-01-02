@@ -1,5 +1,4 @@
-KANAPI_TARGET=x86_64
-KANAPI_KERNEL_TARGET=${KANAPI_TARGET}
+. ../../scripts/target_name_x86_64
 
 if [ "x${PKG_VERBOSE}" = "x1" ]
 then
