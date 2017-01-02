@@ -1,4 +1,4 @@
-all: bbs apps_txt devel sound
+all: bbs
 
 cross_compilers:
 	cd ../cross_compilers/`uname -m` ; make gcc ACTION=install
@@ -44,5 +44,3 @@ test_cross_compilers:
 
 vim: check_travis
 	cd ../kanapi_system/`uname -m`   ; make vim	 ACTION=install V=1
-
-
