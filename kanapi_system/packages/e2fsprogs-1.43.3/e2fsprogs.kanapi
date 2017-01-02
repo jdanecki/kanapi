@@ -46,7 +46,7 @@ pkg_install() {
 	do
 		if [ -f $i ]
 		then
-			ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
+			ln -svf $i ${PKG_CONFIG_DIR}/`basename $i`
 		fi
 	done
 	pkg_install_bin_all

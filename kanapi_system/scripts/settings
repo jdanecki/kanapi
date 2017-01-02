@@ -51,17 +51,17 @@ fi
 
 export PKG_CONFIG=${KANAPI_PKGCONFIG}
 
-if [ -n "${KANAPI_PKGCONFIG}" ]
+if [ -n "${PKG_CONFIG}" ]
 then
-	export PKGCONFIG_DIR=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig
+	export PKG_CONFIG_DIR=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig
 	if [[ -n ${LIB_DEPENDS} ]]
 	then
-		${KANAPI_PKGCONFIG} --exists ${LIB_DEPENDS}
+		${PKG_CONFIG} --exists ${LIB_DEPENDS}
 		if [ "$?" = "0" ]
 		then
-			export LDFLAGS="`${KANAPI_PKGCONFIG} --libs ${LIB_DEPENDS}` -ldl"
-			export LD_LIBRARY_PATH=`${KANAPI_PKGCONFIG} --variable=libdir ${LIB_DEPENDS} | sed "s/ /:/g"`:${LD_LIBRARY_PATH}
-			export CFLAGS=`${KANAPI_PKGCONFIG} --cflags ${LIB_DEPENDS}`
+			export LDFLAGS="`${PKG_CONFIG} --libs ${LIB_DEPENDS}` -ldl"
+			export LD_LIBRARY_PATH=`${PKG_CONFIG} --variable=libdir ${LIB_DEPENDS} | sed "s/ /:/g"`:${LD_LIBRARY_PATH}
+			export CFLAGS=`${PKG_CONFIG} --cflags ${LIB_DEPENDS}`
 		fi
 	fi
 else
@@ -260,7 +260,7 @@ pkg_install_pc() {
 	pkg_install_make
 	if [ -f ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ]
 	then	
-		${LN_SF} ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+		${LN_SF} ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ${PKG_CONFIG_DIR}/${PACKAGE_NAME}.pc
 	fi
 }
 
@@ -268,7 +268,7 @@ pkg_install_pc_share() {
 	pkg_install_make
 	if [ -f ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ]
 	then
-		${LN_SF} ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKGCONFIG_DIR}/${PACKAGE_NAME}.pc
+		${LN_SF} ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKG_CONFIG_DIR}/${PACKAGE_NAME}.pc
 	fi
 }
 	
@@ -282,7 +282,7 @@ pkg_install_pc_all_only() {
 	do
 		if [ -f $i ]
 		then
-			${LN_SF} $i ${PKGCONFIG_DIR}/`basename $i`
+			${LN_SF} $i ${PKG_CONFIG_DIR}/`basename $i`
 		fi
 	done
 }

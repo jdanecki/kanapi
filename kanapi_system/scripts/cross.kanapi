@@ -28,7 +28,7 @@ if [ -x ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc ]
 then
 	echo "use native compilers"
 else
-	echo "use cross compilers"
+#	echo "use cross compilers"
 	export CROSS_GCC_PREFIX="${KANAPI_CROSS_BASE}/gcc-${gcc_ver}"
 	export CROSS_BINUTILS_PREFIX="${KANAPI_CROSS_BASE}/binutils-${binutils_ver}"
 

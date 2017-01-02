@@ -31,7 +31,7 @@ pkg_prepare() {
 
 pkg_configure() {
 	local_copy
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-pcre --without-png --with-z=`${KANAPI_PKGCONFIG} --variable=prefix zlib`
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-pcre --without-png --with-z=`${PKG_CONFIG} --variable=prefix zlib`
 }
 
 pkg_build() {
@@ -47,3 +47,6 @@ pkg_install() {
 	pkg_install_bin_all
 }
 
+pkg_check() {
+	echo "PKG_CONFIG=${PKG_CONFIG}"
+}

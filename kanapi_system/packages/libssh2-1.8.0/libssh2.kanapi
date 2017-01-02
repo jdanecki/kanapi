@@ -36,7 +36,7 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 		--with-libgcrypt=`${LIBGCRYPT_CONFIG} --prefix` \
 		--without-openssl \
-		--with-libz-prefix=`${KANAPI_PKGCONFIG} --variable=prefix zlib`
+		--with-libz-prefix=`${PKG_CONFIG} --variable=prefix zlib`
 }
 
 pkg_check() {
@@ -45,7 +45,7 @@ pkg_check() {
 	echo "libgcrypt-config --cflags = ${LIBGCRYPT_CFLAGS}"
 	echo "libgcrypt-config --libs = ${LIBGCRYPT_LDFLAGS}"
 	echo "libgcrypt-config --prefix `${LIBGCRYPT_CONFIG} --prefix`"
-	echo "pkg-config --variable=prefix zlib = `${KANAPI_PKGCONFIG} --variable=prefix zlib`"
+	echo "pkg-config --variable=prefix zlib = `${PKG_CONFIG} --variable=prefix zlib`"
 	echo "CFLAGS=${CFLAGS}"
 	echo "LDFLAGS=${LDFLAGS}"
 	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"

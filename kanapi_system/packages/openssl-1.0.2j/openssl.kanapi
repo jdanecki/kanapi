@@ -52,7 +52,7 @@ pkg_install() {
 	${MAKE} -j ${MAKE_JOBS} install_sw MAKEINFO=true
 	for i in ${PREFIX}/lib/pkgconfig/*
 	do
-		ln -svf $i ${PKGCONFIG_DIR}/`basename $i`
+		ln -svf $i ${PKG_CONFIG_DIR}/`basename $i`
 	done
 	pkg_install_libs
 	pkg_install_bin_all	

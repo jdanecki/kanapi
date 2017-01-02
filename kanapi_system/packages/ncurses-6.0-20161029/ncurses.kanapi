@@ -34,7 +34,7 @@ pkg_configure() {
 		 export CFLAGS="${CFLAGS} -fPIC"
 	 	 export LDFLAGS="${LDFLAGS} -fPIC"
 	 fi
-	if [ ! -d ${PKGCONFIG} ] ; then  mkdir -p ${PREFIX}/lib/pkgconfig ; fi
+	if [ ! -d ${PKG_CONFIG} ] ; then  mkdir -p ${PREFIX}/lib/pkgconfig ; fi
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  --enable-pc-files=yes --with-pkg-config-libdir=${PREFIX}/lib/pkgconfig \
   	--enable-termcap --with-termpath=${PREFIX}/etc/termcap
 }

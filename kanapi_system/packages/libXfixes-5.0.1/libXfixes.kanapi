@@ -32,7 +32,7 @@ pkg_prepare() {
 
 pkg_install() {
 	pkg_install_make
-	ln -svf ${PREFIX}/lib/pkgconfig/xfixes.pc ${PKGCONFIG_DIR}/xfixes.pc
+	ln -svf ${PREFIX}/lib/pkgconfig/xfixes.pc ${PKG_CONFIG_DIR}/xfixes.pc
 	pkg_install_libs
 }
 

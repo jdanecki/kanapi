@@ -30,6 +30,6 @@ pkg_prepare() {
 
 pkg_install() {
 	pkg_install_make
-	ln -svf ${PREFIX}/share/pkgconfig/xorg-macros.pc ${PKGCONFIG_DIR}/xorg-macros.pc
+	ln -svf ${PREFIX}/share/pkgconfig/xorg-macros.pc ${PKG_CONFIG_DIR}/xorg-macros.pc
 }	
 

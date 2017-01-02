@@ -30,7 +30,7 @@ pkg_prepare() {
 
 pkg_install() {
 	pkg_install_make
-	ln -svf ${PREFIX}/lib/pkgconfig/xdamage.pc ${PKGCONFIG_DIR}/xdamage.pc
+	ln -svf ${PREFIX}/lib/pkgconfig/xdamage.pc ${PKG_CONFIG_DIR}/xdamage.pc
 	pkg_install_libs
 }
 
