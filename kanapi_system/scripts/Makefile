@@ -1062,3 +1062,9 @@ pciutils:
 
 dbus-glib:
 	@$(RUN_TARGET)
+
+xwd:
+	@$(RUN_TARGET)
+
+xwininfo:
+	@$(RUN_TARGET)

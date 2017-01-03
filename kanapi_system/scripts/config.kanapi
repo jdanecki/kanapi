@@ -318,3 +318,5 @@ linux_headers_ver=4.9
 dbus_glib_ver=0.108
 #zlib_ver=1.2.8
 zlib_ver=1.2.9
+xwd_ver=1.0.6
+xwininfo_ver=1.1.3
