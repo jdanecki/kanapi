@@ -37,5 +37,15 @@ pkg_install() {
 	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	${LN_SF} ${PREFIX}/bin/bash ${PREFIX}/bin/sh
 	pkg_install_bin_all
+	for i in tzselect xtrace ldd sotruss 
+	do
+		cat ${KANAPI_TARGET_BIN}/$i | sed "s@kanapi_.\..@kanapi_${KANAPI_VER}@" > $i.tmp
+		mv $i.tmp ${KANAPI_TARGET_BIN}/$i
+		chmod +x ${KANAPI_TARGET_BIN}/$i
+	done
+}
+
+pkg_check() {
+	echo ${KANAPI_VER}
 }
 
