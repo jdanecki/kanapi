@@ -328,21 +328,21 @@ pkg_install_bin_all() {
 	if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 	if [ -d ${PREFIX}/bin ]	
 	then
-		${LN_SF} ${PREFIX}/bin/* ${KANAPI_BASE}/../bin
+		${LN_SF} ${PREFIX}/bin/* ${KANAPI_TARGET_BIN}
 	fi
 }
 
 pkg_install_sbin_all() {
 	if [ -d ${PREFIX}/sbin ]	
 	then
-		${LN_SF} ${PREFIX}/sbin/* ${KANAPI_BASE}/../bin
+		${LN_SF} ${PREFIX}/sbin/* ${KANAPI_TARGET_BIN}
 	fi
 }
 
 pkg_install_usr_bin_all() {
 	if [ -d ${PREFIX}/usr/bin ]	
 	then
-		${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_BASE}/../bin
+		${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_TARGET_BIN}
 	fi
 }
 

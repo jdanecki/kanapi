@@ -90,7 +90,7 @@ wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth tk graphviz groff
+   xsetpointer xvinfo xauth tk graphviz groff netpbm
 	
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
@@ -1067,4 +1067,10 @@ xwd:
 	@$(RUN_TARGET)
 
 xwininfo:
+	@$(RUN_TARGET)
+
+netpbm: libpng14
+	@$(RUN_TARGET)
+
+libpng14:
 	@$(RUN_TARGET)
