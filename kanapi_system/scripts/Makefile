@@ -92,7 +92,7 @@ xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconso
    xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
    xsetpointer xvinfo xauth tk graphviz groff
 	
-icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme adwaita-icon-theme
+icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
 sound: alsa-utils esound
 
@@ -952,7 +952,7 @@ bc:
 atk:
 	@$(RUN_TARGET)
 
-gtk+: pango atk gdk-pixbuf
+gtk+: pango atk gdk-pixbuf adwaita-icon-theme
 	@$(RUN_TARGET)
 
 gdk-pixbuf:
