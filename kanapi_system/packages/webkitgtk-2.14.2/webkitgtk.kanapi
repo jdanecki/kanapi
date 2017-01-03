@@ -60,7 +60,7 @@ pkg_configure() {
 	-DX11_Xdamage_LIB=${XDAMAGE}/lib/libXdamage.so -DX11_Xdamage_INCLUDE_PATH=${XDAMAGE}/include \
 	-DX11_Xrender_LIB=${XRENDER}/lib/libXrender.so -DX11_Xrender_INCLUDE_PATH=${XRENDER}/include \
 	-DX11_Xt_LIB=${XT}/lib/libXt.so -DX11_Xt_INCLUDE_PATH=${XT}/include \
-	-DENABLE_PLUGIN_PROCESS_GTK2=OFF
+	-DENABLE_PLUGIN_PROCESS_GTK2=OFF -DUSE_LD_GOLD=OFF
 }
 
 pkg_build() {
