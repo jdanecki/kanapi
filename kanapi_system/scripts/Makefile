@@ -26,9 +26,9 @@ optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps
 	apps_qt www 
 
 #Basic Build System 
-bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
-	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
-	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less openssh
+bbs: ccache busybox bash make perl m4 autoconf automake grep libtool bison sed gettext ncurses readline gawk openssl cmake \
+	file flex attr acl libarchive e2fsprogs git \
+	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim gpm kmod procps-ng bc
@@ -215,7 +215,7 @@ make:
 git: curl 
 	@$(RUN_TARGET)
 
-openssl:
+openssl: perl
 	@$(RUN_TARGET)
 
 openssh:
@@ -242,10 +242,10 @@ SDL_image: libpng SDL
 gpm:
 	@$(RUN_TARGET)
 
-autoconf:
+autoconf: perl m4
 	@$(RUN_TARGET)
 
-automake:
+automake: perl
 	@$(RUN_TARGET)
 
 bison:	
@@ -287,7 +287,7 @@ m4:
 perl:
 	@$(RUN_TARGET)
 
-libtool:
+libtool: grep
 	@$(RUN_TARGET)
 
 kbproto:

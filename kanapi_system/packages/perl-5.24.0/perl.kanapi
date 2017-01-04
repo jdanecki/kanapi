@@ -53,6 +53,12 @@ pkg_install() {
 		cd build
 		pkg_install_make
 		pkg_install_bin_all
+		for i in mtrace glib-mkenums
+		do
+			cat ${KANAPI_TARGET_BIN}/$i | sed "s@kanapi_.\..@kanapi_${KANAPI_VER}@" > $i.tmp
+			mv $i.tmp ${KANAPI_TARGET_BIN}/$i
+			chmod +x ${KANAPI_TARGET_BIN}/$i
+		done
 	fi
 }
 
