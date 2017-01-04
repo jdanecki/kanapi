@@ -37,7 +37,6 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	PACKAGE_FILENAME=linux-${VER}.${EXT}
 	pkg_tar_xz
 	${LN_SF} ${KANAPI_BUILD_SRC}/linux-${VER} ${PACKAGE_SRCDIR}
 }
