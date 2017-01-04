@@ -31,7 +31,7 @@ bbs: ccache busybox bash make perl m4 autoconf automake grep libtool bison sed g
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng bc
+apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala
 
