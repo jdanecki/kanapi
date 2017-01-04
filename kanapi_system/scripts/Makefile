@@ -958,7 +958,7 @@ gtk+: pango atk gdk-pixbuf adwaita-icon-theme
 gdk-pixbuf:
 	@$(RUN_TARGET)
 
-gimp: babl gegl
+gimp: babl gegl dbus-glib
 	@$(RUN_TARGET)
 
 babl:
@@ -1033,7 +1033,7 @@ librsvg: libcroco
 libcroco:
 	@$(RUN_TARGET)
 
-qt-everywhere-opensource-src: dbus
+qt-everywhere-opensource-src:
 	@$(RUN_TARGET)
 
 dbus:
@@ -1060,7 +1060,7 @@ p11-kit:
 pciutils:
 	@$(RUN_TARGET)
 
-dbus-glib:
+dbus-glib: dbus
 	@$(RUN_TARGET)
 
 xwd:
