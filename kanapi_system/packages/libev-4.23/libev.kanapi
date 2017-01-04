@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=libev
 VER=4.23
-URL="http://dist.schmorp.de/libev"
+URL="http://dist.schmorp.de/libev/Attic"
 EXT=tar.gz
 #build depends on
 . ../settings
