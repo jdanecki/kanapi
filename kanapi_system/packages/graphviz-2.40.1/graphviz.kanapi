@@ -23,7 +23,7 @@ URL="http://www.graphviz.org/pub/graphviz/stable/SOURCES"
 EXT=tar.gz
 #build depends on
 
-LIB_DEPENDS="expat xaw7 xrender x11 cairo tcl tk xmu xext"
+LIB_DEPENDS="expat xaw7 xrender x11 cairo tcl tk xmu xext ice xpm sm"
 
 . ../settings
 
