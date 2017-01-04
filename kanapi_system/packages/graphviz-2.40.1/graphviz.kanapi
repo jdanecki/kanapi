@@ -41,7 +41,7 @@ pkg_configure() {
 	mv configure.tmp configure
 	chmod +x configure
 	export TCLSH_EXEC_PREFIX=`${PKG_CONFIG} --variable=prefix tcl`
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  --enable-swig=no
 }
 
 pkg_build() {
@@ -58,5 +58,6 @@ pkg_install() {
 
 pkg_check() {
 	${PKG_CONFIG} --libs ${LIB_DEPENDS}
+	echo ${CFLAGS}
 }
 
