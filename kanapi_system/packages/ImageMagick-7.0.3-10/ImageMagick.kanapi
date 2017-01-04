@@ -19,8 +19,8 @@
 
 PACKAGE_NAME=ImageMagick
 VER=7.0.3-10
-URL="ftp://ftp.imagemagick.org/pub/ImageMagick"
-EXT=tar.bz2
+URL="https://www.imagemagick.org/download/releases"
+EXT=tar.xz
 #build depends on
 
 LIB_DEPENDS="x11 xcb xau"
@@ -30,7 +30,7 @@ LIB_DEPENDS="x11 xcb xau"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
-	pkg_tar_bz2
+	pkg_tar_xz
 }
 
 
