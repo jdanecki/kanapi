@@ -326,3 +326,5 @@ syslinux_ver=6.03
 nasm_ver=2.12
 mbr_ver=1.1.11
 bin86_ver=0.16.21
+feh_ver=2.18
+imlib2_ver=1.4.9
