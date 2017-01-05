@@ -1018,7 +1018,7 @@ chrpath:
 patchelf:
 	@$(RUN_TARGET)
 
-graphviz:
+graphviz: swig
 	@$(RUN_TARGET)
 
 libwebp: libpng jpegsrc
@@ -1091,4 +1091,7 @@ feh: imlib2
 	@$(RUN_TARGET)
 
 imlib2:
+	@$(RUN_TARGET)
+
+swig:
 	@$(RUN_TARGET)

@@ -328,3 +328,4 @@ mbr_ver=1.1.11
 bin86_ver=0.16.21
 feh_ver=2.18
 imlib2_ver=1.4.9
+swig_ver=3.0.11
