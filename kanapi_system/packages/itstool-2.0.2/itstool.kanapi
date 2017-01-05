@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,18 +17,24 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=adwaita-icon-theme
-VER=3.22.0
-URL="http://ftp.gnome.org/pub/gnome/sources/adwaita-icon-theme/3.22"
-EXT=tar.xz
+PACKAGE_NAME=itstool
+VER=2.0.2
+URL="http://files.itstool.org/itstool"
+EXT=tar.bz2
 #build depends on
+#LIB_DEPENDS=""
+
 . ../settings
 
+#export LDFLAGS="${LDFLAGS} "
+#export CFLAGS="${CFLAGS} "
+
 pkg_prepare() {
-	pkg_tar_xz
+	pkg_tar_bz2
 }
 
 pkg_install() {
-	pkg_install_pc_share_all
+	pkg_install_make
+	pkg_install_bin_all
 }
 

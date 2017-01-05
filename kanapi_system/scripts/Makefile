@@ -40,7 +40,7 @@ apps_gui: qemu
 
 apps_gtk: gtk+ gimp gvim
 
-apps_gtk3: gtk3+
+apps_gtk3: gtk3+ evince
 
 apps_qt: qt-everywhere-opensource-src qt-creator
 
@@ -1094,4 +1094,19 @@ imlib2:
 	@$(RUN_TARGET)
 
 swig:
+	@$(RUN_TARGET)
+
+evince: poppler itstool gsettings-desktop-schemas
+	@$(RUN_TARGET)
+
+poppler:
+	@$(RUN_TARGET)
+
+itstool:
+	@$(RUN_TARGET)
+
+#lxml:
+#	@$(RUN_TARGET)
+
+gsettings-desktop-schemas:
 	@$(RUN_TARGET)

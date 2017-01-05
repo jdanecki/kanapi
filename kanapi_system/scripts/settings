@@ -276,6 +276,17 @@ pkg_install_pc_share() {
 		${LN_SF} ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKG_CONFIG_DIR}/${PACKAGE_NAME}.pc
 	fi
 }
+
+pkg_install_pc_share_all() {
+	pkg_install_make
+	for i in ${PREFIX}/share/pkgconfig/*
+	do
+		if [ -f $i ]
+		then
+			${LN_SF} $i ${PKG_CONFIG_DIR}/`basename $i`
+		fi
+	done
+}
 	
 pkg_install_pc_all() {
 	pkg_install_make
@@ -291,6 +302,7 @@ pkg_install_pc_all_only() {
 		fi
 	done
 }
+
 
 pkg_uninstall() {
 	if [ -d ${PREFIX} ]
