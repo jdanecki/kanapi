@@ -1003,7 +1003,7 @@ gnutls: nettle
 nettle:
 	@$(RUN_TARGET)
 
-gtk3+: libepoxy
+gtk3+: libepoxy gsettings-desktop-schemas
 	@$(RUN_TARGET)
 
 harfbuzz: cairo icu4c
@@ -1096,7 +1096,7 @@ imlib2:
 swig:
 	@$(RUN_TARGET)
 
-evince: poppler itstool gsettings-desktop-schemas
+evince: poppler itstool
 	@$(RUN_TARGET)
 
 poppler:

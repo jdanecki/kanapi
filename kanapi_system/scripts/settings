@@ -389,3 +389,11 @@ pkg_check() {
 	echo "!!! Add your tests in ${PACKAGE_NAME}.kanapi file !!!"
 }
 
+pkg_install_schemas() {
+	for i in ${PREFIX}/share/glib-2.0/schemas/*.xml
+	do
+		${LN_SF} $i `${PKG_CONFIG} --variable=prefix gsettings-desktop-schemas`/share/glib-2.0/schemas
+	done
+	glib-compile-schemas `${PKG_CONFIG} --variable=prefix gsettings-desktop-schemas`/share/glib-2.0/schemas
+}
+

@@ -43,7 +43,6 @@ pkg_install() {
 	pkg_install_pc_all
 	pkg_install_bin_all
 	pkg_install_libs
-	${LN_SF} ${PREFIX}/share/glib-2.0/schemas/org.gnome.Evince.gschema.xml `${PKG_CONFIG} --variable=prefix gsettings-desktop-schemas`/share/glib-2.0/schemas
-	glib-compile-schemas `${PKG_CONFIG} --variable=prefix gsettings-desktop-schemas`/share/glib-2.0/schemas
+	pkg_install_schemas
 }
 
