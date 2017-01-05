@@ -54,3 +54,7 @@ pkg_install() {
 	pkg_install_bin_all
 }
 
+pkg_check() {
+	ls -l `which patch`
+}
+
