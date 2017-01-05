@@ -42,7 +42,7 @@ apps_gtk: gtk+ dconf gimp gvim
 
 apps_gtk3: gtk3+ evince
 
-apps_qt: qt-everywhere-opensource-src qt-creator
+apps_qt: qt-everywhere-opensource-src qt-creator vym
 
 sdl-support: SDL_image
 
@@ -1115,4 +1115,7 @@ dconf:
 	@$(RUN_TARGET)
 
 shared-mime-info:
+	@$(RUN_TARGET)
+
+vym:
 	@$(RUN_TARGET)
