@@ -41,7 +41,7 @@ bbs: ccache busybox bash make perl m4 autoconf automake grep libtool bison sed g
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils
+apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr
 
@@ -1131,4 +1131,7 @@ vym:
 	@$(RUN_TARGET)
 
 makefile2graph:
+	@$(RUN_TARGET)
+
+wireless_tools:
 	@$(RUN_TARGET)
