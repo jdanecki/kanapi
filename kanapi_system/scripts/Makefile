@@ -38,7 +38,7 @@ devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr
 #KS - KaNaPi System gui apps
 apps_gui: qemu
 
-apps_gtk: gtk+ gimp gvim
+apps_gtk: gtk+ dconf gimp gvim
 
 apps_gtk3: gtk3+ evince
 
@@ -1109,4 +1109,7 @@ itstool:
 #	@$(RUN_TARGET)
 
 gsettings-desktop-schemas:
+	@$(RUN_TARGET)
+
+dconf:
 	@$(RUN_TARGET)
