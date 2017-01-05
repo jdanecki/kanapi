@@ -20,6 +20,16 @@ endif
 
 all: required optional
 
+graph: required_graph optional_graph
+
+required_graph:
+	unset LANG; unset LC_ALL; make -Bnd required ACTION=download V=1 | make2graph -r > required.dot
+	#| dot -Tpdf -o required.pdf
+
+optional_graph:
+	unset LANG; unset LC_ALL; make -Bnd optional ACTION=download V=1 | make2graph -r > optional.dot
+	#| dot -Tpdf -o optional.pdf
+
 required: $(COMPILERS) rootfs bbs
 
 optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
@@ -1118,4 +1128,7 @@ shared-mime-info:
 	@$(RUN_TARGET)
 
 vym:
+	@$(RUN_TARGET)
+
+makefile2graph:
 	@$(RUN_TARGET)

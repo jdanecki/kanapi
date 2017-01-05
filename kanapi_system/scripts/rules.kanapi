@@ -79,4 +79,3 @@ kanapi_help:
 	@echo "rebuild     - rebuild package/packages"
 	@echo "reinstall   - reinstall package/packages"
 
-
