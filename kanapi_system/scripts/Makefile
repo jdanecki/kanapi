@@ -33,7 +33,7 @@ bbs: ccache busybox bash make perl m4 autoconf automake grep libtool bison sed g
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils
 
-devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux
+devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
@@ -1079,4 +1079,10 @@ syslinux: nasm
 	@$(RUN_TARGET)
 
 nasm:
+	@$(RUN_TARGET)
+
+mbr: bin86
+	@$(RUN_TARGET)
+
+bin86:
 	@$(RUN_TARGET)

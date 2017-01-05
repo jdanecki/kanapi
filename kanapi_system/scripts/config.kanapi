@@ -324,3 +324,5 @@ netpbm_ver=10.47.63
 libpng14_ver=1.4.20
 syslinux_ver=6.03
 nasm_ver=2.12
+mbr_ver=1.1.11
+bin86_ver=0.16.21
