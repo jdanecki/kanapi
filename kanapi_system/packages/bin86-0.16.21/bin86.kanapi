@@ -35,6 +35,10 @@ pkg_prepare() {
 
 pkg_configure() {
 	local_copy
+	if [ "`uname -m`" = "x86_64" ]
+	then
+		patch -p1 < ../../../packages/${PACKAGE_NAME}-${VER}/bin86-0.16.17-x86_64-1.patch
+	fi
 }
 
 pkg_build() {
