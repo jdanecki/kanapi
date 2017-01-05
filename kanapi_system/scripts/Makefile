@@ -1096,7 +1096,7 @@ imlib2:
 swig:
 	@$(RUN_TARGET)
 
-evince: poppler itstool
+evince: poppler itstool shared-mime-info
 	@$(RUN_TARGET)
 
 poppler:
@@ -1112,4 +1112,7 @@ gsettings-desktop-schemas:
 	@$(RUN_TARGET)
 
 dconf:
+	@$(RUN_TARGET)
+
+shared-mime-info:
 	@$(RUN_TARGET)
