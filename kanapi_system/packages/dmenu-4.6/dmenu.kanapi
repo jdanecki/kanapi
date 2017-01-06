@@ -36,14 +36,15 @@ pkg_configure() {
 		sed "s@/usr/X11R6/lib@`${PKG_CONFIG} --variable=libdir x11`@" |
 		sed "s/^XINERAMA/#XINERAMA/" | \
 		sed "s@/usr/include/freetype2@`${PKG_CONFIG} --variable=includedir freetype2`@" | \
-		sed "s@FREETYPEINC = \${X11INC}/freetype2@@" \
+		sed "s@FREETYPEINC = \${X11INC}/freetype2@@" | 
+		sed "s@cc@${KANAPI_TARGET_NAME}-gcc@" \
 			> /tmp/tmp_$$
 	mv /tmp/tmp_$$  config.mk
 }
 
 pkg_build() {
 	cd build
-	make -j ${MAKE_JOBS} XINERAMAFLAGS="`${PKG_CONFIG} --cflags xproto xft`" CC="${CC}" \
+	make -j ${MAKE_JOBS} XINERAMAFLAGS="`${PKG_CONFIG} --cflags xproto xft`" CC="${KANAPI_TARGET_NAME}-gcc" \
 		XINERAMALIBS="`${PKG_CONFIG} --libs fontconfig xft xcb xau libpng zlib expat xrender` -lpthread -lm -ldl"
 }
 
