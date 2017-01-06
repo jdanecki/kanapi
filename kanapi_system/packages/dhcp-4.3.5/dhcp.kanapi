@@ -35,7 +35,10 @@ pkg_prepare() {
 
 pkg_configure() {
 	local_copy
-	./configure --prefix=${PREFIX} --localstatedir=${PREFIX}/var
+	cat configure | sed "s/^BINDCONFIG=/BINDCONFIG=--enable-linux-caps=no/" > configure.tmp
+	mv configure.tmp configure
+	chmod +x configure
+	./configure --prefix=${PREFIX} --localstatedir=${PREFIX}/var 
 }
 
 pkg_build() {
