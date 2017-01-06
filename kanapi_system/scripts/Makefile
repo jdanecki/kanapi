@@ -1135,3 +1135,12 @@ makefile2graph:
 
 wireless_tools:
 	@$(RUN_TARGET)
+
+wpa_supplicant: libnl
+	@$(RUN_TARGET)
+
+libnl:
+	@$(RUN_TARGET)
+
+dhcp:
+	@$(RUN_TARGET)

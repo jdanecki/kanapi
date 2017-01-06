@@ -340,3 +340,6 @@ shared_mime_info_ver=1.7
 vym_ver=2.6.0
 makefile2graph_ver=v1.5.0
 wireless_tools_ver=30.pre9
+wpa_supplicant_ver=2.6
+libnl_ver=3.2.29
+dhcp_ver=4.3.5
