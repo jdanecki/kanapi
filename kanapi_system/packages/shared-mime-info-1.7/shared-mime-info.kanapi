@@ -25,6 +25,7 @@ EXT=tar.xz
 LIB_DEPENDS="libxml-2.0 glib-2.0"
 
 . ../settings
+export MAKE_JOBS=1
 
 export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
 
