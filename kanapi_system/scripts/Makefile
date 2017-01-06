@@ -100,8 +100,8 @@ wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh
-	
+   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh xlunch
+
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
 sound: alsa-utils esound
@@ -1143,4 +1143,7 @@ libnl:
 	@$(RUN_TARGET)
 
 dhcp:
+	@$(RUN_TARGET)
+
+xlunch:
 	@$(RUN_TARGET)
