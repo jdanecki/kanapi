@@ -27,7 +27,8 @@ LIB_DEPENDS="slang zlib ncurses"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt"
+export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt -L${KANAPI_BASE}/readline-${readline_ver}/lib"
+export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/readline-${readline_ver}/include"
 
 pkg_prepare() {
 	pkg_tar_xz
