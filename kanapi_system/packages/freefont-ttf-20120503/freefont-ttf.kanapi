@@ -46,14 +46,12 @@ pkg_install() {
 	mkfontscale
 	mkfontdir
 	ln -svf ${PREFIX} ${KANAPI_BASE}/fontconfig-${fontconfig_ver}/share/fonts
-	export HOME=${KANAPI_BASE}/config
-	export XDG_DATA_HOME=${HOME}/.local
+	export XDG_DATA_HOME=${KANAPI_HOME}/.local
 	fc-cache -v
 }
 
 pkg_check() {
-	export HOME=${KANAPI_BASE}/config
-	export XDG_DATA_HOME=${HOME}/.local
+	export XDG_DATA_HOME=${KANAPI_HOME}/.local
 	fc-cache -v ${PREFIX}
 	fc-list
 }
