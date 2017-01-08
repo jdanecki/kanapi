@@ -7,3 +7,5 @@ kanapi_system/x86_64
 kanapi_system/test_system
 kanapi_initrd
 sources/RELEASES
+sbs-i686
+

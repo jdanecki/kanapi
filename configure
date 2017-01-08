@@ -7,16 +7,11 @@ echo "PKG_CONFIG: `pkg-config --version`"
 NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "NR_CPUS=${NR_CPUS}"
 
-if [ ! -d ${HOME}/src ]
-	then
-		echo "missing sources dir, recreating"
-		mkdir ${HOME}/src
-	fi
-
-cd ci-tests
 if [ "${CI}" = "true" ]
 then
+	cd ci-tests
 	if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
+	if [ ! -d ${HOME}/src ]; then mkdir ${HOME}/src; fi
 	
 	ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
 	ls -l ${HOME}/bin 
@@ -45,7 +40,34 @@ then
 		exit 2
 	fi
 else
-	ln -s Makefile.local Makefile
-	ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi /bin/pkg_kanapi
+	if [ "`lsb_release -is`" = "KaNaPi" ]
+	then
+		cd ci-tests
+		ln -s Makefile.kanapi Makefile
+		if [ ! -d ${HOME}/src ]; then mkdir ${HOME}/src; fi
+		ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi /bin/pkg_kanapi
+	else
+		sbs_name="sbs-`uname -m`"
+		if [ ! -f "${sbs_name}/sbs.version" ] 
+		then
+			echo "SBS directory missing, downloading"
+			scp kanapi@localhost://kanapi_build/kanapi/kanapi_system/test_system/${sbs_name}.tar.xz .
+			echo "uncompressing SBS"
+			tar -xJf ${sbs_name}.tar.xz
+			echo "preparing repo"
+			git clone -v `pwd` ${sbs_name}/kanapi_build/kanapi
+			echo "SBS version `cat ${sbs_name}/sbs.version` prepared"
+		else
+			echo "found SBS version `cat ${sbs_name}/sbs.version`"
+		fi
+		ln -svf /kanapi_build/kanapi/cross_compilers/scripts/pkg_kanapi ${sbs_name}/bin/pkg_kanapi
+		for f in hosts passwd resolv.conf group nsswitch.conf
+		do
+			cp /etc/$f ${sbs_name}/etc
+		done
+
+		cd ci-tests
+		ln -sf Makefile.sbs Makefile
+	fi
 fi
 

@@ -20,6 +20,8 @@ endif
 
 all: required optional
 
+all-sbs: bbs-sbs
+
 graph: required_graph optional_graph
 
 required_graph:
@@ -39,6 +41,11 @@ optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps
 bbs: ccache busybox bash make perl m4 autoconf automake grep libtool bison sed gettext ncurses readline gawk openssl cmake \
 	file flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
+
+bbs-sbs: ccache m4 perl autoconf automake grep libtool bison sed gettext ncurses readline gawk cmake \
+	file flex attr acl libarchive e2fsprogs git \
+	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
+
 
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp
@@ -225,7 +232,7 @@ make:
 git: curl 
 	@$(RUN_TARGET)
 
-openssl: perl
+openssl: 
 	@$(RUN_TARGET)
 
 openssh:
@@ -252,10 +259,10 @@ SDL_image: libpng SDL
 gpm:
 	@$(RUN_TARGET)
 
-autoconf: perl m4
+autoconf: m4
 	@$(RUN_TARGET)
 
-automake: perl
+automake:
 	@$(RUN_TARGET)
 
 bison:	
