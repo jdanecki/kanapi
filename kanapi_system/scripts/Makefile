@@ -1127,7 +1127,7 @@ dconf:
 shared-mime-info:
 	@$(RUN_TARGET)
 
-vym:
+vym: zip
 	@$(RUN_TARGET)
 
 makefile2graph:
@@ -1146,4 +1146,7 @@ dhcp:
 	@$(RUN_TARGET)
 
 xlunch:
+	@$(RUN_TARGET)
+
+zip:
 	@$(RUN_TARGET)
