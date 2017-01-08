@@ -1,6 +1,20 @@
 Beta - current phase
 ====================
 
+v0.8
+====
+
+* GUI support added: Xorg, GTK2, GTK3, QT5
+* About 100 new packages added and about 500 new commits
+* SDL switched to Xorg mode as default
+* Package manager added
+* Kernel updated to 4.9
+* Alsa support added
+* New X window managers: vtwm, ratpoison, i3
+* Build system refactored
+* CI testing using Travis and Codeship, new repository for CI testing
+* Development of KBS was stopped, and KaNaPi is being continued as KS only
+
 v0.7
 ====
 
