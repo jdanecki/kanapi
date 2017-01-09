@@ -54,7 +54,7 @@ export PKG_CONFIG=${KANAPI_PKGCONFIG}
 if [ -n "${PKG_CONFIG}" ]
 then
 	export PKG_CONFIG_DIR=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig
-	if [[ -n ${LIB_DEPENDS} ]]
+	if [[ -n "${LIB_DEPENDS}" ]]
 	then
 		${PKG_CONFIG} --exists ${LIB_DEPENDS}
 		if [ "$?" = "0" ]
@@ -74,7 +74,12 @@ fi
 
 if [ -d ${KANAPI_BASE}/libs ]
 then
-	export LD_LIBRARY_PATH="${KANAPI_BASE}/libs:${LD_LIBRARY_PATH}"
+	if [ -n "${LD_LIBRARY_PATH}" ]
+	then
+		export LD_LIBRARY_PATH="${KANAPI_BASE}/libs:${LD_LIBRARY_PATH}"
+	else
+		export LD_LIBRARY_PATH="${KANAPI_BASE}/libs"
+	fi
 fi
 
 if [ -f ${KANAPI_BASE}/ncurses-${ncurses_ver}/bin/ncurses6-config ]
