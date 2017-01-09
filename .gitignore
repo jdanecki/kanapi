@@ -8,4 +8,5 @@ kanapi_system/test_system
 kanapi_initrd
 sources/RELEASES
 sbs-i686
+sbs-x86_64
 
