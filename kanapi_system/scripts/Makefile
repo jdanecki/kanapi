@@ -48,7 +48,7 @@ bbs-sbs: ccache m4 perl autoconf automake grep libtool bison sed gettext ncurses
 
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen
+apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph
 
@@ -1159,4 +1159,7 @@ zip:
 	@$(RUN_TARGET)
 
 screen:
+	@$(RUN_TARGET)
+
+sdparm:
 	@$(RUN_TARGET)
