@@ -39,8 +39,6 @@ configure_menu() {
 }
 
 pkg_configure() {
-#	configure_menu
-#	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` versatile_defconfig
 	grep Atom /proc/cpuinfo > /dev/null 
    	if [ "$?" = "0" ]
 	then
@@ -49,7 +47,9 @@ pkg_configure() {
 	else
 		cp -v ../../packages/${PACKAGE_VER}/config-${KANAPI_KERNEL_TARGET} .config
 	fi
+#	configure_menu
 	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` olddefconfig
+#	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` versatile_defconfig
 }
 
 pkg_build() {
