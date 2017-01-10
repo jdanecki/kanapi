@@ -1,14 +1,1 @@
-#!/bin/bash
-
-# $1 - package name
-
-if [ "x$1" == "x" ]
-then
-	echo "package name missing!"
-	echo "use: script_name package_name"
-	echo "where script_name is one from download|prepare|configure|build|install|help"
-	echo "for example: download gzip"
-else
-	make $1 ACTION=`basename $0`
-fi
-
+../../kanapi_system/scripts/help
