@@ -142,6 +142,9 @@ package2: package1
 linux-headers:
 	@$(RUN_TARGET)
 
+linux:
+	@$(RUN_TARGET)
+
 glibc: linux-headers
 	@$(RUN_TARGET)
 
