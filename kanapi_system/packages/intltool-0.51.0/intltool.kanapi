@@ -35,6 +35,7 @@ then
 else
 	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
 fi
+
 pkg_prepare() {
 	pkg_tar_gz
 }
