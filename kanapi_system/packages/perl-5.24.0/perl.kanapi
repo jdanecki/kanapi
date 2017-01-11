@@ -56,7 +56,10 @@ pkg_install() {
 		for i in mtrace glib-mkenums
 		do
 			FILE=`readlink ${KANAPI_TARGET_BIN}/$i`
-			sed -i "s@kanapi_.*bin/@kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin/@" ${FILE}
+			if [ -f "${FILE}" ]
+			then
+				sed -i "s@kanapi_.*bin/@kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin/@" ${FILE}
+			fi
 		done
 	fi
 }
