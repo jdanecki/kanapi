@@ -26,7 +26,11 @@ EXT=tar.bz2
 
 if [ "${KANAPI_TARGET}" = "arm" ]
 then
-	export PERL5LIB="${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+	if [ -d "${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}" ]
+	then
+		export PERL5LIB="${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+		export PATH=${KANAPI_HOST_BASE}/../bin:${PATH}
+	fi
 else
 	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
 fi
