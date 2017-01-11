@@ -487,8 +487,13 @@ udev: pci_ids usbutils
 expat:
 	@$(RUN_TARGET)
 
+ifeq ($(KANAPI_TARGET),arm)
+llvm_ver=$(llvm3_3_ver)
+endif	
+
 llvm: ninja
 	@$(RUN_TARGET)
+
 
 mesa: libxshmfence udev expat llvm
 	@$(RUN_TARGET)
