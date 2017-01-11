@@ -41,7 +41,8 @@ pkg_prepare() {
 	PACKAGE_SRCDIR=${KANAPI_BUILD_SRC}/${PACKAGE_VER}
 	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
 	pkg_tar_gz
-	ln -svf ${PACKAGE_SRCDIR} ${KANAPI_BUILD_SRC}/llvm-${VER}/tools/clang
+	mkdir ${KANAPI_BUILD_SRC}/llvm-${VER}/tools/clang
+	cp -ar ${PACKAGE_SRCDIR}/* ${KANAPI_BUILD_SRC}/llvm-${VER}/tools/clang
 }
 
 pkg_configure() {
