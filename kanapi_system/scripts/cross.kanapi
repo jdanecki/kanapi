@@ -24,11 +24,11 @@ then
 fi
 
 
-if [ -x ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc ]
+if [ "${KANAPI_CROSS}" = "0" -a -x ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc ]
 then
 	echo "use native compilers"
 else
-#	echo "use cross compilers"
+	echo "use cross compilers"
 	export CROSS_GCC_PREFIX="${KANAPI_CROSS_BASE}/gcc-${gcc_ver}"
 	export CROSS_BINUTILS_PREFIX="${KANAPI_CROSS_BASE}/binutils-${binutils_ver}"
 
@@ -36,17 +36,8 @@ else
 	then
 		if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
 		then
-			export CROSS_GCC="${KANAPI_TARGET_NAME}-gcc" 
 			export PATH_GCC=${CROSS_GCC_PREFIX}/bin
 			export PATH=${PATH_GCC}:${PATH}
-		fi
-	fi
-
-	if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-g++ ]
-	then
-		if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
-		then
-				export CROSS_CXX="${KANAPI_TARGET_NAME}-g++"
 		fi
 	fi
 

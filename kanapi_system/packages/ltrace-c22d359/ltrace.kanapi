@@ -38,6 +38,10 @@ pkg_prepare() {
 }
 
 pkg_configure() {
+	if [ "${KANAPI_TARGET}" = "arm" ]
+	then
+		echo "ltrace disabled on arm, libelf is not supported yet"
+	else
 		local_copy
 		mkdir -p config/autoconf config/m4
 		KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
@@ -46,18 +50,25 @@ pkg_configure() {
 		autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
 		./configure --prefix=$PREFIX --disable-werror --host=${KANAPI_TARGET_NAME} \
 			ac_cv_header_selinux_selinux_h=no ac_cv_lib_selinux_security_get_boolean_active=no
+	fi
 }
 
 pkg_build() {
-	cd build
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	if [ "${KANAPI_TARGET}" != "arm" ]
+	then
+		cd build
+		make -j ${MAKE_JOBS} MAKEINFO=true
+	fi
 }
 
 
 pkg_install() {
-	cd build
-	pkg_install_make
-	pkg_install_bin_all
+	if [ "${KANAPI_TARGET}" != "arm" ]
+	then
+		cd build
+		pkg_install_make
+		pkg_install_bin_all
+	fi
 }
 
 pkg_check() {

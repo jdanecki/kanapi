@@ -23,13 +23,24 @@ URL="http://www.mr511.de/software"
 EXT=tar.gz
 #build depends on
 . ../settings
+export CC=${KANAPI_TARGET_NAME}-gcc
 
 pkg_prepare() {
 	pkg_tar_gz
 }
 
+pkg_configure() {
+	export mr_cv_target_elf=yes
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --target=${KANAPI_TARGET_NAME} \
+	--enable-shared 
+}
+
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_libs
+}
+
+pkg_check() {
+	echo "CC=$CC"
 }
 

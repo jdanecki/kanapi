@@ -23,7 +23,7 @@ URL="ftp://atrey.karlin.mff.cuni.cz/pub/linux/pci"
 EXT=tar.gz
 #build depends on
 
-LIB_DEPENDS="zlib libkmod"
+LIB_DEPENDS="zlib libkmod liblzma"
 
 . ../settings
 

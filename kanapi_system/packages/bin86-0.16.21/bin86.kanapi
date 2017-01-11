@@ -34,24 +34,33 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	local_copy
-	if [ "`uname -m`" = "x86_64" ]
+	if [ "${KANAPI_TARGET}" != "arm" ]
 	then
-		patch -p1 < ../../../packages/${PACKAGE_NAME}-${VER}/bin86-0.16.17-x86_64-1.patch
+		local_copy
+		if [ "`uname -m`" = "x86_64" ]
+		then
+			patch -p1 < ../../../packages/${PACKAGE_NAME}-${VER}/bin86-0.16.17-x86_64-1.patch
+		fi
 	fi
 }
 
 pkg_build() {
-	cd build
-	make -j ${MAKE_JOBS} PREFIX=${PREFIX} CC=${KANAPI_TARGET_NAME}-gcc
+	if [ "${KANAPI_TARGET}" != "arm" ]
+	then
+		cd build
+		make -j ${MAKE_JOBS} PREFIX=${PREFIX} CC=${KANAPI_TARGET_NAME}-gcc
+	fi
 }
 
 pkg_install() {
-	cd build
-	mkdir -p ${PREFIX}/bin
-	mkdir -p ${PREFIX}/man/man1
-	${MAKE} -j ${MAKE_JOBS} install PREFIX=${PREFIX}
-	pkg_install_bin_all
+	if [ "${KANAPI_TARGET}" != "arm" ]
+	then
+		cd build
+		mkdir -p ${PREFIX}/bin
+		mkdir -p ${PREFIX}/man/man1
+		${MAKE} -j ${MAKE_JOBS} install PREFIX=${PREFIX}
+		pkg_install_bin_all
+	fi
 }
 
 pkg_check() {
