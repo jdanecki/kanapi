@@ -59,3 +59,8 @@ pkg_install() {
 	chmod + ${PREFIX}/etc/dhclient.script
 }
 
+pkg_check() {
+	echo "BUILD_CC=${BUILD_CC} -> `which ${BUILD_CC}`"
+	echo "PATH=$PATH"
+}
+
