@@ -28,8 +28,13 @@ EXT=tar.gz
 
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
-export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
 
+if [ "${KANAPI_TARGET}" = "arm" ]
+then
+	export PERL5LIB="${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+else
+	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+fi
 pkg_prepare() {
 	pkg_tar_gz
 }
