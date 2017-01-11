@@ -58,7 +58,7 @@ echo "export PS1='sbs:\w\\\$ '" > ${KANAPI_BASE_LOCAL}/home/.bashrc
 chmod +x ${KANAPI_BASE_LOCAL}/home/.bashrc
 ln -sf .bashrc ${KANAPI_BASE_LOCAL}/home/.bash_profile
 
-ln -sf ${KANAPI_BASE_PACKAGES} ${KANAPI_BASE_LOCAL}
+ln -sf /packages ${KANAPI_BASE_LOCAL}
 ln -sf /bin ${KANAPI_BASE_LOCAL}/bin
 mkdir -p ${KANAPI_BASE_LOCAL}/cross/${ARCH}
 for pkg in binutils gcc gmp mpc mpfr 
