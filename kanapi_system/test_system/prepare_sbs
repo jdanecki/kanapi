@@ -24,6 +24,7 @@ ARCH=`uname -m`
 export KANAPI_VER=`cat ../scripts/KANAPI_VER`
 echo "Preparing SBS for ${KANAPI_VER} on ${ARCH}"
 KANAPI_BASE=/kanapi_${KANAPI_VER}/${ARCH}
+KANAPI_BASE_PACKAGES=${KANAPI_BASE}/packages
 KANAPI_BASE_LOCAL=kanapi_${KANAPI_VER}/${ARCH}
 INITRD_DIR=sbs-${ARCH}
 
@@ -46,26 +47,26 @@ for pkg in bash binutils busybox curl gcc glib glibc gmp libffi libgcrypt \
 	libssh2 make mpc mpfr openssl zlib
 do
 	pkg_v=${pkg}_ver
-	cp -ar ${KANAPI_BASE}/packages/${pkg}-${!pkg_v} packages
+	cp -ar ${KANAPI_BASE_PACKAGES}/${pkg}-${!pkg_v} packages
 done
-cp -ar ${KANAPI_BASE}/packages/pkg-config-${pkg_config_ver} packages
-cp -ar ${KANAPI_BASE}/packages/linux-headers-${linux_headers_ver} packages
-cp -ar ${KANAPI_BASE}/packages/libgpg-error-${libgpg_error_ver} packages
+cp -ar ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver} packages
+cp -ar ${KANAPI_BASE_PACKAGES}/linux-headers-${linux_headers_ver} packages
+cp -ar ${KANAPI_BASE_PACKAGES}/libgpg-error-${libgpg_error_ver} packages
 
 mkdir -p ${KANAPI_BASE_LOCAL}/home/src
 echo "export PS1='sbs:\w\\\$ '" > ${KANAPI_BASE_LOCAL}/home/.bashrc
 chmod +x ${KANAPI_BASE_LOCAL}/home/.bashrc
 ln -sf .bashrc ${KANAPI_BASE_LOCAL}/home/.bash_profile
 
-ln -sf ../../packages ${KANAPI_BASE_LOCAL}
+ln -sf ${KANAPI_BASE_PACKAGES} ${KANAPI_BASE_LOCAL}
 ln -sf /bin ${KANAPI_BASE_LOCAL}/bin
 mkdir -p ${KANAPI_BASE_LOCAL}/cross/${ARCH}
 for pkg in binutils gcc gmp mpc mpfr 
 do
 	pkg_v=${pkg}_ver
-	ln -sf ${KANAPI_BASE}/packages/${pkg}-${!pkg_v} ${KANAPI_BASE_LOCAL}/cross/${ARCH}
+	ln -sf ${KANAPI_BASE_PACKAGES}/${pkg}-${!pkg_v} ${KANAPI_BASE_LOCAL}/cross/${ARCH}
 done
-ln -sf ${KANAPI_BASE}/packages/pkg-config-${pkg_config_ver} ${KANAPI_BASE_LOCAL}/cross/${ARCH}
+ln -sf ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver} ${KANAPI_BASE_LOCAL}/cross/${ARCH}
 
 mkdir bin
 mkdir usr
@@ -77,7 +78,7 @@ do
 	do
 		if [ -f $b ]
 		then 
-			ln -sf ../${b} bin
+			ln -sf ${KANAPI_BASE}/${b} bin
 			file -i ${b} | grep application > /dev/null
 			if [ "$?" = "0" ] ; then strip ${b} ; fi
 		fi
@@ -86,7 +87,7 @@ do
 	do
 		if [ -f $b ]
 		then 
-			ln -sf ../../${b} packages/libs
+			ln -sf ${KANAPI_BASE}/${b} packages/libs
 			file -i ${b} | grep x-sharedlib > /dev/null
 			if [ "$?" = "0" ] ; then strip ${b} ; fi
 		fi
@@ -99,7 +100,7 @@ do
 done
 
 ln -svf bash bin/sh
-ln -sf ${KANAPI_BASE}/packages/binutils-${binutils_ver}/${ARCH}-kanapi-linux-gnu/bin/* bin
+ln -sf ${KANAPI_BASE_PACKAGES}/binutils-${binutils_ver}/${ARCH}-kanapi-linux-gnu/bin/* bin
 echo "${KANAPI_VER} `date -R`" > sbs.version
 mkdir kanapi_build
 ln -sf /proc/mounts etc/mtab
