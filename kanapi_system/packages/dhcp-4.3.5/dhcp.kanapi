@@ -28,7 +28,7 @@ EXT=tar.gz
 
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
-export BUILD_CC=`uname -m`-kanapi-linux-gnu-gcc
+export BUILD_CC=gcc
 
 pkg_prepare() {
 	pkg_tar_gz
@@ -61,6 +61,8 @@ pkg_install() {
 
 pkg_check() {
 	echo "BUILD_CC=${BUILD_CC} -> `which ${BUILD_CC}`"
+	echo "gcc -> `which gcc`"
 	echo "PATH=$PATH"
+	
 }
 
