@@ -28,6 +28,7 @@ EXT=tar.gz
 
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
+export BUILD_CC=`uname -m`-kanapi-linux-gnu-gcc
 
 pkg_prepare() {
 	pkg_tar_gz
@@ -35,10 +36,10 @@ pkg_prepare() {
 
 pkg_configure() {
 	local_copy
-	cat configure | sed "s/^BINDCONFIG=/BINDCONFIG=--enable-linux-caps=no/" > configure.tmp
-	mv configure.tmp configure
-	chmod +x configure
-	./configure --prefix=${PREFIX} --localstatedir=${PREFIX}/var 
+	sed -i "s/^BINDCONFIG=/BINDCONFIG=--enable-linux-caps=no/" configure
+#	chmod +x configure
+	./configure --prefix=${PREFIX} --localstatedir=${PREFIX}/var --host=${KANAPI_TARGET_NAME} \
+	--with-randomdev=/dev/random
 }
 
 pkg_build() {
