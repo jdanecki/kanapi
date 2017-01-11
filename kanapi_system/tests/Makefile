@@ -1,6 +1,6 @@
 include ../scripts/config.kanapi
 
-test_gcc: test_gcc0.c test_gcc1.c test_libstdcpp.cpp test_threads.cpp
+test_gcc: test_gcc0.c test_gcc1.c test_libstdcpp.cpp test_threads.cpp test_shared_future.cpp
 	@echo "tests for $@ for TARGET=$(KANAPI_TARGET_NAME)"
 	@if [ ! -d $(KANAPI_BASE)/tests_results ] ; then mkdir $(KANAPI_BASE)/tests_results ; fi
 	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_gcc0.c -Wall -o $(KANAPI_BASE)/tests_results/test_gcc0
@@ -11,6 +11,7 @@ test_gcc: test_gcc0.c test_gcc1.c test_libstdcpp.cpp test_threads.cpp
 	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_lm.c -Wall -lm -o $(KANAPI_BASE)/tests_results/test_lm
 	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_backtrace.c -Wall -o $(KANAPI_BASE)/tests_results/test_backtrace
 	. ./set_variables; $(KANAPI_TARGET_NAME)-gcc test_long.c -Wall -o $(KANAPI_BASE)/tests_results/test_long
+	. ./set_variables; $(KANAPI_TARGET_NAME)-g++ test_shared_future.cpp -Wall -std=c++11 -o $(KANAPI_BASE)/tests_results/test_shared_future
 
 test_%:
 	@echo "missing tests for $@"
