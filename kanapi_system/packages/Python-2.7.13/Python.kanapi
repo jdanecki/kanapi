@@ -45,9 +45,8 @@ pkg_install() {
 	pkg_install_libs
 	for i in gdbus-codegen gtester-report
 	do
-		cat ${KANAPI_TARGET_BIN}/$i | sed "s@kanapi_.\..@kanapi_${KANAPI_VER}@" > $i.tmp
-		mv $i.tmp ${KANAPI_TARGET_BIN}/$i
-		chmod +x ${KANAPI_TARGET_BIN}/$i
+		FILE=`readlink ${KANAPI_TARGET_BIN}/$i`
+		sed -i "s@kanapi_.*bin/@kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin/@" ${FILE}
 	done
 }
 
