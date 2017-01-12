@@ -28,3 +28,11 @@ pkg_prepare() {
 	pkg_tar_gz
 }
 
+pkg_install() {
+	pkg_install_pc_all
+	if [ -d ${PREFIX}/lib64 ]
+	then
+		${LN_SF} ${PREFIX}/lib64/* ${PREFIX}/lib
+	fi
+	pkg_install_libs
+}

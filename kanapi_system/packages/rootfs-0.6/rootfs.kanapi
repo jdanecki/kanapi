@@ -52,9 +52,12 @@ pkg_install() {
 	for p in glib libffi zlib
 	do
 		PKG_VER=${p}_ver
-		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/lib/lib*
+		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/lib/lib* ${KANAPI_BASE}/$p-${!PKG_VER}/lib64/lib*
 		do
-			ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
+			if [ -f $f ]
+			then
+				ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
+			fi
 		done
 	done
 	echo "${KANAPI_BASE}/libs" > ${LIBC_PREFIX}/etc/ld.so.conf
