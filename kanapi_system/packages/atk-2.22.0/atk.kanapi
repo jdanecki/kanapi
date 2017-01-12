@@ -23,7 +23,7 @@ URL="http://ftp.acc.umu.se/pub/gnome/sources/atk/2.22"
 EXT=tar.xz
 #build depends on
 
-LIB_DEPENDS="glib-2.0"
+LIB_DEPENDS="glib-2.0 libffi"
 
 . ../settings
 

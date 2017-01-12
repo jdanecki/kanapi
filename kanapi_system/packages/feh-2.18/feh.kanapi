@@ -22,12 +22,12 @@ VER=2.18
 URL="https://feh.finalrewind.org"
 EXT=tar.bz2
 #build depends on
-LIB_DEPENDS="x11 xinerama imlib2 libpng zlib libcurl xt"
+LIB_DEPENDS="x11 xinerama imlib2 libpng zlib libcurl xt xext xcb xau ice freetype2 libssh2 openssl sm uuid slang"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lpthread -lrt"
-#export CFLAGS="${CFLAGS} "
+export LDFLAGS="${LDFLAGS} -lpthread -lrt ${LIBGCRYPT_LDFLAGS}"
+export CFLAGS="${CFLAGS} ${LIBGCRYPT_CFLAGS}"
 
 pkg_prepare() {
 	pkg_tar_bz2

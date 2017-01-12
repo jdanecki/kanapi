@@ -22,12 +22,21 @@ VER=1.7
 URL="http://freedesktop.org/~hadess"
 EXT=tar.xz
 #build depends on
-LIB_DEPENDS="libxml-2.0 glib-2.0"
+LIB_DEPENDS="libxml-2.0 glib-2.0 zlib liblzma libffi gmodule-2.0"
 
 . ../settings
 export MAKE_JOBS=1
 
-export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+if [ "${KANAPI_TARGET}" = "arm" ]
+then
+	if [ -d "${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}" ]
+	then
+		export PERL5LIB="${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+		export PATH=${KANAPI_HOST_BASE}/perl-${perl_ver}/bin:${PATH}
+	fi
+else
+	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+fi
 
 export LDFLAGS="${LDFLAGS} -lpthread -lm -lresolv"
 

@@ -23,7 +23,7 @@ URL="https://www.x.org/releases/individual/app"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="xmuu"
+LIB_DEPENDS="xmuu xcb xau xrender xfixes"
 
 . ../settings
 

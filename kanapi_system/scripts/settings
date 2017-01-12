@@ -285,6 +285,10 @@ pkg_install_pc_share() {
 
 pkg_install_pc_share_all() {
 	pkg_install_make
+	pkg_install_pc_share_all_only
+}
+
+pkg_install_pc_share_all_only() {
 	for i in ${PREFIX}/share/pkgconfig/*
 	do
 		if [ -f $i ]

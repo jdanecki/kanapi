@@ -24,7 +24,7 @@ EXT=tar.xz
 PATCH_FILE=0003-disable-atk-bridge
 #build depends on
 
-LIB_DEPENDS="glib-2.0 xi pango cairo-xlib"
+LIB_DEPENDS="glib-2.0 xi pango cairo-xlib xcb xau gthread-2.0 libffi ice expat pixman-1 fontconfig freetype2 libpng xcb-shm xcb-render xrender zlib pangoft2 harfbuzz"
 
 . ../settings
 
@@ -52,12 +52,21 @@ pkg_configure_target() {
 
 pkg_build() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=truE
 }
 
 pkg_install() {
 	cd build
+	if [ "${KANAPI_TARGET}" = "arm" ]
+	then
+		cp gtk/gtk-update-icon-cache gtk/gtk-update-icon-cache.arm
+		cp -f ${KANAPI_HOST_BASE}/../bin/gtk-update-icon-cache gtk
+	fi
 	pkg_install_pc_all
+	if [ "${KANAPI_TARGET}" = "arm" ]
+	then
+		cp -f gtk/gtk-update-icon-cache.arm ${PREFIX}/bin/gtk-update-icon-cache
+	fi
 	pkg_install_bin_all
 	pkg_install_libs
 	pkg_install_schemas

@@ -24,7 +24,14 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-NamespaceSupport-${XML_NamespaceSupport_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-Base-${XML_SAX_Base_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-${XML_SAX_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-Expat-${XML_SAX_Expat_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-Simple-${XML_Simple_ver}/lib/site_perl/${perl_ver}"
+if [ "${KANAPI_TARGET}" = "arm" ]
+then
+	KANAPI_PERL_BASE=${KANAPI_HOST_BASE}
+else
+	KANAPI_PERL_BASe=${KANAPI_BASE}
+fi	
+
+export PERL5LIB="${KANAPI_PERL_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-NamespaceSupport-${XML_NamespaceSupport_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-SAX-Base-${XML_SAX_Base_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-SAX-${XML_SAX_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-SAX-Expat-${XML_SAX_Expat_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-Simple-${XML_Simple_ver}/lib/site_perl/${perl_ver}"
 
 pkg_prepare() {
 	pkg_tar_gz

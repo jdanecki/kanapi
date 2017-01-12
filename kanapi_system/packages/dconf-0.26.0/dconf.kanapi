@@ -22,7 +22,7 @@ VER=0.26.0
 URL="http://ftp.acc.umu.se/pub/gnome/sources/dconf/0.26"
 EXT=tar.xz
 #build depends on
-LIB_DEPENDS="gio-2.0"
+LIB_DEPENDS="gio-2.0 gmodule-2.0 zlib libffi"
 
 . ../settings
 

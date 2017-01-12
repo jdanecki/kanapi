@@ -23,7 +23,7 @@ URL=" http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/2.36"
 EXT=tar.xz
 #build depends on
 
-LIB_DEPENDS="gmodule-2.0 gobject-2.0"
+LIB_DEPENDS="gmodule-2.0 gobject-2.0 libffi"
 
 . ../settings
 
@@ -31,9 +31,13 @@ pkg_prepare() {
 	pkg_tar_xz
 }
 
-pkg_configure_target() {	
+pkg_configure_target() {
+	if [ "${KANAPI_CROSS}" = "1" ]
+	then
+		CONF_PAR="enable_gio_sniffing=yes"
+	fi
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
-		--without-libtiff  --without-libjpeg
+		--without-libtiff  --without-libjpeg ${CONF_PAR}
 }
 
 pkg_install() {

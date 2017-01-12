@@ -23,13 +23,22 @@ URL="http://ftp.acc.umu.se/pub/gnome/sources/libsoup/2.57"
 EXT=tar.xz
 #build depends on
 
-LIB_DEPENDS="gio-2.0"
+LIB_DEPENDS="gio-2.0 gmodule-2.0 zlib libffi"
 
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lresolv"
 
-export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+if [ "${KANAPI_TARGET}" = "arm" ]
+then
+	if [ -d "${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}" ]
+	then
+		export PERL5LIB="${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+		export PATH=${KANAPI_HOST_BASE}/perl-${perl_ver}/bin:${PATH}
+	fi
+else
+	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+fi
 
 pkg_prepare() {
 	pkg_tar_xz

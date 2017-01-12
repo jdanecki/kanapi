@@ -24,7 +24,7 @@ EXT=tar.bz2
 #build depends on
 
 LIB_DEPENDS="xcb-keysyms xau cairo cairo-xcb expat fontconfig freetype2 libpng xcb xrender x11 xext zlib pixman-1 xcb-shm xcb-render yajl\
-   	xcb-cursor xcb-image xcb-renderutil xcb-aux libffi ice pangoft2 gmodule-2.0 x11-xcb"
+   	xcb-cursor xcb-image xcb-renderutil xcb-aux libffi ice pangoft2 gmodule-2.0 x11-xcb harfbuzz gthread-2.0 xcb-keysyms"
 
 . ../settings
 
@@ -53,5 +53,7 @@ pkg_check() {
 	${PKG_CONFIG} --cflags yajl
 	${PKG_CONFIG} --variable=includedir yajl
 	${PKG_CONFIG} --libs libffi
+
+	${PKG_CONFIG} --libs ${LIB_DEPENDS}
 }
 

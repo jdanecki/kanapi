@@ -23,11 +23,21 @@ URL="https://download.gimp.org/pub/gegl/0.2"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="gmodule-2.0"
+LIB_DEPENDS="gmodule-2.0 libffi sdl xext x11 xcb xau zlib"
 
 . ../settings
 
-export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+if [ "${KANAPI_TARGET}" = "arm" ]
+then
+	if [ -d "${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}" ]
+	then
+		export PERL5LIB="${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+		export PATH=${KANAPI_HOST_BASE}/perl-${perl_ver}/bin:${PATH}
+	fi
+else
+	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+fi
+
 export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/lib -lm -lresolv"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E -I${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/include"
 export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/include"
@@ -49,5 +59,6 @@ pkg_install() {
 
 pkg_check() {
 	echo "LDFLAGS=${LDFLAGS}"
+	${PKG_CONFIG} --libs sdl
 }
 

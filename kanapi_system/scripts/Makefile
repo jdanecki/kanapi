@@ -59,7 +59,6 @@ apps_gtk: gtk+ dconf gimp gvim
 
 apps_gtk3: gtk3+ evince
 
-apps_qt: qt-everywhere-opensource-src qt-creator vym
 
 sdl-support: SDL_image
 
@@ -113,7 +112,6 @@ icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 
 sound: alsa-utils esound
 
-www: webkitgtk midori
 
 tests: xflame water xclipboard intel-gpu-tools
 
@@ -242,12 +240,6 @@ openssh:
 	@$(RUN_TARGET)
 
 SDL-fb:
-	@$(RUN_TARGET)
-
-xflame: SDL
-	@$(RUN_TARGET)
-
-water: SDL
 	@$(RUN_TARGET)
 
 libpng:
@@ -556,9 +548,6 @@ coreutils:
 	@$(RUN_TARGET)
 
 dtc:
-	@$(RUN_TARGET)
-
-qemu: dtc
 	@$(RUN_TARGET)
 
 alsa-lib:
@@ -962,11 +951,41 @@ libXv:
 ctags:
 	@$(RUN_TARGET)
 
+ifeq ($(KANAPI_TARGET),arm)
+tcl tk graphviz swig groff xflame water qemu gimp apps_qt www:
+	true
+else
+www: webkitgtk midori
+
+apps_qt: qt-everywhere-opensource-src qt-creator vym
+
+gimp: babl gegl dbus-glib
+	@$(RUN_TARGET)
+
+qemu: dtc
+	@$(RUN_TARGET)
+
+xflame: SDL
+	@$(RUN_TARGET)
+
+water: SDL
+	@$(RUN_TARGET)
+
 tcl:
 	@$(RUN_TARGET)
 
 tk: tcl
 	@$(RUN_TARGET)
+
+graphviz: swig
+	@$(RUN_TARGET)
+
+swig:
+	@$(RUN_TARGET)
+
+groff:
+	@$(RUN_TARGET)
+endif
 
 xauth:
 	@$(RUN_TARGET)
@@ -981,9 +1000,6 @@ gtk+: pango atk gdk-pixbuf adwaita-icon-theme
 	@$(RUN_TARGET)
 
 gdk-pixbuf:
-	@$(RUN_TARGET)
-
-gimp: babl gegl dbus-glib
 	@$(RUN_TARGET)
 
 babl:
@@ -1025,7 +1041,7 @@ ruby:
 gnutls: nettle
 	@$(RUN_TARGET)
 
-nettle:
+nettle: gmp
 	@$(RUN_TARGET)
 
 gtk3+: libepoxy gsettings-desktop-schemas
@@ -1041,9 +1057,6 @@ chrpath:
 	@$(RUN_TARGET)
 
 patchelf:
-	@$(RUN_TARGET)
-
-graphviz: swig
 	@$(RUN_TARGET)
 
 libwebp: libpng jpegsrc
@@ -1065,9 +1078,6 @@ dbus:
 	@$(RUN_TARGET)
 
 qt-creator:
-	@$(RUN_TARGET)
-
-groff:
 	@$(RUN_TARGET)
 
 vala:
@@ -1116,9 +1126,6 @@ feh: imlib2
 	@$(RUN_TARGET)
 
 imlib2:
-	@$(RUN_TARGET)
-
-swig:
 	@$(RUN_TARGET)
 
 evince: poppler itstool shared-mime-info
