@@ -27,8 +27,9 @@ LIB_DEPENDS="alsa"
 
 . ../settings
 
-CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
-LDFLAGS="${LDFLAGS} -lm -lpthread ${NCURSES_LDFLAGS}"
+export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
+export LDFLAGS="${LDFLAGS} -lm -lpthread ${NCURSES_LDFLAGS}"
+export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
 	pkg_tar_bz2
