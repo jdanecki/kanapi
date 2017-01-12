@@ -23,11 +23,11 @@ URL="https://www.freedesktop.org/software/harfbuzz/release"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="cairo"
+LIB_DEPENDS="cairo expat xau pixman-1 fontconfig freetype2 libpng xcb-shm xcb-render xcb xrender xext zlib libffi"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lpthread -lrt -lm"
+export LDFLAGS="${LDFLAGS} -lpthread -lrt -lm -lstdc++"
 
 pkg_prepare() {
 	pkg_tar_bz2

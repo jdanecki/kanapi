@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -22,10 +22,12 @@ VER=3.5.7
 URL="ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5"
 EXT=tar.xz
 #build depends on
+LIB_DEPENDS="nettle hogweed"
+
 . ../settings
 
-export CFLAGS="-I${KANAPI_BASE}/gmp-${gmp_ver}/include"
-export LDFLAGS="-L${KANAPI_BASE}/gmp-${gmp_ver}/lib"
+export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/gmp-${gmp_ver}/include"
+export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/gmp-${gmp_ver}/lib -lgmp"
 
 pkg_prepare() {
 	pkg_tar_xz
@@ -49,3 +51,6 @@ pkg_install() {
 	pkg_install_libs
 }
 
+pkg_check() {
+	${PKG_CONFIG} --libs ${LIB_DEPENDS}
+}

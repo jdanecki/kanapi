@@ -22,7 +22,7 @@ VER=0.108
 URL="https://dbus.freedesktop.org/releases/dbus-glib"
 EXT=tar.gz
 #build depends on
-LIB_DEPENDS="expat zlib"
+LIB_DEPENDS="expat zlib dbus-1 x11 libffi xcb xau gmodule-2.0" 
 
 . ../settings
 
@@ -30,6 +30,14 @@ export LDFLAGS="${LDFLAGS} -lresolv -lpthread -lrt"
 
 pkg_prepare() {
 	pkg_tar_gz
+}
+
+pkg_configure() {
+	if [ "${KANAPI_CROSS}" = "1" ]
+	then
+	 	DBUS_BINDING_TOOL="--with-dbus-binding-tool=${KANAPI_HOST_BASE}/../bin/dbus-binding-tool"
+	fi
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} ${DBUS_BINDING_TOOL}
 }
 
 pkg_install() {

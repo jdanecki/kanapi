@@ -23,7 +23,7 @@ URL="https://dbus.freedesktop.org/releases/dbus"
 EXT=tar.gz
 #build depends on
 
-LIB_DEPENDS="expat gobject-2.0 x11"
+LIB_DEPENDS="expat gobject-2.0 x11 libffi xcb xau gmodule-2.0 zlib"
 
 . ../settings
 

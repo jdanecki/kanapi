@@ -23,7 +23,7 @@ URL=" http://github.com/lloyd/yajl/tarball/2.1.0"
 EXT=tar.gz
 #build depends on
 . ../settings
-export LD_LIBRARY_PATH=${KANAPI_BASE}/libs
+#export LD_LIBRARY_PATH=${KANAPI_BASE}/libs
 
 pkg_download() {
 	PACKAGE_LINK=${URL}
@@ -36,22 +36,19 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	rm -rf build
-	mkdir build
-	cp -ar ${PACKAGE_SRCDIR}/* build
-	cd build
-	${PACKAGE_SRCDIR}/configure -p $PREFIX
+	local_copy
+	cmake -G Ninja .  -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_C_COMPILER=${KANAPI_TARGET_NAME}-gcc
 }
 
 pkg_build() {
 	cd build
-	MAKE_JOBS=1
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	ninja
 }
 
 pkg_install() {
 	cd build
-	pkg_install_pc_share
+	ninja install
+	pkg_install_pc_share_all_only
 	pkg_install_bin_all
 	pkg_install_libs
 }

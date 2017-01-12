@@ -22,12 +22,21 @@ VER=2.50.0
 URL="http://ftp.acc.umu.se/pub/gnome/sources/glib-networking/2.50"
 EXT=tar.xz
 #build depends on
-
-LIB_DEPENDS="gio-2.0"
+LIB_DEPENDS="gio-2.0 gmodule-2.0 zlib libffi"
 
 . ../settings
 
-export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+if [ "${KANAPI_TARGET}" = "arm" ]
+then
+	if [ -d "${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}" ]
+	then
+		export PERL5LIB="${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+		export PATH=${KANAPI_HOST_BASE}/perl-${perl_ver}/bin:${PATH}
+	fi
+else
+	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+fi
+
 export LDFLAGS="${LDFLAGS} -lresolv"
 
 pkg_prepare() {

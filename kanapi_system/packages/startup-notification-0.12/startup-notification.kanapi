@@ -23,7 +23,7 @@ URL="http://www.freedesktop.org/software/startup-notification/releases"
 EXT=tar.gz
 #build depends on
 
-LIB_DEPENDS="x11 xcb xau"
+LIB_DEPENDS="x11 xcb xau ice"
 
 . ../settings
 
@@ -31,6 +31,11 @@ export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
 	pkg_tar_gz
+}
+
+pkg_configure() {	
+	export lf_cv_sane_realloc=yes
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
 }
 
 pkg_install() {

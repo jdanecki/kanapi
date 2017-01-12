@@ -23,7 +23,7 @@ URL="SF"
 EXT=tar.gz
 SF_URL="swig/swig/swig-${VER}/swig-${VER}.${EXT}"
 #build depends on
-LIB_DEPENDS="zlib tcl tk"
+LIB_DEPENDS="zlib tcl tk libpcre"
 
 . ../settings
 
@@ -46,3 +46,6 @@ pkg_install() {
 	pkg_install_bin_all
 }
 
+pkg_check() {
+	${PKG_CONFIG} --libs ${LIB_DEPENDS}
+}
