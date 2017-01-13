@@ -18,6 +18,14 @@ ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
 COMPILERS+=gcc
 endif
 
+ifeq ($(CURRENT_ARCH),x86_64)
+ifeq ($(KANAPI_TARGET),i686)
+	DISABLE_PACKAGES=1
+else
+	DISABLE_PACKAGES=0
+endif
+endif
+
 all: required optional
 
 all-sbs: bbs-sbs
@@ -1116,12 +1124,6 @@ syslinux: nasm
 nasm:
 	@$(RUN_TARGET)
 
-mbr: bin86
-	@$(RUN_TARGET)
-
-bin86:
-	@$(RUN_TARGET)
-
 feh: imlib2
 	@$(RUN_TARGET)
 
@@ -1164,8 +1166,19 @@ wpa_supplicant: libnl
 libnl:
 	@$(RUN_TARGET)
 
+ifeq ($(DISABLE_PACKAGES),1)
+dhcp mbr bin86:
+	true
+else
 dhcp:
 	@$(RUN_TARGET)
+
+mbr: bin86
+	@$(RUN_TARGET)
+
+bin86:
+	@$(RUN_TARGET)
+endif
 
 xlunch:
 	@$(RUN_TARGET)
