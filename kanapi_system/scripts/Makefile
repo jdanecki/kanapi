@@ -1131,7 +1131,7 @@ imlib2:
 evince: poppler itstool shared-mime-info
 	@$(RUN_TARGET)
 
-poppler:
+poppler: jpegsrc
 	@$(RUN_TARGET)
 
 itstool:
