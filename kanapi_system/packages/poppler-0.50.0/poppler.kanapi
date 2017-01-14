@@ -22,7 +22,8 @@ VER=0.50.0
 URL="https://poppler.freedesktop.org"
 EXT=tar.xz
 #build depends on
-LIB_DEPENDS="zlib libpng fontconfig freetype2 expat xau pixman-1 xcb-shm xcb-render xcb xrender x11 xext"
+LIB_DEPENDS="zlib libpng fontconfig freetype2 expat xau pixman-1 xcb-shm xcb-render xcb xrender x11 xext xinerama \
+	xrandr xcursor xi xdamage xfixes epoxy pangoft2 harfbuzz gthread-2.0 ice gmodule-2.0 libffi"
 
 . ../settings
 
