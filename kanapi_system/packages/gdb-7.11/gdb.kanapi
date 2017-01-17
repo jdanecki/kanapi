@@ -30,7 +30,7 @@ pkg_prepare() {
 
 pkg_configure() {
 	export CFLAGS="${NCURSES_CFLAGS}"
-	export LDLAGS="`${NCURSES_LDFLAGS}"
+	export LDLAGS="${NCURSES_LDFLAGS}"
 	if [ "${KANAPI_CROSS}" = "0" ]
 	then 
 		GAWK=${KANAPI_TARGET_BIN}/gawk
