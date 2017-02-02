@@ -68,7 +68,7 @@ apps_gtk: gtk+ dconf gimp gvim
 apps_gtk3: gtk3+ evince
 
 
-sdl-support: SDL_image
+sdl-support: SDL_image SDL_gfx SDL_ttf
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -1190,4 +1190,10 @@ screen:
 	@$(RUN_TARGET)
 
 sdparm:
+	@$(RUN_TARGET)
+
+SDL_gfx:
+	@$(RUN_TARGET)
+
+SDL_ttf:
 	@$(RUN_TARGET)

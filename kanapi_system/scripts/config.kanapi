@@ -347,3 +347,5 @@ xlunch_ver=2.3.2
 zip_ver=30
 screen_ver=4.4.0
 sdparm_ver=1.10
+SDL_gfx_ver=2.0.25
+SDL_ttf_ver=2.0.11
