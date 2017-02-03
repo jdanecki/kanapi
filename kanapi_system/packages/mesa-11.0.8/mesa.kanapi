@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=mesa
 VER=11.0.8
-URL="ftp://ftp.freedesktop.org/pub/mesa/${VER}"
+URL="ftp://ftp.freedesktop.org/pub/mesa/older-versions/11.x/${VER}"
 EXT=tar.xz
 #build depends on libxshmfence, libudev, expat
 . ../settings
