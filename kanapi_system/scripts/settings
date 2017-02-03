@@ -159,16 +159,16 @@ check_file_type() {
 				if [ "${MIME}" = "application/x-bzip2" ] ; then DOWNLOADED=1 ; fi
 				;;
 		src.tar.gz) echo -n "src.tar.gz "
-				if [ "${MIME}" = "application/x-gzip" ] ; then DOWNLOADED=1 ; fi
+				if [ "${MIME}" = "application/x-gzip" -o "${MIME}" = "application/gzip" ] ; then DOWNLOADED=1 ; fi
 				;;
 		tar.gz) echo -n "tar.gz "
-				if [ "${MIME}" = "application/x-gzip" ] ; then DOWNLOADED=1 ; fi
+				if [ "${MIME}" = "application/x-gzip" -o "${MIME}" = "application/gzip" ] ; then DOWNLOADED=1 ; fi
 				;;
 		tar.xz) echo -n "tar.xz "
 				if [ "${MIME}" = "application/x-xz" ] ; then DOWNLOADED=1 ; fi
 				;;
 		tgz) echo -n "tgz "
-				if [ "${MIME}" = "application/x-gzip" ] ; then DOWNLOADED=1 ; fi
+				if [ "${MIME}" = "application/x-gzip" -o "${MIME}" = "application/gzip" ] ; then DOWNLOADED=1 ; fi
 				;;
 		zip) echo -n "zip "
 				if [ "${MIME}" = "application/zip" ] ; then DOWNLOADED=1 ; fi
