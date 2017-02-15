@@ -111,7 +111,12 @@ fi
 
 if [ "${TRAVIS}" = "true" -o "${CIRCLECI}" = "true" ]
 then 
-	MAKE_JOBS=2
+	if [ "${SHIPPABLE}" = "true" ]
+	then 
+		MAKE_JOBS=2
+	else
+		MAKE_JOBS=8
+	fi
 else
 	NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
 	MAKE_JOBS=${NR_CPUS}
