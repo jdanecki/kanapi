@@ -46,11 +46,11 @@ optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps
 	apps_qt www 
 
 #Basic Build System 
-bbs: ccache busybox bash make perl m4 autoconf automake grep libtool bison sed gettext ncurses readline gawk openssl cmake \
+bbs: ccache busybox bash make perl m4 autoconf automake libtool bison sed gettext ncurses readline gawk openssl cmake \
 	file flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
-bbs-sbs: ccache m4 perl autoconf automake grep libtool bison sed gettext ncurses readline gawk cmake \
+bbs-sbs: ccache m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
 	file flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
@@ -226,7 +226,7 @@ libgcrypt: libgpg-error
 libssh2: libgcrypt
 	@$(RUN_TARGET)
 
-slang: zlib ncurses5
+slang: ncurses5
 	@$(RUN_TARGET)
 
 mc: libssh2 glib
@@ -262,7 +262,7 @@ SDL_image: libpng SDL
 gpm:
 	@$(RUN_TARGET)
 
-autoconf: m4
+autoconf:
 	@$(RUN_TARGET)
 
 automake:
@@ -478,7 +478,7 @@ cacert:
 libusb:
 	@$(RUN_TARGET)
 
-usbutils: libusb zlib
+usbutils: libusb
 	@$(RUN_TARGET)
 
 udev: pci_ids usbutils
@@ -881,7 +881,7 @@ ninja: re2c
 diffutils:
 	@$(RUN_TARGET)
 
-curl: openssl libssh2
+curl: libssh2
 	@$(RUN_TARGET)
 
 grep:
