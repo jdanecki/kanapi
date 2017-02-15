@@ -21,6 +21,7 @@ PACKAGE_NAME=file
 VER=5.29
 #URL="ftp://ftp.astron.com/pub/file"
 URL="ftp://ftp.fu-berlin.de/unix/tools/file"
+#URL="http://distfiles.macports.org/file"
 EXT=tar.gz
 #build depends on
 . ../settings
