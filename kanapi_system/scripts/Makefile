@@ -1197,3 +1197,9 @@ SDL_gfx:
 
 SDL_ttf:
 	@$(RUN_TARGET)
+
+ltp-full: expect
+	@$(RUN_TARGET)
+
+expect: tcl
+	@$(RUN_TARGET)
