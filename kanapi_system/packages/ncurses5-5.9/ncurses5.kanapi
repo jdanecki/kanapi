@@ -39,7 +39,8 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	local_copy 
+	local_copy
+	patch -p1 < ../../../packages/${PACKAGE_NAME}-${VER}/0002-gcc-5.x-MKlib_gen.patch
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	 then
 		 export CFLAGS="${CFLAGS} -fPIC"
