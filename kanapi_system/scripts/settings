@@ -109,7 +109,7 @@ then
 	CFLAGS="${CFLAGS} -fPIC"
 fi
 
-if [ "${TRAVIS}" = "true" ]
+if [ "${TRAVIS}" = "true" -o "${CIRCLECI}" = "true" ]
 then 
 	MAKE_JOBS=2
 else
