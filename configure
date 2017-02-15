@@ -36,7 +36,7 @@ configure_ci() {
 	if [ "${CIRCLECI}" = "true" ]
 	then
 		echo "CIRCLE"
-		ln -sv Makefile.circle Makefile
+		ln -sv Makefile.circleci Makefile
 	fi
 
 	if [ "${TRAVIS}" = "true" ]

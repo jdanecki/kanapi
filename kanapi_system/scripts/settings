@@ -215,9 +215,12 @@ pkg_curl() {
 pkg_download() {
 	if [ "${TRAVIS}" = "true" ]
 	then
-		echo "Running under Travis, removing sources"
-		rm -rf ${KANAPI_BUILD_SRC}
-		mkdir ${KANAPI_BUILD_SRC}
+		if [ "${SHIPPABLE}" != "true" ]
+		then
+			echo "Running under Travis, removing sources"
+			rm -rf ${KANAPI_BUILD_SRC}
+			mkdir ${KANAPI_BUILD_SRC}
+		fi
 	fi
 	pkg_curl
 }
