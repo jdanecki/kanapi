@@ -30,7 +30,7 @@ pkg_prepare() {
 
 pkg_configure() {
 	local_copy
-	pkg_configure
+	pkg_configure_target
 }
 
 pkg_build() {
