@@ -108,18 +108,18 @@ if [ "${KANAPI_TARGET}" = "x86_64" ]
 then
 	CFLAGS="${CFLAGS} -fPIC"
 fi
+	
+NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+MAKE_JOBS=${NR_CPUS}
 
-if [ "${TRAVIS}" = "true" -o "${CIRCLECI}" = "true" ]
+if [ "${SHIPPABLE}" = "true" ]
 then 
-	if [ "${SHIPPABLE}" = "true" ]
-	then 
-		MAKE_JOBS=2
-	else
-		MAKE_JOBS=8
-	fi
-else
-	NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
-	MAKE_JOBS=${NR_CPUS}
+	MAKE_JOBS=8
+fi
+
+if [ "${SEMAPHORE}" = "true" ]
+then 
+	MAKE_JOBS=16
 fi
 
 if [ "x${PKG_VERBOSE}" = "x1" ]
