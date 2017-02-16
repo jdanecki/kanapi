@@ -1206,3 +1206,6 @@ expect: tcl
 
 iotop:
 	@$(RUN_TARGET)
+
+bash-completion:
+	@$(RUN_TARGET)
