@@ -156,6 +156,16 @@ configure_jenkins() {
 	exit 0
 }
 
+update_sbs() {
+	ARCH="`uname -m`"
+	cp /kanapi_build/kanapi/kanapi_system/test_system/sbs-${ARCH}.tar.xz .
+	if [ -d sbs-${ARCH} ]
+	then
+		rm -rf sbs-${ARCH}
+	fi
+	tar -xJf sbs-${ARCH}.tar.xz
+	exit 0
+}
 
 if [ "$1" = "--help" -o "$1" = "help" ]
 then
@@ -165,6 +175,7 @@ then
 	echo "chroot - configure for compilation in chroot using SBS"
 	echo "setup - show information about setup"
 	echo "jenkins - configure for compilation under Jenkins"
+	echo "update-sbs - update SBS locally"
 	exit 0
 fi
 
@@ -195,6 +206,10 @@ then
 	configure_jenkins
 fi
 
+if [ "$1" = "update-sbs" ]
+then
+	update_sbs
+fi
 
 if [ "`lsb_release -is`" = "KaNaPi" ]
 then 
