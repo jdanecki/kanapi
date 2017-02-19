@@ -43,7 +43,7 @@ mkdir packages
 mkdir etc
 mkdir lib
 
-for pkg in bash binutils busybox curl gcc glib glibc gmp libffi libgcrypt \
+for pkg in bash binutils busybox curl file gcc glib glibc gmp libffi libgcrypt \
 	libssh2 make mpc mpfr openssl zlib
 do
 	pkg_v=${pkg}_ver
@@ -108,6 +108,7 @@ ln -sf /proc/mounts etc/mtab
 cd ..
 cp _start_chroot ${INITRD_DIR}
 cp _start_build ${INITRD_DIR}
+cp _test_build ${INITRD_DIR}
 
 tar cJf sbs-${ARCH}.tar.xz sbs-${ARCH}
 

@@ -34,13 +34,20 @@ pkg_prepare() {
 
 pkg_configure() {
 	echo "pkg_configure ${PACKAGE_NAME}"
+	cp -v ../../packages/package1-1/package1.c .
 }
 
 pkg_build() {
 	echo "pkg_build ${PACKAGE_NAME}"
+	gcc -o package1 package1.c
 }
 
 pkg_install() {
 	echo "pkg_install ${PACKAGE_NAME}"
+	md5sum package1 > package1.md5
+}
+
+pkg_test() {
+	md5sum -c package1.md5
 }
 

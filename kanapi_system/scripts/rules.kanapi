@@ -8,7 +8,6 @@ else
 RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTION) PKG=$@ KANAPI_TOP=$(PWD) V=$(V)
 endif
 
-
 kanapi_download:
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_download" ; fi
 	pkg_kanapi $(PKG).kanapi download $(V)

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,36 +17,41 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=file
-VER=5.29
-#URL="ftp://ftp.astron.com/pub/file"
-URL="ftp://ftp.fu-berlin.de/unix/tools/file"
-#URL="http://distfiles.macports.org/file"
-EXT=tar.gz
+PACKAGE_NAME=iotop
+VER=0.6
+URL="http://guichaz.free.fr/iotop/files"
+EXT=tar.bz2
 #build depends on
+#LIB_DEPENDS=""
+
 . ../settings
 
-export PATH=${KANAPI_HOST_BASE}/../bin:${PATH}
+#export LDFLAGS="${LDFLAGS} "
+#export CFLAGS="${CFLAGS} "
 
 pkg_prepare() {
-	pkg_tar_gz
+	pkg_tar_bz2
 }
 
 pkg_configure() {
-		pkg_configure_target
+	local_copy
 }
 
 pkg_build() {
-		make -j ${MAKE_JOBS} MAKEINFO=true
+	echo "nothing to do"
 }
 
 pkg_install() {
-		pkg_install_make
-		pkg_install_bin_all
-		pkg_install_libs
+	cd build
+	python setup.py install --prefix=${PREFIX} --optimize=1
+	cat <<EOF > iotop.sh
+#!/bin/bash
+export PYTHONPATH=${PREFIX}/lib/python2.7/site-packages
+${PREFIX}/sbin/iotop
+EOF
+	chmod +x iotop.sh
+	mkdir ${PREFIX}/bin
+	cp iotop.sh ${PREFIX}/bin/iotop
+	pkg_install_bin_all
 }
 
-pkg_check() {
-	echo "PATH=$PATH"
-	file --version
-}

@@ -85,3 +85,5 @@ linux-headers_ver=$(linux_headers_ver)
 gsettings-desktop-schemas_ver=$(gsettings_desktop_schemas_ver)
 shared-mime-info_ver=$(shared_mime_info_ver)
 linux-firmware_ver=${linux_firmware_ver}
+ltp-full_ver=$(ltp_full_ver)
+bash-completion_ver=${bash_completion_ver}

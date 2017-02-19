@@ -26,6 +26,7 @@ EXT=tar.bz2
 
 pkg_download() {
 	echo "pkg_download from ${URL}"
+#	pkg_curl
 }
 
 pkg_prepare() {

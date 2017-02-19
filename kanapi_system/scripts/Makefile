@@ -18,9 +18,19 @@ ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
 COMPILERS+=gcc
 endif
 
+ifeq ($(CURRENT_ARCH),x86_64)
+ifeq ($(KANAPI_TARGET),i686)
+	DISABLE_PACKAGES=1
+else
+	DISABLE_PACKAGES=0
+endif
+endif
+
 all: required optional
 
 all-sbs: bbs-sbs
+
+test-sbs: ccache
 
 graph: required_graph optional_graph
 
@@ -38,17 +48,17 @@ optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps
 	apps_qt www 
 
 #Basic Build System 
-bbs: ccache busybox bash make perl m4 autoconf automake grep libtool bison sed gettext ncurses readline gawk openssl cmake \
+bbs: ccache busybox bash-completion make perl m4 autoconf automake libtool bison sed gettext ncurses readline gawk openssl cmake \
 	file flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
-bbs-sbs: ccache m4 perl autoconf automake grep libtool bison sed gettext ncurses readline gawk cmake \
+bbs-sbs: ccache m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
 	file flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm
+apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph
 
@@ -60,7 +70,7 @@ apps_gtk: gtk+ dconf gimp gvim
 apps_gtk3: gtk3+ evince
 
 
-sdl-support: SDL_image
+sdl-support: SDL_image SDL_gfx SDL_ttf
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -113,7 +123,7 @@ icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 sound: alsa-utils esound
 
 
-tests: xflame water xclipboard intel-gpu-tools
+tests: xflame water xclipboard intel-gpu-tools ltp-full
 
 deprecated: procps
 
@@ -218,7 +228,7 @@ libgcrypt: libgpg-error
 libssh2: libgcrypt
 	@$(RUN_TARGET)
 
-slang: zlib ncurses5
+slang: ncurses5
 	@$(RUN_TARGET)
 
 mc: libssh2 glib
@@ -254,7 +264,7 @@ SDL_image: libpng SDL
 gpm:
 	@$(RUN_TARGET)
 
-autoconf: m4
+autoconf:
 	@$(RUN_TARGET)
 
 automake:
@@ -470,7 +480,7 @@ cacert:
 libusb:
 	@$(RUN_TARGET)
 
-usbutils: libusb zlib
+usbutils: libusb
 	@$(RUN_TARGET)
 
 udev: pci_ids usbutils
@@ -873,7 +883,7 @@ ninja: re2c
 diffutils:
 	@$(RUN_TARGET)
 
-curl: openssl libssh2
+curl: libssh2
 	@$(RUN_TARGET)
 
 grep:
@@ -1116,12 +1126,6 @@ syslinux: nasm
 nasm:
 	@$(RUN_TARGET)
 
-mbr: bin86
-	@$(RUN_TARGET)
-
-bin86:
-	@$(RUN_TARGET)
-
 feh: imlib2
 	@$(RUN_TARGET)
 
@@ -1131,7 +1135,7 @@ imlib2:
 evince: poppler itstool shared-mime-info
 	@$(RUN_TARGET)
 
-poppler:
+poppler: jpegsrc
 	@$(RUN_TARGET)
 
 itstool:
@@ -1164,8 +1168,19 @@ wpa_supplicant: libnl
 libnl:
 	@$(RUN_TARGET)
 
+ifeq ($(DISABLE_PACKAGES),1)
+dhcp mbr bin86:
+	true
+else
 dhcp:
 	@$(RUN_TARGET)
+
+mbr: bin86
+	@$(RUN_TARGET)
+
+bin86:
+	@$(RUN_TARGET)
+endif
 
 xlunch:
 	@$(RUN_TARGET)
@@ -1180,4 +1195,22 @@ sdparm:
 	@$(RUN_TARGET)
 
 linux-firmware:
+	@$(RUN_TARGET)
+
+SDL_gfx:
+	@$(RUN_TARGET)
+
+SDL_ttf:
+	@$(RUN_TARGET)
+
+ltp-full: expect
+	@$(RUN_TARGET)
+
+expect: tcl
+	@$(RUN_TARGET)
+
+iotop:
+	@$(RUN_TARGET)
+
+bash-completion: bash
 	@$(RUN_TARGET)

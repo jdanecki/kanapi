@@ -29,9 +29,12 @@ export FORCE_UNSAFE_CONFIGURE=1
 pkg_download() {
 	if [ "${TRAVIS}" = "true" ]
 	then
-		echo "Running under Travis, removing sources"
-		rm -rf ${KANAPI_BUILD_SRC}
-		mkdir ${KANAPI_BUILD_SRC}
+		if [ "${SHIPPABLE}" != "true" ]
+		then
+			echo "Running under Travis, removing sources"
+			rm -rf ${KANAPI_BUILD_SRC}
+			mkdir ${KANAPI_BUILD_SRC}
+		fi
 	fi
 	which curl
 	ldd `which curl`

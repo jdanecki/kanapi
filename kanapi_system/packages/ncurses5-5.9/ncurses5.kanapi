@@ -39,15 +39,23 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	 if [ "${KANAPI_TARGET}" = "x86_64" ]
+	local_copy
+	patch -p1 < ../../../packages/${PACKAGE_NAME}-${VER}/0002-gcc-5.x-MKlib_gen.patch
+	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	 then
 		 export CFLAGS="${CFLAGS} -fPIC"
 	 	 export LDFLAGS="${LDFLAGS} -fPIC"
 	 fi
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+}
+
+pkg_build() {
+	cd build
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {
+	cd build
 	make -j 1 install MAKEINFO=true
 	ln -svf ${PREFIX}/bin/ncurses5-config ${KANAPI_BASE}/../bin
 }

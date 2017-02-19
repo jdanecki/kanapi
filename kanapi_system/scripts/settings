@@ -108,13 +108,18 @@ if [ "${KANAPI_TARGET}" = "x86_64" ]
 then
 	CFLAGS="${CFLAGS} -fPIC"
 fi
+	
+NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+MAKE_JOBS=${NR_CPUS}
 
-if [ "${TRAVIS}" = "true" ]
+if [ "${SHIPPABLE}" = "true" ]
 then 
-	MAKE_JOBS=2
-else
-	NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
-	MAKE_JOBS=${NR_CPUS}
+	MAKE_JOBS=8
+fi
+
+if [ "${SEMAPHORE}" = "true" ]
+then 
+	MAKE_JOBS=16
 fi
 
 if [ "x${PKG_VERBOSE}" = "x1" ]
@@ -144,17 +149,70 @@ pkg_wget() {
 	fi
 }
 
+check_file_type() {
+	FILE=($(file -iL  ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}))
+	if [ "${#FILE[@]}" = "3" ]
+	then
+		MIME=${FILE[1]:0:-1}
+		DOWNLOADED=0
+		echo -n "Checking ${FILE[0]} "
+		case $EXT in
+		bz2) echo -n "bz2 "
+				if [ "${MIME}" = "application/x-bzip2" ] ; then DOWNLOADED=1 ; fi
+				;;
+		tar.bz2) echo -n "tar.bz2 "
+				if [ "${MIME}" = "application/x-bzip2" ] ; then DOWNLOADED=1 ; fi
+				;;
+		src.tar.gz) echo -n "src.tar.gz "
+				if [ "${MIME}" = "application/x-gzip" -o "${MIME}" = "application/gzip" ] ; then DOWNLOADED=1 ; fi
+				;;
+		tar.gz) echo -n "tar.gz "
+				if [ "${MIME}" = "application/x-gzip" -o "${MIME}" = "application/gzip" ] ; then DOWNLOADED=1 ; fi
+				;;
+		tar.xz) echo -n "tar.xz "
+				if [ "${MIME}" = "application/x-xz" ] ; then DOWNLOADED=1 ; fi
+				;;
+		tgz) echo -n "tgz "
+				if [ "${MIME}" = "application/x-gzip" -o "${MIME}" = "application/gzip" ] ; then DOWNLOADED=1 ; fi
+				;;
+		zip) echo -n "zip "
+				if [ "${MIME}" = "application/zip" ] ; then DOWNLOADED=1 ; fi
+				;;
+		*) echo "unknown extension $EXT: ${FILE[1]}"
+			false
+			;;
+		esac
+		if [ "$DOWNLOADED" = "1" ]
+		then 
+			echo " ok"
+			true
+		else
+			echo " Error, got ${MIME}"
+			false
+		fi
+	else
+		echo "Error in getting file type: ${FILE}"
+		false
+	fi
+}
+
 pkg_curl() {
 	if [ -s ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 	then 
 		echo "$PACKAGE_NAME: already downloaded"
 	else
-		echo "downloading ${PACKAGE_NAME}"
+		echo "downloading ${PACKAGE_NAME} from ${PACKAGE_LINK}"
 		curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 		then 
 			echo "downloading ${PACKAGE_NAME} again"
 			curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+		fi
+		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
+		then
+			false
+		else
+			check_file_type
 		fi
 	fi
 }
@@ -162,9 +220,12 @@ pkg_curl() {
 pkg_download() {
 	if [ "${TRAVIS}" = "true" ]
 	then
-		echo "Running under Travis, removing sources"
-		rm -rf ${KANAPI_BUILD_SRC}
-		mkdir ${KANAPI_BUILD_SRC}
+		if [ "${SHIPPABLE}" != "true" ]
+		then
+			echo "Running under Travis, removing sources"
+			rm -rf ${KANAPI_BUILD_SRC}
+			mkdir ${KANAPI_BUILD_SRC}
+		fi
 	fi
 	pkg_curl
 }
@@ -180,7 +241,7 @@ pkg_redownload() {
 	then
 		rm  ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 	fi	
-	pkg_curl
+	pkg_download
 }
 
 

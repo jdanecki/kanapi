@@ -22,7 +22,7 @@ VER=bde9460
 URL="git://anongit.freedesktop.org/xorg/driver"
 EXT=
 #build depends on libXfont libfreetype libpng16 libfontenc
-LIB_DEPENDS="xfont fontenc freetype2 libpng zlib fixesproto"
+LIB_DEPENDS="xfont fontenc freetype2 libpng zlib fixesproto dri2proto"
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lm"
