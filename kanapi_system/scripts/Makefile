@@ -1178,3 +1178,6 @@ screen:
 
 sdparm:
 	@$(RUN_TARGET)
+
+linux-firmware:
+	@$(RUN_TARGET)
