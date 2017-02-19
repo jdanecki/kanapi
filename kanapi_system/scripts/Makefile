@@ -30,6 +30,8 @@ all: required optional
 
 all-sbs: bbs-sbs
 
+test-sbs: ccache
+
 graph: required_graph optional_graph
 
 required_graph:
