@@ -188,6 +188,7 @@ check_file_type() {
 			true
 		else
 			echo " Error, got ${MIME}"
+			rm -f ${FILE[0]}
 			false
 		fi
 	else
