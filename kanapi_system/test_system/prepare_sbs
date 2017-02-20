@@ -111,4 +111,5 @@ cp _start_build ${INITRD_DIR}
 cp _test_build ${INITRD_DIR}
 
 tar cJf sbs-${ARCH}.tar.xz sbs-${ARCH}
+md5sum sbs-${ARCH}.tar.xz > sbs-${ARCH}.tar.xz.md5
 
