@@ -24,6 +24,8 @@ unset LD_LIBRARY_PATH
 
 cd /kanapi_build/kanapi/kanapi_system/`uname -m`
 make all-sbs ACTION=install V=1 && make optional ACTION=install V=1
+result=$?
+echo "Build result=$result
 
 #kill -9  $DBUS_SESSION_BUS_PID
 
@@ -33,3 +35,4 @@ umount /sys/kernel/debug
 umount /sys
 umount /proc
 
+exit $result
