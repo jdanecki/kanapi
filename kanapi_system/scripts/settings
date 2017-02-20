@@ -188,7 +188,8 @@ check_file_type() {
 			true
 		else
 			echo " Error, got ${MIME}"
-			rm -f ${FILE[0]}
+			echo "removing ${FILE[0]:0:-1}"
+			rm -f ${FILE[0]:0:-1}
 			false
 		fi
 	else

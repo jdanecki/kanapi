@@ -19,13 +19,15 @@
 
 PACKAGE_NAME=package1
 VER=1
-URL="http://repository_name_for_${PACKAGE_NAME}"
+#URL="http://repository_name_for_${PACKAGE_NAME}"
+URL="http://kanapi.tk"
 EXT=tar.bz2
 #build depends on
 . ../settings
 
 pkg_download() {
 	echo "pkg_download from ${URL}"
+	pkg_curl
 }
 
 pkg_prepare() {
