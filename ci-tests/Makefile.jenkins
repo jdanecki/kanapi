@@ -7,3 +7,6 @@ test:
 test-sbs: 
 	chroot ../sbs-`uname -m` /_test_build
 
+bbs: 
+	chroot ../sbs-`uname -m` /_start_bbs_build
+

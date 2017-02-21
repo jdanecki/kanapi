@@ -108,6 +108,7 @@ ln -sf /proc/mounts etc/mtab
 cd ..
 cp _start_chroot ${INITRD_DIR}
 cp _start_build ${INITRD_DIR}
+cp _start_bbs_build ${INITRD_DIR}
 cp _test_build ${INITRD_DIR}
 
 tar cJf sbs-${ARCH}.tar.xz sbs-${ARCH}
