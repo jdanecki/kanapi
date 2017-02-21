@@ -43,12 +43,13 @@ kanapi_rebuild:
 
 kanapi_install: kanapi_build
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi
-	pkg_kanapi $(PKG).kanapi install $(V)
+	pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install" ; fi
 	$(call DATE_RULE)
 
 kanapi_reinstall:
-	pkg_kanapi $(PKG).kanapi install $(V)
+	pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
+	/bin/date > kanapi_install
 
 kanapi_uninstall:
 	pkg_kanapi $(PKG).kanapi uninstall $(V)

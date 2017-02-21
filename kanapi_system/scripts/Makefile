@@ -52,7 +52,7 @@ bbs: ccache busybox bash-completion make perl m4 autoconf automake libtool bison
 	file flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
-bbs-sbs: ccache m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
+bbs-sbs: ccache bash-completion m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
 	file flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 

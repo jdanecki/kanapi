@@ -170,9 +170,9 @@ update_sbs() {
 if [ "$1" = "--help" -o "$1" = "help" ]
 then
 	echo "configure parameters: [local | ci | chroot | setup]"
+	echo "chroot - configure for compilation in chroot using SBS (default)"
 	echo "local - configure for full compilation, prepared for builds in KaNaPi"
 	echo "ci - configure compilation under CI (Travis/Codeship)"
-	echo "chroot - configure for compilation in chroot using SBS"
 	echo "setup - show information about setup"
 	echo "jenkins - configure for compilation under Jenkins"
 	echo "update-sbs - update SBS locally"

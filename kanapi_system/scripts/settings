@@ -470,3 +470,55 @@ pkg_install_schemas() {
 	glib-compile-schemas `${PKG_CONFIG} --variable=prefix gsettings-desktop-schemas`/share/glib-2.0/schemas
 }
 
+verify_file() {
+	FILE=($(file -iL $1))
+	if [ "${#FILE[@]}" = "3" ]
+	then
+		MIME=${FILE[1]:0:-1}
+		VERIFIED=0
+		echo -n "Checking ${FILE[0]} "
+		case $MIME in
+		application/x-executable) echo "application "
+				ldd $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+		application/x-sharedlib) echo "library "
+				ldd $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+
+		*) echo "unknown extension $EXT: ${FILE[1]}"
+			false
+			;;
+		esac
+		if [ "$VERIFIED" = "1" ]
+		then
+			echo " ok"
+			true
+		else
+			echo " Error, got ${MIME}"
+			false
+		fi
+	else
+		echo "Error in getting file type: ${FILE}"
+		false
+	fi
+}
+
+pkg_verify() {
+	echo "Verifing ${PACKAGE_NAME} in ${PREFIX}"
+	for f in ${PREFIX}/bin/* ${PREFIX}/sbin/*  ${PREFIX}/usr/bin/* ${PREFIX}/usr/sbin/*
+	do
+		if [ -f $f ]
+		then
+			verify_file $f
+		fi
+	done
+	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib64*.so*
+	do
+		if [ -f $f ]
+		then
+			verify_file $f
+		fi
+	done
+}
