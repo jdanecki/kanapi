@@ -63,6 +63,9 @@ kanapi_test:
 kanapi_check:
 	pkg_kanapi $(PKG).kanapi check $(V)
 
+kanapi_verify:
+	pkg_kanapi $(PKG).kanapi verify $(V)
+
 kanapi_version:
 	pkg_kanapi $(PKG).kanapi version $(V)
 

@@ -7,7 +7,7 @@ if [ "x$1" == "x" ]
 then
 	echo "package name missing!"
 	echo "use: script_name package_name"
-	echo "where script_name is one from download|prepare|configure|build|install|help|reconfigure|rebuild|reinstall|redownload"
+	echo "where script_name is one from download|prepare|configure|build|install|help|reconfigure|rebuild|reinstall|redownload|verify"
 	echo "for example: download gzip"
 else
 	if [ "x$2" == "xverbose" ]
