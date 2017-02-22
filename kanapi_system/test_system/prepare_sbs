@@ -36,6 +36,7 @@ rm -rf ${INITRD_DIR}
 mkdir ${INITRD_DIR}
 cd ${INITRD_DIR}
 
+echo "Copying files"
 for d in dev proc run sys tmp var
 do
 	cp -ar ${KANAPI_BASE}/$d .
@@ -73,7 +74,9 @@ ln -sf ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver} ${KANAPI_BASE_LOCAL}
 mkdir bin
 mkdir usr
 ln -sf /bin usr/bin
+echo "Preparing libraries"
 mkdir packages/libs
+set +e
 for pkg in packages/*
 do
 	for b in ${pkg}/bin/* ${pkg}/usr/bin/* ${pkg}/sbin/* ${pkg}/usr/sbin/*
@@ -90,8 +93,8 @@ do
 		if [ -f $b ]
 		then 
 			ln -sf ${KANAPI_BASE}/${b} packages/libs
-			file -i ${b} | grep x-sharedlib > /dev/null
-			if [ "$?" = "0" ] ; then strip ${b} ; fi
+			file -i ${b} | grep x-sharedlib > /dev/null 
+		   	if [ "$?" = "0" ] ; then strip ${b} ; fi
 		fi
 	done
 done
@@ -100,7 +103,7 @@ do
 	file -i ${i} | grep application > /dev/null
 	if [ "$?" = "0" ] ; then strip ${i} ; fi
 done
-
+set -e
 ln -svf bash bin/sh
 ln -sf ${KANAPI_BASE_PACKAGES}/binutils-${binutils_ver}/${ARCH}-kanapi-linux-gnu/bin/* bin
 echo "${KANAPI_VER} `date -R`" > sbs.version
@@ -112,7 +115,7 @@ cp _start_chroot ${INITRD_DIR}
 cp _start_build ${INITRD_DIR}
 cp _start_bbs_build ${INITRD_DIR}
 cp _test_build ${INITRD_DIR}
-
+echo "Compressing image"
 tar cJf sbs-${ARCH}.tar.xz sbs-${ARCH}
 md5sum sbs-${ARCH}.tar.xz > sbs-${ARCH}.tar.xz.md5
 

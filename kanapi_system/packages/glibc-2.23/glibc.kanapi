@@ -86,7 +86,11 @@ pkg_build() {
 pkg_install() {
 	set_variables
 	date > manual/libc.info
+	OLD_PATH=${PATH}
+	NEW_PATH=`echo $PATH | sed "s@${KANAPI_TARGET_BIN}:@@"`
+	export PATH=${NEW_PATH}
 	pkg_install_make
+	export PATH=${OLD_PATH}
 	CROSS_GCC_DIR=${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} 
 	if [ ! -d ${CROSS_GCC_DIR} ]
 	then 
@@ -126,7 +130,10 @@ pkg_install() {
 
 pkg_check() {
 	ld --version
-	echo "PATH=$PATH"
 	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 	gcc --version
+	echo "KANAPI_VER=${KANAPI_VER}"
+	NEW_PATH=`echo $PATH | sed "s@${KANAPI_TARGET_BIN}:@@"`
+	echo "PATH=$PATH"
+	echo "NEW_PATH=${NEW_PATH}"
 }
