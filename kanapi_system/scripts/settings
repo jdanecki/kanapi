@@ -470,6 +470,24 @@ pkg_install_schemas() {
 	glib-compile-schemas `${PKG_CONFIG} --variable=prefix gsettings-desktop-schemas`/share/glib-2.0/schemas
 }
 
+check_script() {
+	echo "checking shell"
+	LINE=`head -n 1 $1`
+	echo $LINE | grep "#!"
+	if [ "$?" = "0" ]
+	then
+		SHL="`echo ${LINE[@]:2} | sed 's/ .*$//' `"
+		if [ -x $SHL ]
+		then 
+			true
+		else
+			false
+		fi 
+	else
+		false
+	fi
+}
+
 verify_file() {
 	FILE=($(file -iL $1))
 	if [ "${#FILE[@]}" = "3" ]
@@ -479,15 +497,39 @@ verify_file() {
 		echo -n "Checking ${FILE[0]} "
 		case $MIME in
 		application/x-executable) echo "application "
-				ldd $1
-				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				file -L $1 | grep "statically linked"
+				if [ "$?" = "0" ] 
+				 then 
+					VERIFIED=1 
+				else
+					ldd $1
+					if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				fi
 				;;
 		application/x-sharedlib) echo "library "
 				ldd $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;
-
-		*) echo "unknown extension $EXT: ${FILE[1]}"
+		text/x-shellscript) echo "shell script"
+				check_script $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+		 text/x-perl) echo "perl script"
+				check_script $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+		 text/plain) echo "text file"
+				check_script $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+		text/x-python) echo "python script"
+				check_script $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+		image/x-ms-bmp) echo "bmp file"
+				VERIFIED=1
+				;;
+		*) echo "unknown file type: ${FILE[1]}"
 			false
 			;;
 		esac
@@ -512,6 +554,10 @@ pkg_verify() {
 		if [ -f $f ]
 		then
 			verify_file $f
+			if [ "$?" != "0" ]
+			then
+				exit 1
+			fi
 		fi
 	done
 	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib64*.so*

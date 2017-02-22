@@ -65,6 +65,7 @@ kanapi_check:
 
 kanapi_verify:
 	pkg_kanapi $(PKG).kanapi verify $(V)
+	$(call DATE_RULE)
 
 kanapi_version:
 	pkg_kanapi $(PKG).kanapi version $(V)
