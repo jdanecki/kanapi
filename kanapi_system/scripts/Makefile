@@ -48,12 +48,12 @@ optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps
 	apps_qt www 
 
 #Basic Build System 
-bbs: ccache busybox bash-completion make perl m4 autoconf automake libtool bison sed gettext ncurses readline gawk openssl cmake \
-	file flex attr acl libarchive e2fsprogs git \
+bbs: file ccache busybox bash-completion make perl m4 autoconf automake libtool bison sed gettext ncurses readline gawk openssl cmake \
+	flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
-bbs-sbs: ccache bash-completion m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
-	file flex attr acl libarchive e2fsprogs git \
+bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
+	flex attr acl libarchive e2fsprogs git \
 	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
 
 
