@@ -34,6 +34,7 @@ pkg_prepare() {
 }
 
 pkg_install() {
+	MAKE_JOBS=1
 	pkg_install_make
 	pkg_install_bin_all
 }
