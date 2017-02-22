@@ -28,13 +28,13 @@ echo "Preparing SBS for ${KANAPI_VER} on ${ARCH}"
 KANAPI_BASE=/kanapi_${KANAPI_VER}/${ARCH}
 KANAPI_BASE_PACKAGES=${KANAPI_BASE}/packages
 KANAPI_BASE_LOCAL=kanapi_${KANAPI_VER}/${ARCH}
-INITRD_DIR=sbs-${ARCH}
+SBS_DIR=sbs-${ARCH}
 
 echo "KANAPI_BASE=${KANAPI_BASE}"
-echo "INITRD_DIR=${INITRD_DIR}"
-rm -rf ${INITRD_DIR}
-mkdir ${INITRD_DIR}
-cd ${INITRD_DIR}
+echo "SBS_DIR=${SBS_DIR}"
+rm -rf ${SBS_DIR}
+mkdir ${SBS_DIR}
+cd ${SBS_DIR}
 
 echo "Copying files"
 for d in dev proc run sys tmp var
@@ -111,10 +111,14 @@ mkdir kanapi_build
 ln -sf /proc/mounts etc/mtab
 
 cd ..
-cp _start_chroot ${INITRD_DIR}
-cp _start_build ${INITRD_DIR}
-cp _start_bbs_build ${INITRD_DIR}
-cp _test_build ${INITRD_DIR}
+
+cp _start_chroot ${SBS_DIR}
+cp _start_build ${SBS_DIR}
+cp _start_bbs_build ${SBS_DIR}
+cp _test_build ${SBS_DIR}
+cp -a ${KANAPI_BASE}/init ${SBS_DIR}
+cp -a ${KANAPI_BASE}/init-${ARCH} ${SBS_DIR}
+
 echo "Compressing image"
 tar cJf sbs-${ARCH}.tar.xz sbs-${ARCH}
 md5sum sbs-${ARCH}.tar.xz > sbs-${ARCH}.tar.xz.md5
