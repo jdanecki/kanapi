@@ -514,11 +514,15 @@ verify_file() {
 				check_script $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;
-		 text/x-perl) echo "perl script"
+		text/x-perl) echo "perl script"
 				check_script $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;
-		 text/plain) echo "text file"
+		text/x-awk) echo "awk script"
+				check_script $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+		text/plain) echo "text file"
 				check_script $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;
