@@ -43,6 +43,7 @@ pkg_build() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
 		cd build
+		MAKE_JOBS=1
 		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 	fi
 }
@@ -51,6 +52,7 @@ pkg_install() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
 		cd build
+		MAKE_JOBS=1
 		pkg_install_make
 		pkg_install_bin_all
 		for i in mtrace glib-mkenums
