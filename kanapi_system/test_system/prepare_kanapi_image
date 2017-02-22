@@ -54,13 +54,13 @@ if [ -n "${PARTPROBE}" ]
 then
 	partprobe /dev/loop0
 else
-	grep loop0p1 /proc/partitions
+	grep loop0p1 /proc/partitions > /dev/null
 	if [ "$?" = "0" ]
 	then
 		partx -d /dev/loop0
 	fi
 	partx -a /dev/loop0
-	grep loop0p1 /proc/partitions
+	grep loop0p1 /proc/partitions > /dev/null
 	if [ "$?" = "0" ]
 	then
 		echo "Partitions created"
@@ -70,11 +70,22 @@ else
 	fi
 fi
 
+echo "Checking loop devices"
+if [ -b /dev/loop0p1 ] ; then rm /dev/loop0p1 ; fi
+if [ -b /dev/loop0p2 ] ; then rm /dev/loop0p2 ; fi
+LINE=($(grep loop0p1 /proc/partitions ))
+mknod /dev/${LINE[3]} b ${LINE[0]} ${LINE[1]} 
+LINE=($(grep loop0p2 /proc/partitions ))
+mknod /dev/${LINE[3]} b ${LINE[0]} ${LINE[1]} 
+
 mkfs.vfat -I /dev/loop0p1
 
 syslinux /dev/loop0p1
 
 ./prepare_initrd
+
+if [ ! -d p1 ]; then mkdir p1; fi
+if [ ! -d p2 ]; then mkdir p2; fi
 
 mount /dev/loop0p1 p1
 cp boot-${ARCH}/* p1
