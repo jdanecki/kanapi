@@ -50,11 +50,11 @@ optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps
 #Basic Build System 
 bbs: file ccache busybox bash-completion make perl m4 autoconf automake libtool bison sed gettext ncurses readline gawk openssl cmake \
 	flex attr acl libarchive e2fsprogs git \
-	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
+	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh mtools
 
 bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
 	flex attr acl libarchive e2fsprogs git \
-	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
+	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh mtools
 
 
 #KS - KaNaPi System textmode apps
@@ -1213,4 +1213,7 @@ iotop:
 	@$(RUN_TARGET)
 
 bash-completion: bash
+	@$(RUN_TARGET)
+
+mtools:
 	@$(RUN_TARGET)
