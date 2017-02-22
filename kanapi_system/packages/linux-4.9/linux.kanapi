@@ -22,7 +22,6 @@ VER=4.9
 URL="https://cdn.kernel.org/pub/linux/kernel/v4.x"
 EXT=tar.xz
 #build depends on
-. ../settings
 
 . ../settings
 
@@ -40,10 +39,17 @@ configure_menu() {
 }
 
 pkg_configure() {
+	grep Atom /proc/cpuinfo > /dev/null 
+   	if [ "$?" = "0" ]
+	then
+		echo "Atom platform"
+		cp -v ../../packages/${PACKAGE_VER}/config-${KANAPI_KERNEL_TARGET}-atom .config
+	else
+		cp -v ../../packages/${PACKAGE_VER}/config-${KANAPI_KERNEL_TARGET} .config
+	fi
 #	configure_menu
-#	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` versatile_defconfig
-	cp -v ../../packages/${PACKAGE_VER}/config-${KANAPI_KERNEL_TARGET} .config
 	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` olddefconfig
+#	make ARCH=${KANAPI_KERNEL_TARGET} V=1 -C ${PACKAGE_SRCDIR} O=`pwd` versatile_defconfig
 }
 
 pkg_build() {
@@ -73,4 +79,7 @@ pkg_check() {
 	export PATH=${KANAPI_HOST_BASE}/../cross/`uname -m`/gcc-${gcc_ver}/bin:${PATH}
 	echo "PATH=${PATH}"
 	`uname -m`-kanapi-linux-gnu-gcc --version
+	ls -l `which depmod`
+	ls -l `which sort`
+	ls -l `which grep`
 }

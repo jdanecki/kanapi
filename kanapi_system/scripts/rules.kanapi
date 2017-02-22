@@ -8,7 +8,6 @@ else
 RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTION) PKG=$@ KANAPI_TOP=$(PWD) V=$(V)
 endif
 
-
 kanapi_download:
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_download" ; fi
 	pkg_kanapi $(PKG).kanapi download $(V)
@@ -44,12 +43,13 @@ kanapi_rebuild:
 
 kanapi_install: kanapi_build
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi
-	pkg_kanapi $(PKG).kanapi install $(V)
+	pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install" ; fi
 	$(call DATE_RULE)
 
 kanapi_reinstall:
-	pkg_kanapi $(PKG).kanapi install $(V)
+	pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
+	/bin/date > kanapi_install
 
 kanapi_uninstall:
 	pkg_kanapi $(PKG).kanapi uninstall $(V)
@@ -62,6 +62,10 @@ kanapi_test:
 
 kanapi_check:
 	pkg_kanapi $(PKG).kanapi check $(V)
+
+kanapi_verify:
+	pkg_kanapi $(PKG).kanapi verify $(V)
+	$(call DATE_RULE)
 
 kanapi_version:
 	pkg_kanapi $(PKG).kanapi version $(V)
@@ -78,5 +82,4 @@ kanapi_help:
 	@echo "reconfigure - reconfigure package/packages"
 	@echo "rebuild     - rebuild package/packages"
 	@echo "reinstall   - reinstall package/packages"
-
 

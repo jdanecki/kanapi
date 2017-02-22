@@ -24,7 +24,7 @@ URL="http://xorg.mirrors.pair.com/individual/app"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="xmu xext sm ice xpm xcb xau"
+LIB_DEPENDS="xmu xext sm ice xpm xcb xau uuid"
 
 . ../settings
 
@@ -32,6 +32,11 @@ export LDFLAGS="${LDFLAGS} -lpthread -lm -lrt"
 
 pkg_prepare() {
 	pkg_tar_bz2
+}
+
+pkg_configure() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+		--with-manconfig=${PREFIX}/etc/man.conf
 }
 
 pkg_install() {

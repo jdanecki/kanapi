@@ -72,7 +72,7 @@ local_copy() {
 	cd build
 }
 
-pkg_download() {
+pkg_wget() {
 	if [ -s ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 	then 
 		echo "$PACKAGE_NAME: already downloaded"
@@ -90,6 +90,10 @@ pkg_curl() {
 		echo "downloading ${PACKAGE_NAME}"
 		curl ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 	fi
+}
+
+pkg_download() {
+	pkg_curl
 }
 
 pkg_copy() {

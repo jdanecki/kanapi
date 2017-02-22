@@ -19,6 +19,7 @@
 
 ARCH=`uname -m`
 KERNEL=`uname -r`
+
 export LANG=pl_PL.UTF-8
 export LC_ALL=pl_PL.UTF-8
 export EDITOR=vim
@@ -32,6 +33,8 @@ export XDG_RUNTIME_DIR=${HOME}/.cache
 export LD_LIBRARY_PATH=/kanapi_packages/libs
 export PATH=/bin
 
+busybox mount -t ext4 /dev/sda2 /packages
+
 dmesg -n 4
 
 ifconfig lo up
@@ -41,7 +44,6 @@ mount -t sysfs sysfs /sys
 mkdir /dev/pts
 mount -t devpts devpts /dev/pts
 mount -t debugfs debugs /sys/kernel/debug
-mount /dev/sda2 /packages
 
 /kanapi_${KANAPI_VER}/${ARCH}/packages/udev-175/libexec/udevd --daemon
 udevadm trigger

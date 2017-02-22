@@ -19,13 +19,15 @@
 
 PACKAGE_NAME=package1
 VER=1
-URL="http://repository_name_for_${PACKAGE_NAME}"
+#URL="http://repository_name_for_${PACKAGE_NAME}"
+URL="http://kanapi.tk"
 EXT=tar.bz2
 #build depends on
 . ../settings
 
 pkg_download() {
 	echo "pkg_download from ${URL}"
+#	pkg_curl
 }
 
 pkg_prepare() {
@@ -34,13 +36,20 @@ pkg_prepare() {
 
 pkg_configure() {
 	echo "pkg_configure ${PACKAGE_NAME}"
+	cp -v ../../packages/package1-1/package1.c .
 }
 
 pkg_build() {
 	echo "pkg_build ${PACKAGE_NAME}"
+	gcc -o package1 package1.c
 }
 
 pkg_install() {
 	echo "pkg_install ${PACKAGE_NAME}"
+	md5sum package1 > package1.md5
+}
+
+pkg_test() {
+	md5sum -c package1.md5
 }
 

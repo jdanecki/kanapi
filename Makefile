@@ -1,6 +1,4 @@
-all:
-	make -C ci-tests all
+# 'test-sbs' and 'bbs' targets are supported only under Jenkins config
 
-test:
-	make -C ci-tests test
-
+all test test-sbs bbs:
+	make -C ci-tests $@

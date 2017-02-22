@@ -23,7 +23,10 @@ URL="https://github.com/ninja-build/ninja/archive"
 EXT=tar.gz
 #build depends on
 . ../settings
-	
+
+export AR=${KANAPI_TARGET_NAME}-ar
+export CXX=${KANAPI_TARGET_NAME}-g++
+
 pkg_download() {
 	PACKAGE_LINK=${URL}/v${VER}.${EXT}
 	pkg_curl
@@ -39,7 +42,12 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	./configure.py --platform linux --host linux --bootstrap
+	if [ "${KANAPI_CROSS}" = "1" ]
+	then
+		sed -i "s@print('bootstrap complete.  rebuilding...')@exit()@" configure.py
+	fi
+
+	./configure.py --platform linux --host linux --bootstrap --verbose
 }
 
 pkg_install() {

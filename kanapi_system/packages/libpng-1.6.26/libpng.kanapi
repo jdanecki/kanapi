@@ -21,7 +21,8 @@ PACKAGE_NAME=libpng
 VER=1.6.26
 URL="SF"
 EXT=tar.xz
-SF_URL="libpng/libpng16/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
+#SF_URL="libpng/libpng16/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
+SF_URL="libpng/libpng16/older-releases/${VER}/libpng-${VER}.${EXT}"
 LIB_DEPENDS=zlib
 
 . ../settings

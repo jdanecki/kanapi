@@ -27,8 +27,8 @@ LIB_DEPENDS="libssh2 zlib openssl"
 
 . ../settings
 
-export LDFLAGS="`${PKG_CONFIG} --libs-only-L ${LIB_DEPENDS}` -L`libgcrypt-config --prefix`/lib \
-	-L`gpg-error-config --prefix`/lib"
+export LDFLAGS="`${PKG_CONFIG} --libs-only-L ${LIB_DEPENDS}` -L`${LIBGCRYPT_CONFIG} --prefix`/lib \
+	-L`${GPG_ERROR_CONFIG} --prefix`/lib"
 export LIBS="`${PKG_CONFIG} --libs-only-l ${LIB_DEPENDS}` -lgpg-error -ldl"
 
 pkg_prepare() {
@@ -52,5 +52,8 @@ pkg_check() {
 	echo "LDFLAGS=${LDFLAGS}"
 	echo "LIBS=${LIBS}"
 	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
+	echo $PATH
+	${LIBGCRYPT_CONFIG} --cflags
+	${GPG_ERROR_CONFIG} --prefix
 }
 

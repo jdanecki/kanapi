@@ -29,6 +29,6 @@ pkg_prepare() {
 }
 
 pkg_install() {
-	pkg_install_make
+	pkg_install_pc_share_all
 }
 

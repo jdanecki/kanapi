@@ -24,15 +24,16 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
-if [ ${KANAPI_CROSS} -eq 0 ]
+if [ "${KANAPI_TARGET}" = "arm" ]
 then
-	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
-else 
-	if [ "`lsb_release -is`" = "KaNaPi" ] 
+	if [ -d "${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}" ]
 	then
-		export PERL5LIB="/kanapi_packages/XML-Parser-2.34/lib/site_perl/5.16.1"
+		export PERL5LIB="${KANAPI_HOST_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+		export PATH=${KANAPI_HOST_BASE}/../bin:${PATH}
 	fi
-fi	
+else
+	export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
+fi
 
 pkg_prepare() {
 	pkg_tar_bz2

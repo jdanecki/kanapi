@@ -22,14 +22,20 @@ VER=2.40.1
 URL="http://www.graphviz.org/pub/graphviz/stable/SOURCES"
 EXT=tar.gz
 #build depends on
-
-LIB_DEPENDS="expat xaw7 xrender x11 cairo tcl tk xmu xext"
+#need Qt4
+LIB_DEPENDS="expat xaw7 xrender x11 cairo tcl tk xmu xext ice xpm sm ruby-2.4"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lm -lrt -lpthread"
+export LDFLAGS="${LDFLAGS} -lm -lrt -lpthread -lresolv -lstdc++"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
+export CXXCPP="${KANAPI_TARGET_NAME}-g++ -E ${CFLAGS} -std=c++11"
 export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir cairo`"
+export CXXFLAGS="${CFLAGS} -std=c++11 -fPIC"
+#export QTCORE_CFLAGS="`${PKG_CONFIG} --cflags Qt5Core`"
+#export QTCORE_LIBS="`${PKG_CONFIG} --libs Qt5Core`"
+#export QTGUI_CFLAGS="`${PKG_CONFIG} --cflags Qt5Gui`"
+#export QTGUI_LIBS="`${PKG_CONFIG} --libs Qt5Gui`"
 
 pkg_prepare() {
 	pkg_tar_gz
@@ -41,7 +47,7 @@ pkg_configure() {
 	mv configure.tmp configure
 	chmod +x configure
 	export TCLSH_EXEC_PREFIX=`${PKG_CONFIG} --variable=prefix tcl`
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-qt=no
 }
 
 pkg_build() {
@@ -58,5 +64,10 @@ pkg_install() {
 
 pkg_check() {
 	${PKG_CONFIG} --libs ${LIB_DEPENDS}
+	echo ${CFLAGS}
+#	echo "QTCORE_CFLAGS=$QTCORE_CFLAGS"
+#	echo "QTCORE_LIBS=$QTCORE_LIBS"
+#	echo "QTGUI_CFLAGS=$QTGUI_CFLAGS"
+#	echo "QTGUI_LIBS=$QTGUI_LIBS"
 }
 

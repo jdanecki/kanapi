@@ -19,8 +19,8 @@
 
 PACKAGE_NAME=ImageMagick
 VER=7.0.3-10
-URL="ftp://ftp.imagemagick.org/pub/ImageMagick"
-EXT=tar.bz2
+URL="https://www.imagemagick.org/download/releases"
+EXT=tar.xz
 #build depends on
 
 LIB_DEPENDS="x11 xcb xau"
@@ -30,7 +30,14 @@ LIB_DEPENDS="x11 xcb xau"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
-	pkg_tar_bz2
+	pkg_tar_xz
+}
+
+
+pkg_configure() {	
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	--disable-openmp --with-dejavu-font-dir=${KANAPI_BASE}/dejavu-fonts-ttf-${dejavu_fonts_ttf_ver}/ttf \
+  	--with-gs-font-dir=${KANAPI_BASE}/font-util-${font_util_ver}/share/fonts/X11/Type1
 }
 
 pkg_install() {

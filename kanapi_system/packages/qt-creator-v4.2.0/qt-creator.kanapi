@@ -52,3 +52,7 @@ pkg_install() {
 	pkg_install_bin_all
 }
 
+pkg_check() {
+	echo $LD_LIBRARY_PATH
+}
+

@@ -29,6 +29,10 @@ pkg_prepare() {
 	pkg_tar_bz2
 	mkdir -p ${PREFIX}/${KANAPI_TARGET_NAME}
 	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${PREFIX}/${KANAPI_TARGET_NAME}/lib
+	if [ "${KANAPI_TARGET}" = "x86_64" ]
+	then 
+		ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${PREFIX}/${KANAPI_TARGET_NAME}/lib64
+	fi
 	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/include
 	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/sys-include
 }

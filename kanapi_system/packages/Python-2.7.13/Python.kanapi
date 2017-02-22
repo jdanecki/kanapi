@@ -36,12 +36,22 @@ pkg_prepare() {
 }
 
 pkg_configure_target() {	
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --build=`uname -m`-kanapi-linux-gnu
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --build=`uname -m`-kanapi-linux-gnu \
+	--target=${KANAPI_TARGET_NAME} \
+	--disable-ipv6 set ac_cv_file__dev_ptmx=yes ac_cv_file__dev_ptc=yes
 }
 
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_bin_all
 	pkg_install_libs
+	for i in gdbus-codegen gtester-report
+	do
+		FILE=`readlink ${KANAPI_TARGET_BIN}/$i`
+		if [ -f "${FILE}" ]
+		then
+			sed -i "s@kanapi_.*bin/@kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin/@" ${FILE}
+		fi
+	done
 }
 

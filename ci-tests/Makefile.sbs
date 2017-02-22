@@ -1,0 +1,6 @@
+all: 
+	chroot ../sbs-`uname -m` /_start_build
+
+test: 
+	chroot ../sbs-`uname -m` /_start_chroot
+

@@ -9,15 +9,38 @@ include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/rules.kanapi
-
+KANAPI_VER=$(shell cat  $(BASE)../scripts/KANAPI_VER)
 CURRENT_ARCH=$(shell uname -m)
 COMPILERS=cross_gcc
+KANAPI_BASE=/kanapi_$(KANAPI_VER)/$(CURRENT_ARCH)/packages
 
 ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
 COMPILERS+=gcc
 endif
 
+ifeq ($(CURRENT_ARCH),x86_64)
+ifeq ($(KANAPI_TARGET),i686)
+	DISABLE_PACKAGES=1
+else
+	DISABLE_PACKAGES=0
+endif
+endif
+
 all: required optional
+
+all-sbs: bbs-sbs
+
+test-sbs: ccache
+
+graph: required_graph optional_graph
+
+required_graph:
+	unset LANG; unset LC_ALL; make -Bnd required ACTION=download V=1 | make2graph -r > required.dot
+	#| dot -Tpdf -o required.pdf
+
+optional_graph:
+	unset LANG; unset LC_ALL; make -Bnd optional ACTION=download V=1 | make2graph -r > optional.dot
+	#| dot -Tpdf -o optional.pdf
 
 required: $(COMPILERS) rootfs bbs
 
@@ -25,25 +48,29 @@ optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps
 	apps_qt www 
 
 #Basic Build System 
-bbs: ccache busybox bash make autoconf automake bison sed gettext ncurses readline gawk openssl cmake \
-	file flex attr acl libarchive e2fsprogs m4 perl libtool git \
-	coreutils diffutils Python ninja grep tar findutils patch slang util-linux less openssh
+bbs: file ccache busybox bash-completion make perl m4 autoconf automake libtool bison sed gettext ncurses readline gawk openssl cmake \
+	flex attr acl libarchive e2fsprogs git \
+	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
+
+bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
+	flex attr acl libarchive e2fsprogs git \
+	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh
+
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng bc
+apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop
 
-devel: cgdb strace ltrace ctags chrpath patchelf groff vala
+devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
 
-apps_gtk: gtk+ gimp gvim
+apps_gtk: gtk+ dconf gimp gvim
 
-apps_gtk3: gtk3+
+apps_gtk3: gtk3+ evince
 
-apps_qt: qt-everywhere-opensource-src qt-creator
 
-sdl-support: SDL_image
+sdl-support: SDL_image SDL_gfx SDL_ttf
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -57,7 +84,20 @@ x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
 	xf86-video-modesetting fonts setxkbmap xinput libXft icons
 
-fonts: fonts-bitmap fonts-type1 fonts-misc
+fonts: fonts-bitmap fonts-type1 fonts-misc fonts-ttf
+#	for i in 100dpi 75dpi Speedo Type1 cyrillic misc; do ln -svf $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/$$i $(KANAPI_BASE)/fontconfig-$(fontconfig_ver)/share/fonts ; done
+	if [ ! -d $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ] ; then mkdir $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF; fi
+	for i in $(KANAPI_BASE)/freefont-ttf-$(freefont_ttf_ver)/*.ttf $(KANAPI_BASE)/dejavu-fonts-ttf-$(dejavu_fonts_ttf_ver)/ttf/*.ttf ; do \
+		ln -svf $$i $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; done
+	echo -n > $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts
+	for i in $(KANAPI_BASE)/freefont-ttf-$(freefont_ttf_ver)/fonts.scale $(KANAPI_BASE)/dejavu-fonts-ttf-$(dejavu_fonts_ttf_ver)/ttf/fonts.scale ; do \
+		cat $$i | grep ttf >> $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts ; done
+	cat $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts	| wc -l >  $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts.scale
+	cat $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts	>>  $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts.scale
+	rm $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts
+	cd $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; mkfontdir
+
+fonts-ttf: freefont-ttf dejavu-fonts-ttf
 	
 fonts-bitmap: fonts-utopia fonts-bh fonts-bitstream
 	
@@ -76,15 +116,14 @@ wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth tk graphviz
-	
-icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme adwaita-icon-theme
+   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh xlunch
+
+icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
 sound: alsa-utils esound
 
-www: webkitgtk midori
 
-tests: xflame water xclipboard intel-gpu-tools
+tests: xflame water xclipboard intel-gpu-tools ltp-full
 
 deprecated: procps
 
@@ -108,10 +147,13 @@ package2: package1
 #
 # kernel, glibc, compilers
 #
+linux-headers:
+	@$(RUN_TARGET)
+
 linux:
 	@$(RUN_TARGET)
 
-glibc: linux
+glibc: linux-headers
 	@$(RUN_TARGET)
 
 cross_gcc: glibc
@@ -186,7 +228,7 @@ libgcrypt: libgpg-error
 libssh2: libgcrypt
 	@$(RUN_TARGET)
 
-slang: zlib ncurses5
+slang: ncurses5
 	@$(RUN_TARGET)
 
 mc: libssh2 glib
@@ -201,19 +243,13 @@ make:
 git: curl 
 	@$(RUN_TARGET)
 
-openssl:
+openssl: 
 	@$(RUN_TARGET)
 
 openssh:
 	@$(RUN_TARGET)
 
 SDL-fb:
-	@$(RUN_TARGET)
-
-xflame: SDL
-	@$(RUN_TARGET)
-
-water: SDL
 	@$(RUN_TARGET)
 
 libpng:
@@ -273,7 +309,7 @@ m4:
 perl:
 	@$(RUN_TARGET)
 
-libtool:
+libtool: grep
 	@$(RUN_TARGET)
 
 kbproto:
@@ -444,7 +480,7 @@ cacert:
 libusb:
 	@$(RUN_TARGET)
 
-usbutils: libusb zlib
+usbutils: libusb
 	@$(RUN_TARGET)
 
 udev: pci_ids usbutils
@@ -453,8 +489,13 @@ udev: pci_ids usbutils
 expat:
 	@$(RUN_TARGET)
 
+ifeq ($(KANAPI_TARGET),arm)
+llvm_ver=$(llvm3_3_ver)
+endif	
+
 llvm: ninja
 	@$(RUN_TARGET)
+
 
 mesa: libxshmfence udev expat llvm
 	@$(RUN_TARGET)
@@ -519,9 +560,6 @@ coreutils:
 dtc:
 	@$(RUN_TARGET)
 
-qemu: dtc
-	@$(RUN_TARGET)
-
 alsa-lib:
 	@$(RUN_TARGET)
 
@@ -546,7 +584,7 @@ vtwm: libXpm
 ratpoison:
 	@$(RUN_TARGET)
 
-libXft: libXrender fontconfig
+libXft: libXrender
 	@$(RUN_TARGET)
 
 libXrender:
@@ -561,7 +599,7 @@ freefont-ttf: fontconfig
 dejavu-fonts-ttf: fontconfig
 	@$(RUN_TARGET)
 
-xfd: libXaw freefont-ttf dejavu-fonts-ttf
+xfd: libXaw
 	@$(RUN_TARGET)
 
 libXcursor: libXrender
@@ -815,10 +853,10 @@ libXi:
 xeyes:
 	@$(RUN_TARGET)
 
-xev:libXrandr
+xev: libXrandr
 	@$(RUN_TARGET)
 
-libXrandr:
+libXrandr: libXrender
 	@$(RUN_TARGET)
 
 xhost:
@@ -845,7 +883,7 @@ ninja: re2c
 diffutils:
 	@$(RUN_TARGET)
 
-curl: openssl libssh2
+curl: libssh2
 	@$(RUN_TARGET)
 
 grep:
@@ -923,11 +961,41 @@ libXv:
 ctags:
 	@$(RUN_TARGET)
 
+ifeq ($(KANAPI_TARGET),arm)
+tcl tk graphviz swig groff xflame water qemu gimp apps_qt www:
+	true
+else
+www: webkitgtk midori
+
+apps_qt: qt-everywhere-opensource-src qt-creator vym
+
+gimp: babl gegl dbus-glib
+	@$(RUN_TARGET)
+
+qemu: dtc
+	@$(RUN_TARGET)
+
+xflame: SDL
+	@$(RUN_TARGET)
+
+water: SDL
+	@$(RUN_TARGET)
+
 tcl:
 	@$(RUN_TARGET)
 
 tk: tcl
 	@$(RUN_TARGET)
+
+graphviz: swig
+	@$(RUN_TARGET)
+
+swig:
+	@$(RUN_TARGET)
+
+groff:
+	@$(RUN_TARGET)
+endif
 
 xauth:
 	@$(RUN_TARGET)
@@ -938,13 +1006,10 @@ bc:
 atk:
 	@$(RUN_TARGET)
 
-gtk+: pango atk gdk-pixbuf
+gtk+: pango atk gdk-pixbuf adwaita-icon-theme
 	@$(RUN_TARGET)
 
 gdk-pixbuf:
-	@$(RUN_TARGET)
-
-gimp: babl gegl
 	@$(RUN_TARGET)
 
 babl:
@@ -986,10 +1051,10 @@ ruby:
 gnutls: nettle
 	@$(RUN_TARGET)
 
-nettle:
+nettle: gmp
 	@$(RUN_TARGET)
 
-gtk3+: libepoxy
+gtk3+: libepoxy gsettings-desktop-schemas
 	@$(RUN_TARGET)
 
 harfbuzz: cairo icu4c
@@ -1004,9 +1069,6 @@ chrpath:
 patchelf:
 	@$(RUN_TARGET)
 
-graphviz:
-	@$(RUN_TARGET)
-
 libwebp: libpng jpegsrc
 	@$(RUN_TARGET)
 
@@ -1019,16 +1081,13 @@ librsvg: libcroco
 libcroco:
 	@$(RUN_TARGET)
 
-qt-everywhere-opensource-src: dbus
+qt-everywhere-opensource-src:
 	@$(RUN_TARGET)
 
 dbus:
 	@$(RUN_TARGET)
 
 qt-creator:
-	@$(RUN_TARGET)
-
-groff:
 	@$(RUN_TARGET)
 
 vala:
@@ -1046,5 +1105,112 @@ p11-kit:
 pciutils:
 	@$(RUN_TARGET)
 
-dbus-glib:
+dbus-glib: dbus
+	@$(RUN_TARGET)
+
+xwd:
+	@$(RUN_TARGET)
+
+xwininfo:
+	@$(RUN_TARGET)
+
+netpbm: libpng14 jpegsrc
+	@$(RUN_TARGET)
+
+libpng14:
+	@$(RUN_TARGET)
+
+syslinux: nasm
+	@$(RUN_TARGET)
+
+nasm:
+	@$(RUN_TARGET)
+
+feh: imlib2
+	@$(RUN_TARGET)
+
+imlib2:
+	@$(RUN_TARGET)
+
+evince: poppler itstool shared-mime-info
+	@$(RUN_TARGET)
+
+poppler: jpegsrc
+	@$(RUN_TARGET)
+
+itstool:
+	@$(RUN_TARGET)
+
+#lxml:
+#	@$(RUN_TARGET)
+
+gsettings-desktop-schemas:
+	@$(RUN_TARGET)
+
+dconf:
+	@$(RUN_TARGET)
+
+shared-mime-info:
+	@$(RUN_TARGET)
+
+vym: zip
+	@$(RUN_TARGET)
+
+makefile2graph:
+	@$(RUN_TARGET)
+
+wireless_tools:
+	@$(RUN_TARGET)
+
+wpa_supplicant: libnl
+	@$(RUN_TARGET)
+
+libnl:
+	@$(RUN_TARGET)
+
+ifeq ($(DISABLE_PACKAGES),1)
+dhcp mbr bin86:
+	true
+else
+dhcp:
+	@$(RUN_TARGET)
+
+mbr: bin86
+	@$(RUN_TARGET)
+
+bin86:
+	@$(RUN_TARGET)
+endif
+
+xlunch:
+	@$(RUN_TARGET)
+
+zip:
+	@$(RUN_TARGET)
+
+screen:
+	@$(RUN_TARGET)
+
+sdparm:
+	@$(RUN_TARGET)
+
+linux-firmware:
+	@$(RUN_TARGET)
+
+SDL_gfx:
+	@$(RUN_TARGET)
+
+SDL_ttf:
+	@$(RUN_TARGET)
+
+ltp-full: expect
+	@$(RUN_TARGET)
+
+expect: tcl
+	@$(RUN_TARGET)
+
+iotop:
+	@$(RUN_TARGET)
+
+bash-completion: bash
 	@$(RUN_TARGET)

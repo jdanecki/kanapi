@@ -23,7 +23,7 @@ URL="http://download.gnome.org/sources/vala/0.34"
 EXT=tar.xz
 #build depends on
 
-LIB_DEPENDS="gobject-2.0"
+LIB_DEPENDS="gobject-2.0 libffi gmodule-2.0"
 
 . ../settings
 

@@ -37,7 +37,7 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	pkg_configure_native
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --with-internal-glib
 }
 
 pkg_install() {

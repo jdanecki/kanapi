@@ -24,7 +24,7 @@ URL="http://xorg.mirrors.pair.com/individual/app"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="xmu xext sm ice xpm xcb xau"
+LIB_DEPENDS="xmu xext sm ice xpm xcb xau uuid"
 
 . ../settings
 

@@ -56,7 +56,7 @@ pkg_configure() {
 }
 
 pkg_build() {
-	ninja
+	ninja -j ${MAKE_JOBS}
 }
 
 pkg_install() {

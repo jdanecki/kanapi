@@ -51,8 +51,7 @@ pkg_install() {
 	ln -svf ${PREFIX}/ttf ${KANAPI_BASE}/fontconfig-${fontconfig_ver}/share/fonts
 	ln -svf ${PREFIX}/fontconfig/* ${KANAPI_BASE}/fontconfig-${fontconfig_ver}/etc/fonts/conf.d
 
-	export HOME=${KANAPI_BASE}/config
-	export XDG_DATA_HOME=${HOME}/.local
+	export XDG_DATA_HOME=${KANAPI_HOME}/.local
 	fc-cache -v
 }
 

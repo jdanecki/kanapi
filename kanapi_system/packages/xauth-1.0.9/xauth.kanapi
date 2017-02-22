@@ -23,7 +23,7 @@ URL="https://www.x.org/releases/individual/app"
 EXT=tar.bz2
 #build depends on
 
-LIB_DEPENDS="xext"
+LIB_DEPENDS="xext x11 xcb xau"
 
 . ../settings
 

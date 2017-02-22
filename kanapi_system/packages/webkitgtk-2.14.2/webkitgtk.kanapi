@@ -25,11 +25,15 @@ EXT=tar.xz
 
 LIB_DEPENDS="x11 libpng zlib xcomposite xdamage xrender xt \
 	fontconfig sqlite3 gl cairo-xlib xcomposite xdamage xrender \
-	xt gtk+-3.0 gdk-3.0 pangocairo atk gdk-pixbuf-2.0 gio-2.0"
+	xt gtk+-3.0 gdk-3.0 pangocairo atk gdk-pixbuf-2.0 gio-2.0 \
+	epoxy xcb-render xau libdrm xcursor pango xcb-glx libffi \
+	pixman-1 xcb-dri2 xcb-dri3 gmodule-2.0 libxml-2.0 xi xcb-present \
+       ice expat pangoft2 sm liblzma xcb-shm harfbuzz uuid \
+       xshmfence xcb xinerama x11-xcb xrandr"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt -lresolv"
+export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt -lresolv -lglapi"
 export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir cairo-xlib`"
 
 pkg_prepare() {
@@ -60,7 +64,7 @@ pkg_configure() {
 	-DX11_Xdamage_LIB=${XDAMAGE}/lib/libXdamage.so -DX11_Xdamage_INCLUDE_PATH=${XDAMAGE}/include \
 	-DX11_Xrender_LIB=${XRENDER}/lib/libXrender.so -DX11_Xrender_INCLUDE_PATH=${XRENDER}/include \
 	-DX11_Xt_LIB=${XT}/lib/libXt.so -DX11_Xt_INCLUDE_PATH=${XT}/include \
-	-DENABLE_PLUGIN_PROCESS_GTK2=OFF
+	-DENABLE_PLUGIN_PROCESS_GTK2=OFF -DUSE_LD_GOLD=OFF
 }
 
 pkg_build() {

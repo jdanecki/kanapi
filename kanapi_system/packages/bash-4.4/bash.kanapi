@@ -37,5 +37,17 @@ pkg_install() {
 	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	${LN_SF} ${PREFIX}/bin/bash ${PREFIX}/bin/sh
 	pkg_install_bin_all
+	for i in tzselect xtrace ldd sotruss 
+	do
+		FILE=`readlink ${KANAPI_TARGET_BIN}/$i`
+		if [ -f "${FILE}" ]
+		then
+			sed -i "s@kanapi_.*bin/@kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin/@" ${FILE}
+		fi
+	done
+}
+
+pkg_check() {
+	echo ${KANAPI_VER}
 }
 

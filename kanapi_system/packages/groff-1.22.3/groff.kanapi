@@ -23,12 +23,13 @@ URL="GNU"
 EXT=tar.gz
 #build depends on
 
-LIB_DEPENDS="x11 ice xaw7 xmu sm"
+LIB_DEPENDS="x11 ice xaw7 xmu sm xcb uuid xau xext xpm"
 
 . ../settings
 
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt"
+MAKE_JOBS=1
 
 pkg_prepare() {
 	pkg_tar_gz
@@ -36,11 +37,16 @@ pkg_prepare() {
 
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
-	--with-x --with-appresdir=${PREFIX}/app-defaults
+	--with-x --with-appresdir=${PREFIX}/app-defaults --with-doc="examples"
 }
 
 pkg_install() {
 	pkg_install_make
 	pkg_install_bin_all
+}
+
+
+pkg_check() {
+	${PKG_CONFIG} --libs ${LIB_DEPENDS}
 }
 

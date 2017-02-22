@@ -1,0 +1,12 @@
+all: 
+	chroot ../sbs-`uname -m` /_start_build
+
+test: 
+	chroot ../sbs-`uname -m` /_start_chroot
+
+test-sbs: 
+	chroot ../sbs-`uname -m` /_test_build
+
+bbs: 
+	chroot ../sbs-`uname -m` /_start_bbs_build
+

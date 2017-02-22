@@ -17,8 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=linux
-VER=4.4.2
+PACKAGE_NAME=linux-headers
+VER=4.9
 URL="https://cdn.kernel.org/pub/linux/kernel/v4.x"
 EXT=tar.xz
 
@@ -31,8 +31,14 @@ else
 	HOSTCC=/usr/bin/gcc
 fi
 
+pkg_download() {
+	PACKAGE_LINK=${URL}/linux-${VER}.${EXT}
+	pkg_curl	
+}
+
 pkg_prepare() {
 	pkg_tar_xz
+	${LN_SF} ${KANAPI_BUILD_SRC}/linux-${VER} ${PACKAGE_SRCDIR}
 }
 
 pkg_configure() {
