@@ -46,6 +46,8 @@ mkdir tmp
 mkdir -p run/mount
 mkdir -p run/shm
 mkdir sys
+rm -rf var/cache
+mkdir var/cache
 
 ln -s bin sbin
 mkdir packages
@@ -81,7 +83,7 @@ ln -s ${KANAPI_BASE_LOCAL}/packages kanapi_packages
 
 echo "nameserver 10.0.2.3" > etc/resolv.conf
 echo "127.0.0.1 localhost" > etc/hosts
-ln -s /proc/mount etc/mtab
+ln -s /proc/mounts etc/mtab
 cp /etc/nsswitch.conf etc/nsswitch
 
 cat <<EOF > etc/group
