@@ -533,6 +533,9 @@ verify_file() {
 		image/x-ms-bmp) echo "bmp file"
 				VERIFIED=1
 				;;
+		text/html) echo "html file"
+				VERIFIED=1
+				;;
 		*) echo "unknown file type: ${FILE[1]}"
 			false
 			;;
