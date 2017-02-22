@@ -1114,7 +1114,7 @@ xwd:
 xwininfo:
 	@$(RUN_TARGET)
 
-netpbm: libpng14
+netpbm: libpng14 jpegsrc
 	@$(RUN_TARGET)
 
 libpng14:
