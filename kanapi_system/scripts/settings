@@ -518,6 +518,10 @@ verify_file() {
 				check_script $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;
+		text/x-pascal) echo "pascal/perl script"
+				check_script $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
 		text/x-awk) echo "awk script"
 				check_script $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
