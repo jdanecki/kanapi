@@ -30,7 +30,7 @@ all: required optional
 
 all-sbs: bbs-sbs
 
-test-sbs: ccache
+test-sbs: hello
 
 graph: required_graph optional_graph
 
@@ -123,7 +123,7 @@ icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 sound: alsa-utils esound
 
 
-tests: xflame water xclipboard intel-gpu-tools ltp-full
+tests: xflame water xclipboard intel-gpu-tools ltp-full hello
 
 deprecated: procps
 
@@ -1216,4 +1216,7 @@ bash-completion: bash
 	@$(RUN_TARGET)
 
 mtools:
+	@$(RUN_TARGET)
+
+hello:
 	@$(RUN_TARGET)
