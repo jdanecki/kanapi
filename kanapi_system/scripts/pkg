@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#  Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -28,12 +28,7 @@ SF_URL=http://downloads.sourceforge.net/project/kanapi/packages/v${KANAPI_VERSIO
 download() {
 #	wget $1 -O $2a
 	echo "downloading $1"
-	if [ "`lsb_release -is`" = "KaNaPi" ]
-		then 
-			CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi curl -L $1 -o $2
-		else
-			curl -L $1 -o $2
-		fi
+	curl -L $1 -o $2
 }
 
 pkg_pull() {
@@ -139,11 +134,11 @@ pkg_check() {
 
 pkg_help() {
 	echo "Usage for `basename $0`:"
-	echo "pull package [ arm | i686 | x86_64 ] - download package"
-	echo "pull_all [ arm | i686 | x86_64 ] - download all packages"
+	echo "pull package [ arm | i686 | x86_64 ]   - download package"
+	echo "pull_all [ arm | i686 | x86_64 ]       - download all packages"
 	echo "search package [ arm | i686 | x86_64 ] - search package"
-	echo "list [ arm | i686 | x86_64 ] - get list of packages"
-	echo "check package [ arm | i686 | x86_64 ] - check md5 sum of package"
+	echo "list [ arm | i686 | x86_64 ]           - get list of packages"
+	echo "check package [ arm | i686 | x86_64 ]  - check md5 sum of package"
 }
 
 pkg_() {
