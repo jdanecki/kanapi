@@ -141,6 +141,7 @@ pkg_help() {
 	echo "search package [ arm | i686 | x86_64 ] - search package"
 	echo "list [ arm | i686 | x86_64 ]           - get list of packages"
 	echo "check package [ arm | i686 | x86_64 ]  - check md5 sum of package"
+	echo "check_all [ arm | i686 | x86_64 ]      - check md5 sum of all packages"
 }
 
 pkg_() {
