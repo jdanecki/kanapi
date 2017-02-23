@@ -29,10 +29,6 @@ LIB_DEPENDS="liblzma"
 
 export LDFLAGS="${LDFLAGS} -lpthread"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 		--with-python=${KANAPI_BASE}/Python-${Python_ver}

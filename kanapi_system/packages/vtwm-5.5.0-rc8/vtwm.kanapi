@@ -31,8 +31,14 @@ LIB_DEPENDS="xext x11 xcb xau xt sm ice uuid xmu libpng zlib fontconfig expat fr
 export LDFLAGS="${LDFLAGS} -lm -lpthread"
 
 pkg_prepare() {
-	pkg_tar_gz
-	ln -sf ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}-20120316 ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_tar_gz
+		ln -sf ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}-20120316 ${PACKAGE_SRCDIR}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {	

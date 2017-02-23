@@ -24,10 +24,6 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_make
 	ln -svf ${KANAPI_BASE}/libXcursor-${libXcursor_ver}/share/icons/whiteglass ${KANAPI_BASE}/libXcursor-${libXcursor_ver}/share/icons/default

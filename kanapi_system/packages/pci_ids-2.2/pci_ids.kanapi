@@ -27,10 +27,6 @@ EXT=bz2
 PACKAGE_LINK=${URL}/pci.ids.${EXT}
 PACKAGE_FILENAME=pci.ids.${EXT}
 
-pkg_prepare() {
-	pkg_bz2
-}
-
 pkg_configure() {
 	echo "${PACKAGE_NAME}: configure not needed"
 }

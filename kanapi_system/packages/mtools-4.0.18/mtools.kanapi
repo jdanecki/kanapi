@@ -29,10 +29,6 @@ EXT=tar.bz2
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	MAKE_JOBS=1
 	pkg_install_make

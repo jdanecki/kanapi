@@ -32,10 +32,6 @@ LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms openssl libcry
 export CFLAGS="-g -Og ${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
 export LDFLAGS="${LDFLAGS} -lpthread -lm -lglapi"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {
 	export LIBUNWIND_CFLAGS="-I`${PKG_CONFIG} --variable=includedir libunwind`"
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --disable-secure-rpc --disable-screensaver \

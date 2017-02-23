@@ -31,10 +31,16 @@ export LDFLAGS="${NCURSES_LDFLAGS}"
 export STRIP=${KANAPI_TARGET_NAME}-strip
 
 pkg_prepare() {
-	pkg_tar_bz2
-	if [ ! -L ${PACKAGE_SRCDIR} ]
-	then
-		${LN_SF} ${KANAPI_BUILD_SRC}/vim80 ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_tar_bz2
+		if [ ! -L ${PACKAGE_SRCDIR} ]
+		then
+			${LN_SF} ${KANAPI_BUILD_SRC}/vim80 ${PACKAGE_SRCDIR}
+		fi
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
 	fi
 }
 

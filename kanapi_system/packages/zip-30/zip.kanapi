@@ -35,8 +35,14 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	pkg_tgz
-	${LN_SF} ${KANAPI_BUILD_SRC}/zip${VER} ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_tgz
+		${LN_SF} ${KANAPI_BUILD_SRC}/zip${VER} ${PACKAGE_SRCDIR}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {

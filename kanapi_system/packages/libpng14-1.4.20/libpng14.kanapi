@@ -33,8 +33,14 @@ export INCLUDES="`${PKG_CONFIG} --cflags zlib`"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {
-	pkg_tar_xz
-	${LN_SF} ${KANAPI_BUILD_SRC}/libpng-${VER} ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_tar_xz
+		${LN_SF} ${KANAPI_BUILD_SRC}/libpng-${VER} ${PACKAGE_SRCDIR}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {

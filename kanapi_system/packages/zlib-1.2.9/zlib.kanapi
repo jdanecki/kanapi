@@ -30,10 +30,6 @@ SF_URL="libpng/zlib/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	local_copy
 	prefix=$PREFIX CC=${KANAPI_TARGET_NAME}-gcc AR=${KANAPI_TARGET_NAME}-ar RANLIB=${KANAPI_TARGET_NAME}-ranlib ${PACKAGE_SRCDIR}/configure 

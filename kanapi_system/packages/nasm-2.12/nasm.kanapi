@@ -29,10 +29,6 @@ EXT=tar.xz
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	local_copy
 	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}

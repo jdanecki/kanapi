@@ -37,10 +37,6 @@ export CXXFLAGS="${CFLAGS} -std=c++11 -fPIC"
 #export QTGUI_CFLAGS="`${PKG_CONFIG} --cflags Qt5Gui`"
 #export QTGUI_LIBS="`${PKG_CONFIG} --libs Qt5Gui`"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	cat configure | sed "s/TCLSH_EXEC_PREFIX=/#TCLSH_EXEC_PREFIX=/" > configure.tmp

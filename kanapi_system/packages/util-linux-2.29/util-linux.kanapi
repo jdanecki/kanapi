@@ -30,10 +30,6 @@ LIB_DEPENDS="slang zlib ncurses"
 export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt -L${KANAPI_BASE}/readline-${readline_ver}/lib"
 export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/readline-${readline_ver}/include"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--without-python  --without-systemd --with-slang  --without-selinux \

@@ -28,10 +28,6 @@ LIB_DEPENDS="mtdev libudev"
 
 export LIBS="-lpthread"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_pc_all
 	ln -svf ${PREFIX}/lib/xorg/modules/input/* ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/lib/xorg/modules/input

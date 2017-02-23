@@ -29,10 +29,6 @@ LIB_DEPENDS="libxml-2.0 zlib liblzma python-2.7"
 export LIBS="-lm ${LIBGCRYPT_LDFLAGS}"
 export LDFLAGS="${LDFLAGS} ${LIBGCRYPT_LDFLAGS} -lpthread"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure_target() {	
 	export LD_LIBRARY_PATH="`${LIBGCRYPT_CONFIG} --prefix`/lib:`${GPG_ERROR_CONFIG} --prefix`/lib:${LD_LIBRARY_PATH}" 
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-crypto \

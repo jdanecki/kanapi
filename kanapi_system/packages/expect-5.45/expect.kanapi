@@ -31,8 +31,14 @@ export LDFLAGS="${LDFLAGS} -lpthread -lutil"
 #export CFLAGS="${CFLAGS} "
 
 pkg_prepare() {
-	pkg_tar_gz
-	${LN_SF} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}${VER} ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_tar_gz
+		${LN_SF} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}${VER} ${PACKAGE_SRCDIR}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {	

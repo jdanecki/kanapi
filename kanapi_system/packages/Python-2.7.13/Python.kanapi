@@ -31,10 +31,6 @@ export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/readline-${readline_ver}/include \
 export LDFLAGS="-L${KANAPI_BASE}/readline-${readline_ver}/lib \
 	-L${KANAPI_BASE}/bzip2-${bzip2_ver}/lib -lbz2 -lreadline -lpthread ${LDFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --build=`uname -m`-kanapi-linux-gnu \
 	--target=${KANAPI_TARGET_NAME} \

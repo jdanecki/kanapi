@@ -26,10 +26,6 @@ EXT=tar.xz
 
 export LDFLAGS="-lpthread -ldl"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --enable-elf-shlibs 
 }

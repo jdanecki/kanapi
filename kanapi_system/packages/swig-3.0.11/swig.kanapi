@@ -30,10 +30,6 @@ LIB_DEPENDS="zlib tcl tk libpcre"
 export LDFLAGS="${LDFLAGS} -lpthread -lm -lrt"
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--with-tclincl="`${PKG_CONFIG} --variable=includedir tcl`" \

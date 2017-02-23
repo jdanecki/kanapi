@@ -24,10 +24,6 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	export CFLAGS="${NCURSES_CFLAGS}"
 	export LDLAGS="${NCURSES_LDFLAGS}"

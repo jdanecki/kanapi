@@ -39,10 +39,6 @@ pkg_download() {
 	fi
 }
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 		--enable-readline-mouse --enable-256-color \

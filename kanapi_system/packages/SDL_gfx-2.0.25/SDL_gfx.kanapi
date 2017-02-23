@@ -29,9 +29,6 @@ LIB_DEPENDS="x11 ice"
 export LDFLAGS="${LDFLAGS} -ldl"
 #export CFLAGS="${CFLAGS} "
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
-pkg_prepare() {
-	pkg_tar_gz
-}
 
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-x

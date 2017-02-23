@@ -25,10 +25,6 @@ EXT=tar.xz
 
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	local_copy
 }

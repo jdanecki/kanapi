@@ -27,10 +27,6 @@ EXT=src.tar.gz
 export CFLAGS="-I${KANAPI_BASE}/attr-${attr_ver}/include"
 export LDFLAGS="-L${KANAPI_BASE}/attr-${attr_ver}/lib"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 

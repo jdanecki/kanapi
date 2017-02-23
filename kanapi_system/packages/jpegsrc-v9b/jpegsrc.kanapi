@@ -32,9 +32,15 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	PACKAGE_FILENAME=${PACKAGE_NAME}.${VER}.${EXT}
-	tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
-	${LN_SF} ${KANAPI_BUILD_SRC}/jpeg-9b ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		PACKAGE_FILENAME=${PACKAGE_NAME}.${VER}.${EXT}
+		tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
+		${LN_SF} ${KANAPI_BUILD_SRC}/jpeg-9b ${PACKAGE_SRCDIR}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_install() {

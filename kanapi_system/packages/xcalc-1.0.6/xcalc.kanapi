@@ -29,10 +29,6 @@ LIB_DEPENDS="xmu xext sm ice xpm xcb xau uuid"
 
 export LDFLAGS="${LDFLAGS} -lpthread -lm -lrt"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_make
 	pkg_install_bin_all

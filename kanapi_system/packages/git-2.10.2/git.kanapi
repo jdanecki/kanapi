@@ -29,10 +29,6 @@ LIB_DEPENDS="zlib libcurl openssl libssh2"
 export CFLAGS="${CFLAGS} ${GPG_ERROR_CFLAGS} ${LIBGCRYPT_CFLAGS}"
 export LDFLAGS="${LDFLAGS} ${GPG_ERROR_LDFLAGS} ${LIBGCRYPT_LDFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	local_copy
 	if [ "${KANAPI_CROSS}" = "0" ]

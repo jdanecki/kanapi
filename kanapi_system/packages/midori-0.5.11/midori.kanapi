@@ -37,10 +37,6 @@ pkg_download() {
 	pkg_curl	
 }
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {	
 	local_copy
 	cmake -G Ninja -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_BUILD_TYPE=Release  \

@@ -24,10 +24,6 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_install() {
 	make -j ${MAKE_JOBS} install MAKEINFO=true
 	pkg_install_bin_all

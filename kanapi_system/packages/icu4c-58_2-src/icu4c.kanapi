@@ -26,8 +26,14 @@ SF_URL="icu/ICU4C/58.2/${PACKAGE_NAME}-${VER}.${EXT}"
 . ../settings
 
 pkg_prepare() {
-	pkg_tgz
-	${LN_SF} ${KANAPI_BUILD_SRC}/icu ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_tgz
+		${LN_SF} ${KANAPI_BUILD_SRC}/icu ${PACKAGE_SRCDIR}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {	

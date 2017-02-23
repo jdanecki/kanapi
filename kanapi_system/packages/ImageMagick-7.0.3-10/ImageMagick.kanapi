@@ -29,11 +29,6 @@ LIB_DEPENDS="x11 xcb xau"
 
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
-
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--disable-openmp --with-dejavu-font-dir=${KANAPI_BASE}/dejavu-fonts-ttf-${dejavu_fonts_ttf_ver}/ttf \

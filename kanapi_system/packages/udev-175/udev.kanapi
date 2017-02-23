@@ -26,10 +26,6 @@ EXT=tar.bz2
 
 export LDFLAGS="-lpthread -lrt"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --with-pci-ids-path=${KANAPI_BASE}/pci_ids-${pci_ids_ver}/pci.ids \
 		--without-selinux --disable-introspection --disable-gudev \

@@ -29,10 +29,6 @@ LIB_DEPENDS="x11 xinerama imlib2 libpng zlib libcurl xt xext xcb xau ice freetyp
 export LDFLAGS="${LDFLAGS} -lpthread -lrt ${LIBGCRYPT_LDFLAGS}"
 export CFLAGS="${CFLAGS} ${LIBGCRYPT_CFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {
 	local_copy
 }

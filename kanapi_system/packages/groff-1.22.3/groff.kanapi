@@ -31,10 +31,6 @@ export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt"
 MAKE_JOBS=1
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--with-x --with-appresdir=${PREFIX}/app-defaults --with-doc="examples"

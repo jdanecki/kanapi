@@ -30,9 +30,6 @@ LIB_DEPENDS="zlib ncurses"
 export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/readline-${readline_ver}/lib"
 export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/readline-${readline_ver}/include -O2"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
  	--enable-shared --enable-rubygems

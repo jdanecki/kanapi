@@ -36,10 +36,6 @@ LIB_DEPENDS="x11 libpng zlib xcomposite xdamage xrender xt \
 export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt -lresolv -lglapi"
 export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir cairo-xlib`"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	JPEG=${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}
 	ZLIB=`${PKG_CONFIG} --variable=prefix zlib`

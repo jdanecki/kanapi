@@ -24,10 +24,6 @@ EXT=src.tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	pkg_configure_target

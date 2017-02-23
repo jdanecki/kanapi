@@ -42,10 +42,6 @@ pkg_download() {
 	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 }
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure_target() {	
 	if [ ${KANAPI_CROSS} -eq 1 ]
 	then

@@ -24,10 +24,6 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	imake -I${KANAPI_BASE}/xorg-cf-files-${xorg_cf_files_ver}/lib/X11/config \

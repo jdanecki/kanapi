@@ -29,10 +29,6 @@ LIB_DEPENDS="alsa"
 
 export LDFLAGS="${LDFLAGS} -lm -lpthread"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-arts \
 	--disable-oss --enable-alsa

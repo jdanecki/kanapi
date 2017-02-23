@@ -29,10 +29,6 @@ LIB_DEPENDS="openssl libnl-3.0"
 export LDFLAGS="${LDFLAGS} -lrt -lm -lpthread"
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	cat  ../../../packages/${PACKAGE_NAME}-${VER}/defconfig > wpa_supplicant/.config

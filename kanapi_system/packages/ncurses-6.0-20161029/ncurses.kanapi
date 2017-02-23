@@ -24,10 +24,6 @@ EXT=tgz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tgz
-}
-
 pkg_configure() {
 	 if [ "${KANAPI_TARGET}" = "x86_64" ]
 	 then

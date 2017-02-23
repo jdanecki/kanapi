@@ -24,10 +24,6 @@ URL="http://xorg.freedesktop.org/releases/individual/util"
 
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_make
 	ln -svf ${PREFIX}/share/pkgconfig/xorg-macros.pc ${PKG_CONFIG_DIR}/xorg-macros.pc

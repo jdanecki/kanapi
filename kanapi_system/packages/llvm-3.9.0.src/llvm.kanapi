@@ -37,13 +37,19 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	pkg_tar_xz
-	PACKAGE_NAME=cfe
-	PACKAGE_VER=${PACKAGE_NAME}-${VER}
-	PACKAGE_SRCDIR=${KANAPI_BUILD_SRC}/${PACKAGE_VER}
-	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
-	pkg_tar_xz
-	ln -svf ${PACKAGE_SRCDIR} ${KANAPI_BUILD_SRC}/llvm-${VER}/tools/clang
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_tar_xz
+		PACKAGE_NAME=cfe
+		PACKAGE_VER=${PACKAGE_NAME}-${VER}
+		PACKAGE_SRCDIR=${KANAPI_BUILD_SRC}/${PACKAGE_VER}
+		PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
+		pkg_tar_xz
+		ln -svf ${PACKAGE_SRCDIR} ${KANAPI_BUILD_SRC}/llvm-${VER}/tools/clang
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {

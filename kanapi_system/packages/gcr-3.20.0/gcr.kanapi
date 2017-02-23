@@ -28,10 +28,6 @@ export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${per
 export CFLAGS="${LIBGCRYPT_CFLAGS}"
 export LDFLAGS="${LIBGCRYPT_LDFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--enable-valgrind=no --enable-introspection=no

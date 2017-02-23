@@ -29,10 +29,6 @@ LIB_DEPENDS="ncurses"
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {	
 	if [ "${KANAPI_CROSS}" = "0" ]
 	then

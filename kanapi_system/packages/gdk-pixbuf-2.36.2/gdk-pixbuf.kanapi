@@ -27,10 +27,6 @@ LIB_DEPENDS="gmodule-2.0 gobject-2.0 libffi"
 
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure_target() {
 	if [ "${KANAPI_CROSS}" = "1" ]
 	then

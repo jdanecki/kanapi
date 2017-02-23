@@ -31,10 +31,6 @@ export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/lib -ljpeg -l
 export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/include"
 export CXXFLAGS="${CFLAGS} -std=c++11"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_bin_all

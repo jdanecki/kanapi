@@ -32,10 +32,6 @@ pkg_download() {
 	pkg_curl
 }
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 }

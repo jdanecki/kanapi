@@ -30,10 +30,6 @@ EXT=tar.gz
 #export CFLAGS="${CFLAGS} "
 export BUILD_CC=gcc
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	sed -i "s/^BINDCONFIG=/BINDCONFIG=--enable-linux-caps=no/" configure

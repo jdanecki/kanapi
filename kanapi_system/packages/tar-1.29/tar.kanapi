@@ -26,10 +26,6 @@ EXT=tar.xz
 
 export FORCE_UNSAFE_CONFIGURE=1
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
  	--without-selinux

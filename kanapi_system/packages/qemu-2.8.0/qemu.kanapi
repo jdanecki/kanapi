@@ -31,10 +31,6 @@ export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS} `libgcrypt-config --cflags`"
 export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS} -lm `libgcrypt-config --libs` -lresolv"
 export LIBS="-lncurses -lresolv"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --cross-prefix="${KANAPI_TARGET_NAME}-" --enable-fdt \
 	 --target-list="arm-softmmu arm-linux-user i386-softmmu i386-linux-user x86_64-softmmu x86_64-linux-user" \

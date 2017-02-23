@@ -29,10 +29,6 @@ EXT=tar.xz
 export LDFLAGS="${LDFLAGS} -lpthread"
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	local_copy
 	rm -rf testcases/network/rpc

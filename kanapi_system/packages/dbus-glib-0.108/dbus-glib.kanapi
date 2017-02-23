@@ -28,10 +28,6 @@ LIB_DEPENDS="expat zlib dbus-1 x11 libffi xcb xau gmodule-2.0"
 
 export LDFLAGS="${LDFLAGS} -lresolv -lpthread -lrt"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	if [ "${KANAPI_CROSS}" = "1" ]
 	then
