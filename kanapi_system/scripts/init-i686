@@ -32,7 +32,7 @@ export XDG_RUNTIME_DIR=${HOME}/.cache
 export LD_LIBRARY_PATH=/kanapi_packages/libs
 export PATH=/bin
 
-busybox mount /dev/sda2 /packages
+busybox mount -t ext4 /dev/sda2 /packages
 
 dmesg -n 4
 
