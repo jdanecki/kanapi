@@ -34,7 +34,7 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	pkg_git_checkout
+	echo "nothing to do"
 }
 
 pkg_configure() {
@@ -42,7 +42,7 @@ pkg_configure() {
 	then
 		echo "ltrace disabled on arm, libelf is not supported yet"
 	else
-		local_copy
+		local_clone
 		mkdir -p config/autoconf config/m4
 		KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
 		 -I ${KANAPI_BASE}/autoconf-${autoconf_ver}/share/autoconf \

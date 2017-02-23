@@ -267,6 +267,13 @@ pkg_git_checkout() {
 	git checkout -f ${VER}
 }
 
+local_clone() {
+	rm -rf build
+	git clone ${PACKAGE_SRCDIR} build
+	cd build
+	git checkout -f ${VER}
+}
+
 pkg_git_submodule_init() {
 	cd ${PACKAGE_SRCDIR}
 	git submodule update --init

@@ -32,13 +32,13 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	pkg_git_checkout
+	echo "nothing to do"
 }
 
 pkg_configure() {
 	if [ "${KANAPI_TARGET}" != "arm" ]
 	then
-		local_copy
+		local_clone
 		KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
 		 -I ${KANAPI_BASE}/autoconf-${autoconf_ver}/share/autoconf \
 		 -I ${KANAPI_BASE}/util-macros-${util_macros_ver}/share/aclocal \

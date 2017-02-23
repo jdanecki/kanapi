@@ -29,11 +29,11 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	pkg_git_checkout
+	echo "nothing to do"
 }
 
 pkg_configure() {	
-	local_copy
+	local_clone
 	PKGS="Qt5Qml Qt5Help Qt5PrintSupport Qt5Sql Qt5Quick Qt5Xml gl xcb libdrm x11 xext glib-2.0 gmodule-2.0 \
 	        gobject-2.0 gthread-2.0 x11-xcb xcb-glx xcb-dri2 icu-i18n xfixes expat xdamage  xau libffi"
 	qmake -r QMAKE_CXX=${KANAPI_TARGET_NAME}-g++ QMAKE_INCDIR_OPENGL=`${PKG_CONFIG} --variable=includedir gl` \

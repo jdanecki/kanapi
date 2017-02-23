@@ -35,11 +35,11 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	pkg_git_checkout
+	echo "nothing to do"
 }
 
 pkg_configure() {	
-	local_copy
+	local_clone
 }
 
 pkg_build() {
