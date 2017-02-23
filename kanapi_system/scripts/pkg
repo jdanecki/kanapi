@@ -24,6 +24,7 @@ PAR2=$2
 PAR3=$3
 
 SF_URL=http://downloads.sourceforge.net/project/kanapi/packages/v${KANAPI_VERSION}
+PKGS_LIST=packages.md5
 
 download() {
 #	wget $1 -O $2a
@@ -39,7 +40,7 @@ pkg_pull() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages/packages.md5
+	cd /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
 	echo "getting list of packages for ${PKG_ARCH}"
 	download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
 	echo "looking for ${PAR2} in ${PKG_ARCH}"
@@ -59,7 +60,7 @@ pkg_pull_all() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages/packages.md5
+	cd /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
 	echo "getting list of packages for ${PKG_ARCH}"
 	download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
 	PKGS=`cat ${PKGS_LIST} | awk '{print $2}'`
@@ -78,7 +79,7 @@ pkg_search() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages/packages.md5
+	cd /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
 	if [ ! -f ${PKGS_LIST} ] 
 	then
 		echo "getting list of packages for ${PKG_ARCH}"
@@ -99,7 +100,7 @@ pkg_list() {
 	else
 		PKG_ARCH=`uname -m`
 	fi	
-	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages/packages.md5
+	cd /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
 	echo "getting list of packages for ${PKG_ARCH} to ${PKGS_LIST}"
 	download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
 }
@@ -112,7 +113,7 @@ pkg_check_all() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages/packages.md5
+	cd /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
 	echo "Checking packages with ${PKGS_LIST}"
 	md5sum -w -c ${PKGS_LIST} 
 	echo "Result: $?"
@@ -126,10 +127,11 @@ pkg_check() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	PKGS_LIST=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages/packages.md5
+	cd /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
 	echo "looking for ${PAR2} for ${PKG_ARCH}"
 	grep ${PAR2} ${PKGS_LIST} > ${PAR2}.md5
 	md5sum -w -c ${PAR2}.md5
+	rm ${PAR2}.md5
 }
 
 pkg_help() {
@@ -145,5 +147,6 @@ pkg_() {
 	pkg_help
 }
 
+ 
 ${PKG_ACTION}
 
