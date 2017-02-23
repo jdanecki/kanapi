@@ -24,7 +24,7 @@ PKG_NAME="$2"
 #arm i686 x86_64
 PKG_ARCH="$3"
 
-. /kanapi_packages/config/SF_user
+. ${HOME}/SF_user
 
 pkg_push() {
 	echo "pushing ${PKG_NAME} for ${PKG_ARCH} as ${SF_USER}"
