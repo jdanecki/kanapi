@@ -302,6 +302,59 @@ pkg_bz2() {
 	bzip2 -d ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -c > ${KANAPI_BUILD_SRC}/${PACKAGE_VER}/${PACKAGE_NAME}
 }
 
+pkg_prepare() {
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		echo -n "Preparing ${PACKAGE_FILENAME} "
+		case $EXT in
+		bz2) echo -n "bz2 "
+				pkg_bz2
+				;;
+		tar.bz2) echo -n "tar.bz2 "
+				pkg_tar_bz2
+				;;
+		src.tar.gz) echo -n "src.tar.gz "
+				pkg_tar_gz
+				;;
+		tar.gz) echo -n "tar.gz "
+				pkg_tar_gz
+				;;
+		tar.xz) echo -n "tar.xz "
+				pkg_tar_xz
+				;;
+		tgz) echo -n "tgz "
+				pkg_tgz
+				;;
+		zip) echo -n "zip "
+				pkg_zip
+				;;
+		*) echo "unknown extension $EXT"
+			false
+			;;
+		esac
+		if [ "$?" = "0" ]
+		then 
+			echo " ok"
+			/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+			true
+		else
+			echo " Error: $?"
+			rm -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+			false
+		fi
+	fi
+}
+
+pkg_reprepare() {
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then
+		rm  ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
+	pkg_prepare
+}
+
 pkg_version() {
 	echo ${PACKAGE_VER}
 }

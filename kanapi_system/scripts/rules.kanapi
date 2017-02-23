@@ -23,6 +23,9 @@ kanapi_prepare: kanapi_download
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_prepare" ; fi
 	$(call DATE_RULE)
 
+kanapi_reprepare: kanapi_download
+	pkg_kanapi $(PKG).kanapi reprepare $(V)
+
 kanapi_configure: kanapi_prepare
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_configure" ; fi
 	pkg_kanapi $(PKG).kanapi configure $(V); if [ "$$?" != "0" ] ; then find . -name config.log -exec cat {} \; ; false; fi
@@ -76,10 +79,11 @@ kanapi_help:
 	@echo "where action is one from:"
 	@echo "download    - download sources"
 	@echo "prepare     - uncompress sources"
+	@echo "reprepare   - re-uncompress sources"
 	@echo "configure   - configure package/packages"
 	@echo "build       - build package/packages"
 	@echo "install     - install package/packages"
-	@echo "reconfigure - reconfigure package/packages"
-	@echo "rebuild     - rebuild package/packages"
-	@echo "reinstall   - reinstall package/packages"
+	@echo "reconfigure - re-configure package/packages"
+	@echo "rebuild     - re-build package/packages"
+	@echo "reinstall   - re-install package/packages"
 
