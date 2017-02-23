@@ -38,6 +38,7 @@ pkg_dir_push() {
 	do 
 		scp $i ${SF_USER}@frs.sourceforge.net:/home/frs/project/kanapi/packages/${KANAPI_VERSION}/${PKG_ARCH}
 	done
+	cd ..
 }
 
 pkg_compress() {
@@ -50,8 +51,13 @@ pkg_dir_compress() {
 	cd ${PKG_NAME} 
 	for i in * 
 	do 
-		if [ -d $i ] ; then  tar cvJf $i.tar.xz $i ; fi
+		if [ -d $i ] 
+	   	then  
+			echo "compressing $i"
+			tar cJf $i.tar.xz $i 
+	   	fi
 	done
+	cd ..
 }
 
 pkg_md5() {
@@ -67,13 +73,22 @@ pkg_md5() {
 	cd ..
 }
 
+pkg_release() {
+	pkg_dir_compress
+	pkg_md5
+}
+
 pkg_help() {
-	echo "Usage for `basename $0`:"
-	echo "push package [arm | i686 | x86_64 ] - upload package"
+	name=`basename $0`
+	echo "Usage: ${name} command options"
+	echo "commands: push, dir_push, compress, dir_compress, md5, release"
+	echo "commands with options:"
+	echo "push package [arm | i686 | x86_64 ]       - upload package"
 	echo "dir_push directory [arm | i686 | x86_64 ] - upload packages from directory"
-	echo "compress package - compress package"
-	echo "dir_compress directory - compress all packages in directory"
-	echo "md5 directory - create list of packages"
+	echo "compress package                          - compress package"
+	echo "dir_compress directory                    - compress all packages in directory"
+	echo "md5 directory                             - create list of packages"
+	echo "release directory                         - prepare new release"
 }
 
 pkg_() {
