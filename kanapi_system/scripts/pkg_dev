@@ -58,8 +58,11 @@ pkg_dir_compress() {
 	do 
 		if [ -d $i ] 
 	   	then  
-			echo "compressing $i"
-			tar cJf $i.tar.xz $i 
+			if [ "$i" != "libs" ]
+			then
+				echo "compressing $i"
+				tar cJf $i.tar.xz $i 
+			fi
 	   	fi
 	done
 	cd ..
