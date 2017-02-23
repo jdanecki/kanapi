@@ -22,7 +22,12 @@ KANAPI_VERSION=v0.8
 PKG_ACTION="pkg_$1"
 PKG_NAME="$2"
 #arm i686 x86_64
-PKG_ARCH="$3"
+if [ -n "$3" ]
+then
+	PKG_ARCH="$3"
+else
+	PKG_ARCH=`uname -m`
+fi
 
 . ${HOME}/SF_user
 
