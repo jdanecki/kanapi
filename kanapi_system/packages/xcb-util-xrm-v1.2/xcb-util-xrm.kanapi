@@ -26,7 +26,6 @@ EXT=
 
 pkg_download() {
 	pkg_git_clone
-	pkg_git_submodule_init
 }
 
 pkg_prepare() {
@@ -35,6 +34,7 @@ pkg_prepare() {
 
 pkg_configure() {
 	local_clone
+	git submodule update --init
 	KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
 	-I ${KANAPI_BASE}/autoconf-${autoconf_ver}/share/autoconf \
 	-I ${KANAPI_BASE}/util-macros-${util_macros_ver}/share/aclocal \
