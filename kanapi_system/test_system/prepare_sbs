@@ -112,10 +112,11 @@ ln -sf /proc/mounts etc/mtab
 
 cd ..
 
-cp _start_chroot ${SBS_DIR}
-cp _start_build ${SBS_DIR}
-cp _start_bbs_build ${SBS_DIR}
-cp _test_build ${SBS_DIR}
+for f in _start_chroot _start_build _start_bbs_build _test_build
+do
+	cat $f | sed "s/@KANAPI_VER@/kanapi_${KANAPI_VER}/" > ${SBS_DIR}/$f
+	chmod +x ${SBS_DIR}/$f
+done
 cp -a ${KANAPI_BASE}/init ${SBS_DIR}
 cp -a ${KANAPI_BASE}/init-${ARCH} ${SBS_DIR}
 

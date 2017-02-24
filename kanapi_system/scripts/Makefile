@@ -28,6 +28,13 @@ endif
 
 all: required optional
 
+required: $(COMPILERS) rootfs bbs
+
+minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
+
+optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
+	apps_qt www 
+
 all-sbs: bbs-sbs
 
 test-sbs: hello
@@ -41,11 +48,6 @@ required_graph:
 optional_graph:
 	unset LANG; unset LC_ALL; make -Bnd optional ACTION=download V=1 | make2graph -r > optional.dot
 	#| dot -Tpdf -o optional.pdf
-
-required: $(COMPILERS) rootfs bbs
-
-optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	apps_qt www 
 
 #Basic Build System 
 bbs: file ccache busybox bash-completion make perl m4 autoconf automake libtool bison sed gettext ncurses readline gawk openssl cmake \

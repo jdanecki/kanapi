@@ -62,3 +62,7 @@ pkg_install() {
 #	cp arch/x86/boot/bzImage ${PREFIX}
 }	
 
+pkg_check() {
+	echo "PATH=${PATH}"
+}
+
