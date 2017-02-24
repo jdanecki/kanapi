@@ -166,7 +166,7 @@ configure_jenkins() {
 
 update_sbs() {
 	ARCH="`uname -m`"
-	cp /kanapi_build/kanapi/kanapi_system/test_system/sbs-${ARCH}.tar.xz .
+	cp kanapi_system/test_system/sbs-${ARCH}.tar.xz .
 	if [ -d sbs-${ARCH} ]
 	then
 		rm -rf sbs-${ARCH}
