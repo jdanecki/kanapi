@@ -67,8 +67,12 @@ kanapi_check:
 	pkg_kanapi $(PKG).kanapi check $(V)
 
 kanapi_verify:
-	pkg_kanapi $(PKG).kanapi verify $(V)
+	pkg_kanapi $(PKG).kanapi verify $(V); if [ "$$?" = "0" ] ; then /bin/date > kanapi_install ; else false; fi
 	$(call DATE_RULE)
+
+kanapi_reverify:
+	pkg_kanapi $(PKG).kanapi verify $(V); if [ "$$?" = "0" ] ; then /bin/date > kanapi_install ; else false; fi
+	/bin/date > kanapi_verify
 
 kanapi_version:
 	pkg_kanapi $(PKG).kanapi version $(V)
@@ -86,4 +90,9 @@ kanapi_help:
 	@echo "reconfigure - re-configure package/packages"
 	@echo "rebuild     - re-build package/packages"
 	@echo "reinstall   - re-install package/packages"
+
+kanapi_update_bin:
+	pkg_kanapi $(PKG).kanapi install_bin_all $(V)
+	pkg_kanapi $(PKG).kanapi install_sbin_all $(V)
+	pkg_kanapi $(PKG).kanapi install_usr_bin_all $(V)
 
