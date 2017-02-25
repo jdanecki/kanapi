@@ -370,6 +370,11 @@ pkg_build() {
 	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
+pkg_build_local() {
+	cd build
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+}
+
 pkg_install_make() {
 	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 }
@@ -556,6 +561,10 @@ verify_file() {
 				;;
 		application/x-sharedlib) echo "library "
 				ldd $1
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+		application/octet-stream) echo "php script"
+				check_script $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;
 		text/x-shellscript) echo "shell script"
