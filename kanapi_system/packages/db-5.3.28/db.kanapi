@@ -32,7 +32,7 @@ EXT=tar.gz
 pkg_configure() {
 	local_copy
 	cd build_unix
-    ../dist/configure --prefix=${PREFIX} \
+    ../dist/configure --prefix=${PREFIX} --host=${KANAPI_TARGET_NAME} \
     --enable-compat185 --enable-shared --enable-static --enable-cxx
 }
 

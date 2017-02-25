@@ -33,7 +33,7 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	apps_qt www 
+	apps_qt www database
 
 all-sbs: bbs-sbs
 
@@ -124,6 +124,7 @@ icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 
 sound: alsa-utils esound
 
+database: db
 
 tests: xflame water xclipboard intel-gpu-tools ltp-full hello
 
