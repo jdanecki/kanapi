@@ -126,7 +126,7 @@ sound: alsa-utils esound
 
 database: db gdbm
 
-tests: xflame water xclipboard intel-gpu-tools ltp-full hello
+tests: xflame water xclipboard intel-gpu-tools ltp-full hello phoronix-test-suite
 
 deprecated: procps
 
@@ -1233,6 +1233,6 @@ gdbm:
 php: db gdbm
 	@$(RUN_TARGET)
 
-phoronix-test-suite:
+phoronix-test-suite: php
 	@$(RUN_TARGET)
 
