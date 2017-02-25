@@ -1222,3 +1222,6 @@ mtools:
 
 hello:
 	@$(RUN_TARGET)
+
+gimp:
+	@$(RUN_TARGET)
