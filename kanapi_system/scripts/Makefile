@@ -1225,3 +1225,6 @@ hello:
 
 gimp:
 	@$(RUN_TARGET)
+
+db:
+	@$(RUN_TARGET)
