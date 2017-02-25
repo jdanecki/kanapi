@@ -124,7 +124,7 @@ icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme
 
 sound: alsa-utils esound
 
-database: db
+database: db gdbm
 
 tests: xflame water xclipboard intel-gpu-tools ltp-full hello
 
@@ -1228,4 +1228,7 @@ gimp:
 	@$(RUN_TARGET)
 
 db:
+	@$(RUN_TARGET)
+
+gdbm:
 	@$(RUN_TARGET)
