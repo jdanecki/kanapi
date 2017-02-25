@@ -360,3 +360,4 @@ gimp_ver=2.8.20
 php_ver=7.1.2
 db_ver=5.3.28
 gdbm_ver=1.12
+phoronix_test_suite_ver=v6.8.0

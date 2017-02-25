@@ -1233,3 +1233,6 @@ gdbm:
 php: db gdbm
 	@$(RUN_TARGET)
 
+phoronix-test-suite:
+	@$(RUN_TARGET)
+
