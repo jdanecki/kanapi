@@ -1224,8 +1224,6 @@ mtools:
 hello:
 	@$(RUN_TARGET)
 
-gimp:
-	@$(RUN_TARGET)
 
 db:
 	@$(RUN_TARGET)
