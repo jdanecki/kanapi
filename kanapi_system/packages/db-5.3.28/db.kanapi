@@ -44,5 +44,6 @@ pkg_install() {
 	cd build/build_unix
 	pkg_install_make
 	pkg_install_bin_all
+	pkg_install_libs
 }
 
