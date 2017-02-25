@@ -357,5 +357,6 @@ bash_completion_ver=2.4
 mtools_ver=4.0.18
 hello_ver=2.10
 gimp_ver=2.8.20
+php_ver=7.1.2
 db_ver=5.3.28
 gdbm_ver=1.12

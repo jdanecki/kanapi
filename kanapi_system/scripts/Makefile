@@ -968,7 +968,7 @@ ifeq ($(KANAPI_TARGET),arm)
 tcl tk graphviz swig groff xflame water qemu gimp apps_qt www:
 	true
 else
-www: webkitgtk midori
+www: webkitgtk midori php
 
 apps_qt: qt-everywhere-opensource-src qt-creator vym
 
@@ -1224,9 +1224,12 @@ mtools:
 hello:
 	@$(RUN_TARGET)
 
-
 db:
 	@$(RUN_TARGET)
 
 gdbm:
 	@$(RUN_TARGET)
+
+php: db gdbm
+	@$(RUN_TARGET)
+
