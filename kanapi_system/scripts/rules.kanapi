@@ -42,7 +42,7 @@ kanapi_build: kanapi_configure
 	$(call DATE_RULE)
 
 kanapi_rebuild:
-	pkg_kanapi $(PKG).kanapi build $(V)
+	pkg_kanapi $(PKG).kanapi rebuild $(V)
 
 kanapi_install: kanapi_build
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi
