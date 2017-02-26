@@ -10,12 +10,12 @@ endif
 
 kanapi_download:
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_download" ; fi
-	pkg_kanapi $(PKG).kanapi download $(V)
+	PKG_COLOR=$(colorBoldMagenta) pkg_kanapi $(PKG).kanapi download $(V)
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_download" ; fi
 	$(call DATE_RULE)
 
 kanapi_redownload:
-	pkg_kanapi $(PKG).kanapi redownload $(V)
+	PKG_COLOR=$(colorBoldMagenta) pkg_kanapi $(PKG).kanapi redownload $(V)
 
 kanapi_prepare: kanapi_download
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_prepare" ; fi
@@ -40,7 +40,7 @@ kanapi_build: kanapi_configure
 
 kanapi_rebuild_install:
 	PKG_COLOR=$(colorBoldGreen) pkg_kanapi $(PKG).kanapi rebuild $(V)
-	PKG_COLOR=$(colorBoldGreen)	pkg_kanapi $(PKG).kanapi install $(V)
+	PKG_COLOR=$(colorBoldBlue)	pkg_kanapi $(PKG).kanapi install $(V)
 
 kanapi_install: kanapi_build
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi

@@ -5,10 +5,12 @@ PKG_ACTION="pkg_$2"
 PKG_VERBOSE="$3"
 
 echo "running $PKG_FILE ${PKG_ACTION} ${PKG_VERBOSE}"
+
 . ./$PKG_FILE
+
 if [ -z "${PKG_COLOR}" ]
 then
-	PKG_COLOR='\033[1;36m'
+	PKG_COLOR='\033[1;36;40m'
 fi
 if [ "x${PKG_VERBOSE}" = "x1" ]
 then
