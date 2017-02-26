@@ -485,7 +485,7 @@ pkg_install_usr_bin_all() {
 
 pkg_install_libs() {
 	if [ ! -d ${KANAPI_BASE}/libs ] ; then mkdir ${KANAPI_BASE}/libs; fi
-	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a  ${PREFIX}/lib/lib64*.so* ${PREFIX}/lib64/lib*.a 
+	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a  ${PREFIX}/lib64/lib*.so* ${PREFIX}/lib64/lib*.a 
 	do
 		if [ -f $f ] 
 		then
