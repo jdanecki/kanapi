@@ -555,12 +555,12 @@ verify_file() {
 				 then 
 					VERIFIED=1 
 				else
-					ldd $1
+					${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so --list $1
 					if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				fi
 				;;
 		application/x-sharedlib) echo "library "
-				ldd $1
+				${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so --list $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;
 		application/octet-stream) echo "php script"
