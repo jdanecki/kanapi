@@ -51,7 +51,7 @@ pkg_install() {
 		MAKE_JOBS=1
 		pkg_install_make
 		pkg_install_bin_all
-		for i in mtrace glib-mkenums
+		for i in mtrace glib-mkenums c_rehash
 		do
 			FILE=`readlink ${KANAPI_TARGET_BIN}/$i`
 			if [ -f "${FILE}" ]
