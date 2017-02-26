@@ -182,6 +182,7 @@ remove_sbs() {
 		rm -rf sbs-${ARCH}
 	fi
 	rm -f sbs-${ARCH}.tar.xz
+	exit 0
 }
 
 
