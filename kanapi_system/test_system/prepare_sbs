@@ -90,7 +90,7 @@ do
 	done
 	for b in ${pkg}/lib/lib* ${pkg}/lib64/lib*
 	do
-		if [ -f $b ]
+		if [ -f "$b" ]
 		then 
 			ln -sf ${KANAPI_BASE}/${b} packages/libs
 			file -i ${b} | grep x-sharedlib > /dev/null 
@@ -98,6 +98,7 @@ do
 		fi
 	done
 done
+
 for i in packages/gcc-${gcc_ver}/libexec/gcc/${ARCH}-kanapi-linux-gnu/${gcc_ver}/*
 do		
 	file -i ${i} | grep application > /dev/null

@@ -25,7 +25,7 @@ unset LD_LIBRARY_PATH
 cd /kanapi_build/kanapi/kanapi_system/`uname -m`
 if [ -n "${PKG_COMMAND}" ]
 then
-	make ${PKG_COMMAND} ACTION=install V=1
+	make ${PKG_COMMAND} ACTION=rebuild_install V=1
 else
 	false
 fi
