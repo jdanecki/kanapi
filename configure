@@ -175,6 +175,16 @@ update_sbs() {
 	exit 0
 }
 
+remove_sbs() {
+	ARCH="`uname -m`"
+	if [ -d sbs-${ARCH} ]
+	then
+		rm -rf sbs-${ARCH}
+	fi
+	rm -f sbs-${ARCH}.tar.xz
+}
+
+
 if [ "$1" = "--help" -o "$1" = "help" ]
 then
 	echo "configure parameters: [local | ci | chroot | setup]"
@@ -184,6 +194,7 @@ then
 	echo "setup - show information about setup"
 	echo "jenkins - configure for compilation under Jenkins"
 	echo "update-sbs - update SBS locally"
+	echo "remove-sbs - remove current SBS"
 	exit 0
 fi
 
@@ -217,6 +228,11 @@ fi
 if [ "$1" = "update-sbs" ]
 then
 	update_sbs
+fi
+
+if [ "$1" = "remove-sbs" ]
+then
+	remove_sbs
 fi
 
 if [ "`lsb_release -is`" = "KaNaPi" ]
