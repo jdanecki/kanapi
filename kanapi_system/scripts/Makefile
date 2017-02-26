@@ -8,6 +8,7 @@ endif
 include $(BASE)../../cross_compilers/scripts/config.kanapi
 include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
+include $(BASE)../scripts/colors.kanapi
 include $(BASE)../scripts/rules.kanapi
 KANAPI_VER=$(shell cat  $(BASE)../scripts/KANAPI_VER)
 CURRENT_ARCH=$(shell uname -m)
@@ -139,12 +140,18 @@ help:
 #for tests only
 #
 
-packages: package1 package2
+packages: package3
 
 package1:
 	@$(RUN_TARGET)
 
+package4:
+	@$(RUN_TARGET)
+
 package2: package1
+	@$(RUN_TARGET)
+
+package3: package2 package4
 	@$(RUN_TARGET)
 
 #
