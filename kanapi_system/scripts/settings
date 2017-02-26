@@ -215,6 +215,19 @@ pkg_curl() {
 			false
 		else
 			check_file_type
+			if [ "$?" = 0 ]
+			then 
+				true
+			else
+				echo "downloading ${PACKAGE_NAME} once again"
+				curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
+				then
+					false
+				else
+					check_file_type
+				fi
+			fi
 		fi
 	fi
 }
