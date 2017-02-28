@@ -442,7 +442,6 @@ pkg_install_pc_all_only() {
 	done
 }
 
-
 pkg_uninstall() {
 	if [ -d ${PREFIX} ]
 	then	

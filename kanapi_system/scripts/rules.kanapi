@@ -94,3 +94,9 @@ kanapi_update_bin:
 	pkg_kanapi $(PKG).kanapi install_sbin_all $(V)
 	pkg_kanapi $(PKG).kanapi install_usr_bin_all $(V)
 
+kanapi_update_libs:
+	pkg_kanapi $(PKG).kanapi install_libs $(V)
+
+kanapi_update_pc:
+	pkg_kanapi $(PKG).kanapi install_pc_share_all_only $(V)
+	pkg_kanapi $(PKG).kanapi install_pc_all_only $(V)
