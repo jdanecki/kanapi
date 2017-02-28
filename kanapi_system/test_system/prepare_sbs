@@ -113,7 +113,7 @@ ln -sf /proc/mounts etc/mtab
 
 cd ..
 
-for f in _start_chroot _start_build _start_bbs_build _test_build _start_rebuild
+for f in _start_chroot _start_build _start_bbs_build _test_build _start_rebuild _start_install
 do
 	cat $f | sed "s/@KANAPI_VER@/kanapi_${KANAPI_VER}/" > ${SBS_DIR}/$f
 	chmod +x ${SBS_DIR}/$f

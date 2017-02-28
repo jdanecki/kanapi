@@ -1,4 +1,4 @@
-# 'test-sbs', 'bbs', 'rebuild'  targets were prepared for Jenkins config
+# 'test-sbs', 'bbs', 'rebuild', 'install'  targets were prepared for Jenkins config
 
-all test test-sbs bbs rebuild:
+all test test-sbs bbs rebuild install:
 	make -C ci-tests $@
