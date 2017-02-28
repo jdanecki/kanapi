@@ -97,14 +97,14 @@ pkg_release() {
 pkg_help() {
 	name=`basename $0`
 	echo "Usage: ${name} command options"
-	echo "commands: push, dir_push, compress, dir_compress, md5, release push_md5"
+	echo "commands: push, dir_push, compress, dir_compress, md5, release md5_push"
 	echo "commands with options:"
 	echo "push package [arm | i686 | x86_64 ]       - upload package"
 	echo "dir_push directory [arm | i686 | x86_64 ] - upload packages from directory"
 	echo "compress package                          - compress package"
 	echo "dir_compress directory                    - compress all packages in directory"
 	echo "md5 directory                             - create list of packages"
-	echo "push_md5 directory                        - upload md5 sum from directory"
+	echo "md5_push directory                        - upload md5 sum from directory"
 	echo "release directory                         - prepare new release"
 }
 
