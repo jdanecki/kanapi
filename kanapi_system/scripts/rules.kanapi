@@ -41,15 +41,18 @@ kanapi_build: kanapi_configure
 kanapi_rebuild_install:
 	PKG_COLOR=$(colorBoldGreen) pkg_kanapi $(PKG).kanapi rebuild $(V)
 	PKG_COLOR=$(colorBoldBlue)	pkg_kanapi $(PKG).kanapi install $(V)
+	pkg_kanapi $(PKG).kanapi update_meta $(V)
 
 kanapi_install: kanapi_build
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi
 	PKG_COLOR=$(colorBoldBlue) pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install" ; fi
+	pkg_kanapi $(PKG).kanapi update_meta $(V)
 	$(call DATE_RULE)
 
 kanapi_reinstall:
 	PKG_COLOR=$(colorBoldBlue) pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
+	pkg_kanapi $(PKG).kanapi update_meta $(V)
 	/bin/date > kanapi_install
 
 kanapi_uninstall:
@@ -100,3 +103,6 @@ kanapi_update_libs:
 kanapi_update_pc:
 	pkg_kanapi $(PKG).kanapi install_pc_share_all_only $(V)
 	pkg_kanapi $(PKG).kanapi install_pc_all_only $(V)
+
+kanapi_update_meta:
+	pkg_kanapi $(PKG).kanapi update_meta $(V)

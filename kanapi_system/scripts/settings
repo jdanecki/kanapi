@@ -461,6 +461,14 @@ pkg_package() {
 	pkg_build
 }
 
+pkg_update_meta() {
+	if [ -d ${PREFIX} ]
+	then
+		echo "PACKAGE_NAME=${PACKAGE_NAME}" > ${PREFIX}/kanapi.pkg
+		echo "PACKAGE_VER=${VER}" >> ${PREFIX}/kanapi.pkg
+	fi
+}
+
 pkg_install_bin() {
 	if [ -f ${PREFIX}/bin/${PACKAGE_NAME} ]
 	then
