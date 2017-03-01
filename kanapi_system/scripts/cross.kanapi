@@ -33,11 +33,11 @@ then
 	echo "use native compilers"
 	if [ "${USE_CCACHE}" = "1" ]
 	then
-		export CC="ccache ${KANAPI_TARGET_NAME}-gcc"
+		export CC="${KANAPI_BASE}/ccache/links/${KANAPI_TARGET_NAME}-gcc"
 		export KANAPI_C_COMPILER=${CC}
 		if [ -f ${KANAPI_BASE}/glibc-${glibc_ver}/lib/libstdc++.so ]
 		then
-			export CXX="ccache ${KANAPI_TARGET_NAME}-g++"
+			export CXX="${KANAPI_BASE}/ccache/links/${KANAPI_TARGET_NAME}-g++"
 			export KANAPI_CXX_COMPILER=${CXX}
 		fi
 	fi
