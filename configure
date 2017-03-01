@@ -123,19 +123,17 @@ configure_chroot() {
 
 configure_mount-src() {
 	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
-	if [ -d ${HOME}/src ]
+	if [ ! -d ${HOME}/src ] ; then mkdir ${HOME}/src ; fi
+	grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src" /proc/mounts > /dev/null
+	if [ "$?" = "0" ]
 	then
-		grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src" /proc/mounts > /dev/null
-		if [ "$?" = "0" ]
-		then
-			echo "src already mounted"
-		else
-			mount -o bind ${HOME}/src "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src"
-			if [ "$?" != "0" ]
-			then 
-				echo "error with src mount"
-				exit 2
-			fi
+		echo "src already mounted"
+	else
+		mount -o bind ${HOME}/src "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src"
+		if [ "$?" != "0" ]
+		then 
+			echo "error with src mount"
+			exit 2
 		fi
 	fi
 	exit 0
@@ -158,6 +156,40 @@ configure_umount-src() {
 	exit 0
 }
 
+configure_mount-ccache() {
+	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
+	if [ ! -d ${HOME}/.ccache ] ; then mkdir ${HOME}/.ccache ; fi
+	grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache" /proc/mounts > /dev/null
+	if [ "$?" = "0" ]
+	then
+		echo "ccache already mounted"
+	else
+		mount -o bind ${HOME}/.ccache "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache"
+		if [ "$?" != "0" ]
+		then 
+			echo "error with ccache mount"
+			exit 2
+		fi
+	fi
+	exit 0
+}
+
+configure_umount-ccache() {
+	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
+	grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache" /proc/mounts > /dev/null
+	if [ "$?" = "0" ]
+	then
+		umount  "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache"
+		if [ "$?" != "0" ]
+		then 
+			echo "error with ccache umount"
+			exit 2
+		fi
+	else
+		echo "ccache not mounted"
+	fi
+	exit 0
+}
 
 configure_jenkins() {
 	echo "Configuring Jenkins mode using SBS"
@@ -226,7 +258,16 @@ remove_sbs() {
 			exit 2
 		fi
 	fi
-
+	grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache" /proc/mounts > /dev/null
+	if [ "$?" = "0" ]
+	then
+		umount  "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache"
+		if [ "$?" != "0" ]
+		then 
+			echo "error with ccache umount"
+			exit 2
+		fi
+	fi
 	if [ -d sbs-${ARCH} ]
 	then
 		rm -rf sbs-${ARCH}
@@ -248,6 +289,8 @@ then
 	echo "remove-sbs - remove current SBS"
 	echo "mount-src - mount ${HOME}/src in SBS"
 	echo "umount-src - umount ${HOME}/src in SBS"
+	echo "mount-ccache - mount ${HOME}/.ccache in SBS"
+	echo "umount-ccache - umount ${HOME}/.ccache in SBS"
 	exit 0
 fi
 
@@ -286,6 +329,16 @@ fi
 if [ "$1" = "umount-src" ]
 then
 	configure_umount-src
+fi
+
+if [ "$1" = "mount-ccache" ]
+then
+	configure_mount-ccache
+fi
+
+if [ "$1" = "umount-ccache" ]
+then
+	configure_umount-ccache
 fi
 
 if [ "$1" = "update-sbs" ]
