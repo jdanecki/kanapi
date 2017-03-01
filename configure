@@ -159,6 +159,7 @@ configure_umount-src() {
 configure_mount-ccache() {
 	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
 	if [ ! -d ${HOME}/.ccache ] ; then mkdir ${HOME}/.ccache ; fi
+	if [ ! -d `pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache ] ; then mkdir `pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache ; fi
 	grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/.ccache" /proc/mounts > /dev/null
 	if [ "$?" = "0" ]
 	then
