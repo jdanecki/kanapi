@@ -51,14 +51,17 @@ pkg_build() {
 
 pkg_install() {
 	cd build
-	ninja install
-	mv ${PREFIX}/bin/midori ${PREFIX}/bin/midori.bin
-	echo "#!/bin/bash
-	export WEBKIT_DISABLE_COMPOSITING_MODE=1
-	${PREFIX}/bin/midori.bin" > ${PREFIX}/bin/midori
-	chmod +x ${PREFIX}/bin/midori
-	pkg_install_bin_all
-	pkg_install_libs
+	ninja install && pkg_install_bin_all &&  pkg_install_libs
+	if [ "$?" = "0" ]
+	then 
+		mv ${PREFIX}/bin/midori ${PREFIX}/bin/midori.bin
+		echo "#!/bin/bash
+		export WEBKIT_DISABLE_COMPOSITING_MODE=1
+		${PREFIX}/bin/midori.bin" > ${PREFIX}/bin/midori
+		chmod +x ${PREFIX}/bin/midori
+	else
+		false
+	fi
 }
 
 pkg_check() {

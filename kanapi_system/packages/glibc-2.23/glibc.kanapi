@@ -45,7 +45,7 @@ set_variables() {
 	else
 		export PATH=${PATH_TMP}:${KANAPI_CROSS_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin:${PATH}
 	fi
-	export CC=${KANAPI_C_COMPILER}
+	export CC="${KANAPI_C_COMPILER}"
 }
 
 pkg_configure() {

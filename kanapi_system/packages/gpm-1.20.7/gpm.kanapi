@@ -69,8 +69,5 @@ pkg_build() {
 pkg_install() {
 	cd build
 	touch doc/gpm.info
-	make -j ${MAKE_JOBS} install MAKEINFO=true
-	pkg_install_bin_all
-	pkg_install_sbin_all
-	pkg_install_libs
+	make -j ${MAKE_JOBS} install MAKEINFO=true && pkg_install_bin_all && pkg_install_sbin_all && pkg_install_libs
 }

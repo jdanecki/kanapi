@@ -34,7 +34,7 @@ pkg_build() {
 	then
 		CC="${KANAPI_C_COMPILER} -fPIC"
 	else
-		CC=${KANAPI_C_COMPILER}
+		CC="${KANAPI_C_COMPILER}"
 	fi
 
 	${MAKE} -j ${MAKE_JOBS} CC="${CC}"

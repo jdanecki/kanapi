@@ -56,9 +56,7 @@ pkg_configure() {
 }
 
 pkg_install() {
-	pkg_install_pc_all
-	pkg_install_bin_all
-	pkg_install_libs
+	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs
 }
 
 pkg_check() {

@@ -36,26 +36,31 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} -C wpa_supplicant LIBDIR=${PREFIX}/lib BINDIR=${PREFIX}/bin CC=${KANAPI_C_COMPILER}
+	${MAKE} -j ${MAKE_JOBS} -C wpa_supplicant LIBDIR=${PREFIX}/lib BINDIR=${PREFIX}/bin CC="${KANAPI_C_COMPILER}"
 }
 
 pkg_install() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} -C wpa_supplicant install LIBDIR=${PREFIX}/lib BINDIR=${PREFIX}/bin CC=${KANAPI_C_COMPILER}
-	pkg_install_bin_all
-	for i in etc run 
-	do
-		if [ ! -d ${PREFIX}/$i ]
-		then
-			mkdir ${PREFIX}/$i
-		fi
-	done
+	${MAKE} -j ${MAKE_JOBS} -C wpa_supplicant install LIBDIR=${PREFIX}/lib BINDIR=${PREFIX}/bin CC="${KANAPI_C_COMPILER}" \
+		&&	pkg_install_bin_all
+	if [ "$?" = "0" ]
+	then
+		for i in etc run 
+		do
+			if [ ! -d ${PREFIX}/$i ]
+			then
+				mkdir ${PREFIX}/$i
+			fi
+		done
 
-	echo "ctrl_interface=${PREFIX}/run/wpa_supplicant
-	network={
-	        ssid=ssid
-	        psk=password
-	}" > ${PREFIX}/etc/wifi.conf
+		echo "ctrl_interface=${PREFIX}/run/wpa_supplicant
+		network={
+				ssid=ssid
+				psk=password
+		}" > ${PREFIX}/etc/wifi.conf
+	else
+		false
+	fi
 }
 
 pkg_check() {
