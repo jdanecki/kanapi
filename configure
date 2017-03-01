@@ -121,6 +121,47 @@ configure_chroot() {
 	exit 0
 }
 
+configure_mount-src() {
+	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
+	if [ -d ${HOME}/src ]
+	then
+		grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src" /proc/mounts > /dev/null
+		if [ "$?" = "0" ]
+		then
+			echo "src already mounted"
+		else
+			mount -o bind ${HOME}/src "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src"
+			if [ "$?" != "0" ]
+			then 
+				echo "error with src mount"
+				exit 2
+			fi
+		fi
+	fi
+	exit 0
+}
+
+configure_umount-src() {
+	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
+	if [ -d ${HOME}/src ]
+	then
+		grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src" /proc/mounts > /dev/null
+		if [ "$?" = "0" ]
+		then
+			umount  "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src"
+			if [ "$?" != "0" ]
+			then 
+				echo "error with src umount"
+				exit 2
+			fi
+		else
+			echo "src not mounted"
+		fi
+	fi
+	exit 0
+}
+
+
 configure_jenkins() {
 	echo "Configuring Jenkins mode using SBS"
 	sbs_name="sbs-`uname -m`"
@@ -196,6 +237,8 @@ then
 	echo "jenkins - configure for compilation under Jenkins"
 	echo "update-sbs - update SBS locally"
 	echo "remove-sbs - remove current SBS"
+	echo "mount-src - mount ${HOME}/src in SBS"
+	echo "umount-src - umount ${HOME}/src in SBS"
 	exit 0
 fi
 
@@ -224,6 +267,16 @@ fi
 if [ "$1" = "jenkins" ]
 then
 	configure_jenkins
+fi
+
+if [ "$1" = "mount-src" ]
+then
+	configure_mount-src
+fi
+
+if [ "$1" = "umount-src" ]
+then
+	configure_umount-src
 fi
 
 if [ "$1" = "update-sbs" ]
