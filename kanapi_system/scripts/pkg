@@ -83,7 +83,7 @@ pkg_search() {
 	if [ ! -f ${PKGS_LIST} ] 
 	then
 		echo "getting list of packages for ${PKG_ARCH}"
-		download ${SF_URL}/${PKG_ARCH}/packages/packages.md5 ${PKGS_LIST}
+		download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
 	fi
 	echo "looking for ${PAR2}"
 	PKGS=`grep ${PAR2} ${PKGS_LIST} | awk '{print $2}'`
