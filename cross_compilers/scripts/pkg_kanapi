@@ -16,7 +16,9 @@ if [ "x${PKG_VERBOSE}" = "x1" ]
 then
 	echo -e ${PKG_COLOR}
 	${PKG_ACTION}
+	RET=$?
 	echo -e '\033[0m'
+	exit ${RET}
 else
 	${PKG_ACTION} > /dev/null
 fi
