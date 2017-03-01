@@ -641,6 +641,11 @@ verify_file() {
 
 pkg_verify() {
 	echo "Verifing ${PACKAGE_NAME} in ${PREFIX}"
+	if [ ! -d ${PREFIX} ]
+	then
+		echo "Package lost"
+		exit 2
+	fi
 	for f in ${PREFIX}/bin/* ${PREFIX}/sbin/*  ${PREFIX}/usr/bin/* ${PREFIX}/usr/sbin/*
 	do
 		if [ -f $f ]
