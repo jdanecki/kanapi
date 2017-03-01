@@ -44,7 +44,7 @@ pkg_build() {
 	if [ "${KANAPI_TARGET}" != "arm" ]
 	then
 		cd build
-		make -j ${MAKE_JOBS} PREFIX=${PREFIX} CC=${KANAPI_TARGET_NAME}-gcc
+		make -j ${MAKE_JOBS} PREFIX=${PREFIX} CC=${KANAPI_C_COMPILER}
 	fi
 }
 

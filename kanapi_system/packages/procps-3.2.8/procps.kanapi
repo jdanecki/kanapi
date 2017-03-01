@@ -35,7 +35,7 @@ pkg_configure() {
 pkg_build() {
 	cd build
 	NCURSES="`${PKG_CONFIG} --cflags ncurses` `${PKG_CONFIG} --libs ncurses`"
-	make -j ${MAKE_JOBS}  DESTDIR=${PREFIX} CC="${KANAPI_TARGET_NAME}-gcc ${NCURSES}" ldl="-lproc-${VER} -Lproc"
+	make -j ${MAKE_JOBS}  DESTDIR=${PREFIX} CC="${KANAPI_C_COMPILER} ${NCURSES}" ldl="-lproc-${VER} -Lproc"
 }
 
 pkg_install() {

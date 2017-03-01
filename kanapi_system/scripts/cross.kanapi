@@ -23,10 +23,24 @@ then
 	export KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME}eabi
 fi
 
+if [ -x ${KANAPI_TARGET_BIN}/ccache -a -z "${CI}" ]
+then
+	export USE_CCACHE=1
+fi
 
 if [ "${KANAPI_CROSS}" = "0" -a -x ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc ]
 then
 	echo "use native compilers"
+	if [ "${USE_CCACHE}" = "1" ]
+	then
+		export CC="ccache ${KANAPI_TARGET_NAME}-gcc"
+		export KANAPI_C_COMPILER=${CC}
+		if [ -f ${KANAPI_BASE}/glibc-${glibc_ver}/lib/libstdc++.so ]
+		then
+			export CXX="ccache ${KANAPI_TARGET_NAME}-g++"
+			export KANAPI_CXX_COMPILER=${CXX}
+		fi
+	fi
 else
 	echo "use cross compilers"
 	export CROSS_GCC_PREFIX="${KANAPI_CROSS_BASE}/gcc-${gcc_ver}"
@@ -34,7 +48,7 @@ else
 
 	if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc ]
 	then
-		if [ -f ${CROSS_GCC_PREFIX}/${KANAPI_TARGET_NAME}/lib/libstdc++.so ]
+		if [ -f ${KANAPI_CROSS_BASE}/glibc-${glibc_ver}/lib/libstdc++.so ]
 		then
 			export PATH_GCC=${CROSS_GCC_PREFIX}/bin
 			export PATH=${PATH_GCC}:${PATH}
@@ -53,4 +67,14 @@ if [ "${KANAPI_CROSS}" = "0" ]
 then	
 	export PATH=${KANAPI_TARGET_BIN}:${PATH}
 fi
+
+if [ -z "${KANAPI_C_COMPILER}" ]
+then 
+	KANAPI_C_COMPILER=${KANAPI_TARGET_NAME}-gcc
+fi
+if [ -z "${KANAPI_CXX_COMPILER}" ]
+then 
+	KANAPI_CXX_COMPILER=${KANAPI_TARGET_NAME}-g++
+fi
+
 

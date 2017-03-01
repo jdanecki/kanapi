@@ -27,7 +27,7 @@ LIB_DEPENDS="gl"
 
 . ../settings
 
-export CXX="${KANAPI_TARGET_NAME}-g++ ${CFLAGS}"
+export CXX="${KANAPI_CXX_COMPILER} ${CFLAGS}"
 
 pkg_configure() {
 	local_copy

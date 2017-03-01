@@ -45,11 +45,6 @@ fi
 
 export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
 
-if [ -x ${KANAPI_TARGET_BIN}/ccache -a  "${CI}" != "true" ]
-then
-	USE_CCACHE=1
-fi
-
 export PKG_CONFIG=${KANAPI_PKGCONFIG}
 
 if [ -n "${PKG_CONFIG}" ]

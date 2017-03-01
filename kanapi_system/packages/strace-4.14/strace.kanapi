@@ -25,7 +25,7 @@ SF_URL="${PACKAGE_NAME}/${PACKAGE_NAME}/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
 #build depends on
 . ../settings
 
-export CC_FOR_BUILD=${KANAPI_TARGET_NAME}-gcc
+export CC_FOR_BUILD=${KANAPI_C_COMPILER}
 
 pkg_prepare() {
 	pkg_tar_xz

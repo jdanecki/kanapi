@@ -23,7 +23,7 @@ URL="http://www.mr511.de/software"
 EXT=tar.gz
 #build depends on
 . ../settings
-export CC=${KANAPI_TARGET_NAME}-gcc
+export CC=${KANAPI_C_COMPILER}
 
 pkg_configure() {
 	export mr_cv_target_elf=yes

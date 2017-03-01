@@ -29,7 +29,7 @@ LIB_DEPENDS="libxml-2.0 zlib liblzma libpcre sqlite3 ncurses"
 export LDFLAGS="${LDFLAGS} -lpthread -lm"
 #export CFLAGS="${CFLAGS} "
 export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags openssl`"
-export CC="${KANAPI_TARGET_NAME}-gcc `${PKG_CONFIG} --cflags openssl`"
+export CC="${KANAPI_C_COMPILER} `${PKG_CONFIG} --cflags openssl`"
 
 pkg_configure() {
     export EXTENSION_DIR=${PREFIX}/usr/lib/php/extensions

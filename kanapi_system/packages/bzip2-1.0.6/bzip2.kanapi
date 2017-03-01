@@ -32,9 +32,9 @@ pkg_build() {
 	cd build
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
-		CC="${KANAPI_TARGET_NAME}-gcc -fPIC"
+		CC="${KANAPI_C_COMPILER} -fPIC"
 	else
-		CC=${KANAPI_TARGET_NAME}-gcc
+		CC=${KANAPI_C_COMPILER}
 	fi
 
 	${MAKE} -j ${MAKE_JOBS} CC="${CC}"
