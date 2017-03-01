@@ -143,20 +143,17 @@ configure_mount-src() {
 
 configure_umount-src() {
 	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
-	if [ -d ${HOME}/src ]
+	grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src" /proc/mounts > /dev/null
+	if [ "$?" = "0" ]
 	then
-		grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src" /proc/mounts > /dev/null
-		if [ "$?" = "0" ]
-		then
-			umount  "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src"
-			if [ "$?" != "0" ]
-			then 
-				echo "error with src umount"
-				exit 2
-			fi
-		else
-			echo "src not mounted"
+		umount  "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src"
+		if [ "$?" != "0" ]
+		then 
+			echo "error with src umount"
+			exit 2
 		fi
+	else
+		echo "src not mounted"
 	fi
 	exit 0
 }
@@ -218,6 +215,18 @@ update_sbs() {
 
 remove_sbs() {
 	ARCH="`uname -m`"
+	KANAPI_VER=`cat kanapi_system/scripts/KANAPI_VER`
+	grep "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src" /proc/mounts > /dev/null
+	if [ "$?" = "0" ]
+	then
+		umount  "`pwd`/sbs-`uname -m`/kanapi_${KANAPI_VER}/`uname -m`/home/src"
+		if [ "$?" != "0" ]
+		then 
+			echo "error with src umount"
+			exit 2
+		fi
+	fi
+
 	if [ -d sbs-${ARCH} ]
 	then
 		rm -rf sbs-${ARCH}
