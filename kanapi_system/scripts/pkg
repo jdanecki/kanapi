@@ -152,7 +152,7 @@ pkg_installed() {
 	done
 }
 
-pkg_ver_inst() {
+pkg_version() {
 	#arm i686 x86_64
 	if [ -n "${PAR3}" ] 
 	then
@@ -166,50 +166,14 @@ pkg_ver_inst() {
 	then
 		for p in ${PKGS}
 		do
-			name=`echo $p | sed "s@\(^[a-zA-Z]\+[0-9a-zA-Z\-\+]\+\)\(\-\)\([a-zA-Z0-9\-]\+\)@\1@"`
-			tmp=`echo  $p | sed "s@\(^[a-zA-Z]\+[0-9a-zA-Z\-\+]\+\)\(\-\)\([a-zA-Z0-9\-]\+\)@\2@"`
-			ver=`echo  $p | sed "s@\(^[a-zA-Z]\+[0-9a-zA-Z\-\+]\+\)\(\-\)\([a-zA-Z0-9\-]\+\)@\3@"`
-			echo "name=$name"
-			echo "tmp=$tmp"
-			echo "ver=$ver"
-			if [ "$name" = "${PAR2}" ]
+			. /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages/${p}/kanapi.pkg
+			if [ "$PACKAGE_NAME" = "${PAR2}" ]
 			then
-				echo "$ver"
+				echo "${PACKAGE_VER}"
 				FOUND=1
 			fi
 		done
 	fi
-	if [ "$FOUND" = "1" ] 
-	then 
-		true
-	else
-		false
-	fi
-}
-
-pkg_ver_avail() {
-	#arm i686 x86_64
-	if [ -n "${PAR3}" ] 
-	then
-		PKG_ARCH=${PAR3}
-	else
-		PKG_ARCH=`uname -m`
-	fi
-
-	cd /kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
-	PKGS=`grep ${PAR2} ${PKGS_LIST} | awk '{print $2}'`
-	FOUND=0
-	for p in ${PKGS}
-	do
-		n=`basename -s .tar.xz $p` 
-		name=`echo $n | sed "s@\(^[0-9a-zA-Z\-\+]\+\)\(-\)\([a-zA-Z0-9\.]*\)@\1@"`
-		ver=`echo  $n | sed "s@\(^[0-9a-zA-Z\-\+]\+\)\(-\)\([a-zA-Z0-9\.]*\)@\3@"`
-		if [ "$name" = "${PAR2}" ]
-		then
-			echo "$ver"
-			FOUND=1
-		fi
-	done
 	if [ "$FOUND" = "1" ] 
 	then 
 		true
@@ -227,8 +191,7 @@ pkg_help() {
 	echo "check package [ arm | i686 | x86_64 ]  - check md5 sum of package"
 	echo "check_all [ arm | i686 | x86_64 ]      - check md5 sum of all packages"
 	echo "installed [ arm | i686 | x86_64 ]      - show installed packages"
-	echo "ver_inst package [ arm | i686 | x86_64 ]- show version of installed package"
-	echo "ver_avail package [ arm | i686 | x86_64 ]- show version of available package"
+	echo "version package [ arm | i686 | x86_64 ]- show version of installed package"
 }
 
 pkg_() {
