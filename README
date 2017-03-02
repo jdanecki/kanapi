@@ -4,6 +4,11 @@ Main goal of this project is to create educational operating system based on Lin
 and free software for use at home.
 
 Current phase: Beta
+
+Versions: 
+* in development - v0.9
+* released - v0.8
+
 License: GPL v.3
 
 You can read doc/INSTALL to learn how to build KaNaPi.
