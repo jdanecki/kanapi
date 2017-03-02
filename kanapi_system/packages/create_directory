@@ -10,11 +10,22 @@ then
 	exit
 fi
 
-echo "$1_ver=$2" >> ../scripts/config.kanapi
-echo -e "\n$1:\n\t@\$(RUN_TARGET)" >> ../scripts/Makefile
-
 mkdir $1-$2
-cd $1-$2
+pushd  $1-$2
 cat  ../template.kanapi | sed "s/@NAME@/$1/" | sed "s/@VER@/$2/" > $1.kanapi
 chmod +x $1.kanapi
+popd
+
+echo $1 | grep "-" > /dev/null
+FULL_NAME="$1"
+NAME="$1"
+
+if [ "$?" = "0" ]
+then
+	NAME=`echo $1 | tr "-" "_" `
+	echo "${FULL_NAME}_ver=\$(${NAME}_ver)" >> ../scripts/config-Makefile.kanapi
+fi
+
+echo "${NAME}_ver=$2" >> ../scripts/config.kanapi
+echo -e "\n$1:\n\t@\$(RUN_TARGET)" >> ../scripts/Makefile
 

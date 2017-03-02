@@ -10,73 +10,73 @@ endif
 
 kanapi_download:
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_download" ; fi
-	PKG_COLOR=$(colorBoldMagenta) pkg_kanapi $(PKG).kanapi download $(V)
+	@PKG_COLOR=$(colorBoldMagenta) pkg_kanapi $(PKG).kanapi download $(V)
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_download" ; fi
 	$(call DATE_RULE)
 
 kanapi_redownload:
-	PKG_COLOR=$(colorBoldMagenta) pkg_kanapi $(PKG).kanapi redownload $(V)
+	@PKG_COLOR=$(colorBoldMagenta) pkg_kanapi $(PKG).kanapi redownload $(V)
 
 kanapi_prepare: kanapi_download
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_prepare" ; fi
-	pkg_kanapi $(PKG).kanapi prepare $(V)
+	@pkg_kanapi $(PKG).kanapi prepare $(V)
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_prepare" ; fi
 	$(call DATE_RULE)
 
 kanapi_reprepare: kanapi_download
-	pkg_kanapi $(PKG).kanapi reprepare $(V)
+	@pkg_kanapi $(PKG).kanapi reprepare $(V)
 
 kanapi_configure: kanapi_prepare
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_configure" ; fi
-	PKG_COLOR=$(colorBrown) pkg_kanapi $(PKG).kanapi configure $(V); if [ "$$?" != "0" ] ; then find . -name config.log -exec cat {} \; ; false; fi
+	@PKG_COLOR=$(colorBrown) pkg_kanapi $(PKG).kanapi configure $(V); if [ "$$?" != "0" ] ; then find . -name config.log -exec cat {} \; ; false; fi
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_configure" ; fi
 	$(call DATE_RULE)
 
 kanapi_build: kanapi_configure
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_build" ; fi
-	PKG_COLOR=$(colorBoldGreen) pkg_kanapi $(PKG).kanapi build $(V)
+	@PKG_COLOR=$(colorBoldGreen) pkg_kanapi $(PKG).kanapi build $(V)
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_build" ; fi
 	$(call DATE_RULE)
 
 kanapi_rebuild_install:
-	PKG_COLOR=$(colorBoldGreen) pkg_kanapi $(PKG).kanapi rebuild $(V)
-	PKG_COLOR=$(colorBoldBlue)	pkg_kanapi $(PKG).kanapi install $(V)
-	pkg_kanapi $(PKG).kanapi update_meta $(V)
+	@PKG_COLOR=$(colorBoldGreen) pkg_kanapi $(PKG).kanapi rebuild $(V)
+	@PKG_COLOR=$(colorBoldBlue)	pkg_kanapi $(PKG).kanapi install $(V)
+	@pkg_kanapi $(PKG).kanapi update_meta $(V)
 
 kanapi_install: kanapi_build
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi
-	PKG_COLOR=$(colorBoldBlue) pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
+	@PKG_COLOR=$(colorBoldBlue) pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install" ; fi
-	pkg_kanapi $(PKG).kanapi update_meta $(V)
+	@pkg_kanapi $(PKG).kanapi update_meta $(V)
 	$(call DATE_RULE)
 
 kanapi_reinstall:
-	PKG_COLOR=$(colorBoldBlue) pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
-	pkg_kanapi $(PKG).kanapi update_meta $(V)
+	@PKG_COLOR=$(colorBoldBlue) pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
+	@pkg_kanapi $(PKG).kanapi update_meta $(V)
 	/bin/date > kanapi_install
 
 kanapi_uninstall:
-	pkg_kanapi $(PKG).kanapi uninstall $(V)
+	@pkg_kanapi $(PKG).kanapi uninstall $(V)
 
 kanapi_clean:
-	pkg_kanapi $(PKG).kanapi clean $(V)
+	@pkg_kanapi $(PKG).kanapi clean $(V)
 
 kanapi_test:
-	pkg_kanapi $(PKG).kanapi test $(V)
+	@pkg_kanapi $(PKG).kanapi test $(V)
 
 kanapi_check:
-	pkg_kanapi $(PKG).kanapi check $(V)
+	@pkg_kanapi $(PKG).kanapi check $(V)
 
 kanapi_verify:
-	pkg_kanapi $(PKG).kanapi verify $(V); if [ "$$?" = "0" ] ; then /bin/date > kanapi_install ; else false; fi
+	@pkg_kanapi $(PKG).kanapi verify $(V); if [ "$$?" = "0" ] ; then /bin/date > kanapi_install ; else false; fi
 	$(call DATE_RULE)
 
 kanapi_reverify:
-	pkg_kanapi $(PKG).kanapi verify $(V); if [ "$$?" = "0" ] ; then /bin/date > kanapi_install ; else false; fi
+	@pkg_kanapi $(PKG).kanapi verify $(V); if [ "$$?" = "0" ] ; then /bin/date > kanapi_install ; else false; fi
 	/bin/date > kanapi_verify
 
 kanapi_version:
-	pkg_kanapi $(PKG).kanapi version $(V)
+	@pkg_kanapi $(PKG).kanapi version $(V)
 
 kanapi_help:
 	@echo "**********   Help  **********"
@@ -93,16 +93,17 @@ kanapi_help:
 	@echo "reinstall   - re-install package/packages"
 
 kanapi_update_bin:
-	pkg_kanapi $(PKG).kanapi install_bin_all $(V)
-	pkg_kanapi $(PKG).kanapi install_sbin_all $(V)
-	pkg_kanapi $(PKG).kanapi install_usr_bin_all $(V)
+	@pkg_kanapi $(PKG).kanapi install_bin_all $(V)
+	@pkg_kanapi $(PKG).kanapi install_sbin_all $(V)
+	@pkg_kanapi $(PKG).kanapi install_usr_bin_all $(V)
 
 kanapi_update_libs:
-	pkg_kanapi $(PKG).kanapi install_libs $(V)
+	@pkg_kanapi $(PKG).kanapi install_libs $(V)
 
 kanapi_update_pc:
-	pkg_kanapi $(PKG).kanapi install_pc_share_all_only $(V)
-	pkg_kanapi $(PKG).kanapi install_pc_all_only $(V)
+	@pkg_kanapi $(PKG).kanapi install_pc_share_all_only $(V)
+	@pkg_kanapi $(PKG).kanapi install_pc_all_only $(V)
 
 kanapi_update_meta:
-	pkg_kanapi $(PKG).kanapi update_meta $(V)
+	@pkg_kanapi $(PKG).kanapi update_meta $(V)
+

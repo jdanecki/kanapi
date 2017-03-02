@@ -30,7 +30,7 @@ fi
 
 if [ "${KANAPI_CROSS}" = "0" -a -x ${KANAPI_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc ]
 then
-	echo "use native compilers"
+	#echo "use native compilers"
 	if [ "${USE_CCACHE}" = "1" ]
 	then
 		export CC="${KANAPI_BASE}/ccache-${ccache_ver}/links/${KANAPI_TARGET_NAME}-gcc"
@@ -42,7 +42,7 @@ then
 		fi
 	fi
 else
-	echo "use cross compilers"
+	#echo "use cross compilers"
 	export CROSS_GCC_PREFIX="${KANAPI_CROSS_BASE}/gcc-${gcc_ver}"
 	export CROSS_BINUTILS_PREFIX="${KANAPI_CROSS_BASE}/binutils-${binutils_ver}"
 

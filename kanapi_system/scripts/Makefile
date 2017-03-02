@@ -1248,3 +1248,6 @@ wget:
 
 font-bh-ttf:
 	@$(RUN_TARGET)
+
+package-test:
+	@$(RUN_TARGET)
