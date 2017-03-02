@@ -103,8 +103,15 @@ if [ "${KANAPI_TARGET}" = "x86_64" ]
 then
 	CFLAGS="${CFLAGS} -fPIC"
 fi
-	
-NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+
+which grep && which wc
+if [ "$?" = "0" ]
+then	
+	NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+else
+	NR_CPUS=2
+fi
+
 MAKE_JOBS=${NR_CPUS}
 
 if [ "${SHIPPABLE}" = "true" ]
