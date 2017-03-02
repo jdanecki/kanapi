@@ -25,17 +25,23 @@ PAR3=$3
 
 SF_URL=http://downloads.sourceforge.net/project/kanapi/packages/v${KANAPI_VERSION}
 PKGS_LIST=packages.md5
-	if [ -z "${DISTRO_ROOT}" ]
+
+if [ -n "${PACKAGES_ROOT}" ]
 then
-	echo "Using ${DISTRO_ROOT} distro root "
+	echo "Using ${PACKAGES_ROOT} as packages directory"
 else
-	DISTRO_ROOT=/kanapi_${KANAPI_VERSION}
+	PACKAGES_ROOT=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
 fi
 
 download() {
 #	wget $1 -O $2a
 	echo "downloading $1"
 	curl -L $1 -o $2
+}
+
+goto_pkg_dir() {
+	if [ ! -d ${PACKAGES_ROOT} ] ; then mkdir -p ${PACKAGES_ROOT} ; fi
+	cd ${PACKAGES_ROOT}
 }
 
 pkg_pull() {
@@ -46,7 +52,7 @@ pkg_pull() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	cd ${DISTRO_ROOT}/${PKG_ARCH}/packages
+	goto_pkg_dir
 	echo "getting list of packages for ${PKG_ARCH}"
 	download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
 	echo "looking for ${PAR2} in ${PKG_ARCH}"
@@ -66,7 +72,7 @@ pkg_pull_all() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	cd ${DISTRO_ROOT}/${PKG_ARCH}/packages
+	goto_pkg_dir
 	echo "getting list of packages for ${PKG_ARCH}"
 	download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
 	PKGS=`cat ${PKGS_LIST} | awk '{print $2}'`
@@ -85,7 +91,7 @@ pkg_search() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	cd ${DISTRO_ROOT}/${PKG_ARCH}/packages
+	goto_pkg_dir
 	if [ ! -f ${PKGS_LIST} ] 
 	then
 		echo "getting list of packages for ${PKG_ARCH}"
@@ -106,7 +112,7 @@ pkg_list() {
 	else
 		PKG_ARCH=`uname -m`
 	fi	
-	cd ${DISTRO_ROOT}/${PKG_ARCH}/packages
+	goto_pkg_dir
 	echo "getting list of packages for ${PKG_ARCH} to ${PKGS_LIST}"
 	download ${SF_URL}/${PKG_ARCH}/packages.md5 ${PKGS_LIST}
 }
@@ -119,7 +125,7 @@ pkg_check_all() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	cd ${DISTRO_ROOT}/${PKG_ARCH}/packages
+	goto_pkg_dir
 	echo "Checking packages with ${PKGS_LIST}"
 	md5sum -w -c ${PKGS_LIST} 
 	echo "Result: $?"
@@ -133,7 +139,7 @@ pkg_check() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	cd ${DISTRO_ROOT}/${PKG_ARCH}/packages
+	goto_pkg_dir
 	echo "looking for ${PAR2} for ${PKG_ARCH}"
 	grep ${PAR2} ${PKGS_LIST} > ${PAR2}.md5
 	md5sum -w -c ${PAR2}.md5
@@ -147,7 +153,8 @@ pkg_installed() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	for i in ${DISTRO_ROOT}/${PKG_ARCH}/packages/*
+	goto_pkg_dir
+	for i in ./*
 	do 
 		if [ -d $i ] 
 		then
@@ -166,13 +173,14 @@ pkg_version() {
 	else
 		PKG_ARCH=`uname -m`
 	fi
-	PKGS=`ls ${DISTRO_ROOT}/${PKG_ARCH}/packages | grep ${PAR2}`
+	goto_pkg_dir
+	PKGS=`ls | grep ${PAR2}`
 	FOUND=0
 	if [ -n "$PKGS" ]
 	then
 		for p in ${PKGS}
 		do
-			. ${DISTRO_ROOT}/${PKG_ARCH}/packages/${p}/kanapi.pkg
+			. ${p}/kanapi.pkg
 			if [ "$PACKAGE_NAME" = "${PAR2}" ]
 			then
 				echo "${PACKAGE_VER}"
@@ -204,6 +212,5 @@ pkg_() {
 	pkg_help
 }
 
- 
 ${PKG_ACTION}
 
