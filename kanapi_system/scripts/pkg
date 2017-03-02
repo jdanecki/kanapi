@@ -196,6 +196,42 @@ pkg_version() {
 	fi
 }
 
+pkg_update_links() {
+	if [ -n "${PAR2}" ]
+	then
+		PKG_ARCH=${PAR2}
+	else
+		PKG_ARCH=`uname -m`
+	fi
+	PACKAGES_ROOT=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
+	DEST_BASE=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}
+
+	if [ ! -d ${PACKAGES_ROOT}/libs ] ; then mkdir ${PACKAGES_ROOT}/libs ; fi
+
+	for p in ${PACKAGES_ROOT}/*
+	do
+		echo "updating $p"
+		if [ -d $p/bin ]; then ln -sf $p/bin/* ${DEST_BASE}/bin; fi
+		if [ -d $p/sbin ]; then ln -sf $p/sbin/*  ${DEST_BASE}/bin; fi
+		if [ -d $p/usr/bin ]; then ln -sf $p/usr/bin/* ${DEST_BASE}/bin; fi
+		if [ -d $p/lib ]
+	   	then	
+			for lib in $p/lib/lib*.so*  $p/lib/lib*.so* 
+			do
+				if [ -f $lib ] ; then ln -sf $lib  ${PACKAGES_ROOT}/libs ; fi
+			done
+	   	fi
+		if [ -d $p/lib64 ]
+	   	then	
+			for lib in $p/lib64/lib*.so*  $p/lib64/lib*.so* 
+			do
+				if [ -f $lib ] ; then ln -sf $lib  ${PACKAGES_ROOT}/libs ; fi
+			done
+	   	fi
+	done
+	ldconfig
+}
+
 pkg_help() {
 	echo "Usage for `basename $0`:"
 	echo "pull package [ arm | i686 | x86_64 ]   - download package"
@@ -206,6 +242,7 @@ pkg_help() {
 	echo "check_all [ arm | i686 | x86_64 ]      - check md5 sum of all packages"
 	echo "installed [ arm | i686 | x86_64 ]      - show installed packages"
 	echo "version package [ arm | i686 | x86_64 ]- show version of installed package"
+	echo "update_links [ arm | i686 | x86_64 ]   - update links for libs and apps"
 }
 
 pkg_() {
