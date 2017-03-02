@@ -88,3 +88,4 @@ linux-firmware_ver=${linux_firmware_ver}
 ltp-full_ver=$(ltp_full_ver)
 bash-completion_ver=${bash_completion_ver}
 phoronix-test-suite_ver=${phoronix_test_suite_ver}
+font-bh-ttf_ver=${font_bh_ttf_ver}

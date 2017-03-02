@@ -100,7 +100,7 @@ fonts: fonts-bitmap fonts-type1 fonts-misc fonts-ttf
 	rm $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts
 	cd $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; mkfontdir
 
-fonts-ttf: freefont-ttf dejavu-fonts-ttf
+fonts-ttf: freefont-ttf dejavu-fonts-ttf font-bh-ttf
 	
 fonts-bitmap: fonts-utopia fonts-bh fonts-bitstream
 	
@@ -1243,6 +1243,8 @@ php: db gdbm
 phoronix-test-suite: php
 	@$(RUN_TARGET)
 
-
 wget:
+	@$(RUN_TARGET)
+
+font-bh-ttf:
 	@$(RUN_TARGET)
