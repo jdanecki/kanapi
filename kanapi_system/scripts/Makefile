@@ -61,7 +61,7 @@ bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed
 
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop
+apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph
 
@@ -1243,3 +1243,6 @@ php: db gdbm
 phoronix-test-suite: php
 	@$(RUN_TARGET)
 
+
+wget:
+	@$(RUN_TARGET)

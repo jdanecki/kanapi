@@ -363,3 +363,4 @@ phoronix_test_suite_ver=v6.8.0
 package3_ver=1
 package4_ver=1
 curl_ver=7.53.1
+wget_ver=1.19
