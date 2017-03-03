@@ -1243,7 +1243,7 @@ php: db gdbm
 phoronix-test-suite: php
 	@$(RUN_TARGET)
 
-wget:
+wget: gnutls
 	@$(RUN_TARGET)
 
 font-bh-ttf:
