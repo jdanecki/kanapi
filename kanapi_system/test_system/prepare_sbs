@@ -52,7 +52,19 @@ do
 	pkg_v=${pkg}_ver
 	cp -ar ${KANAPI_BASE_PACKAGES}/${pkg}-${!pkg_v} packages
 done
-cp -ar ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver} packages
+
+mkdir -p packages/pkg-config-${pkg_config_ver}/share/pkgconfig
+cp -ar ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver}/bin packages/pkg-config-${pkg_config_ver}
+for i in aclocal doc man
+do
+	cp -ar ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver}/share/$i packages/pkg-config-${pkg_config_ver}/share
+done
+
+for i in `find packages -name pkgconfig | grep lib`
+do
+	ln -s ${KANAPI_BASE}/$i/*.pc packages/pkg-config-${pkg_config_ver}/share/pkgconfig
+done
+
 cp -ar ${KANAPI_BASE_PACKAGES}/linux-headers-${linux_headers_ver} packages
 cp -ar ${KANAPI_BASE_PACKAGES}/libgpg-error-${libgpg_error_ver} packages
 
