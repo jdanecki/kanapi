@@ -16,7 +16,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
-
+#set -x
 KANAPI_VERSION=0.9
 
 PKG_ACTION="pkg_$1"
@@ -26,12 +26,14 @@ PAR3=$3
 SF_URL=http://downloads.sourceforge.net/project/kanapi/packages/v${KANAPI_VERSION}
 PKGS_LIST=packages.md5
 
-if [ -n "${PACKAGES_ROOT}" ]
-then
-	echo "Using ${PACKAGES_ROOT} as packages directory"
-else
-	PACKAGES_ROOT=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
-fi
+check_params() {
+	if [ -n "${PACKAGES_ROOT}" ]
+	then
+		echo "Using ${PACKAGES_ROOT} as packages directory"
+	else
+		PACKAGES_ROOT=/kanapi_${KANAPI_VERSION}/${PKG_ARCH}/packages
+	fi
+}
 
 download() {
 #	wget $1 -O $2a
@@ -40,6 +42,7 @@ download() {
 }
 
 goto_pkg_dir() {
+	check_params
 	if [ ! -d ${PACKAGES_ROOT} ] ; then mkdir -p ${PACKAGES_ROOT} ; fi
 	cd ${PACKAGES_ROOT}
 }

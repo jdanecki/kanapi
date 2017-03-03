@@ -15,8 +15,8 @@ echo "----- mint ----"
 mint apt-cache policy $1 | grep -E "Installed"
 #mint apt-cache policy $1 | grep -E "Installed|Candidate"
 
-echo "----- opensuse ----"
-opensuse zypper info $1 | grep -E "Installed:|Version"
+#echo "----- opensuse ----"
+#opensuse zypper info $1 | grep -E "Installed:|Version"
 
 echo "----- arch64    ---"
 arch64 pacman -Ss $1 | grep -E "installed:"
@@ -40,4 +40,4 @@ echo "----- void      ---"
 void xbps-query -S $1 | grep "pkgver:"
 
 echo "----- kanapi      ---"
-pkg ver_inst $1
+pkg version $1
