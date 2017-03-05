@@ -368,3 +368,4 @@ font_bh_ttf_ver=1.0.3
 package_test_ver=1.2
 rplay_ver=3.3.2
 tiff_ver=4.0.7
+SDL_mixer_ver=1.2.12

@@ -1257,3 +1257,6 @@ rplay:
 
 tiff:
 	@$(RUN_TARGET)
+
+SDL_mixer:
+	@$(RUN_TARGET)
