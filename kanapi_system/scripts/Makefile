@@ -1254,3 +1254,6 @@ package-test:
 
 rplay:
 	@$(RUN_TARGET)
+
+tiff:
+	@$(RUN_TARGET)
