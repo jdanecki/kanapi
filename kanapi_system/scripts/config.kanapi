@@ -366,3 +366,4 @@ curl_ver=7.53.1
 wget_ver=1.19
 font_bh_ttf_ver=1.0.3
 package_test_ver=1.2
+rplay_ver=3.3.2

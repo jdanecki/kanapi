@@ -16,10 +16,10 @@ cat  ../template.kanapi | sed "s/@NAME@/$1/" | sed "s/@VER@/$2/" > $1.kanapi
 chmod +x $1.kanapi
 popd
 
-echo $1 | grep "-" > /dev/null
 FULL_NAME="$1"
 NAME="$1"
 
+echo $1 | grep "-" > /dev/null
 if [ "$?" = "0" ]
 then
 	NAME=`echo $1 | tr "-" "_" `

@@ -1251,3 +1251,6 @@ font-bh-ttf:
 
 package-test:
 	@$(RUN_TARGET)
+
+rplay:
+	@$(RUN_TARGET)
