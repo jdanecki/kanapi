@@ -1,4 +1,7 @@
 language: c
 compiler:
   - gcc
+branches:
+    except:
+        - gh-pages
 
