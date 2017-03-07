@@ -1,0 +1,30 @@
+digraph G {
+	graph [layout=dot rankdir=LR]
+
+sed
+gettext
+coreutils
+file
+attr
+ncurses
+less
+
+e2fsprogs
+procps
+zlib
+grep
+libtool
+tar
+findutils
+util_linux
+gzip
+bzip2
+net_tools
+wget
+openssl
+
+hdparm
+sdparm
+
+}
+

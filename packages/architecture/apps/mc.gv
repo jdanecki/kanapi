@@ -1,0 +1,12 @@
+digraph G {
+	graph [layout=dot];
+	_bin_mc -> libslang_so_2;
+	_bin_mc -> libglib_2_0_so_0;
+	libslang_so_2 -> libdl_so_2;
+	libslang_so_2 -> libm_so_6;
+	libglib_2_0_so_0 -> librt_so_1;
+	libpthread_so_0 -> libc_so_6;
+	librt_so_1 -> libpthread_so_0;
+	libm_so_6 -> libc_so_6;
+	libdl_so_2 -> libc_so_6;
+}

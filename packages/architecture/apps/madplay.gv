@@ -1,0 +1,16 @@
+digraph G {
+	graph [layout=dot];
+	_bin_madplay	 [label="/bin/madplay"];
+	libmad_so_0	 [label="libmad.so.0"];
+	_bin_madplay -> libmad_so_0;
+	libid3tag_so_0	 [label="libid3tag.so.0"];
+	_bin_madplay -> libid3tag_so_0;
+	libm_so_6	 [label="libm.so.6"];
+	_bin_madplay -> libm_so_6;
+	libc_so_6	 [label="libc.so.6"];
+	libmad_so_0 -> libc_so_6;
+	libz_so_1	 [label="libz.so.1"];
+	libid3tag_so_0 -> libz_so_1;
+	libz_so_1 -> libc_so_6;
+	libm_so_6 -> libc_so_6;
+}

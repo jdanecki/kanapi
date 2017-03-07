@@ -1,0 +1,11 @@
+digraph G {
+	graph [layout=dot rankdir=LR]
+
+
+    pcmanfm
+    thunar
+    mc 
+
+}
+
+

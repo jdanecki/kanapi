@@ -1,0 +1,32 @@
+digraph G {
+	graph [layout=dot];
+	_kanapi_packages_libgnome_keyring_2_32_0_lib_libgnome_keyring_so	 [label="/kanapi_packages/libgnome-keyring-2.32.0/lib/libgnome-keyring.so"];
+	libdbus_1_so_3	 [label="libdbus-1.so.3"];
+	_kanapi_packages_libgnome_keyring_2_32_0_lib_libgnome_keyring_so -> libdbus_1_so_3;
+	libgcrypt_so_11	 [label="libgcrypt.so.11"];
+	_kanapi_packages_libgnome_keyring_2_32_0_lib_libgnome_keyring_so -> libgcrypt_so_11;
+	librt_so_1	 [label="librt.so.1"];
+	libpthread_so_0	 [label="libpthread.so.0"];
+	librt_so_1 -> libpthread_so_0;
+	libdl_so_2	 [label="libdl.so.2"];
+	libc_so_6	 [label="libc.so.6"];
+	libdl_so_2 -> libc_so_6;
+	libm_so_6	 [label="libm.so.6"];
+	libm_so_6 -> libc_so_6;
+	libpthread_so_0 -> libc_so_6;
+	libgobject_2_0_so_0	 [label="libgobject-2.0.so.0"];
+	libdbus_1_so_3 -> libgobject_2_0_so_0;
+	libglib_2_0_so_0	 [label="libglib-2.0.so.0"];
+	libglib_2_0_so_0 -> librt_so_1;
+	libgpg_error_so_0	 [label="libgpg-error.so.0"];
+	libgcrypt_so_11 -> libgpg_error_so_0;
+	libgpg_error_so_0 -> librt_so_1;
+	libgpg_error_so_0 -> libdl_so_2;
+	libgpg_error_so_0 -> libm_so_6;
+	libgthread_2_0_so_0	 [label="libgthread-2.0.so.0"];
+	libgobject_2_0_so_0 -> libgthread_2_0_so_0;
+	libffi_so_6	 [label="libffi.so.6"];
+	libgobject_2_0_so_0 -> libffi_so_6;
+	libgthread_2_0_so_0 -> libglib_2_0_so_0;
+	libffi_so_6 -> libc_so_6;
+}

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+name=`basename $1`
+
+./test.rb $1 | tred > $name.gv
+dot -Tpng -o $name.png $name.gv
+

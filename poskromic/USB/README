@@ -1,0 +1,41 @@
+KaNaPi test system
+
+At this phase we can run KaNaPi system in chrooted environment under existing OS
+or run it under Qemu.
+
+Testing in chrooted environment
+1. cd kanapi_base_system/kanapi_system
+2. chroot . /init
+
+Image preparation
+1. Copy kernel image (bzImage) to boot directory
+2. sh ./prepare_initrd_filesystem
+3. sh ./prepare_kanapi_image
+4. sh ./prepare_root_filesystem
+5. ./qemu_test
+
+USB pendrive image preparation
+1. Copy kernel image (bzImage) to boot_usb directory
+2. sh ./prepare_usb_initrd
+3. sh ./prepare_kanapi_image_usb
+4. Copy additional packages to root filesystem (see prepare_root_filesystem)
+5. Copy bin directory with links to /kanapi_packages/bin
+6. Create link with name kanapi_packages in /kanapi_packages directory
+	cd /kanapi_packages; ln -s . kanapi_packages
+7. Copy usb image to pendrive
+
+USB pendrive preparation
+1. Copy kernel image (bzImage) to boot_usb directory
+2. sh ./prepare_usb_initrd
+3. Create 2 partitions on USB pendrive:
+	first as w95 fat32 (id=b in fdisk) for syslinux installation - size about 100MB
+	second as linux partition (id=83)
+4. Format first and second partition on pendrive
+5. Install boot loader using syslinux
+6. Mount first partition and copy files from boot_usb
+7. Install MBR
+8. Mount second partition
+9. Copy additional packages to root filesystem (see prepare_root_filesystem)
+10. Copy bin directory with links to /kanapi_packages/bin
+11. Create link with name kanapi_packages in /kanapi_packages directory
+	cd /kanapi_packages; ln -s . kanapi_packages

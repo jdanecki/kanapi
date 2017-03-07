@@ -1,0 +1,16 @@
+digraph G {
+	graph [layout=dot]
+
+Gcompris 
+tuxmath
+tuxtype
+
+Omnitux -> python
+pySioGame ->python
+tuxmathscrabble -> python
+sugar->python
+
+ 
+}
+
+

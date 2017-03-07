@@ -1,0 +1,14 @@
+digraph G {
+	graph [layout=dot rankdir=LR]
+
+
+
+
+    mplayer
+    vlc
+    madplay
+    aplay
+    smpeg 
+}
+
+

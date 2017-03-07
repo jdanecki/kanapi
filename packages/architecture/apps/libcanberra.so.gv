@@ -1,0 +1,25 @@
+digraph G {
+	graph [layout=dot];
+	_kanapi_packages_libcanberra_0_30_lib_libcanberra_so	 [label="/kanapi_packages/libcanberra-0.30/lib/libcanberra.so"];
+	librt_so_1	 [label="librt.so.1"];
+	_kanapi_packages_libcanberra_0_30_lib_libcanberra_so -> librt_so_1;
+	libvorbisfile_so_3	 [label="libvorbisfile.so.3"];
+	_kanapi_packages_libcanberra_0_30_lib_libcanberra_so -> libvorbisfile_so_3;
+	libltdl_so_7	 [label="libltdl.so.7"];
+	_kanapi_packages_libcanberra_0_30_lib_libcanberra_so -> libltdl_so_7;
+	libpthread_so_0	 [label="libpthread.so.0"];
+	librt_so_1 -> libpthread_so_0;
+	libc_so_6	 [label="libc.so.6"];
+	libpthread_so_0 -> libc_so_6;
+	libvorbis_so_0	 [label="libvorbis.so.0"];
+	libvorbisfile_so_3 -> libvorbis_so_0;
+	libm_so_6	 [label="libm.so.6"];
+	libvorbis_so_0 -> libm_so_6;
+	libogg_so_0	 [label="libogg.so.0"];
+	libvorbis_so_0 -> libogg_so_0;
+	libogg_so_0 -> libc_so_6;
+	libdl_so_2	 [label="libdl.so.2"];
+	libltdl_so_7 -> libdl_so_2;
+	libdl_so_2 -> libc_so_6;
+	libm_so_6 -> libc_so_6;
+}

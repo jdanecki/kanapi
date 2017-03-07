@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+#  Copyright (c) 2012 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+mkfs.ext3 /dev/loop0p2
+
+mount /dev/loop0p2 tmp
+
+for d in Python-2.7.3/bin Python-2.7.3/lib \
+	gawk-4.0.1/bin
+do
+	mkdir -p tmp/$d
+	cp -ar ../kanapi_base_system/kanapi_system/kanapi_packages/$d/* tmp/$d
+done
+
+umount tmp

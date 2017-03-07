@@ -1,0 +1,179 @@
+<html>
+	<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+</head>
+<body>
+
+<TITLE>KaNaPi - Linux dla dzieci</TITLE>
+
+<h2>Jak zbudować własną dystrybucję na przykładzie KaNaPi?</h2>
+
+<h3>Założenia</h3>
+
+<ul>
+	<li>KISS (ang. Keep It Simple, Stupid), BUZI (Bez Udziwnień Zapisu, Idioto)
+	<li>system do użytku domowego oparty na Linuksie i darmowym oprogramowaniu
+	<li>interfejs ma być prosty zgodnie z oczekiwaniem dzieci
+	<ul>
+		<li>XFCE - dla dzieci starszych 
+		<li>okno z wybranymi ikonami dla dzieci młodszych
+		<li>jeden obszar roboczy
+	</ul>
+	<li>uruchamiane z CD/DVD/USB
+	<li>każdy pakiet jest w oddzielnym katalogu w /kanapi_packages
+	<li>mogą być różne wersje tego samego pakietu
+
+	<li>brak programu do zarządzania pakietami
+	<li>pełna kontrola nad instalowanymi pakietami na etapie kompilacji
+	<li>każdy pakiet kompilowany własnym skryptem
+	<li>informacja o pakietach za pomocą programu pkg-config
+
+	<li>własna struktura katalogów, niezgodna z FHS (Standard Hierarchii Systemu Plików)
+	<ul>
+		<li>linki do wszystkich plików uruchomieniowych w katalogu /bin
+		<li>linki do potrzebnych bibliotek w /kanapi_packages/libs
+		<li>skrypty ustawiające ścieżki do bibliotek dla wybranych programów
+	</ul>
+	
+	<li>brak poziomów uruchamiania (runlevels) 
+	<ul>
+		<li>prosty skrypt startowy <a href="init">/init</a>
+	</ul>
+	<li>brak użytkowników i haseł - oddzielne profile dla dzieci
+	<li>wszystko uruchamiane z uprawnieniami administratora
+	
+	<li>jeden sposób dodawania pakietów źródłowych
+	<ul>
+		<li>ściągnięcie źródeł
+		<li>create_scripts nazwa_pakietu wersja strona_www
+		<li>skrypt: prepare-wersja
+		<li>skrypt: nazwa_pakietu-wersja.compile
+	</ul>
+	<li>pakiety .xo dla Sugara lub gem'y (ruby) instalowane <br>
+	bezpośrednio o ile nie wymagają kompilacji bibliotek
+</ul>
+
+<h3>Architektura</h3>
+
+	<img src="architektura.png" width="1600" alt="architektura">
+
+<h3>Proces budowania</h3>
+<ul>
+	<li>wymagania
+	<ul>
+		<li>niezależne środowisko budowania (chroot)
+		<li>shell
+		<li>kompilator, make, linker
+		<li><a href="FBS/build">pozostałe komponenty</a>
+		<li><a href="SBS/build">pozostałe komponenty - drugi etap</a>
+	</ul>
+	<li>struktura katalogów KaNaPi w systemie budowania
+	<li>ważne zmienne/parametry do kompilacji
+	<ul>
+		<li>LD_LIBRARY_PATH
+		<li>LD_PRELOAD
+		<li>CFLAGS, CPPFLAGS
+		<li>LDFLAGS
+		<li>-Wl,-dynamic-linker
+		<li>-Wl,-rpath
+		<li>PKG_CONFIG_PATH
+		<li>PKG_CONFIG_LIBDIR
+	</ul>
+	<li>ld.so.conf
+	<li>skrypty do kompilacji
+	<pre>
+	../../src/${PACKAGE_NAME}-${VER}/configure --prefix=$PREFIX
+	make -j 2 MAKEINFO=true
+	make -j 2 install MAKEINFO=true
+	</pre>
+	<li><a href="KBS/settings">wspólne zmienne środowiskowe</a>
+
+	<li><a href="FBS/README">pierwszy system buildowy w środowisku chroot</a>
+	<li><a href="SBS/steps">drugi system buildowy w środowisku chroot</a>
+	<li><a href="KBS/steps">kompilacja dodatkowych pakietów w środowisku KaNaPi</a>
+	<li>autotools
+	<li>waf
+	<li>make
+	<li>cmake
+	<li>setup.py
+	<li>setup.pl
+	<li>rake
+</ul>
+
+<h3>Proces uruchamiania</h3>
+<ul>
+	<img src="system_start.png" width="800" alt="system start">
+	<li>pierwsza partycja vfat z syslinux: kernel i initrd
+	<li>druga partycja ext4 z systemem montowana w initrd
+	<li>taki sam układ partycji dla pendrive'a	
+	<li><a href="USB/README">przygotowanie pendrive'a </a>
+	<li>start KaNaPI z istniejącego systemu
+	<pre>
+BOOT_IMAGE=/boot/vmlinuz-3.5.3 root=/dev/sda2 rw init=/bin/start_kanapi
+
+/usr/sbin/chroot /home/kanapi/kanapi_base_system/kanapi_system /init
+	</pre>
+</ul>
+ 
+<h3>KaNaPi - statystyka</h3>
+<ul>
+	<li>/kanapi_packages - 14 GB
+	<li>/kanapi_build/out - 20 GB
+	<li>/kanapi_build/src -  10 GB
+	<li>484 pakietów wybudowanych
+	<li>katalog /bin - 1839 linków do komend
+	<li>katalog /kanapi_packages/libs - 1176 bibliotek
+	<li>git - 205 commitów
+	<li>łaty - 43
+</ul>
+
+<h3>KaNapi jako dystrybucja</h3>
+
+<b>Oprogramowanie</b>
+<ul>
+	<li>kernel - 3.5.3 
+	<li>biblioteki
+	<li>aplikacje
+	<li>instalator - start z USB lub instalacja ręczna na dysku
+	<li>narzędzia konfiguracyjne, skrypty:
+	<ul>
+		<li>startowanie, usypianie i zamykanie systemu
+		<li>zmiana profilu
+		<li>konfigurowanie sieci
+	</ul>
+	<li>poprawki/łaty
+</ul>
+
+<b>Nie tylko kod</b>
+<ul>
+	<li>gadżety - brak
+	<li>ikony, tapety i inne wodotryski - logo w pingwinem, tapety córki
+	<li>wsparcie techniczne - na miejscu
+	<li>listy dyskusyjne - kanapi-devel@lists.sourceforge.net
+	<li>systemy śledzenia błędów - <a href="http://sourceforge.net/p/kanapi/tickets/?source=navbar"> SF</a>
+	<li>marketing - brak
+	<li>dokumentacja <a href="http://kanapi.tk">kanapi.tk</a>
+	<ul>
+		<li>prezentacje
+		<li>blogi
+		<li>wiki
+		<li>FB
+		<li>G+
+	</ul>
+	<li>testowanie - dzieci
+</ul>
+
+<b> Inne </b>
+<ul>
+	<li>sposób uruchamiania - z dysku po instalacji, USB
+	<li>sposób instalacji - ręczny
+	<li>zarządzanie pakietami - pkg-config do kompilacji
+	<li>aktualizacja systemu - 
+	<li>ilość pakietów: około 500
+	<li>kategorie oprogramowania - edukacja i zabawa
+	<li>filozofia/religia - darmowe oprogramowanie dla dzieci
+</ul>
+
+</body>
+</html>
+

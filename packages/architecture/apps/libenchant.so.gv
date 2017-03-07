@@ -1,0 +1,17 @@
+digraph G {
+	graph [layout=dot];
+	_kanapi_packages_enchant_1_6_0_lib_libenchant_so	 [label="/kanapi_packages/enchant-1.6.0/lib/libenchant.so"];
+	libgmodule_2_0_so_0	 [label="libgmodule-2.0.so.0"];
+	_kanapi_packages_enchant_1_6_0_lib_libenchant_so -> libgmodule_2_0_so_0;
+	libdl_so_2	 [label="libdl.so.2"];
+	libgmodule_2_0_so_0 -> libdl_so_2;
+	libglib_2_0_so_0	 [label="libglib-2.0.so.0"];
+	libgmodule_2_0_so_0 -> libglib_2_0_so_0;
+	libc_so_6	 [label="libc.so.6"];
+	libdl_so_2 -> libc_so_6;
+	librt_so_1	 [label="librt.so.1"];
+	libglib_2_0_so_0 -> librt_so_1;
+	libpthread_so_0	 [label="libpthread.so.0"];
+	libpthread_so_0 -> libc_so_6;
+	librt_so_1 -> libpthread_so_0;
+}

@@ -1,0 +1,35 @@
+digraph G {
+	graph [layout=dot rankdir=LR]
+
+
+sugar
+sugar_base
+sugar_toolkit
+sugar_TamTamSuite_66
+sugar_filemixaudio
+sugar_jam2jam
+sugar_datastore
+sugar_artwork
+sugar_presence_service
+sugar_Calculate
+sugar_turtleart
+sugar_physics
+sugar_Chat
+sugar_ImageViewer
+sugar_Log
+sugar_Terminal
+sugar_CartoonBuilder
+sugar_Paint
+sugar_CartoonBuilder
+sugar_flip_sticks
+sugar_labirynth
+sugar_story_builder
+sugar_kandid
+sugar_edukt
+sugar_screencast
+sugar_didgart
+sugar_annotate
+sugar_adventure_book
+sugar_Calculate
+pippy
+}

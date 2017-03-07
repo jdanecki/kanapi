@@ -1,0 +1,26 @@
+KaNaPi first build system preparation
+
+Installation
+
+Prepare chrooted build system
+
+* prepare list of packages from Ubuntu for build system preparation -> file build
+* download all packages from build file into packages directory -> script download_packages
+* install packages into builds directory using dpkg-deb -x -> script prepare_packages
+* create passwd and group files for root user
+
+Prepare source repositories
+
+* for each package in build file find source repository -> script find_repository & manual check
+* download all needed sources to directory ../sources
+
+Compilation in chrooted build directory
+
+* Copy scripts for compilation into chrooted build system - script scripts/prepare
+* Compile programs using scripts
+	* eglibc.compile
+	* binutils.compile
+	* gmp.compile
+	* mpfr.compile
+	* mpc.compile
+	* gcc.compile
