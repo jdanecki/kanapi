@@ -1260,3 +1260,6 @@ tiff:
 
 SDL_mixer:
 	@$(RUN_TARGET)
+
+ntfs-3g_ntfsprogs:
+	@$(RUN_TARGET)
