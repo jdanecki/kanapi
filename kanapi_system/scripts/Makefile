@@ -62,7 +62,7 @@ bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed
 
 #KS - KaNaPi System textmode apps
 apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
-	ntfs-3g_ntfsprogs
+	ntfs-3g_ntfsprogs unrar
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph
 
@@ -1282,4 +1282,7 @@ exif: libexif popt
 	@$(RUN_TARGET)
 
 popt:
+	@$(RUN_TARGET)
+
+unrar:
 	@$(RUN_TARGET)
