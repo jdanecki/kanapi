@@ -23,16 +23,19 @@ URL="https://www.imagemagick.org/download/releases"
 EXT=tar.xz
 #build depends on
 
-LIB_DEPENDS="x11 xcb xau"
+LIB_DEPENDS="x11 xcb xau libtiff-4"
 
 . ../settings
 
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
+export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/bzip2-${bzip2_ver}/lib -L${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/lib"
+export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/bzip2-${bzip2_ver}/include -I${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/include"
 
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--disable-openmp --with-dejavu-font-dir=${KANAPI_BASE}/dejavu-fonts-ttf-${dejavu_fonts_ttf_ver}/ttf \
-  	--with-gs-font-dir=${KANAPI_BASE}/font-util-${font_util_ver}/share/fonts/X11/Type1
+  	--with-gs-font-dir=${KANAPI_BASE}/font-util-${font_util_ver}/share/fonts/X11/Type1 \
+	--with-jpeg=yes --with-perl=yes --with-bzip2=yes
 }
 
 pkg_install() {

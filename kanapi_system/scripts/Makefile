@@ -33,7 +33,7 @@ required: $(COMPILERS) rootfs bbs
 
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
-optional: apps_txt devel sound x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
+optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
 	apps_qt www database
 
 all-sbs: bbs-sbs
@@ -61,7 +61,8 @@ bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed
 
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget
+apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
+	ntfs-3g_ntfsprogs
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph
 
@@ -72,8 +73,7 @@ apps_gtk: gtk+ dconf gimp gvim
 
 apps_gtk3: gtk3+ evince
 
-
-sdl-support: SDL_image SDL_gfx SDL_ttf
+sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -128,6 +128,8 @@ sound: alsa-utils esound
 database: db gdbm
 
 tests: xflame water xclipboard intel-gpu-tools ltp-full hello phoronix-test-suite
+
+graphics: tiff jpegsrc
 
 deprecated: procps
 
@@ -821,7 +823,7 @@ XML-Simple: XML-SAX-Expat
 icon-naming-utils: XML-Simple
 	@$(RUN_TARGET)
 
-ImageMagick: pango
+ImageMagick: pango jpegsrc tiff
 	@$(RUN_TARGET)
 
 tango-icon-theme: icon-naming-utils ImageMagick
