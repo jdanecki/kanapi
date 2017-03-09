@@ -119,7 +119,7 @@ wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh xlunch
+   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh xlunch Blue
 
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
@@ -1264,4 +1264,10 @@ SDL_mixer:
 	@$(RUN_TARGET)
 
 ntfs-3g_ntfsprogs:
+	@$(RUN_TARGET)
+
+MPlayer:
+	@$(RUN_TARGET)
+
+Blue: MPlayer
 	@$(RUN_TARGET)
