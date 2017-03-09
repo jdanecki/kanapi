@@ -104,7 +104,7 @@ then
 	CFLAGS="${CFLAGS} -fPIC"
 fi
 
-which grep && which wc
+(which grep && which wc) > /dev/null
 if [ "$?" = "0" ]
 then	
 	NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`

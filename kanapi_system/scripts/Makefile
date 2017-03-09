@@ -1021,7 +1021,7 @@ atk:
 gtk+: pango atk gdk-pixbuf adwaita-icon-theme
 	@$(RUN_TARGET)
 
-gdk-pixbuf:
+gdk-pixbuf: jpegsrc
 	@$(RUN_TARGET)
 
 babl:
@@ -1141,7 +1141,7 @@ nasm:
 feh: imlib2
 	@$(RUN_TARGET)
 
-imlib2:
+imlib2: tiff
 	@$(RUN_TARGET)
 
 evince: poppler itstool shared-mime-info
@@ -1270,4 +1270,16 @@ MPlayer:
 	@$(RUN_TARGET)
 
 Blue: MPlayer
+	@$(RUN_TARGET)
+
+qiv: imlib2 jpegsrc libexif
+	@$(RUN_TARGET)
+
+libexif:
+	@$(RUN_TARGET)
+
+exif: libexif popt
+	@$(RUN_TARGET)
+
+popt:
 	@$(RUN_TARGET)
