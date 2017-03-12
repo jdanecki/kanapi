@@ -54,7 +54,7 @@ pkg_configure() {
 	libc_cv_ssp=no  libc_cv_ssp_strong=no --without-selinux --disable-stackguard-randomization \
 	--without-selinux \
 	--with-headers=${KANAPI_BASE}/linux-headers-${linux_headers_ver}/include \
-	--with-binutils=${KANAPI_CROSS_BASE}/binutils-${binutils_ver}
+	--with-binutils=${KANAPI_CROSS_BASE}/binutils-${binutils_ver} --enable-obsolete-rpc
 	
 	#--enable-multi-arch
 }
@@ -87,9 +87,19 @@ pkg_install() {
 	set_variables
 	date > manual/libc.info
 	OLD_PATH=${PATH}
-	NEW_PATH=`echo $PATH | sed "s@${KANAPI_TARGET_BIN}:@@"`
+	NEW_PATH=`echo $PATH | sed "s@${KANAPI_TARGET_BIN}:@@g"`
 	export PATH=${NEW_PATH}
+	CUR_SH=`readlink /bin/sh`
+	if [ -x /kanapi_packages/bin/sh ] 
+	then 
+		${LN_SF} /kanapi_packages/bin/sh /bin/sh
+	fi
+	MAKE_JOBS=1
 	pkg_install_make
+	if [ -x /kanapi_packages/bin/sh ] 
+	then 
+		${LN_SF} ${CUR_SH} /bin/sh 
+	fi
 	export PATH=${OLD_PATH}
 	CROSS_GCC_DIR=${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME} 
 	if [ ! -d ${CROSS_GCC_DIR} ]
@@ -133,7 +143,7 @@ pkg_check() {
 	echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 	gcc --version
 	echo "KANAPI_VER=${KANAPI_VER}"
-	NEW_PATH=`echo $PATH | sed "s@${KANAPI_TARGET_BIN}:@@"`
+	NEW_PATH=`echo $PATH | sed "s@${KANAPI_TARGET_BIN}:@@g"`
 	echo "PATH=$PATH"
 	echo "NEW_PATH=${NEW_PATH}"
 }
