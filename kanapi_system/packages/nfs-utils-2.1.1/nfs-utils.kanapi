@@ -35,7 +35,7 @@ pkg_configure() {
 	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--sysconfdir=${PREFIX}/etc --with-statedir=${PREFIX}/var/lib/nfs \
 	--without-tcp-wrappers --disable-gss --enable-libmount-mount --disable-nfsv4 \
-	--with-nfsconfig=${PREFIX}/etc/nfs.conf  --with-statduser=kanapi
+	--with-nfsconfig=${PREFIX}/etc/nfs.conf  --with-statduser=kanapi --disable-ipv6
 	sed -i "s@^sbindir = /sbin@sbindir = ${PREFIX}/sbin@" utils/mount/Makefile
 	sed -i "s@^sbindir = /sbin@sbindir = ${PREFIX}/sbin@" utils/osd_login/Makefile
 }
