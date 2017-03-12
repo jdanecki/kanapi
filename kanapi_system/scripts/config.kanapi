@@ -377,3 +377,6 @@ libexif_ver=0.6.21
 exif_ver=0.6.21
 popt_ver=1.16
 unrar_ver=5.4.5
+nfs_utils_ver=2.1.1
+rpcbind_ver=0.2.4
+libtirpc_ver=1.0.1

@@ -34,7 +34,7 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	apps_qt www database
+	apps_qt www database nfs
 
 all-sbs: bbs-sbs
 
@@ -132,6 +132,8 @@ tests: xflame water xclipboard intel-gpu-tools ltp-full hello phoronix-test-suit
 graphics: tiff jpegsrc
 
 deprecated: procps
+
+nfs: nfs-utils
 
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
@@ -1285,4 +1287,13 @@ popt:
 	@$(RUN_TARGET)
 
 unrar:
+	@$(RUN_TARGET)
+
+nfs-utils: rpcbind
+	@$(RUN_TARGET)
+
+rpcbind: libtirpc
+	@$(RUN_TARGET)
+
+libtirpc:
 	@$(RUN_TARGET)
