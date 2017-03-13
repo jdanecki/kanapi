@@ -1289,11 +1289,17 @@ popt:
 unrar:
 	@$(RUN_TARGET)
 
-nfs-utils: rpcbind
+nfs-utils: rpcbind libevent libnfsidmap
 	@$(RUN_TARGET)
 
 rpcbind: libtirpc
 	@$(RUN_TARGET)
 
 libtirpc:
+	@$(RUN_TARGET)
+
+libevent:
+	@$(RUN_TARGET)
+
+libnfsidmap:
 	@$(RUN_TARGET)

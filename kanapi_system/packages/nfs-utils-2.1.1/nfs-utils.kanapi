@@ -22,11 +22,11 @@ VER=2.1.1
 EXT=tar.xz
 URL="https://www.kernel.org/pub/linux/utils/nfs-utils/2.1.1/"
 #build depends on
-LIB_DEPENDS="blkid libtirpc"
+LIB_DEPENDS="blkid libtirpc libevent libnfsidmap sqlite3"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lrt -lm -lpthread"
+export LDFLAGS="${LDFLAGS} -lrt -lm -lpthread -lresolv"
 export CFLAGS="${CFLAGS} -I `${PKG_CONFIG} --variable=includedir blkid`"
 export CPP="${KANAPI_C_COMPILER} -E ${CFLAGS}"
 
@@ -34,8 +34,10 @@ pkg_configure() {
 	local_copy
 	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--sysconfdir=${PREFIX}/etc --with-statedir=${PREFIX}/var/lib/nfs \
-	--without-tcp-wrappers --disable-gss --enable-libmount-mount --disable-nfsv4 \
-	--with-nfsconfig=${PREFIX}/etc/nfs.conf  --with-statduser=kanapi --disable-ipv6
+	--without-tcp-wrappers --disable-gss --enable-libmount-mount \
+	--with-nfsconfig=${PREFIX}/etc/nfs.conf  --with-statduser=kanapi \
+	--disable-ipv6 --disable-nfsv41
+
 	sed -i "s@^sbindir = /sbin@sbindir = ${PREFIX}/sbin@" utils/mount/Makefile
 	sed -i "s@^sbindir = /sbin@sbindir = ${PREFIX}/sbin@" utils/osd_login/Makefile
 }

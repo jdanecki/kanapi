@@ -380,3 +380,5 @@ unrar_ver=5.4.5
 nfs_utils_ver=2.1.1
 rpcbind_ver=0.2.4
 libtirpc_ver=1.0.1
+libevent_ver=2.1.8-stable
+libnfsidmap_ver=0.27
