@@ -1306,6 +1306,14 @@ libevent:
 libnfsidmap:
 	@$(RUN_TARGET)
 
+firefox: autoconf213 yasm
+	@$(RUN_TARGET)
+
+autoconf213:
+	DIR_NAME=autoconf-2.13; if [ ! -d  $${DIR_NAME} ]; then mkdir $${DIR_NAME} ; ln -svf ../../packages/$${DIR_NAME}/autoconf.kanapi $${DIR_NAME}; fi
+	make -f ../Makefile -C autoconf-2.13 kanapi_$(ACTION) PKG=autoconf KANAPI_TOP=$(PWD) V=$(V)
+
+
 ffmpeg: x264
 	@$(RUN_TARGET)
 
@@ -1319,4 +1327,7 @@ libva-intel-driver: libva
 	@$(RUN_TARGET)
 
 mpv: libva-intel-driver ffmpeg
+	@$(RUN_TARGET)
+
+yasm:
 	@$(RUN_TARGET)
