@@ -34,7 +34,7 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	apps_qt www database nfs
+	apps_qt www database nfs video
 
 all-sbs: bbs-sbs
 
@@ -119,7 +119,7 @@ wm:	vtwm ratpoison i3blocks
 
 xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
    xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh xlunch Blue
+   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh xlunch
 
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
@@ -130,6 +130,8 @@ database: db gdbm
 tests: xflame water xclipboard intel-gpu-tools ltp-full hello phoronix-test-suite
 
 graphics: tiff jpegsrc
+
+video: Blue mpv
 
 deprecated: procps
 
@@ -1302,4 +1304,19 @@ libevent:
 	@$(RUN_TARGET)
 
 libnfsidmap:
+	@$(RUN_TARGET)
+
+ffmpeg: x264
+	@$(RUN_TARGET)
+
+x264:
+	@$(RUN_TARGET)
+
+libva:
+	@$(RUN_TARGET)
+
+libva-intel-driver: libva
+	@$(RUN_TARGET)
+
+mpv: libva-intel-driver ffmpeg
 	@$(RUN_TARGET)
