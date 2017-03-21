@@ -1331,3 +1331,6 @@ mpv: libva-intel-driver ffmpeg
 
 yasm:
 	@$(RUN_TARGET)
+
+rtl8188eu:
+	@$(RUN_TARGET)
