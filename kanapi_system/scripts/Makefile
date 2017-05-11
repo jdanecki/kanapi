@@ -34,7 +34,7 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	apps_qt www database nfs video
+	apps_qt www database nfs video sdl2-support
 
 all-sbs: bbs-sbs
 
@@ -74,6 +74,9 @@ apps_gtk: gtk+ dconf gimp gvim
 apps_gtk3: gtk3+ evince
 
 sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer
+
+sdl2-support: SDL2_image 
+	#SDL_gfx SDL_ttf SDL_mixer
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -274,8 +277,8 @@ libpng:
 SDL_image: libpng SDL
 	@$(RUN_TARGET)
 
-#SDL2:
-#	@$(RUN_TARGET)
+SDL2:
+	@$(RUN_TARGET)
 
 gpm:
 	@$(RUN_TARGET)
