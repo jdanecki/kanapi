@@ -1334,3 +1334,27 @@ yasm:
 
 rtl8188eu:
 	@$(RUN_TARGET)
+
+beignet:
+	@$(RUN_TARGET)
+
+ocl-icd:
+	@$(RUN_TARGET)
+
+clinfo:
+	@$(RUN_TARGET)
+
+clpeak:
+	@$(RUN_TARGET)
+
+glu:
+	@$(RUN_TARGET)
+
+freeglut:
+	@$(RUN_TARGET)
+
+opencv:
+	@$(RUN_TARGET)
+
+SDL2_image: SDL2
+	@$(RUN_TARGET)
