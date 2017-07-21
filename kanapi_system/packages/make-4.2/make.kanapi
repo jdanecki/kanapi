@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=make
 VER=4.2
-URL="http://ftp.task.gda.pl/pub/gnu/make"
+URL="GNU"
 EXT=tar.bz2
 
 . ../settings
