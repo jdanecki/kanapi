@@ -1361,3 +1361,6 @@ opencv:
 
 SDL2_image: SDL2
 	@$(RUN_TARGET)
+
+iproute2:
+	@$(RUN_TARGET)
