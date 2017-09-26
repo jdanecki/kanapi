@@ -17,18 +17,31 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=make
-VER=4.2
-URL="GNU"
-EXT=tar.bz2
-
+PACKAGE_NAME=ncurses
+VER=6.0-20170715
+URL="ftp://invisible-island.net/ncurses/current"
+EXT=tgz
+#build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
+pkg_configure() {
+	 if [ "${KANAPI_TARGET}" = "x86_64" ]
+	 then
+		 export CFLAGS="${CFLAGS} -fPIC"
+	 	 export LDFLAGS="${LDFLAGS} -fPIC"
+	 fi
+	if [ ! -d ${PKG_CONFIG} ] ; then  mkdir -p ${PREFIX}/lib/pkgconfig ; fi
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  --enable-pc-files=yes --with-pkg-config-libdir=${PREFIX}/lib/pkgconfig \
+  	--enable-termcap --with-termpath=${PREFIX}/etc/termcap
 }
 
 pkg_install() {
-	pkg_install_make
-	pkg_install_bin
+	make -j 1 install
+	pkg_install_bin_all
+	pkg_install_pc_all_only
+	pkg_install_libs
+}
+
+pkg_check() {
+	make -n install
 }
