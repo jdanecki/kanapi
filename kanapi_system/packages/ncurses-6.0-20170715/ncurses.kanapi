@@ -19,7 +19,8 @@
 
 PACKAGE_NAME=ncurses
 VER=6.0-20170715
-URL="ftp://invisible-island.net/ncurses/current"
+URL="http://invisible-mirror.net/archives/ncurses/current"
+#"ftp://invisible-island.net/ncurses/current"
 EXT=tgz
 #build depends on
 . ../settings
