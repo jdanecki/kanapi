@@ -1367,3 +1367,6 @@ iproute2:
 
 gstreamer:
 	@$(RUN_TARGET)
+
+jack2:
+	@$(RUN_TARGET)
