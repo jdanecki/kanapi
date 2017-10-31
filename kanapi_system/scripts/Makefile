@@ -1364,3 +1364,6 @@ SDL2_image: SDL2
 
 iproute2:
 	@$(RUN_TARGET)
+
+gstreamer:
+	@$(RUN_TARGET)

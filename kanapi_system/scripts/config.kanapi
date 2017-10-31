@@ -399,3 +399,4 @@ freeglut_ver=3.0.0
 opencv_ver=3.2.0
 SDL2_image_ver=2.0.1
 iproute2_ver=4.13.0
+gstreamer_ver=1.12.3
