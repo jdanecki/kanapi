@@ -126,7 +126,7 @@ xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconso
 
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
-sound: alsa-utils esound
+sound: alsa-utils esound gstreamer jack2
 
 database: db gdbm
 
@@ -1365,7 +1365,7 @@ SDL2_image: SDL2
 iproute2:
 	@$(RUN_TARGET)
 
-gstreamer:
+gstreamer: libunwind
 	@$(RUN_TARGET)
 
 jack2:
