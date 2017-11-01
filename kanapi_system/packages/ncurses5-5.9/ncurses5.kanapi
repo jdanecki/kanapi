@@ -19,7 +19,8 @@
 
 PACKAGE_NAME=ncurses5
 VER=5.9
-URL="ftp://invisible-island.net/ncurses"
+URL="http://invisible-mirror.net/archives/ncurses"
+#"ftp://invisible-island.net/ncurses"
 EXT=tar.gz
 #build depends on
 . ../settings
