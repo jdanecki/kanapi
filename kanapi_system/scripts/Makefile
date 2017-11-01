@@ -1370,3 +1370,15 @@ gstreamer: libunwind
 
 jack2:
 	@$(RUN_TARGET)
+
+pulseaudio: libsndfile speexdsp
+	@$(RUN_TARGET)
+
+libsndfile:
+	@$(RUN_TARGET)
+
+speex:
+	@$(RUN_TARGET)
+
+speexdsp:
+	@$(RUN_TARGET)

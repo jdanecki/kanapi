@@ -401,3 +401,7 @@ SDL2_image_ver=2.0.1
 iproute2_ver=4.13.0
 gstreamer_ver=1.12.3
 jack2_ver=1.9.11-RC1
+pulseaudio_ver=11.1
+libsndfile_ver=1.0.28
+speex_ver=1.2.0
+speexdsp_ver=1.2rc3
