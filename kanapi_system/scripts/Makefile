@@ -126,7 +126,7 @@ xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconso
 
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
-sound: alsa-utils esound gstreamer jack2
+sound: alsa-utils esound gstreamer jack2 pulseaudio
 
 database: db gdbm
 
