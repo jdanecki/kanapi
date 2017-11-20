@@ -405,3 +405,6 @@ pulseaudio_ver=11.1
 libsndfile_ver=1.0.28
 speex_ver=1.2.0
 speexdsp_ver=1.2rc3
+gcc5_ver=5.5.0
+gcc7_ver=7.2.0
+gcc6_ver=6.4.0

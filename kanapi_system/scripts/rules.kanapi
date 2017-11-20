@@ -1,11 +1,20 @@
 DIR_NAME=$@-$($(@)_ver)
-check_dir=if [ ! -d  $(DIR_NAME) ]; then mkdir $(DIR_NAME) ; ln -svf ../../packages/$(DIR_NAME)/$@.kanapi $(DIR_NAME); fi
+check_dir=if [ ! -d  $(1) ]; then mkdir $(1) ; ln -svf ../../packages/$(1)/$(2).kanapi $(1); fi
 DATE_RULE=/bin/date > $@
+
+target_package=$(firstword $(shell echo  $(subst _,\ , $@)))
+target_p_ver=$(lastword $(shell echo  $(subst _,\ , $@)))
+target_version=$($(addsuffix _ver, $(target_package)$(target_p_ver)))
+DIR_NAME_VER=$(target_package)-$(target_version)
+
+target_run=make -f ../Makefile -C $(1) kanapi_$(ACTION) PKG=$2 KANAPI_TOP=$(PWD) V=$(V)
 
 ifeq ($(ACTION),)
 RUN_TARGET=make kanapi_help
+RUN_TARGET_VER=make kanapi_help
 else
-RUN_TARGET=$(call check_dir); make -f ../Makefile -C $@-$($@_ver) kanapi_$(ACTION) PKG=$@ KANAPI_TOP=$(PWD) V=$(V)
+RUN_TARGET=$(call check_dir,$(DIR_NAME),$@); $(call target_run,$(DIR_NAME),$@)
+RUN_TARGET_VER=$(call check_dir,$(DIR_NAME_VER),$(target_package)); $(call target_run,$(DIR_NAME_VER),$(target_package))
 endif
 
 kanapi_download:

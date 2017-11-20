@@ -1382,3 +1382,12 @@ speex:
 
 speexdsp:
 	@$(RUN_TARGET)
+
+gcc_5:
+	@$(RUN_TARGET_VER)
+
+gcc_6:
+	@$(RUN_TARGET_VER)
+
+gcc_7:
+	@$(RUN_TARGET_VER)
