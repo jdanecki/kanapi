@@ -1391,3 +1391,12 @@ gcc_6:
 
 gcc_7:
 	@$(RUN_TARGET_VER)
+
+scons:
+	@$(RUN_TARGET)
+
+csound:
+	@$(RUN_TARGET)
+
+csoundqt:
+	@$(RUN_TARGET)

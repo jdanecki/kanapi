@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+#
+# This file is part of KaNaPi project
+#
+# KaNaPi is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# KaNaPi is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
+
+PACKAGE_NAME=csound
+VER=6.09.1
+URL="https://github.com/csound/csound/archive"
+EXT=tar.gz
+#build depends on
+LIB_DEPENDS="sndfile jack"
+
+. ../settings
+
+export LDFLAGS="${LDFLAGS} -lpthread"
+export CXXFLAGS="${CFLAGS}"
+
+pkg_download() {
+	PACKAGE_LINK=${URL}/${VER}.${EXT}
+	pkg_curl
+}
+
+pkg_configure() {
+        cmake ${PACKAGE_SRCDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_BUILD_TYPE=Release \
+    	-DLIBSNDFILE_LIBRARY=`${PKG_CONFIG} --variable=libdir sndfile`/libsndfile.so \
+	-DSNDFILE_H_PATH=`${PKG_CONFIG} --variable=includedir sndfile` \
+	-DJACK_LIBRARY=`${PKG_CONFIG} --variable=libdir jack`/libjack.so \
+	-DJACK_HEADER=`${PKG_CONFIG} --variable=includedir jack` \
+	-DPTHREAD_LIBRARY=`${KANAPI_C_COMPILER} -print-file-name=libpthread.so` \
+	-DFLEX_INCLUDE_DIR=${KANAPI_BASE}/flex-${flex_ver}/include
+#	-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
+}
+
+pkg_build() {
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+#	${MAKE} VERBOSE=1 -j ${MAKE_JOBS} MAKEINFO=true
+}
+
+pkg_install() {
+	pkg_install_make && pkg_install_bin_all && pkg_install_libs
+}
+
