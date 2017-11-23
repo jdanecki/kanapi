@@ -37,7 +37,8 @@ kanapi_reprepare: kanapi_download
 
 kanapi_configure: kanapi_prepare
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_configure" ; fi
-	@PKG_COLOR=$(colorBrown) pkg_kanapi $(PKG).kanapi configure $(V); if [ "$$?" != "0" ] ; then find . -name config.log -exec cat {} \; ; false; fi
+	@PKG_COLOR=$(colorBrown) pkg_kanapi $(PKG).kanapi configure $(V)
+	@#; if [ "$$?" != "0" ] ; then find . -name config.log -exec cat {} \; ; false; fi
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_configure" ; fi
 	$(call DATE_RULE)
 
