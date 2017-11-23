@@ -17,19 +17,30 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=libtool
-VER=2.4.6
-URL="GNU"
-EXT=tar.xz
+PACKAGE_NAME=qjackctl
+VER=0.4.5
+URL="http://downloads.sourceforge.net/${PACKAGE_NAME}"
+EXT=tar.gz
 #build depends on
-#LIB_DEPENDS=""
+LIB_DEPENDS="x11"
 
 . ../settings
 
 #export LDFLAGS="${LDFLAGS} "
-#export CFLAGS="${CFLAGS} "
+export CXXFLAGS="-std=c++11 ${CFLAGS}"
+export QMAKE=qmake
+
+pkg_configure() {
+	local_copy
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+}
+
+pkg_build() {
+	pkg_build_local
+}
 
 pkg_install() {
-	pkg_install_make && pkg_install_bin_all && pkg_install_libs
+	cd build
+	pkg_install_make && pkg_install_bin_all
 }
 

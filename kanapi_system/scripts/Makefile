@@ -34,7 +34,7 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	apps_qt www database nfs video sdl2-support
+	apps_qt www database nfs video sdl2-support sound_devel
 
 all-sbs: bbs-sbs
 
@@ -64,14 +64,14 @@ bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed
 apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
 	ntfs-3g_ntfsprogs unrar
 
-devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph
+devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
 
 apps_gtk: gtk+ dconf gimp gvim
 
-apps_gtk3: gtk3+ evince
+apps_gtk3: gtk3+ evince pavucontrol
 
 sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer
 
@@ -127,6 +127,8 @@ xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconso
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
 sound: alsa-utils esound gstreamer jack2 pulseaudio
+
+sound_devel: csound
 
 database: db gdbm
 
@@ -986,7 +988,7 @@ tcl tk graphviz swig groff xflame water qemu gimp apps_qt www:
 else
 www: webkitgtk midori php
 
-apps_qt: qt-everywhere-opensource-src qt-creator vym
+apps_qt: qt-everywhere-opensource-src qt-creator vym qjackctl
 
 gimp: babl gegl dbus-glib
 	@$(RUN_TARGET)
@@ -1395,8 +1397,44 @@ gcc_7:
 scons:
 	@$(RUN_TARGET)
 
-csound:
+csound: fltk
 	@$(RUN_TARGET)
 
-csoundqt:
+csoundqt: csound
+	@$(RUN_TARGET)
+
+qjackctl:
+	@$(RUN_TARGET)
+
+pavucontrol: libsigcpp gtkmm libcanberra
+	@$(RUN_TARGET)
+
+libsigcpp:
+	@$(RUN_TARGET)
+
+gtkmm: libsigcpp atkmm pangomm
+	@$(RUN_TARGET)
+
+atkmm: glibmm
+	@$(RUN_TARGET)
+
+glibmm:
+	@$(RUN_TARGET)
+
+pangomm: cairomm
+	@$(RUN_TARGET)
+
+cairomm:
+	@$(RUN_TARGET)
+
+libcanberra: libvorbis
+	@$(RUN_TARGET)
+
+libvorbis: libogg
+	@$(RUN_TARGET)
+
+libogg:
+	@$(RUN_TARGET)
+
+fltk:
 	@$(RUN_TARGET)

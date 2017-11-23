@@ -17,9 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=libtool
-VER=2.4.6
-URL="GNU"
+PACKAGE_NAME=atkmm
+VER=2.24.2
+URL="http://ftp.gnome.org/pub/GNOME/sources/atkmm/2.24"
 EXT=tar.xz
 #build depends on
 #LIB_DEPENDS=""
@@ -27,9 +27,9 @@ EXT=tar.xz
 . ../settings
 
 #export LDFLAGS="${LDFLAGS} "
-#export CFLAGS="${CFLAGS} "
+export CXXFLAGS="-ldl"
 
 pkg_install() {
-	pkg_install_make && pkg_install_bin_all && pkg_install_libs
+	pkg_install_pc_all && pkg_install_libs
 }
 
