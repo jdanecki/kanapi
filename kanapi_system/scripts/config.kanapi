@@ -423,3 +423,4 @@ libcanberra_ver=0.30
 libvorbis_ver=1.3.5
 libogg_ver=1.3.3
 fltk_ver=1.3.4-2-source
+SDL2_ttf_ver=2.0.14

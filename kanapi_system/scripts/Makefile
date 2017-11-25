@@ -1438,3 +1438,6 @@ libogg:
 
 fltk:
 	@$(RUN_TARGET)
+
+SDL2_ttf:
+	@$(RUN_TARGET)
