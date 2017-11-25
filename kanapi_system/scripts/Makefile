@@ -34,7 +34,7 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	apps_qt www database nfs video sdl2-support sound_devel
+	sound_devel apps_qt www database nfs video sdl2-support
 
 all-sbs: bbs-sbs
 
@@ -988,7 +988,7 @@ tcl tk graphviz swig groff xflame water qemu gimp apps_qt www:
 else
 www: webkitgtk midori php
 
-apps_qt: qt-everywhere-opensource-src qt-creator vym qjackctl
+apps_qt: qt-everywhere-opensource-src qt-creator vym qjackctl csoundqt
 
 gimp: babl gegl dbus-glib
 	@$(RUN_TARGET)
