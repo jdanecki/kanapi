@@ -1441,3 +1441,9 @@ fltk:
 
 SDL2_ttf:
 	@$(RUN_TARGET)
+
+GUIlib:
+	@$(RUN_TARGET)
+
+SDL-widgets:
+	@$(RUN_TARGET)
