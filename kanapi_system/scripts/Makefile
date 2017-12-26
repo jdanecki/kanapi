@@ -1447,3 +1447,9 @@ GUIlib:
 
 SDL-widgets:
 	@$(RUN_TARGET)
+
+alsa-plugins:
+	@$(RUN_TARGET)
+
+alsa-plugins:
+	@$(RUN_TARGET)

@@ -426,3 +426,4 @@ fltk_ver=1.3.4-2-source
 SDL2_ttf_ver=2.0.14
 GUIlib_ver=1.2.1
 SDL_widgets_ver=2.0
+alsa_plugins_ver=1.1.4
