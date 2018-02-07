@@ -19,12 +19,18 @@
 
 PACKAGE_NAME=rplay
 VER=3.3.2
-URL="http://rplay.doit.org/dist"
+#URL="http://rplay.doit.org/dist"
+URL="http://http.debian.net/debian/pool/main/r/rplay"
 EXT=tar.gz
 
 . ../settings
 
 export CFLAGS="-D_GNU_SOURCE"
+
+pkg_download() {
+    PACKAGE_LINK=${URL}/${PACKAGE_NAME}_${VER}.orig.${EXT}
+    pkg_curl
+}
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
