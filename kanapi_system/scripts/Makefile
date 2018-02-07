@@ -456,7 +456,7 @@ libXfont:
 XML-Parser:
 	@$(RUN_TARGET)
 
-intltool: XML-Parser
+intltool: expat XML-Parser 
 	@$(RUN_TARGET)
 
 libxml2: xz
@@ -1373,7 +1373,7 @@ gstreamer: libunwind
 jack2:
 	@$(RUN_TARGET)
 
-pulseaudio: libsndfile speexdsp
+pulseaudio: libsndfile speexdsp intltool
 	@$(RUN_TARGET)
 
 libsndfile:
