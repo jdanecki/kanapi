@@ -1451,5 +1451,3 @@ SDL-widgets:
 alsa-plugins:
 	@$(RUN_TARGET)
 
-alsa-plugins:
-	@$(RUN_TARGET)
