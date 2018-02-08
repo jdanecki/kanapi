@@ -1275,7 +1275,7 @@ SDL_mixer:
 ntfs-3g_ntfsprogs:
 	@$(RUN_TARGET)
 
-MPlayer:
+MPlayer: yasm
 	@$(RUN_TARGET)
 
 Blue: MPlayer
