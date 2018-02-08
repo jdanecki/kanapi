@@ -1451,3 +1451,5 @@ SDL-widgets:
 alsa-plugins:
 	@$(RUN_TARGET)
 
+SDL2_gfx:
+	@$(RUN_TARGET)
