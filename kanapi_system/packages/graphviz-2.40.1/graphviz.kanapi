@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=graphviz
 VER=2.40.1
-URL="http://www.graphviz.org/pub/graphviz/stable/SOURCES"
+URL="https://graphviz.gitlab.io/pub/graphviz/stable/SOURCES"
 EXT=tar.gz
 #build depends on
 #need Qt4
@@ -36,6 +36,11 @@ export CXXFLAGS="${CFLAGS} -std=c++11 -fPIC"
 #export QTCORE_LIBS="`${PKG_CONFIG} --libs Qt5Core`"
 #export QTGUI_CFLAGS="`${PKG_CONFIG} --cflags Qt5Gui`"
 #export QTGUI_LIBS="`${PKG_CONFIG} --libs Qt5Gui`"
+
+pkg_download() {
+	PACKAGE_LINK=${URL}/${PACKAGE_NAME}.${EXT}
+	pkg_curl
+}
 
 pkg_configure() {
 	local_copy
