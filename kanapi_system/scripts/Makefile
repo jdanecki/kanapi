@@ -1468,3 +1468,6 @@ xf86-video-s3:
 
 xf86-video-tseng:
 	@$(RUN_TARGET)
+
+SDL2_mixer:
+	@$(RUN_TARGET)
