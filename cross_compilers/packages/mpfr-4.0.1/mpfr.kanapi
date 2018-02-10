@@ -17,22 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=@NAME@
-VER=@VER@
-URL="http://"
-EXT=tar.bz2
+PACKAGE_NAME=mpfr
+VER=4.0.1
+URL="http://mpfr.loria.fr/mpfr-current"
+EXT=tar.xz
 #build depends on
 . ../settings
 
 pkg_prepare() {
-	pkg_tar_bz2
+	pkg_tar_xz
 }
 
 pkg_configure() {
-	pkg_configure_target
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} --host=${KANAPI_TARGET_NAME}
 }
-
-pkg_install() {
-	pkg_install_pc
-}	
 
