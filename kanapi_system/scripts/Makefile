@@ -1463,11 +1463,5 @@ alsa-plugins:
 SDL2_gfx:
 	@$(RUN_TARGET)
 
-xf86-video-s3:
-	@$(RUN_TARGET)
-
-xf86-video-tseng:
-	@$(RUN_TARGET)
-
 SDL2_mixer:
 	@$(RUN_TARGET)
