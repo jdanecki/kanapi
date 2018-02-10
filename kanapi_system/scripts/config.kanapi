@@ -429,3 +429,5 @@ SDL2_ver=2.0.7
 mpfr_ver=4.0.1
 qt_creator_ver=v4.5.0
 mpc_ver=1.1.0
+xf86_video_s3_ver=9ee0976
+xf86_video_tseng_ver=d034569

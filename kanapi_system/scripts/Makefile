@@ -1465,3 +1465,9 @@ SDL2_gfx:
 
 SDL2_mixer:
 	@$(RUN_TARGET)
+
+xf86-video-s3:
+	@$(RUN_TARGET)
+
+xf86-video-tseng:
+	@$(RUN_TARGET)
