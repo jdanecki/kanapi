@@ -28,7 +28,7 @@ LIB_DEPENDS="x11 xcb xau libtiff-4"
 . ../settings
 
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
-export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/bzip2-${bzip2_ver}/lib -L${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/lib"
+export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/bzip2-${bzip2_ver}/lib -L${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/lib -lm"
 export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/bzip2-${bzip2_ver}/include -I${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/include"
 
 pkg_configure() {	
