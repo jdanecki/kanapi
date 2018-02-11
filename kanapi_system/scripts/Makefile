@@ -1366,7 +1366,7 @@ ocl: beignet clinfo clpeak
 opencv:
 	@$(RUN_TARGET)
 
-SDL2_image: SDL2
+SDL2_image: tiff libwebp SDL2
 	@$(RUN_TARGET)
 
 iproute2:
