@@ -1471,3 +1471,6 @@ xf86-video-s3:
 
 xf86-video-tseng:
 	@$(RUN_TARGET)
+
+ClanLib:
+	@$(RUN_TARGET)
