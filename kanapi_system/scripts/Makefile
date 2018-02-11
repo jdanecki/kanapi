@@ -1477,3 +1477,6 @@ ClanLib:
 
 allegro:
 	@$(RUN_TARGET)
+
+Hermes:
+	@$(RUN_TARGET)
