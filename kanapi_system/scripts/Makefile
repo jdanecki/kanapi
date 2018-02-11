@@ -1480,3 +1480,6 @@ allegro:
 
 Hermes:
 	@$(RUN_TARGET)
+
+libmikmod:
+	@$(RUN_TARGET)
