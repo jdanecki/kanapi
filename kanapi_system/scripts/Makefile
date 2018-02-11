@@ -1474,3 +1474,6 @@ xf86-video-tseng:
 
 ClanLib:
 	@$(RUN_TARGET)
+
+allegro:
+	@$(RUN_TARGET)
