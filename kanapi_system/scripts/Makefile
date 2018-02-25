@@ -1483,3 +1483,6 @@ Hermes:
 
 libmikmod:
 	@$(RUN_TARGET)
+
+libXxf86vm:
+	@$(RUN_TARGET)
