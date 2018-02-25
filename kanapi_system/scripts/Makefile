@@ -1489,3 +1489,6 @@ libXxf86vm:
 
 sndio:
 	@$(RUN_TARGET)
+
+libXScrnSaver:
+	@$(RUN_TARGET)
