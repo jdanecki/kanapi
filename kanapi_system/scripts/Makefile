@@ -1486,3 +1486,6 @@ libmikmod:
 
 libXxf86vm:
 	@$(RUN_TARGET)
+
+sndio:
+	@$(RUN_TARGET)
