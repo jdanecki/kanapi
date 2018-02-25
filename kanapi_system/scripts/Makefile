@@ -1492,3 +1492,6 @@ sndio:
 
 libXScrnSaver:
 	@$(RUN_TARGET)
+
+fluidsynth:
+	@$(RUN_TARGET)
