@@ -48,11 +48,11 @@ else
 
 	if [ -x ${CROSS_GCC_PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc ]
 	then
-		if [ -f ${KANAPI_CROSS_BASE}/glibc-${glibc_ver}/lib/libstdc++.so ]
-		then
+#		if [ -f ${KANAPI_CROSS_BASE}/glibc-${glibc_ver}/lib/libstdc++.so ]
+#		then
 			export PATH_GCC=${CROSS_GCC_PREFIX}/bin
 			export PATH=${PATH_GCC}:${PATH}
-		fi
+#		fi
 	fi
 
 	if [ -x ${CROSS_BINUTILS_PREFIX}/bin/${KANAPI_TARGET_NAME}-as ]
