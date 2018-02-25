@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd /kanapi_${KANAPI_VER}/`uname -m`/packages
+
+rm -rf include
+mkdir include
+
+for dir in *
+do
+	if [ -d $dir/include ] ;
+	then
+		ln -svf `pwd`/$dir/include/* include
+	fi
+done
