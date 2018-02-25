@@ -45,3 +45,6 @@ pkg_build() {
 	make -j ${MAKE_JOBS} MAKEINFO=true V=1
 }
 
+pkg_check() {
+	echo "KANAPI_BASE=${KANAPI_BASE}"
+}
