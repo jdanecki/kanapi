@@ -527,7 +527,10 @@ pkg_install_libs() {
 		export LD_LIBRARY_PATH=
 		ldconfig
 	fi
-	update_include
+	if [ ! "${CI}" = "true" ]
+	then
+		update_include
+	fi
 }
 
 pkg_install_all() {
