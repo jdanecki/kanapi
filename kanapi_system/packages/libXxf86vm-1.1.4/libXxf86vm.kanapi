@@ -33,3 +33,8 @@ pkg_install() {
 	pkg_install_pc_all && pkg_install_libs
 }
 
+pkg_check() {
+	echo "PKG_CONFIG=${PKG_CONFIG}"
+	echo "PATH=${PATH}"
+}
+
