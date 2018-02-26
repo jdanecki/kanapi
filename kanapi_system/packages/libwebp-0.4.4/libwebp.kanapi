@@ -18,7 +18,7 @@
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
 PACKAGE_NAME=libwebp
-VER=0.5.2
+VER=0.4.4
 URL="http://storage.googleapis.com/downloads.webmproject.org/releases/webp"
 EXT=tar.gz
 #build depends on
