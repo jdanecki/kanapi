@@ -9,6 +9,17 @@ for dir in *
 do
 	if [ -d $dir/include ] ;
 	then
-		ln -svf `pwd`/$dir/include/* include
+		for subdir in $dir/include/*
+		do
+			if [ -d $subdir ]
+			then
+				if [ ! -d include/`basename $subdir` ] ; then mkdir include/`basename $subdir` ; fi
+				#echo "dir: $dir $subdir"
+				ln -svf `pwd`/$subdir/* include/`basename $subdir`
+			else
+				ln -svf `pwd`/$subdir include
+				#echo "file: $subdir"
+			fi
+		done
 	fi
 done
