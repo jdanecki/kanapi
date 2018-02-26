@@ -1513,3 +1513,6 @@ lua:
 
 libmad:
 	@$(RUN_TARGET)
+
+libmodplug:
+	@$(RUN_TARGET)

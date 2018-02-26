@@ -444,3 +444,4 @@ glew_ver=2.1.0
 lua_ver=5.3.4
 libmad_ver=0.15.1b
 libwebp_ver=0.6.1
+libmodplug_ver=0.8.9.0
