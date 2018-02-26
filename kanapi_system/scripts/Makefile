@@ -1516,3 +1516,6 @@ libmad:
 
 libmodplug:
 	@$(RUN_TARGET)
+
+SDL2_net:
+	@$(RUN_TARGET)
