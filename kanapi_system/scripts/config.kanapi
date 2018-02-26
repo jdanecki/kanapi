@@ -442,3 +442,4 @@ mesa_ver=17.3.5
 libdrm_ver=2.4.88
 mesa_demos_ver=8.4.0
 glew_ver=2.1.0
+lua_ver=5.3.4

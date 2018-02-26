@@ -1507,3 +1507,6 @@ mesa-demos: glew
 
 glew: mesa
 	@$(RUN_TARGET)
+
+lua:
+	@$(RUN_TARGET)
