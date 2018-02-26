@@ -1510,3 +1510,6 @@ glew: mesa
 
 lua:
 	@$(RUN_TARGET)
+
+libmad:
+	@$(RUN_TARGET)
