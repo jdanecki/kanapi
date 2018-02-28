@@ -1534,3 +1534,6 @@ freeimage:
 
 ois:
 	@$(RUN_TARGET)
+
+enet:
+	@$(RUN_TARGET)
