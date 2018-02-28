@@ -1540,3 +1540,6 @@ enet:
 
 flac:
 	@$(RUN_TARGET)
+
+openal-soft:
+	@$(RUN_TARGET)
