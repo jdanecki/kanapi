@@ -1531,3 +1531,6 @@ ogre:
 
 freeimage:
 	@$(RUN_TARGET)
+
+ois:
+	@$(RUN_TARGET)
