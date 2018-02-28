@@ -1522,3 +1522,6 @@ SDL2_net:
 
 physfs:
 	@$(RUN_TARGET)
+
+bullet3:
+	@$(RUN_TARGET)

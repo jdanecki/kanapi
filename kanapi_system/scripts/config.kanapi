@@ -447,3 +447,4 @@ libwebp_ver=0.6.1
 libmodplug_ver=0.8.9.0
 SDL2_net_ver=2.0.1
 physfs_ver=3.0.1
+bullet3_ver=2.87
