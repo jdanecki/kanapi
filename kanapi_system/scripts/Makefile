@@ -1519,3 +1519,6 @@ libmodplug:
 
 SDL2_net:
 	@$(RUN_TARGET)
+
+physfs:
+	@$(RUN_TARGET)
