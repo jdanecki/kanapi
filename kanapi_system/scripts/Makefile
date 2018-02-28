@@ -1528,3 +1528,6 @@ bullet3:
 
 ogre:
 	@$(RUN_TARGET)
+
+freeimage:
+	@$(RUN_TARGET)
