@@ -1525,3 +1525,6 @@ physfs:
 
 bullet3:
 	@$(RUN_TARGET)
+
+ogre:
+	@$(RUN_TARGET)
