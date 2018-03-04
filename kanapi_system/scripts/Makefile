@@ -1543,3 +1543,6 @@ flac:
 
 openal-soft:
 	@$(RUN_TARGET)
+
+portaudio:
+	@$(RUN_TARGET)
