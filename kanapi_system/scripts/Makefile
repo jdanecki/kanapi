@@ -34,7 +34,8 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	sound_devel apps_qt www database nfs video sdl2-support graphics-apps ogl ocl compilers network
+	sound_devel apps_qt www database nfs video sdl2-support graphics-apps ogl ocl compilers network game_engine \
+	demo
 
 all-sbs: bbs-sbs
 
@@ -64,7 +65,7 @@ bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed
 apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
 	ntfs-3g_ntfsprogs unrar
 
-devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons
+devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
@@ -75,7 +76,7 @@ apps_gtk3: gtk3+ evince pavucontrol
 
 sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib
 
-sdl2-support: SDL2_image SDL2_gfx SDL2_ttf
+sdl2-support: SDL2_image SDL2_gfx SDL2_ttf SDL2_net
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -87,7 +88,7 @@ x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libevdev mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
-	xf86-video-modesetting fonts setxkbmap xinput libXft icons
+	xf86-video-modesetting fonts setxkbmap xinput libXft icons libXxf86vm libXScrnSaver ois
 
 fonts: fonts-bitmap fonts-type1 fonts-misc fonts-ttf
 #	for i in 100dpi 75dpi Speedo Type1 cyrillic misc; do ln -svf $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/$$i $(KANAPI_BASE)/fontconfig-$(fontconfig_ver)/share/fonts ; done
@@ -125,7 +126,7 @@ xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconso
 
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
-sound: alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins speex
+sound: alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins speex sndio fluidsynth libmodplug flac openal-soft portaudio
 
 sound_devel: csound
 
@@ -133,15 +134,19 @@ database: db gdbm
 
 tests: xflame water xclipboard intel-gpu-tools ltp-full hello phoronix-test-suite
 
-graphics: tiff jpegsrc
+graphics: tiff jpegsrc freeimage
 
-video: Blue mpv
+video: Blue mpv libmad
 
 deprecated: procps
 
 nfs: nfs-utils
 
 graphics-apps: qiv opencv exif
+
+demo: cairo-demos mesa-demos
+
+game_engine: ClanLib allegro physfs bullet3 ogre 
 
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
@@ -989,7 +994,7 @@ tcl tk graphviz swig groff xflame water qemu gimp apps_qt www:
 else
 www: webkitgtk midori php
 
-apps_qt: qt-everywhere-opensource-src qt-creator vym qjackctl csoundqt
+apps_qt: qt-everywhere-opensource-src qt-creator vym qjackctl csoundqt musescore
 
 gimp: babl gegl dbus-glib
 	@$(RUN_TARGET)
@@ -1372,7 +1377,7 @@ SDL2_image: tiff libwebp SDL2
 iproute2:
 	@$(RUN_TARGET)
 
-network: iproute2
+network: iproute2 enet
 
 gstreamer: libunwind
 	@$(RUN_TARGET)
@@ -1383,7 +1388,7 @@ jack2:
 pulseaudio: libsndfile speexdsp intltool
 	@$(RUN_TARGET)
 
-libsndfile:
+libsndfile: libvorbis
 	@$(RUN_TARGET)
 
 speex:
@@ -1545,4 +1550,10 @@ openal-soft:
 	@$(RUN_TARGET)
 
 portaudio:
+	@$(RUN_TARGET)
+
+musescore: lame libsndfile portaudio
+	@$(RUN_TARGET)
+
+lame:
 	@$(RUN_TARGET)
