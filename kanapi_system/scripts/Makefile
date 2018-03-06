@@ -48,17 +48,13 @@ t_compression: gzip unrar bzip2 tar zip
 
 t_devel: cgdb ctags chrpath patchelf vala makefile2graph scons lua database compilers 
 
-t_editor: vim
+t_editor: vim xedit gvim evince qt-creator vym 
 
 t_gui: x-support wm xapp gtk+ dconf gtk3+ qt-everywhere-opensource-src 
    
 t_math: bc xcalc
 
-t_gui_editor: xedit gvim evince qt-creator vym 
-
-t_gui_network: www
-
-t_media: rplay sound graphics t_gui sdl-support gimp pavucontrol sound_devel qjackctl csoundqt musescore video \
+t_media: rplay sound graphics sdl-support gimp pavucontrol sound_devel qjackctl csoundqt musescore video \
 	sdl2-support  graphics-apps ogl ocl game_engine
 
 t_music: sound sound_devel csoundqt musescore
