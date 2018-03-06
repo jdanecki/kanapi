@@ -553,7 +553,7 @@ llvm: ninja
 	@$(RUN_TARGET)
 
 
-mesa: libxshmfence udev expat llvm wayland-protocols wayland libva
+mesa: libxshmfence udev expat llvm wayland-protocols libva libunwind
 	@$(RUN_TARGET)
 
 xcb-util-keysyms:
@@ -1530,7 +1530,7 @@ libXScrnSaver:
 fluidsynth:
 	@$(RUN_TARGET)
 
-wayland-protocols:
+wayland-protocols: wayland
 	@$(RUN_TARGET)
 
 wayland:
