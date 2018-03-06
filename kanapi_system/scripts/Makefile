@@ -37,6 +37,10 @@ optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps
 	sound_devel apps_qt www database nfs video sdl2-support graphics-apps ogl ocl compilers network game_engine \
 	demo
 
+all-sbs: bbs-sbs
+
+t_core: t_compression t_gui
+
 t_system: mc gpm kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
 	wireless_tools wpa_supplicant dhcp wget network
 
@@ -63,7 +67,6 @@ t_tests: tests demo
 
 t_emulation: qemu
 
-all-sbs: bbs-sbs
 
 test-sbs: hello
 
