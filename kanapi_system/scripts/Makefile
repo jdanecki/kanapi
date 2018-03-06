@@ -550,7 +550,7 @@ llvm: ninja
 	@$(RUN_TARGET)
 
 
-mesa: libxshmfence udev expat llvm wayland-protocols wayland
+mesa: libxshmfence udev expat llvm wayland-protocols wayland libva
 	@$(RUN_TARGET)
 
 xcb-util-keysyms:
@@ -1357,7 +1357,7 @@ ffmpeg: x264
 x264:
 	@$(RUN_TARGET)
 
-libva:
+libva: libdrm
 	@$(RUN_TARGET)
 
 libva-intel-driver: libva
