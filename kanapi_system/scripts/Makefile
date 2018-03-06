@@ -1133,7 +1133,7 @@ librsvg: libcroco
 libcroco:
 	@$(RUN_TARGET)
 
-qt-everywhere-opensource-src:
+qt-everywhere-opensource-src: alsa-lib dbus
 	@$(RUN_TARGET)
 
 dbus:
