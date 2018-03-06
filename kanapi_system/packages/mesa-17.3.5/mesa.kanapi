@@ -22,7 +22,7 @@ VER=17.3.5
 URL="ftp://ftp.freedesktop.org/pub/mesa"
 EXT=tar.xz
 #build depends on
-LIB_DEPENDS="xshmfence expat libudev"
+LIB_DEPENDS="xshmfence expat libudev zlib"
 . ../settings
 
 #export LLVM_CONFIG=${KANAPI_BASE}/llvm-${llvm_ver}/bin/llvm-config

@@ -22,7 +22,7 @@ VER=1.7.3
 URL="https://freedesktop.org/software/vaapi/releases/libva"
 EXT=tar.bz2
 #build depends on
-#LIB_DEPENDS=""
+LIB_DEPENDS="libdrm"
 
 . ../settings
 
