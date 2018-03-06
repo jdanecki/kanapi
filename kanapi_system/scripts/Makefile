@@ -57,6 +57,8 @@ t_gui_network: www
 t_media: rplay sound graphics t_gui sdl-support gimp pavucontrol sound_devel qjackctl csoundqt musescore video \
 	sdl2-support  graphics-apps ogl ocl game_engine
 
+t_music: sound sound_devel csoundqt musescore
+
 t_tests: tests demo
 
 t_emulation: qemu
