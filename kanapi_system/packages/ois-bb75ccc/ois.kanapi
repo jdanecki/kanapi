@@ -22,7 +22,7 @@ VER=bb75ccc
 URL="https://github.com/wgois"
 EXT=git
 #build depends on
-#LIB_DEPENDS=""
+LIB_DEPENDS="x11"
 
 . ../settings
 
