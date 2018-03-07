@@ -41,7 +41,7 @@ all-sbs: bbs-sbs
 
 t_core: t_compression t_gui patchelf
 
-t_compression: gzip unrar bzip2 tar zip
+t_compression: gzip unrar bzip2 tar zip zlib
 
 t_gui: x-support wm xapp gtk+ dconf gtk3+ qt-everywhere-opensource-src 
 
@@ -1373,7 +1373,7 @@ rtl8188eu:
 beignet: ocl-icd
 	@$(RUN_TARGET)
 
-ocl-icd:
+ocl-icd: ruby
 	@$(RUN_TARGET)
 
 clinfo:
