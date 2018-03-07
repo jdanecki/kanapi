@@ -1431,7 +1431,7 @@ gcc_6:
 gcc_7:
 	@$(RUN_TARGET_VER)
 
-compilers: gcc_5 gcc_6 gcc_7
+compilers: binutils gcc_5 gcc_6 gcc_7
 
 scons:
 	@$(RUN_TARGET)
