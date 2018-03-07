@@ -22,7 +22,7 @@ VER=1.14.8
 URL="https://www.cairographics.org/releases"
 EXT=tar.xz
 
-LIB_DEPENDS="libpng zlib expat x11 xcb xau xext"
+LIB_DEPENDS="libpng zlib expat x11 xcb xau xext pixman-1"
 
 #build depends on
 . ../settings
