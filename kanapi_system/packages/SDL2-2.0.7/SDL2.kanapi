@@ -29,6 +29,7 @@ LIB_DEPENDS="x11 gl xext alsa xrandr ice x11-xcb xcursor"
 
 export LDFLAGS="${LDFLAGS} -lstdc++ -lpthread -lm -ldl -lrt"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
+export CFLAGS="${CFLAGS}  -std=gnu11"
 
 pkg_prepare() {
 	pkg_tar_gz
