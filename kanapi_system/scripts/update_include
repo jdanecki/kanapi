@@ -1,25 +1,43 @@
 #!/bin/bash
 
+KANAPI_VER=0.9
+
 cd /kanapi_${KANAPI_VER}/`uname -m`/packages
 
 rm -rf include
 mkdir include
 
-for dir in *
-do
-	if [ -d $dir/include ] ;
+search_in_dir() {
+	if [ -d $2 ]
 	then
-		for subdir in $dir/include/*
-		do
-			if [ -d $subdir ]
-			then
-				if [ ! -d include/`basename $subdir` ] ; then mkdir include/`basename $subdir` ; fi
-				#echo "dir: $dir $subdir"
-				ln -svf `pwd`/$subdir/* include/`basename $subdir`
-			else
-				ln -svf `pwd`/$subdir include
-				#echo "file: $subdir"
-			fi
-		done
-	fi
-done
+			name=`echo $2 | sed "s@$1\/@@"` 
+	  	#	echo "dir: $1 --- $2 -> $name"
+			if [ ! -d $name ] ; then mkdir -p $name ; fi
+			for f in $2/*
+			do
+				search_in_dir $1 $f
+			done
+	else
+			name=`echo $2 | sed "s@$1\/@@"` 
+		#	echo "fil: $1 --- $2 -> $name"
+			ln -sf $2 $name
+	 fi
+}
+
+search_include_dir() {
+		 for package in $1/*
+		 do
+		 		echo "looking in $package"
+				if [ -d $package/include ] 
+				then
+					for fd in $package/include/*
+					do
+					  search_in_dir $package $fd
+					done
+			  fi
+		 done
+}
+
+
+search_include_dir `pwd`
+
