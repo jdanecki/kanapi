@@ -4,9 +4,6 @@ KANAPI_VER=0.9
 
 cd /kanapi_${KANAPI_VER}/`uname -m`/packages
 
-rm -rf include
-mkdir include
-
 search_in_dir() {
 	if [ -d $2 ]
 	then
@@ -20,7 +17,7 @@ search_in_dir() {
 	else
 			name=`echo $2 | sed "s@$1\/@@"` 
 		#	echo "fil: $1 --- $2 -> $name"
-			ln -sf $2 $name
+			ln -svf $2 $name
 	 fi
 }
 
@@ -38,6 +35,32 @@ search_include_dir() {
 		 done
 }
 
+search_include_package() {
+	 if [ -d $1/include ] 
+	 then
+		 for fd in $1/include/*
+		 do
+			search_in_dir $1 $fd
+		 done
+	fi
+}
 
-search_include_dir `pwd`
+
+PACKAGE="$1"
+if [ -n "$PACKAGE" ]
+then
+		  if [ ! -d ${PACKAGE} ] 
+		  then 
+					 echo "Missing package directory"
+					 exit 2
+		  fi
+			  echo "updating ${PACKAGE}"
+			  search_include_package ${PACKAGE}
+else
+	rm -rf include
+	mkdir include
+	search_include_dir `pwd`
+fi
+
+
 

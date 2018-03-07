@@ -396,12 +396,18 @@ pkg_build_local() {
 	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
+pkg_update_include() {
+	update_include ${PREFIX}
+}
+
 pkg_install_make() {
 	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 }
 
+
 pkg_install() {
 	pkg_install_make
+	pkg_update_include	
 }	
 
 pkg_install_pc() {	
@@ -410,6 +416,7 @@ pkg_install_pc() {
 	then	
 		${LN_SF} ${PREFIX}/lib/pkgconfig/${PACKAGE_NAME}.pc ${PKG_CONFIG_DIR}/${PACKAGE_NAME}.pc
 	fi
+	pkg_update_include	
 }
 
 pkg_install_pc_share() {	
@@ -418,11 +425,13 @@ pkg_install_pc_share() {
 	then
 		${LN_SF} ${PREFIX}/share/pkgconfig/${PACKAGE_NAME}.pc ${PKG_CONFIG_DIR}/${PACKAGE_NAME}.pc
 	fi
+	pkg_update_include	
 }
 
 pkg_install_pc_share_all() {
 	pkg_install_make
 	pkg_install_pc_share_all_only
+	pkg_update_include	
 }
 
 pkg_install_pc_share_all_only() {
@@ -438,6 +447,7 @@ pkg_install_pc_share_all_only() {
 pkg_install_pc_all() {
 	pkg_install_make
 	pkg_install_pc_all_only
+	pkg_update_include	
 }
 
 pkg_install_pc_all_only() {
