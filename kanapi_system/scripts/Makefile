@@ -39,14 +39,14 @@ optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps
 
 all-sbs: bbs-sbs
 
-t_core: t_compression t_gui
+t_core: t_compression t_gui patchelf
 
 t_system: mc gpm kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
 	wireless_tools wpa_supplicant dhcp wget network
 
 t_compression: gzip unrar bzip2 tar zip
 
-t_devel: cgdb ctags chrpath patchelf vala makefile2graph scons lua database compilers 
+t_devel: cgdb ctags chrpath vala makefile2graph scons lua database compilers 
 
 t_editor: vim xedit gvim evince qt-creator vym 
 
