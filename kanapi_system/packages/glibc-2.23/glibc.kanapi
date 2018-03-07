@@ -66,9 +66,9 @@ header() {
 	then 
 		mkdir ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
 		mkdir ${PREFIX}/lib
-		ln -s ${PREFIX}/include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
-		ln -s include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/sys-include
-		ln -s ${PREFIX}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
+		${LN_SF} ${PREFIX}/include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}
+		${LN_SF} include ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/sys-include
+		${LN_SF} ${PREFIX}/lib ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/lib
 		touch ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include/gnu/stubs.h
 		cp -ar ${KANAPI_BASE}/linux-headers-${linux_headers_ver}/include/* ${KANAPI_BASE}/gcc-${gcc_ver}/${KANAPI_TARGET_NAME}/include
 	fi
@@ -98,7 +98,7 @@ install_on_old_kanapi() {
 upgrade_glibc() {
 	echo "upgrade_glibc"
 	PATCHELF=`which patchelf`
-	if [ ! -x ${PATCHELF} ]
+	if [ ! -x "${PATCHELF}" ]
 	then
 		echo "ERROR: patchelf not available"
 		exit 2
@@ -148,16 +148,16 @@ pkg_install() {
 	if [ ! -d ${CROSS_GCC_DIR} ]
 	then 
 		mkdir -p ${CROSS_GCC_DIR}
-		ln -s ${PREFIX}/include ${CROSS_GCC_DIR}
-		ln -s include ${CROSS_GCC_DIR}/sys-include
-		ln -s ${PREFIX}/lib ${CROSS_GCC_DIR}/lib
+		${LN_SF} ${PREFIX}/include ${CROSS_GCC_DIR}
+		${LN_SF} include ${CROSS_GCC_DIR}/sys-include
+		${LN_SF} ${PREFIX}/lib ${CROSS_GCC_DIR}/lib
 		cp -ar ${KANAPI_BASE}/linux-headers-${linux_headers_ver}/include/* ${CROSS_GCC_DIR}/include
 	fi
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
 		LINKER_NAME=ld-linux-x86-64.so.2
 		LINKER_PATH=lib64
-		ln -s ${PREFIX}/lib ${PREFIX}/lib64
+		${LN_SF} ${PREFIX}/lib ${PREFIX}/lib64
     	fi
 	if [ "${KANAPI_TARGET}" = "i686" ]
 	then
