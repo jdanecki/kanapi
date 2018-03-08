@@ -113,10 +113,22 @@ configure_chroot() {
 	done
 	if [ ! -d ${sbs_name}/kanapi_${KANAPI_VER}/`uname -m`/home/.local ]
 	then
-			mkdir ${sbs_name}/kanapi_${KANAPI_VER}/`uname -m`/home/.local
+			mkdir -p ${sbs_name}/kanapi_${KANAPI_VER}/`uname -m`/home/.local
+	fi
+	if [ ! -L ${sbs_name}/lib64 ]
+	then
+		ln -svf /packages/libs ${sbs_name}/lib64
+	fi
+	if [ ! -d ${sbs_name}/usr/local ]
+	then
+		mkdir -p ${sbs_name}/usr/local
+	fi
+	if [ ! -L ${sbs_name}/usr/local/include ]
+	then
+		ln -svf /packages/include ${sbs_name}/usr/local/include
 	fi
 	cd ci-tests
-	ln -sf Makefile.sbs Makefile
+	ln -svf Makefile.sbs Makefile
 	echo "Now run make"
 	exit 0
 }
