@@ -121,6 +121,9 @@ do
 	file -i ${i} | grep application > /dev/null
 	if [ "$?" = "0" ] ; then strip ${i} ; fi
 done
+cp -L ${KANAPI_BASE_PACKAGES}/mpfr-3.1.5/lib/libmpfr.so.4 packages/libs/libmpfr.so.4
+strip packages/libs/libmpfr.so.4
+
 set -e
 ln -svf bash bin/sh
 ln -sf ${KANAPI_BASE_PACKAGES}/binutils-${binutils_ver}/${ARCH}-kanapi-linux-gnu/bin/* bin
