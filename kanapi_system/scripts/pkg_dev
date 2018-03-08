@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#  Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -47,8 +47,10 @@ pkg_dir_push() {
 }
 
 pkg_compress() {
-	echo "compressing ${PKG_NAME}"
-	tar cvJf ${PKG_NAME}.tar.xz ${PKG_NAME}
+	echo -n "archiving ${PKG_NAME} "
+	tar cf ${PKG_NAME}.tar ${PKG_NAME}
+	echo "compressing"
+	xz -T 0 -v ${PKG_NAME}.tar
 }
 
 pkg_dir_compress() {
@@ -60,8 +62,10 @@ pkg_dir_compress() {
 	   	then  
 			if [ "$i" != "libs" ]
 			then
-				echo "compressing $i"
-				tar cJf $i.tar.xz $i 
+				echo -n "archiving $i "
+				tar cf $i.tar $i
+				echo "compressing"
+				xz -T 0 -v $i.tar
 			fi
 	   	fi
 	done
