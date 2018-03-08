@@ -107,6 +107,7 @@ configure_chroot() {
 	ln -svf /kanapi_build/kanapi/cross_compilers/scripts/pkg_kanapi ${sbs_name}/bin/pkg_kanapi
 	ln -svf /kanapi_build/kanapi/kanapi_system/scripts/pkg ${sbs_name}/bin/pkg
 	ln -svf /kanapi_build/kanapi/kanapi_system/scripts/pkg_dev ${sbs_name}/bin/pkg_dev
+	ln -svf /kanapi_build/kanapi/kanapi_system/scripts/update_include ${sbs_name}/bin/update_include
 	for f in hosts passwd resolv.conf group nsswitch.conf
 	do
 		cp /etc/$f ${sbs_name}/etc
