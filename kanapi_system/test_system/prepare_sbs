@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+#  Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -37,7 +37,7 @@ mkdir ${SBS_DIR}
 cd ${SBS_DIR}
 
 echo "Copying files"
-for d in dev proc run sys tmp var
+for d in dev proc run sys tmp
 do
 	cp -ar ${KANAPI_BASE}/$d .
 done
@@ -45,6 +45,11 @@ done
 mkdir packages
 mkdir etc
 mkdir lib
+mkdir -p var/cache
+mkdir -p var/empty
+mkdir -p var/lib/alsa
+mkdir -p var/log
+mkdir -p var/run
 
 for pkg in bash binutils busybox curl file gcc glib glibc gmp libffi libgcrypt \
 	libssh2 make mpc mpfr openssl zlib
@@ -55,7 +60,7 @@ done
 
 mkdir -p packages/pkg-config-${pkg_config_ver}/share/pkgconfig
 cp -ar ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver}/bin packages/pkg-config-${pkg_config_ver}
-for i in aclocal doc man
+for i in aclocal
 do
 	cp -ar ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver}/share/$i packages/pkg-config-${pkg_config_ver}/share
 done
@@ -122,6 +127,9 @@ ln -sf ${KANAPI_BASE_PACKAGES}/binutils-${binutils_ver}/${ARCH}-kanapi-linux-gnu
 echo "${KANAPI_VER} `date -R`" > sbs.version
 mkdir kanapi_build
 ln -sf /proc/mounts etc/mtab
+mkdir usr/local
+ln -sf /packages/include usr/local/include
+ln -sf /packages/libs lib64
 
 cd ..
 
@@ -134,6 +142,8 @@ cp -a ${KANAPI_BASE}/init ${SBS_DIR}
 cp -a ${KANAPI_BASE}/init-${ARCH} ${SBS_DIR}
 
 echo "Compressing image"
-tar cJf sbs-${ARCH}.tar.xz sbs-${ARCH}
+tar cf sbs-${ARCH}.tar sbs-${ARCH}
+rm -f sbs-${ARCH}.tar.xz
+xz -T 0 sbs-${ARCH}.tar
 md5sum sbs-${ARCH}.tar.xz > sbs-${ARCH}.tar.xz.md5
 
