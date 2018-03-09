@@ -41,6 +41,8 @@ all-sbs: bbs-sbs
 
 t_core: t_compression t_gui patchelf
 
+t_core_cli: t_compression patchelf t_system t_devel vim bc rplay sound 
+
 t_compression: gzip unrar bzip2 tar zip zlib
 
 t_gui: x-support wm xapp gtk+ dconf gtk3+ qt-everywhere-opensource-src 
