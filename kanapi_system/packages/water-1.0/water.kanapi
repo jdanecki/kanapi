@@ -30,7 +30,7 @@ export LIBS="-lm"
 export CFLAGS="${CFLAGS} -I`sdl-config --prefix`/include"
 
 pkg_install() {
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	cp -v ${PACKAGE_SRCDIR}/water320.bmp ${PREFIX}/bin
 }
 

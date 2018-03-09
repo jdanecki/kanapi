@@ -44,8 +44,8 @@ pkg_build() {
 	cd build
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		${MAKE} -C lib -j ${MAKE_JOBS} MAKEINFO=true && make -C src -j ${MAKE_JOBS} MAKEINFO=true && \
-		${MAKE} -C tests -j ${MAKE_JOBS} MAKEINFO=true && make -C tools -j ${MAKE_JOBS} MAKEINFO=true
+		${MAKE} -C lib -j ${MAKE_JOBS} MAKEINFO=true && ${MAKE} -C src -j ${MAKE_JOBS} MAKEINFO=true && \
+		${MAKE} -C tests -j ${MAKE_JOBS} MAKEINFO=true && ${MAKE} -C tools -j ${MAKE_JOBS} MAKEINFO=true
 	fi
 }
 

@@ -63,11 +63,11 @@ eof
 
 pkg_build() {
 	cd build
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {
 	cd build
 	touch doc/gpm.info
-	make -j ${MAKE_JOBS} install MAKEINFO=true && pkg_install_bin_all && pkg_install_sbin_all && pkg_install_libs
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true && pkg_install_bin_all && pkg_install_sbin_all && pkg_install_libs
 }

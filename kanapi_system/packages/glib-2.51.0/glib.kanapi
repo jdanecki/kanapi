@@ -42,7 +42,7 @@ pkg_configure() {
 }
 
 pkg_build() {
-	make -j ${MAKE_JOBS} MAKEINFO=true V=1
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true V=1
 }
 
 pkg_check() {

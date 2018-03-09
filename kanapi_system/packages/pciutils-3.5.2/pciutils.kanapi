@@ -35,7 +35,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make PREFIX=${PREFIX} SHARED=yes ZLIB=yes CROSS_COMPILE=${KANAPI_TARGET_NAME}- CFLAGS="${CFLAGS}"
+	${MAKE} PREFIX=${PREFIX} SHARED=yes ZLIB=yes CROSS_COMPILE=${KANAPI_TARGET_NAME}- CFLAGS="${CFLAGS}"
 }
 
 pkg_install() {

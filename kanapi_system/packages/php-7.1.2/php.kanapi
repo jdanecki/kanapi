@@ -59,6 +59,6 @@ pkg_install() {
 }
 
 pkg_check() {
-#	make test
+#	${MAKE} test
 	php -me
 }

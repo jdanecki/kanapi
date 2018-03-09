@@ -32,7 +32,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make  MAKEINFO=true
+	${MAKE}  MAKEINFO=true
 }
 
 pkg_install() {

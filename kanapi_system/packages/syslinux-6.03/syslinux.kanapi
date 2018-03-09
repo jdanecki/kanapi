@@ -31,13 +31,13 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make -j ${MAKE_JOBS} installer INSTALLROOT=${PREFIX} \
+	${MAKE} -j ${MAKE_JOBS} installer INSTALLROOT=${PREFIX} \
 	   	CC="${KANAPI_C_COMPILER} -I`${PKG_CONFIG} --variable=includedir uuid` `${PKG_CONFIG} --libs uuid` -lm -ldl -lpthread -lrt"
 }
 
 pkg_install() {
 	cd build
-	make -j ${MAKE_JOBS} install INSTALLROOT=${PREFIX} \
+	${MAKE} -j ${MAKE_JOBS} install INSTALLROOT=${PREFIX} \
 	   	CC="${KANAPI_C_COMPILER} -I`${PKG_CONFIG} --variable=includedir uuid` `${PKG_CONFIG} --libs uuid` -lm -ldl -lpthread -lrt"
 	pkg_install_sbin_all
 	pkg_install_usr_bin_all

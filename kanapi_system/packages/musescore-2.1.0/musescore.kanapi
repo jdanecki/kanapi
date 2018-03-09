@@ -51,7 +51,7 @@ pkg_configure() {
 
 pkg_build() {
  	cd build
-	make -j ${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF"
+	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF"
 }
 
 pkg_install() {

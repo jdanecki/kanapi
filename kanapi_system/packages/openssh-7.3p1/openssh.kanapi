@@ -34,7 +34,7 @@ pkg_configure() {
 }
 
 pkg_install() {
-	make install-nokeys MAKEINFO=true
+	${MAKE} install-nokeys MAKEINFO=true
 	pkg_install_bin_all
 	pkg_install_sbin_all
 }

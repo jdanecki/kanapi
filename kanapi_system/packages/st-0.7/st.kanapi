@@ -34,7 +34,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make config.h
+	${MAKE} config.h
 	${KANAPI_TARGET_NAME}-gcc ${CFLAGS} ${LDFLAGS} -o st -DVERSION=\"${VER}\" -D_XOPEN_SOURCE=600 -std=c99 st.c
 }
 

@@ -43,7 +43,7 @@ pkg_check() {
 }
 
 pkg_install() {
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	pkg_install_bin_all
 }
 

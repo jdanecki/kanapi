@@ -29,7 +29,7 @@ pkg_configure_target() {
 }
 
 pkg_build() {
-	make -C build -j ${MAKE_JOBS} MAKEINFO=true PREFIX=${PREFIX}
+	${MAKE} -C build -j ${MAKE_JOBS} MAKEINFO=true PREFIX=${PREFIX}
 }
 
 pkg_install() {

@@ -74,10 +74,10 @@ pkg_build() {
 	MAKE_JOBS=1
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		make -j ${MAKE_JOBS} MAKEINFO=true
+		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 	else
 		cross_compile_build
-		make -j ${MAKE_JOBS} MAKEINFO=true
+		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 	fi
 }
 

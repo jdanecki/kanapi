@@ -55,12 +55,12 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {
 	cd build
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	pkg_install_bin_all
 }
 

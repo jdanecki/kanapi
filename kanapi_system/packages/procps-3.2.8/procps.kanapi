@@ -35,12 +35,12 @@ pkg_configure() {
 pkg_build() {
 	cd build
 	NCURSES="`${PKG_CONFIG} --cflags ncurses` `${PKG_CONFIG} --libs ncurses`"
-	make -j ${MAKE_JOBS}  DESTDIR=${PREFIX} CC="${KANAPI_C_COMPILER} ${NCURSES}" ldl="-lproc-${VER} -Lproc"
+	${MAKE} -j ${MAKE_JOBS}  DESTDIR=${PREFIX} CC="${KANAPI_C_COMPILER} ${NCURSES}" ldl="-lproc-${VER} -Lproc"
 }
 
 pkg_install() {
 	cd build
-	make -j ${MAKE_JOBS} DESTDIR=${PREFIX} install
+	${MAKE} -j ${MAKE_JOBS} DESTDIR=${PREFIX} install
 	pkg_install_bin_all
 	pkg_install_usr_bin_all
 	pkg_install_sbin_all
