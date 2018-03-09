@@ -21,6 +21,8 @@ configure_ci() {
 	ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
 	ln -svf `pwd`/../kanapi_system/scripts/pkg ${HOME}/bin/pkg
 	ln -svf `pwd`/../kanapi_system/scripts/pkg_dev ${HOME}/bin/pkg_dev
+	ln -svf `pwd`/../kanapi_system/scripts/update_include ${HOME}/bin/update_include
+
 	ls -l ${HOME}/bin 
 
 	KANAPI_VER=`cat ../kanapi_system/scripts/KANAPI_VER`
@@ -74,6 +76,7 @@ configure_local() {
 	ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi /bin/pkg_kanapi
 	ln -svf `pwd`/../kanapi_system/scripts/pkg /bin/pkg
 	ln -svf `pwd`/../kanapi_system/scripts/pkg_dev /bin/pkg_dev
+	ln -svf `pwd`/../kanapi_system/scripts/update_include /bin/update_include
 	echo "Now run make"
 	exit 0
 }
