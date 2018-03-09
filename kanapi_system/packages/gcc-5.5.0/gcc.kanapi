@@ -50,10 +50,6 @@ pkg_configure() {
 #	--host=${KANAPI_TARGET_NAME} 
 }
 
-pkg_build() {
-	make -j ${MAKE_JOBS} MAKEINFO=true 
-}
-
 pkg_target() {
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	then
@@ -90,7 +86,7 @@ pkg_install_headers() {
 
 pkg_install() {
 	MAKE_JOBS=1
-	make -j ${MAKE_JOBS}  MAKEINFO=true install
+	${MAKE} -j ${MAKE_JOBS}  MAKEINFO=true install
 	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${VER}/as
 	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${VER}/ld
 

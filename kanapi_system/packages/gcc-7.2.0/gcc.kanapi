@@ -51,7 +51,7 @@ pkg_configure() {
 }
 
 pkg_build() {
-	make -j ${MAKE_JOBS} MAKEINFO=true 
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true 
 	#all-gcc all-target-libgcc
 }
 

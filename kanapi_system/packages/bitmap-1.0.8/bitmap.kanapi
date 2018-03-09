@@ -29,8 +29,7 @@ LIB_DEPENDS="xmu ice xcb sm xext xau xaw7 xpm uuid"
 export LDFLAGS="${LDFLAGS} -lpthread -lm -lrt"
 
 pkg_install() {
-	pkg_install_make
-	pkg_install_bin_all
+	pkg_install_make &&	pkg_install_bin_all
 	XMU=`${PKG_CONFIG} --variable=includedir xmu`
 	ln -svf ${PREFIX}/include/X11/bitmaps/* ${XMU}/X11/bitmaps
 }

@@ -49,8 +49,3 @@ pkg_build() {
 	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true utests utest_run
 }
 
-
-pkg_install() {
-	pkg_install_make
-}
-

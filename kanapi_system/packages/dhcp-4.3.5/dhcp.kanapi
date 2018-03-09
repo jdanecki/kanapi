@@ -40,7 +40,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make -j 1 MAKEINFO=true
+	${MAKE} -j 1 MAKEINFO=true
 }
 
 pkg_install() {

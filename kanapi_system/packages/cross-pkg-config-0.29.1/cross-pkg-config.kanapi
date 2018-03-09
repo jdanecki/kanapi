@@ -41,7 +41,7 @@ pkg_configure() {
 }
 
 pkg_install() {
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	ln -sv ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig ${PREFIX}/share/pkgconfig
 }
 

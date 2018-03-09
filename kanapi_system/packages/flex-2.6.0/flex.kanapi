@@ -44,8 +44,8 @@ pkg_build() {
 	cd build
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		make -C lib -j ${MAKE_JOBS} MAKEINFO=true && make -C src -j ${MAKE_JOBS} MAKEINFO=true && \
-		make -C tests -j ${MAKE_JOBS} MAKEINFO=true && make -C tools -j ${MAKE_JOBS} MAKEINFO=true
+		${MAKE} -C lib -j ${MAKE_JOBS} MAKEINFO=true && make -C src -j ${MAKE_JOBS} MAKEINFO=true && \
+		${MAKE} -C tests -j ${MAKE_JOBS} MAKEINFO=true && make -C tools -j ${MAKE_JOBS} MAKEINFO=true
 	fi
 }
 
@@ -57,8 +57,7 @@ pkg_install() {
 		${MAKE} -C src -j ${MAKE_JOBS} install MAKEINFO=true
 		${MAKE} -C tests -j ${MAKE_JOBS} install MAKEINFO=true
 		${MAKE} -C tools -j ${MAKE_JOBS} install MAKEINFO=true
-		pkg_install_bin_all
-		pkg_install_libs
+		pkg_install_bin_all && pkg_install_libs
 	fi
 }
 

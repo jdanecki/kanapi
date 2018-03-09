@@ -40,10 +40,9 @@ pkg_build () {
 	cd build/build_unix
 	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
+
 pkg_install() {
 	cd build/build_unix
-	pkg_install_make
-	pkg_install_bin_all
-	pkg_install_libs
+	pkg_install_make && pkg_install_bin_all && pkg_install_libs
 }
 

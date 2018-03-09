@@ -2,7 +2,15 @@
 
 KANAPI_VER=0.9
 
-cd /kanapi_${KANAPI_VER}/`uname -m`/packages
+if [ "`id -u`" != "0" ]
+then
+	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
+else
+	KANAPI_ROOT="/kanapi_${KANAPI_VER}"
+fi
+KANAPI_BASE=${KANAPI_ROOT}/`uname -m`/packages
+
+pushd ${KANAPI_BASE}
 
 search_in_dir() {
 	if [ -d $2 ]
@@ -52,6 +60,7 @@ then
 		  if [ ! -d ${PACKAGE} ] 
 		  then 
 					 echo "Missing package directory"
+					 popd
 					 exit 2
 		  fi
 			  echo "updating ${PACKAGE}"
@@ -62,5 +71,5 @@ else
 	search_include_dir `pwd`
 fi
 
-
+popd
 
