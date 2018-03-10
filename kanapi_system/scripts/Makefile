@@ -1351,7 +1351,7 @@ autoconf213:
 	make -f ../Makefile -C autoconf-2.13 kanapi_$(ACTION) PKG=autoconf KANAPI_TOP=$(PWD) V=$(V)
 
 
-ffmpeg: x264
+ffmpeg: x264 gnutls
 	@$(RUN_TARGET)
 
 x264:
