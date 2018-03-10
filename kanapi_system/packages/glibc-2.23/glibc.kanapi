@@ -22,6 +22,7 @@ VER=2.23
 URL="http://ftp.gnu.org/gnu/glibc"
 EXT=tar.xz
 #build depends on
+export DONT_INSTALL_INCLUDE=1
 . ../settings
 	
 export LDFLAGS="-fno-stack-protector -O2"

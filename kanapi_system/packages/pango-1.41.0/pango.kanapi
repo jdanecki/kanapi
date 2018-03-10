@@ -17,6 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
+#set -x
+
 PACKAGE_NAME=pango
 VER=1.41.0
 URL="http://ftp.gnome.org/pub/gnome/sources/pango/1.41"
@@ -33,9 +35,16 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
 }
 
+pkg_build() {
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true V=1
+}
+
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_bin_all
 	pkg_install_libs
 }
 
+pkg_check() {
+	set
+}

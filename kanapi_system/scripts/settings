@@ -397,7 +397,10 @@ pkg_build_local() {
 }
 
 pkg_update_include() {
-	update_include ${PREFIX}
+	if [ -z "$DONT_INSTALL_INCLUDE" ]
+	then
+		update_include ${PREFIX}
+	fi
 }
 
 pkg_install_make() {
