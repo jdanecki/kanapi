@@ -102,7 +102,7 @@ apps_gtk3: gtk3+ evince pavucontrol
 
 sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib
 
-sdl2-support: SDL2_image SDL2_gfx SDL2_ttf SDL2_net
+sdl2-support: SDL2_image SDL2_gfx SDL2_ttf SDL2_net SDL2_mixer
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
