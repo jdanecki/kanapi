@@ -47,7 +47,7 @@ t_compression: gzip unrar bzip2 tar zip zlib
 
 t_gui: x-support wm xapp gtk+ dconf gtk3+ qt-everywhere-opensource-src 
 
-t_system: t_compression mc gpm kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
+t_system: t_compression mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
 	wireless_tools wpa_supplicant dhcp wget network
 
 t_devel: cgdb ctags chrpath vala makefile2graph scons lua database compilers 
@@ -88,7 +88,7 @@ bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed
 
 
 #KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim gpm kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
+apps_txt: gzip mc vim kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
 	ntfs-3g_ntfsprogs unrar
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua
@@ -284,7 +284,7 @@ libssh2: libgcrypt
 slang: ncurses5
 	@$(RUN_TARGET)
 
-mc: libssh2 glib
+mc: libssh2 glib gpm
 	@$(RUN_TARGET)
 
 vim:
