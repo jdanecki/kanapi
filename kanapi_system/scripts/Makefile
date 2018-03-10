@@ -34,7 +34,7 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	sound_devel apps_qt www database nfs video sdl2-support graphics-apps ogl ocl compilers network game_engine \
+	sound_devel apps_qt www database nfs video sdl2-support graphics-apps ogl ocl network game_engine \
 	demo
 
 all-sbs: bbs-sbs
@@ -50,7 +50,7 @@ t_gui: x-support wm xapp gtk+ dconf gtk3+ qt-everywhere-opensource-src
 t_system: t_compression mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
 	wireless_tools wpa_supplicant dhcp wget network
 
-t_devel: cgdb ctags chrpath vala makefile2graph scons lua database compilers 
+t_devel: cgdb ctags chrpath vala makefile2graph scons lua database 
 
 t_editor: vim xedit gvim evince qt-creator vym 
  
