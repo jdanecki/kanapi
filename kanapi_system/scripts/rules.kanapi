@@ -78,11 +78,13 @@ kanapi_check:
 	@pkg_kanapi $(PKG).kanapi check $(V)
 
 kanapi_verify:
-	@pkg_kanapi $(PKG).kanapi verify $(V); if [ "$$?" = "0" ] ; then /bin/date > kanapi_install ; else false; fi
+	@pkg_kanapi $(PKG).kanapi verify $(V); ret=$$? ; if [ "$$ret" = "0" ] ; then /bin/date > kanapi_install ; else \
+	if [ "$$ret" = "2" ]; then true ; else false; fi ; fi
 	$(call DATE_RULE)
 
 kanapi_reverify:
-	@pkg_kanapi $(PKG).kanapi verify $(V); if [ "$$?" = "0" ] ; then /bin/date > kanapi_install ; else false; fi
+	@pkg_kanapi $(PKG).kanapi verify $(V); ret=$$? ; if [ "$$ret" = "0" ] ; then /bin/date > kanapi_install ; else \
+	if [ "$$ret" = "2" ]; then true ; else false; fi ; fi
 	/bin/date > kanapi_verify
 
 kanapi_version:

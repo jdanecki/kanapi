@@ -118,16 +118,19 @@ x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 
 
 fonts: fonts-bitmap fonts-type1 fonts-misc fonts-ttf
 #	for i in 100dpi 75dpi Speedo Type1 cyrillic misc; do ln -svf $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/$$i $(KANAPI_BASE)/fontconfig-$(fontconfig_ver)/share/fonts ; done
-	if [ ! -d $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ] ; then mkdir $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF; fi
+	if [ ! -d $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ] ; then mkdir -p $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF; fi
 	for i in $(KANAPI_BASE)/freefont-ttf-$(freefont_ttf_ver)/*.ttf $(KANAPI_BASE)/dejavu-fonts-ttf-$(dejavu_fonts_ttf_ver)/ttf/*.ttf ; do \
-		ln -svf $$i $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; done
+		if [ -f $$i ] ; then ln -svf $$i $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; fi; done
 	echo -n > $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts
 	for i in $(KANAPI_BASE)/freefont-ttf-$(freefont_ttf_ver)/fonts.scale $(KANAPI_BASE)/dejavu-fonts-ttf-$(dejavu_fonts_ttf_ver)/ttf/fonts.scale ; do \
-		cat $$i | grep ttf >> $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts ; done
-	cat $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts	| wc -l >  $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts.scale
-	cat $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts	>>  $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts.scale
-	rm $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts
-	cd $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; mkfontdir
+		if [ -f $$i ] ; then cat $$i | grep ttf >> $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts ; fi; done
+	if [ -f $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts ] ; then \
+		cat $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts	| wc -l >  $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts.scale ; \
+		cat $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts	>>  $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts.scale ; \
+		rm $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts ; \
+		cd $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; \
+		if [ -x "`which mkfontdir`" ]; then mkfontdir ; fi ; \
+	fi
 
 fonts-ttf: freefont-ttf dejavu-fonts-ttf font-bh-ttf
 	
@@ -1347,7 +1350,7 @@ firefox: autoconf213 yasm
 	@$(RUN_TARGET)
 
 autoconf213:
-	DIR_NAME=autoconf-2.13; if [ ! -d  $${DIR_NAME} ]; then mkdir $${DIR_NAME} ; ln -svf ../../packages/$${DIR_NAME}/autoconf.kanapi $${DIR_NAME}; fi
+	DIR_NAME=autoconf-2.13; if [ ! -d  $${DIR_NAME} ]; then mkdir -p $${DIR_NAME} ; ln -svf ../../packages/$${DIR_NAME}/autoconf.kanapi $${DIR_NAME}; fi
 	make -f ../Makefile -C autoconf-2.13 kanapi_$(ACTION) PKG=autoconf KANAPI_TOP=$(PWD) V=$(V)
 
 
