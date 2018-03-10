@@ -47,7 +47,7 @@ t_compression: gzip unrar bzip2 tar zip zlib
 
 t_gui: x-support wm xapp gtk+ dconf gtk3+ qt-everywhere-opensource-src 
 
-t_system: mc gpm kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
+t_system: t_compression mc gpm kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
 	wireless_tools wpa_supplicant dhcp wget network
 
 t_devel: cgdb ctags chrpath vala makefile2graph scons lua database compilers 
@@ -61,7 +61,7 @@ t_media: rplay sound graphics sdl-support gimp pavucontrol sound_devel qjackctl 
 
 t_music: sound sound_devel csoundqt musescore
 
-t_tests: tests demo
+t_tests: tests demo t_emulation
 
 t_emulation: qemu
 
