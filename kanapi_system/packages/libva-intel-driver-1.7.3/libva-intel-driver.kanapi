@@ -23,6 +23,7 @@ URL="https://freedesktop.org/software/vaapi/releases/libva-intel-driver"
 EXT=tar.bz2
 #build depends on
 LIB_DEPENDS="x11"
+export DONT_INSTALL_INCLUDE=1
 
 . ../settings
 
