@@ -572,10 +572,12 @@ check_script() {
 	if [ "$?" = "0" ]
 	then
 		SHL="`echo ${LINE[@]:2} | sed 's/ .*$//' `"
+		echo "checking shell: ${SHL}"
 		if [ -x $SHL ]
 		then 
 			true
 		else
+			echo "shell: <${SHL}> has not found"
 			false
 		fi 
 	else
