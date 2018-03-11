@@ -37,7 +37,15 @@ search_include_dir() {
 				then
 					for fd in $package/include/*
 					do
-					  search_in_dir $package $fd
+						dir=`basename $package`
+						if [ "${dir:0:3}" = "gcc" -o "${dir:0:5}" = "glibc" ]
+						then
+							#echo "don't link compiler $dir"
+							continue
+						else
+							#echo "$package ($dir)-> $fd"
+					  		search_in_dir $package $fd
+						fi
 					done
 			  fi
 		 done
