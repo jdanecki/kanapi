@@ -137,14 +137,6 @@ configure_chroot() {
 		ln -svf /packages/include ${sbs_name}/usr/local/include
 	fi
 	
-	cd ci-tests
-	if [ "${CI}" = "true" ]
-	then
-		link_makefile
-	else
-		ln -svf Makefile.sbs Makefile
-	fi
-	make include
 	echo "Now run make"
 	exit 0
 }
@@ -367,6 +359,9 @@ then
 			configure_ci
 	else
 		sudo ./configure chroot
+		cd ci-tests
+		link_makefile
+		sudo chroot ../sbs-`uname -m` /bin/update_include	
 		exit $?
 	fi
 fi
@@ -455,10 +450,13 @@ then
 	remove_sbs
 fi
 
-if [ "`lsb_release -is`" = "KaNaPi" ]
-then 
-	configure_local
-fi
+#if [ "`lsb_release -is`" = "KaNaPi" ]
+#then 
+#	configure_local
+#fi
 
 configure_chroot
+cd ci-tests
+ln -svf Makefile.sbs Makefile
+chroot ../sbs-`uname -m` /bin/update_include	
 
