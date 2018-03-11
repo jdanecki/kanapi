@@ -355,6 +355,11 @@ then
 	exit 0
 fi
 
+if [ "$1" = "chroot" ]
+then
+	configure_chroot
+fi
+
 if [ "${CI}" = "true" -o "$1" = "ci" ]
 then
 	show_setup
@@ -365,7 +370,11 @@ then
 		sudo ./configure chroot
 		cd ci-tests
 		link_makefile
-		sudo chroot ../sbs-`uname -m` /bin/update_include	
+		for dir in proc dev dev/pts sys 
+		do
+			sudo mount -o bind /$dir ../sbs-`uname -m`/$dir
+		done
+		sudo chroot ../sbs-`uname -m` /bin/update_include
 		exit $?
 	fi
 fi
@@ -379,11 +388,6 @@ fi
 if [ "$1" = "local" ]
 then
 	configure_local
-fi
-
-if [ "$1" = "chroot" ]
-then
-	configure_chroot
 fi
 
 if [ "$1" = "jenkins" ]
