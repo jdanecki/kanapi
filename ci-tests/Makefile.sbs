@@ -4,3 +4,6 @@ all:
 test: 
 	chroot ../sbs-`uname -m` /_start_chroot
 
+include:
+	chroot ../sbs-`uname -m` /bin/update_include
+

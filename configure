@@ -133,6 +133,7 @@ configure_chroot() {
 	fi
 	cd ci-tests
 	ln -svf Makefile.sbs Makefile
+	make include
 	echo "Now run make"
 	exit 0
 }
