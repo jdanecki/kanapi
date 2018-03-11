@@ -7,3 +7,6 @@ test:
 include:
 	chroot ../sbs-`uname -m` /bin/update_include
 
+bbs_sbs:
+	chroot ../sbs-`uname -m` /_start_bbs_build
+

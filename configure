@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+#set -x
 
 show_setup() {
 	echo "Show info about setup"
@@ -142,7 +142,6 @@ configure_chroot() {
 	fi
 	
 	echo "Now run make"
-	exit 0
 }
 
 configure_mount-src() {
@@ -358,6 +357,7 @@ fi
 if [ "$1" = "chroot" ]
 then
 	configure_chroot
+	exit 0
 fi
 
 if [ "${CI}" = "true" -o "$1" = "ci" ]
