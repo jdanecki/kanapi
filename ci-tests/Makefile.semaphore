@@ -1,4 +1,7 @@
-all: bbs
+all: bbs_sbs
+
+bbs_sbs:
+	sudo chroot ../sbs-`uname -m` /_start_bbs_build
 
 bbs: check_links
 	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install

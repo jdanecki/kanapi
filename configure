@@ -13,24 +13,8 @@ show_setup() {
 	df -h
 }
 
-configure_ci() {
-	cd ci-tests
-	if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
-	if [ ! -d ${HOME}/src ]; then mkdir ${HOME}/src; fi
-	
-	ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
-	ln -svf `pwd`/../kanapi_system/scripts/pkg ${HOME}/bin/pkg
-	ln -svf `pwd`/../kanapi_system/scripts/pkg_dev ${HOME}/bin/pkg_dev
-	ln -svf `pwd`/../kanapi_system/scripts/update_include ${HOME}/bin/update_include
-
-	ls -l ${HOME}/bin 
-
-	KANAPI_VER=`cat ../kanapi_system/scripts/KANAPI_VER`
-	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
-	mkdir -p ${KANAPI_ROOT}/x86_64/bin
-	mkdir -p ${KANAPI_ROOT}/x86_64/packages/libs
-
-	echo "checking CI"
+link_makefile() {
+	echo "linking Makefiles for CI"
 	if [ "${SEMAPHORE}" = "true" ]
 	then
 		echo "SEMAPHORE"
@@ -60,6 +44,27 @@ configure_ci() {
 		echo "CODESHIP"
 		ln -sv Makefile.codeship Makefile
 	fi
+}
+
+configure_ci() {
+	cd ci-tests
+	if [ ! -d ${HOME}/bin ] ; then mkdir ${HOME}/bin ; fi 
+	if [ ! -d ${HOME}/src ]; then mkdir ${HOME}/src; fi
+	
+	ln -svf `pwd`/../cross_compilers/scripts/pkg_kanapi ${HOME}/bin/pkg_kanapi
+	ln -svf `pwd`/../kanapi_system/scripts/pkg ${HOME}/bin/pkg
+	ln -svf `pwd`/../kanapi_system/scripts/pkg_dev ${HOME}/bin/pkg_dev
+	ln -svf `pwd`/../kanapi_system/scripts/update_include ${HOME}/bin/update_include
+
+	ls -l ${HOME}/bin 
+
+	KANAPI_VER=`cat ../kanapi_system/scripts/KANAPI_VER`
+	KANAPI_ROOT="${HOME}/kanapi_${KANAPI_VER}"
+	mkdir -p ${KANAPI_ROOT}/x86_64/bin
+	mkdir -p ${KANAPI_ROOT}/x86_64/packages/libs
+
+	link_makefile
+
 	if [ -x ${HOME}/bin/pkg_kanapi ] 
 	then 
 		exit 0 
@@ -131,8 +136,14 @@ configure_chroot() {
 	then
 		ln -svf /packages/include ${sbs_name}/usr/local/include
 	fi
+	
 	cd ci-tests
-	ln -svf Makefile.sbs Makefile
+	if [ "${CI}" = "true" ]
+	then
+		link_makefile
+	else
+		ln -svf Makefile.sbs Makefile
+	fi
 	make include
 	echo "Now run make"
 	exit 0
@@ -332,7 +343,7 @@ then
 	echo "configure parameters: [local | ci | chroot | setup]"
 	echo "chroot - configure for compilation in chroot using SBS (default)"
 	echo "local - configure for full compilation, prepared for builds in KaNaPi"
-	echo "ci - configure compilation under CI (Travis/Codeship)"
+	echo "ci - configure compilation under CI (Travis/Codeship/Shippable/CircleCI/SemaphoreCI)"
 	echo "setup - show information about setup"
 	echo "jenkins - configure for compilation under Jenkins"
 	echo "update-sbs - update SBS locally"
@@ -351,7 +362,13 @@ fi
 if [ "${CI}" = "true" -o "$1" = "ci" ]
 then
 	show_setup
-	configure_ci
+	if [ "${CODESHIP}" = "TRUE" ]
+	then
+			configure_ci
+	else
+		sudo ./configure chroot
+		exit $?
+	fi
 fi
 
 if [ "$1" = "setup" ]
