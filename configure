@@ -363,7 +363,7 @@ fi
 if [ "${CI}" = "true" -o "$1" = "ci" ]
 then
 	show_setup
-	if [ "${CODESHIP}" = "TRUE" -o "${TRAVIS} = "true" -o "${CIRCLECI} = "true" ]
+	if [ "${CODESHIP}" = "TRUE" -o "${TRAVIS}" = "true" -o "${CIRCLECI}" = "true" ]
 	then
 			configure_ci
 	else
