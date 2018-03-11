@@ -363,10 +363,8 @@ fi
 if [ "${CI}" = "true" -o "$1" = "ci" ]
 then
 	show_setup
-	if [ "${CODESHIP}" = "TRUE" -o "${TRAVIS}" = "true" -o "${CIRCLECI}" = "true" ]
+	if [ "${SHIPPABLE}" = "true" -o "${SEMAPHORE}" = "true" ]
 	then
-			configure_ci
-	else
 		sudo ./configure chroot
 		cd ci-tests
 		link_makefile
@@ -376,6 +374,8 @@ then
 		done
 		sudo chroot ../sbs-`uname -m` /bin/update_include
 		exit $?
+	else
+		configure_ci
 	fi
 fi
 
