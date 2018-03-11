@@ -108,7 +108,12 @@ fi
 (which grep && which wc) > /dev/null
 if [ "$?" = "0" ]
 then	
-	NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+	if [ -r /proc/cpuinfo ] 
+	 then 
+		NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l` 
+	else
+		NR_CPUS=2
+	fi
 else
 	NR_CPUS=2
 fi
@@ -122,7 +127,7 @@ fi
 
 if [ "${SEMAPHORE}" = "true" ]
 then 
-	MAKE_JOBS=16
+	MAKE_JOBS=8
 fi
 
 if [ "x${PKG_VERBOSE}" = "x1" ]
