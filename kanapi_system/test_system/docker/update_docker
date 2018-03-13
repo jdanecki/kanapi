@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DIR=`pwd`
+ID=`docker create -i -t -v ${DIR}/kanapi:/kanapi_build/kanapi kanapi-sbs:1`
+docker rename ${ID} kanapi
+
+for f in hosts passwd resolv.conf group nsswitch.conf
+do
+	docker cp /etc/$f ${ID}:/etc/$f
+done
+
