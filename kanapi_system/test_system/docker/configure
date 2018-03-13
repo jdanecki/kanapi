@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -d /kanapi_build/kanapi/kanapi_system/scripts/update_include ]
+if [ ! -f /kanapi_build/kanapi/kanapi_system/scripts/update_include ]
 then
 	echo "clone or mount KaNaPi git repo"
 else
