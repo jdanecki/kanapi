@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tar -xJf sbs-x86_64.tar.xz
+tar -xJf ../sbs-x86_64.tar.xz
 
 #should be move to SBS
 ln -svf /kanapi_build/kanapi/cross_compilers/scripts/pkg_kanapi sbs-x86_64/bin/pkg_kanapi
