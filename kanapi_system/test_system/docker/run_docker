@@ -1,4 +1,4 @@
 #!/bin/bash
 
-ID=`docker ps -a --filter "name=kanapi" -q`
+ID=`docker ps -a --filter "name=kanapi-sbs" -q`
 docker start -i -a ${ID}
