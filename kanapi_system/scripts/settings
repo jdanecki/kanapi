@@ -130,6 +130,11 @@ then
 	MAKE_JOBS=8
 fi
 
+if [ "${CIRCLECI}" = "true" ]
+then 
+	MAKE_JOBS=4
+fi
+
 if [ "x${PKG_VERBOSE}" = "x1" ]
 then
 	MAKE=make
