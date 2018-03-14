@@ -1,11 +1,23 @@
 #!/bin/bash
 
 DIR=`pwd`
-ID=`docker create -i -t -v ${DIR}/kanapi:/kanapi_build/kanapi kanapi-sbs:1`
+if [ ! -d ${HOME}/src ] ; then mkdir {$HOME}/src ; fi
+
+ID=`docker create -i -t -v ${DIR}/kanapi:/kanapi_build/kanapi -v ${HOME}/src:/kanapi_0.9/x86_64/home/src -e HOME=/kanapi_0.9/x86_64/home kanapi-sbs:1`
 docker rename ${ID} kanapi
+
+if [ ! -d kanapi ] 
+then 
+	git clone https://github.com/jdanecki/kanapi.git kanapi 
+else
+	pushd kanapi
+	git pull
+	popd
+fi
 
 for f in hosts passwd resolv.conf group nsswitch.conf
 do
 	docker cp /etc/$f ${ID}:/etc/$f
 done
+docker cp kanapi/kanapi_system/test_system/docker/configure ${ID}:/configure
 
