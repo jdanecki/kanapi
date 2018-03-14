@@ -1,4 +1,4 @@
-all: bbs_sbs core_cli gui
+all: bbs_sbs core_cli
 
 bbs_sbs:
 	sudo chroot ../sbs-`uname -m` /_start_bbs_build
