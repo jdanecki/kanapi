@@ -14,7 +14,12 @@ else
 	then
 		make $1 ACTION=`basename $0` V=1
 	else
-		make -s $1 ACTION=`basename $0` V=0
+		if [ "x$2" == "xout" ]
+		then
+			make -s $1 ACTION=`basename $0` V=2
+		else
+			make -s $1 ACTION=`basename $0` V=0
+		fi
 	fi
 fi
 

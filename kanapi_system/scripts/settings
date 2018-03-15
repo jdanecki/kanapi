@@ -382,7 +382,7 @@ pkg_reprepare() {
 }
 
 pkg_version() {
-	echo ${PACKAGE_VER}
+	echo ${PACKAGE_NAME} ${VER}
 }
 
 pkg_configure_native() {

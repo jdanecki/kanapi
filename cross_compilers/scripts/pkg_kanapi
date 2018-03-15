@@ -4,7 +4,10 @@ PKG_FILE=$1
 PKG_ACTION="pkg_$2"
 PKG_VERBOSE="$3"
 
-echo "running $PKG_FILE ${PKG_ACTION} ${PKG_VERBOSE}"
+if [ "x${PKG_VERBOSE}" = "x1" ]
+then 
+	echo "running $PKG_FILE ${PKG_ACTION} ${PKG_VERBOSE}"
+fi
 
 . ./$PKG_FILE
 
@@ -20,7 +23,12 @@ then
 	echo -e '\033[0m'
 	exit ${RET}
 else
-	${PKG_ACTION} > /dev/null
+	if [ "x${PKG_VERBOSE}" = "x2" ]
+	then
+		${PKG_ACTION}
+	else
+		${PKG_ACTION} > /dev/null
+	fi
 fi
 
 #echo "touching ${PACKAGE_NAME}_$2 in `pwd`"
