@@ -48,16 +48,18 @@ t_compression: gzip unrar bzip2 tar zip zlib
 t_gui: x-support wm xapp gtk+ dconf gtk3+ qt-everywhere-opensource-src 
 
 t_system: t_compression mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
-	wireless_tools wpa_supplicant dhcp wget network
+	wireless_tools wpa_supplicant dhcp wget network Hermes
 
 t_devel: cgdb ctags chrpath vala makefile2graph scons lua database 
 
-t_editor: vim xedit gvim evince qt-creator vym 
+t_editor: vim
+   
+t_editor_gui: xedit gvim evince qt-creator vym 
  
 t_math: bc xcalc
 
-t_media: rplay sound graphics sdl-support gimp pavucontrol sound_devel qjackctl csoundqt musescore video \
-	sdl2-support  graphics-apps ogl ocl game_engine
+t_media: t_editor_gui rplay sound graphics sdl-support gimp pavucontrol sound_devel qjackctl csoundqt musescore video \
+	sdl2-support  graphics-apps ogl ocl game_engine www libmikmod
 
 t_music: sound sound_devel csoundqt musescore
 
@@ -100,7 +102,7 @@ apps_gtk: gtk+ dconf gimp gvim
 
 apps_gtk3: gtk3+ evince pavucontrol
 
-sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib
+sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib SDL-widgets
 
 sdl2-support: SDL2_image SDL2_gfx SDL2_ttf SDL2_net SDL2_mixer
 
@@ -114,13 +116,14 @@ x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 
 	cacert libusb usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
 	libXt libXmu libevdev mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
-	xf86-video-modesetting fonts setxkbmap xinput libXft icons libXxf86vm libXScrnSaver ois
+	xf86-video-modesetting fonts setxkbmap xinput libXft icons libXxf86vm libXScrnSaver ois \
+   	xf86-video-s3 xf86-video-tseng
 
 fonts: fonts-bitmap fonts-type1 fonts-misc fonts-ttf
 #	for i in 100dpi 75dpi Speedo Type1 cyrillic misc; do ln -svf $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/$$i $(KANAPI_BASE)/fontconfig-$(fontconfig_ver)/share/fonts ; done
 	if [ ! -d $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ] ; then mkdir -p $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF; fi
 	for i in $(KANAPI_BASE)/freefont-ttf-$(freefont_ttf_ver)/*.ttf $(KANAPI_BASE)/dejavu-fonts-ttf-$(dejavu_fonts_ttf_ver)/ttf/*.ttf ; do \
-		if [ -f $$i ] ; then ln -svf $$i $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; fi; done
+		if [ -f $$i ] ; then ln -sf $$i $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF ; fi; done
 	echo -n > $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts
 	for i in $(KANAPI_BASE)/freefont-ttf-$(freefont_ttf_ver)/fonts.scale $(KANAPI_BASE)/dejavu-fonts-ttf-$(dejavu_fonts_ttf_ver)/ttf/fonts.scale ; do \
 		if [ -f $$i ] ; then cat $$i | grep ttf >> $(KANAPI_BASE)/font-util-$(font_util_ver)/share/fonts/X11/TTF/fonts ; fi; done
@@ -161,7 +164,7 @@ sound_devel: csound
 
 database: db gdbm
 
-tests: xflame water xclipboard intel-gpu-tools ltp-full hello phoronix-test-suite
+tests: xflame water xclipboard intel-gpu-tools ltp-full hello phoronix-test-suite gperf
 
 graphics: tiff jpegsrc freeimage
 
@@ -1021,7 +1024,7 @@ ifeq ($(KANAPI_TARGET),arm)
 tcl tk graphviz swig groff xflame water qemu gimp apps_qt www:
 	true
 else
-www: webkitgtk midori php
+www: webkitgtk midori php firefox
 
 apps_qt: qt-everywhere-opensource-src qt-creator vym qjackctl csoundqt musescore
 
@@ -1352,7 +1355,6 @@ firefox: autoconf213 yasm
 autoconf213:
 	DIR_NAME=autoconf-2.13; if [ ! -d  $${DIR_NAME} ]; then mkdir -p $${DIR_NAME} ; ln -svf ../../packages/$${DIR_NAME}/autoconf.kanapi $${DIR_NAME}; fi
 	make -f ../Makefile -C autoconf-2.13 kanapi_$(ACTION) PKG=autoconf KANAPI_TOP=$(PWD) V=$(V)
-
 
 ffmpeg: x264 gnutls
 	@$(RUN_TARGET)
