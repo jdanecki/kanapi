@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. bbs_version
+
+docker tag kanapi/kanapi-bbs:${VER} kanapi/kanapi-bbs:latest
+docker push kanapi/kanapi-bbs:${VER}
+docker push kanapi/kanapi-bbs:latest
+

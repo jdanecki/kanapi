@@ -1,0 +1,15 @@
+#!/bin/bash
+
+. bbs_version
+
+if [ ! -d kanapi ] 
+then 
+	git clone https://github.com/jdanecki/kanapi.git kanapi 
+else
+	pushd kanapi
+	git pull
+	popd
+fi
+
+docker build -t kanapi/kanapi-bbs:${VER} .
+
