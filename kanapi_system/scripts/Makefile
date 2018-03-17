@@ -10,58 +10,29 @@ include $(BASE)../scripts/config.kanapi
 include $(BASE)../scripts/config-Makefile.kanapi
 include $(BASE)../scripts/colors.kanapi
 include $(BASE)../scripts/rules.kanapi
-KANAPI_VER=$(shell cat  $(BASE)../scripts/KANAPI_VER)
-CURRENT_ARCH=$(shell uname -m)
-COMPILERS=cross_gcc
-KANAPI_BASE=/kanapi_$(KANAPI_VER)/$(CURRENT_ARCH)/packages
 
-ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
-COMPILERS+=gcc
-endif
-
-ifeq ($(CURRENT_ARCH),x86_64)
-ifeq ($(KANAPI_TARGET),i686)
-	DISABLE_PACKAGES=1
-else
-	DISABLE_PACKAGES=0
-endif
-endif
+include ${BASE}../scripts/Makefile-sbs
+include ${BASE}../scripts/Makefile-bbs
+include ${BASE}../scripts/Makefile-cli
 
 all: required optional
 
 required: $(COMPILERS) rootfs bbs
 
-minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
-
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
 	sound_devel apps_qt www database nfs video sdl2-support graphics-apps ogl ocl network game_engine \
 	demo
 
-all-sbs: bbs-sbs
-
-t_core: t_compression t_gui patchelf
-
-t_core_cli: t_compression patchelf t_system t_devel vim bc rplay sound 
-
-t_compression: gzip unrar bzip2 tar zip zlib
-
 t_gui: x-support wm xapp gtk+ dconf gtk3+ qt-everywhere-opensource-src 
 
-t_system: t_compression mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
-	wireless_tools wpa_supplicant dhcp wget network Hermes
-
-t_devel: cgdb ctags chrpath vala makefile2graph scons lua database 
-
-t_editor: vim
-   
 t_editor_gui: xedit gvim evince qt-creator vym 
  
 t_math: bc xcalc
 
-t_media: t_editor_gui rplay sound graphics sdl-support gimp pavucontrol sound_devel qjackctl csoundqt musescore video \
+t_media: t_editor_gui rplay graphics sdl-support gimp pavucontrol sound_devel qjackctl csoundqt musescore video \
 	sdl2-support  graphics-apps ogl ocl game_engine www libmikmod
 
-t_music: sound sound_devel csoundqt musescore
+t_music: sound_devel csoundqt musescore
 
 t_tests: tests demo t_emulation
 
@@ -78,22 +49,6 @@ required_graph:
 optional_graph:
 	unset LANG; unset LC_ALL; make -Bnd optional ACTION=download V=1 | make2graph -r > optional.dot
 	#| dot -Tpdf -o optional.pdf
-
-#Basic Build System 
-bbs: file ccache busybox bash-completion make perl m4 autoconf automake libtool bison sed gettext ncurses readline gawk openssl cmake \
-	flex attr acl libarchive e2fsprogs git \
-	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh mtools
-
-bbs-sbs: file ccache bash-completion m4 perl autoconf automake libtool bison sed gettext ncurses readline gawk cmake \
-	flex attr acl libarchive e2fsprogs git \
-	coreutils diffutils Python ninja tar findutils patch slang util-linux less openssh mtools
-
-
-#KS - KaNaPi System textmode apps
-apps_txt: gzip mc vim kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
-	ntfs-3g_ntfsprogs unrar
-
-devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua
 
 #KS - KaNaPi System gui apps
 apps_gui: qemu
@@ -158,11 +113,7 @@ xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconso
 
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
-sound: alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins speex sndio fluidsynth libmodplug flac openal-soft portaudio
-
 sound_devel: csound
-
-database: db gdbm
 
 tests: xflame water xclipboard intel-gpu-tools ltp-full hello phoronix-test-suite gperf
 
@@ -171,8 +122,6 @@ graphics: tiff jpegsrc freeimage
 video: Blue mpv libmad
 
 deprecated: procps
-
-nfs: nfs-utils
 
 graphics-apps: qiv opencv exif
 
@@ -204,108 +153,9 @@ package3: package2 package4
 	@$(RUN_TARGET)
 
 #
-# kernel, glibc, compilers
-#
-linux-headers:
-	@$(RUN_TARGET)
-
-linux:
-	@$(RUN_TARGET)
-
-glibc: linux-headers
-	@$(RUN_TARGET)
-
-cross_gcc: glibc
-	@$(RUN_TARGET)
-
-gmp:
-	@$(RUN_TARGET)
-
-mpfr: gmp
-	@$(RUN_TARGET)
-
-mpc: mpfr
-	@$(RUN_TARGET)
-
-binutils: mpc
-	@$(RUN_TARGET)
-
-gcc: binutils
-	@$(RUN_TARGET)
-
-#
 # PACKAGES
 #
-zlib:
-	@$(RUN_TARGET)
-
-libffi:
-	@$(RUN_TARGET)
-
-glib: libffi zlib
-	@$(RUN_TARGET)
-
-pkg-config: glib
-	@$(RUN_TARGET)
-
-cross-pkg-config: pkg-config
-	@$(RUN_TARGET)
-
-rootfs: cross-pkg-config
-	@$(RUN_TARGET)
-
-gzip:
-	@$(RUN_TARGET)
-
-bash:
-	@$(RUN_TARGET)
-
-busybox:
-	@$(RUN_TARGET)
-
-ncurses:
-	@$(RUN_TARGET)
-
-ncurses5:
-	@$(RUN_TARGET)
-
-gdb:
-	@$(RUN_TARGET)
-
-readline:
-	@$(RUN_TARGET)
-
-cgdb: gdb
-	@$(RUN_TARGET)
-
-libgpg-error:
-	@$(RUN_TARGET)
-
-libgcrypt: libgpg-error
-	@$(RUN_TARGET)
-
-libssh2: libgcrypt
-	@$(RUN_TARGET)
-
-slang: ncurses5
-	@$(RUN_TARGET)
-
-mc: libssh2 glib gpm
-	@$(RUN_TARGET)
-
-vim:
-	@$(RUN_TARGET)
-
-make:
-	@$(RUN_TARGET)
-
-git: curl 
-	@$(RUN_TARGET)
-
-openssl: 
-	@$(RUN_TARGET)
-
-openssh:
+linux:
 	@$(RUN_TARGET)
 
 SDL-fb:
@@ -318,57 +168,6 @@ SDL_image: libpng SDL
 	@$(RUN_TARGET)
 
 SDL2:
-	@$(RUN_TARGET)
-
-gpm:
-	@$(RUN_TARGET)
-
-autoconf:
-	@$(RUN_TARGET)
-
-automake:
-	@$(RUN_TARGET)
-
-bison:	
-	@$(RUN_TARGET)
-
-sed:	
-	@$(RUN_TARGET)
-
-gettext:
-	@$(RUN_TARGET)
-
-gawk:
-	@$(RUN_TARGET)
-
-cmake:
-	@$(RUN_TARGET)
-
-file:
-	@$(RUN_TARGET)
-
-flex:
-	@$(RUN_TARGET)
-
-attr:
-	@$(RUN_TARGET)
-
-acl:
-	@$(RUN_TARGET)
-
-libarchive:
-	@$(RUN_TARGET)
-
-e2fsprogs:
-	@$(RUN_TARGET)
-
-m4:
-	@$(RUN_TARGET)
-
-perl:
-	@$(RUN_TARGET)
-
-libtool: grep
 	@$(RUN_TARGET)
 
 kbproto:
@@ -491,12 +290,6 @@ libfontenc: font-util
 libXfont: 
 	@$(RUN_TARGET)
 
-XML-Parser:
-	@$(RUN_TARGET)
-
-intltool: expat XML-Parser 
-	@$(RUN_TARGET)
-
 libxml2: xz
 	@$(RUN_TARGET)
 
@@ -543,9 +336,6 @@ usbutils: libusb
 	@$(RUN_TARGET)
 
 udev: pci_ids usbutils
-	@$(RUN_TARGET)
-
-expat:
 	@$(RUN_TARGET)
 
 ifeq ($(KANAPI_TARGET),arm)
@@ -613,28 +403,10 @@ xf86-video-vesa: xorg-server
 xf86-video-fbdev: xorg-server
 	@$(RUN_TARGET)
 
-coreutils:
-	@$(RUN_TARGET)
-
 dtc:
 	@$(RUN_TARGET)
 
-alsa-lib:
-	@$(RUN_TARGET)
-
-alsa-utils: alsa-lib
-	@$(RUN_TARGET)
-
-audiofile:
-	@$(RUN_TARGET)
-
-esound: audiofile alsa-lib
-	@$(RUN_TARGET)
-
 SDL: xorg-server esound
-	@$(RUN_TARGET)
-
-strace:
 	@$(RUN_TARGET)
 
 vtwm: libXpm
@@ -804,22 +576,10 @@ xbitmaps:
 bitmap: xbitmaps
 	@$(RUN_TARGET)
 
-xz:
-	@$(RUN_TARGET)
-
-kmod: xz
-	@$(RUN_TARGET)
-
 procps:
 	@$(RUN_TARGET)
 
-procps-ng:
-	@$(RUN_TARGET)
-
-libunwind:
-	@$(RUN_TARGET)
-
-intel-gpu-tools: kmod procps-ng libunwind udev libpciaccess libxcb 
+intel-gpu-tools: kmod  libunwind udev libpciaccess libxcb 
 	@$(RUN_TARGET)
 
 oclock:	
@@ -933,36 +693,6 @@ xfontsel:
 dmenu:
 	@$(RUN_TARGET)
 
-re2c:
-	@$(RUN_TARGET)
-
-ninja: re2c
-	@$(RUN_TARGET)
-
-diffutils:
-	@$(RUN_TARGET)
-
-curl: libssh2
-	@$(RUN_TARGET)
-
-grep:
-	@$(RUN_TARGET)
-
-tar:
-	@$(RUN_TARGET)
-
-findutils:
-	@$(RUN_TARGET)
-
-patch:
-	@$(RUN_TARGET)
-
-util-linux:
-	@$(RUN_TARGET)
-
-less:
-	@$(RUN_TARGET)
-
 xclipboard:
 	@$(RUN_TARGET)
 
@@ -970,24 +700,6 @@ xinput: libXi libXrandr libXinerama
 	@$(RUN_TARGET)
 
 libXinerama:
-	@$(RUN_TARGET)
-
-sqlite-autoconf:
-	@$(RUN_TARGET)
-
-Python: sqlite-autoconf bzip2
-	@$(RUN_TARGET)
-
-bzip2:
-	@$(RUN_TARGET)
-
-ltrace: libelf
-	@$(RUN_TARGET)
-
-libelf:
-	@$(RUN_TARGET)
-
-ccache:
 	@$(RUN_TARGET)
 
 xmag:
@@ -1015,9 +727,6 @@ xvinfo: libXv
 	@$(RUN_TARGET)
 
 libXv:
-	@$(RUN_TARGET)
-
-ctags:
 	@$(RUN_TARGET)
 
 ifeq ($(KANAPI_TARGET),arm)
@@ -1057,9 +766,6 @@ groff:
 endif
 
 xauth:
-	@$(RUN_TARGET)
-
-bc:
 	@$(RUN_TARGET)
 
 atk:
@@ -1107,12 +813,6 @@ gperf:
 ruby:
 	@$(RUN_TARGET)
 
-gnutls: nettle
-	@$(RUN_TARGET)
-
-nettle: gmp
-	@$(RUN_TARGET)
-
 gtk3+: libepoxy gsettings-desktop-schemas
 	@$(RUN_TARGET)
 
@@ -1120,12 +820,6 @@ harfbuzz: cairo icu4c
 	@$(RUN_TARGET)
 
 libepoxy:
-	@$(RUN_TARGET)
-
-chrpath:
-	@$(RUN_TARGET)
-
-patchelf:
 	@$(RUN_TARGET)
 
 libwebp: libpng jpegsrc
@@ -1149,9 +843,6 @@ dbus:
 qt-creator:
 	@$(RUN_TARGET)
 
-vala:
-	@$(RUN_TARGET)
-
 midori: gcr
 	@$(RUN_TARGET)
 
@@ -1159,9 +850,6 @@ gcr: p11-kit
 	@$(RUN_TARGET)
 
 p11-kit:
-	@$(RUN_TARGET)
-
-pciutils:
 	@$(RUN_TARGET)
 
 dbus-glib: dbus
@@ -1177,9 +865,6 @@ netpbm: libpng14 jpegsrc
 	@$(RUN_TARGET)
 
 libpng14:
-	@$(RUN_TARGET)
-
-syslinux: nasm
 	@$(RUN_TARGET)
 
 nasm:
@@ -1215,42 +900,7 @@ shared-mime-info:
 vym: zip
 	@$(RUN_TARGET)
 
-makefile2graph:
-	@$(RUN_TARGET)
-
-wireless_tools:
-	@$(RUN_TARGET)
-
-wpa_supplicant: libnl
-	@$(RUN_TARGET)
-
-libnl:
-	@$(RUN_TARGET)
-
-ifeq ($(DISABLE_PACKAGES),1)
-dhcp mbr bin86:
-	true
-else
-dhcp:
-	@$(RUN_TARGET)
-
-mbr: bin86
-	@$(RUN_TARGET)
-
-bin86:
-	@$(RUN_TARGET)
-endif
-
 xlunch:
-	@$(RUN_TARGET)
-
-zip:
-	@$(RUN_TARGET)
-
-screen:
-	@$(RUN_TARGET)
-
-sdparm:
 	@$(RUN_TARGET)
 
 linux-firmware:
@@ -1268,22 +918,7 @@ ltp-full: expect
 expect: tcl
 	@$(RUN_TARGET)
 
-iotop:
-	@$(RUN_TARGET)
-
-bash-completion: bash
-	@$(RUN_TARGET)
-
-mtools:
-	@$(RUN_TARGET)
-
 hello:
-	@$(RUN_TARGET)
-
-db:
-	@$(RUN_TARGET)
-
-gdbm:
 	@$(RUN_TARGET)
 
 php: db gdbm
@@ -1292,25 +927,16 @@ php: db gdbm
 phoronix-test-suite: php
 	@$(RUN_TARGET)
 
-wget: gnutls
-	@$(RUN_TARGET)
-
 font-bh-ttf:
 	@$(RUN_TARGET)
 
 package-test:
 	@$(RUN_TARGET)
 
-rplay:
-	@$(RUN_TARGET)
-
 tiff:
 	@$(RUN_TARGET)
 
 SDL_mixer:
-	@$(RUN_TARGET)
-
-ntfs-3g_ntfsprogs:
 	@$(RUN_TARGET)
 
 MPlayer: yasm
@@ -1329,24 +955,6 @@ exif: libexif popt
 	@$(RUN_TARGET)
 
 popt:
-	@$(RUN_TARGET)
-
-unrar:
-	@$(RUN_TARGET)
-
-nfs-utils: rpcbind libevent libnfsidmap
-	@$(RUN_TARGET)
-
-rpcbind: libtirpc
-	@$(RUN_TARGET)
-
-libtirpc:
-	@$(RUN_TARGET)
-
-libevent:
-	@$(RUN_TARGET)
-
-libnfsidmap:
 	@$(RUN_TARGET)
 
 firefox: autoconf213 yasm
@@ -1405,28 +1013,6 @@ opencv:
 SDL2_image: tiff libwebp SDL2
 	@$(RUN_TARGET)
 
-iproute2:
-	@$(RUN_TARGET)
-
-network: iproute2 enet
-
-gstreamer: libunwind
-	@$(RUN_TARGET)
-
-jack2:
-	@$(RUN_TARGET)
-
-pulseaudio: libsndfile speexdsp intltool
-	@$(RUN_TARGET)
-
-libsndfile: libvorbis
-	@$(RUN_TARGET)
-
-speex:
-	@$(RUN_TARGET)
-
-speexdsp:
-	@$(RUN_TARGET)
 
 gcc_5:
 	@$(RUN_TARGET_VER)
@@ -1438,9 +1024,6 @@ gcc_7:
 	@$(RUN_TARGET_VER)
 
 compilers: binutils gcc_5 gcc_6 gcc_7
-
-scons:
-	@$(RUN_TARGET)
 
 csound: fltk
 	@$(RUN_TARGET)
@@ -1475,12 +1058,6 @@ cairomm:
 libcanberra: libvorbis
 	@$(RUN_TARGET)
 
-libvorbis: libogg
-	@$(RUN_TARGET)
-
-libogg:
-	@$(RUN_TARGET)
-
 fltk:
 	@$(RUN_TARGET)
 
@@ -1491,9 +1068,6 @@ GUIlib:
 	@$(RUN_TARGET)
 
 SDL-widgets:
-	@$(RUN_TARGET)
-
-alsa-plugins:
 	@$(RUN_TARGET)
 
 SDL2_gfx:
@@ -1514,22 +1088,13 @@ ClanLib:
 allegro:
 	@$(RUN_TARGET)
 
-Hermes:
-	@$(RUN_TARGET)
-
 libmikmod:
 	@$(RUN_TARGET)
 
 libXxf86vm:
 	@$(RUN_TARGET)
 
-sndio:
-	@$(RUN_TARGET)
-
 libXScrnSaver:
-	@$(RUN_TARGET)
-
-fluidsynth:
 	@$(RUN_TARGET)
 
 wayland-protocols: wayland
@@ -1544,13 +1109,7 @@ mesa-demos: glew
 glew: mesa
 	@$(RUN_TARGET)
 
-lua:
-	@$(RUN_TARGET)
-
 libmad:
-	@$(RUN_TARGET)
-
-libmodplug:
 	@$(RUN_TARGET)
 
 SDL2_net:
@@ -1569,18 +1128,6 @@ freeimage:
 	@$(RUN_TARGET)
 
 ois:
-	@$(RUN_TARGET)
-
-enet:
-	@$(RUN_TARGET)
-
-flac:
-	@$(RUN_TARGET)
-
-openal-soft:
-	@$(RUN_TARGET)
-
-portaudio:
 	@$(RUN_TARGET)
 
 musescore: lame libsndfile portaudio

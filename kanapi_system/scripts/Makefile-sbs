@@ -1,0 +1,89 @@
+#package to prepare SBS image
+KANAPI_VER=$(shell cat  $(BASE)../scripts/KANAPI_VER)
+CURRENT_ARCH=$(shell uname -m)
+COMPILERS=cross_gcc
+KANAPI_BASE=/kanapi_$(KANAPI_VER)/$(CURRENT_ARCH)/packages
+
+ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
+COMPILERS+=gcc
+endif
+
+ifeq ($(CURRENT_ARCH),x86_64)
+ifeq ($(KANAPI_TARGET),i686)
+	DISABLE_PACKAGES=1
+else
+	DISABLE_PACKAGES=0
+endif
+endif
+
+minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
+
+linux-headers:
+	@$(RUN_TARGET)
+
+glibc: linux-headers
+	@$(RUN_TARGET)
+
+cross_gcc: glibc
+	@$(RUN_TARGET)
+
+gmp:
+	@$(RUN_TARGET)
+
+mpfr: gmp
+	@$(RUN_TARGET)
+
+mpc: mpfr
+	@$(RUN_TARGET)
+
+binutils: mpc
+	@$(RUN_TARGET)
+
+gcc: binutils
+	@$(RUN_TARGET)
+
+zlib:
+	@$(RUN_TARGET)
+
+libffi:
+	@$(RUN_TARGET)
+
+glib: libffi zlib
+	@$(RUN_TARGET)
+
+pkg-config: glib
+	@$(RUN_TARGET)
+
+cross-pkg-config: pkg-config
+	@$(RUN_TARGET)
+
+rootfs: cross-pkg-config
+	@$(RUN_TARGET)
+
+file:
+	@$(RUN_TARGET)
+
+busybox:
+	@$(RUN_TARGET)
+
+bash:
+	@$(RUN_TARGET)
+
+make:
+	@$(RUN_TARGET)
+
+openssl: 
+	@$(RUN_TARGET)
+
+libgpg-error:
+	@$(RUN_TARGET)
+
+libgcrypt: libgpg-error
+	@$(RUN_TARGET)
+
+libssh2: libgcrypt
+	@$(RUN_TARGET)
+
+curl: libssh2
+	@$(RUN_TARGET)
+
