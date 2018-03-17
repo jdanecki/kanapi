@@ -1,5 +1,0 @@
-#!/bin/bash
-
-export LD_PRELOAD=/kanapi_packages/librsvg-2.34.0/lib/librsvg-2.so.2
-/kanapi_packages/gcompris-12.11/bin/gcompris.bin
-

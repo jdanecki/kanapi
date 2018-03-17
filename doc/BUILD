@@ -43,13 +43,3 @@ or in /kanapi_${KANAPI_VER} for root.
 - Build root-filesystem using commands:
   ./configure chroot && make
 
-4. Old method
-=============
-
-There are 4 steps to create KaNaPi filesystem:
-- download sources of packages from sources/RELEASES from SF page
-- create FBS - see info in first_build_system/README
-- create SBS - see info in second_build_system/steps
-- create KBS - see info in kanapi_base_system/steps
-Using above steps you can prepare about 600 packages.
-

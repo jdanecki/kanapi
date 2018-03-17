@@ -1,9 +1,0 @@
-#!/bin/bash
-
-. ../settings
-
-PKG="sdl SDL_ttf SDL_image x11"
-export CFLAGS="`pkg-config --cflags ${PKG}` -I/kanapi_packages/SDL-1.2.15/include"
-export LDFLAGS+="`pkg-config --libs ${PKG}`"
-
-rebar compile
