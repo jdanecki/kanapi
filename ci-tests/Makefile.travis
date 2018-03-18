@@ -1,4 +1,11 @@
-all: bbs
+all: bbs cli
+
+bbs: check_travis
+	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
+	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
+
+cli:	
+	cd ../kanapi_system/`uname -m`   ; make cli	 ACTION=install
 
 bbs_sbs:
 	sudo chroot ../sbs-`uname -m` /_start_bbs_build
@@ -15,10 +22,6 @@ travis_test: check_travis
 
 check_travis:
 	./prepare_links
-
-bbs: check_travis
-	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
-	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
 apps_txt: check_travis
 	cd ../kanapi_system/`uname -m`   ; make apps_txt ACTION=install
