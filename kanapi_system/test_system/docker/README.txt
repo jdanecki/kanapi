@@ -1,13 +1,20 @@
-How to use core-cli KaNaPi to build gui and media targets
+How to create new docker images
+===============================
+
+1. To create SBS docker image run in sbs directory: make_sbs_image_sf
+2. To create BBS docker imnage run in bbs directory: make_bbs_image
+
+How to use cli docker to build x11, gut, apps targets
 =========================================================
 
-1. kanapi_system/test_system/docker/update_bbs_docker
-2. kanapi_system/test_system/docker/run_bbs_docker
+1. kanapi_system/test_system/docker/update_cli_docker
+2. kanapi_system/test_system/docker/run_cli_docker
 3. In running container:
 * /configure
 * cd /kanapi_build/kanapi/kanapi_system/x86_64
-* ./install t_gui verbose
-* ./install t_media verbose
+* ./install x11 verbose
+* ./install gui verbose
+* ./install apps verbose
 
 How to use BBS docker to build core-cli KaNaPi
 
