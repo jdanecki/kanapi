@@ -1,4 +1,4 @@
-all: bbs cli
+all: bbs
 
 bbs: check_travis
 	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
