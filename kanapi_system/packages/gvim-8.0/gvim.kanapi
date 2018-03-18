@@ -29,7 +29,11 @@ LIB_DEPENDS="ncurses x11 sm xt ice xpm uuid xcb xau slang zlib xinerama xrandr x
 
 export CFLAGS="${CFLAGS} -O2"
 export CPPFLAGS="${CFLAGS}"
-export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags x11 xt sm`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags x11 xt sm`"
+fi
+
 export LDFLAGS="${LDFLAGS} -lm -lrt -lpthread -lresolv"
 
 pkg_download() {

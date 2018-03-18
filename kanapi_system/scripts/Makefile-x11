@@ -1,7 +1,15 @@
 # X11 support 
 # CLI image is required to compile these packages
 
-x11-support: x-support wm xapp
+ifeq (x$(KANAPI_TOP),x)
+BASE=
+else
+BASE=$(KANAPI_TOP)/
+endif
+
+include $(BASE)../scripts/Makefile.common
+
+x11: x-support wm xapp
 
 x-support: graphics kbproto util-macros xproto xextproto libxcb xtrans inputproto \
 	libX11 libXext fixesproto libXfixes libXdamage xf86driproto xcmiscproto \

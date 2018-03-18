@@ -28,7 +28,10 @@ LIB_DEPENDS="xt x11 xft xext fontconfig"
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt"
-export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags xt`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags xt`"
+fi
 
 pkg_download() {
 	PACKAGE_VER="${PACKAGE_NAME}${VER}-src"

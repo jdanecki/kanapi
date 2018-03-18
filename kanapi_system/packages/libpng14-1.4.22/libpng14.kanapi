@@ -27,9 +27,10 @@ LIB_DEPENDS="zlib"
 
 . ../settings
 
-#export LDFLAGS="${LDFLAGS} "
-#export CFLAGS="${CFLAGS} "
-export INCLUDES="`${PKG_CONFIG} --cflags zlib`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export INCLUDES="`${PKG_CONFIG} --cflags zlib`"
+fi
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_prepare() {

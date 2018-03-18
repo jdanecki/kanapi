@@ -27,7 +27,10 @@ LIB_DEPENDS="gl glu uuid x11 xrender ice xcursor xrandr xpm  alsa libpng vorbis 
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/lib -ljpeg -lm -lpthread -lrt -lresolv"
-export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/include -I`${PKG_CONFIG} --variable=includedir glu`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/include -I`${PKG_CONFIG} --variable=includedir glu`"
+fi
 
 pkg_configure() {
 	JPEG=${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -27,9 +27,12 @@ LIB_DEPENDS="libssh2 zlib openssl"
 
 . ../settings
 
-export LDFLAGS="`${PKG_CONFIG} --libs-only-L ${LIB_DEPENDS}` -L`${LIBGCRYPT_CONFIG} --prefix`/lib \
-	-L`${GPG_ERROR_CONFIG} --prefix`/lib"
-export LIBS="`${PKG_CONFIG} --libs-only-l ${LIB_DEPENDS}` -lgpg-error -ldl"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export LDFLAGS="`${PKG_CONFIG} --libs-only-L ${LIB_DEPENDS}` -L`${LIBGCRYPT_CONFIG} --prefix`/lib \
+		-L`${GPG_ERROR_CONFIG} --prefix`/lib"
+	export LIBS="`${PKG_CONFIG} --libs-only-l ${LIB_DEPENDS}` -lgpg-error -ldl"
+fi
 
 pkg_prepare() {
 	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 

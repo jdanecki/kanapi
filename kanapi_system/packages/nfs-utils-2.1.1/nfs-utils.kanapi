@@ -26,8 +26,11 @@ LIB_DEPENDS="blkid libtirpc libevent libnfsidmap sqlite3"
 
 . ../settings
 
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="${CFLAGS} -I `${PKG_CONFIG} --variable=includedir blkid`"
+fi
 export LDFLAGS="${LDFLAGS} -lrt -lm -lpthread -lresolv"
-export CFLAGS="${CFLAGS} -I `${PKG_CONFIG} --variable=includedir blkid`"
 export CPP="${KANAPI_C_COMPILER} -E ${CFLAGS}"
 
 pkg_configure() {

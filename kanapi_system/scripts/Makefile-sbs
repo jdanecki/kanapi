@@ -1,22 +1,14 @@
-#package to prepare SBS image
-KANAPI_VER=$(shell cat  $(BASE)../scripts/KANAPI_VER)
-CURRENT_ARCH=$(shell uname -m)
-COMPILERS=cross_gcc
-KANAPI_BASE=/kanapi_$(KANAPI_VER)/$(CURRENT_ARCH)/packages
+#targets to prepare SBS image
 
-ifeq ($(KANAPI_TARGET),$(CURRENT_ARCH))
-COMPILERS+=gcc
-endif
-
-ifeq ($(CURRENT_ARCH),x86_64)
-ifeq ($(KANAPI_TARGET),i686)
-	DISABLE_PACKAGES=1
+ifeq (x$(KANAPI_TOP),x)
+BASE=
 else
-	DISABLE_PACKAGES=0
-endif
+BASE=$(KANAPI_TOP)/
 endif
 
-minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
+include $(BASE)../scripts/Makefile.common
+
+sbs: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 linux-headers:
 	@$(RUN_TARGET)

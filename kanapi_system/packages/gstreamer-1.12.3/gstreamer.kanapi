@@ -27,7 +27,10 @@ LIB_DEPENDS="gobject-2.0 glib-2.0 gmodule-2.0 libunwind"
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lresolv -lm"
-export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir libunwind`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir libunwind`"
+fi
 
 pkg_install() {
 	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs

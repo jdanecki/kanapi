@@ -29,7 +29,10 @@ LIB_DEPENDS="expat gobject-2.0 x11 libffi xcb xau gmodule-2.0 zlib"
 
 export LDFLAGS="${LDFLAGS} -lrt -lpthread -lresolv"
 export LIBS="${LDFLAGS}"
-export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags x11`"
+if [ -n "${PKG_CONFIG}" ]
+then 
+	export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags x11`"
+fi
 
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \

@@ -27,7 +27,11 @@ LIB_DEPENDS="alsa"
 
 . ../settings
 
-export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir alsa`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir alsa`"
+fi
+
 export LIBS="-lm -lstdc++ -lpthread"
 export CXXFLAGS="${CFLAGS}"
 

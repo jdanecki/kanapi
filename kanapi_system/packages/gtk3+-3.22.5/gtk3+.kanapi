@@ -29,7 +29,10 @@ LIB_DEPENDS="glib-2.0 xi pango cairo-xlib xcb xau gthread-2.0 libffi ice expat p
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lpthread -lm -lrt"
-export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir  cairo-xlib`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir  cairo-xlib`"
+fi
 
 pkg_download() {
 	PACKAGE_LINK=${URL}/gtk+-${VER}.${EXT}

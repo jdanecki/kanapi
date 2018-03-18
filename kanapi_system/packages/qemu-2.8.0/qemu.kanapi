@@ -27,8 +27,12 @@ LIB_DEPENDS="zlib x11 xcb xau"
 
 . ../settings
 
-export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS} `libgcrypt-config --cflags`"
-export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS} -lm `libgcrypt-config --libs` -lresolv"
+if [ -x libgcrypt-config ]
+then
+	export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS} `libgcrypt-config --cflags`"
+	export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS} -lm `libgcrypt-config --libs` -lresolv"
+fi
+
 export LIBS="-lncurses -lresolv"
 
 pkg_configure() {	

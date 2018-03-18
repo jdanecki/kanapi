@@ -27,9 +27,12 @@ LIB_DEPENDS="gobject-2.0 libxml-2.0 gl icu-i18n alsa openssl xrender harfbuzz xi
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} `${PKG_CONFIG} --libs-only-l gthread-2.0 gmodule-2.0` \
-	`${PKG_CONFIG} --libs-only-L gthread-2.0 gmodule-2.0`"
-export CFLAGS="${CFLAGS} `${PKG_CONFIG} --cflags-only-I gmodule-2.0`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export LDFLAGS="${LDFLAGS} `${PKG_CONFIG} --libs-only-l gthread-2.0 gmodule-2.0` \
+		`${PKG_CONFIG} --libs-only-L gthread-2.0 gmodule-2.0`"
+	export CFLAGS="${CFLAGS} `${PKG_CONFIG} --cflags-only-I gmodule-2.0`"
+fi
 
 pkg_configure() {	
 #	export QMAKE_CC=${KANAPI_TARGET_NAME}-gcc

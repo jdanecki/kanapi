@@ -17,6 +17,7 @@ else
 		export KANAPI_PKGCONFIG=${KANAPI_CROSS_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
 	fi
 fi
+#echo "KANAPI_PKGCONFIG=${KANAPI_PKGCONFIG}"
 
 if [ "${KANAPI_TARGET}" = "arm" ]
 then

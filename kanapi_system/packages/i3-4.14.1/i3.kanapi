@@ -28,8 +28,11 @@ LIB_DEPENDS="xcb-keysyms xau cairo cairo-xcb expat fontconfig freetype2 libpng x
 
 . ../settings
 
-export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/libev-${libev_ver}/include \
-	-I`${PKG_CONFIG} --variable=includedir cairo-xcb` -I`${PKG_CONFIG} --variable=includedir yajl`/.. "
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/libev-${libev_ver}/include \
+		-I`${PKG_CONFIG} --variable=includedir cairo-xcb` -I`${PKG_CONFIG} --variable=includedir yajl`/.. "
+fi
 export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/libev-${libev_ver}/lib -lev -lm -lpthread -lrt -lstdc++"
 export CC="${KANAPI_C_COMPILER} -DSTRIPPED__FILE__=__FILE__"
 

@@ -28,7 +28,11 @@ LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms openssl libcry
 
 . ../settings
 
-export CFLAGS="-g -Og ${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="-g -Og ${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
+fi
+
 export LDFLAGS="${LDFLAGS} -lpthread -lm -lglapi"
 
 pkg_configure() {

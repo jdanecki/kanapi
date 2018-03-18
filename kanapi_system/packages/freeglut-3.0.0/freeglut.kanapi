@@ -27,7 +27,11 @@ LIB_DEPENDS="gl glu xrandr xi xext x11-xcb x11"
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lpthread -lm -lstdc++"
-export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir glu`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir glu`"
+fi
+
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
 pkg_configure() {
