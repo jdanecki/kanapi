@@ -49,6 +49,9 @@ pkg_configure_target() {
 		export PERL=false
 	fi
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --enable-install-program=arch
+	RESULT=$? 
+	mv confdir3 ../t; rm -rf ../t
+	return $RESULT
 }
 
 pkg_install() {
