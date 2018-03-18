@@ -26,32 +26,26 @@ EXT=tar.xz
 
 export LDFLAGS="-lpthread -ldl"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --enable-elf-shlibs 
 }
 
 pkg_build() {
 	MAKE_JOBS=1
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {
-	make -j ${MAKE_JOBS} install
-	make -j ${MAKE_JOBS} install-libs
+	${MAKE} -j ${MAKE_JOBS} install &&  ${MAKE} -j ${MAKE_JOBS} install-libs
 	for i in ${PREFIX}/lib/pkgconfig/*
 	do
 		if [ -f $i ]
 		then
-			ln -svf $i ${PKG_CONFIG_DIR}/`basename $i`
+			${LN_SF} $i ${PKG_CONFIG_DIR}/`basename $i`
 		fi
 	done
-	pkg_install_bin_all
-	pkg_install_sbin_all
-	pkg_install_libs
+	pkg_update_include
+	pkg_install_bin_all && pkg_install_sbin_all && pkg_install_libs
 }
 
 pkg_check() {

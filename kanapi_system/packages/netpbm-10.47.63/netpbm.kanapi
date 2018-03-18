@@ -30,10 +30,6 @@ LIB_DEPENDS="x11 zlib libpng14 xproto libxml-2.0"
 export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/jpegsrc-${jpegsrc_ver}/lib -lm -lpthread"
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tgz
-}
-
 pkg_configure() {
 	local_copy
 	cat ../../../packages/${PACKAGE_NAME}-${VER}/config.kanapi | sed "s#@PREFIX@#${PREFIX}#" | sed "s/@CC@/${KANAPI_TARGET_NAME}-gcc/" | \

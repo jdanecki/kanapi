@@ -19,7 +19,8 @@
 
 PACKAGE_NAME=ncurses5
 VER=5.9
-URL="ftp://invisible-island.net/ncurses"
+URL="http://invisible-mirror.net/archives/ncurses"
+#"ftp://invisible-island.net/ncurses"
 EXT=tar.gz
 #build depends on
 . ../settings
@@ -32,10 +33,16 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	PACKAGE_VER=ncurses-${VER}
-	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
-	tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
-	ln -svf ${KANAPI_BUILD_SRC}/${PACKAGE_VER} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}-${VER}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		PACKAGE_VER=ncurses-${VER}
+		PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
+		tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
+		ln -svf ${KANAPI_BUILD_SRC}/${PACKAGE_VER} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}-${VER}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {
@@ -43,10 +50,10 @@ pkg_configure() {
 	patch -p1 < ../../../packages/${PACKAGE_NAME}-${VER}/0002-gcc-5.x-MKlib_gen.patch
 	if [ "${KANAPI_TARGET}" = "x86_64" ]
 	 then
-		 export CFLAGS="${CFLAGS} -fPIC"
-	 	 export LDFLAGS="${LDFLAGS} -fPIC"
+		 export CFLAGS="${CFLAGS}"
+	 	 export LDFLAGS="${LDFLAGS} -ldl"
 	 fi
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-shared --enable-termcap --with-termlib
 }
 
 pkg_build() {
@@ -56,7 +63,8 @@ pkg_build() {
 
 pkg_install() {
 	cd build
-	make -j 1 install MAKEINFO=true
+	${MAKE} -j 1 install MAKEINFO=true
 	ln -svf ${PREFIX}/bin/ncurses5-config ${KANAPI_BASE}/../bin
+	pkg_install_libs
 }
 

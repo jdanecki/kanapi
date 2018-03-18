@@ -7,14 +7,19 @@ if [ "x$1" == "x" ]
 then
 	echo "package name missing!"
 	echo "use: script_name package_name"
-	echo "where script_name is one from download|prepare|configure|build|install|help|reconfigure|rebuild|reinstall|redownload|verify"
+	echo "where script_name is one from download|prepare|configure|build|install|help|rebuild_install|reinstall|redownload|verify|reverify"
 	echo "for example: download gzip"
 else
 	if [ "x$2" == "xverbose" ]
 	then
 		make $1 ACTION=`basename $0` V=1
 	else
-		make -s $1 ACTION=`basename $0` V=0
+		if [ "x$2" == "xout" ]
+		then
+			make -s $1 ACTION=`basename $0` V=2
+		else
+			make -s $1 ACTION=`basename $0` V=0
+		fi
 	fi
 fi
 

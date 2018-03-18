@@ -1,4 +1,4 @@
-# 'test-sbs' and 'bbs' targets are supported only under Jenkins config
+# 'test-sbs', 'bbs', 'rebuild', 'install'  targets were prepared for Jenkins config
 
-all test test-sbs bbs:
+all test test-sbs bbs bbs_sbs rebuild install:
 	make -C ci-tests $@

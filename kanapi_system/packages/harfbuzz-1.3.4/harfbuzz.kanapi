@@ -29,10 +29,6 @@ LIB_DEPENDS="cairo expat xau pixman-1 fontconfig freetype2 libpng xcb-shm xcb-re
 
 export LDFLAGS="${LDFLAGS} -lpthread -lrt -lm -lstdc++"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_libs

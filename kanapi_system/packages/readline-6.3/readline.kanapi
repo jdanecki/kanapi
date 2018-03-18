@@ -25,16 +25,14 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  bash_cv_func_sigsetjmp=yes bash_cv_wcwidth_broken=no
 
 }
 
 pkg_install() {
-	pkg_install_make
-	pkg_install_libs
+	pkg_install_make && pkg_install_libs
+	RET="$?"
+	if [ -d ${PREFIX}/bin ] ; then rmdir ${PREFIX}/bin ; fi
+	exit ${RET}
 }

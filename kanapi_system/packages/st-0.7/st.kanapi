@@ -27,9 +27,6 @@ LIB_DEPENDS="x11 fontconfig freetype2 xft xproto xcb xau libpng zlib expat xrend
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lm -lpthread -lutil"
-pkg_prepare() {
-	pkg_tar_bz2
-}
 
 pkg_configure() {
 	local_copy
@@ -37,7 +34,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make config.h
+	${MAKE} config.h
 	${KANAPI_TARGET_NAME}-gcc ${CFLAGS} ${LDFLAGS} -o st -DVERSION=\"${VER}\" -D_XOPEN_SOURCE=600 -std=c99 st.c
 }
 

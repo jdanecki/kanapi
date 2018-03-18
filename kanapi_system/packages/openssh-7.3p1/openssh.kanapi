@@ -29,16 +29,12 @@ LIB_DEPENDS="zlib openssl"
 export CFLAGS="${CFLAGS}"
 export LDFLAGS="${LDFLAGS} -lpthread"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-openssl-header-check --disable-strip 
 }
 
 pkg_install() {
-	make install-nokeys MAKEINFO=true
+	${MAKE} install-nokeys MAKEINFO=true
 	pkg_install_bin_all
 	pkg_install_sbin_all
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -29,12 +29,7 @@ EXT=tar.bz2
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
-	pkg_install_make
-	pkg_install_bin_all
+	pkg_install_make && pkg_install_bin_all
 }
 

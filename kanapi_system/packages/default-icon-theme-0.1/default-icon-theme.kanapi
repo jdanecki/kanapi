@@ -24,10 +24,6 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {	
 	local_copy
 }
@@ -38,7 +34,7 @@ pkg_build() {
 
 pkg_install() {
 	cd build
-	make DESTDIR=${PREFIX} install
+	${MAKE} DESTDIR=${PREFIX} install
 	if [ ! -d ${KANAPI_HOME}/.icons ] ; then mkdir ${KANAPI_HOME}/.icons ; fi
    ln -svf ${PREFIX}/usr/local/icons/default ${KANAPI_HOME}/.icons/default   
 }

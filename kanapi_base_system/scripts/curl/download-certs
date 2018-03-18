@@ -1,7 +1,0 @@
-#!/bin/bash
-
-export PERL5LIB="/kanapi_packages//perl-5.16.1/lib/5.16.1/CPAN"
-export CURL_CA_BUNDLE=/kanapi_packages/config/cert/certificates.kanapi 
-
-perl ./mk-ca-bundle.pl -i
-

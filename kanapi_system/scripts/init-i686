@@ -22,7 +22,7 @@ KERNEL=`uname -r`
 export LANG=pl_PL.UTF-8
 export LC_ALL=pl_PL.UTF-8
 export EDITOR=vim
-export KANAPI_VER=0.8
+export KANAPI_VER=@KANAPI_VER@
 export USER=kanapi
 export HOME=/kanapi_packages/home
 export XDG_CONFIG_HOME=${HOME}/.config
@@ -32,7 +32,7 @@ export XDG_RUNTIME_DIR=${HOME}/.cache
 export LD_LIBRARY_PATH=/kanapi_packages/libs
 export PATH=/bin
 
-busybox mount /dev/sda2 /packages
+busybox mount -t ext4 /dev/sda2 /packages
 
 dmesg -n 4
 

@@ -26,10 +26,6 @@ LIB_DEPENDS="xcb x11 xau"
 
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_make
 	ln -svf ${PREFIX}/lib/pkgconfig/xfixes.pc ${PKG_CONFIG_DIR}/xfixes.pc

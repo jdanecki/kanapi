@@ -27,13 +27,13 @@ LIB_DEPENDS="zlib x11 xcb xau"
 
 . ../settings
 
-export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS} `libgcrypt-config --cflags`"
-export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS} -lm `libgcrypt-config --libs` -lresolv"
-export LIBS="-lncurses -lresolv"
+if [ -x libgcrypt-config ]
+then
+	export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS} `libgcrypt-config --cflags`"
+	export LDFLAGS="${LDFLAGS} ${NCURSES_LDFLAGS} -lm `libgcrypt-config --libs` -lresolv"
+fi
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
+export LIBS="-lncurses -lresolv"
 
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --cross-prefix="${KANAPI_TARGET_NAME}-" --enable-fdt \
@@ -64,7 +64,7 @@ pkg_configure() {
 }
 
 pkg_build() {
-	make -j ${MAKE_JOBS} MAKEINFO=true V=1
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true V=1
 }
 
 pkg_install() {

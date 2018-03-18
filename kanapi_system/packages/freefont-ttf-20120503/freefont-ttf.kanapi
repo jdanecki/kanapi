@@ -25,8 +25,14 @@ EXT=zip
 . ../settings
 
 pkg_prepare() {
-	pkg_zip
-	ln -svf ${KANAPI_BUILD_SRC}/freefont-${VER} ${PACKAGE_SRCDIR} 
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_zip
+		ln -svf ${KANAPI_BUILD_SRC}/freefont-${VER} ${PACKAGE_SRCDIR} 
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {

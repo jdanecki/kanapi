@@ -24,10 +24,6 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	export CFLAGS="${NCURSES_CFLAGS}"
 	export LDLAGS="${NCURSES_LDFLAGS}"
@@ -47,7 +43,7 @@ pkg_check() {
 }
 
 pkg_install() {
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 	pkg_install_bin_all
 }
 

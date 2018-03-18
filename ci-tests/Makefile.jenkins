@@ -10,3 +10,10 @@ test-sbs:
 bbs: 
 	chroot ../sbs-`uname -m` /_start_bbs_build
 
+#PKG_COMMAND contains target to rebuild
+rebuild: 
+	chroot ../sbs-`uname -m` /_start_rebuild
+
+install: 
+	chroot ../sbs-`uname -m` /_start_install
+

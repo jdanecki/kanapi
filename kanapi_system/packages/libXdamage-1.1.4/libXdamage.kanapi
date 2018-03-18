@@ -24,10 +24,6 @@ EXT=tar.bz2
 #build depends on damageproto
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_make
 	ln -svf ${PREFIX}/lib/pkgconfig/xdamage.pc ${PKG_CONFIG_DIR}/xdamage.pc

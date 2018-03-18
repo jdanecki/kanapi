@@ -44,14 +44,14 @@ pkg_configure() {
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
 	--prefix=${PREFIX} --disable-nls --enable-decimal-float \
-	--disable-libmudflap --disable-libgomp --disable-libquadmath --disable-target-libiberty \
+	--disable-libmudflap --disable-libquadmath --disable-target-libiberty \
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp \
 	--with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include \
 	--disable-static --enable-__cxa_atexit --enable-threads=posix --enable-libstdcxx-time
 }
 
 pkg_build() {
-	make -j ${MAKE_JOBS} MAKEINFO=true 
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true 
 }
 
 pkg_target() {
@@ -84,12 +84,13 @@ pkg_install_headers() {
 		ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${GCC_DIR}
 		ln -svf include ${GCC_DIR}/sys-include
 		ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${GCC_DIR}/lib
-		cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${GCC_DIR}/include
 	fi
+	cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${GCC_DIR}/include
 }
 
 pkg_install() {
-	make -j ${MAKE_JOBS}  MAKEINFO=true install
+	MAKE_JOBS=1
+	${MAKE} -j ${MAKE_JOBS}  MAKEINFO=true install
 	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/as
 	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/ld
 
@@ -101,6 +102,19 @@ pkg_install() {
 	then
 		pkg_target
 	fi
+	for dir in ${PREFIX}/lib ${PREFIX}/lib64
+	do
+		if [ -d $dir ]
+		then
+			for f in $dir/lib*
+			do
+				if [ -f $f ]
+				then
+					cp -av $f ${PREFIX}/${KANAPI_TARGET_NAME}/lib
+				fi
+			done
+		fi
+	done
 }
 
 pkg_check() {

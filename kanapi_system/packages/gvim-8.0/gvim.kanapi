@@ -29,7 +29,11 @@ LIB_DEPENDS="ncurses x11 sm xt ice xpm uuid xcb xau slang zlib xinerama xrandr x
 
 export CFLAGS="${CFLAGS} -O2"
 export CPPFLAGS="${CFLAGS}"
-export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags x11 xt sm`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags x11 xt sm`"
+fi
+
 export LDFLAGS="${LDFLAGS} -lm -lrt -lpthread -lresolv"
 
 pkg_download() {
@@ -40,11 +44,17 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	PACKAGE_FILENAME=vim-${VER}.${EXT}
-	pkg_tar_bz2
-	if [ ! -L ${PACKAGE_SRCDIR} ]
-	then
-		${LN_SF} ${KANAPI_BUILD_SRC}/vim80 ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		PACKAGE_FILENAME=vim-${VER}.${EXT}
+		pkg_tar_bz2
+		if [ ! -L ${PACKAGE_SRCDIR} ]
+		then
+			${LN_SF} ${KANAPI_BUILD_SRC}/vim80 ${PACKAGE_SRCDIR}
+		fi
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
 	fi
 }
 
@@ -59,12 +69,12 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {
 	cd build
-	make -j ${MAKE_JOBS} install MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
 #	pkg_install_bin_all
 	for i in eview evim gview gvim gvimdiff gvimtutor rgview rgvim rvim 
 	do

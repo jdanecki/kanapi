@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ID=`docker ps -a --filter "name=kanapi-bbs" -q`
+docker start -i -a ${ID}

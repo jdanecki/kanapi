@@ -26,10 +26,6 @@ EXT=tar.bz2
 
 export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-NamespaceSupport-${XML_NamespaceSupport_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-Base-${XML_SAX_Base_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-${XML_SAX_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-SAX-Expat-${XML_SAX_Expat_ver}/lib/site_perl/${perl_ver}:${KANAPI_BASE}/XML-Simple-${XML_Simple_ver}/lib/site_perl/${perl_ver}"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_pc_share
 }

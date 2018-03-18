@@ -26,12 +26,10 @@ LIB_DEPENDS="nettle hogweed"
 
 . ../settings
 
+USE_WGET=1
+
 export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/gmp-${gmp_ver}/include"
 export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/gmp-${gmp_ver}/lib -lgmp"
-
-pkg_prepare() {
-	pkg_tar_xz
-}
 
 pkg_configure() {
 	local_copy

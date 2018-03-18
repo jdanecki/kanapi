@@ -22,17 +22,15 @@ VER=3.7.0
 URL="https://cmake.org/files/v3.7"
 EXT=tar.gz
 #build depends on
-. ../settings
+LIB_DEPENDS="ncurses"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
+. ../settings
 
 pkg_configure() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
 			${PACKAGE_SRCDIR}/bootstrap --prefix=$PREFIX --parallel=${MAKE_JOBS} -- \
-			-DCURSES_INCLUDE_PATH=`ncurses6-config --includedir` \
+			-DCURSES_INCLUDE_PATH=`ncurses6-config --prefix`/include \
 			-DCURSES_LIBRARY=`ncurses6-config --libdir`/libncurses.a  -DCURSES_EXTRA_LIBRARY=""
 	fi
 }
@@ -52,8 +50,7 @@ pkg_build() {
 pkg_install() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		pkg_install_make
-		pkg_install_bin_all
+		pkg_install_make && pkg_install_bin_all
 	fi
 }
 

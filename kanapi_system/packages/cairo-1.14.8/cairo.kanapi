@@ -22,7 +22,7 @@ VER=1.14.8
 URL="https://www.cairographics.org/releases"
 EXT=tar.xz
 
-LIB_DEPENDS="libpng zlib expat x11 xcb xau xext"
+LIB_DEPENDS="libpng zlib expat x11 xcb xau xext pixman-1"
 
 #build depends on
 . ../settings
@@ -30,13 +30,13 @@ LIB_DEPENDS="libpng zlib expat x11 xcb xau xext"
 export LDFLAGS="${LDFLAGS} -lpthread -lm"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_xz
+pkg_configure() {
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	--enable-tee=yes --enable-xcb=yes -enable-pdf --disable-gtk-doc
+#--enable-ps 
 }
 
 pkg_install() {
-	pkg_install_pc_all
-	pkg_install_bin_all
-	pkg_install_libs
+	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs
 }
 

@@ -21,20 +21,19 @@ PACKAGE_NAME=xorg-server
 VER=1.18.0
 URL="http://xorg.freedesktop.org/releases/individual/xserver"
 EXT=tar.bz2
-#build depends on pixman-1 font-util openssl dri3proto dri2proto xf86driproto libxcb libXau xcb-util-keysyms
 
 LIB_DEPENDS="dri3proto dri2proto xf86driproto xcb xau xcb-keysyms openssl libcrypto libunwind liblzma gl \
 	expat xext xdamage xfixes x11-xcb x11 xcb-glx xcb-dri2 xcb-dri3 xcb-present xcb-randr xcb-xfixes \
-	xcb-render xcb-shape xcb-sync xshmfence libdrm"
+	xcb-render xcb-shape xcb-sync xshmfence libdrm pixman-1 fontutil openssl"
 
 . ../settings
 
-export CFLAGS="-g -Og ${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
-export LDFLAGS="${LDFLAGS} -lpthread -lm -lglapi"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="-g -Og ${CFLAGS} -I`${PKG_CONFIG} --variable=includedir xf86driproto`"
+fi
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
+export LDFLAGS="${LDFLAGS} -lpthread -lm -lglapi"
 
 pkg_configure() {
 	export LIBUNWIND_CFLAGS="-I`${PKG_CONFIG} --variable=includedir libunwind`"

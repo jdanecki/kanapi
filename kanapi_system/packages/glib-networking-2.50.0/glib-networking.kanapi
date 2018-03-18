@@ -39,10 +39,6 @@ fi
 
 export LDFLAGS="${LDFLAGS} -lresolv"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--with-ca-certificates=`${PKG_CONFIG} --variable=prefix libcurl`/etc/ca-bundle.crt

@@ -25,10 +25,6 @@ LIB_DEPENDS=zlib
 
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {
 	local_copy
 	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --without-pcre --without-png --with-z=`${PKG_CONFIG} --variable=prefix zlib`
@@ -36,7 +32,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make  MAKEINFO=true
+	${MAKE}  MAKEINFO=true
 }
 
 pkg_install() {

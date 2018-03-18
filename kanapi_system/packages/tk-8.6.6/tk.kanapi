@@ -28,7 +28,10 @@ LIB_DEPENDS="xt x11 xft xext fontconfig"
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lm -lpthread -lrt"
-export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags xt`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CPP="${KANAPI_TARGET_NAME}-gcc -E `${PKG_CONFIG} --cflags xt`"
+fi
 
 pkg_download() {
 	PACKAGE_VER="${PACKAGE_NAME}${VER}-src"
@@ -39,8 +42,14 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}${VER}-src.${EXT} -C ${KANAPI_BUILD_SRC}
-	${LN_SF} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}${VER} ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}${VER}-src.${EXT} -C ${KANAPI_BUILD_SRC}
+		${LN_SF} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}${VER} ${PACKAGE_SRCDIR}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure_target() {	

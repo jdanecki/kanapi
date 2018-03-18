@@ -26,12 +26,8 @@ EXT=tar.xz
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lpthread"
+export LDFLAGS="${LDFLAGS} -lpthread -L${KANAPI_BASE}/acl-${acl_ver}/lib"
 #export CFLAGS="${CFLAGS} "
-
-pkg_prepare() {
-	pkg_tar_xz
-}
 
 pkg_configure() {
 	local_copy

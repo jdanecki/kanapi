@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+#  Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,14 +17,19 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-KANAPI_VERSION=v0.8
+KANAPI_VERSION=v0.9
 
 PKG_ACTION="pkg_$1"
 PKG_NAME="$2"
 #arm i686 x86_64
-PKG_ARCH="$3"
+if [ -n "$3" ]
+then
+	PKG_ARCH="$3"
+else
+	PKG_ARCH=`uname -m`
+fi
 
-. /kanapi_packages/config/SF_user
+. ${HOME}/SF_user
 
 pkg_push() {
 	echo "pushing ${PKG_NAME} for ${PKG_ARCH} as ${SF_USER}"
@@ -38,11 +43,14 @@ pkg_dir_push() {
 	do 
 		scp $i ${SF_USER}@frs.sourceforge.net:/home/frs/project/kanapi/packages/${KANAPI_VERSION}/${PKG_ARCH}
 	done
+	cd ..
 }
 
 pkg_compress() {
-	echo "compressing ${PKG_NAME}"
-	tar cvJf ${PKG_NAME}.tar.xz ${PKG_NAME}
+	echo -n "archiving ${PKG_NAME} "
+	tar cf ${PKG_NAME}.tar ${PKG_NAME}
+	echo "compressing"
+	xz -T 0 -v ${PKG_NAME}.tar
 }
 
 pkg_dir_compress() {
@@ -50,8 +58,18 @@ pkg_dir_compress() {
 	cd ${PKG_NAME} 
 	for i in * 
 	do 
-		if [ -d $i ] ; then  tar cvJf $i.tar.xz $i ; fi
+		if [ -d $i ] 
+	   	then  
+			if [ "$i" != "libs" ]
+			then
+				echo -n "archiving $i "
+				tar cf $i.tar $i
+				echo "compressing"
+				xz -T 0 -v $i.tar
+			fi
+	   	fi
 	done
+	cd ..
 }
 
 pkg_md5() {
@@ -67,13 +85,31 @@ pkg_md5() {
 	cd ..
 }
 
+pkg_md5_push() {
+	echo "pushing md5 file from directory ${PKG_NAME} for ${PKG_ARCH}"
+	cd ${PKG_NAME}
+		scp packages.md5 ${SF_USER}@frs.sourceforge.net:/home/frs/project/kanapi/packages/${KANAPI_VERSION}/${PKG_ARCH}
+	cd ..
+}
+
+
+pkg_release() {
+	pkg_dir_compress
+	pkg_md5
+}
+
 pkg_help() {
-	echo "Usage for `basename $0`:"
-	echo "push package [arm | i686 | x86_64 ] - upload package"
+	name=`basename $0`
+	echo "Usage: ${name} command options"
+	echo "commands: push, dir_push, compress, dir_compress, md5, release md5_push"
+	echo "commands with options:"
+	echo "push package [arm | i686 | x86_64 ]       - upload package"
 	echo "dir_push directory [arm | i686 | x86_64 ] - upload packages from directory"
-	echo "compress package - compress package"
-	echo "dir_compress directory - compress all packages in directory"
-	echo "md5 directory - create list of packages"
+	echo "compress package                          - compress package"
+	echo "dir_compress directory                    - compress all packages in directory"
+	echo "md5 directory                             - create list of packages"
+	echo "md5_push directory                        - upload md5 sum from directory"
+	echo "release directory                         - prepare new release"
 }
 
 pkg_() {

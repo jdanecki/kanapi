@@ -24,26 +24,21 @@ EXT=src.tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	pkg_configure_target
 }
 
 pkg_build() {
-	cd build
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	pkg_build_local
 }
 
 pkg_install() {
 	cd build
 	pkg_install_make
 	pkg_install_bin_all
-	make -j ${MAKE_JOBS} MAKEINFO=true install-lib
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true install-lib
 	pkg_install_libs
-	make -j ${MAKE_JOBS} MAKEINFO=true install-dev
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true install-dev
 }
 

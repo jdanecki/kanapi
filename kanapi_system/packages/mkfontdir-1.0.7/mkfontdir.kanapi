@@ -24,10 +24,6 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_make
 	pkg_install_bin	

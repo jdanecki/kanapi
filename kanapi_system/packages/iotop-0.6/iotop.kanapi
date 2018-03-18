@@ -29,10 +29,6 @@ EXT=tar.bz2
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {
 	local_copy
 }

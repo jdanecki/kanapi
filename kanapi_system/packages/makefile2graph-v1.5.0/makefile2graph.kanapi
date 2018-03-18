@@ -35,16 +35,16 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	pkg_git_checkout
+	echo "nothing to do"
 }
 
 pkg_configure() {	
-	local_copy
+	local_clone
 }
 
 pkg_build() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} prefix=${PREFIX} CC="${KANAPI_TARGET_NAME}-gcc"
+	${MAKE} -j ${MAKE_JOBS} prefix=${PREFIX} CC="${KANAPI_C_COMPILER}"
 }
 
 pkg_install() {

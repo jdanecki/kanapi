@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=/kanapi_0.8/arm/bin:$PATH
+export PATH=/kanapi_@KANAPI_VER@/arm/bin:$PATH
 
 sh
 

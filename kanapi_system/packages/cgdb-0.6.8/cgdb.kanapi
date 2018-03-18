@@ -29,10 +29,6 @@ LIB_DEPENDS="ncurses"
 
 READLINE_BASE=${KANAPI_BASE}/readline-${readline_ver}
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	export CFLAGS="${CFLAGS} -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
 	export LDFLAGS="${LDFLAGS} -L${READLINE_BASE}/lib"
@@ -49,8 +45,7 @@ pkg_configure() {
 }
 
 pkg_install() {
-	pkg_install_make
-	pkg_install_bin
+	pkg_install_make &&	pkg_install_bin
 }
 
 pkg_check() {

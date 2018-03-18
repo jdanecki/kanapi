@@ -28,10 +28,6 @@ LIB_DEPENDS="xcb xau xext x11"
 
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_make
 	pkg_install_bin_all

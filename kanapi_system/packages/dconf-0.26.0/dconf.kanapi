@@ -29,10 +29,6 @@ LIB_DEPENDS="gio-2.0 gmodule-2.0 zlib libffi"
 export LDFLAGS="${LDFLAGS} -lresolv"
 #export CFLAGS="${CFLAGS} "
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
 	--disable-man

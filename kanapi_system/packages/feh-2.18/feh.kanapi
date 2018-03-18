@@ -29,22 +29,19 @@ LIB_DEPENDS="x11 xinerama imlib2 libpng zlib libcurl xt xext xcb xau ice freetyp
 export LDFLAGS="${LDFLAGS} -lpthread -lrt ${LIBGCRYPT_LDFLAGS}"
 export CFLAGS="${CFLAGS} ${LIBGCRYPT_CFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {
 	local_copy
 }
 
 pkg_build() {
 	cd build
-	make -j ${MAKE_JOBS} PREFIX=${PREFIX} CC=${KANAPI_TARGET_NAME}-gcc
+	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} CC="${KANAPI_C_COMPILER}"
 }
+
 pkg_install() {
 	cd build
-	make -j ${MAKE_JOBS} PREFIX=${PREFIX} install CC=${KANAPI_TARGET_NAME}-gcc
-	pkg_install_bin_all
+	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} install CC="${KANAPI_C_COMPILER}" &&  pkg_install_bin_all
+
 }
 
 pkg_check() {

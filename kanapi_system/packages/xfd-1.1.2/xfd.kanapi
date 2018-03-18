@@ -28,10 +28,6 @@ LIB_DEPENDS="xext sm ice xcb xau libpng expat zlib x11 xpm freetype2 uuid"
 
 export LDFLAGS="${LDFLAGS} -lm -lpthread"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_make
 	pkg_install_bin_all

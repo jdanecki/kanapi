@@ -29,10 +29,6 @@ LIB_DEPENDS="imlib2 x11 ice freetype2 libpng zlib xext xcb xau"
 export LDFLAGS="${LDFLAGS} -lm"
 export CFLAGS="${CFLAGS} ${LDFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_download() {
 	PACKAGE_LINK=${URL}/v${VER}.${EXT}
 	pkg_curl
@@ -48,7 +44,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make CC=${KANAPI_TARGET_NAME}-gcc 
+	${MAKE} CC="${KANAPI_C_COMPILER}"
 }
 
 pkg_install() {

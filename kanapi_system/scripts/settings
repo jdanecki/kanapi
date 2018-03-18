@@ -21,6 +21,7 @@ KANAPI_HOST_BASE=${KANAPI_ROOT}/`uname -m`/packages
 KANAPI_HOME=${KANAPI_ROOT}/`uname -m`/home
 KANAPI_TARGET_BIN=${KANAPI_ROOT}/${KANAPI_TARGET}/bin
 KANAPI_BUILD_SRC=${HOME}/src
+USE_WGET=0
 
 ##############################################################
 . ../../scripts/cross.kanapi
@@ -44,11 +45,6 @@ else
 fi
 
 export LIBC_PREFIX="${KANAPI_BASE}/glibc-${glibc_ver}"
-
-if [ -x ${KANAPI_TARGET_BIN}/ccache -a  "${CI}" != "true" ]
-then
-	USE_CCACHE=1
-fi
 
 export PKG_CONFIG=${KANAPI_PKGCONFIG}
 
@@ -108,8 +104,20 @@ if [ "${KANAPI_TARGET}" = "x86_64" ]
 then
 	CFLAGS="${CFLAGS} -fPIC"
 fi
-	
-NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
+
+(which grep && which wc) > /dev/null
+if [ "$?" = "0" ]
+then	
+	if [ -r /proc/cpuinfo ] 
+	 then 
+		NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l` 
+	else
+		NR_CPUS=2
+	fi
+else
+	NR_CPUS=2
+fi
+
 MAKE_JOBS=${NR_CPUS}
 
 if [ "${SHIPPABLE}" = "true" ]
@@ -119,7 +127,12 @@ fi
 
 if [ "${SEMAPHORE}" = "true" ]
 then 
-	MAKE_JOBS=16
+	MAKE_JOBS=8
+fi
+
+if [ "${CIRCLECI}" = "true" ]
+then 
+	MAKE_JOBS=4
 fi
 
 if [ "x${PKG_VERBOSE}" = "x1" ]
@@ -215,6 +228,19 @@ pkg_curl() {
 			false
 		else
 			check_file_type
+			if [ "$?" = 0 ]
+			then 
+				true
+			else
+				echo "downloading ${PACKAGE_NAME} once again"
+				curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
+				then
+					false
+				else
+					check_file_type
+				fi
+			fi
 		fi
 	fi
 }
@@ -229,7 +255,12 @@ pkg_download() {
 			mkdir ${KANAPI_BUILD_SRC}
 		fi
 	fi
-	pkg_curl
+	if [ "${USE_WGET}" = "1" ]
+	then
+		pkg_wget
+	else
+		pkg_curl
+	fi
 }
 
 pkg_redownload() {
@@ -264,6 +295,13 @@ pkg_git_clone() {
 
 pkg_git_checkout() {
 	cd ${PACKAGE_SRCDIR}
+	git checkout -f ${VER}
+}
+
+local_clone() {
+	rm -rf build
+	git clone ${PACKAGE_SRCDIR} build
+	cd build
 	git checkout -f ${VER}
 }
 
@@ -302,8 +340,49 @@ pkg_bz2() {
 	bzip2 -d ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -c > ${KANAPI_BUILD_SRC}/${PACKAGE_VER}/${PACKAGE_NAME}
 }
 
+pkg_prepare() {
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		echo -n "Preparing ${PACKAGE_FILENAME} ${EXT} "
+		case $EXT in
+		bz2) pkg_bz2 ;;
+		tar.bz2) pkg_tar_bz2 ;;
+		src.tar.gz) pkg_tar_gz ;;
+		tar.gz) pkg_tar_gz ;;
+		tar.xz) pkg_tar_xz ;;
+		tgz) pkg_tgz ;;
+		zip) echo -n "zip "
+				pkg_zip
+				;;
+		*) echo "unknown extension $EXT"
+			false
+			;;
+		esac
+		if [ "$?" = "0" ]
+		then 
+			echo " ok"
+			/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+			true
+		else
+			echo " Error: $?"
+			rm -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+			false
+		fi
+	fi
+}
+
+pkg_reprepare() {
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then
+		rm  ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
+	pkg_prepare
+}
+
 pkg_version() {
-	echo ${PACKAGE_VER}
+	echo ${PACKAGE_NAME} ${VER}
 }
 
 pkg_configure_native() {
@@ -322,9 +401,23 @@ pkg_build() {
 	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
+pkg_build_local() {
+	cd build
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+}
+
+pkg_update_include() {
+	if [ -z "$DONT_INSTALL_INCLUDE" ]
+	then
+		update_include ${PREFIX}
+	fi
+}
+
 pkg_install_make() {
 	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
+	pkg_update_include	
 }
+
 
 pkg_install() {
 	pkg_install_make
@@ -376,7 +469,6 @@ pkg_install_pc_all_only() {
 	done
 }
 
-
 pkg_uninstall() {
 	if [ -d ${PREFIX} ]
 	then	
@@ -385,7 +477,6 @@ pkg_uninstall() {
 }
 
 pkg_rebuild() {
-	pkg_prepare
 	pkg_configure
 	pkg_build
 }
@@ -402,6 +493,14 @@ pkg_package() {
 	pkg_build
 }
 
+pkg_update_meta() {
+	if [ -d ${PREFIX} ]
+	then
+		echo "PACKAGE_NAME=${PACKAGE_NAME}" > ${PREFIX}/kanapi.pkg
+		echo "PACKAGE_VER=${VER}" >> ${PREFIX}/kanapi.pkg
+	fi
+}
+
 pkg_install_bin() {
 	if [ -f ${PREFIX}/bin/${PACKAGE_NAME} ]
 	then
@@ -410,9 +509,9 @@ pkg_install_bin() {
 }
 
 pkg_install_bin_all() {
-	if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 	if [ -d ${PREFIX}/bin ]	
 	then
+		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 		${LN_SF} ${PREFIX}/bin/* ${KANAPI_TARGET_BIN}
 	fi
 }
@@ -420,6 +519,7 @@ pkg_install_bin_all() {
 pkg_install_sbin_all() {
 	if [ -d ${PREFIX}/sbin ]	
 	then
+		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 		${LN_SF} ${PREFIX}/sbin/* ${KANAPI_TARGET_BIN}
 	fi
 }
@@ -427,13 +527,14 @@ pkg_install_sbin_all() {
 pkg_install_usr_bin_all() {
 	if [ -d ${PREFIX}/usr/bin ]	
 	then
+		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 		${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_TARGET_BIN}
 	fi
 }
 
 pkg_install_libs() {
 	if [ ! -d ${KANAPI_BASE}/libs ] ; then mkdir ${KANAPI_BASE}/libs; fi
-	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a  ${PREFIX}/lib/lib64*.so* ${PREFIX}/lib64/lib*.a 
+	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a  ${PREFIX}/lib64/lib*.so* ${PREFIX}/lib64/lib*.a 
 	do
 		if [ -f $f ] 
 		then
@@ -445,6 +546,10 @@ pkg_install_libs() {
 		export LD_LIBRARY_PATH=
 		ldconfig
 	fi
+#	if [ ! "${CI}" = "true" ]
+#	then
+#		update_include
+#	fi
 }
 
 pkg_install_all() {
@@ -477,10 +582,12 @@ check_script() {
 	if [ "$?" = "0" ]
 	then
 		SHL="`echo ${LINE[@]:2} | sed 's/ .*$//' `"
+		echo "checking shell: ${SHL}"
 		if [ -x $SHL ]
 		then 
 			true
 		else
+			echo "shell: <${SHL}> has not found"
 			false
 		fi 
 	else
@@ -502,12 +609,26 @@ verify_file() {
 				 then 
 					VERIFIED=1 
 				else
-					ldd $1
+					if [ "${CI}" = "true" ]
+					then
+						ldd $1
+					else
+						${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so --list $1
+					fi
 					if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				fi
 				;;
 		application/x-sharedlib) echo "library "
-				ldd $1
+					if [ "${CI}" = "true" ]
+					then
+						ldd $1
+					else
+						${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so --list $1
+					fi
+				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				;;
+		application/octet-stream) echo "php script"
+				check_script $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;
 		text/x-shellscript) echo "shell script"
@@ -560,6 +681,11 @@ verify_file() {
 
 pkg_verify() {
 	echo "Verifing ${PACKAGE_NAME} in ${PREFIX}"
+	if [ ! -d ${PREFIX} ]
+	then
+		echo "directory ${PREFIX} missing"
+		exit 2
+	fi
 	for f in ${PREFIX}/bin/* ${PREFIX}/sbin/*  ${PREFIX}/usr/bin/* ${PREFIX}/usr/sbin/*
 	do
 		if [ -f $f ]

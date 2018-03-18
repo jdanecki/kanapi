@@ -19,7 +19,7 @@
 
 PACKAGE_NAME=graphviz
 VER=2.40.1
-URL="http://www.graphviz.org/pub/graphviz/stable/SOURCES"
+URL="https://graphviz.gitlab.io/pub/graphviz/stable/SOURCES"
 EXT=tar.gz
 #build depends on
 #need Qt4
@@ -30,15 +30,20 @@ LIB_DEPENDS="expat xaw7 xrender x11 cairo tcl tk xmu xext ice xpm sm ruby-2.4"
 export LDFLAGS="${LDFLAGS} -lm -lrt -lpthread -lresolv -lstdc++"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 export CXXCPP="${KANAPI_TARGET_NAME}-g++ -E ${CFLAGS} -std=c++11"
-export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir cairo`"
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="${CFLAGS} -I`${PKG_CONFIG} --variable=includedir cairo`"
+fi
 export CXXFLAGS="${CFLAGS} -std=c++11 -fPIC"
+
 #export QTCORE_CFLAGS="`${PKG_CONFIG} --cflags Qt5Core`"
 #export QTCORE_LIBS="`${PKG_CONFIG} --libs Qt5Core`"
 #export QTGUI_CFLAGS="`${PKG_CONFIG} --cflags Qt5Gui`"
 #export QTGUI_LIBS="`${PKG_CONFIG} --libs Qt5Gui`"
 
-pkg_prepare() {
-	pkg_tar_gz
+pkg_download() {
+	PACKAGE_LINK=${URL}/${PACKAGE_NAME}.${EXT}
+	pkg_curl
 }
 
 pkg_configure() {

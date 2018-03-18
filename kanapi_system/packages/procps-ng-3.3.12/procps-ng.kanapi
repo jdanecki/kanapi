@@ -30,10 +30,6 @@ LIB_DEPENDS="ncurses"
 
 export LDFLAGS="${LDFLAGS} -lm"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \

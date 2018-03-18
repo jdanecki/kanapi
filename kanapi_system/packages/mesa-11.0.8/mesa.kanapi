@@ -28,13 +28,12 @@ EXT=tar.xz
 export LDFLAGS="-lpthread"
 #export CFLAGS="-I`${LLVM_CONFIG} --includedir`"
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
-	--without-gallium-drivers --disable-gallium-llvm --with-dri-drivers="i915,i965,swrast"
+	--without-gallium-drivers --disable-gallium-llvm --with-dri-drivers="i915,i965,swrast" \
+	--with-egl-platforms=x11,drm,wayland --enable-egl --enable-glx \
+	--enable-gles1 --enable-gles2 --enable-dri 
+	#--enable-opencl --enable-opencl-icd
 #	--with-gallium-drivers="i915,svga,swrast" 
 # 	--disable-llvm-shared-libs
 }

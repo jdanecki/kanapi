@@ -32,10 +32,6 @@ pkg_download() {
 	pkg_curl
 }
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_install() {
 	pkg_install_pc_share
 	pkg_install_bin_all

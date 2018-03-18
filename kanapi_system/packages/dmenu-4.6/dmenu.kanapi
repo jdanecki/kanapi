@@ -24,10 +24,6 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	cat config.mk | \
@@ -44,14 +40,13 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make -j ${MAKE_JOBS} XINERAMAFLAGS="`${PKG_CONFIG} --cflags xproto xft`" CC="${KANAPI_TARGET_NAME}-gcc" \
+	${MAKE} -j ${MAKE_JOBS} XINERAMAFLAGS="`${PKG_CONFIG} --cflags xproto xft`" CC="${KANAPI_C_COMPILER}" \
 		XINERAMALIBS="`${PKG_CONFIG} --libs fontconfig xft xcb xau libpng zlib expat xrender` -lpthread -lm -ldl"
 }
 
 pkg_install() {
 	cd build
-	pkg_install_make
-	pkg_install_bin_all
+	pkg_install_make &&	pkg_install_bin_all
 }
 
 pkg_check() {

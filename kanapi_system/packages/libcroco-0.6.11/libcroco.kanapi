@@ -24,10 +24,6 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_install() {
 	pkg_install_pc_all
 	pkg_install_bin_all

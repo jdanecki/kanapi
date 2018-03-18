@@ -24,10 +24,6 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
@@ -38,16 +34,14 @@ pkg_configure() {
 pkg_build() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		make -j ${MAKE_JOBS} MAKEINFO=true
+		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 	fi
 }
 
 pkg_install() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		pkg_install_make
-		pkg_install_bin_all
-		pkg_install_libs
+		pkg_install_make && pkg_install_bin_all && pkg_install_libs
 	fi
 }
 

@@ -41,14 +41,20 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	mkdir ${PACKAGE_SRCDIR}
-	for f in root class3 
-	do
-		for i in crt der txt 
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		if [ ! -d ${PACKAGE_SRCDIR} ] ; then mkdir ${PACKAGE_SRCDIR} ; fi
+		for f in root class3 
 		do
-			cp -v ${KANAPI_BUILD_SRC}/$f.${i}-${VER} ${PACKAGE_SRCDIR}/$f.${i}
+			for i in crt der txt 
+			do
+				cp -v ${KANAPI_BUILD_SRC}/$f.${i}-${VER} ${PACKAGE_SRCDIR}/$f.${i}
+			done
 		done
-	done
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {

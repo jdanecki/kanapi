@@ -31,10 +31,6 @@ export CFLAGS="${CFLAGS} ${NCURSES_CFLAGS}"
 export LDFLAGS="${LDFLAGS} -lm -lpthread ${NCURSES_LDFLAGS}"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-xmlto ac_cv_prog_ncurses5_config=ncurses6_config \
 		--with-curses=ncurses ac_cv_lib_fftw3f_fftwf_malloc=no

@@ -23,12 +23,9 @@ URL="http://xorg.freedesktop.org/releases/individual/font"
 EXT=tar.bz2
 #build depends on freetype2 libpng fontenc libXfont
 LIB_DEPENDS="freetype2 libpng fontenc xfont zlib"
+export DONT_INSTALL_INCLUDE=1
 
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lm"
-
-pkg_prepare() {
-	pkg_tar_bz2
-}
 

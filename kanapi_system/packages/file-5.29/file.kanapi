@@ -28,22 +28,12 @@ EXT=tar.gz
 
 export PATH=${KANAPI_HOST_BASE}/../bin:${PATH}
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 		pkg_configure_target
 }
 
-pkg_build() {
-		make -j ${MAKE_JOBS} MAKEINFO=true
-}
-
 pkg_install() {
-		pkg_install_make
-		pkg_install_bin_all
-		pkg_install_libs
+		pkg_install_make && pkg_install_bin_all && pkg_install_libs
 }
 
 pkg_check() {

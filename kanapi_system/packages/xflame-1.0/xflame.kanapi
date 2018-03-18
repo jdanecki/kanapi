@@ -30,10 +30,6 @@ LIB_DEPENDS="sdl"
 export LIBS="-lm"
 export CFLAGS="${CFLAGS} -I`sdl-config --prefix`/include"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_test() {
 	sdl-config --prefix
 }

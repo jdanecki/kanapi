@@ -29,10 +29,6 @@ LIB_DEPENDS="liblzma"
 
 export LDFLAGS="${LDFLAGS} -lpthread"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 	patch -p1 < ../../../packages/${PACKAGE_NAME}-${VER}/0001-disable-tests.patch
@@ -41,7 +37,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	make -j ${MAKE_JOBS} MAKEINFO=true
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {

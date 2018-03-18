@@ -35,8 +35,14 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
-	${LN_SF} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}.30 ${PACKAGE_SRCDIR}
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		tar -xzf ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -C ${KANAPI_BUILD_SRC}
+		${LN_SF} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}.30 ${PACKAGE_SRCDIR}
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {
@@ -45,7 +51,7 @@ pkg_configure() {
 
 pkg_build() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} CC=${KANAPI_TARGET_NAME}-gcc
+	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} CC="${KANAPI_C_COMPILER}"
 }
 
 pkg_install() {

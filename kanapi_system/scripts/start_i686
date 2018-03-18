@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=/kanapi_0.8/i686/bin:$PATH
+export PATH=/kanapi_@KANAPI_VER@/i686/bin:$PATH
 
 sh
 

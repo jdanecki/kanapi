@@ -25,10 +25,6 @@ SF_URL="dejavu/dejavu/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_configure() {
 	rm -rf build
 	mkdir build

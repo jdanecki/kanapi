@@ -25,11 +25,10 @@ EXT=tar.bz2
 
 . ../settings
 
-export CFLAGS="-I`${PKG_CONFIG} --variable=includedir uuid`"
-
-pkg_prepare() {
-	pkg_tar_bz2
-}
+if [ -n "${PKG_CONFIG}" ]
+then
+	export CFLAGS="-I`${PKG_CONFIG} --variable=includedir uuid`"
+fi
 
 pkg_install() {
 	pkg_install_pc_all

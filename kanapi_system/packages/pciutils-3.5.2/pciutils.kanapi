@@ -29,17 +29,13 @@ LIB_DEPENDS="zlib libkmod liblzma"
 
 export LDFLAGS="${LDFLAGS} -lpthread -lresolv"
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	local_copy
 }
 
 pkg_build() {
 	cd build
-	make PREFIX=${PREFIX} SHARED=yes ZLIB=yes CROSS_COMPILE=${KANAPI_TARGET_NAME}- CFLAGS="${CFLAGS}"
+	${MAKE} PREFIX=${PREFIX} SHARED=yes ZLIB=yes CROSS_COMPILE=${KANAPI_TARGET_NAME}- CFLAGS="${CFLAGS}"
 }
 
 pkg_install() {

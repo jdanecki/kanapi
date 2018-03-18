@@ -36,16 +36,15 @@ export LIBFFI_CFLAGS="-I${KANAPI_BASE}/libffi-${libffi_ver}/lib/libffi-${libffi_
 export LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/${LIBFFI_LIBDIR} -lffi -L${KANAPI_BASE}/zlib-${zlib_ver}/lib "
 export LIBFFI_LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/${LIBFFI_LIBDIR} -lffi "
 
-pkg_prepare() {
-	pkg_tar_xz
-}
-
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} glib_cv_stack_grows=yes glib_cv_uscore=no --disable-libmount \
 		--with-pcre=internal --disable-libelf
 }
 
 pkg_build() {
-	make -j ${MAKE_JOBS} MAKEINFO=true V=1
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true V=1
 }
 
+pkg_check() {
+	echo "KANAPI_BASE=${KANAPI_BASE}"
+}

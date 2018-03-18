@@ -25,10 +25,6 @@ EXT=tar.bz2
 
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_bz2
-}
-
 pkg_install() {
 	pkg_install_pc
 }

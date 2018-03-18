@@ -37,18 +37,24 @@ pkg_download() {
 }
 
 pkg_prepare() {
-	pkg_tar_xz
-	PACKAGE_NAME=cfe
-	PACKAGE_VER=${PACKAGE_NAME}-${VER}
-	PACKAGE_SRCDIR=${KANAPI_BUILD_SRC}/${PACKAGE_VER}
-	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
-	pkg_tar_xz
-	ln -svf ${PACKAGE_SRCDIR} ${KANAPI_BUILD_SRC}/llvm-${VER}/tools/clang
+	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
+	then 
+		echo "$PACKAGE_NAME: already prepared"
+	else
+		pkg_tar_xz
+		PACKAGE_NAME=cfe
+		PACKAGE_VER=${PACKAGE_NAME}-${VER}
+		PACKAGE_SRCDIR=${KANAPI_BUILD_SRC}/${PACKAGE_VER}
+		PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
+		pkg_tar_xz
+		ln -svf ${PACKAGE_SRCDIR} ${KANAPI_BUILD_SRC}/llvm-${VER}/tools/clang
+		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
+	fi
 }
 
 pkg_configure() {
-	cmake -G Ninja ${PACKAGE_SRCDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_C_COMPILER=${KANAPI_TARGET_NAME}-gcc \
-		-DCMAKE_CXX_COMPILER=${KANAPI_TARGET_NAME}-g++ -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON \
+	cmake -G Ninja ${PACKAGE_SRCDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_C_COMPILER="${KANAPI_C_COMPILER}" \
+		-DCMAKE_CXX_COMPILER="${KANAPI_CXX_COMPILER}" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON \
 		-DCMAKE_CXX_FLAGS="-lpthread -ldl" -DLLVM_TARGETS_TO_BUILD="ARM;X86" \
 		-DLLVM_ENABLE_TERMINFO=OFF
 
@@ -60,8 +66,6 @@ pkg_build() {
 }
 
 pkg_install() {
-	ninja install
-	pkg_install_bin_all	
-	pkg_install_libs
+	ninja install && pkg_install_bin_all	&& pkg_install_libs
 }
 

@@ -24,10 +24,6 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
@@ -55,7 +51,7 @@ pkg_install() {
 		MAKE_JOBS=1
 		pkg_install_make
 		pkg_install_bin_all
-		for i in mtrace glib-mkenums
+		for i in mtrace glib-mkenums c_rehash
 		do
 			FILE=`readlink ${KANAPI_TARGET_BIN}/$i`
 			if [ -f "${FILE}" ]

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ ! -f /kanapi_build/kanapi/kanapi_system/scripts/update_include ]
+then
+	echo "clone or mount KaNaPi git repo"
+else
+	/bin/update_include
+	pushd  /kanapi_build/kanapi/kanapi_system/x86_64
+	./verify all verbose
+	popd
+fi
+

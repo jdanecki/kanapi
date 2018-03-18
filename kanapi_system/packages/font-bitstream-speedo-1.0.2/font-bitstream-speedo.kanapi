@@ -22,9 +22,6 @@ VER=1.0.2
 URL="https://www.x.org/releases/individual/font"
 EXT=tar.bz2
 #build depends on
+export DONT_INSTALL_INCLUDE=1
 . ../settings
-
-pkg_prepare() {
-	pkg_tar_bz2
-}
 
