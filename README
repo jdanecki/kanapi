@@ -1,4 +1,5 @@
 KaNaPi project
+==============
 
 Main goal of this project is to create educational operating system based on Linux kernel
 and free software for use at home.
@@ -11,9 +12,47 @@ Versions:
 
 License: GPL v.3
 
-You can read doc/INSTALL to learn how to build KaNaPi.
-
-See more details on http://kanapi.ga
+Look into doc directory to learn how to build KaNaPi.
+More details on http://kanapi.ga
 
 Author: jacek.m.danecki@gmail.com
+
+Development workflow
+====================
+
+1. SBS images on SourceForge https://sourceforge.net/projects/kanapi/files/images/v0.9/
+* sbs-x86_64.tar.xz - base for build in chroot (local and CI)
+* sbs-docker-x86.tar.xz - base for BBS docker image
+
+2. Docker images
+* SBS image - https://hub.docker.com/r/kanapi/kanapi-sbs
+* BBS image - https://hub.docker.com/r/kanapi/kanapi-bbs
+* CLI image - https://hub.docker.com/r/kanapi/kanapi-cli
+
+3. System building workflow
+3.1 Sbs - small build system: kanapi_system/kanapi-sbs
+3.2 Bbs - base build system, built on top of Sbs: kanapi_system/kanapi-bbs
+3.3 Cli - command line tools built on top of Bbs: kanapi_system/kanapi-cli
+3.4 X11 - X11 support, libs, apps, built on top of Cli: kanapi_system/kanapi-x11
+3.5 Gui - Gtk2/3 and Qt support, libs built on top of X11: kanapi_system/kanapi-gui
+3.6 Apps - Applications and libs built on top Gui: kanapi_system/kanapi-apps
+
+4. CI systems
+4.1 Builds executed in chroot with SBS image
+* Shippable - https://app.shippable.com/github/jdanecki/kanapi/dashboard
+* SemaphoreCI - https://semaphoreci.com/jdanecki/kanapi
+4.2 Builds using native (Ubuntu 14.0 compilers) without SBS (BBS only)
+* CircleCI - https://circleci.com/gh/jdanecki/kanapi
+* CodeShip - https://app.codeship.com/projects/191185
+* TravisCI - https://travis-ci.org/jdanecki/kanapi
+4.3 Builds in docker container - wip
+* Shippable
+* SemaphoreCI
+* Travis
+
+5. Repositories
+* Main KaNaPi repository: https://github.com/jdanecki/kanapi
+* KaNaPi CI tests: https://github.com/jdanecki/kanapi-ci
+* CI tests: https://github.com/jdanecki/ci-tests
+* KaNaPi CI tests on shippable only: https://github.com/jdanecki/kanapi-shippable
 
