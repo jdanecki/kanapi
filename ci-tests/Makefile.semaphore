@@ -4,7 +4,7 @@ bbs_sbs:
 	sudo chroot ../sbs-`uname -m` /_start_bbs_build
 
 core_cli:
-	sudo bash -c "export PKG_COMMAND=t_core_cli; chroot ../sbs-`uname -m` /_start_install"
+	sudo bash -c "export PKG_COMMAND=cli; chroot ../sbs-`uname -m` /_start_install"
 
 gui:
 	sudo bash -c "export PKG_COMMAND=t_gui; chroot ../sbs-`uname -m` /_start_install"

@@ -4,7 +4,7 @@ bbs_sbs:
 	chroot ../sbs-`uname -m` /_start_bbs_build
 
 core_cli:
-	bash -c "export PKG_COMMAND=t_core_cli; chroot ../sbs-`uname -m` /_start_install"
+	bash -c "export PKG_COMMAND=cli; chroot ../sbs-`uname -m` /_start_install"
 
 bbs: check_links
 	cd ../kanapi_system/`uname -m`   ; make gettext ACTION=install
