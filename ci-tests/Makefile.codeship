@@ -1,4 +1,6 @@
-all: bbs
+all:
+	true
+#   	bbs
 
 bbs: check_links
 	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install

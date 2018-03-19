@@ -375,7 +375,12 @@ then
 		sudo chroot ../sbs-`uname -m` /bin/update_include
 		exit $?
 	else
-		configure_ci
+		if [ "${TRAVIS}" = "true" ]
+		then
+			echo "Travis CI switched to docker"
+		else
+			configure_ci
+		fi
 	fi
 fi
 
