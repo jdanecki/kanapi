@@ -7,5 +7,5 @@ if [ "${SHIPPABLE}" = "true" -o  "${TRAVIS}" = "true" ]
 then
 	docker build -f Dockerfile-travis -t kanapi-bbs:ci --no-cache .
 else
-	echo "docker build -t kanapi-bbs:ci --no-cache ."
+	docker build -t kanapi-bbs:ci --no-cache .
 fi

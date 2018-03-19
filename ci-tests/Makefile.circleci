@@ -1,7 +1,5 @@
-all: 
-	true
-#bbs
-	
+all: bbs
+
 bbs_sbs:
 	sudo chroot ../sbs-`uname -m` /_start_bbs_build
 
