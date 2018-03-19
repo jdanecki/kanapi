@@ -50,7 +50,7 @@ pkg_configure_target() {
 	fi
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --enable-install-program=arch
 	RESULT=$? 
-	mv confdir3 ../t; cd .. ; rm -rf t
+	pkg_rm_docker_wa
 	return $RESULT
 }
 

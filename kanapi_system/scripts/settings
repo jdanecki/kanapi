@@ -705,3 +705,10 @@ pkg_verify() {
 		fi
 	done
 }
+
+pkg_rm_docker_wa() {
+	mv confdir3 ../t
+	cd .. 
+	rm -rf t
+	true
+}
