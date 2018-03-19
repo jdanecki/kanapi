@@ -30,7 +30,7 @@ pkg_configure_target() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
  	--without-selinux
 	RESULT=$? 
-	mv confdir3 ../t; rm -rf ../t
+	mv confdir3 ../t; cd .. ; rm -rf t
 	return $RESULT
 }
 
