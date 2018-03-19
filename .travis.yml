@@ -1,4 +1,8 @@
 language: c
 compiler:
   - gcc
+sudo: required
+
+services:
+  - docker
 
