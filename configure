@@ -378,6 +378,8 @@ then
 		if [ "${TRAVIS}" = "true" ]
 		then
 			echo "Travis CI switched to docker"
+			cd ci-tests
+			link_makefile
 			exit 0
 		else
 			configure_ci
