@@ -378,6 +378,7 @@ then
 		if [ "${TRAVIS}" = "true" ]
 		then
 			echo "Travis CI switched to docker"
+			exit 0
 		else
 			configure_ci
 		fi
