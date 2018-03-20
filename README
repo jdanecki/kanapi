@@ -46,13 +46,19 @@ Development workflow
 * CircleCI - https://circleci.com/gh/jdanecki/kanapi
 * CodeShip - https://app.codeship.com/projects/191185
 4.3 Builds in docker container
-* Shippable - build cli docker image from BBS docker image from https://hub.docker.com/r/kanapi/kanapi-bbs
-* Travis - build SBS from sbs-docker tarball and BBS from SBS docker image, https://travis-ci.org/jdanecki/kanapi
-* SemaphoreCI - wip
+* Shippable 
+  - build cli docker image from BBS docker image from https://hub.docker.com/r/kanapi/kanapi-bbs
+  - docker builds: https://app.shippable.com/github/jdanecki/kanapi-dockers/dashboard
+* Travis 
+  - build SBS from sbs-docker tarball and BBS from SBS docker image, https://travis-ci.org/jdanecki/kanapi
+  - docker builds: https://travis-ci.org/jdanecki/kanapi-dockers/builds/355665885
+* SemaphoreCI
+  - docker builds: https://semaphoreci.com/jdanecki/kanapi-dockers/
 
 5. Repositories
 * Main KaNaPi repository: https://github.com/jdanecki/kanapi
 * KaNaPi CI tests: https://github.com/jdanecki/kanapi-ci
 * CI tests: https://github.com/jdanecki/ci-tests
 * KaNaPi CI tests on shippable only: https://github.com/jdanecki/kanapi-shippable
+* KaNaPi docker tests: https://github.com/jdanecki/kanapi-dockers
 
