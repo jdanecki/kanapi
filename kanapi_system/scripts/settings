@@ -217,11 +217,11 @@ pkg_curl() {
 		echo "$PACKAGE_NAME: already downloaded"
 	else
 		echo "downloading ${PACKAGE_NAME} from ${PACKAGE_LINK}"
-		curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+		curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 		then 
 			echo "downloading ${PACKAGE_NAME} again"
-			curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+			curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 		fi
 		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 		then
@@ -233,7 +233,7 @@ pkg_curl() {
 				true
 			else
 				echo "downloading ${PACKAGE_NAME} once again"
-				curl -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
 				if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 				then
 					false
