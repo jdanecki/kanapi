@@ -150,7 +150,7 @@ else
 fi
 
 local_copy() {
-	rm -rf build
+	rm -rf build 
 	mkdir build
 	cp -ar ${PACKAGE_SRCDIR}/* build
 	find ${PACKAGE_SRCDIR} -maxdepth 1 -name .\* -exec cp -a {} build \; 
@@ -296,15 +296,11 @@ pkg_git_clone() {
 }
 
 pkg_git_checkout() {
-	cd ${PACKAGE_SRCDIR}
-	git checkout -f ${VER}
+	cd ${PACKAGE_SRCDIR} && git checkout -f ${VER}
 }
 
 local_clone() {
-	rm -rf build
-	git clone ${PACKAGE_SRCDIR} build
-	cd build
-	git checkout -f ${VER}
+	rm -rf build && git clone ${PACKAGE_SRCDIR} build && cd build && git checkout -f ${VER}
 }
 
 pkg_git_submodule_init() {
@@ -416,8 +412,7 @@ pkg_update_include() {
 }
 
 pkg_install_make() {
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
-	pkg_update_include	
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true && pkg_update_include	
 }
 
 
@@ -442,8 +437,7 @@ pkg_install_pc_share() {
 }
 
 pkg_install_pc_share_all() {
-	pkg_install_make
-	pkg_install_pc_share_all_only
+	pkg_install_make && pkg_install_pc_share_all_only
 }
 
 pkg_install_pc_share_all_only() {
@@ -457,8 +451,7 @@ pkg_install_pc_share_all_only() {
 }
 	
 pkg_install_pc_all() {
-	pkg_install_make
-	pkg_install_pc_all_only
+	pkg_install_make && pkg_install_pc_all_only
 }
 
 pkg_install_pc_all_only() {
@@ -479,8 +472,7 @@ pkg_uninstall() {
 }
 
 pkg_rebuild() {
-	pkg_configure
-	pkg_build
+	pkg_configure && pkg_build
 }
 
 pkg_clean() {
@@ -489,10 +481,7 @@ pkg_clean() {
 }
 
 pkg_package() {
-	pkg_download
-	pkg_prepare
-	pkg_configure
-	pkg_build
+	pkg_download && pkg_prepare && pkg_configure && pkg_build
 }
 
 pkg_update_meta() {
@@ -555,9 +544,7 @@ pkg_install_libs() {
 }
 
 pkg_install_all() {
-	pkg_install_pc
-	pkg_install_libs
-	pkg_install_bin
+	pkg_install_pc && pkg_install_libs && pkg_install_bin
 }
 
 pkg_test() {
