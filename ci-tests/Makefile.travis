@@ -1,10 +1,10 @@
 all: docker_sbs docker_bbs
 
 docker_sbs:
-	cd sbs; ./build ; cd ..
+	cd sbs; ./build
 
 docker_bbs:
-	cd bbs; ./build ; cd ..
+	cd bbs; ./build
 
 bbs: check_travis
 	cd ../kanapi_system/`uname -m`   ; make pkg-config ACTION=install
