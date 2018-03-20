@@ -1,4 +1,9 @@
-all: bbs_sbs t_compression t_system
+all: cli-docker
+
+cli-docker:
+	cd cli ; ./build
+
+all_chroot: bbs_sbs t_compression t_system
 
 bbs_sbs:
 	chroot ../sbs-`uname -m` /_start_bbs_build

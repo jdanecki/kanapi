@@ -363,8 +363,9 @@ fi
 if [ "${CI}" = "true" -o "$1" = "ci" ]
 then
 	show_setup
-	if [ "${SHIPPABLE}" = "true" -o "${SEMAPHORE}" = "true" ]
+	if [ "${SEMAPHORE}" = "true" ]
 	then
+		echo "Semaphore uses SBS chroot"
 		sudo ./configure chroot
 		cd ci-tests
 		link_makefile
@@ -375,13 +376,14 @@ then
 		sudo chroot ../sbs-`uname -m` /bin/update_include
 		exit $?
 	else
-		if [ "${TRAVIS}" = "true" ]
+		if [ "${TRAVIS}" = "true" -o "${SHIPPABLE}" = "true" ]
 		then
-			echo "Travis CI switched to docker"
+			echo "Travis/Shippable use docker"
 			cd ci-tests
 			link_makefile
 			exit 0
 		else
+			echo "CodeShip and CircleCI use native Ubuntu compilers"
 			configure_ci
 		fi
 	fi
