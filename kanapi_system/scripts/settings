@@ -246,14 +246,11 @@ pkg_curl() {
 }
 
 pkg_download() {
-	if [ "${TRAVIS}" = "true" ]
+	if [ "${CI}" = "true" ]
 	then
-		if [ "${SHIPPABLE}" != "true" ]
-		then
-			echo "Running under Travis, removing sources"
+			echo "Running under CI, removing sources"
 			rm -rf ${KANAPI_BUILD_SRC}
 			mkdir ${KANAPI_BUILD_SRC}
-		fi
 	fi
 	if [ "${USE_WGET}" = "1" ]
 	then
@@ -264,9 +261,9 @@ pkg_download() {
 }
 
 pkg_redownload() {
-	if [ "${TRAVIS}" = "true" ]
+	if [ "${CI}" = "true" ]
 	then
-		echo "Running under Travis, removing sources"
+		echo "Running under CI, removing sources"
 		rm -rf ${KANAPI_BUILD_SRC}
 		mkdir ${KANAPI_BUILD_SRC}
 	fi
