@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clone ../../kanapi kanapi
+git clone ../../../kanapi kanapi
 
 if [ "${SHIPPABLE}" = "true" -o  "${TRAVIS}" = "true" ]
 then
