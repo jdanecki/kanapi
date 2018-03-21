@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -29,7 +29,16 @@ EXT=tar.xz
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
+pkg_configure() {
+	local_copy
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+}
+
+pkg_build() {
+	pkg_build_local
+}
+
 pkg_install() {
-	pkg_install_make && pkg_install_bin_all
+	cd build && pkg_install_make && pkg_install_bin_all
 }
 
