@@ -21,11 +21,13 @@ PACKAGE_NAME=SDL_image
 VER=1.2.12
 URL="https://www.libsdl.org/projects/SDL_image/release"
 EXT=tar.gz
-LIB_DEPENDS="libpng sdl zlib"
+LIB_DEPENDS="libpng12 sdl zlib"
 
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lpthread -lm"
+export LIBPNG_CFLAGS=`${PKG_CONFIG} --cflags libpng12`
+export LIBPNG_LIBS=`${PKG_CONFIG} --libs libpng12`
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-sdltest \
