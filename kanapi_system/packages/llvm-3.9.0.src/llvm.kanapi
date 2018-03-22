@@ -62,7 +62,12 @@ pkg_configure() {
 }
 
 pkg_build() {
-	ninja -j ${MAKE_JOBS}
+	if [ "${CI}" = "true" ] 
+	then
+		ninja -j 2
+	else
+		ninja -j ${MAKE_JOBS}
+	fi
 }
 
 pkg_install() {
