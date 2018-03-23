@@ -62,6 +62,7 @@ kanapi_install: kanapi_build
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install" ; fi
 	@pkg_kanapi $(PKG).kanapi update_meta $(V)
 	$(call DATE_RULE)
+	@if [ "$${CI}" = "true" ] ; then df -h ; fi
 
 kanapi_reinstall:
 	@PKG_COLOR=$(colorBoldBlue) pkg_kanapi $(PKG).kanapi install $(V) ; if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; else false; fi
