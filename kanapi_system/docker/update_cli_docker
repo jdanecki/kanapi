@@ -18,5 +18,5 @@ for f in resolv.conf
 do
 	docker cp /etc/$f ${ID}:/etc/$f
 done
-docker cp kanapi/kanapi_system/test_system/docker/configure ${ID}:/configure
+docker cp kanapi/kanapi_system/docker/configure ${ID}:/configure
 

@@ -3,6 +3,7 @@
 if [ ! -f /kanapi_build/kanapi/kanapi_system/scripts/update_include ]
 then
 	echo "clone or mount KaNaPi git repo"
+	exit 2
 else
 	if [ "${CI}" = "true" ]
 	then
