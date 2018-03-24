@@ -7,7 +7,8 @@ target_p_ver=$(lastword $(shell echo  $(subst _,\ , $@)))
 target_version=$($(addsuffix _ver, $(target_package)$(target_p_ver)))
 DIR_NAME_VER=$(target_package)-$(target_version)
 
-target_run=make -f ../Makefile -C $(1) kanapi_$(ACTION) PKG=$2 KANAPI_TOP=$(PWD) V=$(V)
+target_run=make -f ../Makefile -C $(1) kanapi_$(ACTION) PKG=$2 KANAPI_TOP=$(PWD) V=$(V); \
+if [ "$$?" = "0" ] ; then if [ "$$CI" = "true" -a "$(ACTION)" = "install" ]; then echo "clearing in $(1)"; rm -rf $(1) ; fi ; else false; fi
 
 ifeq ($(ACTION),)
 RUN_TARGET=make kanapi_help
@@ -56,7 +57,7 @@ kanapi_rebuild_install:
 kanapi_install: kanapi_build
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:start:$(PKG)_install" ; fi
 	@PKG_COLOR=$(colorBoldBlue) pkg_kanapi $(PKG).kanapi install $(V) ; \
-    if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; \
+	if [ "$$?" = "0" ] ; then pkg_kanapi $(PKG).kanapi verify $(V) ; \
 	      ret=$$? ; if [ "$$ret" = "2" -o "$$ret" = "0" ] ; then true; else false; fi ; \
 	else false; fi
 	@if [ "$${TRAVIS}" = "true" ] ; then echo "travis_fold:end:$(PKG)_install" ; fi
