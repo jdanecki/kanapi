@@ -11,6 +11,9 @@ include $(BASE)../scripts/Makefile.common
 
 x11: x-support wm xapp
 
+x11-manual: vtwm ratpoison oclock xcalc xclock xconsole xedit oneko xeyes xload \
+	xmag xman xlunch
+
 x-support: graphics kbproto util-macros xproto xextproto libxcb xtrans inputproto \
 	libX11 libXext fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
 	bigreqsproto randrproto renderproto fontsproto videoproto compositeproto \
@@ -542,9 +545,9 @@ i3: libev startup-notification xcb-util xcb-util-cursor xcb-util-wm xcb-util-xrm
 i3blocks: dmenu i3 
 	@$(RUN_TARGET)
 
-xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconsole xedit oneko xdriinfo \
-   xdpyinfo xeyes xev xhost xkill xload xfontsel xmag xman xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh xlunch
+xapp: xfd st xterm bitmap showfont x11perf xbacklight xdriinfo \
+   xdpyinfo xev xhost xkill xfontsel xmodmap xrandr xset xsetroot \
+   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh 
 
 libXaw:
 	@$(RUN_TARGET)
