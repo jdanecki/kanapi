@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -19,7 +19,9 @@
 
 PACKAGE_NAME=nasm
 VER=2.12
-URL="http://www.nasm.us/pub/nasm/releasebuilds/2.12"
+#URL="http://www.nasm.us/pub/nasm/releasebuilds/2.12"
+#use mirror from SF
+URL="https://downloads.sourceforge.net/project/kanapi/sources/Packages/mirror"
 EXT=tar.xz
 #build depends on
 #LIB_DEPENDS=""
