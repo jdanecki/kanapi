@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -34,9 +34,8 @@ pkg_configure() {
 }
 
 pkg_install() {
-	${MAKE} install-nokeys MAKEINFO=true
-	pkg_install_bin_all
-	pkg_install_sbin_all
+	${MAKE} install-nokeys MAKEINFO=true && pkg_install_bin_all && pkg_install_sbin_all && \
+	rm -r ${PREFIX}/share/man
 }
 
 pkg_check() {

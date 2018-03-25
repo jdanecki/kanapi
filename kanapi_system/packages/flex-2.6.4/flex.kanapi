@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -27,7 +27,7 @@ EXT=tar.gz
 pkg_configure() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		pkg_configure_target
+		${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-nls
 	fi
 }
 
@@ -41,7 +41,8 @@ pkg_build() {
 pkg_install() {
 	if [ ${KANAPI_CROSS} -eq 0 ]
 	then
-		pkg_install_make && pkg_install_bin_all && pkg_install_libs
+		pkg_install_make && pkg_install_bin_all && pkg_install_libs && \
+		rm -r ${PREFIX}/share/{man,doc,info}
 	fi
 }
 

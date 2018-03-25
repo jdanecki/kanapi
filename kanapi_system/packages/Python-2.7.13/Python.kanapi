@@ -37,7 +37,7 @@ export CPPFLAGS="${CFLAGS}"
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --build=`uname -m`-kanapi-linux-gnu \
-	--target=${KANAPI_TARGET_NAME} \
+	--target=${KANAPI_TARGET_NAME} --enable-shared \
 	--disable-ipv6 ac_cv_file__dev_ptmx=yes ac_cv_file__dev_ptc=yes
 # --enable-optimizations
 }
@@ -53,6 +53,7 @@ pkg_install() {
 			sed -i "s@kanapi_.*bin/@kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin/@" ${FILE}
 		fi
 	done
+	rm -r ${PREFIX}/share/man
 	exit ${RET}
 }
 

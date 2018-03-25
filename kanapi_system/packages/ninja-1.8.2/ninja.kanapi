@@ -47,8 +47,8 @@ pkg_build() {
 }
 
 pkg_install() {
-	mkdir -p ${PREFIX}/bin
-	cp build/ninja ${PREFIX}/bin
-	ln -svf ${PREFIX}/bin/ninja ${KANAPI_BASE}/../bin/ninja
+	mkdir -p ${PREFIX}/bin 
+	cp build/ninja ${PREFIX}/bin &&	ln -svf ${PREFIX}/bin/ninja ${KANAPI_BASE}/../bin/ninja
+
 }
 

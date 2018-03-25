@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -26,13 +26,14 @@ EXT=tar.gz
 
 pkg_configure_target() {	
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
- 	--without-selinux  
+ 	--without-selinux --disable-nls
 	RESULT=$? 
 	pkg_rm_docker_wa
 	return $RESULT
 }
 
 pkg_install() {
-	pkg_install_make && pkg_install_bin_all
+	pkg_install_make && pkg_install_bin_all && \
+	rm -r ${PREFIX}/share/{man,info}
 }
 

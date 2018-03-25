@@ -50,8 +50,8 @@ pkg_build() {
 
 pkg_install() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
-	pkg_install_bin_all
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true && pkg_install_bin_all && \
+	if [ -d ${PREFIX}/share/man ]; then rm -r ${PREFIX}/share/man ; fi
 }
 
 pkg_check() {

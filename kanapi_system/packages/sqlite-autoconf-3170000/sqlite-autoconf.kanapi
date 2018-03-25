@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -31,8 +31,7 @@ export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/readline-${readline_ver}/include"
 export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/readline-${readline_ver}/lib -lpthread"
 
 pkg_install() {
-	pkg_install_pc_all
-	pkg_install_bin_all
-	pkg_install_libs
+	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs && \
+	rm -r ${PREFIX}/share/man
 }
 
