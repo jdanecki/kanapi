@@ -6,8 +6,10 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-apps: sdl-support tests apps_gtk apps_gtk3 apps_qt webkitgtk sdl2-support libmikmod video graphics-apps ogl ocl \
-	demo game_engine
+apps: sdl-support apps_gtk apps_gtk3 apps_qt sdl2-support libmikmod video graphics-apps ogl ocl \
+	game_engine
+
+apps-manual: tests webkitgtk demo
 
 sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib SDL-widgets
 
