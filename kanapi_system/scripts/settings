@@ -675,6 +675,13 @@ pkg_verify() {
 		echo "directory ${PREFIX} missing"
 		exit 2
 	fi
+
+	if [ -d "${PREFIX}/share/man" ] ; then rm -r ${PREFIX}/share/man; fi
+	if [ -d "${PREFIX}/share/doc" ] ; then rm -r ${PREFIX}/share/doc; fi
+	if [ -d "${PREFIX}/share/info" ] ; then rm -r ${PREFIX}/share/info; fi
+	if [ -d "${PREFIX}/doc" ] ; then rm -r ${PREFIX}/doc; fi
+	if [ -d "${PREFIX}/man" ] ; then rm -r ${PREFIX}/man; fi
+	
 	for f in ${PREFIX}/bin/* ${PREFIX}/sbin/*  ${PREFIX}/usr/bin/* ${PREFIX}/usr/sbin/*
 	do
 		if [ -f $f ]
@@ -693,6 +700,7 @@ pkg_verify() {
 			verify_file $f
 		fi
 	done
+
 }
 
 pkg_rm_docker_wa() {
