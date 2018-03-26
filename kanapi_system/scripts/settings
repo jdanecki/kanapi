@@ -23,6 +23,7 @@ KANAPI_TARGET_BIN=${KANAPI_ROOT}/${KANAPI_TARGET}/bin
 if [ "${CI}" = "true" ]
 then
 	KANAPI_BUILD_SRC=${HOME}/ci_src
+	alias rm='rm -rf'
 else
 	KANAPI_BUILD_SRC=${HOME}/src
 fi
