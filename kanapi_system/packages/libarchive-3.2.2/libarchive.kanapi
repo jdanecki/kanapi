@@ -32,6 +32,6 @@ pkg_configure_target() {
 
 pkg_install() {
 	pkg_install_pc && pkg_install_bin_all && pkg_install_libs && \
-	rm -r ${PREFIX}/share/man
+	rm -rf ${PREFIX}/share/man
 }
 

@@ -65,6 +65,6 @@ pkg_install() {
 	cd build 
 	${MAKE} -j 1 install MAKEINFO=true && ln -svf ${PREFIX}/bin/ncurses5-config ${KANAPI_BASE}/../bin && \
 	pkg_install_libs && \
-	rm -r ${PREFIX}/man
+	rm -rf ${PREFIX}/man
 }
 

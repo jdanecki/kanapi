@@ -31,9 +31,9 @@ pkg_configure() {
 }
 
 pkg_install() {
-	pkg_install_make && pkg_install_libs &&  \
-	rm -r ${PREFIX}/share/{man,info,doc}
+	pkg_install_make && pkg_install_libs
 	RET="$?"
 	if [ -d ${PREFIX}/bin ] ; then rmdir ${PREFIX}/bin ; fi
+	rm -rf ${PREFIX}/share/{man,info,doc}
 	exit ${RET}
 }

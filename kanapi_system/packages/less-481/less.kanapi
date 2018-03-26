@@ -33,6 +33,6 @@ pkg_configure_target() {
 }
 
 pkg_install() {
-	pkg_install_make && pkg_install_bin_all && rm -r ${PREFIX}/share/man
+	pkg_install_make && pkg_install_bin_all && rm -rf ${PREFIX}/share/man
 }
 

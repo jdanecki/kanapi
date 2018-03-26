@@ -37,6 +37,6 @@ pkg_install() {
 	cd build
 	pkg_install_make &&	pkg_install_bin_all && ${MAKE} -j ${MAKE_JOBS} MAKEINFO=true install-lib && \
 	pkg_install_libs && ${MAKE} -j ${MAKE_JOBS} MAKEINFO=true install-dev && \
-	rm -r ${PREFIX}/share/{man,doc}
+	rm -rf ${PREFIX}/share/{man,doc}
 }
 

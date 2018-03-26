@@ -35,7 +35,7 @@ pkg_configure() {
 
 pkg_install() {
 	${MAKE} install-nokeys MAKEINFO=true && pkg_install_bin_all && pkg_install_sbin_all && \
-	rm -r ${PREFIX}/share/man
+	rm -rf ${PREFIX}/share/man
 }
 
 pkg_check() {

@@ -46,7 +46,7 @@ pkg_install() {
 		fi
 	done
 	pkg_update_include && pkg_install_bin_all && pkg_install_sbin_all && pkg_install_libs && \
-	rm -r ${PREFIX}/share/{man,info}
+	rm -rf ${PREFIX}/share/{man,info}
 }
 
 pkg_check() {

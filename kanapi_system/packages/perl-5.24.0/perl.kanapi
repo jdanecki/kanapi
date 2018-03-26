@@ -59,7 +59,7 @@ pkg_install() {
 				sed -i "s@kanapi_.*bin/@kanapi_${KANAPI_VER}/${KANAPI_TARGET}/bin/@" ${FILE}
 			fi
 		done
-		if [ -d ${PREFIX}/man ] ; then rm -r ${PREFIX}/man ; fi
+		if [ -d ${PREFIX}/man ] ; then rm -rf ${PREFIX}/man ; fi
 	fi
 }
 

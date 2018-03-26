@@ -37,6 +37,6 @@ pkg_configure() {
 pkg_install() {
 	MAKE_JOBS=1
 	pkg_install_make &&	pkg_install_bin_all && \
-	rm -r ${PREFIX}/share/{man,info}
+	rm -rf ${PREFIX}/share/{man,info}
 }
 

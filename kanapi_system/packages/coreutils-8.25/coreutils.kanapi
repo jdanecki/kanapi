@@ -56,7 +56,7 @@ pkg_configure_target() {
 
 pkg_install() {
 	pkg_install_make && pkg_install_bin_all && \
-	rm -r ${PREFIX}/share/{man,info}
+	rm -rf ${PREFIX}/share/{man,info}
 }
 
 pkg_check() {
