@@ -1,7 +1,8 @@
 #!/bin/bash
 
-. sbs_version
+. version
 
-docker tag kanapi/kanapi-sbs:${VER} kanapi/kanapi-sbs:latest
-docker push kanapi/kanapi-sbs:${VER}
-docker push kanapi/kanapi-sbs:latest
+docker tag kanapi-${NAME}:${VER} kanapi/kanapi-${NAME}:${VER}
+docker tag kanapi/kanapi-${NAME}:${VER} kanapi/kanapi-${NAME}:latest
+docker push kanapi/kanapi-${NAME}:${VER}
+docker push kanapi/kanapi-${NAME}:latest

@@ -18,6 +18,6 @@ else
 	popd
 fi
 
-docker build -t kanapi/kanapi-${NAME}:${VER} .
+docker build -t kanapi-${NAME}:${VER} .
 rm -rf kanapi
 
