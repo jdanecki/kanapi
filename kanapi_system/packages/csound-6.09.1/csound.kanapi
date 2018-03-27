@@ -50,7 +50,7 @@ pkg_configure() {
 	-DZLIB_INCLUDE_DIR=`${PKG_CONFIG} --variable=includedir zlib` \
 	-DPNG_LIBRARY=`${PKG_CONFIG} --variable=libdir libpng`/libpng.so \
     -DPNG_PNG_INCLUDE_DIR=`${PKG_CONFIG} --variable=includedir libpng` \
-	-DPYTHON_LIBRARY=`${PKG_CONFIG} --variable=libdir python-2.7`/libpython2.7.a \
+	-DPYTHON_LIBRARY=`${PKG_CONFIG} --variable=libdir python-2.7`/libpython2.7.so \
 	-DPYTHON_INCLUDE_DIR=`${PKG_CONFIG} --variable=includedir python-2.7` \
 	-DALSA_LIBRARY=`${PKG_CONFIG} --variable=libdir alsa`/libasound.so \
 	-DPULSESIMPLE_LIBRARY=`${PKG_CONFIG} --variable=libdir libpulse-simple`/libpulse-simple.so \
