@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -34,6 +34,8 @@ fi
 export PERL5LIB="${KANAPI_PERL_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-NamespaceSupport-${XML_NamespaceSupport_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-SAX-Base-${XML_SAX_Base_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-SAX-${XML_SAX_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-SAX-Expat-${XML_SAX_Expat_ver}/lib/site_perl/${perl_ver}:${KANAPI_PERL_BASE}/XML-Simple-${XML_Simple_ver}/lib/site_perl/${perl_ver}"
 
 pkg_install() {
-	pkg_install_make
+	pkg_install_make && \
+	if [ ! -d ${HOME}/.icons ]; then mkdir ${HOME}/.icons; fi && \
+	${LN_SF} ${PREFIX}/share/icons/Tango ${HOME}/.icons/Tango
 }
 

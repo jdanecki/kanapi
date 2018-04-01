@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -36,6 +36,6 @@ pkg_install() {
 	cd build
 	${MAKE} DESTDIR=${PREFIX} install
 	if [ ! -d ${KANAPI_HOME}/.icons ] ; then mkdir ${KANAPI_HOME}/.icons ; fi
-   ln -svf ${PREFIX}/usr/local/icons/default ${KANAPI_HOME}/.icons/default   
+   ${LN_SF} ${PREFIX}/usr/local/icons/default ${KANAPI_HOME}/.icons/default   
 }
 
