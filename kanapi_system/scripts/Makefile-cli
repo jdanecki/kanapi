@@ -9,7 +9,7 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-cli: t_compression patchelf t_system t_devel vim bc rplay sound 
+cli: t_compression t_system t_devel vim bc sound 
 
 linux:
 	@$(RUN_TARGET)
@@ -148,7 +148,7 @@ enet:
 Hermes:
 	@$(RUN_TARGET)
 
-t_devel: cgdb ctags chrpath vala makefile2graph scons lua database 
+t_devel: patchelf cgdb ctags chrpath vala makefile2graph scons lua database 
 
 gdb:
 	@$(RUN_TARGET)
@@ -180,7 +180,7 @@ apps_txt: gzip mc vim kmod procps-ng bc pciutils wireless_tools wpa_supplicant d
 
 devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua
 
-sound: alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins speex sndio fluidsynth libmodplug flac openal-soft portaudio
+sound: rplay alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins sndio portaudio fluidsynth libmodplug openal-soft
 
 alsa-lib:
 	@$(RUN_TARGET)
@@ -200,7 +200,7 @@ libunwind:
 gstreamer: libunwind
 	@$(RUN_TARGET)
 
-jack2:
+jack2: libsndfile
 	@$(RUN_TARGET)
 
 XML-Parser:
@@ -212,7 +212,7 @@ expat:
 intltool: expat XML-Parser 
 	@$(RUN_TARGET)
 
-pulseaudio: libsndfile speexdsp intltool
+pulseaudio: speexdsp intltool speex
 	@$(RUN_TARGET)
 
 libvorbis: libogg
@@ -221,7 +221,7 @@ libvorbis: libogg
 libogg:
 	@$(RUN_TARGET)
 
-libsndfile: libvorbis
+libsndfile: libvorbis flac
 	@$(RUN_TARGET)
 
 speex:
