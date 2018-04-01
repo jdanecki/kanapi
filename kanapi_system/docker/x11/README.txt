@@ -1,7 +1,7 @@
 How to create new docker X11 image automatically
 =============================================
 
-1. To create X11 docker imnage run: make_image
+1. To create X11 docker image run: make_image
 
 How to use CLI docker to build X11 image manually
 =======================================================

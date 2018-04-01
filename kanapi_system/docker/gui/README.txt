@@ -1,7 +1,7 @@
 How to create new docker GUI image automatically
 =============================================
 
-1. To create GUI docker imnage run: make_image
+1. To create GUI docker image run: make_image
 
 How to use X11 docker to build GUI image manually
 =======================================================
