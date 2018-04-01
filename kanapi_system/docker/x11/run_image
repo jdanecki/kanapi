@@ -3,6 +3,14 @@
 . version
 
 docker run -it \
+   --cap-add SYS_PTRACE \
+   --device=/dev/dri/card0:/dev/dri/card0 \
+   --device=/dev/dri/renderD128:/dev/dri/renderD128 \
+   -e GSETTINGS_SCHEMA_DIR=/kanapi_0.9/x86_64/packages/gsettings-desktop-schemas-3.22.0/share/glib-2.0/schemas \
+   -e XDG_CACHE_HOME=/kanapi_0.9/x86_64/home/.cache \
+   -e XDG_CONFIG_HOME=/kanapi_0.9/x86_64/home/.config \
+   -e XDG_DATA_HOME=/kanapi_0.9/x86_64/home/.local \
+   -e XDG_RUNTIME_DIR=/kanapi_0.9/x86_64/home/.cache \
    -e DISPLAY=$DISPLAY \
    -v /tmp/.X11-unix:/tmp/.X11-unix \
    -v $HOME/.Xauthority:$HOME/.Xauthority kanapi/kanapi-${NAME}:${VER}
