@@ -1,7 +1,7 @@
 How to create new docker CLI image automatically
 =============================================
 
-1. To create CLI docker imnage run: make_image
+1. To create CLI docker image run: make_image
 
 How to use BBS docker to build CLI image manually
 =======================================================

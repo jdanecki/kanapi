@@ -1,7 +1,7 @@
 How to create new docker APPS image automatically
 =============================================
 
-1. To create APPS docker imnage run: make_image
+1. To create APPS docker image run: make_image
 
 How to use BBS docker to build APPS image manually
 =======================================================

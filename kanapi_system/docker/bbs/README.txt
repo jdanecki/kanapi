@@ -1,7 +1,7 @@
 How to create new docker BBS image automatically
 =============================================
 
-1. To create BBS docker imnge run: make_image
+1. To create BBS docker image run: make_image
 
 How to use SBS docker to build BBS manually
 ===========================================
