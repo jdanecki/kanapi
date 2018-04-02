@@ -6,10 +6,10 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-apps: sdl-support apps_gtk apps_gtk3 apps_qt sdl2-support libmikmod video graphics-apps ogl ocl \
+apps: sdl-support apps_gtk apps_gtk3 apps_qt sdl2-support libmikmod video graphics-apps ogl \
 	game_engine
 
-apps-manual: tests webkitgtk demo
+apps-manual: tests webkitgtk demo midori firefox compilers
 
 sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib SDL-widgets
 
@@ -45,10 +45,7 @@ xclipboard:
 intel-gpu-tools: 
 	@$(RUN_TARGET)
 
-expect:
-	@$(RUN_TARGET)
-
-ltp-full: expect
+ltp-full:
 	@$(RUN_TARGET)
 
 hello:
@@ -82,10 +79,7 @@ json-glib:
 gegl: json-glib 
 	@$(RUN_TARGET)
 
-babl:
-	@$(RUN_TARGET)
-
-gimp: babl gegl
+gimp: gegl
 	@$(RUN_TARGET)
 
 gvim:
@@ -96,16 +90,10 @@ apps_gtk3: evince pavucontrol
 poppler:
 	@$(RUN_TARGET)
 
-itstool:
-	@$(RUN_TARGET)
-
 shared-mime-info:
 	@$(RUN_TARGET)
 
-evince: poppler itstool shared-mime-info
-	@$(RUN_TARGET)
-
-libsigcpp:
+evince: poppler shared-mime-info
 	@$(RUN_TARGET)
 
 cairomm:
@@ -120,7 +108,7 @@ glibmm:
 atkmm: glibmm
 	@$(RUN_TARGET)
 
-gtkmm: libsigcpp atkmm pangomm
+gtkmm: atkmm pangomm
 	@$(RUN_TARGET)
 
 libcanberra:
@@ -149,10 +137,7 @@ SDL2_mixer:
 SDL2_net:
 	@$(RUN_TARGET)
 
-yasm:
-	@$(RUN_TARGET)
-
-MPlayer: yasm
+MPlayer:
 	@$(RUN_TARGET)
 
 Blue: MPlayer
@@ -167,7 +152,10 @@ ffmpeg: x264
 libva-intel-driver:
 	@$(RUN_TARGET)
 
-mpv: libva-intel-driver ffmpeg
+libva:
+	@$(RUN_TARGET)
+
+mpv: libva libva-intel-driver ffmpeg
 	@$(RUN_TARGET)
 
 libmad:
@@ -177,19 +165,10 @@ video: Blue mpv libmad
 
 graphics-apps: qiv opencv exif
 
-libexif:
-	@$(RUN_TARGET)
-
-qiv: libexif
+qiv:
 	@$(RUN_TARGET)
 
 opencv:
-	@$(RUN_TARGET)
-
-popt:
-	@$(RUN_TARGET)
-
-exif: popt
 	@$(RUN_TARGET)
 
 glu:
@@ -199,20 +178,6 @@ freeglut: glu
 	@$(RUN_TARGET)
 
 ogl: freeglut
-
-ocl-icd: ruby
-	@$(RUN_TARGET)
-
-beignet: ocl-icd
-	@$(RUN_TARGET)
-
-clinfo:
-	@$(RUN_TARGET)
-
-clpeak:
-	@$(RUN_TARGET)
-
-ocl: beignet clinfo clpeak
 
 game_engine: ClanLib allegro physfs bullet3 ogre 
 
@@ -236,7 +201,7 @@ ifeq ($(KANAPI_TARGET),arm)
 xflame water qemu gimp apps_qt webkitgtk:
 	true
 else
-webkitgtk: libwebp libsoup libXcomposite ruby glib-networking
+webkitgtk: libwebp libsoup libXcomposite glib-networking
 	@$(RUN_TARGET)
 
 apps_qt: qt-creator vym qjackctl csoundqt musescore
@@ -293,9 +258,6 @@ libXcomposite:
 	@$(RUN_TARGET)
 
 libwebp:
-	@$(RUN_TARGET)
-
-ruby:
 	@$(RUN_TARGET)
 
 p11-kit:

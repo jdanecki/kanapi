@@ -46,7 +46,6 @@ pkg_build() {
 
 pkg_install() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true DESTDIR=${PREFIX}
-	pkg_install_libs
+	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true DESTDIR=${PREFIX} && pkg_install_libs
 }
 

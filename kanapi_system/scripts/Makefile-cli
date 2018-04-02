@@ -9,7 +9,7 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-cli: t_compression t_system t_devel vim bc sound 
+cli: t_compression t_system devel vim bc sound ocl
 
 linux:
 	@$(RUN_TARGET)
@@ -47,7 +47,8 @@ xz:
 	@$(RUN_TARGET)
 
 t_system: mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
-	wireless_tools wpa_supplicant dhcp wget network Hermes
+	wireless_tools wpa_supplicant dhcp wget network Hermes pci_ids usbutils udev libdrm libev libevdev \
+	cacert
 
 mc:  gpm
 	@$(RUN_TARGET)
@@ -148,7 +149,8 @@ enet:
 Hermes:
 	@$(RUN_TARGET)
 
-t_devel: patchelf cgdb ctags chrpath vala makefile2graph scons lua database 
+devel: patchelf cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua tcl swig yajl llvm ruby \
+	database xml expect babl itstool libsigcpp yasm popt
 
 gdb:
 	@$(RUN_TARGET)
@@ -177,8 +179,6 @@ lua:
 
 apps_txt: gzip mc vim kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
 	ntfs-3g_ntfsprogs unrar
-
-devel: cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua
 
 sound: rplay alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins sndio portaudio fluidsynth libmodplug openal-soft
 
@@ -209,7 +209,7 @@ XML-Parser:
 expat:
 	@$(RUN_TARGET)
 
-intltool: expat XML-Parser 
+intltool: 
 	@$(RUN_TARGET)
 
 pulseaudio: speexdsp intltool speex
@@ -261,4 +261,102 @@ gdbm:
 
 gpm:
 	@$(RUN_TARGET)
+
+pci_ids:
+	@$(RUN_TARGET)
+
+libusb:
+	@$(RUN_TARGET)
+
+usbutils: libusb
+	@$(RUN_TARGET)
+
+udev:
+	@$(RUN_TARGET)
+
+xml: XML-Simple libxml2
+
+XML-NamespaceSupport:
+	@$(RUN_TARGET)
+
+XML-SAX-Base:
+	@$(RUN_TARGET)
+
+XML-SAX: XML-NamespaceSupport XML-SAX-Base
+	@$(RUN_TARGET)
+
+XML-SAX-Expat: XML-SAX
+	@$(RUN_TARGET)
+
+XML-Simple: expat XML-Parser XML-SAX-Expat
+	@$(RUN_TARGET)
+
+libpciaccess:
+	@$(RUN_TARGET)
+
+libdrm: libpciaccess
+	@$(RUN_TARGET)
+
+tcl:
+	@$(RUN_TARGET)
+
+pcre:
+	@$(RUN_TARGET)
+
+swig: pcre
+	@$(RUN_TARGET)
+
+yajl:
+	@$(RUN_TARGET)
+
+libev:
+	@$(RUN_TARGET)
+
+libevdev:
+	@$(RUN_TARGET)
+
+llvm:
+	@$(RUN_TARGET)
+
+cacert:
+	@$(RUN_TARGET)
+
+libxml2:
+	@$(RUN_TARGET)
+
+expect:
+	@$(RUN_TARGET)
+
+babl:
+	@$(RUN_TARGET)
+
+itstool:
+	@$(RUN_TARGET)
+
+libsigcpp:
+	@$(RUN_TARGET)
+
+yasm:
+	@$(RUN_TARGET)
+
+popt:
+	@$(RUN_TARGET)
+
+ruby:
+	@$(RUN_TARGET)
+
+ocl-icd: 
+	@$(RUN_TARGET)
+
+beignet:
+	@$(RUN_TARGET)
+
+clinfo:
+	@$(RUN_TARGET)
+
+clpeak:
+	@$(RUN_TARGET)
+
+ocl: ocl-icd beignet clinfo clpeak
+
 

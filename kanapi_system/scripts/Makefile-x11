@@ -9,25 +9,25 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-x11: x-support wm xapp
+x11: graphics x-support wm xapp
 
 x11-manual: vtwm ratpoison oclock xcalc xclock xconsole xedit oneko xeyes xload \
-	xmag xman xlunch st x11perf
+	xmag xman xlunch st x11perf xf86-video-s3 xf86-video-tseng
 
-x-support: graphics kbproto util-macros xproto xextproto libxcb xtrans inputproto \
+x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto \
 	libX11 libXext fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
 	bigreqsproto randrproto renderproto fontsproto videoproto compositeproto \
 	recordproto scrnsaverproto resourceproto xineramaproto xf86dgaproto \
-	xf86vidmodeproto dri2proto dri3proto glproto presentproto pixman libxkbfile \
+	xf86vidmodeproto dri2proto dri3proto glproto presentproto libxkbfile \
 	freetype libfontenc libXfont xkeyboard-config xkbcomp mkfontscale \
-	mkfontdir bdftopcf font-cursor-misc libdrm libxshmfence pci_ids \
-	cacert usbutils udev llvm mesa xcb-util-keysyms xinit libICE libSM \
-	libXt libXmu libevdev mtdev xorg-server xf86-input-keyboard \
+	mkfontdir bdftopcf font-cursor-misc libxshmfence \
+	mesa xcb-util-keysyms xinit libICE libSM \
+	libXt libXmu mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
 	xf86-video-modesetting fonts setxkbmap xinput libXft icons libXxf86vm libXScrnSaver ois \
-   	xf86-video-s3 xf86-video-tseng libXpm
+	libXpm
 
-graphics: tiff jpegsrc freeimage libpng
+graphics: jpegsrc tiff freeimage libpng pixman libpng14 exif 
 
 tiff:
 	@$(RUN_TARGET)
@@ -41,6 +41,8 @@ freeimage:
 libpng:
 	@$(RUN_TARGET)
 
+pixman:
+	@$(RUN_TARGET)
 
 kbproto:
 	@$(RUN_TARGET)
@@ -144,9 +146,6 @@ glproto:
 presentproto:
 	@$(RUN_TARGET)
 
-pixman:
-	@$(RUN_TARGET)
-
 libxkbfile:
 	@$(RUN_TARGET)
 
@@ -162,10 +161,7 @@ libfontenc: font-util
 libXfont: 
 	@$(RUN_TARGET)
 
-libxml2:
-	@$(RUN_TARGET)
-
-libxslt: libxml2
+libxslt:
 	@$(RUN_TARGET)
 
 xkeyboard-config: libxslt
@@ -186,36 +182,12 @@ bdftopcf: libfontenc
 font-cursor-misc: 
 	@$(RUN_TARGET)
 
-libpciaccess:
-	@$(RUN_TARGET)
-
-libdrm: libpciaccess
-	@$(RUN_TARGET)
-
 libxshmfence:
-	@$(RUN_TARGET)
-
-pci_ids:
-	@$(RUN_TARGET)
-
-cacert:
-	@$(RUN_TARGET)
-
-libusb:
-	@$(RUN_TARGET)
-
-usbutils: libusb
-	@$(RUN_TARGET)
-
-udev:
 	@$(RUN_TARGET)
 
 ifeq ($(KANAPI_TARGET),arm)
 llvm_ver=$(llvm3_3_ver)
 endif	
-
-llvm:
-	@$(RUN_TARGET)
 
 wayland-protocols: wayland
 	@$(RUN_TARGET)
@@ -223,10 +195,7 @@ wayland-protocols: wayland
 wayland:
 	@$(RUN_TARGET)
 
-libva:
-	@$(RUN_TARGET)
-
-mesa: wayland-protocols libva 
+mesa: wayland-protocols
 	@$(RUN_TARGET)
 
 xcb-util-keysyms:
@@ -245,9 +214,6 @@ libXt:
 	@$(RUN_TARGET)
 
 libXmu:
-	@$(RUN_TARGET)
-
-libevdev:
 	@$(RUN_TARGET)
 
 mtdev:
@@ -419,7 +385,6 @@ xinput: libXi libXrandr libXinerama
 libXft: 
 	@$(RUN_TARGET)
 
-
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
 libXcursor:
@@ -437,22 +402,7 @@ default-icon-theme:
 hicolor-icon-theme:
 	@$(RUN_TARGET)
 
-XML-NamespaceSupport:
-	@$(RUN_TARGET)
-
-XML-SAX-Base:
-	@$(RUN_TARGET)
-
-XML-SAX: XML-NamespaceSupport XML-SAX-Base
-	@$(RUN_TARGET)
-
-XML-SAX-Expat: XML-SAX
-	@$(RUN_TARGET)
-
-XML-Simple: XML-SAX-Expat
-	@$(RUN_TARGET)
-
-icon-naming-utils: XML-Simple
+icon-naming-utils:
 	@$(RUN_TARGET)
 
 cairo: 
@@ -460,7 +410,6 @@ cairo:
 
 icu4c:
 	@$(RUN_TARGET)
-
 
 harfbuzz: cairo icu4c
 	@$(RUN_TARGET)
@@ -503,9 +452,6 @@ ratpoison:
 dmenu:
 	@$(RUN_TARGET)
 
-libev:
-	@$(RUN_TARGET)
-
 xcb-util:
 	@$(RUN_TARGET)
 
@@ -530,13 +476,7 @@ xcb-util-xrm:
 libxkbcommon:
 	@$(RUN_TARGET)
 
-yajl:
-	@$(RUN_TARGET)
-
-pcre:
-	@$(RUN_TARGET)
-
-i3: libev startup-notification xcb-util xcb-util-cursor xcb-util-wm xcb-util-xrm libxkbcommon yajl pcre pango
+i3: startup-notification xcb-util xcb-util-cursor xcb-util-wm xcb-util-xrm libxkbcommon pango
 	@$(RUN_TARGET)
 
 #i3status: i3
@@ -661,19 +601,13 @@ xauth:
 	@$(RUN_TARGET)
 
 ifeq ($(KANAPI_TARGET),arm)
-tcl tk graphviz swig groff :
+tk graphviz groff :
 	true
 else
-tcl:
+tk:
 	@$(RUN_TARGET)
 
-tk: tcl
-	@$(RUN_TARGET)
-
-graphviz: swig
-	@$(RUN_TARGET)
-
-swig:
+graphviz: 
 	@$(RUN_TARGET)
 
 groff:
@@ -684,7 +618,7 @@ endif
 libpng14:
 	@$(RUN_TARGET)
 
-netpbm: libpng14
+netpbm:
 	@$(RUN_TARGET)
 
 xwd:
@@ -700,6 +634,12 @@ feh: imlib2
 	@$(RUN_TARGET)
 
 xlunch:
+	@$(RUN_TARGET)
+
+libexif:
+	@$(RUN_TARGET)
+
+exif: libexif
 	@$(RUN_TARGET)
 
 

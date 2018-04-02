@@ -31,10 +31,14 @@ export LDFLAGS="-lpthread"
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
-	--without-gallium-drivers --disable-gallium-llvm --with-dri-drivers="i915,i965,swrast" \
-	--with-platforms=x11,drm,wayland --enable-egl --enable-glx --enable-libunwind \
-	--enable-gles1 --enable-gles2 --enable-dri  --with-vulkan-drivers=intel --enable-llvm \
-	--enable-shared-glapi --enable-va --enable-glx-tls
+	--without-gallium-drivers --with-dri-drivers="i915,i965,swrast" \
+	--with-platforms=x11,drm --disable-egl --enable-glx --enable-libunwind \
+	--enable-dri --enable-llvm --enable-shared-glapi --disable-va --enable-glx-tls \
+	--disable-gles1 --disable-gles2
+	
+#--with-vulkan-drivers=intel 
+#--enable-gles1 --enable-gles2 
+#--with-platforms=wayland
 #	--enable-opencl --enable-opencl-icd --with-gallium-drivers="i915,i965,svga,swrast" 
 # 	--disable-llvm-shared-libs
 }

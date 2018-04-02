@@ -45,7 +45,7 @@ pkg_configure() {
 }
 
 pkg_build() {
-#	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
-	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true utests utest_run
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+#	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true utests utest_run
 }
 
