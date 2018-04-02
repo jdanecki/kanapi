@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -50,7 +50,7 @@ pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX -v -opensource -confirm-license \
 	-qt-xcb -qt-pcre -qt-zlib -qt-libpng \
 	-qt-libjpeg  -pkg-config -icu -gui -qt-xkbcommon -qt-pcre \
-	-lrt  -ldl -lpthread -lresolv -lglapi -lEGL \
+	-lrt  -ldl -lpthread -lresolv -lglapi \
 	${LDFLAGS} ${CFLAGS}
 
 	#-L/kanapi_packages/gstreamer-0.10.36/lib  \
