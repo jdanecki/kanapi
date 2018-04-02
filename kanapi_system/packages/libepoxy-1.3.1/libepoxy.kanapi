@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -24,8 +24,19 @@ EXT=tar.bz2
 #build depends on
 . ../settings
 
+pkg_configure() {
+	local_copy
+	sed -i "s@build_egl=yes@build_egl=no@" configure
+	sed -i "s@#define PLATFORM_HAS_EGL 1@//#define PLATFORM_HAS_EGL 1@" src/dispatch_common.h
+	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+}
+
+pkg_build() {
+	pkg_build_local
+}
+
 pkg_install() {
-	pkg_install_pc_all
-	pkg_install_libs
+	cd build 
+	pkg_install_pc_all && pkg_install_libs
 }
 
