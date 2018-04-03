@@ -54,6 +54,7 @@ RESULTS[12]=$?
 # disks tests
 
 iotop
+#netlinkerror in docker
 RESULTS[13]=$?
 
 # network tests
@@ -63,8 +64,9 @@ RESULTS[14]=$?
 
 # music tests
 
-qjackctl
-RESULTS[15]=$?
+#qjackctl
+#hangs in docker
+#RESULTS[15]=$?
 
 csoundqt
 RESULTS[16]=$?
@@ -83,4 +85,3 @@ do
 		echo "error in $r = ${RESULTS[$r]}"
 	fi
 done
-
