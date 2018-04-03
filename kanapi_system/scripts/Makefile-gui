@@ -6,7 +6,7 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-gui:  gtk+ dconf gtk3+ qt-everywhere-opensource-src 
+gui:  gtk+ dconf gtk3+ qt-everywhere-opensource-src dbus-glib
 
 atk:
 	@$(RUN_TARGET)

@@ -1,7 +1,6 @@
 These packages are still in KaNaPi repository, but are not built automatically.
 They can be built manually when needed.
 
-dbus-glib-0.108
 dtc-1.4.2
 firefox
 gcc-4.9.4
@@ -16,7 +15,6 @@ imake-1.0.7
 intel-gpu-tools-1.21
 libpng-1.2.59
 libsoup-2.57.1
-libXcomposite-0.4.4
 libyasm
 linux-4.14.2
 linux-4.9.8

@@ -201,7 +201,7 @@ ifeq ($(KANAPI_TARGET),arm)
 xflame water qemu gimp apps_qt webkitgtk:
 	true
 else
-webkitgtk: libwebp libsoup libXcomposite glib-networking
+webkitgtk: libwebp libsoup glib-networking
 	@$(RUN_TARGET)
 
 apps_qt: qt-creator vym qjackctl csoundqt musescore
@@ -252,9 +252,6 @@ libsoup:
 	@$(RUN_TARGET)
 
 glib-networking:
-	@$(RUN_TARGET)
-
-libXcomposite:
 	@$(RUN_TARGET)
 
 libwebp:
