@@ -45,17 +45,30 @@
 <tr> <td> <a target="_blank" href="https://app.shippable.com/github/jdanecki/kanapi-dockers/dashboard">Shippable</a> <td> <a href="https://github.com/jdanecki/kanapi-dockers" target="_blank">KaNaPi dockers</a> <td> sbs <td> docker <td> 33 sec </tr>
 <tr> <td> <a target="_blank" href="https://travis-ci.org/jdanecki/kanapi-dockers">Travis</a> <td> <a href="https://github.com/jdanecki/kanapi-dockers" target="_blank">KaNaPi dockers </a> <td> kanapi-sbs:ci <td> docker <td> </tr>
 
-<tr> <td> <a target="_blank" href="https://travis-ci.org/jdanecki/kanapi-dockers">Travis</a> <td> <a href="https://github.com/jdanecki/kanapi-dockers" target="_blank">KaNaPi dockers </a> <td> bbs from kanapi-sbs:ci<td> docker <td>36 min </tr>
+<tr> <td> <a target="_blank" href="https://travis-ci.org/jdanecki/kanapi-dockers">Travis</a> <td> <a href="https://github.com/jdanecki/kanapi-dockers" target="_blank">KaNaPi dockers </a> <td> bbs from kanapi/kanapi-sbs<td> docker <td>36 min </tr>
 
 <tr> <td> <a target="_blank" href="https://semaphoreci.com/jdanecki/kanapi-dockers/branches/master">SemaphoreCI</a> <td> <a href="https://github.com/jdanecki/kanapi-dockers" target="_blank">KaNaPi dockers</a>  <td> cli from kanapi/kanapi-bbs<td> docker <td>1 hour </tr>
 <tr> <td> <a target="_blank" href="https://app.shippable.com/github/jdanecki/kanapi-dockers/dashboard">Shippable</a> <td> <a href="https://github.com/jdanecki/kanapi-dockers" target="_blank">KaNaPi dockers</a> <td> cli-base from kanapi/kanapi-bbs <td> docker <td> 42 min </tr>
 
 <tr> <td> <a target="_blank" href="https://semaphoreci.com/jdanecki/kanapi-dockers/branches/master">SemaphoreCI</a> <td> <a href="https://github.com/jdanecki/kanapi-dockers" target="_blank">KaNaPi dockers</a> <td> x11 from kanapi/kanapi-cli<td> docker <td>43 min </tr>
-
-<tr> <td> <a target="_blank" href="https://semaphoreci.com/jdanecki/kanapi-dockers/branches/master">SemaphoreCI</a> <td> <a href="https://github.com/jdanecki/kanapi-dockers" target="_blank">KaNaPi dockers</a> <td> gui from kanapi/kanapi-x11<td> docker <td> no space left on device </tr>
-
 </table>
 
+<h3>KaNaPi-GUI additional repository</h3>
+
+<table border=1>
+<tr>
+	<th>Build system</th> 
+	<th>repository</th> 
+	<th>targets</th>
+	<th>config</hth>
+	<th>build time</th>
+
+</tr>
+
+<tr> <td> <a target="_blank" href="https://semaphoreci.com/jdanecki/kanapi-gui/branches/master">SemaphoreCI</a> <td> <a href="https://github.com/jdanecki/kanapi-gui" target="_blank">KaNaPi GUI</a> <td> x11 from kanapi/kanapi-cli<td> docker <td>  43 min</tr>
+<tr> <td> <a target="_blank" href="https://semaphoreci.com/jdanecki/kanapi-gui/branches/master">SemaphoreCI</a> <td> <a href="https://github.com/jdanecki/kanapi-gui" target="_blank">KaNaPi GUI</a> <td> gui-gtk from kanapi/kanapi-x11<td> docker <td> 17 min </tr>
+<tr> <td> <a target="_blank" href="https://semaphoreci.com/jdanecki/kanapi-gui/branches/master">SemaphoreCI</a> <td> <a href="https://github.com/jdanecki/kanapi-gui" target="_blank">KaNaPi GUI</a> <td> gui-qt from kanapi/kanapi-x11<td> docker <td> no space left on device [5GB limit] </tr>
+</table>
 
 <h3>Configurations sorted by Provider</h3>
 
