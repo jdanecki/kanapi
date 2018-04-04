@@ -1,4 +1,4 @@
-FROM kanapi/kanapi-cli
+FROM kanapi/kanapi-x11
 MAINTAINER Jacek Danecki <jacek.m.danecki@gmail.com>
 COPY kanapi /kanapi_build/kanapi
 ENV CI="true"
