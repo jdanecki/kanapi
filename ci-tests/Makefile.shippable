@@ -1,7 +1,7 @@
 all: cli-docker
 
 cli-docker:
-	cd cli ; ./build
+	cd cli-base ; ./build
 
 all_chroot: bbs_sbs t_compression t_system
 

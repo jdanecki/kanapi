@@ -9,7 +9,9 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-cli: t_compression t_system devel vim bc sound ocl
+cli: cli-base llvm ocl
+
+cli-base: t_compression t_system devel vim bc sound
 
 linux:
 	@$(RUN_TARGET)
@@ -149,7 +151,7 @@ enet:
 Hermes:
 	@$(RUN_TARGET)
 
-devel: patchelf cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua tcl swig yajl llvm ruby \
+devel: patchelf cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua tcl swig yajl ruby \
 	database xml expect babl itstool libsigcpp yasm popt
 
 gdb:
