@@ -13,7 +13,7 @@ x11: x11-lib wm xapp
 
 x11-lib: graphics x-support
 
-x11-manual: vtwm ratpoison oclock xcalc xclock xconsole xedit oneko xeyes xload \
+x11-manual: wayland-protocols vtwm ratpoison oclock xcalc xclock xconsole xedit oneko xeyes xload \
 	xmag xman xlunch st x11perf xf86-video-s3 xf86-video-tseng
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto \
@@ -197,7 +197,7 @@ wayland-protocols: wayland
 wayland:
 	@$(RUN_TARGET)
 
-mesa: wayland-protocols
+mesa:
 	@$(RUN_TARGET)
 
 xcb-util-keysyms:
