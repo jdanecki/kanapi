@@ -11,7 +11,9 @@ include $(BASE)../scripts/Makefile.common
 
 cli: cli-base llvm ocl
 
-cli-base: t_compression t_system devel vim bc sound
+cli-base: t_compression t_system devel vim bc sound 
+
+cli-lib: pci_ids libusb udev libdrm libev libevdev cacert libsigcpp sound
 
 linux:
 	@$(RUN_TARGET)

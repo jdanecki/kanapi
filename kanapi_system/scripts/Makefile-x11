@@ -9,7 +9,9 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-x11: graphics x-support wm xapp
+x11: x11-lib wm xapp
+
+x11-lib: graphics x-support
 
 x11-manual: vtwm ratpoison oclock xcalc xclock xconsole xedit oneko xeyes xload \
 	xmag xman xlunch st x11perf xf86-video-s3 xf86-video-tseng
