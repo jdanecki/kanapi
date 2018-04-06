@@ -8,8 +8,9 @@ if [ ! -d ${HOME}/src ] ; then mkdir ${HOME}/src ; fi
 if [ ! -d kanapi ] 
 then 
 	if [ "${USE_LOCAL}" = "1" ] 
-	then 
-		git clone ../../../../../kanapi kanapi
+	then
+	   REPO_BASE=`pwd | sed "s@/kanapi_system/docker/.*/interactive@@"`
+		git clone ${REPO_BASE} kanapi
 	else
 		git clone https://github.com/jdanecki/kanapi.git kanapi
 	fi
