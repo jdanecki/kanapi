@@ -6,10 +6,18 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-apps: sdl-support apps_gtk apps_gtk3 apps_qt sdl2-support libmikmod video graphics-apps ogl \
+apps: sdl apps-gtk apps-qt libmikmod video graphics-apps ogl \
 	game_engine
 
+apps-gtk: apps_gtk apps_gtk3 sdl Blue qiv
+
+apps-qt: apps_qt
+
+apps-x11: mpv
+
 apps-manual: tests webkitgtk demo midori firefox compilers
+
+sdl: sdl-support sdl2-support
 
 sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib SDL-widgets
 
@@ -163,7 +171,7 @@ libmad:
 
 video: Blue mpv libmad
 
-graphics-apps: qiv opencv exif
+graphics-apps: qiv opencv 
 
 qiv:
 	@$(RUN_TARGET)
