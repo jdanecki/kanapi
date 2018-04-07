@@ -223,11 +223,21 @@ pkg_curl() {
 		echo "$PACKAGE_NAME: already downloaded"
 	else
 		echo "downloading ${PACKAGE_NAME} from ${PACKAGE_LINK}"
-		curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+		if [ "${CODESHIP}" = "TRUE" ]
+		then
+			curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+		else
+			curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+		fi
 		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 		then 
 			echo "downloading ${PACKAGE_NAME} again"
-			curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+			if [ "${CODESHIP}" = "TRUE" ]
+			then
+				curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+			else
+				curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+			fi
 		fi
 		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 		then
@@ -239,7 +249,12 @@ pkg_curl() {
 				true
 			else
 				echo "downloading ${PACKAGE_NAME} once again"
-				curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				if [ "${CODESHIP}" = "TRUE" ]
+				then
+					curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				else
+					curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				fi
 				if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 				then
 					false
