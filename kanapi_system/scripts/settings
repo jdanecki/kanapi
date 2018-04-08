@@ -433,6 +433,7 @@ pkg_install_make() {
 
 
 pkg_install() {
+	mkdir -p ${PREFIX}
 	pkg_install_make
 }	
 
