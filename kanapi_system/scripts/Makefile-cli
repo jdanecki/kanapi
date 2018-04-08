@@ -154,7 +154,7 @@ enet:
 Hermes:
 	@$(RUN_TARGET)
 
-devel: patchelf cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr makefile2graph scons lua tcl swig yajl ruby \
+devel: patchelf cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr Hermes pci_ids makefile2graph scons lua tcl swig yajl ruby \
 	database xml expect babl itstool libsigcpp yasm popt
 
 gdb:
@@ -182,7 +182,7 @@ lua:
 	@$(RUN_TARGET)
 
 
-apps_txt: gzip mc vim kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget rplay \
+apps_txt: gzip mc vim kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget usbutils rplay \
 	ntfs-3g_ntfsprogs unrar
 
 sound: rplay alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins sndio portaudio fluidsynth libmodplug openal-soft

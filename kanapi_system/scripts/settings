@@ -596,7 +596,7 @@ check_script() {
 			false
 		fi 
 	else
-		false
+		true
 	fi
 }
 
@@ -655,6 +655,7 @@ verify_file() {
 		text/plain) echo "text file"
 				check_script $1
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
+				VERIFIED=1
 				;;
 		text/x-python) echo "python script"
 				check_script $1
@@ -689,7 +690,7 @@ pkg_verify() {
 	if [ ! -d ${PREFIX} ]
 	then
 		echo "directory ${PREFIX} missing"
-		exit 2
+		exit 0
 	fi
 
 	if [ -d "${PREFIX}/share/man" ] ; then rm -r ${PREFIX}/share/man; fi
@@ -714,9 +715,16 @@ pkg_verify() {
 		if [ -f $f ]
 		then
 			verify_file $f
+			if [ "$?" != "0" ]
+			then
+				exit 1
+			fi
 		fi
 	done
-
+	for f in download prepare configure build install verify
+	do
+		if [ ! -f kanapi_${f} ] ; then /bin/date > kanapi_${f} ; fi
+	done
 }
 
 pkg_rm_docker_wa() {

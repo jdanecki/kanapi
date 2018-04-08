@@ -12,7 +12,7 @@ include ${BASE}../scripts/Makefile-x11
 include ${BASE}../scripts/Makefile-gui
 include ${BASE}../scripts/Makefile-apps
 
-all: required optional
+all: required cli x11 gui apps optional
 
 required: $(COMPILERS) rootfs bbs
 
