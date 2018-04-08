@@ -145,7 +145,7 @@ SDL2_mixer:
 SDL2_net:
 	@$(RUN_TARGET)
 
-MPlayer:
+MPlayer: yasm
 	@$(RUN_TARGET)
 
 Blue: MPlayer
