@@ -458,3 +458,4 @@ ImageMagick_ver=7.0.7-28
 ltrace_ver=82c6640
 alsa_oss_ver=1.1.6
 cpio_ver=2.12
+rsync_ver=3.1.3

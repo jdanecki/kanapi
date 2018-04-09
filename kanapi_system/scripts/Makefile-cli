@@ -143,7 +143,7 @@ nettle:
 wget: gnutls
 	@$(RUN_TARGET)
 
-network: iproute2 enet
+network: iproute2 enet rsync
 
 iproute2:
 	@$(RUN_TARGET)
@@ -368,5 +368,8 @@ alsa-oss:
 	@$(RUN_TARGET)
 
 cpio:
+	@$(RUN_TARGET)
+
+rsync:
 	@$(RUN_TARGET)
 
