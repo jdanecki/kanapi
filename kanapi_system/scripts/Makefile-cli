@@ -53,7 +53,7 @@ xz:
 
 t_system: mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
 	wireless_tools wpa_supplicant dhcp wget network Hermes pci_ids usbutils udev libdrm libev libevdev \
-	cacert
+	cacert cpio
 
 mc:  gpm
 	@$(RUN_TARGET)
@@ -365,5 +365,8 @@ clpeak:
 ocl: ocl-icd beignet clinfo clpeak
 
 alsa-oss:
+	@$(RUN_TARGET)
+
+cpio:
 	@$(RUN_TARGET)
 
