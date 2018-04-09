@@ -1,4 +1,4 @@
-#Docker images versions (full)
+# Docker images versions (full)
 
 * sbs:3
 * bbs:6
@@ -7,7 +7,7 @@
 * gui:3
 * apps:3
 
-#Docker images versions (for CI testing)
+# Docker images versions (for CI testing)
 
 * cli-lib:3
 * x11-lib:3
