@@ -185,7 +185,7 @@ lua:
 apps_txt: gzip mc vim kmod procps-ng bc pciutils wireless_tools wpa_supplicant dhcp screen sdparm iotop wget usbutils rplay \
 	ntfs-3g_ntfsprogs unrar
 
-sound: rplay alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins sndio portaudio fluidsynth libmodplug openal-soft
+sound: rplay alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins alsa-oss sndio portaudio fluidsynth libmodplug openal-soft
 
 alsa-lib:
 	@$(RUN_TARGET)
@@ -364,4 +364,6 @@ clpeak:
 
 ocl: ocl-icd beignet clinfo clpeak
 
+alsa-oss:
+	@$(RUN_TARGET)
 
