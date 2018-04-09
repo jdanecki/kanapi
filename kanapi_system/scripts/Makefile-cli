@@ -53,7 +53,7 @@ xz:
 
 t_system: mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
 	wireless_tools wpa_supplicant dhcp wget network Hermes pci_ids usbutils udev libdrm libev libevdev \
-	cacert cpio
+	cacert cpio hdparm
 
 mc:  gpm
 	@$(RUN_TARGET)
@@ -374,5 +374,8 @@ rsync:
 	@$(RUN_TARGET)
 
 lynx:
+	@$(RUN_TARGET)
+
+hdparm:
 	@$(RUN_TARGET)
 

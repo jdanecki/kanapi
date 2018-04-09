@@ -57,4 +57,3 @@ package3: package2 package4
 
 package-test:
 	@$(RUN_TARGET)
-
