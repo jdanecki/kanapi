@@ -10,37 +10,64 @@
 <h3>About KaNaPi</h3>
 
 It's a free, educational operating system based on Linux created from scratch.
-<br>KaNaPi is distributed as build system, which allows you to build your own operating system.
-
-<h4>KaNaPi KS</h4>
-
-The new version of KaNaPi, allows you to create packages (above 530 at this moment) for 3 architectures x86, x86_64 and arm.
-Recently main focus switched to x86_64 architecture only.
-<br>The build system contains dependencies, so you can create the whole Linux by running only few commands.
-<br>Sources are downloaded automatically and then built.  
+<br>KaNaPi main distribution model is by providing build system in source code, what allows you to create your own operating system.
+<br>Packages can be built for 3 architectures x86, x86_64 and arm.
+<br>The build system contains dependencies, so you can create the whole Linux system by running only few commands.
+<br>Sources are downloaded automatically and then built and installed.
 <br>There are also binary drops available on Source Forge for x86/x86_64, wm8650, Raspberry Pi for tests.
-<br>
-<a href="https://github.com/jdanecki/kanapi/tree/master/kanapi_system/packages">  The list of packages in KaNaPi KS</a>
+<br>On docker hub you can find docker images with specific parts of KaNaPi system.
 
+<p>
+<b>KaNaPi and other Linux distributions</b>
+<ul>
+	<li> KaNaPi contains only selected packages mainly for use at home.</li>
+	<li> Each package is installed in separate directory (similar to <a href="https://www.gobolinux.org"> GoboLinux</a>,
+	   but in KaNaPi each version of specific package is located in separate directory in /kanapi_0.9/x86_64/packages. 
+	   For example: 
+		<ul>
+			<li> /kanapi_0.9/x86_64/package/gcc-4.9.4 </li>
+			<li> /kanapi_0.9/x86_64/package/gcc-5.5.0 </li>
+			<li> /kanapi_0.9/x86_64/package/gcc-6.4.0 </li>
+			<li> /kanapi_0.9/x86_64/package/gcc-7.2.0 </li>
+		</ul>
+	</li>
+	<li> /etc directory contains only few files. Configuration for specific package is available in package directory or in XDG directories.
+<pre># ls  /etc  
+group  modprobe.conf  netconfig      OpenCL  resolv.conf
+hosts  mtab           nsswitch.conf  passwd  services
+</pre>
+	</li>
+	<li>To start system kernel executes simple /init script written in bash. There is not <b>systemd</b>, nor any other service manager. </li>
+	<li>There is only one user: <b>kanapi</b> with admin privileges, passwords are not needed, so you don't have to login</li>
+	<li>There are additional text consoles executed by <b>openvt</b>. If you need more, <b>screen</b> is provided</li>
+	<li>There is not GDM, lightgdm, nor any other display manager to login to GUI</li>
+	<li><b>i3</b> is provided as main window manager. Scripts for <b>vtvm</b> or <b>ratpoison</b> are also provided. Support for <b>XFCE</b> was dropped.</li>
+	<li>To run applications compiled outside KaNaPi linker in /lib64/ld-linux-x86-64.so.2 points at /kanapi_0.9/x86_64/packages/glibc-2.23/lib64/ld-linux-x86-64.so.2</li>
+	<li>To simplify build process:
+		<ul>
+			<li>/usr/local/include directory contains links to all headers from packages installed in the system</li>
+			<li>/kanapi_0.9/x86_64/packages/libs directory contains links to all libraries from packages installed in the system</li>
 
-<h4>KaNaPi KBS - obsoleted in v0.9 </h4>
-
-The first version of KaNaPi allows you to create about 600 packages.
-<br>Each package is being built by separate script executed manually.
-<br>This version was tested on x86 architecture.
-<br>
-<a href="packages_kbs.txt"> The list of packages in KaNaPi KBS</a>
-<br>
-<a href="groups.html"> The list of packages groups in KaNaPi KBS</a>
+		</ul>
+	</li>
+	<li><b>pkg-config</b> is main source of information about installed packages, and parameters needed for compilation </li>
+	<li><b>pkg</b> script helps to synchronize binary packages from SourceForge</li>
+	<li><b>pkg_kanapi</b> is low level script to work with packages sources, configuration, installation and verification</li>
+	<li>Build system is based on <b>Makefile</b> files and bash scripts</li>
+	<li>KaNaPi provides scripts to run another Linux distributions or only one application inside chroot or qemu</li>
+</ul>
 
 <p>
 <b>Documentation</b>
 <p>
-    <a href="https://github.com/jdanecki/kanapi/blob/master/doc/changelog" target="_blank"> Changelog</a>
-<br><a href="https://github.com/jdanecki/kanapi/blob/master/doc/BUILD" target="_blank">Build instructions</a>
-<br><a href="https://github.com/jdanecki/kanapi/blob/master/doc/INSTALL_i686" target="_blank">Installation of binary drop for x86 architecture</a>
-<br><a href="https://github.com/jdanecki/kanapi/blob/master/doc/INSTALL_x86_64" target="_blank">Installation of binary drop for x86_64 architecture</a>
-
+<ul>
+<li><a href="http://kanapi-project.blogspot.com/2018/03/different-ways-to-build-kanapi-linux.html" target="_blank"> Different ways to build KaNaPi</a>
+<li><a href="https://github.com/jdanecki/kanapi/blob/master/doc/changelog" target="_blank"> Changelog</a>
+<li><a href="https://github.com/jdanecki/kanapi/blob/master/doc/BUILD" target="_blank">Build instructions</a>
+<li><a href="https://github.com/jdanecki/kanapi/blob/master/kanapi_system/docker/README.txt" target="_blank"> KaNaPi in docker images</a>
+<li><a href="https://github.com/jdanecki/kanapi/blob/master/doc/INSTALL_i686" target="_blank">Installation of binary drop for x86 architecture</a>
+<li><a href="https://github.com/jdanecki/kanapi/blob/master/doc/INSTALL_x86_64" target="_blank">Installation of binary drop for x86_64 architecture</a>
+</ul>
 </body>
 </html>
 
