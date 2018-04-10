@@ -22,12 +22,12 @@ VER=2.8.8rel.2
 URL="http://invisible-mirror.net/archives/lynx/tarballs"
 EXT=tar.bz2
 #build depends on
-LIB_DEPENDS="ncurses"
+LIB_DEPENDS=""
 
 . ../settings
 
-#export LDFLAGS="${LDFLAGS} "
-#export CFLAGS="${CFLAGS} "
+export LDFLAGS="${LDFLAGS} `ncurses5-config --libs`"
+export CFLAGS="${CFLAGS} `ncurses5-config --cflags`"
 
 pkg_download() {
 	PACKAGE_FILENAME=${PACKAGE_NAME}-${VER}.${EXT}
