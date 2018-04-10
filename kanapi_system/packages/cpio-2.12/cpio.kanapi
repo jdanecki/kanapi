@@ -29,6 +29,13 @@ EXT=tar.bz2
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
+pkg_configure_target() {	
+ 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+ 	RESULT=$? 
+	pkg_rm_docker_wa
+ 	return $RESULT
+}
+
 pkg_install() {
 	pkg_install_make && pkg_install_bin_all
 }
