@@ -22,7 +22,7 @@ VER=2.8.8rel.2
 URL="http://invisible-mirror.net/archives/lynx/tarballs"
 EXT=tar.bz2
 #build depends on
-#LIB_DEPENDS=""
+LIB_DEPENDS="ncurses"
 
 . ../settings
 
