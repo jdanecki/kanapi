@@ -51,6 +51,10 @@ pkg_configure() {
 
 pkg_build() {
  	cd build
+	if [ "${CI}" = "true" ]
+	then 
+		MAKE_JOBS=4
+	fi
 	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF"
 }
 
