@@ -212,7 +212,7 @@ else
 webkitgtk: libwebp libsoup glib-networking
 	@$(RUN_TARGET)
 
-apps_qt: qt-creator vym qjackctl csoundqt musescore
+apps_qt: qt-creator vym qjackctl csoundqt musescore vlc
 
 dtc:
 	@$(RUN_TARGET)
@@ -298,4 +298,6 @@ compilers: binutils gcc_5 gcc_6 gcc_7
 libmikmod:
 	@$(RUN_TARGET)
 
+vlc:
+	@$(RUN_TARGET)
 
