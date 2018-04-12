@@ -41,7 +41,6 @@ pkg_build() {
 
 pkg_install() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} install INSTALL_TOP=${PREFIX}
-	pkg_install_bin_all && pkg_install_libs
+	${MAKE} -j ${MAKE_JOBS} install INSTALL_TOP=${PREFIX} && pkg_install_bin_all && pkg_install_libs
 }
 

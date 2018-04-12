@@ -291,7 +291,7 @@ compilers: binutils gcc_5 gcc_6 gcc_7
 libmikmod:
 	@$(RUN_TARGET)
 
-vlc: opencv
+vlc: opencv lua
 	@$(RUN_TARGET)
 
 feh:
