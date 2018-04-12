@@ -9,10 +9,10 @@
 
 # Docker images versions (for CI testing)
 
-* cli-lib:3
-* x11-lib:3
-* gtk:3
-* qt:3
+* cli-lib:4
+* x11-lib:4
+* gtk:4
+* qt:4
 * apps-gtk:1
 * apps-qt:1
 
