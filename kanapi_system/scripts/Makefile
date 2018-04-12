@@ -16,9 +16,8 @@ all: required cli x11 gui apps optional
 
 required: $(COMPILERS) rootfs bbs
 
-optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gtk apps_gtk3 \
-	apps_qt webkitgtk database nfs video sdl2-support graphics-apps ogl ocl network game_engine \
-	demo
+optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps-gtk \
+	apps-qt apps-x11 webkitgtk database nfs sdl2-support ogl ocl network demo
 
 graph: required_graph optional_graph
 
