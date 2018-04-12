@@ -144,13 +144,13 @@ SDL2_mixer:
 SDL2_net:
 	@$(RUN_TARGET)
 
-MPlayer: yasm
+MPlayer:
 	@$(RUN_TARGET)
 
 Blue: MPlayer
 	@$(RUN_TARGET)
 
-x264:
+x264: yasm
 	@$(RUN_TARGET)
 
 ffmpeg: x264 
