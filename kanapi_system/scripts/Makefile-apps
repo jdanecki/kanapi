@@ -8,7 +8,7 @@ include $(BASE)../scripts/Makefile.common
 
 apps: apps-gtk apps-qt apps-x11
 
-apps-libs: libmikmod libmad openv sdl libva-intel-driver ffmpeg ogl sdl
+apps-libs: libmikmod libmad opencv sdl libva-intel-driver ffmpeg ogl sdl
 
 apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro
 
