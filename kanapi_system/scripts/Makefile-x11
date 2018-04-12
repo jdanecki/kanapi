@@ -490,7 +490,7 @@ i3blocks: dmenu i3
 
 xapp: xfd xterm bitmap showfont xbacklight xdriinfo \
    xdpyinfo xev xhost xkill xfontsel xmodmap xrandr xset xsetroot \
-   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo feh 
+   xsetpointer xvinfo xauth tk graphviz groff netpbm xwd xwininfo
 
 libXaw:
 	@$(RUN_TARGET)
@@ -631,9 +631,6 @@ xwininfo:
 	@$(RUN_TARGET)
 
 imlib2:
-	@$(RUN_TARGET)
-
-feh: imlib2
 	@$(RUN_TARGET)
 
 xlunch:

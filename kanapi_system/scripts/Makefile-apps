@@ -6,14 +6,15 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-apps: sdl apps-gtk apps-qt libmikmod video graphics-apps ogl \
-	game_engine
+apps: apps-gtk apps-qt apps-x11
 
-apps-gtk: apps_gtk apps_gtk3 sdl Blue qiv
+apps-libs: libmikmod libmad openv sdl libva-intel-driver ffmpeg ogl sdl
 
-apps-qt: apps_qt
+apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro
 
-apps-x11: mpv
+apps-qt: apps-libs apps_qt
+
+apps-x11: apps-libs mpv ClanLib bullet3 feh ogre
 
 apps-manual: tests webkitgtk demo midori firefox compilers
 
@@ -79,7 +80,6 @@ glew:
 mesa-demos: glew
 	@$(RUN_TARGET)
 
-apps_gtk: gimp gvim
 
 json-glib:
 	@$(RUN_TARGET)
@@ -93,7 +93,6 @@ gimp: gegl
 gvim:
 	@$(RUN_TARGET)
 
-apps_gtk3: evince pavucontrol
 
 poppler:
 	@$(RUN_TARGET)
@@ -157,21 +156,17 @@ x264:
 ffmpeg: x264 
 	@$(RUN_TARGET)
 
-libva-intel-driver:
+libva-intel-driver: libva
 	@$(RUN_TARGET)
 
 libva:
 	@$(RUN_TARGET)
 
-mpv: libva libva-intel-driver ffmpeg
+mpv:
 	@$(RUN_TARGET)
 
 libmad:
 	@$(RUN_TARGET)
-
-video: Blue mpv libmad
-
-graphics-apps: qiv opencv 
 
 qiv:
 	@$(RUN_TARGET)
@@ -187,12 +182,11 @@ freeglut: glu
 
 ogl: freeglut
 
-game_engine: ClanLib allegro physfs bullet3 ogre 
 
 ClanLib:
 	@$(RUN_TARGET)
 
-allegro:
+allegro: physfs
 	@$(RUN_TARGET)
 
 physfs:
@@ -201,9 +195,8 @@ physfs:
 bullet3:
 	@$(RUN_TARGET)
 
-ogre:
+ogre: sdl
 	@$(RUN_TARGET)
-
 
 ifeq ($(KANAPI_TARGET),arm)
 xflame water qemu gimp apps_qt webkitgtk:
@@ -212,7 +205,7 @@ else
 webkitgtk: libwebp libsoup glib-networking
 	@$(RUN_TARGET)
 
-apps_qt: qt-creator vym qjackctl csoundqt musescore
+apps_qt: qt-creator vym qjackctl csoundqt musescore vlc
 
 dtc:
 	@$(RUN_TARGET)
@@ -298,4 +291,9 @@ compilers: binutils gcc_5 gcc_6 gcc_7
 libmikmod:
 	@$(RUN_TARGET)
 
+vlc:
+	@$(RUN_TARGET)
+
+feh:
+	@$(RUN_TARGET)
 
