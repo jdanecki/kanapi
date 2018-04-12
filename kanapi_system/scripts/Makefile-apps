@@ -195,7 +195,7 @@ physfs:
 bullet3:
 	@$(RUN_TARGET)
 
-ogre: sdl
+ogre: sdl libXaw
 	@$(RUN_TARGET)
 
 ifeq ($(KANAPI_TARGET),arm)
