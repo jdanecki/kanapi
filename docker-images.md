@@ -13,6 +13,6 @@
 * x11-lib:4
 * gtk:4
 * qt:4
-* apps-gtk:1
-* apps-qt:1
-
+* apps-gtk:2
+* apps-qt:2
+* apps-x11:1
