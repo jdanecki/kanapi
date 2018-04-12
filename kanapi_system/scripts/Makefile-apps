@@ -8,7 +8,7 @@ include $(BASE)../scripts/Makefile.common
 
 apps: apps-gtk apps-qt apps-x11
 
-apps-libs: libmikmod libmad sdl libva-intel-driver ffmpeg ogl sdl
+apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl
 
 apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro
 
@@ -80,7 +80,6 @@ glew:
 mesa-demos: glew
 	@$(RUN_TARGET)
 
-
 json-glib:
 	@$(RUN_TARGET)
 
@@ -92,7 +91,6 @@ gimp: gegl
 
 gvim:
 	@$(RUN_TARGET)
-
 
 poppler:
 	@$(RUN_TARGET)
@@ -181,7 +179,6 @@ freeglut: glu
 	@$(RUN_TARGET)
 
 ogl: freeglut
-
 
 ClanLib:
 	@$(RUN_TARGET)
