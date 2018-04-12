@@ -14,7 +14,7 @@ cli: cli-base llvm ocl
 cli-base: t_compression t_system devel vim bc sound 
 
 cli-lib: pci_ids libusb udev libdrm libev libevdev cacert libsigcpp sound popt llvm babl \
-	itstool gnutls
+	itstool gnutls lua yasm
 
 linux:
 	@$(RUN_TARGET)
