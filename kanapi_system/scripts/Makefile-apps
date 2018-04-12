@@ -8,7 +8,7 @@ include $(BASE)../scripts/Makefile.common
 
 apps: apps-gtk apps-qt apps-x11
 
-apps-libs: libmikmod libmad opencv sdl libva-intel-driver ffmpeg ogl sdl
+apps-libs: libmikmod libmad sdl libva-intel-driver ffmpeg ogl sdl
 
 apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro
 
@@ -291,7 +291,7 @@ compilers: binutils gcc_5 gcc_6 gcc_7
 libmikmod:
 	@$(RUN_TARGET)
 
-vlc:
+vlc: opencv
 	@$(RUN_TARGET)
 
 feh:
