@@ -6,7 +6,7 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-apps: apps-gtk apps-qt apps-x11
+apps: apps-gtk apps-qt apps-x11 vlc
 
 apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl
 
@@ -202,7 +202,7 @@ else
 webkitgtk: libwebp libsoup glib-networking
 	@$(RUN_TARGET)
 
-apps_qt: qt-creator vym qjackctl csoundqt musescore vlc
+apps_qt: qt-creator vym qjackctl csoundqt musescore
 
 dtc:
 	@$(RUN_TARGET)
