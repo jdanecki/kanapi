@@ -53,7 +53,7 @@ pkg_build() {
  	cd build
 	if [ "${CI}" = "true" ]
 	then 
-		export MAKE_JOBS=2
+		export MAKE_JOBS=1
 	fi
 	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF"
 }
