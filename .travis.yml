@@ -9,8 +9,10 @@ matrix:
     include:
         - env: "job1"
             script:
-                - ./configure && make -C ci-tests job1
+                - ./configure
+                - make -C ci-tests job1
         - env: "job2"
             script:
-                - ./configure && make -C ci-tests job2
+                - ./configure
+                - make -C ci-tests job2
 
