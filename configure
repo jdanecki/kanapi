@@ -40,7 +40,8 @@ link_makefile() {
 		else
 			echo "TRAVIS"
 			KANAPI_CURDIR=`pwd`
-			KANAPI_REPO=`dirname ${KANAPI_CURDIR}`
+			KANAPI_REPO_DIR=`dirname ${KANAPI_CURDIR}`
+			KANAPI_REPO=`basename ${KANAPI_REPO_DIR}`
 			echo "repo: ${KANAPI_REPO}"
 			
 			if [ "${KANAPI_REPO}" = "kanapi-gui" ]
