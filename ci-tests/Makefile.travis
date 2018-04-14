@@ -1,4 +1,9 @@
-all: docker_sbs docker_bbs
+all: job1 
+
+job1: docker_sbs docker_bbs
+
+job2:
+	echo "tbd"
 
 docker_sbs:
 	cd sbs; ./build

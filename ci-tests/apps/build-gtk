@@ -2,7 +2,12 @@
 
 if [ "${SHIPPABLE}" = "true" -o  "${TRAVIS}" = "true" ]
 then
-	docker build -f Dockerfile-gtk-travis -m 4g -t kanapi-apps-gtk:ci .
+	if [ "$1" = "job1" ]
+	then
+		docker build -f Dockerfile-gtk-travis1 -m 4g -t kanapi-apps-gtk:ci1 .
+	else
+		docker build -f Dockerfile-gtk-travis2 -m 4g -t kanapi-apps-gtk:ci2 .
+	fi
 else
 	docker build -f Dockerfile-gtk -m 4g -t kanapi-apps-gtk:ci .
 fi

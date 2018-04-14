@@ -12,6 +12,10 @@ apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl
 
 apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro
 
+apps-gtk1: apps-libs gimp gvim evince
+   
+apps-gtk2: apps-libs pavucontrol Blue qiv allegro
+
 apps-qt: apps-libs apps_qt
 
 apps-x11: apps-libs mpv ClanLib bullet3 feh ogre
