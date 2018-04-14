@@ -10,4 +10,5 @@ matrix:
     include:
         - env: "job1"
           script:
-            - echo "test1"
+            - ./configure
+
