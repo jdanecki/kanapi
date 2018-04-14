@@ -55,7 +55,7 @@ pkg_build() {
 	then 
 		export MAKE_JOBS=1
 	fi
-	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF"
+	${MAKE} CPUS=${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF"
 }
 
 pkg_install() {
