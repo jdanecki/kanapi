@@ -5,14 +5,9 @@ sudo: required
 services:
   - docker
 install: travis_wait date
+
 matrix:
     include:
         - env: "job1"
-            script:
-                - ./configure
-                - make -C ci-tests job1
-        - env: "job2"
-            script:
-                - ./configure
-                - make -C ci-tests job2
-
+          script:
+            - echo "test1"
