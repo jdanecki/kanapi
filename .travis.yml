@@ -12,4 +12,8 @@ matrix:
           script:
             - ./configure
             - make -C ci-tests job1
+        - env: "job2"
+          script:
+            - ./configure
+            - make -C ci-tests job2
 
