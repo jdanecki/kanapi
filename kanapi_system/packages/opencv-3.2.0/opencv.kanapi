@@ -24,6 +24,8 @@ EXT=zip
 #build depends on
 #LIB_DEPENDS=""
 
+export USE_CCACHE=1
+
 . ../settings
 
 export LDFLAGS="-lresolv"

@@ -6,7 +6,7 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-apps: apps-gtk apps-qt apps-x11 vlc
+apps: apps-gtk apps-qt apps-x11 apps-gui
 
 apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl
 
@@ -19,6 +19,8 @@ apps-gtk2: apps-libs pavucontrol Blue qiv allegro
 apps-qt: apps-libs apps_qt
 
 apps-x11: apps-libs mpv ClanLib bullet3 feh ogre
+
+apps-gui: apps-libs vlc
 
 apps-manual: tests webkitgtk demo midori firefox compilers
 
