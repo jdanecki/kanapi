@@ -3,5 +3,5 @@
 cd `dirname $0`
 REPO_BASE=`pwd | sed "s@/ci-tests/apps@@"`
 git clone ${REPO_BASE} kanapi
-./build-gtk
+./build-gtk $1
 

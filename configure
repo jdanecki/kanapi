@@ -40,18 +40,18 @@ link_makefile() {
 		else
 			echo "TRAVIS"
 			KANAPI_CURDIR=`pwd`
-			KANAPI_REPO=`dirname ${KANAPI_CURDIR}`
+			KANAPI_REPO_DIR=`dirname ${KANAPI_CURDIR}`
+			KANAPI_REPO=`basename ${KANAPI_REPO_DIR}`
+			echo "repo: ${KANAPI_REPO}"
+			
 			if [ "${KANAPI_REPO}" = "kanapi-gui" ]
 			then
-				echo "repo: kanapi-gui"
 				ln -sv Makefile-gui.travis Makefile
 			else
 				if [ "${KANAPI_REPO}" = "kanapi-ci" ]
 				then
-					echo "repo: kanapi-ci"
 					ln -sv Makefile-ci.travis Makefile
 				else
-					echo "repo: kanapi"
 					ln -sv Makefile.travis Makefile
 				fi
 			fi
