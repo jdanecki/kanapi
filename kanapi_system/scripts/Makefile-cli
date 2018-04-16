@@ -143,7 +143,7 @@ nettle:
 wget: gnutls
 	@$(RUN_TARGET)
 
-network: iproute2 enet rsync lynx
+network: iproute2 enet rsync lynx bridge-utils
 
 iproute2:
 	@$(RUN_TARGET)
@@ -380,5 +380,8 @@ hdparm:
 	@$(RUN_TARGET)
 
 go:
+	@$(RUN_TARGET)
+
+bridge-utils:
 	@$(RUN_TARGET)
 
