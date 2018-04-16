@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -46,8 +46,17 @@ pkg_configure() {
 		--enable-introspection=no
 }
 
+update_bashrc() {
+	grep GSETTINGS_SCHEMA_DIR ${HOME}/.bashrc
+	if [ "$?" = "0" ]
+	then
+		 sed -i "s@gsettings-desktop-schemas-.*/share/@gsettings-desktop-schemas-${VER}/share/@" ${HOME}/.bashrc
+	else
+		echo "export GSETTINGS_SCHEMA_DIR=${PREFIX}/share/glib-2.0/schemas" >> ${HOME}/.bashrc
+	fi
+}
+
 pkg_install() {
-	pkg_install_pc_share_all
-	pkg_install_bin_all
+	pkg_install_pc_share_all && pkg_install_bin_all && update_bashrc
 }
 
