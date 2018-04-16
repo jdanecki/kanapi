@@ -155,7 +155,7 @@ Hermes:
 	@$(RUN_TARGET)
 
 devel: patchelf cgdb strace ltrace ctags chrpath patchelf vala syslinux mbr Hermes pci_ids makefile2graph scons lua tcl swig yajl ruby \
-	database xml expect babl itstool libsigcpp yasm popt
+	database xml expect babl itstool libsigcpp yasm popt go
 
 gdb:
 	@$(RUN_TARGET)
@@ -377,5 +377,8 @@ lynx:
 	@$(RUN_TARGET)
 
 hdparm:
+	@$(RUN_TARGET)
+
+go:
 	@$(RUN_TARGET)
 
