@@ -30,9 +30,7 @@ pkg_configure() {
 	local_copy
 	KANAPI_AC_SCRIPTS="-I ${KANAPI_BASE}/libtool-${libtool_ver}/share/aclocal \
 		 -I ${KANAPI_BASE}/autoconf-${autoconf_ver}/share/autoconf \
-		 -I ${KANAPI_BASE}/util-macros-${util_macros_ver}/share/aclocal \
-		 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal \
-		 -I ${KANAPI_BASE}/xorg-server-${xorg_server_ver}/share/aclocal"
+		 -I ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/aclocal"
 	autoreconf -v --install --force ${KANAPI_AC_SCRIPTS}
 
 	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
