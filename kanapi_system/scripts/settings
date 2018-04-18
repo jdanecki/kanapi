@@ -158,6 +158,13 @@ local_copy() {
 	cd build
 }
 
+go_local_copy() {
+	rm -rf src
+	mkdir -p src/github.com/${PACKAGE_NAME}/${PACKAGE_NAME}
+	cp -ar ${PACKAGE_SRCDIR}/* src/github.com/${PACKAGE_NAME}/${PACKAGE_NAME}
+	find ${PACKAGE_SRCDIR} -maxdepth 1 -name .\* -exec cp -a {}  src/github.com/${PACKAGE_NAME}/${PACKAGE_NAME} \; 
+}
+
 pkg_wget() {
 	if [ -s ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 	then 

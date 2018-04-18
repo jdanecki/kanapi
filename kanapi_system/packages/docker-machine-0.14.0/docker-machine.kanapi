@@ -17,10 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=go
-VER=1.10.1
-URL="https://storage.googleapis.com/golang"
-EXT=src.tar.gz
+PACKAGE_NAME=docker-machine
+VER=0.14.0
+URL="https://github.com/docker/machine/archive"
+EXT=tar.gz
 #build depends on
 #LIB_DEPENDS=""
 
@@ -29,12 +29,11 @@ EXT=src.tar.gz
 #export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
 
+export BASE_SRC=src/github.com/docker
+
 pkg_download() {
-	PACKAGE_LINK=${URL}/${PACKAGE_NAME}${VER}.${EXT}
-	pkg_curl
-	PACKAGE_FILENAME=go-1.4.3.tar.gz
-	PACKAGE_LINK=${URL}/go1.4.3.linux-amd64.tar.gz
-	pkg_curl
+	PACKAGE_LINK=${URL}/v${VER}.${EXT}
+	pkg_curl	
 }
 
 pkg_prepare() {
@@ -43,41 +42,30 @@ pkg_prepare() {
 		echo "$PACKAGE_NAME: already prepared"
 	else
 		pkg_tar_gz
-		mv ${KANAPI_BUILD_SRC}/${PACKAGE_NAME} ${PACKAGE_SRCDIR}
+		${LN_SF} ${KANAPI_BUILD_SRC}/machine-${VER} ${PACKAGE_SRCDIR}
 		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
 	fi
 }
 
+
 pkg_configure() {
 	local_copy
-	mkdir go-1.4
-	tar -xzf ${KANAPI_BUILD_SRC}/go-1.4.3.tar.gz -C go-1.4
+	mkdir -p ${BASE_SRC}
+	ln -srT `pwd` ${BASE_SRC}/machine
 }
 
 pkg_build() {
 	cd build
-	export GOARCH=amd64
-	export GOROOT_FINAL=${PREFIX}/usr/lib/go
-	export GOROOT_BOOTSTRAP=`pwd`/go-1.4/go
-	export GOCACHE=off
-	export GOOS=linux
-	cd src
-    ./make.bash --no-clean -v
+	export GOPATH=`pwd`
+	export TARGET_OS=linux
+	export TARGET_ARCH=amd64
+	pushd ${BASE_SRC}/machine
+	go build -o docker-machine cmd/machine.go
 }
 
+
 pkg_install() {
-	cd build
 	mkdir -p ${PREFIX}/bin
-	mkdir -p ${PREFIX}/usr/lib/go/{lib,misc,pkg,src}
-	for d in lib misc pkg src
-	do
-		cp -ar $d ${PREFIX}/usr/lib/go
-	done
-	mkdir ${PREFIX}/usr/lib/go/bin
-	cp bin/go ${PREFIX}/usr/lib/go/bin
-	cp bin/gofmt ${PREFIX}/usr/lib/go/bin
-	${LN_SF} ${PREFIX}/usr/lib/go/bin/go ${PREFIX}/bin
-	${LN_SF} ${PREFIX}/usr/lib/go/bin/gofmt ${PREFIX}/bin
-	pkg_install_bin_all
+	cp -a build/docker-machine ${PREFIX}/bin  && pkg_install_bin_all
 }
 

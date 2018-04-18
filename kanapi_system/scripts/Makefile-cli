@@ -9,7 +9,7 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-cli: cli-base llvm ocl
+cli: cli-base llvm ocl docker-ce
 
 cli-base: t_compression t_system devel vim bc sound 
 
@@ -53,7 +53,7 @@ xz:
 
 t_system: mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strace ltrace syslinux mbr nfs \
 	wireless_tools wpa_supplicant dhcp wget network Hermes pci_ids usbutils udev libdrm libev libevdev \
-	cacert cpio hdparm
+	cacert cpio hdparm p11-kit iptables
 
 mc:  gpm
 	@$(RUN_TARGET)
@@ -383,5 +383,35 @@ go:
 	@$(RUN_TARGET)
 
 bridge-utils:
+	@$(RUN_TARGET)
+
+p11-kit: libtasn1
+	@$(RUN_TARGET)
+
+libtasn1:
+	@$(RUN_TARGET)
+
+docker-ce: cgroupfs-mount containerd runc moby-extras tini docker-machine
+	@$(RUN_TARGET)
+
+cgroupfs-mount:
+	@$(RUN_TARGET)
+
+containerd:
+	@$(RUN_TARGET)
+
+iptables:
+	@$(RUN_TARGET)
+
+runc:
+	@$(RUN_TARGET)
+
+moby-extras:
+	@$(RUN_TARGET)
+
+tini:
+	@$(RUN_TARGET)
+
+docker-machine:
 	@$(RUN_TARGET)
 
