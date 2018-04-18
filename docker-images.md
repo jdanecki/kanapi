@@ -2,7 +2,7 @@
 
 * sbs:3
 * bbs:6
-* cli:8
+* cli:9
 * x11:3
 * gui:3
 * apps:3
