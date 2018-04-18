@@ -34,6 +34,10 @@ pkg_download() {
 	pkg_curl	
 }
 
+pkg_configure() {
+	local_copy
+}
+
 pkg_build() {
 	export DISABLE_WARN_OUTSIDE_CONTAINER=1
 	export GOPATH=`pwd`/build
