@@ -2,7 +2,6 @@
 
 . version
 
-docker tag kanapi-${NAME}:${VER} kanapi/kanapi-${NAME}:${VER}
 docker tag kanapi/kanapi-${NAME}:${VER} kanapi/kanapi-${NAME}:latest
 docker push kanapi/kanapi-${NAME}:${VER}
 docker push kanapi/kanapi-${NAME}:latest
