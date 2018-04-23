@@ -31,7 +31,7 @@ export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/bzip2-${bzip2_ver}/include -I${KANAPI_
 
 pkg_configure() {
 	local_copy
-	./configure --prefix=$PREFIX --enable-gui --enable-x11
+	./configure --prefix=$PREFIX --enable-gui --enable-x11 --enable-menu 
 }
 
 pkg_build() {
