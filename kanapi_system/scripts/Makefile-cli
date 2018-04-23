@@ -415,3 +415,6 @@ tini:
 docker-machine:
 	@$(RUN_TARGET)
 
+sox:
+	@$(RUN_TARGET)
+

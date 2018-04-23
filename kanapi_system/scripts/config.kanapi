@@ -475,3 +475,4 @@ libtasn1_ver=4.13
 xterm_ver=332
 SDL_sound_ver=1.0.3
 physfs2_ver=2.0.3
+sox_ver=14.4.2
