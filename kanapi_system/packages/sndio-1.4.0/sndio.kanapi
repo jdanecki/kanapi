@@ -31,7 +31,7 @@ export LDFLAGS="${LDFLAGS} -ldl -lm -lrt -lpthread"
 
 pkg_configure() {
 	local_copy
-	./configure --prefix=$PREFIX
+	./configure --prefix=$PREFIX --enable-alsa
 }
 
 pkg_build() {

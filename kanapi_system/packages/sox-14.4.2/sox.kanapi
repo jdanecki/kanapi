@@ -17,50 +17,27 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=musescore
-VER=2.1.0
-URL="https://github.com/musescore/MuseScore/archive"
-EXT=tar.gz
+PACKAGE_NAME=sox
+VER=14.4.2
+URL="http://downloads.sourceforge.net/${PACKAGE_NAME}"
+EXT=tar.bz2
 #build depends on
 #LIB_DEPENDS=""
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -ldl -lrt -lpthread -lresolv"
+#export LDFLAGS="${LDFLAGS} "
 #export CFLAGS="${CFLAGS} "
-export CMAKE_PREFIX_PATH=${KANAPI_BASE}/qt-everywhere-opensource-src-${qt_everywhere_opensource_src_ver}/lib/cmake
-
-pkg_download() {
-	PACKAGE_FILENAME=${PACKAGE_NAME}-${VER}.${EXT}
-	PACKAGE_LINK=${URL}/v${VER}.${EXT}
-	
-	pkg_curl
-}
 
 pkg_configure() {
-	if [ ! -d ${PACKAGE_SRCDIR} ]
+	if [ ! -L ${KANAPI_BASE}/glibc-${glibc_ver}/lib/libssp.so ] 
 	then
-		if [ -d ${KANAPI_BUILD_SRC}/MuseScore-${VER} ]
-		then
-			mv ${KANAPI_BUILD_SRC}/MuseScore-${VER} ${PACKAGE_SRCDIR}
-		fi
+		${LN_SF} ${KANAPI_BASE}/glibc-${glibc_ver}/lib/libssp.so.0 ${KANAPI_BASE}/glibc-${glibc_ver}/lib/libssp.so 
 	fi
-
-	local_copy
-}
-
-pkg_build() {
- 	cd build
-	if [ "${CI}" = "true" ]
-	then 
-		export MAKE_JOBS=1
-	fi
-	${MAKE} CPUS=${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF" \
-	BUILD_LAME="ON" BUILD_PULSEAUDIO="ON" BUILD_JACK="ON" BUILD_PORTAUDIO="ON"
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
 }
 
 pkg_install() {
-	cd  build/build.release
 	pkg_install_make && pkg_install_bin_all
 }
 

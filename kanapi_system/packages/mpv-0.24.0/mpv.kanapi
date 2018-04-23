@@ -39,7 +39,7 @@ pkg_configure() {
 	./bootstrap.py
 	./waf configure --prefix=${PREFIX} \
 	--confdir=${PREFIX}/etc/mpv  --enable-encoding  --enable-libmpv-shared \
-	--enable-zsh-comp --disable-libass
+	--enable-zsh-comp --disable-libass --enable-sdl2 --enable-sndio --enable-openal 
 }
 
 pkg_build() {

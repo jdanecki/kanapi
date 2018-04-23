@@ -441,7 +441,12 @@ pkg_build_local() {
 pkg_update_include() {
 	if [ -z "$DONT_INSTALL_INCLUDE" ]
 	then
-		update_include ${PREFIX}
+		if [ "${CI}" = "true" ]
+		then
+			update_include ${PREFIX} > /dev/null
+		else
+			update_include ${PREFIX}
+		fi
 	fi
 }
 
