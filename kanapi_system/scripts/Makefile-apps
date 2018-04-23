@@ -26,7 +26,7 @@ apps-manual: tests webkitgtk demo midori firefox compilers
 
 sdl: sdl-support sdl2-support
 
-sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib SDL-widgets
+sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib SDL-widgets SDL_sound
 
 SDL-fb:
 	@$(RUN_TARGET)
@@ -45,6 +45,12 @@ SDL_ttf:
 
 SDL_mixer:
 	@$(RUN_TARGET)
+
+SDL_sound: physfs_2
+	@$(RUN_TARGET)
+
+physfs_2:
+	@$(RUN_TARGET_VER)
 
 GUIlib:
 	@$(RUN_TARGET)
