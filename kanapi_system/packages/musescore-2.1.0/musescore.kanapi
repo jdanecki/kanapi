@@ -55,7 +55,8 @@ pkg_build() {
 	then 
 		export MAKE_JOBS=1
 	fi
-	${MAKE} CPUS=${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF"
+	${MAKE} CPUS=${MAKE_JOBS} PREFIX=${PREFIX} release BUILD_WEBKIT="OFF" \
+	BUILD_LAME="ON" BUILD_PULSEAUDIO="ON" BUILD_JACK="ON" BUILD_PORTAUDIO="ON"
 }
 
 pkg_install() {
