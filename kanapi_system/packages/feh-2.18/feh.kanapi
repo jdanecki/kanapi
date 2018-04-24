@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -39,6 +39,8 @@ pkg_build() {
 }
 
 pkg_install() {
+	if [ ! -d ${HOME}/Desktop ] ; then mkdir ${HOME}/Desktop ; fi
+	if [ ! -f ${HOME}/Desktop/desktop.png ] ; then cp ../../packages/feh-${VER}/desktop.png ${HOME}/Desktop ; fi
 	cd build
 	${MAKE} -j ${MAKE_JOBS} PREFIX=${PREFIX} install CC="${KANAPI_C_COMPILER}" &&  pkg_install_bin_all
 
