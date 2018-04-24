@@ -64,7 +64,9 @@ SBS images on SourceForge https://sourceforge.net/projects/kanapi/files/images/v
 
 ## Repositories
 
-* Main KaNaPi repository: https://github.com/jdanecki/kanapi
+* Main KaNaPi - https://github.com/jdanecki/kanapi
+* KaNaPi Gui - https://github.com/jdanecki/kanapi-gui
+* KaNaPi Apps - https://github.com/jdanecki/kanapi-apps
 * KaNaPi CI tests: https://github.com/jdanecki/kanapi-ci
 * CI tests: https://github.com/jdanecki/ci-tests
 * KaNaPi CI tests on shippable only: https://github.com/jdanecki/kanapi-shippable
