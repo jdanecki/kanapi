@@ -37,8 +37,9 @@ export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/libev-${libev_ver}/lib -lev -lm -lpt
 export CC="${KANAPI_C_COMPILER} -DSTRIPPED__FILE__=__FILE__"
 
 pkg_install() {
-	pkg_install_make
-	pkg_install_bin_all
+	if [ ! -d ${HOME}/.config/i3 ] ; then mkdir -p ${HOME}/.config/i3 ; fi
+	if [ ! -f ${HOME}/.config/i3/config ] ; then cp ../../packages/i3-${VER}/config ${HOME}/.config/i3/config ; fi
+	pkg_install_make &&	pkg_install_bin_all 
 }
 
 pkg_check() {
