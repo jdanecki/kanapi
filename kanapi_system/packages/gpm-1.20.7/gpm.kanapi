@@ -19,7 +19,9 @@
 
 PACKAGE_NAME=gpm
 VER=1.20.7
-URL="http://www.nico.schottelius.org/software/gpm/archives"
+#URL="http://www.nico.schottelius.org/software/gpm/archives"
+#use SF mirror
+URL="https://downloads.sourceforge.net/project/kanapi/sources/Packages/mirror"
 EXT=tar.bz2
 #build depends on
 . ../settings
