@@ -1,5 +1,4 @@
-KaNaPi project
-==============
+# KaNaPi project
 
 Main goal of this project is to create educational operating system based on Linux kernel
 and free software for use at home.
@@ -17,35 +16,43 @@ More details on http://kanapi.ga
 
 Author: jacek.m.danecki@gmail.com
 
-Development workflow
-====================
+## Development workflow
 
-1. SBS images on SourceForge https://sourceforge.net/projects/kanapi/files/images/v0.9/
+## SBS images
+
+SBS images on SourceForge https://sourceforge.net/projects/kanapi/files/images/v0.9/
 * sbs-x86_64.tar.xz - base for build in chroot (local and CI)
 * sbs-docker-x86.tar.xz - base for BBS docker image
 
-2. Docker images
+## Docker images
+
 * SBS image - https://hub.docker.com/r/kanapi/kanapi-sbs
 * BBS image - https://hub.docker.com/r/kanapi/kanapi-bbs
 * CLI image - https://hub.docker.com/r/kanapi/kanapi-cli
 
-3. System build workflow
-3.1 Sbs - small build system: kanapi_system/kanapi-sbs
-3.2 Bbs - base build system, built on top of Sbs: kanapi_system/kanapi-bbs
-3.3 Cli - command line tools built on top of Bbs: kanapi_system/kanapi-cli
-3.4 X11 - X11 support, libs, apps, built on top of Cli: kanapi_system/kanapi-x11
-3.5 Gui - Gtk2/3 and Qt support, libs built on top of X11: kanapi_system/kanapi-gui
-3.6 Apps - Applications and libs built on top Gui: kanapi_system/kanapi-apps
+## System build workflow
 
-4. CI systems
-4.1 Builds executed in chroot with SBS image
+* Sbs - small build system: kanapi_system/kanapi-sbs
+* Bbs - base build system, built on top of Sbs: kanapi_system/kanapi-bbs
+* Cli - command line tools built on top of Bbs: kanapi_system/kanapi-cli
+* X11 - X11 support, libs, apps, built on top of Cli: kanapi_system/kanapi-x11
+* Gui - Gtk2/3 and Qt support, libs built on top of X11: kanapi_system/kanapi-gui
+* Apps - Applications and libs built on top Gui: kanapi_system/kanapi-apps
+
+## CI systems
+
+## Builds executed in chroot with SBS image
 * SemaphoreCI - build BBS and CLI packages, https://semaphoreci.com/jdanecki/kanapi
 * Shippable - build BBS and part of CLI packages, https://app.shippable.com/github/jdanecki/kanapi/dashboard
   (deprecated by docker build)
-4.2 Builds using native (Ubuntu 14.0 compilers) without SBS (BBS only)
+
+## Builds using native (Ubuntu 14.0 compilers) without SBS (BBS only)
+
 * CircleCI - https://circleci.com/gh/jdanecki/kanapi
 * CodeShip - https://app.codeship.com/projects/191185
-4.3 Builds in docker container
+
+## Builds in docker container
+
 * Shippable 
   - build cli docker image from BBS docker image from https://hub.docker.com/r/kanapi/kanapi-bbs
   - docker builds: https://app.shippable.com/github/jdanecki/kanapi-dockers/dashboard
@@ -55,7 +62,8 @@ Development workflow
 * SemaphoreCI
   - docker builds: https://semaphoreci.com/jdanecki/kanapi-dockers/
 
-5. Repositories
+## Repositories
+
 * Main KaNaPi repository: https://github.com/jdanecki/kanapi
 * KaNaPi CI tests: https://github.com/jdanecki/kanapi-ci
 * CI tests: https://github.com/jdanecki/ci-tests
