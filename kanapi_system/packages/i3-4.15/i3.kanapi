@@ -39,6 +39,7 @@ export CC="${KANAPI_C_COMPILER} -DSTRIPPED__FILE__=__FILE__"
 pkg_install() {
 	if [ ! -d ${HOME}/.config/i3 ] ; then mkdir -p ${HOME}/.config/i3 ; fi
 	if [ ! -f ${HOME}/.config/i3/config ] ; then cp ../../packages/i3-${VER}/config ${HOME}/.config/i3/config ; fi
+	if [ ! -f ${HOME}/.xinitrc ] ; then cp ../../packages/i3-${VER}/.xinitrc ${HOME} ; fi
 	pkg_install_make &&	pkg_install_bin_all 
 }
 
