@@ -19,5 +19,6 @@ else
 		./verify all verbose
 	fi
 	popd
+	cp /kanapi_build/kanapi/kanapi_system/configs/.inputrc ${HOME}
 fi
 
