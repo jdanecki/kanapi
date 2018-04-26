@@ -1,4 +1,4 @@
-VER=9
+VER=10
 NAME=cli
 BASE_IMAGE=bbs
 
