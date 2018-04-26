@@ -24,7 +24,14 @@ do
 		if [ -f $b ]
 		then 
 			file -i ${b} | grep application > /dev/null
-			if [ "$?" = "0" ] ; then strip ${b} ; fi
+			if [ "$?" = "0" ]
+		   	then 
+				file ${b} | grep "not stripped"
+				if [ "$?" = "0" ]
+				then
+					strip ${b} 
+				fi
+			fi
 		fi
 	done
 	for b in ${pkg}/lib/lib* ${pkg}/lib64/lib*
@@ -32,7 +39,14 @@ do
 		if [ -f "$b" ]
 		then 
 			file -i ${b} | grep x-sharedlib > /dev/null 
-		   	if [ "$?" = "0" ] ; then strip ${b} ; fi
+		   	if [ "$?" = "0" ] 
+		   	then 
+				file ${b} | grep "not stripped"
+				if [ "$?" = "0" ]
+				then
+					strip ${b} 
+				fi
+			fi
 		fi
 	done
 done

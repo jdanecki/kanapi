@@ -532,10 +532,29 @@ pkg_update_meta() {
 	fi
 }
 
+pkg_strip_binaries() {
+	for b in ${PREFIX}/bin/* ${PREFIX}/usr/bin/* ${PREFIX}/sbin/* ${PREFIX}/usr/sbin/*
+	do
+		if [ -f $b ]
+		then 
+			file -i ${b} | grep application > /dev/null
+		 	if [ "$?" = "0" ] 
+		   	then 
+				file ${b} | grep "not stripped"
+				if [ "$?" = "0" ]
+				then
+					strip ${b} 
+				fi
+			fi
+		fi
+	done
+}
+
 pkg_install_bin() {
 	if [ -f ${PREFIX}/bin/${PACKAGE_NAME} ]
 	then
 		${LN_SF} ${PREFIX}/bin/${PACKAGE_NAME} ${KANAPI_BASE}/../bin/${PACKAGE_NAME}
+		pkg_strip_binaries
 	fi
 }
 
@@ -544,6 +563,7 @@ pkg_install_bin_all() {
 	then
 		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 		${LN_SF} ${PREFIX}/bin/* ${KANAPI_TARGET_BIN}
+		pkg_strip_binaries
 	fi
 }
 
@@ -552,6 +572,7 @@ pkg_install_sbin_all() {
 	then
 		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 		${LN_SF} ${PREFIX}/sbin/* ${KANAPI_TARGET_BIN}
+		pkg_strip_binaries
 	fi
 }
 
@@ -560,7 +581,26 @@ pkg_install_usr_bin_all() {
 	then
 		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
 		${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_TARGET_BIN}
+		pkg_strip_binaries
 	fi
+}
+
+pkg_strip_libraries() {
+	for b in ${PREFIX}/lib/lib* ${PREFIX}/lib64/lib*
+	do
+		if [ -f "$b" ]
+		then 
+			file -i ${b} | grep x-sharedlib > /dev/null 
+		   	if [ "$?" = "0" ] 
+		   	then 
+				file ${b} | grep "not stripped"
+				if [ "$?" = "0" ]
+				then
+					strip ${b} 
+				fi
+			fi
+		fi
+	done
 }
 
 pkg_install_libs() {
@@ -578,6 +618,7 @@ pkg_install_libs() {
 		ldconfig
 	fi
 	pkg_update_include
+	pkg_strip_libraries
 }
 
 pkg_install_all() {
