@@ -27,7 +27,7 @@ x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto \
 	libXt libXmu mtdev xorg-server xf86-input-keyboard \
 	xf86-input-mouse xf86-input-evdev xf86-video-intel xf86-video-vesa xf86-video-fbdev \
 	xf86-video-modesetting fonts setxkbmap xinput libXft icons libXxf86vm libXScrnSaver ois \
-	libXpm libXcomposite
+	libXpm libXcomposite libXaw
 
 graphics: jpegsrc tiff freeimage libpng pixman libpng14 exif 
 
@@ -495,7 +495,7 @@ xapp: xfd xterm bitmap showfont xbacklight xdriinfo \
 libXaw:
 	@$(RUN_TARGET)
 
-xfd: libXaw
+xfd:
 	@$(RUN_TARGET)
 
 st:
