@@ -12,7 +12,7 @@
 * cli-lib:5
 * x11-lib:5
 * gtk:5
-* qt:4
+* qt:5
 * apps-gtk:2
 * apps-qt:2
 * apps-x11:1
