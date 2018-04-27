@@ -4,7 +4,7 @@
 * bbs:8
 * cli:11
 * x11:5
-* gui:3
+* gui:4
 * apps:5
 
 # Docker images versions (for CI testing)
