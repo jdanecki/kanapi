@@ -15,4 +15,5 @@
 * qt:5
 * apps-gtk:3
 * apps-qt:3
+* apps-gui:2
 * apps-x11:1
