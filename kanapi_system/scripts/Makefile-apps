@@ -204,7 +204,7 @@ physfs:
 bullet3:
 	@$(RUN_TARGET)
 
-ogre: sdl libXaw
+ogre: sdl
 	@$(RUN_TARGET)
 
 ifeq ($(KANAPI_TARGET),arm)
@@ -297,7 +297,7 @@ compilers: binutils gcc_5 gcc_6 gcc_7
 libmikmod:
 	@$(RUN_TARGET)
 
-vlc: opencv lua
+vlc: opencv
 	@$(RUN_TARGET)
 
 feh:
