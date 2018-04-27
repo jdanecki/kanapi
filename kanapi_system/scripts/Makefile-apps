@@ -160,7 +160,7 @@ MPlayer:
 Blue: MPlayer
 	@$(RUN_TARGET)
 
-x264: yasm
+x264: 
 	@$(RUN_TARGET)
 
 ffmpeg: x264 
