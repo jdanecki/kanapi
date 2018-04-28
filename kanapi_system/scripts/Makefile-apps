@@ -10,11 +10,11 @@ apps: apps-gtk apps-qt apps-x11 apps-gui
 
 apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft
 
-apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro
+apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro dia
 
 apps-gtk1: apps-libs gimp gvim evince
    
-apps-gtk2: apps-libs pavucontrol Blue qiv allegro
+apps-gtk2: apps-libs pavucontrol Blue qiv allegro dia
 
 apps-qt: apps-libs apps_qt
 
@@ -304,5 +304,8 @@ feh:
 	@$(RUN_TARGET)
 
 openal-soft:
+	@$(RUN_TARGET)
+
+dia:
 	@$(RUN_TARGET)
 
