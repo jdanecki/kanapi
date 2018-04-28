@@ -143,7 +143,7 @@ nettle:
 wget: gnutls
 	@$(RUN_TARGET)
 
-network: iproute2 enet rsync lynx bridge-utils
+network: iproute2 enet rsync lynx bridge-utils ethtool
 
 iproute2:
 	@$(RUN_TARGET)
@@ -419,5 +419,8 @@ dmidecode:
 	@$(RUN_TARGET)
 
 elfutils:
+	@$(RUN_TARGET)
+
+ethtool:
 	@$(RUN_TARGET)
 
