@@ -6,7 +6,7 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-gui:  gtk qt
+gui:  gtk qt wxWidgets
 
 gtk: gtk+ dconf gtk3+ dbus-glib
 
@@ -49,5 +49,8 @@ qt-everywhere-opensource-src: dbus
 	@$(RUN_TARGET)
 
 dbus-glib: dbus
+	@$(RUN_TARGET)
+
+wxWidgets:
 	@$(RUN_TARGET)
 

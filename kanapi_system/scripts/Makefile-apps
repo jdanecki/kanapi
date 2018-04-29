@@ -20,7 +20,7 @@ apps-qt: apps-libs apps_qt
 
 apps-x11: apps-libs mpv ClanLib bullet3 feh ogre
 
-apps-gui: apps-libs vlc
+apps-gui: apps-libs vlc Audacity
 
 apps-manual: tests webkitgtk demo midori firefox compilers
 
@@ -309,3 +309,5 @@ openal-soft:
 dia:
 	@$(RUN_TARGET)
 
+Audacity:
+	@$(RUN_TARGET)

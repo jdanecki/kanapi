@@ -480,3 +480,5 @@ elfutils_ver=0.170
 ethtool_ver=4.16
 dia_ver=0.97.3
 musescore_ver=2.2.1
+wxWidgets_ver=3.0.2
+Audacity_ver=2.2.2
