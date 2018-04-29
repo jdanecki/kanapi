@@ -36,6 +36,8 @@ PACKAGE_VER=${PACKAGE_NAME}-${VER}
 PREFIX=${KANAPI_BASE}/${PACKAGE_VER}
 PACKAGE_SRCDIR=${KANAPI_BUILD_SRC}/${PACKAGE_VER}
 PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
+STRIP_BINARIES=1
+STRIP_LIBRARIES=1
 
 if [[ ${URL} == "SF" ]]
 then
@@ -538,21 +540,24 @@ pkg_update_meta() {
 }
 
 pkg_strip_binaries() {
-	for b in ${PREFIX}/bin/* ${PREFIX}/usr/bin/* ${PREFIX}/sbin/* ${PREFIX}/usr/sbin/*
-	do
-		if [ -f $b ]
-		then 
-			file -i ${b} | grep application > /dev/null
-		 	if [ "$?" = "0" ] 
-		   	then 
-				file ${b} | grep "not stripped"
-				if [ "$?" = "0" ]
-				then
-					strip ${b} 
+	if [ "${STRIP_BINARIES}" = "1" ]
+	then
+		for b in ${PREFIX}/bin/* ${PREFIX}/usr/bin/* ${PREFIX}/sbin/* ${PREFIX}/usr/sbin/*
+		do
+			if [ -f $b ]
+			then 
+				file -i ${b} | grep application > /dev/null
+				if [ "$?" = "0" ] 
+				then 
+					file ${b} | grep "not stripped"
+					if [ "$?" = "0" ]
+					then
+						strip ${b} 
+					fi
 				fi
 			fi
-		fi
-	done
+		done
+	fi
 }
 
 pkg_install_bin() {
@@ -591,21 +596,24 @@ pkg_install_usr_bin_all() {
 }
 
 pkg_strip_libraries() {
-	for b in ${PREFIX}/lib/lib* ${PREFIX}/lib64/lib*
-	do
-		if [ -f "$b" ]
-		then 
-			file -i ${b} | grep x-sharedlib > /dev/null 
-		   	if [ "$?" = "0" ] 
-		   	then 
-				file ${b} | grep "not stripped"
-				if [ "$?" = "0" ]
-				then
-					strip ${b} 
+	if [ "${STRIP_LIBRARIES}" = "1" ]
+	then
+		for b in ${PREFIX}/lib/lib* ${PREFIX}/lib64/lib*
+		do
+			if [ -f "$b" ]
+			then 
+				file -i ${b} | grep x-sharedlib > /dev/null 
+				if [ "$?" = "0" ] 
+				then 
+					file ${b} | grep "not stripped"
+					if [ "$?" = "0" ]
+					then
+						strip ${b} 
+					fi
 				fi
 			fi
-		fi
-	done
+		done
+	fi
 }
 
 pkg_install_libs() {
