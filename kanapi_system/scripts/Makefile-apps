@@ -214,7 +214,7 @@ else
 webkitgtk: libwebp libsoup glib-networking
 	@$(RUN_TARGET)
 
-apps_qt: qt-creator vym qjackctl csoundqt musescore
+apps_qt: qt-creator vym qjackctl csoundqt musescore qsynth
 
 dtc:
 	@$(RUN_TARGET)
@@ -311,3 +311,7 @@ dia:
 
 Audacity:
 	@$(RUN_TARGET)
+
+qsynth:
+	@$(RUN_TARGET)
+
