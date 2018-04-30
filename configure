@@ -44,9 +44,9 @@ link_makefile() {
 			KANAPI_REPO=`basename ${KANAPI_REPO_DIR}`
 			echo "repo: ${KANAPI_REPO}"
 			
-			if [ "${KANAPI_REPO}" = "kanapi-gui" ]
+			if [ "${KANAPI_REPO}" = "kanapi-apps" ]
 			then
-				ln -sv Makefile-gui.travis Makefile
+				ln -sv Makefile-apps.travis Makefile
 			else
 				if [ "${KANAPI_REPO}" = "kanapi-ci" ]
 				then
