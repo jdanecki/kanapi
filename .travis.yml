@@ -14,5 +14,9 @@ matrix:
         - env: "job2"
           script:
             - ./configure
-            - travis_wait make -C ci-tests job2
+            - make -C ci-tests job2
+        - env: "job3"
+          script:
+            - ./configure
+            - make -C ci-tests job3
 

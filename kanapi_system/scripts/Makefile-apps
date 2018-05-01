@@ -14,7 +14,9 @@ apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro dia patchage
 
 apps-gtk1: apps-libs gimp gvim evince
    
-apps-gtk2: apps-libs pavucontrol Blue qiv allegro dia patchage
+apps-gtk2: apps-libs pavucontrol Blue qiv allegro dia
+
+apps-gtk3: apps-libs patchage
 
 apps-qt: apps-libs apps_qt
 

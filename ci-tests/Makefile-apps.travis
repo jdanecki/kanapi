@@ -4,3 +4,6 @@ job1:
 job2:
 	./apps/start-build-gtk $@
 
+job3:
+	./apps/start-build-gtk $@
+
