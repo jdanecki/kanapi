@@ -8,13 +8,13 @@ include $(BASE)../scripts/Makefile.common
 
 apps: apps-gtk apps-qt apps-x11 apps-gui
 
-apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft
+apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft ganv
 
-apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro dia
+apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro dia patchage
 
 apps-gtk1: apps-libs gimp gvim evince
    
-apps-gtk2: apps-libs pavucontrol Blue qiv allegro dia
+apps-gtk2: apps-libs pavucontrol Blue qiv allegro dia patchage
 
 apps-qt: apps-libs apps_qt
 
@@ -321,3 +321,14 @@ vmpk: drumstick
 drumstick:
 	@$(RUN_TARGET)
 
+ganv: gtkmm_2
+	@$(RUN_TARGET)
+
+gtkmm_2:
+	@$(RUN_TARGET_VER)
+
+patchage: boost
+	@$(RUN_TARGET)
+
+boost:
+	@$(RUN_TARGET)

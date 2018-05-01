@@ -487,3 +487,7 @@ vmpk_ver=0.7.0
 drumstick_ver=1.1.1
 libsamplerate_ver=0.1.9
 fftw_ver=3.3.7
+ganv_ver=1.4.2
+gtkmm2_ver=2.24.5
+patchage_ver=1.0.0
+boost_ver=1.67.0
