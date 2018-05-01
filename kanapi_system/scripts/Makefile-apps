@@ -8,7 +8,7 @@ include $(BASE)../scripts/Makefile.common
 
 apps: apps-gtk apps-qt apps-x11 apps-gui
 
-apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft ganv fltk
+apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft fltk
 
 apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro dia patchage
 
@@ -327,7 +327,7 @@ ganv: gtkmm_2
 gtkmm_2:
 	@$(RUN_TARGET_VER)
 
-patchage: boost
+patchage: ganv boost
 	@$(RUN_TARGET)
 
 boost:
