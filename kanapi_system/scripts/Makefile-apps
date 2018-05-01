@@ -214,7 +214,7 @@ else
 webkitgtk: libwebp libsoup glib-networking
 	@$(RUN_TARGET)
 
-apps_qt: qt-creator vym qjackctl csoundqt musescore qsynth vmpk
+apps_qt: qt-creator vym qjackctl csoundqt musescore qsynth vmpk hydrogen
 
 dtc:
 	@$(RUN_TARGET)
@@ -334,4 +334,7 @@ boost:
 	@$(RUN_TARGET)
 
 rakarrack:
+	@$(RUN_TARGET)
+
+hydrogen:
 	@$(RUN_TARGET)
