@@ -12,11 +12,13 @@ apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft fltk
 
 apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro dia patchage
 
-apps-gtk1: apps-libs gimp gvim evince
-   
-apps-gtk2: apps-libs pavucontrol Blue qiv allegro dia
+apps-gtk-libs: apps-libs gtkmm libcanberra
 
-apps-gtk3: apps-libs patchage
+apps-gtk1: apps-gtk-libs gimp gvim evince
+   
+apps-gtk2: apps-gtk-libs pavucontrol Blue qiv allegro dia
+
+apps-gtk3: apps-gtk-libs patchage
 
 apps-qt: apps-libs apps_qt
 
@@ -133,7 +135,7 @@ gtkmm: atkmm pangomm
 libcanberra:
 	@$(RUN_TARGET)
 
-pavucontrol: gtkmm libcanberra
+pavucontrol:
 	@$(RUN_TARGET)
 
 sdl2-support: SDL2_image SDL2_gfx SDL2_ttf SDL2_net SDL2_mixer
