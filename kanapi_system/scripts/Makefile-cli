@@ -205,7 +205,7 @@ libunwind:
 gstreamer: libunwind
 	@$(RUN_TARGET)
 
-jack2: libsndfile
+jack2: libsndfile libsamplerate
 	@$(RUN_TARGET)
 
 XML-Parser:
@@ -424,3 +424,8 @@ elfutils:
 ethtool:
 	@$(RUN_TARGET)
 
+libsamplerate: fftw
+	@$(RUN_TARGET)
+
+fftw:
+	@$(RUN_TARGET)

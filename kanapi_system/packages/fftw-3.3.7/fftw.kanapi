@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,30 +17,25 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=jack2
-VER=1.9.11-RC1
-URL="https://github.com/jackaudio/jack2/releases/download/v1.9.11-RC1"
+PACKAGE_NAME=fftw
+VER=3.3.7
+URL="http://www.fftw.org"
 EXT=tar.gz
 #build depends on
-LIB_DEPENDS="ncurses"
+#LIB_DEPENDS=""
 
 . ../settings
 
-export LDFLAGS="-lreadline ${LDFLAGS} -lstdc++ -L${KANAPI_BASE}/readline-${readline_ver}/lib"
-export CFLAGS="${CFLAGS} -I${KANAPI_BASE}/readline-${readline_ver}/include"
+#export LDFLAGS="${LDFLAGS} "
+#export CFLAGS="${CFLAGS} "
 
 pkg_configure() {
-	local_copy
-	python waf configure --prefix=${PREFIX} --alsa --readline=yes
-}
-
-pkg_build() {
-	cd  build
-	python waf build
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+   --enable-shared --enable-threads 
+#	--enable-sse2 --enable-long-double --enable-float --enable-sse --enable-avx
 }
 
 pkg_install() {
-	cd build
-	python waf install && pkg_install_bin_all && pkg_install_libs && pkg_install_pc_all_only
+	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs
 }
 
