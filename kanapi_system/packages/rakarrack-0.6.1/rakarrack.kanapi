@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2017 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -17,31 +17,20 @@
 # You should have received a copy of the GNU General Public License
 # along with KaNaPi.  If not, see <http://www.gnu.org/licenses/>.
 
-PACKAGE_NAME=fltk
-VER=1.3.4-2-source
-URL="http://fltk.org/pub/fltk/1.3.4"
-EXT=tar.gz
+PACKAGE_NAME=rakarrack
+VER=0.6.1
+URL="http://downloads.sourceforge.net/${PACKAGE_NAME}"
+EXT=tar.bz2
 #build depends on
-LIB_DEPENDS="x11 gl"
+LIB_DEPENDS="libpng14"
 
 . ../settings
 
-export LDFLAGS="${LDFLAGS} -lm -lpthread"
-export CXXFLAGS="${CFLAGS} "
-export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
-
 pkg_configure() {
-	${LN_SF} ${KANAPI_BUILD_SRC}/${PACKAGE_NAME}-1.3.4-2 ${PACKAGE_SRCDIR}
-	local_copy
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
-}
-
-pkg_build() {
-	pkg_build_local
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
 }
 
 pkg_install() {
-	cd build
-	pkg_install_make && pkg_install_bin_all && pkg_install_libs && ${LN_SF} ${PREFIX}/include/FL ${PREFIX}/include/Fl
+	pkg_install_make && pkg_install_bin_all && ${LN_SF} ${PREFIX}/share/${PACKAGE_NAME} /usr/local/share/${PACKAGE_NAME}
 }
 

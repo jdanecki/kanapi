@@ -8,7 +8,7 @@ include $(BASE)../scripts/Makefile.common
 
 apps: apps-gtk apps-qt apps-x11 apps-gui
 
-apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft ganv
+apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft ganv fltk
 
 apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro dia patchage
 
@@ -18,7 +18,7 @@ apps-gtk2: apps-libs pavucontrol Blue qiv allegro dia patchage
 
 apps-qt: apps-libs apps_qt
 
-apps-x11: apps-libs mpv ClanLib bullet3 feh ogre
+apps-x11: apps-libs mpv ClanLib bullet3 feh ogre rakarrack
 
 apps-gui: apps-libs vlc Audacity
 
@@ -241,7 +241,7 @@ qjackctl:
 fltk:
 	@$(RUN_TARGET)
 
-csound: fltk
+csound:
 	@$(RUN_TARGET)
 
 csoundqt: csound
@@ -331,4 +331,7 @@ patchage: boost
 	@$(RUN_TARGET)
 
 boost:
+	@$(RUN_TARGET)
+
+rakarrack:
 	@$(RUN_TARGET)
