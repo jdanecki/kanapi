@@ -31,6 +31,7 @@ pkg_configure() {
 }
 
 pkg_install() {
+	mkdir -p /usr/local/share
 	pkg_install_make && pkg_install_bin_all && ${LN_SF} ${PREFIX}/share/${PACKAGE_NAME} /usr/local/share/${PACKAGE_NAME}
 }
 
