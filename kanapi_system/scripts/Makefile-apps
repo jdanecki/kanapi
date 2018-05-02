@@ -10,13 +10,13 @@ apps: apps-gtk apps-qt apps-x11 apps-gui
 
 apps-libs: libmikmod libmad libva-intel-driver ffmpeg ogl sdl openal-soft fltk
 
-apps-gtk: apps-libs gimp gvim evince pavucontrol Blue qiv allegro dia patchage
+apps-gtk: apps-libs apps-gtk-libs gimp gvim evince pavucontrol Blue qiv allegro dia patchage
 
-apps-gtk-libs: apps-libs gtkmm libcanberra
+apps-gtk-libs: gtkmm libcanberra
 
-apps-gtk1: apps-gtk-libs gimp gvim evince
+apps-gtk1: apps-libs apps-gtk-libs gimp gvim evince
    
-apps-gtk2: apps-gtk-libs pavucontrol Blue qiv allegro dia
+apps-gtk2: apps-libs apps-gtk-libs pavucontrol Blue qiv allegro dia
 
 apps-gtk3: apps-gtk-libs patchage
 
