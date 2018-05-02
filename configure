@@ -8,6 +8,8 @@ show_setup() {
 	curl --version
 	gcc --version
 	g++ --version
+	uname -a
+	lsb_release -a
 	echo "PKG_CONFIG: `pkg-config --version`"
 
 	NR_CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
@@ -375,6 +377,12 @@ then
 	exit 0
 fi
 
+if [ "$1" = "setup" ]
+then
+	show_setup
+	exit 0
+fi
+
 if [ "${CI}" = "true" -o "$1" = "ci" ]
 then
 	show_setup
@@ -402,12 +410,6 @@ then
 			configure_ci
 		fi
 	fi
-fi
-
-if [ "$1" = "setup" ]
-then
-	show_setup
-	exit 0
 fi
 
 if [ "$1" = "local" ]
