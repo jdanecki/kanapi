@@ -17,6 +17,7 @@ show_setup() {
 	free
 	df -h
 	echo "----------------------------------------"
+	set
 }
 
 link_makefile() {
