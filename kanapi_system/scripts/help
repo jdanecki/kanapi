@@ -10,16 +10,15 @@ then
 	echo "where script_name is one from download|prepare|configure|build|install|help|rebuild_install|reinstall|redownload|verify|reverify"
 	echo "for example: download gzip"
 else
-	if [ "x$2" == "xverbose" ]
-	then
-		make $1 ACTION=`basename $0` V=1
-	else
-		if [ "x$2" == "xout" ]
-		then
-			make -s $1 ACTION=`basename $0` V=2
-		else
-			make -s $1 ACTION=`basename $0` V=0
-		fi
-	fi
+	case "x$2" in
+		xverbose) make $1 ACTION=`basename $0` V=1
+			;;
+        xout) make -s $1 ACTION=`basename $0` V=2
+			;;
+        xci) make -s $1 ACTION=`basename $0` V=3
+			;;
+		*) make -s $1 ACTION=`basename $0` V=0
+			;;
+	esac
 fi
 
