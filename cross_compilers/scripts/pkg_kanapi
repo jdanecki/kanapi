@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#set -x
 PKG_FILE=$1
 PKG_ACTION="pkg_$2"
 PKG_VERBOSE="$3"

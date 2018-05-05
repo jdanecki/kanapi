@@ -21,6 +21,6 @@ test_cross_compilers:
 	cd ../kanapi_system/`uname -m` ; make cross_gcc ACTION=test
 
 vim:
-	cd ../kanapi_system/`uname -m`   ; make vim	 ACTION=install V=1
+	cd ../kanapi_system/`uname -m`   ; make vim	 ACTION=install VERBOSE=1
 
 

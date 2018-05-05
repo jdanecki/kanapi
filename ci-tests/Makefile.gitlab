@@ -5,7 +5,7 @@ bbs: check_links
 	PATH=$${PATH}:/root/bin; cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
 cli:	
-	cd ../kanapi_system/`uname -m`   ; make cli	 ACTION=install V=1
+	cd ../kanapi_system/`uname -m`   ; make cli	 ACTION=install VERBOSE=1
 
 check_links:
 	./prepare_links

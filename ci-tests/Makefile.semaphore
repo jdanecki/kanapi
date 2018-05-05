@@ -20,5 +20,5 @@ test:
 	echo "tests disabled"
 
 busybox:	
-	cd ../kanapi_system/`uname -m`   ; make busybox	 ACTION=install V=1
+	cd ../kanapi_system/`uname -m`   ; make busybox	 ACTION=install VERBOSE=1
 

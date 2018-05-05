@@ -8,7 +8,7 @@ bbs: check_links
 	cd ../kanapi_system/`uname -m`   ; make bbs	 ACTION=install
 
 cli:	
-	cd ../kanapi_system/`uname -m`   ; make cli	 ACTION=install V=1
+	cd ../kanapi_system/`uname -m`   ; make cli	 ACTION=install VERBOSE=1
 
 check_links:
 	./prepare_links
@@ -17,5 +17,5 @@ test:
 	echo "tests disabled"
 
 busybox:	
-	cd ../kanapi_system/`uname -m`   ; make busybox	 ACTION=install V=1
+	cd ../kanapi_system/`uname -m`   ; make busybox	 ACTION=install VERBOSE=1
 
