@@ -23,25 +23,41 @@ URL="https://www.libsdl.org/release"
 EXT=tar.gz
 #build depends on
 
-LIB_DEPENDS="x11 gl xext alsa xrandr ice x11-xcb xcursor"
+LIB_DEPENDS="x11 gl xext alsa xrandr ice x11-xcb xcursor libunwind SDL2_ttf"
 
 . ../settings
 
 export LDFLAGS="${LDFLAGS} -lstdc++ -lpthread -lm -ldl -lrt"
 export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
 export CFLAGS="${CFLAGS}  -std=gnu11"
+export LIBS="`${PKG_CONFIG} --libs libunwind` -lunwind-x86_64"
 
 pkg_prepare() {
 	pkg_tar_gz
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
-	# --disable-pulseaudio
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-video-opengles
+	mkdir tests; cd tests
+	${PACKAGE_SRCDIR}/test/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+	sed -i -e '/testgles\$(EXE) /,+1d' Makefile
+}
+
+pkg_build() {
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+	cd tests; ${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+}
+
+pkg_install_tests() {
+	cd tests
+	cp test* ${PREFIX}/bin
+	cp *.bmp ${PREFIX}/bin
+	cp *.wav ${PREFIX}/bin
+	cp loop* ${PREFIX}/bin
 }
 
 pkg_install() {
-	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs
+	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs && pkg_install_tests
 
 }
 

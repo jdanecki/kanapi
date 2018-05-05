@@ -742,6 +742,9 @@ verify_file() {
 		text/html) echo "html file"
 				VERIFIED=1
 				;;
+		audio/x-wav) echo "wav file"
+				VERIFIED=1
+				;;
 		*) echo "unknown file type: ${FILE[1]}"
 			false
 			;;
