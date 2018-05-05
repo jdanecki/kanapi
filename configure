@@ -33,6 +33,11 @@ link_makefile() {
 		echo "CIRCLE"
 		ln -sv Makefile.circleci Makefile
 	fi
+	if [ "${GITLAB_CI}" = "true" ]
+	then
+		echo "GITLAB"
+		ln -sv Makefile.gitlab Makefile
+	fi
 
 	if [ "${TRAVIS}" = "true" ]
 	then
@@ -407,7 +412,7 @@ then
 			link_makefile
 			exit 0
 		else
-			echo "CodeShip and CircleCI use native Ubuntu compilers"
+			echo "CodeShip, CircleCI, Gitlab use native compilers"
 			configure_ci
 		fi
 	fi

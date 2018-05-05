@@ -1,4 +1,5 @@
 test1:
     script:
-        - ./configure setup
+        - ./configure
+        - make
 
