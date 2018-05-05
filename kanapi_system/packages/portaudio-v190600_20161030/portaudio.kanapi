@@ -38,7 +38,7 @@ pkg_download() {
 	pkg_curl
 }
 
-pkg_configure_target() {
+pkg_configure() {
 	if [ ! -d ${PACKAGE_SRCDIR} ]
 	then
 		if [ -d ${KANAPI_BUILD_SRC}/portaudio ]
@@ -48,8 +48,14 @@ pkg_configure_target() {
 	fi
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-alsa --with-jack  --enable-cxx 
 }
-	
+
 pkg_install() {
-	pkg_install_pc_all && pkg_install_libs
+	mkdir -p ${PREFIX}/bin
+	pkg_install_pc_all && pkg_install_libs 
+	for i in bin/*
+	do
+		cp $i ${PREFIX}/bin/`basename $i`
+	done
+	pkg_install_bin_all
 }
 
