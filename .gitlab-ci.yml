@@ -1,5 +1,6 @@
-test1:
+image: kanapi/kanapi-sbs
+
+build:
     script:
-        - ./configure
-        - make
+        - ls -l /
 
