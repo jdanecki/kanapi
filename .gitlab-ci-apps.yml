@@ -1,11 +1,21 @@
-bbs:
-    image: kanapi/kanapi-sbs
+gtk:
+    image: kanapi/kanapi-gtk
     script:
         - ln -s /builds/jdanecki/kanapi-apps /kanapi_build/kanapi
-        - mkdir -p ${HOME}/ci_src; cd /kanapi_build/kanapi/kanapi_system/kanapi-bbs; ./install all-sbs ci
-cli:
-    image: kanapi/kanapi-bbs
+        - mkdir -p ${HOME}/ci_src; cd /kanapi_build/kanapi/kanapi_system/kanapi-apps; ./install apps-gtk ci
+gui:
+    image: kanapi/kanapi-gui
     script:
         - rm -rf /kanapi_build/kanapi; ln -s /builds/jdanecki/kanapi-apps /kanapi_build/kanapi
-        - mkdir -p ${HOME}/ci_src; cd /kanapi_build/kanapi/kanapi_system/kanapi-cli; ./install cli ci
+        - mkdir -p ${HOME}/ci_src; cd /kanapi_build/kanapi/kanapi_system/kanapi-apps; ./install apps-gui ci
+qt:
+    image: kanapi/kanapi-qt
+    script:
+        - rm -rf /kanapi_build/kanapi; ln -s /builds/jdanecki/kanapi-apps /kanapi_build/kanapi
+        - mkdir -p ${HOME}/ci_src; cd /kanapi_build/kanapi/kanapi_system/kanapi-apps; ./install apps-qt ci
+x11:
+    image: kanapi/kanapi-x11-lib
+    script:
+        - rm -rf /kanapi_build/kanapi; ln -s /builds/jdanecki/kanapi-apps /kanapi_build/kanapi
+        - mkdir -p ${HOME}/ci_src; cd /kanapi_build/kanapi/kanapi_system/kanapi-apps; ./install apps-x11 ci
 
