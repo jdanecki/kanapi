@@ -38,14 +38,24 @@ pkg_prepare() {
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --disable-video-opengles
-	mkdir tests; cd tests
-	${PACKAGE_SRCDIR}/test/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
-	sed -i -e '/testgles\$(EXE) /,+1d' Makefile
+	if [ "${CI}" = "true" ]
+	then
+		echo "don't configure SDL tests under CI"
+	else
+		mkdir tests; cd tests
+		${PACKAGE_SRCDIR}/test/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+		sed -i -e '/testgles\$(EXE) /,+1d' Makefile
+	fi
 }
 
 pkg_build() {
 	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
-	cd tests; ${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+	if [ "${CI}" = "true" ]
+	then
+		echo "don't build SDL tests under CI"
+	else
+		cd tests; ${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+	fi
 }
 
 pkg_install_tests() {
@@ -57,8 +67,12 @@ pkg_install_tests() {
 }
 
 pkg_install() {
-	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs && pkg_install_tests
-
+	if [ "${CI}" = "true" ]
+	then
+		pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs
+	else
+		pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs && pkg_install_tests
+	fi
 }
 
 pkg_check() {
