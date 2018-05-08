@@ -493,3 +493,6 @@ patchage_ver=1.0.0
 boost_ver=1.67.0
 rakarrack_ver=0.6.1
 hydrogen_ver=1.0.0-beta1
+xfig_ver=3.2.7a
+libXaw3dXft_ver=1.6.2e
+libXaw3d_ver=1.6.2

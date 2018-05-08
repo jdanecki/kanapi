@@ -22,7 +22,7 @@ apps-gtk3: apps-gtk-libs patchage
 
 apps-qt: apps-libs apps_qt
 
-apps-x11: apps-libs mpv ClanLib bullet3 feh ogre rakarrack
+apps-x11: apps-libs mpv ClanLib bullet3 feh ogre rakarrack xfig
 
 apps-gui: apps-libs vlc Audacity
 
@@ -341,4 +341,13 @@ rakarrack:
 	@$(RUN_TARGET)
 
 hydrogen:
+	@$(RUN_TARGET)
+
+libXaw3dXft:
+	@$(RUN_TARGET)
+
+libXaw3d:
+	@$(RUN_TARGET)
+
+xfig: libXaw3d
 	@$(RUN_TARGET)
