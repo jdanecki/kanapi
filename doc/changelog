@@ -1,6 +1,31 @@
 Beta - current phase
 ====================
 
+v0.9
+====
+
+* Integration with CI systems: Travis, Shippable, CircleCI, Codeship, Gitlab, SemaphoreCI
+* Integration with docker hub
+* Dropped support for FBS, SBS, KBS
+* Focus on x86_64 architecture only
+* Split packages into groups: SBS, BBS, CLI, X11, GUI, Apps
+* Builds in docker containers
+* Native support for sound frameworks: jack, pulseaudio, and others
+* Native docker support
+* GUI: SDL, SDL2, wxWidgets, fltk
+* Build improvements
+* New music, audio, media applications
+* New packages for game development
+* New versions of selected packages
+* Basic OpenCL support for Intel GPU
+* i3 as main window manager
+* Kernel 4.14.2
+* New network tools
+* Support to run other distributions in chroot: arch, crux, debian, exherbo,
+  fedora, gentoo, gobolinux, lunar, mint, nutyx, opensuse, void, kxstudio
+* Support to run other distributions in qemu: debian, fedora, gobolinux, lunar 
+  nixos, nutyx, pisilinux, quix, rancher-os, slax, solus
+
 v0.8
 ====
 
