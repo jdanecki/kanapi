@@ -30,10 +30,10 @@ EXT=src.tar.gz
 #export CFLAGS="${CFLAGS} "
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/${PACKAGE_NAME}${VER}.${EXT}
+	PACKAGE_PATH=${PACKAGE_NAME}${VER}.${EXT}
 	pkg_curl
 	PACKAGE_FILENAME=go-1.4.3.tar.gz
-	PACKAGE_LINK=${URL}/go1.4.3.linux-amd64.tar.gz
+	PACKAGE_PATH=go1.4.3.linux-amd64.tar.gz
 	pkg_curl
 }
 

@@ -30,7 +30,7 @@ export LDFLAGS="${LDFLAGS} -lpthread -lm -lrt -lstdc++ -lresolv"
 export CXXFLAGS="${CFLAGS}"
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/${VER}.${EXT}
+	PACKAGE_PATH=${VER}.${EXT}
 	pkg_curl
 }
 

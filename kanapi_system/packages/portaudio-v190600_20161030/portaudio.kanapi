@@ -33,7 +33,7 @@ export MAKE_JOBS=1
 
 pkg_download() {
 	PACKAGE_FILENAME=${PACKAGE_NAME}-${VER}.${EXT}
-	PACKAGE_LINK=${URL}/pa_stable_${VER}.${EXT}
+	PACKAGE_PATH=pa_stable_${VER}.${EXT}
 	
 	pkg_curl
 }

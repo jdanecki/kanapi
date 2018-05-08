@@ -24,7 +24,7 @@ EXT=bz2
 #build depends on
 . ../settings
 
-PACKAGE_LINK=${URL}/pci.ids.${EXT}
+PACKAGE_PATH=pci.ids.${EXT}
 PACKAGE_FILENAME=pci.ids.${EXT}
 
 pkg_configure() {

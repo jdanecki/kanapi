@@ -32,7 +32,7 @@ else
 fi
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/linux-${VER}.${EXT}
+	PACKAGE_PATH=linux-${VER}.${EXT}
 	pkg_curl	
 }
 

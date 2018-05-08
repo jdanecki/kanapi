@@ -32,7 +32,7 @@ EXT=tar.bz2
 pkg_download() {
 #	PACKAGE_FILENAME=${PACKAGE_NAME}-${VER}.${EXT}
 	
-	PACKAGE_LINK=${URL}/${PACKAGE_NAME}_${VER//./_}.${EXT}
+	PACKAGE_PATH=${PACKAGE_NAME}_${VER//./_}.${EXT}
 	
 	pkg_curl
 }

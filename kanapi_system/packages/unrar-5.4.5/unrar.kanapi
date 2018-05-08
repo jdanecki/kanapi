@@ -30,7 +30,7 @@ EXT=tar.gz
 #export CFLAGS="${CFLAGS} "
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/${PACKAGE_NAME}src-${VER}.${EXT}
+	PACKAGE_PATH=${PACKAGE_NAME}src-${VER}.${EXT}
 	pkg_curl
 }
 

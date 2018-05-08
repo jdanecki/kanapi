@@ -28,7 +28,7 @@ EXT=tar.gz
 export CFLAGS="-D_GNU_SOURCE"
 
 pkg_download() {
-    PACKAGE_LINK=${URL}/${PACKAGE_NAME}_${VER}.orig.${EXT}
+    PACKAGE_PATH=${PACKAGE_NAME}_${VER}.orig.${EXT}
     pkg_curl
 }
 

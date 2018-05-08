@@ -35,7 +35,7 @@ export MAKE_JOBS=1
 #export EXTRA_LIBS="-lm -lpthread -ldl -lrt -lstdc++ -lresolv"
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/${PACKAGE_VER}.source.${EXT}
+	PACKAGE_PATH=${PACKAGE_VER}.source.${EXT}
 	pkg_curl
 }
 

@@ -19,9 +19,7 @@
 
 PACKAGE_NAME=qiv
 VER=2.3.1
-#URL="http://spiegl.de/qiv/download"
-#use SF mirror
-URL="https://downloads.sourceforge.net/project/kanapi/sources/Packages/mirror"
+URL="http://spiegl.de/qiv/download"
 EXT=tgz
 #build depends on
 LIB_DEPENDS="imlib2 x11 xext gdk-2.0 libtiff-4 libexif"

@@ -31,7 +31,7 @@ EXT=zip
 
 pkg_download() {
 	PACKAGE_FILENAME=${PACKAGE_NAME}-${VER}.${EXT}
-	PACKAGE_LINK=${URL}/FreeImage3170.zip
+	PACKAGE_PATH=FreeImage3170.zip
 	pkg_curl
 }
 

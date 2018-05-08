@@ -19,9 +19,7 @@
 
 PACKAGE_NAME=sdparm
 VER=1.10
-#URL="http://sg.danny.cz/sg/p"
-#use SF mirror
-URL="https://downloads.sourceforge.net/project/kanapi/sources/Packages/mirror"
+URL="http://sg.danny.cz/sg/p"
 EXT=tar.xz
 #build depends on
 #LIB_DEPENDS=""

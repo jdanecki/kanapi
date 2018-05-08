@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2012-2016 Jacek Danecki <jacek.m.danecki@gmail.com>
+# Copyright (c) 2012-2018 Jacek Danecki <jacek.m.danecki@gmail.com>
 #
 # This file is part of KaNaPi project
 #
@@ -20,14 +20,14 @@
 PACKAGE_NAME=package1
 VER=1
 #URL="http://repository_name_for_${PACKAGE_NAME}"
-URL="http://kanapi.tk"
+URL="http://kanapi.ga"
 EXT=tar.bz2
 #build depends on
 . ../settings
 
 pkg_download() {
-	echo "pkg_download from ${URL}"
-#	pkg_curl
+#	echo "pkg_download from ${URL}"
+	pkg_curl
 }
 
 pkg_prepare() {

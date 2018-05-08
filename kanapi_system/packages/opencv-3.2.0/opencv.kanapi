@@ -32,7 +32,7 @@ export LDFLAGS="-lresolv"
 #export CFLAGS="${CFLAGS} "
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/${VER}.${EXT}
+	PACKAGE_PATH=${VER}.${EXT}
 	pkg_curl
 }
 

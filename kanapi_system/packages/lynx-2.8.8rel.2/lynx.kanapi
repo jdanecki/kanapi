@@ -31,7 +31,7 @@ export CFLAGS="${CFLAGS} `ncurses5-config --cflags`"
 
 pkg_download() {
 	PACKAGE_FILENAME=${PACKAGE_NAME}-${VER}.${EXT}
-	PACKAGE_LINK=${URL}/${PACKAGE_NAME}${VER}.${EXT}
+	PACKAGE_PATH=${PACKAGE_NAME}${VER}.${EXT}
 	
 	pkg_curl
 }

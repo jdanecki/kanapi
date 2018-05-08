@@ -19,9 +19,7 @@
 
 PACKAGE_NAME=chrpath
 VER=0.16
-#URL="https://alioth.debian.org/frs/download.php/latestfile/813"
-#use SF mirror
-URL="https://downloads.sourceforge.net/project/kanapi/sources/Packages/mirror"
+URL="https://alioth.debian.org/frs/download.php/latestfile/813"
 EXT=tar.gz
 #build depends on
 . ../settings

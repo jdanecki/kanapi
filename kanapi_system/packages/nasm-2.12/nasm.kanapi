@@ -19,9 +19,7 @@
 
 PACKAGE_NAME=nasm
 VER=2.12
-#URL="http://www.nasm.us/pub/nasm/releasebuilds/2.12"
-#use mirror from SF
-URL="https://downloads.sourceforge.net/project/kanapi/sources/Packages/mirror"
+URL="http://www.nasm.us/pub/nasm/releasebuilds/2.12"
 EXT=tar.xz
 #build depends on
 #LIB_DEPENDS=""

@@ -31,7 +31,7 @@ EXT=tar.gz
 
 pkg_download() {
 	PACKAGE_FILENAME=${PACKAGE_NAME}-${VER}.${EXT}
-	PACKAGE_LINK=${URL}/${VER}.${EXT}
+	PACKAGE_PATH=${VER}.${EXT}
 	
 	pkg_curl
 }

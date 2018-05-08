@@ -28,7 +28,7 @@ export AR=${KANAPI_TARGET_NAME}-ar
 export CXX=${KANAPI_CXX_COMPILER}
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/v${VER}.${EXT}
+	PACKAGE_PATH=v${VER}.${EXT}
 	pkg_curl
 }
 

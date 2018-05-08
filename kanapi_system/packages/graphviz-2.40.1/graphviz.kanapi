@@ -42,7 +42,7 @@ export CXXFLAGS="${CFLAGS} -std=c++11 -fPIC"
 #export QTGUI_LIBS="`${PKG_CONFIG} --libs Qt5Gui`"
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/${PACKAGE_NAME}.${EXT}
+	PACKAGE_PATH=${PACKAGE_NAME}.${EXT}
 	pkg_curl
 }
 

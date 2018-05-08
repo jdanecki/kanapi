@@ -28,7 +28,7 @@ EXT=tar.gz
 pkg_download() {
 	PACKAGE_VER=ncurses-${VER}
 	PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
-	PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
+	PACKAGE_PATH=${PACKAGE_FILENAME}
 	pkg_curl
 }
 

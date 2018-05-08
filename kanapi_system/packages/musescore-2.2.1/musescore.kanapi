@@ -32,7 +32,7 @@ export CMAKE_PREFIX_PATH=${KANAPI_BASE}/qt-everywhere-opensource-src-${qt_everyw
 
 pkg_download() {
 	PACKAGE_FILENAME=${PACKAGE_NAME}-${VER}.${EXT}
-	PACKAGE_LINK=${URL}/v${VER}.${EXT}
+	PACKAGE_PATH=v${VER}.${EXT}
 	
 	pkg_curl
 }

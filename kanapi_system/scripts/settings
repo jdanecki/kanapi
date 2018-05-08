@@ -39,16 +39,25 @@ PACKAGE_FILENAME=${PACKAGE_VER}.${EXT}
 STRIP_BINARIES=1
 STRIP_LIBRARIES=1
 
-if [[ ${URL} == "SF" ]]
+SF_MIRROR=https://downloads.sourceforge.net/project/kanapi/sources/Packages/mirror
+SH_MIRROR=http://84.38.102.146/~adanecki/kanapi/mirror
+SF_PROJECT=http://downloads.sourceforge.net/project
+GNU_SUNSITE=http://sunsite.icm.edu.pl/pub/gnu
+GNU_MIRROR=http://ftp.gnu.org/pub/gnu
+
+if [ "${URL}" = "SF" ]
 then
-	PACKAGE_LINK=http://downloads.sourceforge.net/project/${SF_URL}
+	MIRROR_URL=${SF_PROJECT}
+	PACKAGE_PATH=${SF_URL}
 else
-	if [[ ${URL} == "GNU" ]]
+	if [ "${URL}" = "GNU" ]
 	then
-		PACKAGE_LINK=http://sunsite.icm.edu.pl/pub/gnu/${PACKAGE_NAME}/${PACKAGE_FILENAME}
-		PACKAGE_LINK_BACKUP=http://ftp.gnu.org/pub/gnu/${PACKAGE_NAME}/${PACKAGE_FILENAME}
+		MIRROR_URL=${GNU_SUNSITE}
+		PACKAGE_PATH=${PACKAGE_NAME}/${PACKAGE_FILENAME}
+		PACKAGE_LINK_BACKUP=${GNU_MIRROR}
 	else
-		PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
+		MIRROR_URL=${URL}
+		PACKAGE_PATH=${PACKAGE_FILENAME}
 	fi
 fi
 
@@ -59,7 +68,7 @@ export PKG_CONFIG=${KANAPI_PKGCONFIG}
 if [ -n "${PKG_CONFIG}" ]
 then
 	export PKG_CONFIG_DIR=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/share/pkgconfig
-	if [[ -n "${LIB_DEPENDS}" ]]
+	if [ -n "${LIB_DEPENDS}" ]
 	then
 		${PKG_CONFIG} --exists ${LIB_DEPENDS}
 		if [ "$?" = "0" ]
@@ -172,8 +181,20 @@ pkg_wget() {
 	then 
 		echo "$PACKAGE_NAME: already downloaded"
 	else
-		echo "downloading ${PACKAGE_NAME}"
-		wget ${PACKAGE_LINK} -O ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+		for mirror in ${MIRROR_URL} ${PACKAGE_LINK_BACKUP} ${SF_MIRROR} ${SH_MIRROR}
+		do
+			if [ -n "${mirror}" ]
+			then
+				pkg_download_from_mirror_wget ${mirror}/${PACKAGE_PATH}
+			else
+				continue
+			fi
+			if [ "$?" = 0 ] 
+			then
+				return 0
+			fi
+		done
+		false
 	fi
 }
 
@@ -226,63 +247,61 @@ check_file_type() {
 	fi
 }
 
+pkg_download_from_mirror_curl() {
+	echo "downloading $1"
+	curl --retry 3 -L $1 -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+	
+	if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
+	then 
+		false
+	else
+		check_file_type
+		if [ "$?" = 0 ]
+		then 
+			true
+		else 
+			false
+		fi
+	fi
+}
+
+pkg_download_from_mirror_wget() {
+	echo "downloading $1"
+	wget -t 3 $1 -O ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+	if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
+	then 
+		false
+	else
+		check_file_type
+		if [ "$?" = 0 ]
+		then 
+			true
+		else 
+			false
+		fi
+	fi
+}
+
+
 pkg_curl() {
 	if [ -s ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
 	then 
 		echo "$PACKAGE_NAME: already downloaded"
-	else
-		echo "downloading ${PACKAGE_NAME} from ${PACKAGE_LINK}"
-		if [ "${CODESHIP}" = "TRUE" ]
-		then
-			curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-		else
-			curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-		fi
-		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
-		then 
-			echo "downloading ${PACKAGE_NAME} again"
-			if [ "${CODESHIP}" = "TRUE" ]
+	else		
+		for mirror in ${MIRROR_URL} ${PACKAGE_LINK_BACKUP} ${SF_MIRROR} ${SH_MIRROR}
+		do
+			if [ -n "${mirror}" ]
 			then
-				curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				pkg_download_from_mirror_curl ${mirror}/${PACKAGE_PATH}
 			else
-				curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				continue
 			fi
-		fi
-		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} -a -n "${PACKAGE_LINK_BACKUP}" ] 
-		then 
-			echo "downloading ${PACKAGE_NAME} from second mirror"
-			if [ "${CODESHIP}" = "TRUE" ]
+			if [ "$?" = 0 ] 
 			then
-				curl --retry 3 -L ${PACKAGE_LINK_BACKUP} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-			else
-				curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK_BACKUP} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
+				return 0
 			fi
-		fi
-
-		if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
-		then
-			false
-		else
-			check_file_type
-			if [ "$?" = 0 ]
-			then 
-				true
-			else
-				echo "downloading ${PACKAGE_NAME} once again"
-				if [ "${CODESHIP}" = "TRUE" ]
-				then
-					curl --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-				else
-					curl --retry-connrefused --retry 3 -L ${PACKAGE_LINK} -o ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}
-				fi
-				if [ ! -e ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME} ] 
-				then
-					false
-				else
-					check_file_type
-				fi
-			fi
-		fi
+		done
+		false
 	fi
 }
 

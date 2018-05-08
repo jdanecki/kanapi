@@ -40,7 +40,7 @@ export LDFLAGS="${LDFLAGS} -lm -lrt -lpthread -lresolv"
 
 pkg_download() {
 	PACKAGE_FILENAME=vim-${VER}.${EXT}
-	PACKAGE_LINK=${URL}/${PACKAGE_FILENAME}
+	PACKAGE_PATH=${PACKAGE_FILENAME}
 	
 	pkg_curl
 }

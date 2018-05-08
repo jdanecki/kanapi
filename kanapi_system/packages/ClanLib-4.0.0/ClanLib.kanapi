@@ -31,7 +31,7 @@ export CFLAGS=${CXXFLAGS}
 export LDFLAGS="${LDFLAGS} -lpthread ${CFLAGS}"
 
 pkg_download() {
-	PACKAGE_LINK=${URL}/v${VER}.${EXT}
+	PACKAGE_PATH=v${VER}.${EXT}
 	pkg_curl
 }
 

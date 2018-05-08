@@ -19,14 +19,14 @@
 
 PACKAGE_NAME=yajl
 VER=2.1.0
-URL=" http://github.com/lloyd/yajl/tarball/2.1.0"
+URL="https://github.com/lloyd/yajl/archive"
 EXT=tar.gz
 #build depends on
 . ../settings
 #export LD_LIBRARY_PATH=${KANAPI_BASE}/libs
 
 pkg_download() {
-	PACKAGE_LINK=${URL}
+	PACKAGE_PATH=${VER}.${EXT}
 	pkg_curl
 }
 
