@@ -19,7 +19,9 @@
 
 PACKAGE_NAME=glu
 VER=9.0.0
-URL="ftp://ftp.freedesktop.org/pub/mesa/glu"
+#URL="ftp://ftp.freedesktop.org/pub/mesa/glu"
+#use SF mirror
+URL="https://downloads.sourceforge.net/project/kanapi/sources/Packages/mirror"
 EXT=tar.bz2
 #build depends on
 #LIB_DEPENDS=""
