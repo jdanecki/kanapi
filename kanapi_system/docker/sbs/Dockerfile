@@ -1,6 +1,6 @@
 FROM scratch
 MAINTAINER Jacek Danecki <jacek.m.danecki@gmail.com>
-ADD sbs-docker-0.10.tar.xz /
+ADD sbs-docker-0.10.1.tar.xz /
 COPY group /etc
 COPY nsswitch.conf /etc
 COPY passwd /etc
