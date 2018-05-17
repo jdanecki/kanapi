@@ -24,17 +24,7 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-pkg_prepare() {
-	pkg_tar_gz
-}
-
 pkg_configure() {
-	if [ "${KANAPI_TARGET}" = "arm" ] ; then export COMPILER=linux-armv4 ; fi
-	if [ "${KANAPI_TARGET}" = "i686" ] ; then export COMPILER=linux-generic32 ; fi
-	if [ "${KANAPI_TARGET}" = "x86_64" ] ; then export COMPILER=linux-generic64 ; fi
-
-	echo "Selected compiler: ${COMPILER}"
-
-	${PACKAGE_SRCDIR}/Configure --prefix=$PREFIX --cross-compile-prefix=${KANAPI_TARGET_NAME}- shared  ${COMPILER}
+	${PACKAGE_SRCDIR}/Configure --prefix=$PREFIX shared linux-generic64
 }
 

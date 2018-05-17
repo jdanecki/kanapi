@@ -7,8 +7,6 @@ export LC_COLLATE="C"
 export LC_CTYPE="C"
 export LANG="C"
 
-KANAPI_TARGET_NAME=${KANAPI_TARGET}-kanapi-linux-gnu
-KANAPI_BUILD_NAME=`uname -m`-kanapi-linux-gnu
 KANAPI_VER=`cat ../../scripts/KANAPI_VER`
 if [ "`id -u`" != "0" ]
 then
@@ -16,10 +14,9 @@ then
 else
 	KANAPI_ROOT="/kanapi_${KANAPI_VER}"
 fi
-KANAPI_BASE=${KANAPI_ROOT}/${KANAPI_TARGET}/packages
-KANAPI_HOST_BASE=${KANAPI_ROOT}/`uname -m`/packages
-KANAPI_HOME=${KANAPI_ROOT}/`uname -m`/home
-KANAPI_TARGET_BIN=${KANAPI_ROOT}/${KANAPI_TARGET}/bin
+KANAPI_BASE=${KANAPI_ROOT}/packages
+KANAPI_HOME=${KANAPI_ROOT}/home
+KANAPI_BIN=${KANAPI_ROOT}/bin
 if [ "${CI}" = "true" ]
 then
 	KANAPI_BUILD_SRC=${HOME}/ci_src
@@ -30,7 +27,39 @@ fi
 USE_WGET=0
 
 ##############################################################
-. ../../scripts/cross.kanapi
+. ../../scripts/config.kanapi
+
+if [ -f ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ]
+then
+	export KANAPI_PKGCONFIG=${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config
+fi
+
+if [ -x ${KANAPI_BIN}/ccache -a -z "${CI}" ]
+then
+	export USE_CCACHE=1
+fi
+
+if [ "${USE_CCACHE}" = "1" ]
+then
+	export CC="${KANAPI_BASE}/ccache-${ccache_ver}/links/gcc"
+	export KANAPI_C_COMPILER=${CC}
+	if [ -f ${KANAPI_BASE}/glibc-${glibc_ver}/lib/libstdc++.so ]
+	then
+		export CXX="${KANAPI_BASE}/ccache-${ccache_ver}/links/g++"
+		export KANAPI_CXX_COMPILER=${CXX}
+	fi
+fi
+
+export PATH=${KANAPI_BIN}:${PATH}
+
+if [ -z "${KANAPI_C_COMPILER}" ]
+then 
+	KANAPI_C_COMPILER=gcc
+fi
+if [ -z "${KANAPI_CXX_COMPILER}" ]
+then 
+	KANAPI_CXX_COMPILER=g++
+fi
 
 PACKAGE_VER=${PACKAGE_NAME}-${VER}
 PREFIX=${KANAPI_BASE}/${PACKAGE_VER}
@@ -117,10 +146,7 @@ then
 	LIBGCRYPT_LDFLAGS=`${LIBGCRYPT_CONFIG} --libs`
 fi
 
-if [ "${KANAPI_TARGET}" = "x86_64" ]
-then
-	CFLAGS="${CFLAGS} -fPIC"
-fi
+CFLAGS="${CFLAGS} -fPIC"
 
 (which grep && which wc) > /dev/null
 if [ "$?" = "0" ]
@@ -438,21 +464,13 @@ pkg_version() {
 	echo ${PACKAGE_NAME} ${VER}
 }
 
-pkg_configure_native() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX
-}
-
-pkg_configure_target() {	
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
-}
-
 pkg_configure() {
-	pkg_configure_target
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX
 }
 
 pkg_configure_local() {
 	local_copy
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}
+	./configure --prefix=$PREFIX
 }
 
 pkg_build() {
@@ -533,7 +551,7 @@ pkg_install_pc_all_only() {
 pkg_uninstall() {
 	if [ -d ${PREFIX} ]
 	then	
-		rm -rf ${KANAPI_ROOT}/${KANAPI_TARGET}/packages/${PACKAGE_VER}
+		rm -rf ${KANAPI_ROOT}/packages/${PACKAGE_VER}
 	fi
 }
 
@@ -582,7 +600,7 @@ pkg_strip_binaries() {
 pkg_install_bin() {
 	if [ -f ${PREFIX}/bin/${PACKAGE_NAME} ]
 	then
-		${LN_SF} ${PREFIX}/bin/${PACKAGE_NAME} ${KANAPI_BASE}/../bin/${PACKAGE_NAME}
+		${LN_SF} ${PREFIX}/bin/${PACKAGE_NAME} ${KANAPI_BIN}/${PACKAGE_NAME}
 		pkg_strip_binaries
 	fi
 }
@@ -590,8 +608,8 @@ pkg_install_bin() {
 pkg_install_bin_all() {
 	if [ -d ${PREFIX}/bin ]	
 	then
-		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
-		${LN_SF} ${PREFIX}/bin/* ${KANAPI_TARGET_BIN}
+		if [ ! -d ${KANAPI_BIN} ] ; then mkdir ${KANAPI_BIN} ; fi
+		${LN_SF} ${PREFIX}/bin/* ${KANAPI_BIN}
 		pkg_strip_binaries
 	fi
 }
@@ -599,8 +617,8 @@ pkg_install_bin_all() {
 pkg_install_sbin_all() {
 	if [ -d ${PREFIX}/sbin ]	
 	then
-		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
-		${LN_SF} ${PREFIX}/sbin/* ${KANAPI_TARGET_BIN}
+		if [ ! -d ${KANAPI_BIN} ] ; then mkdir ${KANAPI_BIN} ; fi
+		${LN_SF} ${PREFIX}/sbin/* ${KANAPI_BIN}
 		pkg_strip_binaries
 	fi
 }
@@ -608,8 +626,17 @@ pkg_install_sbin_all() {
 pkg_install_usr_bin_all() {
 	if [ -d ${PREFIX}/usr/bin ]	
 	then
-		if [ ! -d ${KANAPI_TARGET_BIN} ] ; then mkdir ${KANAPI_TARGET_BIN} ; fi
-		${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_TARGET_BIN}
+		if [ ! -d ${KANAPI_BIN} ] ; then mkdir ${KANAPI_BIN} ; fi
+		${LN_SF} ${PREFIX}/usr/bin/* ${KANAPI_BIN}
+		pkg_strip_binaries
+	fi
+}
+
+pkg_install_usr_sbin_all() {
+	if [ -d ${PREFIX}/usr/sbin ]	
+	then
+		if [ ! -d ${KANAPI_BIN} ] ; then mkdir ${KANAPI_BIN} ; fi
+		${LN_SF} ${PREFIX}/usr/sbin/* ${KANAPI_BIN}
 		pkg_strip_binaries
 	fi
 }
@@ -659,7 +686,7 @@ pkg_install_all() {
 
 pkg_test() {
 	echo "tests for ${PACKAGE_NAME}"
-	${MAKE} -C ../../tests test_${PACKAGE_NAME} KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME} KANAPI_BASE=${KANAPI_BASE}
+	${MAKE} -C ../../tests test_${PACKAGE_NAME} KANAPI_BASE=${KANAPI_BASE}
 }
 
 pkg_check() {
@@ -712,7 +739,12 @@ verify_file() {
 					then
 						ldd $1
 					else
-						${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so --list $1
+						if [ -x ${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so ]
+						then
+							${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so --list $1
+						else
+							true
+						fi
 					fi
 					if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				fi
@@ -722,7 +754,12 @@ verify_file() {
 					then
 						ldd $1
 					else
-						${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so --list $1
+						if [ -x ${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so ]
+						then 
+							${KANAPI_BASE}/glibc-${glibc_ver}/lib/ld-${glibc_ver}.so --list $1
+						else
+							true
+						fi
 					fi
 				if [ "$?" = "0" ] ; then VERIFIED=1 ; fi
 				;;

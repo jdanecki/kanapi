@@ -27,8 +27,8 @@ EXT=tar.bz2
 USE_WGET=1
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} ac_cv_sys_symbol_underscore=no \
-	--with-libgpg-error-prefix=`${GPG_ERROR_CONFIG} --prefix` CC_FOR_BUILD=gcc
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX ac_cv_sys_symbol_underscore=no \
+	--with-libgpg-error-prefix=`${GPG_ERROR_CONFIG} --prefix`
 }
 
 pkg_check() {
@@ -38,7 +38,5 @@ pkg_check() {
 }
 
 pkg_install() {
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
-	pkg_install_libs
-	pkg_install_bin_all
+	pkg_install_make && pkg_install_libs && pkg_install_bin_all
 }

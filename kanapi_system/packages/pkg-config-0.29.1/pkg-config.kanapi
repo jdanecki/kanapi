@@ -29,7 +29,7 @@ pkg_prepare() {
 }
 
 pkg_install() {
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
+	pkg_install_make
 	mkdir ${PREFIX}/share/pkgconfig
 	export PKG_CONFIG_DIR=${PREFIX}/share/pkgconfig
 	for p in glib libffi zlib
@@ -40,6 +40,7 @@ pkg_install() {
 			ln -svf $f ${PKG_CONFIG_DIR}/`basename $f`
 		done
 	done
+	pkg_install_bin_all
 }
 
 pkg_check() {

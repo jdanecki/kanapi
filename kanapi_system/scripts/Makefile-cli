@@ -94,10 +94,6 @@ nasm:
 syslinux: nasm
 	@$(RUN_TARGET)
 
-ifeq ($(DISABLE_PACKAGES),1)
-dhcp mbr bin86:
-	true
-else
 dhcp:
 	@$(RUN_TARGET)
 
@@ -106,7 +102,6 @@ mbr: bin86
 
 bin86:
 	@$(RUN_TARGET)
-endif
 
 libtirpc:
 	@$(RUN_TARGET)
