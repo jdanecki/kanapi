@@ -21,9 +21,12 @@ set -e
 
 . ../scripts/config.kanapi
 
+export SBS_BUILD=1
+
 ARCH=`uname -m`
 
 export KANAPI_VER=`cat ../scripts/KANAPI_VER`
+export IMAGE_VER=${KANAPI_VER}.${SBS_BUILD}
 echo "Preparing SBS-docker for ${KANAPI_VER} on ${ARCH}"
 KANAPI_BASE=/kanapi_${KANAPI_VER}
 KANAPI_BASE_PACKAGES=${KANAPI_BASE}/packages
@@ -132,8 +135,8 @@ mkdir -p kanapi_${KANAPI_VER}/home/.local
 cd ..
 
 echo "Compressing image"
-tar -C sbs-docker -cf sbs-docker-${KANAPI_VER}.tar .
-rm -f sbs-docker-${KANAPI_VER}.tar.xz
-xz -T 0 sbs-docker-${KANAPI_VER}.tar
-md5sum sbs-docker-${KANAPI_VER}.tar.xz > sbs-docker-${KANAPI_VER}.tar.xz.md5
+tar -C sbs-docker -cf sbs-docker-${IMAGE_VER}.tar .
+rm -f sbs-docker-${IMAGE_VER}.tar.xz
+xz -T 0 sbs-docker-${IMAGE_VER}.tar
+md5sum sbs-docker-${IMAGE_VER}.tar.xz > sbs-docker-${IMAGE_VER}.tar.xz.md5
 
