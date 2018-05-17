@@ -20,7 +20,7 @@ Author: jacek.m.danecki@gmail.com
 
 ## SBS images
 
-SBS images on SourceForge https://sourceforge.net/projects/kanapi/files/images/v0.9/
+SBS images on SourceForge https://sourceforge.net/projects/kanapi/files/images
 * sbs-x86_64.tar.xz - base for build in chroot (local and CI)
 * sbs-docker-x86.tar.xz - base for BBS docker image
 

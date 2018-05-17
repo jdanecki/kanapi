@@ -2,6 +2,9 @@
 
 . version
 
-wget http://downloads.sourceforge.net/project/kanapi/images/v0.9/sbs-docker-x86_64.tar.xz
-docker build -t kanapi-${NAME}:${VER} .
-rm sbs-docker-x86_64.tar.xz
+if [ ! -f sbs-docker-${VER}.tar.xz ]
+then
+	wget http://downloads.sourceforge.net/project/kanapi/images/v${VER}/sbs-docker-${VER}.tar.xz
+fi
+docker build -t kanapi/kanapi-${NAME}:${VER} .
+
