@@ -25,10 +25,10 @@ ARCH=`uname -m`
 
 export KANAPI_VER=`cat ../scripts/KANAPI_VER`
 echo "Preparing SBS-docker for ${KANAPI_VER} on ${ARCH}"
-KANAPI_BASE=/kanapi_${KANAPI_VER}/${ARCH}
+KANAPI_BASE=/kanapi_${KANAPI_VER}
 KANAPI_BASE_PACKAGES=${KANAPI_BASE}/packages
-KANAPI_BASE_LOCAL=kanapi_${KANAPI_VER}/${ARCH}
-SBS_DIR=sbs-docker-${ARCH}
+KANAPI_BASE_LOCAL=kanapi_${KANAPI_VER}
+SBS_DIR=sbs-docker
 
 echo "KANAPI_BASE=${KANAPI_BASE}"
 echo "SBS_DIR=${SBS_DIR}"
@@ -80,13 +80,6 @@ ln -sf .bashrc ${KANAPI_BASE_LOCAL}/home/.bash_profile
 
 ln -sf /packages ${KANAPI_BASE_LOCAL}
 ln -sf /bin ${KANAPI_BASE_LOCAL}/bin
-mkdir -p ${KANAPI_BASE_LOCAL}/cross/${ARCH}
-for pkg in binutils gcc gmp mpc mpfr 
-do
-	pkg_v=${pkg}_ver
-	ln -sf ${KANAPI_BASE_PACKAGES}/${pkg}-${!pkg_v} ${KANAPI_BASE_LOCAL}/cross/${ARCH}
-done
-ln -sf ${KANAPI_BASE_PACKAGES}/pkg-config-${pkg_config_ver} ${KANAPI_BASE_LOCAL}/cross/${ARCH}
 
 mkdir bin
 mkdir usr
@@ -116,40 +109,31 @@ do
 	done
 done
 
-for i in packages/gcc-${gcc_ver}/libexec/gcc/${ARCH}-kanapi-linux-gnu/${gcc_ver}/*
+for i in packages/gcc-${gcc_ver}/libexec/gcc/${ARCH}-unknown-linux-gnu/${gcc_ver}/*
 do		
 	file -i ${i} | grep application > /dev/null
 	if [ "$?" = "0" ] ; then strip ${i} ; fi
 done
 set -e
 ln -svf bash bin/sh
-ln -sf ${KANAPI_BASE_PACKAGES}/binutils-${binutils_ver}/${ARCH}-kanapi-linux-gnu/bin/* bin
 echo "${KANAPI_VER} `date -R`" > sbs.version
 mkdir kanapi_build
 ln -sf /proc/mounts etc/mtab
 mkdir usr/local
 ln -sf /packages/include usr/local/include
 ln -sf /packages/libs lib64
-ln -svf /kanapi_build/kanapi/cross_compilers/scripts/pkg_kanapi bin/pkg_kanapi
+ln -svf /kanapi_build/kanapi/kanapi_system/scripts/pkg_kanapi bin/pkg_kanapi
 ln -svf /kanapi_build/kanapi/kanapi_system/scripts/pkg bin/pkg
 ln -svf /kanapi_build/kanapi/kanapi_system/scripts/pkg_dev bin/pkg_dev
 ln -svf /kanapi_build/kanapi/kanapi_system/scripts/update_include bin/update_include
-cp -v ../docker/configure .
-mkdir -p kanapi_${KANAPI_VER}/${ARCH}/home/.local
+cp /kanapi_build/kanapi/kanapi_system/configs/.inputrc ${KANAPI_BASE_LOCAL}/home
+mkdir -p kanapi_${KANAPI_VER}/home/.local
 
 cd ..
 
-for f in _start_chroot _start_build _start_bbs_build _test_build _start_rebuild _start_install
-do
-	cat $f | sed "s/@KANAPI_VER@/kanapi_${KANAPI_VER}/" > ${SBS_DIR}/$f
-	chmod +x ${SBS_DIR}/$f
-done
-cp -a ${KANAPI_BASE}/init ${SBS_DIR}
-cp -a ${KANAPI_BASE}/init-${ARCH} ${SBS_DIR}
-
 echo "Compressing image"
-tar -C sbs-docker-${ARCH} -cf sbs-docker-${ARCH}.tar .
-rm -f sbs-docker-${ARCH}.tar.xz
-xz -T 0 sbs-docker-${ARCH}.tar
-md5sum sbs-docker-${ARCH}.tar.xz > sbs-docker-${ARCH}.tar.xz.md5
+tar -C sbs-docker -cf sbs-docker-${KANAPI_VER}.tar .
+rm -f sbs-docker-${KANAPI_VER}.tar.xz
+xz -T 0 sbs-docker-${KANAPI_VER}.tar
+md5sum sbs-docker-${KANAPI_VER}.tar.xz > sbs-docker-${KANAPI_VER}.tar.xz.md5
 

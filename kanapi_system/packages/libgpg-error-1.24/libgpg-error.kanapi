@@ -26,29 +26,15 @@ EXT=tar.bz2
 
 pkg_configure() {
 	local_copy
-	if [ "${KANAPI_TARGET}" = "arm" ]
-	then
-		ln -s lock-obj-pub.arm-unknown-linux-gnueabi.h src/syscfg/lock-obj-pub.linux-gnueabi.h
-	fi
-	if [ "${KANAPI_TARGET}" = "i686" ]
-	then
-		ln -s lock-obj-pub.i686-pc-linux-gnu.h src/syscfg/lock-obj-pub.linux-gnu.h
-	fi
-	if [ "${KANAPI_TARGET}" = "x86_64" ]
-	then
-		ln -s lock-obj-pub.x86_64-pc-linux-gnu.h src/syscfg/lock-obj-pub.linux-gnu.h
-	fi
-	./configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME}  CC_FOR_BUILD=gcc
+	ln -s lock-obj-pub.x86_64-pc-linux-gnu.h src/syscfg/lock-obj-pub.linux-gnu.h
+	./configure --prefix=$PREFIX
 }
 
 pkg_build() {
-	cd build
-	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+	pkg_build_local
 }
 
 pkg_install() {
 	cd build
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
-	pkg_install_libs
-	pkg_install_bin_all
+	pkg_install_make && pkg_install_libs && pkg_install_bin_all
 }

@@ -24,25 +24,18 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
-if [ "${KANAPI_TARGET}" = "x86_64" ]
-then
-	LIBFFI_LIBDIR=lib64
-else
-	LIBFFI_LIBDIR=lib
-fi
-	
 export CFLAGS="-I${KANAPI_BASE}/libffi-${libffi_ver}/lib/libffi-${libffi_ver}/include -I${KANAPI_BASE}/zlib-${zlib_ver}/include"
 export LIBFFI_CFLAGS="-I${KANAPI_BASE}/libffi-${libffi_ver}/lib/libffi-${libffi_ver}/include"
-export LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/${LIBFFI_LIBDIR} -lffi -L${KANAPI_BASE}/zlib-${zlib_ver}/lib "
-export LIBFFI_LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/${LIBFFI_LIBDIR} -lffi "
+export LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/lib -lffi -L${KANAPI_BASE}/zlib-${zlib_ver}/lib "
+export LIBFFI_LIBS="-L${KANAPI_BASE}/libffi-${libffi_ver}/lib -lffi "
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} glib_cv_stack_grows=yes glib_cv_uscore=no --disable-libmount \
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX glib_cv_stack_grows=yes glib_cv_uscore=no --disable-libmount \
 		--with-pcre=internal --disable-libelf
 }
 
-pkg_build() {
-	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true V=1
+pkg_install() {
+	pkg_install_make && pkg_install_libs && pkg_install_bin_all
 }
 
 pkg_check() {

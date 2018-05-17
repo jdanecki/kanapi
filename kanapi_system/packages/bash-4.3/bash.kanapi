@@ -29,7 +29,6 @@ pkg_prepare() {
 }
 
 pkg_install() {
-	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
-	pkg_install_bin_all
+	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs
 }
 

@@ -41,48 +41,20 @@ pkg_build() {
 }
 
 pkg_install() {
-	mkdir ${KANAPI_BASE}/libs
-	for i in bin dev etc home lib/modules proc run/shm sys tmp var/empty var/lib/alsa var/run
+	for i in dev etc home lib/modules proc run/shm sys tmp var/empty var/lib/alsa var/run
 	do
-		mkdir -p ${KANAPI_BASE}/../$i
+		mkdir -p ${KANAPI_ROOT}/$i
 	done
-	mkdir -p ${KANAPI_ROOT}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}
-	ln -svf ../../packages ${KANAPI_ROOT}/${KANAPI_TARGET}/kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages
-	for p in glib libffi zlib
-	do
-		PKG_VER=${p}_ver
-		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/lib/lib* ${KANAPI_BASE}/$p-${!PKG_VER}/lib64/lib*
-		do
-			if [ -f $f ]
-			then
-				ln -svf $f ${KANAPI_BASE}/libs/`basename $f`
-			fi
-		done
-	done
-	echo "${KANAPI_BASE}/libs" > ${LIBC_PREFIX}/etc/ld.so.conf
-	${LIBC_PREFIX}/sbin/ldconfig
+	${LN_SF} . ${KANAPI_ROOT}/kanapi_${KANAPI_VER}
 	
-	for p in glib glibc 
-	do
-		PKG_VER=${p}_ver
-		for f in ${KANAPI_BASE}/$p-${!PKG_VER}/bin/*
-		do
-			ln -svf $f ${KANAPI_BASE}/../bin/`basename $f`
-		done	
-	done
-	ln -svf ${LIBC_PREFIX}/sbin/ldconfig ${KANAPI_BASE}/../bin
-	ln -svf ${KANAPI_BASE}/pkg-config-${pkg_config_ver}/bin/pkg-config ${KANAPI_BASE}/../bin
 	if [ "`id -u`" = "0" ]
 	then
-		cp -ar /dev/* ${KANAPI_BASE}/../dev
+		cp -ar /dev/* ${KANAPI_ROOT}/dev
 	fi
-	cp -a ../../configs/etc/* ${KANAPI_BASE}/../etc
-	cat ../../scripts/init-${KANAPI_TARGET} | sed "s/@KANAPI_VER@/${KANAPI_VER}/" > ${KANAPI_BASE}/../init-${KANAPI_TARGET}
-	cat ../../scripts/start_${KANAPI_TARGET} | sed "s/@KANAPI_VER@/${KANAPI_VER}/" > ${KANAPI_BASE}/../start_${KANAPI_TARGET}
-	chmod +x ${KANAPI_BASE}/../init-${KANAPI_TARGET}
-	chmod +x ${KANAPI_BASE}/../start_${KANAPI_TARGET}
-
-	ln -svf init-${KANAPI_TARGET} ${KANAPI_BASE}/../init
-	ln -svf kanapi_${KANAPI_VER}/${KANAPI_TARGET}/packages ${KANAPI_BASE}/../kanapi_packages
+	cp -a ../../configs/etc/* ${KANAPI_ROOT}/etc
+	cat ../../scripts/init  | sed "s/@KANAPI_VER@/${KANAPI_VER}/" > ${KANAPI_ROOT}/init
+	cat ../../scripts/start | sed "s/@KANAPI_VER@/${KANAPI_VER}/" > ${KANAPI_ROOT}/start
+	chmod +x ${KANAPI_ROOT}/init
+	chmod +x ${KANAPI_ROOT}/start
 }	
 

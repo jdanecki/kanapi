@@ -32,12 +32,11 @@ SF_URL="libpng/zlib/${VER}/${PACKAGE_NAME}-${VER}.${EXT}"
 
 pkg_configure() {
 	local_copy
-	prefix=$PREFIX CC="${KANAPI_C_COMPILER}" AR=${KANAPI_TARGET_NAME}-ar RANLIB=${KANAPI_TARGET_NAME}-ranlib ${PACKAGE_SRCDIR}/configure 
+	prefix=$PREFIX ${PACKAGE_SRCDIR}/configure 
 }
 
 pkg_build() {
-	cd build
-	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
+	pkg_build_local
 }
 
 pkg_install() {
@@ -46,9 +45,9 @@ pkg_install() {
 	then
 		pkg_install_pc
 	else
-		${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true
+		pkg_install_make
 	fi
-	pkg_install_libs  && pkg_update_include
+	pkg_install_libs
 }
 
 pkg_check() {

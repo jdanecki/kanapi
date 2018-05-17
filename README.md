@@ -6,7 +6,7 @@ and free software for use at home.
 Current phase: Beta
 
 Versions: 
-* planning - v0.10
+* development - v0.10
 * released - v0.9
 
 License: GPL v.3

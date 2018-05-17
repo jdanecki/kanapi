@@ -54,14 +54,11 @@ pkg_configure() {
 	else
 		cp -v ../../packages/${PACKAGE_NAME}-${curl_ver}/ca-bundle.crt ${PREFIX}/etc
 	fi
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-ca-bundle=${PREFIX}/etc/ca-bundle.crt
-
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --with-ca-bundle=${PREFIX}/etc/ca-bundle.crt
 }
 
 pkg_install() {
-	pkg_install_pc_all
-	pkg_install_bin_all
-	pkg_install_libs
+	pkg_install_pc_all && pkg_install_bin_all && pkg_install_libs
 }
 
 pkg_check() {

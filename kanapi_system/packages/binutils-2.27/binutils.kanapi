@@ -24,20 +24,28 @@ EXT=tar.bz2
 
 . ../settings
 
+export CFLAGS="${CFLAGS} -specs=${KANAPI_BASE}/glibc-${glibc_ver}/gcc-specs"
+
 pkg_prepare() {
 	pkg_tar_bz2
 }
 
-pkg_configure_target() {	
-	export CC_FOR_BUILD="${KANAPI_C_COMPILER}"
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --program-prefix=${KANAPI_TARGET_NAME}-
+pkg_configure() {
+	ORIG_FLEX=`which flex`
+	if [ -n "${ORIG_FLEX}" ]
+	then
+		mv ${ORIG_FLEX} /bin/flex.tmp
+	fi
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --without-docdir \
+	--disable-multilib \
+	--enable-threads 
+	if [ -n "${ORIG_FLEX}" ]
+	then
+		mv /bin/flex.tmp ${ORIG_FLEX}
+	fi
 }
 
 pkg_install() {
-	${MAKE} -j ${MAKE_JOBS}  MAKEINFO=true install
-	${LN_SF} ${PREFIX}/bin/${KANAPI_TARGET_NAME}-strings ${PREFIX}/bin/strings
-	${LN_SF} ${PREFIX}/bin/${KANAPI_TARGET_NAME}-size ${PREFIX}/bin/size
-	pkg_install_bin_all
-	${LN_SF} ${PREFIX}/${KANAPI_TARGET_NAME}/bin/* ${KANAPI_TARGET_BIN}
-	pkg_update_include
+	pkg_install_make && pkg_install_bin_all
 }
+
