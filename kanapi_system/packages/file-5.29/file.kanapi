@@ -26,8 +26,6 @@ EXT=tar.gz
 #build depends on
 . ../settings
 
-export PATH=${KANAPI_HOST_BASE}/../bin:${PATH}
-
 pkg_install() {
 		pkg_install_make && pkg_install_bin_all && pkg_install_libs
 }
