@@ -589,7 +589,13 @@ pkg_strip_binaries() {
 					file ${b} | grep "not stripped"
 					if [ "$?" = "0" ]
 					then
-						strip ${b} 
+						echo ${b} | grep strip
+						if [ "$?" = "0" ]
+						then
+							/bin/strip ${b}
+						else
+							strip ${b} 
+						fi
 					fi
 				fi
 			fi
@@ -664,7 +670,7 @@ pkg_strip_libraries() {
 
 pkg_install_libs() {
 	if [ ! -d ${KANAPI_BASE}/libs ] ; then mkdir ${KANAPI_BASE}/libs; fi
-	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a  ${PREFIX}/lib64/lib*.so* ${PREFIX}/lib64/lib*.a 
+	for f in ${PREFIX}/lib/lib*.so* ${PREFIX}/lib/lib*.a   ${PREFIX}/lib/lib*.la ${PREFIX}/lib64/lib*.so* ${PREFIX}/lib64/lib*.a  ${PREFIX}/lib64/lib*.la
 	do
 		if [ -f $f ] 
 		then
