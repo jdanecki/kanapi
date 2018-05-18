@@ -146,7 +146,7 @@ then
 	LIBGCRYPT_LDFLAGS=`${LIBGCRYPT_CONFIG} --libs`
 fi
 
-CFLAGS="${CFLAGS} -fPIC"
+export CFLAGS="${CFLAGS} -fPIC"
 
 (which grep && which wc) > /dev/null
 if [ "$?" = "0" ]
