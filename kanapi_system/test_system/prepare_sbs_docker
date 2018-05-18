@@ -21,7 +21,7 @@ set -e
 
 . ../scripts/config.kanapi
 
-export SBS_BUILD=2
+export SBS_BUILD=3
 
 ARCH=`uname -m`
 
@@ -46,7 +46,6 @@ do
 done
 
 mkdir packages
-mkdir etc
 mkdir lib
 mkdir -p var/cache
 mkdir -p var/empty
@@ -76,6 +75,7 @@ done
 cp -ar ${KANAPI_BASE_PACKAGES}/linux-headers-${linux_headers_ver} packages
 cp -ar ${KANAPI_BASE_PACKAGES}/libgpg-error-${libgpg_error_ver} packages
 cp -ar ${KANAPI_BASE_PACKAGES}/include packages
+cp -ar ${KANAPI_BASE}/etc packages
 
 mkdir -p ${KANAPI_BASE_LOCAL}/home/src
 echo "export PS1='sbs:\w\\\$ '" > ${KANAPI_BASE_LOCAL}/home/.bashrc
@@ -126,7 +126,7 @@ set -e
 ln -svf bash bin/sh
 echo "${IMAGE_VER} `date -R`" > sbs.version
 mkdir kanapi_build
-ln -sf /proc/mounts etc/mtab
+
 mkdir usr/local
 ln -sf /packages/include usr/local/include
 ln -sf /packages/libs lib64
