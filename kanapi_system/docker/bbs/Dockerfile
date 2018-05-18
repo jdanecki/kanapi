@@ -1,5 +1,6 @@
-FROM kanapi/kanapi-sbs
+FROM kanapi/kanapi-sbs:0.10.1
 MAINTAINER Jacek Danecki <jacek.m.danecki@gmail.com>
+ENV HOME=/kanapi_0.10/home
 RUN mkdir /kanapi_build/kanapi
 COPY kanapi /kanapi_build/kanapi
 RUN cd /kanapi_build/kanapi/kanapi_system/kanapi-bbs && ./install all-sbs verbose  && \
