@@ -21,7 +21,7 @@ set -e
 
 . ../scripts/config.kanapi
 
-export SBS_BUILD=3
+export SBS_BUILD=4
 
 ARCH=`uname -m`
 
@@ -75,7 +75,7 @@ done
 cp -ar ${KANAPI_BASE_PACKAGES}/linux-headers-${linux_headers_ver} packages
 cp -ar ${KANAPI_BASE_PACKAGES}/libgpg-error-${libgpg_error_ver} packages
 cp -ar ${KANAPI_BASE_PACKAGES}/include packages
-cp -ar ${KANAPI_BASE}/etc packages
+cp -ar ${KANAPI_BASE}/etc .
 
 mkdir -p ${KANAPI_BASE_LOCAL}/home/src
 echo "export PS1='sbs:\w\\\$ '" > ${KANAPI_BASE_LOCAL}/home/.bashrc
