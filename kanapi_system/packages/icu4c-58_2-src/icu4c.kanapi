@@ -31,9 +31,9 @@ pkg_prepare() {
 		echo "$PACKAGE_NAME: already prepared"
 	else
 		pkg_tgz
-		${LN_SF} ${KANAPI_BUILD_SRC}/icu ${PACKAGE_SRCDIR}
 		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
 	fi
+	${LN_SNF} icu ${PACKAGE_SRCDIR}
 }
 
 pkg_configure() {	

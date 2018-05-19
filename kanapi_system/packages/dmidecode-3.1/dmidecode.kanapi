@@ -30,7 +30,7 @@ EXT=tar.xz
 #export CFLAGS="${CFLAGS} "
 
 pkg_configure() {
-	pkg_configure_local
+	local_copy
 }
 
 pkg_build() {

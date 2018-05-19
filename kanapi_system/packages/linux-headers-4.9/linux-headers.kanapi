@@ -31,7 +31,7 @@ pkg_download() {
 
 pkg_prepare() {
 	pkg_tar_xz
-	${LN_SF} ${KANAPI_BUILD_SRC}/linux-${VER} ${PACKAGE_SRCDIR}
+	${LN_SNF} linux-${VER} ${PACKAGE_SRCDIR}
 }
 
 pkg_configure() {

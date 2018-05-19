@@ -24,6 +24,8 @@ EXT=tar.xz
 #build depends on
 . ../settings
 
+export LDFLAGS="${LDFLAGS} -lrt -lpthread"
+
 pkg_install() {
 	pkg_install_make_bin_all
 }

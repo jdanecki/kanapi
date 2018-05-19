@@ -55,7 +55,7 @@ t_system: mc kmod procps-ng pciutils screen sdparm iotop ntfs-3g_ntfsprogs strac
 	wireless_tools wpa_supplicant dhcp wget network Hermes pci_ids usbutils udev libdrm libev libevdev \
 	cacert cpio hdparm p11-kit iptables dmidecode
 
-mc:  gpm
+mc: 
 	@$(RUN_TARGET)
 
 kmod:

@@ -36,9 +36,9 @@ pkg_prepare() {
 		echo "$PACKAGE_NAME: already prepared"
 	else
 		pkg_tar_gz
-		ln -svf ${KANAPI_BUILD_SRC}/lloyd-yajl-66cb08c ${KANAPI_BUILD_SRC}/${PACKAGE_VER}
 		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
 	fi
+	${LN_SNF} lloyd-yajl-66cb08c ${PACKAGE_SRCDIR}
 }
 
 pkg_configure() {
