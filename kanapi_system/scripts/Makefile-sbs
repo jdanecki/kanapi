@@ -8,15 +8,12 @@ endif
 
 include $(BASE)../scripts/Makefile.common
 
-sbs: $(COMPILERS) rootfs file busybox bash make openssl curl
+sbs: gcc rootfs file busybox bash make openssl curl
 
 linux-headers:
 	@$(RUN_TARGET)
 
 glibc: linux-headers
-	@$(RUN_TARGET)
-
-cross_gcc: glibc
 	@$(RUN_TARGET)
 
 gmp:
@@ -31,7 +28,7 @@ mpc: mpfr
 binutils: mpc
 	@$(RUN_TARGET)
 
-gcc: binutils
+gcc: glibc binutils
 	@$(RUN_TARGET)
 
 zlib:

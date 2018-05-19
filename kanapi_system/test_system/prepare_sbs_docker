@@ -21,7 +21,7 @@ set -e
 
 . ../scripts/config.kanapi
 
-export SBS_BUILD=4
+export SBS_BUILD=5
 
 ARCH=`uname -m`
 

@@ -25,7 +25,8 @@ EXT=tar.xz
 export DONT_INSTALL_INCLUDE=1
 . ../settings
 	
-export LDFLAGS="-fno-stack-protector -O2"
+export LDFLAGS="${LDFLAGS} -fno-stack-protector -O2"
+export CFLAGS="${CFLAGS} -fno-stack-protector -O2"
 
 pkg_prepare() {
 	pkg_tar_xz
