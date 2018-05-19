@@ -72,25 +72,16 @@ cross_compile_build() {
 pkg_build() {
 	cd build
 	MAKE_JOBS=1
-	if [ ${KANAPI_CROSS} -eq 0 ]
-	then
-		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
-	else
-		cross_compile_build
-		${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
-	fi
+	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true
 }
 
 pkg_install() {
 	cd build
-	pkg_install_make
-	pkg_install_bin_all
-	pkg_install_libs
+	pkg_install_make_bin_all &&	pkg_install_libs
 }
 
 pkg_check() {
 	echo "CFLAGS=${CFLAGS}"
 	echo "CXXFLAGS=${CXXFLAGS}"
-	echo "KANAPI_CROSS=${KANAPI_CROSS}"
 }
 

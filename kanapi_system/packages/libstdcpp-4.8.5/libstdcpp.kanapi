@@ -56,5 +56,5 @@ pkg_install() {
 
 pkg_test() {
 	echo "tests for ${PACKAGE_NAME}"
-	${MAKE} -C ../../tests test_libstdcpp KANAPI_TARGET_NAME=${KANAPI_TARGET_NAME} KANAPI_BASE=${KANAPI_BASE}
+	${MAKE} -C ../../tests test_libstdcpp KANAPI_BASE=${KANAPI_BASE}
 }

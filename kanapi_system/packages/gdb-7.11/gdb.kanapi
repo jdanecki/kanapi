@@ -27,12 +27,7 @@ EXT=tar.xz
 pkg_configure() {
 	export CFLAGS="${NCURSES_CFLAGS}"
 	export LDLAGS="${NCURSES_LDFLAGS}"
-	if [ "${KANAPI_CROSS}" = "0" ]
-	then 
-		GAWK=${KANAPI_TARGET_BIN}/gawk
-	else
-		GAWK=`which gawk`
-	fi
+	GAWK=${KANAPI_BIN}/gawk
 	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX  ac_cv_prog_AWK=${GAWK}
 }
 

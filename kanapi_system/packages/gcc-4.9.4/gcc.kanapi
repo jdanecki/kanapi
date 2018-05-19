@@ -54,8 +54,8 @@ pkg_install() {
 	MAKE_JOBS=1
 	${MAKE} -j ${MAKE_JOBS}  MAKEINFO=true install
 
-	${LN_SF} ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${PREFIX}/libexec/gcc/x86_64-unknown-linux-gnu/${gcc_ver}/as
-	${LN_SF} ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${PREFIX}/libexec/gcc/x86_64-unknown-linux-gnu/${gcc_ver}/ld
+	${LN_SF} ${KANAPI_BASE}/binutils-${binutils_ver}/bin/as ${PREFIX}/libexec/gcc/x86_64-unknown-linux-gnu/${gcc_ver}/as
+	${LN_SF} ${KANAPI_BASE}/binutils-${binutils_ver}/bin/ld ${PREFIX}/libexec/gcc/x86_64-unknown-linux-gnu/${gcc_ver}/ld
 
 	${LN_SF} ${PREFIX}/bin/gcc ${PREFIX}/bin/cc
 

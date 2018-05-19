@@ -27,19 +27,16 @@ EXT=tar.xz
 
 pkg_prepare() {
 	pkg_tar_xz
-	mkdir -p ${PREFIX}/${KANAPI_TARGET_NAME}
-	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${PREFIX}/${KANAPI_TARGET_NAME}/lib
-	if [ "${KANAPI_TARGET}" = "x86_64" ]
-	then 
-		ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/lib64 ${PREFIX}/${KANAPI_TARGET_NAME}/lib64
-	fi
-	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/include
-	ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${PREFIX}/${KANAPI_TARGET_NAME}/sys-include
+	mkdir -p ${PREFIX}/x86_64-unknown-linux-gnu/lib
+	mkdir -p ${PREFIX}/x86_64-unknown-linux-gnu/include
+	mkdir -p ${PREFIX}/x86_64-unknown-linux-gnu/sys-include
+	${LN_SF} ${KANAPI_BASE}/glibc-${glibc_ver}/lib/*     ${PREFIX}/x86_64-unknown-linux-gnu/lib
+	${LN_SF} ${KANAPI_BASE}/glibc-${glibc_ver}/include/* ${PREFIX}/x86_64-unknown-linux-gnu/include
+	${LN_SF} ${KANAPI_BASE}/glibc-${glibc_ver}/include/* ${PREFIX}/x86_64-unknown-linux-gnu/sys-include
 }
 
 pkg_configure() {
 	${PACKAGE_SRCDIR}/configure --disable-bootstrap --disable-multilib \
-	--target=${KANAPI_TARGET_NAME} \
 	--disable-libada  --enable-languages="c c++" \
 	--with-mpc=${KANAPI_BASE}/mpc-${mpc_ver} --with-mpfr=${KANAPI_BASE}/mpfr-${mpfr_ver} --with-gmp=${KANAPI_BASE}/gmp-${gmp_ver} \
 	--prefix=${PREFIX} --disable-nls --enable-decimal-float \
@@ -47,84 +44,49 @@ pkg_configure() {
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp \
 	--with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include \
 	--disable-static --enable-__cxa_atexit --enable-threads=posix --enable-libstdcxx-time
-#	 
 }
 
 pkg_build() {
 	${MAKE} -j ${MAKE_JOBS} MAKEINFO=true 
-	#all-gcc all-target-libgcc
-}
-
-pkg_target() {
-	if [ "${KANAPI_TARGET}" = "x86_64" ]
-	then
-		LINKER_NAME=ld-linux-x86-64.so.2
-		LINKER_PATH=lib64
-	fi
-	if [ "${KANAPI_TARGET}" = "i686" ]
-	then
-		LINKER_NAME=ld-linux.so.2
-		LINKER_PATH=lib
-	fi
-	if [ "${KANAPI_TARGET}" = "arm" ]
-	then
-		LINKER_NAME=ld-linux.so.3
-		LINKER_PATH=lib
-	fi	
-	echo "updating spec to ${LINKER_NAME} in ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${VER}/specs"
-	${PREFIX}/bin/gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
-		> ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${VER}/specs
-#	pkg_install_bin_all
-}
-
-pkg_install_headers() {
-	GCC_DIR=${PREFIX}/${KANAPI_TARGET_NAME} 
-	if [ ! -d ${GCC_DIR} ]
-	then 
-		mkdir -p ${GCC_DIR}
-		ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/include ${GCC_DIR}
-		ln -svf include ${GCC_DIR}/sys-include
-		ln -svf ${KANAPI_BASE}/glibc-${glibc_ver}/lib ${GCC_DIR}/lib
-	fi
-	cp -ar ${KANAPI_BASE}/linux-${linux_ver}/include/* ${GCC_DIR}/include
 }
 
 pkg_install() {
 	MAKE_JOBS=1
 	${MAKE} -j ${MAKE_JOBS}  MAKEINFO=true install
-	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/as ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${VER}/as
-	ln -svf ${KANAPI_BASE}/binutils-${binutils_ver}/${KANAPI_TARGET_NAME}/bin/ld ${PREFIX}/libexec/gcc/${KANAPI_TARGET_NAME}/${VER}/ld
 
-	pkg_install_headers
+	${LN_SF} ${KANAPI_BASE}/binutils-${binutils_ver}/bin/as ${PREFIX}/libexec/gcc/x86_64-unknown-linux-gnu/${gcc_ver}/as
+	${LN_SF} ${KANAPI_BASE}/binutils-${binutils_ver}/bin/ld ${PREFIX}/libexec/gcc/x86_64-unknown-linux-gnu/${gcc_ver}/ld
+
 	${LN_SF} ${PREFIX}/bin/gcc ${PREFIX}/bin/cc
 
-		# to be executed on target machine
-	if [ "${KANAPI_TARGET}" = `uname -m` ] 
+	LINKER_NAME=ld-linux-x86-64.so.2
+	echo "updating spec to ${LINKER_NAME} in ${PREFIX}/lib/gcc/x86_64-unknown-linux-gnu/${gcc_ver}/specs"
+	${PREFIX}/bin/gcc -dumpspecs | sed "s@/lib64/ld-linux-x86-64.so.2@${LIBC_PREFIX}/lib/ld-linux-x86-64.so.2@g" \
+		> ${PREFIX}/lib/gcc/x86_64-unknown-linux-gnu/${gcc_ver}/specs
+	
+	pkg_install_bin_all
+
+	echo "${PREFIX}/lib64" >> ${LIBC_PREFIX}/etc/ld.so.conf
+	if [ "`id -u`" = "0" ]
 	then
-		pkg_target
+		export LD_LIBRARY_PATH=
+		ldconfig
 	fi
-	for dir in ${PREFIX}/lib ${PREFIX}/lib64
+	for i in ${PREFIX}/bin/*
 	do
-		if [ -d $dir ]
-		then
-			for f in $dir/lib*
-			do
-				if [ -f $f ]
-				then
-					cp -av $f ${PREFIX}/${KANAPI_TARGET_NAME}/lib
-				fi
-			done
-		fi
+		patchelf --set-interpreter ${LIBC_PREFIX}/lib/ld-linux-x86-64.so.2 $i
+	done
+
+	for i in cc1 cc1plus collect2 lto-wrapper lto1
+	do
+		patchelf --set-interpreter ${LIBC_PREFIX}/lib/ld-linux-x86-64.so.2 ${PREFIX}/libexec/gcc/x86_64-unknown-linux-gnu/${VER}/$i
 	done
 }
 
 pkg_check() {
-	echo "TARGET=${KANAPI_TARGET_NAME}"
 	echo "HOST=`uname -m`"
 	echo "PATH=$PATH"
-	echo "CC=${CC}"
 	gcc --version
-	${PREFIX}/bin/gcc --version
-	#${LN_SF} ${PREFIX}/bin/gcc ${PREFIX}/bin/cc
+	echo "CPP=${CPP}"
 }
 

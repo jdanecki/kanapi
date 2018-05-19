@@ -30,7 +30,6 @@ EXT=tar.bz2
 export CFLAGS="${NCURSES_CFLAGS} -O2"
 export CPPFLAGS=${CFLAGS}
 export LDFLAGS="${NCURSES_LDFLAGS}"
-export STRIP=${KANAPI_TARGET_NAME}-strip
 
 pkg_prepare() {
 	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 

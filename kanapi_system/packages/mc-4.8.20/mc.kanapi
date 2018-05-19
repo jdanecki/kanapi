@@ -50,6 +50,4 @@ pkg_check() {
 	ldd ${PKG_CONFIG}
 	echo ${LD_LIBRARY_PATH}
 	echo ${PATH}
-	echo "CROSS=${KANAPI_CROSS}"
-	echo "KANAPI_TARGET=${KANAPI_TARGET}"
 }
