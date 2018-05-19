@@ -6,6 +6,7 @@ and free software for use at home.
 Current phase: Beta
 
 Versions: 
+
 * development - v0.10
 * released - v0.9
 
@@ -21,8 +22,13 @@ Author: jacek.m.danecki@gmail.com
 ## SBS images
 
 SBS images on SourceForge https://sourceforge.net/projects/kanapi/files/images
-* sbs-x86_64.tar.xz - base for build in chroot (local and CI)
-* sbs-docker-x86.tar.xz - base for BBS docker image
+
+* v.0.10
+  - sbs-docker-0.10.6.tar.xz - base for SBS docker image
+
+* v0.9
+  - sbs-x86_64.tar.xz - base for build in chroot (local and CI)
+  - sbs-docker-x86.tar.xz - base for SBS docker image
 
 ## Main docker images
 
