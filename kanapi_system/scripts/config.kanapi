@@ -301,7 +301,6 @@ poppler_ver=0.50.0
 itstool_ver=2.0.2
 lxml_ver=3.7.1
 gsettings_desktop_schemas_ver=3.22.0
-#intltool_ver=0.40.6
 intltool_ver=0.51.0
 dconf_ver=0.26.0
 shared_mime_info_ver=1.7

@@ -499,10 +499,22 @@ pkg_install_make() {
 	${MAKE} -j ${MAKE_JOBS} install MAKEINFO=true && pkg_update_include	
 }
 
-
 pkg_install() {
 	pkg_install_make
 }	
+
+pkg_install_local() {
+	cd build
+	pkg_install_make
+}	
+
+pkg_install_make_bin_all() {
+	pkg_install_make && pkg_install_bin_all
+}
+
+pkg_install_make_sbin_all() {
+	pkg_install_make && pkg_install_sbin_all
+}
 
 pkg_install_pc() {	
 	pkg_install_make
@@ -687,7 +699,7 @@ pkg_install_libs() {
 }
 
 pkg_install_all() {
-	pkg_install_pc && pkg_install_libs && pkg_install_bin
+	pkg_install_pc_all && pkg_install_libs && pkg_install_bin_all
 }
 
 pkg_test() {
