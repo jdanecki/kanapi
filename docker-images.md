@@ -1,7 +1,7 @@
 # Docker images versions (full)
 
-* sbs:0.10.4
-* bbs:0.10.1
+* sbs:0.10.5
+* bbs:0.10.2
 * cli:12
 * x11:5
 * gui:5

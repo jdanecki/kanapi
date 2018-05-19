@@ -1,4 +1,4 @@
-FROM kanapi/kanapi-sbs:0.10.1
+FROM kanapi/kanapi-BASE_IMAGE
 MAINTAINER Jacek Danecki <jacek.m.danecki@gmail.com>
 ENV HOME=/kanapi_0.10/home
 RUN mkdir /kanapi_build/kanapi
