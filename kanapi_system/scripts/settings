@@ -182,9 +182,11 @@ if [ "x${PKG_VERBOSE}" = "x1" -o "x${PKG_VERBOSE}" = "x3" ]
 then
 	MAKE=make
 	LN_SF="ln -svf"
+	LN_SNF="ln -svnf"
 else
 	MAKE="make -s"
 	LN_SF="ln -sf"
+	LN_SNF="ln -snf"
 fi
 
 local_copy() {

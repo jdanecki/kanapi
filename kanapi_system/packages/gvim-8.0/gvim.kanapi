@@ -52,12 +52,9 @@ pkg_prepare() {
 	else
 		PACKAGE_FILENAME=vim-${VER}.${EXT}
 		pkg_tar_bz2
-		if [ ! -L ${PACKAGE_SRCDIR} ]
-		then
-			${LN_SF} ${KANAPI_BUILD_SRC}/vim80 ${PACKAGE_SRCDIR}
-		fi
 		/bin/date > ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared
 	fi
+	${LN_SNF} vim80 ${PACKAGE_SRCDIR}
 }
 
 pkg_configure() {
