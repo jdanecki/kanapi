@@ -67,7 +67,7 @@ pkg_install() {
 		LINKER_PATH=lib
 	fi
 
-	${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
+	${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
 		> ${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs
 
 }	
@@ -89,7 +89,7 @@ pkg_check() {
 		LINKER_PATH=lib
 	fi
 
-	echo "${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/${KANAPI_TARGET_NAME}-gcc"
+	echo "${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/bin/gcc"
   	echo "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g"
 	echo "${KANAPI_CROSS_BASE}/gcc-${gcc_ver}/lib/gcc/${KANAPI_TARGET_NAME}/${gcc_ver}/specs"
 }

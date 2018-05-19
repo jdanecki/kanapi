@@ -35,7 +35,7 @@ then
 fi
 
 pkg_configure() {	
-#	export QMAKE_CC=${KANAPI_TARGET_NAME}-gcc
+#	export QMAKE_CC=gcc
 #	export QMAKE_CXX=${KANAPI_TARGET_NAME}-g++
 #	export QMAKE_LINK=${KANAPI_TARGET_NAME}-g++
 #	export QMAKE_LINK_SHLIB=${KANAPI_TARGET_NAME}-g++

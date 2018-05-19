@@ -47,7 +47,7 @@ pkg_configure() {
 	--disable-target-zlib --without-ppl --disable-cloog --without-cloog --disable-libssp \
 	--with-native-system-header-dir=${KANAPI_BASE}/glibc-${glibc_ver}/include \
 	--disable-static --enable-__cxa_atexit --enable-threads=posix --enable-libstdcxx-time
-#	--host=${KANAPI_TARGET_NAME} 
+#	 
 }
 
 pkg_build() {
@@ -72,7 +72,7 @@ pkg_target() {
 		LINKER_PATH=lib
 	fi	
 	echo "updating spec to ${LINKER_NAME} in ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${VER}/specs"
-	${PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
+	${PREFIX}/bin/gcc  -dumpspecs | sed "s@/${LINKER_PATH}/${LINKER_NAME}@${LIBC_PREFIX}/lib/${LINKER_NAME}@g" \
 		> ${PREFIX}/lib/gcc/${KANAPI_TARGET_NAME}/${VER}/specs
 #	pkg_install_bin_all
 }
@@ -123,8 +123,8 @@ pkg_check() {
 	echo "HOST=`uname -m`"
 	echo "PATH=$PATH"
 	echo "CC=${CC}"
-	${KANAPI_TARGET_NAME}-gcc --version
-	${PREFIX}/bin/${KANAPI_TARGET_NAME}-gcc --version
+	gcc --version
+	${PREFIX}/bin/gcc --version
 	#${LN_SF} ${PREFIX}/bin/gcc ${PREFIX}/bin/cc
 }
 

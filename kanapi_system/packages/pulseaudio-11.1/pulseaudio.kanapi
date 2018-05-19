@@ -28,7 +28,7 @@ LIB_DEPENDS="xcb"
 
 export LDFLAGS="${LDFLAGS} -L${KANAPI_BASE}/libtool-${libtool_ver}/lib -lresolv -lrt -lpthread"
 export CFLAGS="${CFLAGS} -I ${KANAPI_BASE}/libtool-${libtool_ver}/include"
-export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
+export CPP="gcc -E ${CFLAGS}"
 
 export PERL5LIB="${KANAPI_BASE}/XML-Parser-${XML_Parser_ver}/lib/site_perl/${perl_ver}"
 

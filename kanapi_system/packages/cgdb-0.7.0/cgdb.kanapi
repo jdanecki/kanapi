@@ -30,7 +30,7 @@ LIB_DEPENDS="ncurses"
 READLINE_BASE=${KANAPI_BASE}/readline-${readline_ver}
 export CFLAGS="${CFLAGS} -I${READLINE_BASE}/include -I${READLINE_BASE}/include/readline"
 export LDFLAGS="${LDFLAGS} -L${READLINE_BASE}/lib"
-export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
+export CPP="gcc -E ${CFLAGS}"
 export CXXFLAGS=${CFLAGS}
 
 pkg_configure() {

@@ -33,7 +33,7 @@ pkg_configure() {
 	then
 	 	DBUS_BINDING_TOOL="--with-dbus-binding-tool=${KANAPI_HOST_BASE}/../bin/dbus-binding-tool"
 	fi
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} ${DBUS_BINDING_TOOL}
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX  ${DBUS_BINDING_TOOL}
 }
 
 pkg_install() {

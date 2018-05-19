@@ -44,7 +44,7 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-ca-bundle=${PREFIX}/etc/ca-bundle.crt
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX  --with-ca-bundle=${PREFIX}/etc/ca-bundle.crt
 
 }
 

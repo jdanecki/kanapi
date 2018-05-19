@@ -31,7 +31,7 @@ if [ -n "${PKG_CONFIG}" ]
 then
 	export INCLUDES="`${PKG_CONFIG} --cflags zlib`"
 fi
-export CPP="${KANAPI_TARGET_NAME}-gcc -E ${CFLAGS}"
+export CPP="gcc -E ${CFLAGS}"
 
 pkg_prepare() {
 	if [ -f ${KANAPI_BUILD_SRC}/${PACKAGE_FILENAME}.prepared ] 
@@ -45,7 +45,7 @@ pkg_prepare() {
 }
 
 pkg_configure() {
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX  
 }
 
 pkg_install() {

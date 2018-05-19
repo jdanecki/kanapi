@@ -36,7 +36,7 @@ pkg_configure() {
 		touch ChangeLog
 		libtoolize --install --force
 		autoreconf --install --force
-		./configure	--prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+		./configure	--prefix=$PREFIX  
 	fi
 }
 

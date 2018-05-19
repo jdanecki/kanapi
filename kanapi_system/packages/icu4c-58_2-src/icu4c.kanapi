@@ -39,14 +39,14 @@ pkg_prepare() {
 pkg_configure() {	
 	if [ "${KANAPI_CROSS}" = "0" ]
 	then
-		${PACKAGE_SRCDIR}/source/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} 
+		${PACKAGE_SRCDIR}/source/configure --prefix=$PREFIX  
 	else
 		if [ ! -d host ]; then mkdir host ; fi
 		cd host
 		${PACKAGE_SRCDIR}/source/configure --prefix=$PREFIX --host=`uname -m`-kanapi-linux-gnu
 		${MAKE} -j ${MAKE_JOBS}
 		cd ..
-		${PACKAGE_SRCDIR}/source/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} --with-cross-build=`pwd`/host
+		${PACKAGE_SRCDIR}/source/configure --prefix=$PREFIX  --with-cross-build=`pwd`/host
 	fi
 }
 

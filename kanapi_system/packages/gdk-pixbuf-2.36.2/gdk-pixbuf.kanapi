@@ -36,7 +36,7 @@ pkg_configure() {
 	then
 		CONF_PAR="enable_gio_sniffing=yes"
 	fi
-	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX --host=${KANAPI_TARGET_NAME} \
+	${PACKAGE_SRCDIR}/configure --prefix=$PREFIX  \
 		--without-libtiff  --with-libjpeg ${CONF_PAR}
 }
 
