@@ -23,5 +23,4 @@ fi
 cat Dockerfile.template | sed "s/BASE_IMAGE/${BASE_IMAGE}/" > Dockerfile
 cat interactive/build.template | sed "s/@KANAPI_VER@/${KANAPI_VER}/" | sed "s/%SBS_BUILD%/${SBS_BUILD}/"  > build
 chmod +x build
-docker build -t kanapi-${NAME}:${VER} .
-rm -rf kanapi
+docker build -t kanapi-${NAME}:${VER} . && rm -rf kanapi

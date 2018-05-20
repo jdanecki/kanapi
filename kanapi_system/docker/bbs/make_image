@@ -18,5 +18,4 @@ else
 	popd
 fi
 cat Dockerfile.template | sed "s/BASE_IMAGE/${BASE_IMAGE}/" > Dockerfile
-docker build -t kanapi-${NAME}:${VER} .
-rm -rf kanapi
+docker build -t kanapi-${NAME}:${VER} . && rm -rf kanapi
