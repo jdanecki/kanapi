@@ -1,7 +1,10 @@
-all: cli_docker
+all: bbs_docker cli_docker
 
 cli_docker:
-	cd ../kanapi_system/docker/cli; ./make_image
+	cd cli; ./make_image
+
+bbs_docker:
+	cd bbs; ./make_image
 
 test:
 	echo "tests disabled"

@@ -1,4 +1,5 @@
-all: bbs-docker
+all:
+	echo "build disabled on branch b0.10"
 
 bbs-docker:
 	cd bbs ; ./make_image
