@@ -163,9 +163,15 @@ fi
 
 MAKE_JOBS=${NR_CPUS}
 
+if [ "${CI}" = "true" ]
+then
+	REMOVE_DURING_INSTALL=1
+fi
+
 if [ "${SHIPPABLE}" = "true" ]
 then 
 	MAKE_JOBS=2
+	REMOVE_DURING_INSTALL=0
 fi
 
 if [ "${SEMAPHORE}" = "true" ]
