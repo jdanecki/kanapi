@@ -1,7 +1,7 @@
 all: bbs-docker
 
 bbs-docker:
-	cd ../kanapi_system/docker/bbs ; ./make_image
+	cd bbs ; ./make_image
 
 test:
 	echo "tests disabled"
