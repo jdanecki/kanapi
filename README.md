@@ -12,7 +12,7 @@ Versions:
 License: GPL v.3
 
 Look into doc directory to learn how to build KaNaPi.
-More details on http://kanapi.ga
+More details on https://jdanecki.github.io/kanapi
 
 Author: jacek.m.danecki@gmail.com
 
