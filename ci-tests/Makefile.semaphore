@@ -1,10 +1,13 @@
-all: bbs_docker cli_docker
+all: sbs_docker bbs_docker cli_docker
+
+sbs_docker:
+	pushd ../kanapi_system/docker/sbs; ./make_image; popd
 
 cli_docker:
-	cd cli; ./make_image
+	pushd cli; ./make_image; popd
 
 bbs_docker:
-	cd bbs; ./make_image
+	pushd bbs; ./make_image; popd
 
 test:
 	echo "tests disabled"
