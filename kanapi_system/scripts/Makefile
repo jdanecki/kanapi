@@ -34,7 +34,7 @@ required: $(COMPILERS) rootfs bbs
 minimal: $(COMPILERS) rootfs file busybox bash make openssl curl
 
 optional: apps_txt devel sound graphics x-support sdl-support wm xapp tests apps_gui apps_gtk apps_gtk3 \
-	sound_devel apps_qt www database nfs video sdl2-support
+	sound_devel apps_qt www database nfs video sdl2-support graphics-apps ogl ocl compilers network
 
 all-sbs: bbs-sbs
 
@@ -73,10 +73,9 @@ apps_gtk: gtk+ dconf gimp gvim
 
 apps_gtk3: gtk3+ evince pavucontrol
 
-sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer
+sdl-support: SDL_image SDL_gfx SDL_ttf SDL_mixer GUIlib
 
-sdl2-support: SDL2_image 
-	#SDL_gfx SDL_ttf SDL_mixer
+sdl2-support: SDL2_image SDL2_gfx SDL2_ttf
 
 x-support: kbproto util-macros xproto xextproto libxcb xtrans inputproto libX11 libXext \
 	fixesproto libXfixes libXdamage xf86driproto xcmiscproto \
@@ -126,7 +125,7 @@ xapp: xfd st xterm bitmap oclock showfont x11perf xbacklight xcalc xclock xconso
 
 icons:  xcursor-themes default-icon-theme hicolor-icon-theme tango-icon-theme 
 
-sound: alsa-utils esound gstreamer jack2 pulseaudio
+sound: alsa-utils esound gstreamer jack2 pulseaudio alsa-plugins speex
 
 sound_devel: csound
 
@@ -141,6 +140,8 @@ video: Blue mpv
 deprecated: procps
 
 nfs: nfs-utils
+
+graphics-apps: qiv opencv exif
 
 #download version prepare install clean test:
 #	$(foreach pkg,$(PKGS), make $(pkg) ACTION=$@; )
@@ -1340,7 +1341,7 @@ yasm:
 rtl8188eu:
 	@$(RUN_TARGET)
 
-beignet:
+beignet: ocl-icd
 	@$(RUN_TARGET)
 
 ocl-icd:
@@ -1355,8 +1356,12 @@ clpeak:
 glu:
 	@$(RUN_TARGET)
 
-freeglut:
+freeglut: glu
 	@$(RUN_TARGET)
+
+ogl: freeglut
+
+ocl: beignet clinfo clpeak
 
 opencv:
 	@$(RUN_TARGET)
@@ -1366,6 +1371,8 @@ SDL2_image: SDL2
 
 iproute2:
 	@$(RUN_TARGET)
+
+network: iproute2
 
 gstreamer: libunwind
 	@$(RUN_TARGET)
@@ -1393,6 +1400,8 @@ gcc_6:
 
 gcc_7:
 	@$(RUN_TARGET_VER)
+
+compilers: gcc_5 gcc_6 gcc_7
 
 scons:
 	@$(RUN_TARGET)
