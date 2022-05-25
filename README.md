@@ -1,3 +1,5 @@
+Development was stopped in this repository, and moved to https://github.com/jdanecki/kanapi64
+
 # KaNaPi project
 
 Main goal of this project is to create educational operating system based on Linux kernel
